@@ -1,1 +1,0 @@
-<%= link_to_remote h(category.title), {:url => category_child_path(@main_category, category), :method => 'get', :loading => "$(\'#{category.id}_div\').style.background=\'url(/images/loadingAnimation2.gif) no-repeat top right\'", :loaded => "$(\'#{category.id}_div\').style.background=\'none\'"} %>
