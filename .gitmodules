@@ -1,3 +1,6 @@
 [submodule "vendor/plugins/thl_integration"]
 	path = vendor/plugins/thl_integration
 	url = git://github.com/thl/thl_integration.git
+[submodule "vendor/plugins/complex_scripts"]
+	path = vendor/plugins/complex_scripts
+	url = git@github.com:thl/complex_scripts.git
