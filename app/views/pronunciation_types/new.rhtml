@@ -1,0 +1,10 @@
+<h1>New Pronunciation type</h1>
+<%= form_tag({:action => "create"}, :name => "edit")  %>
+<%= link_to_function(image_tag("add_up.gif", :size => "87x19", :border => 0, :alt => "add", :name => "add1"), "document.edit.submit()", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('add1','','/images/add_down.gif',1);"}) %><br>
+<%= edit_pronunciation_type %>
+<input type="hidden" name="id" value="<%= params["id"] %>"/><br /><br />
+<%= link_to_function(image_tag("add_up.gif", :size => "87x19", :border => 0, :alt => "add", :name => "add2"), "document.edit.submit()", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('add2','','/images/add_down.gif',1);"}) %>
+<% if params["query"] != nil %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back"), {:action => 'searchaction', :params => { :query => params['query']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back','','/images/back_down.gif',1);"%>
+<% end %>
+<%= end_form_tag %>

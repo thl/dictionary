@@ -1,0 +1,69 @@
+TopicalMapBuilderIntegration
+============================
+
+The Topical Map Builder was designed to centralize categories common to all THDL applications.
+Through the Topical Map Builder one integrates such categories into any rails app.
+
+Install:
+
+app> script/plugin install -x http://ndlb.svn.sourceforge.net/svnroot/ndlb/portal/ror/plugins/topical_map_builder_integration/trunk/
+
+Integrate javascript, stylesheet, views and controller:
+
+app> script/generate topical_map_categories
+
+The active resource model will be called Category. The fields it includes are id, title,
+descriptions and parent_id, but the only one I used here is 'title'.
+
+I patched the active resource classes for it to act more like a active records, so you can do
+belongs_to:
+
+class FeatureObjectType < ActiveRecord::Base
+ belongs_to :object_type, :class_name => 'Category'
+...
+
+To integrate it into an edit action the ability to select a category from the tree, you get the
+parent category from the controller. In a "typical" rails app it would just look like this:
+
+def new
+   @parent_object_type = Category.find(20) # feature thesaurus id in topical map builder
+ ...
+end
+
+Finally, in the new/edit view, you do this:
+
+<%= f.label :object_type %>
+<%= category_selector(@parent_object_type, :feature_object_type, :object_type) %>
+
+@parent_object_type is the main category, in this case feature type and the next two arguments
+are new name of the form variable and the name of the attribute.
+
+Now it is possible to have more than one category selector in a single page. By default the category
+selector inserts the required stylesheet and javascript file (where the call is made in the template).
+You can override this behavior and explicitly tell it not to include such tags by sending false to the
+fourth argument in case you are using multiple selectors (to avoid inserting several times the same
+stylesheet and javascript code) or if you want the include tags for the stylesheets and
+javascript in the header and not the body. You can use the tag helper category_selector_includes to
+generate the necessary javascript and stylesheet html tags. The code would look like this:
+
+<%= category_selector_includes %>
+<p>
+<%= f.label :object_type %>
+<%= category_selector(@parent_object_type, :feature_object_type, :object_type, false) %>
+</p>
+<p>
+<%= f.label :subject %>
+<%= category_selector(@parent_subject, :feature_object_type, :subject, false) %>
+</p>
+
+For the display, you treat it as a normal active record. For instance:
+
+<%= @feature_object_type.object_type.title %>
+
+Example
+=======
+
+Example goes here.
+
+
+Copyright (c) 2008 Andres Montano (on behalf of THDL), released under the MIT license

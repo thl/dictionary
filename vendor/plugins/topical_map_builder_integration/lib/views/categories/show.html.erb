@@ -1,0 +1,4 @@
+<%= render :partial => 'index', :locals => { :categories => @categories, :margin_depth => 0 } %>
+<p>
+<%= link_to 'Back to categories', category_children_path(@main_category) %>
+</p>

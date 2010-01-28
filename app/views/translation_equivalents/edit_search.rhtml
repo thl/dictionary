@@ -1,0 +1,32 @@
+<% if params['relatedtype'] == "definition" %>
+  <div id="translation_equivalent_definitions">
+  <%= form_remote_tag(:update => "translation_equivalent_definitions", :url => {:controller => "translation_equivalents", :action => "edit_search_action", :id => params['id'], :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']}}, :name => "searchrelated")  %>
+    <h3>Find Definition:</h3>
+  <%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "translation_equivalentsearch1"+params['level'].to_s), "if(document.forms[0].onsubmit()) { document.forms[0].submit();} ", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('translation_equivalentsearch1"+params['level'].to_s+"','','/images/search_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "translation_equivalentquerycancel0"+params['level'].to_s), {:update => 'translation_equivalent_definitions',  :url => {:controller => 'translation_equivalents', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'translation_equivalents', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('translation_equivalentquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+    <table>
+    <%= search_definition %>
+    </table>
+  <input type="hidden" name="relatedtype" value="<%= params['relatedtype'] %>" />
+  <input type="hidden" name="translation_equivalent[id]" value="<%= params['id'] %>" />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "translation_equivalentsearch2"+params['level'].to_s), "if(document.forms[0].onsubmit()) { document.forms[0].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('translation_equivalentsearch2"+params['level'].to_s+"','','/images/search_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "translation_equivalentquerycancel"+params['level'].to_s), {:update => 'translation_equivalent_definitions',  :url => {:controller => 'translation_equivalents', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'translation_equivalents', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('translation_equivalentquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>
+<% if params['relatedtype'] == "meta" %>
+  <div id="translation_equivalent_metas">
+  <%= form_remote_tag(:update => "translation_equivalent_metas", :url => {:controller => "translation_equivalents", :action => "edit_search_action", :id => params['id'], :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']}}, :name => "searchrelated")  %>
+    <h3>Find Meta:</h3>
+  <%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "translation_equivalentsearch1"+params['level'].to_s), "if(document.forms[0].onsubmit()) { document.forms[0].submit();} ", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('translation_equivalentsearch1"+params['level'].to_s+"','','/images/search_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "translation_equivalentquerycancel0"+params['level'].to_s), {:update => 'translation_equivalent_metas',  :url => {:controller => 'translation_equivalents', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'translation_equivalents', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('translation_equivalentquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+    <table>
+    <%= search_meta %>
+    </table>
+  <input type="hidden" name="relatedtype" value="<%= params['relatedtype'] %>" />
+  <input type="hidden" name="translation_equivalent[id]" value="<%= params['id'] %>" />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "translation_equivalentsearch2"+params['level'].to_s), "if(document.forms[0].onsubmit()) { document.forms[0].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('translation_equivalentsearch2"+params['level'].to_s+"','','/images/search_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "translation_equivalentquerycancel"+params['level'].to_s), {:update => 'translation_equivalent_metas',  :url => {:controller => 'translation_equivalents', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'translation_equivalents', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('translation_equivalentquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>

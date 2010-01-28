@@ -1,0 +1,23 @@
+<% if params['relatedtype'] == "definition" %>
+  <% if @model_sentence.definition != nil %>
+  <%= link_to_remote @model_sentence.definition.displayInfo, :update => "model_sentence_definitions", :url=> {:controller=> "definitions", :action => "edit_dynamic", :id => @model_sentence.definition.id,:params => {:level => params['level'], :relatedtype =>'definition',:internal => 'model_sentences', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "meta" %>
+  <% if @model_sentence.meta != nil %>
+  <%= link_to_remote @model_sentence.meta.displayInfo, :update => "model_sentence_metas", :url=> {:controller=> "metas", :action => "edit_dynamic", :id => @model_sentence.meta.id,:params => {:level => params['level'], :relatedtype =>'meta',:internal => 'model_sentences', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "translation" %>
+  <% if @model_sentence.translations != nil %>
+<% if @model_sentence.translations.size > 5 %>
+<div id="scrolltranslations" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for translation in @model_sentence.translations %>
+  <%= link_to_remote translation.displayInfo, :update => "model_sentence_translations", :url=> {:controller=> "translations", :action => "edit_dynamic", :id => translation.id,:params => {:level => params['level'], :relatedtype =>'translation',:internal => 'model_sentences', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @model_sentence.translations.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,23 @@
+<% if params['relatedtype'] == "definition" %>
+  <% if @oral_quotation.definition != nil %>
+  <%= link_to_remote @oral_quotation.definition.displayInfo, :update => "oral_quotation_definitions", :url=> {:controller=> "definitions", :action => "edit_dynamic", :id => @oral_quotation.definition.id,:params => {:level => params['level'], :relatedtype =>'definition',:internal => 'oral_quotations', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "metum" %>
+  <% if @oral_quotation.meta != nil %>
+  <%= link_to_remote @oral_quotation.metum.displayInfo, :update => "oral_quotation_metas", :url=> {:controller=> "metas", :action => "edit_dynamic", :id => @oral_quotation.metum.id,:params => {:level => params['level'], :relatedtype =>'metum',:internal => 'oral_quotations', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "translation" %>
+  <% if @oral_quotation.translations != nil %>
+<% if @oral_quotation.translations.size > 5 %>
+<div id="scrolltranslations" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for translation in @oral_quotation.translations %>
+  <%= link_to_remote translation.displayInfo, :update => "oral_quotation_translations", :url=> {:controller=> "translations", :action => "edit_dynamic", :id => translation.id,:params => {:level => params['level'], :relatedtype =>'translation',:internal => 'oral_quotations', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @oral_quotation.translations.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>

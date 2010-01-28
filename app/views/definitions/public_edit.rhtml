@@ -1,0 +1,551 @@
+<%= category_selector_includes %>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+
+function MyHash()
+{
+	this.length = 0;
+	this.items = new Array();
+	for (var i = 0; i < arguments.length; i += 2) {
+		if (typeof(arguments[i + 1]) != 'undefined') {
+			this.items[arguments[i]] = arguments[i + 1];
+			this.length++;
+		}
+	}
+   
+	this.removeItem = function(in_key)
+	{
+		var tmp_value;
+		if (typeof(this.items[in_key]) != 'undefined') {
+			this.length--;
+			var tmp_value = this.items[in_key];
+			delete this.items[in_key];
+		}
+	   
+		return tmp_value;
+	}
+
+	this.getItem = function(in_key) {
+		return this.items[in_key];
+	}
+
+	this.setItem = function(in_key, in_value)
+	{
+		if (typeof(in_value) != 'undefined') {
+			if (typeof(this.items[in_key]) == 'undefined') {
+				this.length++;
+			}
+
+			this.items[in_key] = in_value;
+		}
+	   
+		return in_value;
+	}
+
+	this.hasItem = function(in_key)
+	{
+		return typeof(this.items[in_key]) != 'undefined';
+	}
+}
+
+var open_windows=new Array();
+
+open_windows['definition_definition_form'] = new MyHash();
+//open_windows['internal_definition_definition_form'] = new MyHash();
+open_windows['definition'] = new MyHash();
+open_windows['internal_definition'] = new MyHash();
+open_windows['etymology'] = new MyHash();
+//open_windows['internal_etymology'] = new MyHash();
+open_windows['full_synonym'] = new MyHash();
+//open_windows['internal_full_synonym'] = new MyHash();
+open_windows['group'] = new MyHash();
+//open_windows['internal_group'] = new MyHash();
+open_windows['literary_quotation'] = new MyHash();
+//open_windows['internal_literary_quotation'] = new MyHash();
+open_windows['meta'] = new MyHash();
+//open_windows['internal_meta'] = new MyHash();
+open_windows['model_sentence'] = new MyHash();
+//open_windows['internal_model_sentence'] = new MyHash();
+open_windows['oral_quotation'] = new MyHash();
+//open_windows['internal_oral_quotation'] = new MyHash();
+open_windows['pronunciation'] = new MyHash();
+//open_windows['internal_pronunciation'] = new MyHash();
+open_windows['spelling'] = new MyHash();
+//open_windows['internal_spelling'] = new MyHash();
+open_windows['translation_equivalent'] = new MyHash();
+//open_windows['internal_translation_equivalent'] = new MyHash();
+open_windows['translation'] = new MyHash();
+//open_windows['internal_translation'] = new MyHash();
+open_windows['etymology_type'] = new MyHash();
+open_windows['pronunciation_type'] = new MyHash();
+open_windows['language_context'] = new MyHash();
+open_windows['script'] = new MyHash();
+open_windows['literary_quotation'] = new MyHash();
+open_windows['literary_genre'] = new MyHash();
+open_windows['literary_form'] = new MyHash();
+open_windows['grammar_function_level_one'] = new MyHash();
+open_windows['grammar_function_level_two'] = new MyHash();
+open_windows['grammar_function_level_three'] = new MyHash();
+open_windows['literary_period'] = new MyHash();
+open_windows['major_dialect'] = new MyHash();
+open_windows['specific_dialect'] = new MyHash();
+open_windows['model_sentence_type'] = new MyHash();
+open_windows['spelling_major_dialect'] = new MyHash();
+open_windows['spelling_specific_dialect'] = new MyHash();
+open_windows['theme_level_two'] = new MyHash();
+open_windows['theme_level_one'] = new MyHash();
+open_windows['theme_level_three'] = new MyHash();
+open_windows['thematic_classification'] = new MyHash();
+open_windows['term_type'] = new MyHash();
+open_windows['register'] = new MyHash();
+open_windows['language'] = new MyHash();
+open_windows['loan_language'] = new MyHash();
+open_windows['source_type'] = new MyHash();
+open_windows['project'] = new MyHash();
+open_windows['source'] = new MyHash();
+
+function check_windows(table) {
+	if (open_windows[table].length > 0)  {
+		alert('You have unsaved changes.')
+		return false;		
+	}
+	else
+		return true;
+}
+
+
+function MM_openNewWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+ var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+   var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+   if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function getCoord(e) { if( !e ) { e = window.event; } if( !e || ( typeof( e.pageX ) != 'number' && typeof( e.clientX ) != 'number' ) ) { return window.alert('Your browser did not pass the required information about the event'); }
+	if( typeof( e.pageX ) == 'number' ) { var xcoord = e.pageX; var ycoord = e.pageY; } else {
+		var xcoord = e.clientX; var ycoord = e.clientY;
+		if( !( ( window.navigator.userAgent.indexOf( 'Opera' ) + 1 ) || ( window.ScriptEngine && ScriptEngine().indexOf( 'InScript' ) + 1 && !document.createElement ) || window.navigator.vendor == 'KDE' ) ) {
+			if( document.documentElement && ( document.documentElement.scrollTop || document.documentElement.scrollLeft ) ) {
+				xcoord += document.documentElement.scrollLeft; ycoord += document.documentElement.scrollTop;
+			} else if( document.body && ( document.body.scrollTop || document.body.scrollLeft ) ) {
+				xcoord += document.body.scrollLeft; ycoord += document.body.scrollTop;
+			}
+		}
+	}
+	return [xcoord,ycoord];
+}
+
+//-->
+ </script>
+
+
+<!-- <div id="complete_definition">
+<div id="navcontainer">
+<ul id="navlist">
+<li id="active"><a href="<%= url_for(:controller => 'definitions', :action => 'index') %>" <% if params['new'] == nil %> id="current" <% end %>>Editing</a></li>
+<li><a href="<%= url_for(:controller => 'definitions', :action => 'new') %>" <% if params['new'] != nil %> id="current" <% end %>>New Term</a></li>
+<li><a href="#">Adv. Search</a></li>
+<li><a href="#">Fields</a></li>
+<li><a href="<%= url_for(:controller => 'definitions', :action => 'control_vocab') %>">Controlled Vocab</a></li>
+<li><a href="#">Public</a></li>
+</ul>
+</div> -->
+
+<%#= javascript_include_tag 'vocab.js'%>
+
+<script language="JavaScript">
+var head_definition = <%= @definition.id %>;
+var definition_id = 0;
+var parent_id = 0;
+
+var definition = <%= build_definition_menu %>;
+var definition_menu = new menu (definition, MENU_POS);
+// var genre = <%#= build_genre_menu('internal_definition',0) %>;
+// var genre_menu = new menu (genre, MENU_POS);
+// var genre = <%#= build_genre_menu('definition',0) %>;
+// var literary_genre_menu = new menu (genre, MENU_POS);
+// var etymology_genre = <%#= build_genre_menu('etymology',0) %>;
+// var etymology_literary_genre_menu = new menu (etymology_genre, MENU_POS);
+// // var literary_quotation_genre = <%#= build_genre_menu('literary_quotation',0) %>;
+// // var literary_quotation_genre_menu = new menu (literary_quotation_genre, MENU_POS);
+// var model_sentence_genre = <%#= build_genre_menu('model_sentence',0) %>;
+// var model_sentence_literary_genre_menu = new menu (model_sentence_genre, MENU_POS);
+// // var pronunciation_genre = <%#= build_genre_menu('pronunciation',0) %>;
+// // var pronunciation_literary_genre_menu = new menu (pronunciation_genre, MENU_POS);
+// var spelling_genre = <%#= build_genre_menu('spelling',0) %>;
+// var spelling_literary_genre_menu = new menu (spelling_genre, MENU_POS);
+// var theme_internal = new menu (<%#= @theme_array %>, MENU_POS);
+// var themes_array = <%#= get_themes %>;
+// var theme = new menu (themes_array, MENU_POS);
+// var grammar = new menu (<%#= @grammar_function_array %>, MENU_POS);
+// var grammar_function_array = <%#= get_grammar() %>;
+// var grammar_menu = new menu (grammar_function_array, MENU_POS);
+// var internal_grammar_function_array = <%#= get_grammar('internal') %>;
+// var internal_grammar_menu = new menu (internal_grammar_function_array, MENU_POS);
+// var dialect_array = <%#= build_dialect_menu('definition',0) %>;
+// var dialect_menu = new menu (dialect_array, MENU_POS);
+// var theme_internal = new menu (<%#= @internal_theme_array %>, MENU_POS);
+// var grammar_internal = new menu (<%#= @internal_grammar_function_array %>, MENU_POS);
+// var d2 = new menu (<%#= @dialect_array %>, MENU_POS);
+// var d2_internal = new menu (<%#= @internal_dialect_array %>, MENU_POS);
+// var dialect_controller = 'none';
+// var dialect_id=50000;
+// var pronunciation_dialect = <%#= build_dialect_menu('pronunciation',0) %>
+// var pronunciation_dialect_menu = new menu (pronunciation_dialect, MENU_POS);
+// var model_sentence_dialect = <%#= build_dialect_menu('model_sentence',0) %>
+// var model_sentence_dialect_menu = new menu (model_sentence_dialect, MENU_POS);
+// var etymology_dialect = <%#= build_dialect_menu('etymology',0) %>
+// var etymology_dialect_menu = new menu (etymology_dialect, MENU_POS);
+// var spelling_dialect = <%#= build_dialect_menu('spelling',0) %>
+// var spelling_dialect_menu = new menu (spelling_dialect, MENU_POS);
+// var oral_quotation_dialect = <%#= build_oral_dialect_menu('oral_quotation',0) %>
+// var oral_quotation_dialect_menu = new menu (oral_quotation_dialect, MENU_POS);
+var pronunciation_controller = 'none';
+var pronunciation_id = 0;
+var pro = <%= build_pronunciation_menu() %>;
+var pro_menu = new menu (pro, MENU_POS);
+var spelling_id = 0;
+var spelling = <%= build_spelling_menu() %>;
+var spelling_menu = new menu (spelling, MENU_POS);
+var translation_id=0;
+var translation = <%= build_translation_menu %>;
+var translation_menu = new menu (translation , MENU_POS);
+var etymology_id = 0;
+var etymology = <%= build_etymology_menu %>;
+var etymology_menu = new menu (etymology, MENU_POS);
+var translation_equivalent_id = 0;
+var translation_equivalent = <%= build_translation_equiv_menu %>;
+var translation_equivalent_menu = new menu(translation_equivalent, MENU_POS);
+var model_sentence_id = 0;
+var model_sentence = <%= build_model_sentence_menu %>;
+var model_sentence_menu = new menu(model_sentence, MENU_POS);
+var oral_quotation_id = 0;
+var oral_quotation = <%= build_oral_quotation_menu %>;
+var oral_quotation_menu = new menu(oral_quotation, MENU_POS);
+var literary_quotation_id = 0;
+var literary_quotation = <%= build_literary_quotation_menu %>;
+var literary_quotation_menu = new menu(literary_quotation, MENU_POS);
+var full_synonym_id =0;
+var full_synonym = <%= build_synonym_menu %>;
+var full_synonym_menu = new menu(full_synonym, MENU_POS);
+var meta_id =0;
+var meta = <%= build_meta_menu %>;
+var meta_menu = new menu(meta, MENU_POS);
+var related_term = <%= build_related_term_menu %>;
+var related_term_menu = new menu(related_term, MENU_POS);
+
+function clear_contents(node)
+{
+  if (!node) return false;
+  if (typeof node == 'string')
+    node = document.getElementById(node);
+  if (node) node.innerHTML = '';
+}
+
+</script>
+<script language="JavaScript">
+
+	var root_dir="<%= $root_dir%>";
+	
+	function add_def_popup(controller,id,parent_id,head_id) {
+		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/public_add/'+id+'?parent_id='+parent_id+'&head_id='+head_id, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
+	}
+	function edit_popup(controller,id,parent_id) {
+		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
+	}
+	function edit_form_to(controller,id,parent_id) {
+		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from', {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
+	}
+	function edit_form_from(controller,id,parent_id) {
+		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_to', {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
+	}
+	function search_popup(controller,relatedtype,id) {
+		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_search/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
+	}
+	function delete_popup(controller,relatedtype,id) {
+		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_delete/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
+	}
+	function add_new_popup(controller,relatedtype,id) {
+		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
+	}
+	function add_new_content(controller,relatedtype,id) {
+		new Ajax.Updater(id+'_'+relatedtype, root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true}); 
+	}
+	function etymology_popup(controller,id,parent_id) {
+		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/related_etymologies/'+id+'?internal=edit_box&public=yes&parent_id=<%= @definition.id %>', {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
+	}
+	function pronunciation_popup(controller,id,parent_id) {
+		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/related_pronunciations/'+id+'?internal=edit_box&public=yes&parent_id=<%= @definition.id %>', {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
+	}
+
+	function add_new_relationship(controller,relatedtype,id,role_to,role_from) {
+		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&relatedtype='+relatedtype+'&role_to='+role_to+'&role_from='+role_from+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
+	}
+
+	function search_term(controller,relatedtype,id) {
+		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/synonym_search/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
+	}
+
+	function test() {
+		alert('test');
+		return 'test';
+	}
+
+</script>
+<div id="edit_box" style="display:none;
+		position:absolute;
+		top:20%;
+    left:15%;
+    z-index:0;
+    width:600px;
+    height:400px;
+		overflow:auto;
+		padding: 10px;
+		background-color: #FFFFFF;
+		border: solid #0000FF;
+		<!-- border:1 solid rgb(0,0,0); -->
+		">
+		
+</div>
+<%= test_helper %>
+<%#s= link_to_remote "reload", :update=> 'definition_space', :url => {:action => 'public_content_only', :id => @definition.id, :params => {:no_layout => true}}%>
+<div id="definition_space">
+		<%#= link_to_remote(image_tag('cross',:border=>0, :title => 'Delete definition'), :update => 'complete_definition', :url => {:action => 'public_destroy', :id => d.id, :params => {:parent_id => @head_id, :head_id => @head_id}}, :confirm => "Are you sure you want to delete this entry?") %>
+				<%= link_to(image_tag('cross.png',:border=>0, :title => 'Delete entire entry'),{:action => 'public_destroy', :id => @definition.id, :params => {:parent_id => @head_id, :head_id => @head_id}}, :confirm => "Are you sure you want to delete this entire entry?") %>
+	<span class="tib1">
+	<b><font size="+2"><%#= @definition.term %>  <%= in_place_editor_field(:definition, :term)%></font></b>
+	</span> 
+	<br>
+	<b>THL Wylie Transliteration: </b><%= link_to image_tag('comment.png',:border => 0,:id => "wylie_#{@definition.id}"), '#', :title => 'Edit wylie' %>
+	<% @definition.wylie = 'Click to Modify' if @definition.wylie == nil or @definition.wylie == '' %>
+	<%= in_place_editor_field(:definition, :wylie,{}, {:external_control => "wylie_#{@definition.id}"})%>
+	<br>
+	<b>THL Phoentic Transcription: </b><%= link_to image_tag('comment.png',:border => 0,:id => "phonetic_#{@definition.id}"), '#', :title => 'Edit phonetic' %>
+	<% @definition.phonetic = 'Click to Modify' if @definition.phonetic == nil or @definition.phonetic == '' %>
+	<%= in_place_editor_field(:definition, :phonetic,{}, {:external_control => "phonetic_#{@definition.id}"})%>
+		<br><br>
+	<div id="<%= @definition.id %>div">
+		<%= render(:partial => 'public_definition', :locals => {:d => @definition, :parent_id => @head_id, :head_id => @head_id, :level => 'head'})%>
+	</div>
+
+		<!-- <span id=definition[grammatical_function]_value class=menuvalue onclick=show_menu(menu1,getCoord(arguments[0]));><%= image_tag 'edit_up.gif', :alt => 'Edit' %> </span> -->
+<br>
+<% if @definition.super_definitions.size > 0 %>
+	<hr>
+<% end %>
+<div><ul>
+<% number = 1
+	letters = ['a','b','c','d','e','f','g']
+	for sd in @definition.super_definitions 
+%>
+	<% if sd.sub_definition != nil %>
+
+		<li><% if @non_head_id == sd.sub_definition.id.to_s %><%= image_tag('arrow_right.png') %><% end %>
+			<b><%= number %>: </b>
+		<%= render(:partial => 'public_definition', :locals => {:d => sd.sub_definition, :parent_id => sd.sub_definition.id, :head_id => @head_id, :level => 'sub'} )%>
+		<!-- <span id=definition[grammatical_function]_value class=menuvalue onclick=show_menu(menu<%= sd.sub_definition.id %>,getCoord(arguments[0]));><%= image_tag 'edit_up.gif', :alt => 'Edit' %> </span> -->
+
+			<ul>
+		<% if sd.sub_definition != nil %>
+			<% subdef = 0 
+				for ssd in sd.sub_definition.super_definitions
+			%>
+				<% if ssd.sub_definition != nil %>
+				<li><% if @non_head_id == ssd.sub_definition.id.to_s %><%= image_tag('arrow_right.png') %><% end %>
+					<b><%= letters[subdef] %><% subdef = subdef + 1 %>: </b>
+					<%= render(:partial => 'public_definition', :locals => {:d => ssd.sub_definition, :parent_id => sd.sub_definition.id, :head_id => @head_id, :level => 'sub'} )%>
+					<!-- <span id=definition[grammatical_function]_value class=menuvalue onclick=show_menu(menu<%= sd.sub_definition.id %>,getCoord(arguments[0]));><%= image_tag 'edit_up.gif', :alt => 'Edit' %> </span> -->
+				<ul>
+				<% if ssd != nil %>
+					<% if ssd.sub_definition != nil %>
+						<% subsubdef = 1
+						for sssd in ssd.sub_definition.super_definitions
+					%>
+					<li><% if @non_head_id == sssd.sub_definition.id.to_s %><%= image_tag('arrow_right.png') %><% end %>
+						<b>(<%= subsubdef %><% subsubdef = subsubdef + 1 %>): </b>
+					<%= render(:partial => 'public_definition', :locals => {:d => sssd.sub_definition, :parent_id => ssd.sub_definition.id, :head_id => @head_id, :level => 'sub'} )%>
+					<!-- <span id=definition[grammatical_function]_value class=menuvalue onclick=show_menu(menu<%= sd.sub_definition.id %>,getCoord(arguments[0]));><%= image_tag 'edit_up.gif', :alt => 'Edit' %> </span> -->
+				<% end %>
+			<% end %>
+		<% end %>
+			</ul>
+			<% end %>
+				<% end %>
+
+			<% subdef += 1 %>
+		<% end %>
+		</ul>
+		
+		<br/>
+	<% number += 1 %>
+	<% end %>
+<% end %>
+</ul>
+</div>
+
+</div>
+<% if @dan_martin_definitions.size > 0 or @jeffrey_hopkins_definitions.size > 0 or @yogacara_definitions.size > 0 or @rangjung_yeshe_definitions.size > 0 or @richard_baron_definitions.size > 0 or @jim_valby_definitions.size > 0 or @ives_waldo_definitions.size > 0 %>
+<hr>
+<h3>
+	Other Dictionaries:
+</h3>
+<table>
+		<% if @dan_martin_definitions.size > 0 %>
+		<tr><td>
+			<b>Dan Martin Dictionary:</b>
+		</td></tr>
+		<% end %>
+		<% for d in @dan_martin_definitions %>
+			<tr>
+				<td></td>
+				<td>
+					<span class="tib1">
+					<%= d.term.s if d.term != nil %>
+					<%= d.definition.s.gsub('<u>','<i>').gsub('</u>','</i>').gsub('<p>','').gsub('</p>','<br>') %>
+					</span>
+				</td>
+				<td>
+					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
+					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
+				</td>
+			</tr>
+		<% end %>
+		<% if @jeffrey_hopkins_definitions.size > 0 %>
+		<tr><td>
+			<b>Jeffrey Hopkins Dictionary:</b>
+		</td></tr>
+		<% end %>
+		<% for d in @jeffrey_hopkins_definitions %>
+			<tr>
+				<td></td>
+				<td>
+				<span class="tib1">
+				<%= d.term.s if d.term != nil %>
+				<%= d.definition.s.gsub('<u>','<i>').gsub('</u>','</i>').gsub('<p>','').gsub('</p>','<br>') %>
+				</span>
+			</td>
+				<td>
+					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
+					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
+				</td>
+			</tr>
+		<% end %>
+		<% if @yogacara_definitions.size > 0 %>
+		<tr><td>
+			<b>Yogācāra Glossary:</b>
+		</td></tr>
+		<% end %>
+		<% for d in @yogacara_definitions %>
+			<tr>
+				<td></td>
+				<td>
+				<span class="tib1">
+				<%= d.term.s if d.term != nil %>
+				<%= d.definition.s.gsub('<u>','<i>').gsub('</u>','</i>').gsub('<p>','').gsub('</p>','<br>') %>
+				</span>
+			</td>
+				<td>
+					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
+					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
+				</td>
+			</tr>
+		<% end %>
+		<% if @rangjung_yeshe_definitions.size > 0 %>
+		<tr><td>
+			<b>Rangjung Yeshe Dictionary:</b>
+		</td></tr>
+		<% end %>
+		<% for d in @rangjung_yeshe_definitions %>
+			<tr>
+				<td></td>
+				<td>
+				<span class="tib1">
+				<%= d.term.s if d.term != nil %>
+				<%= d.definition.s.gsub('<u>','<i>').gsub('</u>','</i>').gsub('<p>','').gsub('</p>','<br>') %>
+				</span>
+			</td>
+				<td>
+					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
+					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
+				</td>
+			</tr>
+		<% end %>
+		<% if @richard_baron_definitions.size > 0 %>
+		<tr><td>
+			<b>Richard Baron Dictionary:</b>
+		</td><tr>
+		<% end %>
+		<% for d in @richard_baron_definitions %>
+			<tr>
+				<td></td>
+				<td>
+				<span class="tib1">
+				<%= d.term.s if d.term != nil %>
+				<%= d.definition.s.gsub('<u>','<i>').gsub('</u>','</i>').gsub('<p>','').gsub('</p>','<br>') %>
+				</span>
+			</td>
+				<td>
+					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
+					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
+				</td>
+			</tr>
+		<% end %>
+		<% if @jim_valby_definitions.size > 0 %>
+		<tr><td>
+			<b>Jim Valby Dictionary:</b>
+		</td></tr>
+		<% end %>
+		<% for d in @jim_valby_definitions %>
+			<tr>
+				<td></td>
+				<td>
+				<span class="tib1">
+				<%= d.term.s if d.term != nil %>
+				<%= d.definition.s.gsub('<u>','<i>').gsub('</u>','</i>').gsub('<p>','').gsub('</p>','<br>') %>
+				</span>
+			</td>
+				<td>
+					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
+					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
+				</td>
+			</tr>
+		<% end %>
+		<% if @ives_waldo_definitions.size > 0 %>
+		<tr><td>
+			<b>Ives Waldo Dictionary:</b>
+		</td></tr>
+		<% end %>
+		<% for d in @ives_waldo_definitions %>
+			<tr>
+				<td></td>
+				<td>
+				<span class="tib1">
+				<%= d.term.s if d.term != nil %>
+				<%= d.definition.s.gsub('<u>','<i>').gsub('</u>','</i>').gsub('<p>','').gsub('</p>','<br>') %>
+				</span>
+			</td>
+				<td>
+					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %> 
+					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>

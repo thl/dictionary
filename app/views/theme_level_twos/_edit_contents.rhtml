@@ -1,0 +1,18 @@
+<% if params['relatedtype'] == "theme_level_three" %>
+  <% if @theme_level_two.theme_level_threes != nil %>
+<% if @theme_level_two.theme_level_threes.size > 5 %>
+<div id="scrolltheme_level_threes" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for theme_level_three in @theme_level_two.theme_level_threes %>
+  <%= link_to_remote theme_level_three.displayInfo, :update => "theme_level_two_theme_level_threes", :url=> {:controller=> "theme_level_threes", :action => "edit_dynamic", :id => theme_level_three.id,:params => {:level => params['level'], :relatedtype =>'theme_level_three',:internal => 'theme_level_twos', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @theme_level_two.theme_level_threes.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "theme_level_one" %>
+  <% if @theme_level_two.theme_level_one != nil %>
+  <%= link_to_remote @theme_level_two.theme_level_one.displayInfo, :update => "theme_level_two_theme_level_ones", :url=> {:controller=> "theme_level_ones", :action => "edit_dynamic", :id => @theme_level_two.theme_level_one.id,:params => {:level => params['level'], :relatedtype =>'theme_level_one',:internal => 'theme_level_twos', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>

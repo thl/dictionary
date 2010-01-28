@@ -1,0 +1,3 @@
+<% body_attributes = {:class => params['mode']}
+  body_attributes[:onload] = @onload if !@onload.blank? %>
+<%= header(body_attributes) %>

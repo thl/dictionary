@@ -1,0 +1,10 @@
+<% @terms.each do |v| %>
+	<%= link_to_remote("#{v[:term]}", :update => "group_#{v[:offset]}", :loading => "Element.show('list_#{v[:offset]}')",:url => {:action => 'alphabet_sub_list', :params => {:letter => v[:letter], :offset => v[:offset]}})%><br>
+	<div id="list_<%= v[:offset] %>" style="display:none" >
+	<dl>
+		<dd>
+	<div id="group_<%= v[:offset] %>"><%= image_tag('loadingAnimation2.gif')%></div>
+		</dd>
+	</dl>
+	</div>
+<% end %>

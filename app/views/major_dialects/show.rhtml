@@ -1,0 +1,22 @@
+  <% if $allow_editing %>
+<%= link_to image_tag("edit_up.gif", :size => "87x19", :border => 0, :alt => "edit", :name => "edit1"), {:action => 'edit_dynamic', :id => @major_dialect.id}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('edit1','','/images/edit_down.gif',1);"%>
+<% end %>
+<%= link_to_function image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back1"), "history.go(-1)", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back1','','/images/back_down.gif',1);" %>
+<h1>Major dialect</h1>
+<%= show_major_dialect %>
+<p><b>Specific dialects: </label></b>
+<br />
+<% if @major_dialect.specific_dialects.size > 5 %>
+<div id="scrollspecific_dialects" style="width:400;height:70;background-color:e6e6e6;border:1px solid;overflow:auto;">
+<% end %>
+<% for o in @major_dialect.specific_dialects %>
+  <%= link_to o.displayInfo, :controller=> "specific_dialects", :action => "show", :id => o.id %><br>
+<% end %>
+<% if @major_dialect.specific_dialects.size > 5 %>
+</div>
+<% end %>
+</p>
+  <% if $allow_editing %>
+<%= link_to image_tag("edit_up.gif", :size => "87x19", :border => 0, :alt => "edit", :name => "edit"), {:action => 'edit_dynamic', :id => @major_dialect.id}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('edit','','/images/edit_down.gif',1);"%>
+<% end %>
+<%= link_to_function image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back2"), "history.go(-1)", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back2','','/images/back_down.gif',1);" %>

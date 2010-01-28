@@ -1,0 +1,286 @@
+module MetasHelper
+  def edit_source
+    resultstr = ""
+    resultstr << "<b>Source ID: </b>"
+    resultstr << "<input type=hidden name=source[source_id] id=source[source_id] value=\""+@source.source_id.to_s+"\" >"
+    if @source.source_id == nil or @source.source_id == ''
+      @source.source_id = 'Click to modify'
+    end
+    resultstr << in_place_form_editor_field( :source, :source_id, {}, {:cols => 50, :rows => 1, :fieldname => 'source[source_id]'}) +"<br>"
+    resultstr << "<b>Source type: </b>"
+    resultstr << "<input type=hidden name=source[source_type] id=source[source_type] value=\""+@source.source_type.to_s+"\" >"
+    if @source.source_type == nil or @source.source_type == ''
+      @source.source_type = 'Click to modify'
+    end
+    resultstr << in_place_select_editor_field( :source, :source_type, {}, {:select_options => @source_type, :fieldname => 'source[source_type]'})+"<br>"
+
+    resultstr << "<b>Page number: </b>"
+    resultstr << "<input type=hidden name=source[page_number] id=source[page_number] value=\""+@source.page_number.to_s+"\" >"
+    if @source.page_number == nil or @source.page_number == ''
+      @source.page_number = 'Click to modify'
+    end
+    resultstr << in_place_form_editor_field( :source, :page_number, {}, {:cols => 50, :rows => 1, :fieldname => 'source[page_number]'}) +"<br>"
+    resultstr << "<b>Source note: </b>"
+    resultstr << "<input type=hidden name=source[source_note] id=source[source_note] value=\""+@source.source_note.to_s+"\" >"
+    if @source.source_note == nil or @source.source_note == ''
+      @source.source_note = 'Click to modify'
+    end
+    resultstr << in_place_form_editor_field( :source, :source_note, {}, {:cols => 70, :rows => 4, :fieldname => 'source[source_note]'}) +"<br>"
+    
+  end
+
+  def show_source
+    resultstr = ""
+    resultstr << "<b>Source ID: </b>"
+    if @source.source_id != nil 
+      resultstr << @source.source_id
+    end 
+    resultstr << "<br>"
+    resultstr << "<b>Source type: </b>"
+    if @source.source_type != nil 
+      resultstr << @source.source_type
+    end 
+    resultstr << "<br>"
+    resultstr << "<b>Page number: </b>"
+    if @source.page_number != nil 
+      resultstr << @source.page_number
+    end 
+    resultstr << "<br>"
+    resultstr << "<b>Source note: </b>"
+    if @source.source_note != nil 
+      resultstr << @source.source_note
+    end 
+    resultstr << "<br>"
+  end
+  
+  def show_meta
+    resultstr = ""
+    resultstr << "<p><b>Project: </b>"
+    if @meta.project != nil 
+      resultstr << @meta.project
+    end 
+    resultstr << "</p>"
+    resultstr << "<p><b>Source: </b>"
+    if @meta.source != nil 
+      resultstr << @meta.source
+    end 
+    resultstr << "</p>"
+    resultstr << "<p><b>Source type: </b>"
+    if @meta.source_type != nil 
+      resultstr << @meta.source_type
+    end 
+    resultstr << "</p>"
+    resultstr << "<p><b>Metadata note: </b>"
+    resultstr << "<br>"
+    if @meta.metadata_note != nil 
+      resultstr << @meta.metadata_note
+    end 
+    resultstr << "</p>"
+    resultstr << "<p><b>Precedence: </b>"
+    if @meta.precedence != nil 
+      resultstr << @meta.precedence
+    end 
+    resultstr << "</p>"
+  end
+
+  def list_meta
+    resultstr = ""
+    resultstr << "<table width=\"100%\" cellspacing=0 _unroll=true border=0 cellpadding=1 bgcolor=#eeeeee>"
+    resultstr << "<tr bgcolor=#FFFFFF>"
+    resultstr << sort_header_tag('project', { :align => "left" })
+    resultstr << sort_header_tag('source', { :align => "left" })
+    resultstr << sort_header_tag('source_type', { :align => "left" })
+    resultstr << sort_header_tag('metadata_note', { :align => "left" })
+    resultstr << sort_header_tag('precedence', { :align => "left" })
+    resultstr << "<th/><th/><th/>"
+    resultstr << "</tr><TR HEIGHT=2><TD COLSPAN=50 BGCOLOR=#ffffff><IMG BORDER=0 HEIGHT=2 WIDTH=1></TD></TR>"
+    odd_or_even = 0
+    for metum in @metas
+      odd_or_even = 1 - odd_or_even
+      resultstr << "  <tr class=\"ListLine"+odd_or_even.to_s+"\">"
+    resultstr << 	"<td valign=top>"
+    resultstr << 	metum.project.to_s unless metum.project == nil
+    resultstr << 	"</td>"
+    resultstr << 	"<td valign=top>"
+    resultstr << 	metum.source.to_s unless metum.source == nil
+    resultstr << 	"</td>"
+    resultstr << 	"<td valign=top>"
+    resultstr << 	metum.source_type.to_s unless metum.source_type == nil
+    resultstr << 	"</td>"
+    resultstr << 	"<td valign=top>"
+    resultstr << 	metum.metadata_note.to_s unless metum.metadata_note == nil
+    resultstr << 	"</td>"
+    resultstr << 	"<td valign=top>"
+    resultstr << 	metum.precedence.to_s unless metum.precedence == nil
+    resultstr << 	"</td>"
+    resultstr << "    <td width=20 valign=top>"
+    resultstr << link_to('Show', :action => 'show', :id => metum.id)+"</td>"
+    resultstr << "    <td width=20 valign=top>"
+    if $allow_editing
+      resultstr <<    link_to('Edit', :action => 'edit_dynamic', :id => metum.id)
+    end 
+    resultstr << "    </td><td width=20 valign=top>"
+    if $allow_editing
+      resultstr <<   link_to('Destroy', {:action => 'destroy', :id => metum.id}, :confirm => "Are you sure you want to delete this entry?")
+    end
+      resultstr <<   "</td></tr><TR HEIGHT=2>  <TD COLSPAN=50 BGCOLOR=#ffffff><IMG BORDER=0 HEIGHT=2 WIDTH=1>"
+      resultstr << "</tr>"
+    end
+    resultstr << "</table>
+"
+  end
+
+  def edit_meta
+    resultstr = ""
+    resultstr << "<p><b>Project: </b><br>"
+    resultstr << "<input size=80 name=meta[project] type=text value=\""
+    resultstr << @meta.project if @meta.project != nil
+    resultstr << "\" /></p>"
+    resultstr << "<p><b>Source: </b><br>"
+    resultstr << "<input size=80 name=meta[source] type=text value=\""
+    resultstr << @meta.source if @meta.source != nil
+    resultstr << "\" /></p>"
+    resultstr << "<p><b>Source type: </b><br>"
+    resultstr << "<input size=80 name=meta[source_type] type=text value=\""
+    resultstr << @meta.source_type if @meta.source_type != nil
+    resultstr << "\" /></p>"
+    resultstr << "<p><b>Metadata note: </b><br>"
+    resultstr << "<textarea cols=65 name=meta[metadata_note] rows=3 wrap=virtual >"
+    resultstr << @meta.metadata_note if @meta.metadata_note != nil
+    resultstr << "</textarea>"
+    resultstr << "<p><b>Precedence: </b><br>"
+    resultstr << "<input size=32 name=meta[precedence] type=text value=\""
+    resultstr << @meta.precedence if @meta.precedence != nil
+    resultstr << "\" /></p>"
+  end
+
+  def edit_dynamic_meta
+    resultstr = ""
+    resultstr << "<b>Project: </b>"
+    resultstr << "<input type=hidden name=meta[project] id=meta[project] value=\""+@meta.project.to_s+"\" >"
+    if @meta.project_type == nil or @meta.project_type == ''
+      title = 'Click to modify'
+    else
+      title = @meta.project_type.title
+    end
+    resultstr << "<span id=\"meta[project_type#{@meta.id}]_selector\">"
+    resultstr << '['+@meta.project+']' if @meta.project != nil
+    resultstr << link_to_remote( title,{:update => "meta[project_type#{@meta.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'metas', :action => 'display_category_selector', :id => @meta.id, :params => {'data_id' => 236, 'model_name' => 'meta', 'function_name' => "project_type", :update_id => "meta[project_type#{@meta.id}]_selector"}}}, :class => 'selector_link' )
+    resultstr << "</span><br>"
+    resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('meta[project_type"+@meta.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('meta[project_type"+@meta.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('meta[project_type"+@meta.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('meta[project_type"+@meta.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    # resultstr << "<b>Source ID: </b>"
+    # resultstr << "<input type=hidden name=meta[source] id=meta[source] value=\""+@meta.source.to_s+"\" >"
+    # if @meta.source == nil or @meta.source == ''
+    #   @meta.source = 'Click to modify'
+    # end
+    # resultstr << in_place_form_editor_field( :meta, :source, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[source]'}) +"<br>"
+    # resultstr << "<b>Source type: </b>"
+    # resultstr << "<input type=hidden name=meta[source_type] id=meta[source_type] value=\""+@meta.source_type.to_s+"\" >"
+    # if @meta.source_type == nil or @meta.source_type == ''
+    #   @meta.source_type = 'Click to modify'
+    # end
+    # resultstr << in_place_select_editor_field( :meta, :source_type, {}, {:select_options => @source_type, :fieldname => 'meta[source_type]'})+"<br>"
+    # resultstr << "<b>Title: </b>"
+    # resultstr << @meta.title unless @meta.title == nil
+    # resultstr << "<br>"
+    # 
+    # resultstr << "<b>Author: </b>"
+    # resultstr << @meta.author unless @meta.author == nil
+    # resultstr << "<br>"
+    # 
+    # # resultstr << "<b>Page number: </b>"
+    # # resultstr << "<input type=hidden name=meta[page_number] id=meta[page_number] value=\""+@meta.page_number.to_s+"\" >"
+    # # if @meta.page_number == nil or @meta.page_number == ''
+    # #   @meta.page_number = 'Click to modify'
+    # # end
+    # # resultstr << in_place_form_editor_field( :meta, :page_number, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[page_number]'}) +"<br>"
+    # # resultstr << @meta.page_number unless @meta.page_number == nil
+    # # resultstr << "<br>"
+    # 
+    # resultstr << "<b>Date of publication: </b>"
+    # resultstr << @meta.date_of_publication unless @meta.date_of_publication == nil
+    # resultstr << "<br>"
+    # 
+    # resultstr << "<b>Publisher: </b>"
+    # resultstr << @meta.publisher unless @meta.publisher == nil
+    # resultstr << "<br>"
+    # 
+    # resultstr << "<b>Place of publication: </b>"
+    # resultstr << @meta.place_of_publicatio unless @meta.place_of_publication == nil
+    # resultstr << "<br>"
+
+    resultstr << "<b>Metadata note: </b>"
+    resultstr << "<input type=hidden name=meta[metadata_note] id=meta[metadata_note] value=\""+@meta.metadata_note.to_s+"\" >"
+    if @meta.metadata_note == nil or @meta.metadata_note == ''
+      @meta.metadata_note = 'Click to modify'
+    end
+    resultstr << in_place_form_editor_field( :meta, :metadata_note, {}, {:cols => 80, :rows => 10, :fieldname => 'meta[metadata_note]'}) +"<br>"
+    resultstr << "<b>Precedence: </b>"
+    resultstr << "<input type=hidden name=meta[precedence] id=meta[precedence] value=\""+@meta.precedence.to_s+"\" >"
+    if @meta.precedence == nil or @meta.precedence == ''
+      @meta.precedence = 'Click to modify'
+    end
+    resultstr << in_place_form_editor_field( :meta, :precedence, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[precedence]'}) +"<br>"
+    resultstr << "<b>Language: </b>"
+    
+    if @meta.language_type == nil or @meta.language_type == ''
+      title = 'Click to modify'
+    else
+      title = @meta.language_type.title
+    end
+    resultstr << "<span id=\"meta[language_type#{@meta.id}]_selector\">"
+    resultstr << '['+@meta.language+']' if @meta.language != nil
+    resultstr << link_to_remote( title,{:update => "meta[language_type#{@meta.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'metas',:action => 'display_category_selector', :id => @meta.id, :params => {'data_id' => 184, 'model_name' => 'meta', 'function_name' => "language_type", :update_id => "meta[language_type#{@meta.id}]_selector"}}}, :class => 'selector_link' )
+    resultstr << "</span><br>"
+    resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('meta[language_type"+@meta.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('meta[language_type"+@meta.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('meta[language_type"+@meta.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('meta[language_type"+@meta.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+  end
+
+  def show_edit_meta
+    resultstr = ""
+    resultstr << "<p><b>Project: </b><br>"
+    if @meta.project == nil or @meta.project == ''
+      @meta.project = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :meta, :project, {}, :rows => 1) +"<br>"
+    resultstr << "<p><b>Source: </b><br>"
+    if @meta.source == nil or @meta.source == ''
+      @meta.source = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :meta, :source, {}, :rows => 1) +"<br>"
+    resultstr << "<p><b>Source type: </b><br>"
+    if @meta.source_type == nil or @meta.source_type == ''
+      @meta.source_type = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :meta, :source_type, {}, :rows => 1) +"<br>"
+    resultstr << "<p><b>Metadata note: </b><br>"
+    if @meta.metadata_note == nil or @meta.metadata_note == ''
+      @meta.metadata_note = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :meta, :metadata_note, {}, :rows => 3) +"<br>"
+    resultstr << "<p><b>Precedence: </b><br>"
+    if @meta.precedence == nil or @meta.precedence == ''
+      @meta.precedence = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :meta, :precedence, {}, :rows => 1) +"<br>"
+  end
+
+  def search_meta
+    resultstr = ""
+    resultstr << "<tr><td><b>Project: </b></td>"
+    resultstr << "<td><input size=50 name=meta[project] type=text value=\""
+    resultstr << "\" /></td></tr>"
+    resultstr << "<tr><td><b>Source: </b></td>"
+    resultstr << "<td><input size=50 name=meta[source] type=text value=\""
+    resultstr << "\" /></td></tr>"
+    resultstr << "<tr><td><b>Source type: </b></td>"
+    resultstr << "<td><input size=50 name=meta[source_type] type=text value=\""
+    resultstr << "\" /></td></tr>"
+    resultstr << "<tr><td><b>Metadata note: </b></td>"
+    resultstr << "<td><input size=50 name=meta[metadata_note] type=text value=\""
+    resultstr << "\" /></td></tr>"
+    resultstr << "<tr><td><b>Precedence: </b></td>"
+    resultstr << "<td><input size=50 name=meta[precedence] type=text value=\""
+    resultstr << "\" /></td></tr>"
+  end
+
+end

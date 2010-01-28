@@ -1,0 +1,18 @@
+  <div id="definition_full_synonyms">
+  <% form_remote_tag(:update => "edit_box", :url => {:controller => "definitions", :action => "synonym_search_action", :id => params['id'], :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']}}, :html => {:name => "searchrelated"}) do %>
+    <h3>Find Term:</h3>
+    <table>
+    <tr>
+			<td>
+				<input name="term" value="" type="text" size="50"/>
+			</td>
+		</tr>
+    </table>
+  <input type="hidden" name="relatedtype" value="<%= params['relatedtype'] %>" />
+  <input type="hidden" name="definition_id" value="<%= params['definition_id'] %>" />
+  <% end %>
+<br>
+  <%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "definitionsearch2"), "if(document.searchrelated.onsubmit()) { document.searchrelated.submit();}") %>
+<%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');",:update=> 'definition_space', :url => {:action => 'public_content_only', :id => params[:id]}%>	
+<br>
+  </div>

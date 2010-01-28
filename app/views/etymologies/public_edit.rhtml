@@ -1,0 +1,26 @@
+<SCRIPT language="javascript"></SCRIPT>
+<dl><dd>
+<div class="internal_box">
+<!-- <%= link_to_remote image_tag("close_up.gif", :size => "87x19", :border => 0, :alt => "close"), :update=> 'definition_space', :url => {:controller => 'definitions', :action => 'public_content_only', :id => params['definition_id']}%>	
+<% if params['new'] != nil %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :update => 'definition_space',  :url => {:controller => 'etymologies', :action => 'cancel', :id => params[:id], :params => {'definition_id' => params['definition_id'], 'editing' => 'true'}}%>
+<% end %>
+<br> -->
+<%= edit_dynamic_etymology %>
+<!-- <%= tag "div", {:id => @divname+"search_pronunciation" } %>
+<p><b>Meta: </b>
+<br />
+<div class="internal">
+<% if !@etymology.meta.nil? %>
+	<%= @etymology.meta.displayInfo %>
+<% end %>
+</div> -->
+
+<br>
+<%= link_to_remote image_tag("close_up.gif", :size => "87x19", :border => 0, :alt => "close"), :update=> 'definition_space', :url => {:controller => 'definitions', :action => 'public_content_only', :id => params['definition_id']}%>	
+<% if params['new'] != nil %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :update => 'definition_space',  :url => {:controller => 'etymologies', :action => 'cancel', :id => params[:id], :params => {'definition_id' => params['definition_id'], 'editing' => 'true'}}%>
+<% end %>
+</p>
+</div>
+</dd></dl>

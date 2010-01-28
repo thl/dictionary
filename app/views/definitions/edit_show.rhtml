@@ -1,0 +1,308 @@
+<div class="tib1">
+<b><font size="+1"><%= @definition.term %></font></b><br><br>
+<% if @definition.pronunciations.size > 0 %>
+<b>Pronunciation:</b>
+<% for e in @definition.pronunciations %>
+	<%= e.displayInfo %>;
+<% end %>
+<br>
+<% end %>
+<% if @definition.grammatical_function != nil %>
+<b>Function:</b>  <i><%= @definition.grammatical_function %></i><br>
+<% end %>
+<% if @definition.etymologies.size > 0 %>
+<b>Etymology:</b>
+<% for e in @definition.etymologies %>
+	<%= e.displayInfo %>;	
+<% end %>
+
+<br>
+<% end %>
+<% if @definition.spellings.size > 0%>
+<b>Spelling:</b>
+<% for e in @definition.spellings %>
+	<%= e.displayInfo %>;
+<% end %>
+<br>
+<% end %>
+<% if @definition.full_synonyms.size > 0%>
+<b>Full Synonym:</b>
+<% for e in @definition.full_synonyms %>
+	<%= e.displayInfo %>;
+<% end %>
+<br>
+<% end %>
+<% if @definition.translations.size > 0%>
+<b>Translation:</b>
+<% for e in @definition.translations %>
+	<%= e.displayInfo %>;
+<% end %>
+<br>
+<% end %>
+<% if @definition.translation_equivalents.size > 0%>
+<b>Translation equivalents:</b>
+<% for e in @definition.translation_equivalents %>
+	<%= e.displayInfo %>;
+<% end %>
+<br>
+<% end %>
+<% if @definition.model_sentences.size > 0%>
+<b>Model sentences:</b>
+<% for e in @definition.model_sentences %>
+	<%= e.displayInfo %>;
+<% end %>
+<br>
+<% end %>
+<% if @definition.literary_quotations.size > 0%>
+<b>Literary quotations:</b>
+<% for e in @definition.literary_quotations %>
+	<%= e.displayInfo %>;
+<% end %>
+<br>
+<% end %>
+<% if @definition.oral_quotations.size > 0%>
+<b>Oral quotations:</b>
+<% for e in @definition.oral_quotations %>
+	<%= e.displayInfo %>;
+<% end %>
+<br>
+<% end %>
+
+<% if @definition.definition != nil or @definition.definition != "" %>
+	<b>Definition:</b>
+	<%= @definition.definition %><br>
+<% end %>
+<br>
+<ul>
+<% number = 1
+	letters = ['a','b','c','d','e','f','g']
+	for sd in @definition.super_definitions 
+%>
+	<% if sd.sub_definition != nil %>
+		<li><b><%= number %>: </b><%= sd.sub_definition.definition %>
+			<br>
+			<% if sd.sub_definition.pronunciations.size > 0 %>
+			<b>Pronunciation:</b>
+			<% for e in sd.sub_definition.pronunciations %>
+				<%= e.displayInfo %>;
+			<% end %><br>
+			<% end %>
+			<% if sd.sub_definition.grammatical_function != nil and sd.sub_definition.grammatical_function != '' %>
+			<b>Function:</b>  <i><%= sd.sub_definition.grammatical_function %></i><br>
+			<% end %>
+			<% if sd.sub_definition.etymologies.size > 0 %>
+			<b>Etymology:</b>
+			<% for e in sd.sub_definition.etymologies %>
+				<%= e.displayInfo %>;	
+			<% end %><br>
+			<% end %>
+			<% if sd.sub_definition.spellings.size > 0 %>
+			<b>Spelling:</b>
+			<% for e in sd.sub_definition.spellings %>
+				<%= e.displayInfo %>;
+			<% end %><br>
+			<% end %>
+			<% if sd.sub_definition.full_synonyms.size > 0 %>
+			<b>Full Synonym:</b>
+			<% for e in sd.sub_definition.full_synonyms %>
+				<%= e.displayInfo %>;
+			<% end %><br>
+			<% end %>
+<% if sd.sub_definition.translations.size > 0 %>
+<b>Translation:</b>
+<% for e in sd.sub_definition.translations %>
+	<%= e.displayInfo %>;
+<% end %>
+<br>
+<% end %>
+<% if sd.sub_definition.translation_equivalents.size > 0 %>
+<b>Translation equivalents:</b>
+<% for e in sd.sub_definition.translation_equivalents %>
+	<%= e.displayInfo %>;
+<% end %>
+<br>
+<% end %>
+<% if sd.sub_definition.model_sentences.size > 0 %>
+<b>Model sentences:</b>
+<% for e in sd.sub_definition.model_sentences %>
+	<%= e.displayInfo %>;
+<% end %>
+<br>
+<% end %>
+<% if sd.sub_definition.literary_quotations.size > 0 %>
+<b>Literary quotations:</b>
+<% for e in sd.sub_definition.literary_quotations %>
+	<%= e.displayInfo %>;
+<% end %>
+<br>
+<% end %>
+<% if sd.sub_definition.oral_quotations.size > 0 %>
+<b>Oral quotations:</b>
+<% for e in sd.sub_definition.oral_quotations %>
+	<%= e.displayInfo %>;
+<% end %>
+<br>
+<% end %>
+
+			<ul>
+		<% if sd.sub_definition != nil %>
+		<% subdef = 0 
+			for ssd in sd.sub_definition.super_definitions
+		%>
+			<li><b><%= letters[subdef] %>: </b><%= ssd.sub_definition.definition unless ssd.sub_definition == nil %>
+				<br>
+			<% if ssd.sub_definition != nil %>
+			<% if ssd.sub_definition.pronunciations.size > 0 %>
+			<b>Pronunciation:</b>
+			<% for e in ssd.sub_definition.pronunciations %>
+				<%= e.displayInfo %>;
+			<% end %><br>
+			<% end %>
+			<% if sd.sub_definition.grammatical_function != nil and sd.sub_definition.grammatical_function != '' %>
+			<b>Function:</b>  <i><%= sd.sub_definition.grammatical_function %></i><br>
+			<% end %>
+			<% if ssd.sub_definition.etymologies.size > 0 %>
+			<b>Etymology:</b>
+			<% for e in ssd.sub_definition.etymologies %>
+				<%= e.displayInfo %>;	
+			<% end %><br>
+			<% end %>
+			<% if ssd.sub_definition.spellings.size > 0 %>
+			<b>Spelling:</b>
+			<% for e in ssd.sub_definition.spellings %>
+				<%= e.displayInfo %>;
+			<% end %><br>
+			<% end %>
+			<% if ssd.sub_definition.full_synonyms.size > 0 %>
+			<b>Full Synonym:</b>
+			<% for e in ssd.sub_definition.full_synonyms %>
+				<%= e.displayInfo %>;
+			<% end %><br>
+			<% end %>
+			<% if ssd.sub_definition.translations.size > 0 %>
+			<b>Translation:</b>
+			<% for e in ssd.sub_definition.translations %>
+				<%= e.displayInfo %>;
+			<% end %>
+			<br>
+			<% end %>
+			<% if ssd.sub_definition.translation_equivalents.size > 0 %>
+			<b>Translation equivalents:</b>
+			<% for e in ssd.sub_definition.translation_equivalents %>
+				<%= e.displayInfo %>;
+			<% end %>
+			<br>
+			<% end %>
+			<% if ssd.sub_definition.model_sentences.size > 0 %>
+			<b>Model sentences:</b>
+			<% for e in ssd.sub_definition.model_sentences %>
+				<%= e.displayInfo %>;
+			<% end %>
+			<br>
+			<% end %>
+			<% if ssd.sub_definition.literary_quotations.size > 0 %>
+			<b>Literary quotations:</b>
+			<% for e in ssd.sub_definition.literary_quotations %>
+				<%= e.displayInfo %>;
+			<% end %>
+			<br>
+			<% end %>
+			<% if ssd.sub_definition.oral_quotations.size > 0 %>
+			<b>Oral quotations:</b>
+			<% for e in ssd.sub_definition.oral_quotations %>
+				<%= e.displayInfo %>;
+			<% end %>
+			<br>
+			<% end %>
+			<% end %>
+<% end %>
+				<ul>
+			<% if ssd != nil %>
+			<% if ssd.sub_definition != nil %>
+				<% subsubdef = 1
+				for sssd in ssd.sub_definition.super_definitions
+			%>
+				<li><b>(<%= subsubdef %>): </b><%= sssd.sub_definition.definition unless sssd.sub_definition == nil %>
+				<% subsubdef += 1 %>
+				<br>
+			<% if sssd.sub_definition != nil %>
+			<% if sssd.sub_definition.pronunciations.size > 0 %>
+			<b>Pronunciation:</b>
+			<% for e in sssd.sub_definition.pronunciations %>
+				<%= e.displayInfo %>;
+			<% end %><br>
+			<% end %>
+			<% if sssd.sub_definition.grammatical_function != nil and sd.sub_definition.grammatical_function != '' %>
+			<b>Function:</b>  <i><%= sssd.sub_definition.grammatical_function %></i><br>
+			<% end %>
+			<% if sssd.sub_definition.etymologies.size > 0 %>
+			<b>Etymology:</b>
+			<% for e in sssd.sub_definition.etymologies %>
+				<%= e.displayInfo %>;	
+			<% end %><br>
+			<% end %>
+			<% if sssd.sub_definition.spellings.size > 0 %>
+			<b>Spelling:</b>
+			<% for e in sssd.sub_definition.spellings %>
+				<%= e.displayInfo %>;
+			<% end %><br>
+			<% end %>
+			<% if sssd.sub_definition.full_synonyms.size > 0 %>
+			<b>Full Synonym:</b>
+			<% for e in sssd.sub_definition.full_synonyms %>
+				<%= e.displayInfo %>;
+			<% end %><br>
+			<% end %>
+			<% if sssd.sub_definition.translations.size > 0 %>
+			<b>Translation:</b>
+			<% for e in sssd.sub_definition.translations %>
+				<%= e.displayInfo %>;
+			<% end %>
+			<br>
+			<% end %>
+			<% if sssd.sub_definition.translation_equivalents.size > 0 %>
+			<b>Translation equivalents:</b>
+			<% for e in sssd.sub_definition.translation_equivalents %>
+				<%= e.displayInfo %>;
+			<% end %>
+			<br>
+			<% end %>
+			<% if sssd.sub_definition.model_sentences.size > 0 %>
+			<b>Model sentences:</b>
+			<% for e in sssd.sub_definition.model_sentences %>
+				<%= e.displayInfo %>;
+			<% end %>
+			<br>
+			<% end %>
+			<% if sssd.sub_definition.literary_quotations.size > 0 %>
+			<b>Literary quotations:</b>
+			<% for e in sssd.sub_definition.literary_quotations %>
+				<%= e.displayInfo %>;
+			<% end %>
+			<br>
+			<% end %>
+			<% if sssd.sub_definition.oral_quotations.size > 0 %>
+			<b>Oral quotations:</b>
+			<% for e in sssd.sub_definition.oral_quotations %>
+				<%= e.displayInfo %>;
+			<% end %>
+			<br>
+			<% end %>
+			<% end %>
+			<% end %>
+<% end %>
+			<% end %>
+			</ul>
+
+			<% subdef += 1 %>
+		<% end %>
+		</ul>
+		
+		<br/>
+	<% end %>
+	<% number += 1 %>
+<% end %>
+</ul>
+<br>
+
+</div>

@@ -1,0 +1,20 @@
+<% if params['relatedtype'] == "definition_from" %>
+  <% if @definition_definition_form.definition_from != nil %>
+<% if params['internal'] == 'definitions' %>
+<%= @definition_definition_form.definition_from.displayInfo %>
+<% else %>
+	<%= @definition_definition_form.definition_from.displayInfo %>
+  <%#= link_to_remote @definition_definition_form.definition_from.displayInfo, :update => "definition_definition_form_definition_froms", :url=> {:controller=> "definitions", :action => "edit_dynamic", :id => @definition_definition_form.definition_from.id,:params => {:level => params['level'], :relatedtype =>'definition_from',:internal => 'definition_definition_forms', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "definition_to" %>
+  <% if @definition_definition_form.definition_to != nil %>
+<% if params['internal'] == 'definitions' %>
+	<%= @definition_definition_form.definition_to.displayInfo %>
+<% else %>
+	<%= @definition_definition_form.definition_to.displayInfo %>
+  <%#= link_to_remote @definition_definition_form.definition_to.displayInfo, :update => "definition_definition_form_definition_tos", :url=> {:controller=> "definitions", :action => "edit_dynamic", :id => @definition_definition_form.definition_to.id,:params => {:level => params['level'], :relatedtype =>'definition_to',:internal => 'definition_definition_forms', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+<% end %>
+  <% end %>
+<% end %>

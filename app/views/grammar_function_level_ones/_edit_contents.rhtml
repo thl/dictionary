@@ -1,0 +1,13 @@
+<% if params['relatedtype'] == "grammar_function_level_two" %>
+  <% if @grammar_function_level_one.grammar_function_level_twos != nil %>
+<% if @grammar_function_level_one.grammar_function_level_twos.size > 5 %>
+<div id="scrollgrammar_function_level_twos" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for grammar_function_level_two in @grammar_function_level_one.grammar_function_level_twos %>
+  <%= link_to_remote grammar_function_level_two.displayInfo, :update => "grammar_function_level_one_grammar_function_level_twos", :url=> {:controller=> "grammar_function_level_twos", :action => "edit_dynamic", :id => grammar_function_level_two.id,:params => {:level => params['level'], :relatedtype =>'grammar_function_level_two',:internal => 'grammar_function_level_ones', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @grammar_function_level_one.grammar_function_level_twos.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>

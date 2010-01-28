@@ -1,0 +1,93 @@
+ThdlIntegration
+===============
+
+The THDL Integration plugin is designed to facilitate the the integration of Ruby on Rails
+applications into THDL framework and look and feel. It consists of two helper methods
+that get automatically added with the installation of the plugin into the application
+helpers; so they are accessible from all views. These are:
+-header: receives a hash as arguments to be put as body attributes. Includes the display of
+         flash[:notice].
+-footer. No arguments. Displays also sidenav menu (which incudes login info at the top).
+
+You should define in the application_helper the following methods: side_column_links,
+javascripts, and stylesheets.
+
+The THDL integration plugin assumes that the login system used by the application was
+restful_authentication plugin. If it it wasn't you can simply rewrite login_status in
+thdl_integration/lib/helpers/thdl_integration_helper.rb or not call login_status from
+the header method.
+
+Example
+=======
+
+An application's application_helper.rb may look like this:
+
+# Methods added to this helper will be available to all templates in the application.
+module ApplicationHelper
+  def side_column_links
+    str = "<h3 class=\"head\">#{link_to 'Topical Map Builder', '#nogo', {:hreflang => 'Manage hierarchical controlled vocabulary to be used by other applications.'}}</h3>\n<ul>\n"
+    str += "<li>#{link_to 'Categories', home_path, {:hreflang => 'Lists all categories.'}}</li>\n"
+    authorized_only(hash_for_languages_path) { str += "<li>#{link_to 'Languages', languages_path, {:hreflang => 'Manage languages used for translation of titles and interface.'}}</li>\n" }
+    authorized_only(hash_for_users_path) { str += "<li>#{link_to 'Users', users_path, {:hreflang => 'Manage users and their roles.'}}</li>\n" }
+    authorized_only(hash_for_roles_path) { str += "<li>#{link_to 'Roles', roles_path, {:hreflang => 'Manage roles and their permissions.'}}</li>\n" }
+    authorized_only(hash_for_permissions_path) { str += "<li>#{link_to 'Permissions', permissions_path, {:hreflang => 'Manage permissions and their descriptions.'}}</li>\n" }
+    str += "</ul>"
+    return str
+  end
+
+  def stylesheets
+    return theme_stylesheet_link_tag('base')
+  end
+  
+  def javascripts
+    return javascript_include_tag('swfobject')
+  end
+end
+
+The way the header and footer are called from the aplication.html.erb (layout to be automatically used to all
+controllers) can be:
+
+<%= render :partial => 'shared/header' %>
+<%= yield %>
+<%= footer %>
+
+Where shared/_header.html.erb would look like this:
+
+<% body_attributes = {:class => 'reference'}
+   body_attributes[:onload] = @onload if !@onload.blank? %>
+<%= header(body_attributes) %>
+
+The portion on the application's CSS to render the login status correctly would look like this:
+
+#login-status {
+  border-bottom-width:0pt;
+  border-right:1px solid #999999;
+  color:#606060;
+  font-family:helvetica,arial,sans-serif;
+  font-size:100%;
+  font-weight:bold;
+  letter-spacing:0.06em;
+  margin:0pt;
+  padding:0pt 7px 0pt 0pt;
+  position:absolute;
+  right:200px;
+  top:96px;
+  z-index:1001;
+}
+
+Two notes:
+1. Here the views for the controllers that take the application's "generic" layout have to include the
+appropriate divs so that the THDL styles know what to do with it.
+2. I made the header into partial so that I could reuse the the code that builds up the body attributes
+for other the more "specific" layout that includes the most basic layout within the THDL styles: a single
+column for content, that is why I call it single_column.html.erb. The views for the controllers that take
+this layout (overriding the default by: layout 'single_column') don't have to worry about divs.
+layouts/single_column.html.erb loooks like this:
+
+<%= render :partial => 'shared/header' %>
+<div class="shell-1">
+<%= yield %>
+</div>
+<%= footer %>
+
+Copyright (c) 2008 THDL / Andres Montano, released under the MIT license

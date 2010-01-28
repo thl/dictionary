@@ -1,0 +1,41 @@
+<h1>Search Definition</h1>
+<%= form_tag({:action => "searchaction"}, {:method => 'get',:name => "searchform"})  %>
+<%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "search1"), "document.searchform.submit()", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('search1','','/images/search_down.gif',1);"}) %>
+  <table>
+  <%= search_definition %>
+  <tr><td><b><label>Full synonyms froms:</label></b></td>
+  <td><input name="full_synonyms_froms" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Super definitions:</label></b></td>
+  <td><input name="super_definitions" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Literary quotations:</label></b></td>
+  <td><input name="literary_quotations" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Full synonyms tos:</label></b></td>
+  <td><input name="full_synonyms_tos" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Translation equivalents:</label></b></td>
+  <td><input name="translation_equivalents" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Sub definitions:</label></b></td>
+  <td><input name="sub_definitions" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Etymologies:</label></b></td>
+  <td><input name="etymologies" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Related definitions:</label></b></td>
+  <td><input name="related_definitions" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Oral quotations:</label></b></td>
+  <td><input name="oral_quotations" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Meta:</label></b></td>
+  <td><input name="meta" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Spellings:</label></b></td>
+  <td><input name="spellings" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Model sentences:</label></b></td>
+  <td><input name="model_sentences" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Definition definition form tos:</label></b></td>
+  <td><input name="definition_definition_form_tos" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Translations:</label></b></td>
+  <td><input name="translations" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Pronunciations:</label></b></td>
+  <td><input name="pronunciations" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Definition definition form froms:</label></b></td>
+  <td><input name="definition_definition_form_froms" size=50 type=text value="" /></td></tr>
+  </table>
+  <input type="hidden" name="definition[id]" value="<%= params["id"] %>"/> 
+<%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "search2"), "document.searchform.submit()", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('search2','','/images/search_down.gif',1);"}) %>
+<%= end_form_tag %>

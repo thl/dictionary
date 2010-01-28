@@ -1,0 +1,16 @@
+<% if params['relatedtype'] == "meta" %>
+  <div id="group_metas">
+  <%= form_remote_tag(:update => "group_metas", :url => {:controller => "groups", :action => "edit_search_action", :id => params['id'], :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']}}, :name => "searchrelated")  %>
+    <h3>Find Meta:</h3>
+  <%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "groupsearch1"+params['level'].to_s), "if(document.forms["+params['level'].to_s+"].onsubmit()) { document.forms["+params['level'].to_s+"].submit();} ", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('groupsearch1"+params['level'].to_s+"','','/images/search_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "groupquerycancel0"+params['level'].to_s), {:update => 'group_metas',  :url => {:controller => 'groups', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'groups', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('groupquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+    <table>
+    <%= search_meta %>
+    </table>
+  <input type="hidden" name="relatedtype" value="<%= params['relatedtype'] %>" />
+  <input type="hidden" name="group[id]" value="<%= params['id'] %>" />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "groupsearch2"+params['level'].to_s), "if(document.forms["+params['level'].to_s+"].onsubmit()) { document.forms["+params['level'].to_s+"].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('groupsearch2"+params['level'].to_s+"','','/images/search_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "groupquerycancel"+params['level'].to_s), {:update => 'group_metas',  :url => {:controller => 'groups', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'groups', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('groupquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>

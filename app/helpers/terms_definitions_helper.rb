@@ -1,0 +1,2 @@
+module TermsDefinitionsHelper
+end

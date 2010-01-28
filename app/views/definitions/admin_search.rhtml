@@ -1,0 +1,27 @@
+<% form_remote_tag(:update => 'results',:loading => "Element.show('spinner')", :complete => "Element.hide('spinner')", :url => {:action => 'admin_search_action'}) do %>
+
+Select an user: 
+<%= collection_select(:user, :login, @users, :login, :login, :include_blank => true) %>
+
+<br>
+<br>
+<!-- Choose a item:
+<br><br>
+
+<%= radio_button_tag('datatype','definition', checked=true)%> Definition
+<br>
+<%= radio_button_tag('datatype','etymology')%> Etymology
+<br>
+<%= radio_button_tag('datatype','literary_quotation')%> Literary Quotation
+<br>
+<%= radio_button_tag('datatype','oral_quotation')%> Oral Quotation
+<br>
+<%= radio_button_tag('datatype','model_sentence')%> Model Sentence
+<br>
+<br> -->
+<%= submit_tag("Find recent changes")%>  <span id="spinner" style="display:none"><%= image_tag('spinner.gif')%></span>
+
+<% end %>
+<br>
+<div id="results">
+</div>

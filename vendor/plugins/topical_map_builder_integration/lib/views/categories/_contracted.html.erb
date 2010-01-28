@@ -1,0 +1,9 @@
+<%= TopicalMapBuilderIntegration::Util::MARGIN * margin_depth %>
+<%  has_no_children = contracted.children.empty? 
+    if has_no_children %>
+      &#9674;
+<%  else %>
+<%=   link_to_remote '+', { :update => "#{contracted.id}_div", :url => expand_category_child_path(@main_category, contracted, :margin_depth => margin_depth), :method => 'get', :loading => "$(\'#{contracted.id}_div\').style.background=\'url(/images/loadingAnimation2.gif) no-repeat top right\'", :loaded => "$(\'#{contracted.id}_div\').style.background=\'none\'" }, { :class => 'collapsable' } %>
+<%  end %>
+<%= render :partial => 'selectable_category', :locals => { :category => contracted } %>
+<br/>

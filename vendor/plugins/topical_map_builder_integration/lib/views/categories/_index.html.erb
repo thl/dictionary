@@ -1,0 +1,10 @@
+<% for child in categories %>
+     <div id="<%= "#{child.id}_div" %>">
+<%   if @ancestors_for_current.nil? || @ancestors_for_current.empty? || (index = @ancestors_for_current.index(child.id)).nil? %>
+<%=    render :partial => 'contracted', :object => child, :locals => {:margin_depth => margin_depth} %>
+<%   else
+       @ancestors_for_current.delete_at(index) %>
+<%=    render :partial => 'expanded', :object => child, :locals => {:margin_depth => margin_depth} %>
+<%   end %>
+     </div>
+<% end %>

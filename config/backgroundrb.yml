@@ -1,0 +1,8 @@
+--- 
+:backgroundrb: 
+  :ip: 0.0.0.0
+  :port: 11006
+:schedules:
+ :build_static_pages_worker:
+   :build_static_pages:
+     :trigger_args: 0 20 13 * * * *

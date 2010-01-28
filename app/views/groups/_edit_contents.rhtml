@@ -1,0 +1,5 @@
+<% if params['relatedtype'] == "meta" %>
+  <% if @group.meta != nil %>
+  <%= link_to_remote @group.meta.displayInfo, :update => "group_metas", :url=> {:controller=> "metas", :action => "edit_dynamic", :id => @group.meta.id,:params => {:level => params['level'], :relatedtype =>'meta',:internal => 'groups', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>

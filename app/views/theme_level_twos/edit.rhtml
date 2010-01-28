@@ -1,0 +1,93 @@
+<SCRIPT language="javascript">document.header.mode="edit";</SCRIPT>
+<%= tag "div", {:id => @divname } %>
+<h1>Editing Theme level two</h1>
+<%= error_messages_for 'theme_level_two' %>
+<% if params['internal'] == nil or params['internal'] == ''%>
+  <%= form_tag({:controller => "theme_level_twos", :action => "update"}, :name => "edittheme_level_two")  %>
+<% else %>
+  <%= form_remote_tag(:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_theme_level_two');new Effect.Fade('"+@divname+"update_theme_level_two');", :url => {:controller => 'theme_level_twos', :action => 'update', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}})  %>
+<% end %>
+<%= image_submit_tag "update_up.gif", :size => "87x19", :border => 0 %>
+<% if params['internal'] != nil %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "theme_level_twocancel0"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_theme_level_two');new Effect.Fade('"+@divname+"update_theme_level_two');", :url => {:controller => 'theme_level_twos', :action => 'cancel', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('theme_level_twocancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "Cancel", :name => "cancelz"), {:controller => 'theme_level_twos', :action => 'cancel', :id => params[:id], :params => {'new' => params['new']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('cancelz','','/images/cancel_down.gif',1);", :confirm => "Abandon any changes?"%>
+<% end %>
+<% if params["query"] != nil or params['theme_level_threes'] != nil or params['theme_level_one'] != nil %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back1"), {:action => 'searchaction', :params => { :query => params['query'], :theme_level_threes => params['theme_level_threes'] , :theme_level_one => params['theme_level_one'] }}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back1','','/images/back_down.gif',1);"%>
+<% end %>
+<%= edit_theme_level_two %>
+<input type="hidden" name="id" value="<%= params["id"] %>"/>
+<input type="hidden" name="internal" value="<%= params['internal'] %>">
+<input type="hidden" name="pk" value="<%= params['pk'] %>">
+<p><%= image_submit_tag "update_up.gif", :size => "87x19", :border => 0 %>
+<% if params['internal'] != nil %>
+<%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "theme_level_twocancel2"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_theme_level_two');new Effect.Fade('"+@divname+"update_theme_level_two');", :url => {:controller => 'theme_level_twos', :action => 'cancel', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('theme_level_twocancel2"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "Cancel", :name => "cancelzw"), {:controller => 'theme_level_twos', :action => 'cancel', :id => params[:id], :params => {'new' => params['new']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('cancelzw','','/images/cancel_down.gif',1);", :confirm => "Abandon any changes?"%>
+<% end %>
+<p>
+<% if params["query"] != nil or params['theme_level_threes'] != nil or params['theme_level_one'] != nil %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back"), {:action => 'searchaction', :params => { :query => params['query'], :theme_level_threes => params['theme_level_threes'] , :theme_level_one => params['theme_level_one'] }}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back','','/images/back_down.gif',1);"%>
+<% end %>
+<%= end_form_tag %>
+</div>
+<%= tag "div", {:id => @divname+"search_theme_level_two" } %>
+<% if params['internal'] == nil  or params['internal'] != "theme_level_threes" %>
+<p><b>Theme level threes: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "theme_level_two_theme_level_threes", :url => {:controller => "theme_level_twos", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "theme_level_three", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "theme_level_threes" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "theme_level_two_theme_level_threes", :url => {:controller => "theme_level_twos", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "theme_level_three", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "theme_level_two_theme_level_threes", :url => {:controller => "theme_level_twos", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "theme_level_three", :internal => params['internal']}} %>
+<br />
+<div id="theme_level_two_theme_level_threes" class="internal">
+<% if @theme_level_two.theme_level_threes != nil %>
+<% if @theme_level_two.theme_level_threes.size > 5 %>
+<div id="scrolltheme_level_threes" style="height:100;background-color:e6e6e6;border:1px solid;overflow:auto;">
+<% end %>
+  <% for o in @theme_level_two.theme_level_threes %>
+    <%= o.displayInfo %><br>
+  <% end %>
+<% if @theme_level_two.theme_level_threes.size > 5 %>
+</div>
+<% end %>
+<% end %>
+</div>
+<% end %>
+</p>
+<% if params['internal'] == nil  or params['internal'] != "theme_level_ones" %>
+<p><b>Theme level one: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "theme_level_two_theme_level_ones", :url => {:controller => "theme_level_twos", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "theme_level_one", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "theme_level_ones" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "theme_level_two_theme_level_ones", :url => {:controller => "theme_level_twos", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "theme_level_one", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "theme_level_two_theme_level_ones", :url => {:controller => "theme_level_twos", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "theme_level_one", :internal => params['internal']}} %>
+<br />
+<div id="theme_level_two_theme_level_ones" class="internal">
+<% if !@theme_level_two.theme_level_one.nil? %>
+  <%= @theme_level_two.theme_level_one.displayInfo %>
+<% end %>
+</div>
+<% end %>
+</p>
+</div>
+<% if params['internal'] == nil %>
+<p><b>Created by:</b> <%= @theme_level_two.created_by %> [<%= @theme_level_two.created_at %>]<br>
+<b>Last updated by:</b> <%= @theme_level_two.updated_by %> [<%= @theme_level_two.updated_at %>]<br>
+<span id="show_history">
+<a href="#" onClick="Element.hide('show_history');Effect.BlindDown('history');"><b>Show History</b></a><br>
+</span>
+<div id="history" style="display:none;">
+<div>
+<b>Update History:</b><a href="#" onClick="Effect.BlindUp('history');Element.show('show_history')">(Hide)</a><br>
+<div style="width:400;height:70;background-color:eeeeee;border:1px solid;overflow:auto;">
+<%= textilize @theme_level_two.update_history %>
+</div>
+</div>
+</div></p>
+<% end %>

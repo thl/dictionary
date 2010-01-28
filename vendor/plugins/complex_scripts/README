@@ -1,0 +1,75 @@
+ComplexScripts
+==============
+
+complex_scripts extends the Ruby's String class to provide additional methods for the proper display of complex scripts. Additionally,
+it also provides helper methods to be used within views.
+
+Installation
+============
+
+To install run:
+
+script/plugin install -x http://ndlb.svn.sourceforge.net/svnroot/ndlb/portal/ror/plugins/complex_scripts/trunk/
+
+The String methods added are:
+
+1. span (or "s" for short): takes a string and spans characters in predefined unicode ranges with xml:lang and class attribute with
+language code (ISO 369-3) for easy rendering. Also converts characters outside ascii range into NCR.
+2. encode (or "e" for short): converts chars outside ascii range to NCR, but does not span. To be used in forms (buttons, drop-down
+lists, etc.).
+
+Encoding in NCR ensures that the browser displays properly regardless of its encoding setting.
+
+The helper methods provided are:
+1. fixed_language_options: receives a language code as argument and returns a hash with keys xml:lang and class set to that code.
+If no code is given, it defaults to "bo" (tibetan). This can be used to easily pass it to form helpers to be styled accordingly.
+2. display_if_not_blank: not really related to complex scripts per se. Displays a title and attribute if attribute is not blank.
+
+The spanning relies on a LANGUAGES array defined under complex_scripts/lib/complex_scripts.rb. The code checks if a language table
+exists. If it doesn't, the array is pre-populated with fixed values. If it does, the values are taken from the database.
+
+If you want to manage the languages in the database, simply run:
+
+script/generate complex_script_languages
+
+This will generate a language model, migration, controller, and views under the appropriate folders.
+Feel free to change the code to accommodate for the application's navigation, layout, etc.
+
+If you rather manage the languages from code, simply change the pre-defined values for the LANGUAGES array in
+complex_scripts/lib/complex_scripts.rb
+
+Example
+=======
+
+The following examples illustrate the usage of the methods included in this plugin. For the sake of clarity,
+the examples use fixed strings. In real practice, although including fixed string with unicode values in the views
+does work, more likely the methods would be called upon strings drawn from a database.
+
+"Tibet (བོད་)".s # => "Tibet (<span lang="bo" xml:lang="bo" class="bo">&#3926;&#3964;&#3921;&#3851;</span>)"
+
+"Tibet (བོད་)".e # => "Tibet (&#3926;&#3964;&#3921;&#3851;)"
+
+"e" is specially useful for generating html for elements of a form that don't allow spanning (buttons, drop-down lists, etc.).
+In those cases, the language is not specified through the span, but through sending fixed_language_options to
+the html attribute in helper. For instance:
+
+<%= submit_tag 'འཚོལ་ཞིབ།'.e, fixed_language_options %>
+
+Would generate the following HTML:
+
+<input class="bo" lang="bo" name="commit" type="submit" value="&#3936;&#3930;&#3964;&#3939;&#3851;&#3934;&#3954;&#3926;&#3853;" xml:lang="bo" />
+
+In the stylesheet we could specify how to render class "bo" like this:
+
+.bo {
+  font-size: 140%;
+  font-family: "XenoType Tibetan New", "Jomolhari", "Tibetan Machine Uni"!important;
+  line-height: 140%;
+  text-align: left;
+  font-weight: normal;
+}
+
+See complex_scripts/lib/generators/complex_scripts_languages/templates/show.html.erb for examples on how to use
+display_if_not_blank.
+
+Copyright (c) 2008 Andres Montano Pellegrini on behalf of THL, released under the MIT license.

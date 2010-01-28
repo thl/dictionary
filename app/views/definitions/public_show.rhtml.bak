@@ -1,0 +1,218 @@
+<div class="tib1">
+<b><font size="+1"><%= @definition.term %></font></b><br><br>
+<b>Pronunciation:</b>
+<% for e in @definition.pronunciations %>
+	<%= e.displayInfo %>;
+<% end %>
+	<% for sd in @definition.super_definitions %>
+		<% for sdp in sd.sub_definition.pronunciations %>
+			<%= sdp.displayInfo %>;
+			<% for ssd in sd.sub_definition.super_definitions %>
+				<% for ssdp in ssd.sub_definition.pronunciations %>
+					<%= ssdp.displayInfo %>;
+					<% for sssd in ssd.sub_definition.super_definitions %>
+						<% for sssdp in sssd.sub_definition.pronunciations %>
+							<%= sssdp.displayInfo %>;
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+<br>
+<b>Function:</b>  <i><%= @definition.grammatical_function %></i><br>
+<b>Etymology:</b>
+<% for e in @definition.etymologies %>
+	<%= e.displayInfo %>;	
+<% end %>
+
+	<% for sd in @definition.super_definitions %>
+		<% for sdp in sd.sub_definition.etymologies %>
+			<%= sdp.displayInfo %>;
+			<% for ssd in sd.sub_definition.super_definitions %>
+				<% for ssdp in ssd.sub_definition.etymologies %>
+					<%= ssdp.displayInfo %>;
+					<% for sssd in ssd.sub_definition.super_definitions %>
+						<% for sssdp in sssd.sub_definition.etymologies %>
+							<%= sssdp.displayInfo %>;
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+<br>
+<b>Spelling:</b>
+<% for e in @definition.spellings %>
+	<%= e.displayInfo %>;
+<% end %>
+	<% for sd in @definition.super_definitions %>
+		<% for sdp in sd.sub_definition.spellings %>
+			<%= sdp.displayInfo %>;
+			<% for ssd in sd.sub_definition.super_definitions %>
+				<% for ssdp in ssd.sub_definition.spellings %>
+					<%= ssdp.displayInfo %>;
+					<% for sssd in ssd.sub_definition.super_definitions %>
+						<% for sssdp in sssd.sub_definition.spellings %>
+							<%= sssdp.displayInfo %>;
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+<br>
+<b>Full Synonym:</b>
+<% for e in @definition.full_synonyms %>
+	<%= e.displayInfo %>;
+<% end %>
+	<% for sd in @definition.super_definitions %>
+		<% for sdp in sd.sub_definition.full_synonyms %>
+			<%= sdp.displayInfo %>;
+			<% for ssd in sd.sub_definition.super_definitions %>
+				<% for ssdp in ssd.sub_definition.full_synonyms %>
+					<%= ssdp.displayInfo %>;
+					<% for sssd in ssd.sub_definition.super_definitions %>
+						<% for sssdp in sssd.sub_definition.full_synonyms %>
+							<%= sssdp.displayInfo %>;
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+<br>
+
+<% if @definition.definition != nil or @definition.definition != "" %>
+	<b>Definition:</b>
+	<%= @definition.definition %><br>
+<% end %>
+<br>
+<% number = 1
+	letters = ['a','b','c','d','e','f','g']
+	for sd in @definition.super_definitions 
+%>
+	<% if sd.sub_definition != nil %>
+		<b><%= number %>: </b><%= sd.sub_definition.definition %>
+		<% subdef = 0 
+			for ssd in sd.sub_definition.super_definitions
+		%>
+			<b><%= letters[subdef] %>: </b><%= ssd.sub_definition.definition unless ssd.sub_definition == nil %>
+
+			<% subsubdef = 1
+				for sssd in ssd.sub_definition.super_definitions
+			%>
+				<b>(<%= subsubdef %>): </b><%= sssd.sub_definition.definition unless sssd.sub_definition == nil %>
+				<% subsubdef += 1 %>
+			<% end %>
+
+
+			<% subdef += 1 %>
+		<% end %>
+		<br/>
+	<% end %>
+	<% number += 1 %>
+<% end %>
+<br>
+<b>Translation:</b>
+<% for e in @definition.translations %>
+	<%= e.displayInfo %>;
+<% end %>
+	<% for sd in @definition.super_definitions %>
+		<% for sdp in sd.sub_definition.translations %>
+			<%= sdp.displayInfo %>;
+			<% for ssd in sd.sub_definition.super_definitions %>
+				<% for ssdp in ssd.sub_definition.translations %>
+					<%= ssdp.displayInfo %>;
+					<% for sssd in ssd.sub_definition.super_definitions %>
+						<% for sssdp in sssd.sub_definition.translations %>
+							<%= sssdp.displayInfo %>;
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+<br>
+<b>Translation equivalents:</b>
+<% for e in @definition.translation_equivalents %>
+	<%= e.displayInfo %>;
+<% end %>
+	<% for sd in @definition.super_definitions %>
+		<% for sdp in sd.sub_definition.translation_equivalents %>
+			<%= sdp.displayInfo %>;
+			<% for ssd in sd.sub_definition.super_definitions %>
+				<% for ssdp in ssd.sub_definition.translation_equivalents %>
+					<%= ssdp.displayInfo %>;
+					<% for sssd in ssd.sub_definition.super_definitions %>
+						<% for sssdp in sssd.sub_definition.translation_equivalents %>
+							<%= sssdp.displayInfo %>;
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+<br>
+<b>Model sentences:</b>
+<% for e in @definition.model_sentences %>
+	<%= e.displayInfo %>;
+<% end %>
+	<% for sd in @definition.super_definitions %>
+		<% for sdp in sd.sub_definition.model_sentences %>
+			<%= sdp.displayInfo %>;
+			<% for ssd in sd.sub_definition.super_definitions %>
+				<% for ssdp in ssd.sub_definition.model_sentences %>
+					<%= ssdp.displayInfo %>;
+					<% for sssd in ssd.sub_definition.super_definitions %>
+						<% for sssdp in sssd.sub_definition.model_sentences %>
+							<%= sssdp.displayInfo %>;
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+<br>
+<b>Literary quotations:</b>
+<% for e in @definition.literary_quotations %>
+	<%= e.displayInfo %>;
+<% end %>
+	<% for sd in @definition.super_definitions %>
+		<% for sdp in sd.sub_definition.literary_quotations %>
+			<%= sdp.displayInfo %>;
+			<% for ssd in sd.sub_definition.super_definitions %>
+				<% for ssdp in ssd.sub_definition.literary_quotations %>
+					<%= ssdp.displayInfo %>;
+					<% for sssd in ssd.sub_definition.super_definitions %>
+						<% for sssdp in sssd.sub_definition.literary_quotations %>
+							<%= sssdp.displayInfo %>;
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+<br>
+<b>Oral quotations:</b>
+<% for e in @definition.oral_quotations %>
+	<%= e.displayInfo %>;
+<% end %>
+	<% for sd in @definition.super_definitions %>
+		<% for sdp in sd.sub_definition.oral_quotations %>
+			<%= sdp.displayInfo %>;
+			<% for ssd in sd.sub_definition.super_definitions %>
+				<% for ssdp in ssd.sub_definition.oral_quotations %>
+					<%= ssdp.displayInfo %>;
+					<% for sssd in ssd.sub_definition.super_definitions %>
+						<% for sssdp in sssd.sub_definition.oral_quotations %>
+							<%= sssdp.displayInfo %>;
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+<br>
+
+</div>

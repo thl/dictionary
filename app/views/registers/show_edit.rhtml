@@ -1,0 +1,41 @@
+<SCRIPT language="javascript">document.header.mode="edit";</SCRIPT>
+<%= tag "div", {:id => @divname } %>
+<% if params['internal'] != nil %>
+  <%= link_to_remote image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "registerupdate0"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_register');new Effect.Fade('"+@divname+"update_register');", :url => {:controller => 'registers', :action => 'update_related', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('registerupdate0"+params['level'].to_s+"','','/images/update_down.gif',1);"%>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "registercancel0"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_register');new Effect.Fade('"+@divname+"update_register');", :url => {:controller => 'registers', :action => 'cancel', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('registercancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back1"), session['return_to'] , :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back1','','/images/back_down.gif',1);" %>
+<% end %>
+<h1>Edit Register</h1>
+<%= error_messages_for 'register' %>
+<% if params["query"] != nil %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back1"), {:action => 'searchaction', :params => { :query => params['query']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back1','','/images/back_down.gif',1);"%>
+<% end %>
+<%= show_edit_register %>
+<% if params['internal'] != nil %>
+<br><br>  <%= link_to_remote image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "registerupdate1"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_register');new Effect.Fade('"+@divname+"update_register');", :url => {:controller => 'registers', :action => 'update_related', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('registerupdate1"+params['level'].to_s+"','','/images/update_down.gif',1);"%>
+<%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "registercancel2"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_register');new Effect.Fade('"+@divname+"update_register');", :url => {:controller => 'registers', :action => 'cancel', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('registercancel2"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+<br><br><%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back2"), session['return_to'] , :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back2','','/images/back_down.gif',1);" %>
+<% end %>
+<% if params["query"] != nil %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back"), {:action => 'searchaction', :params => { :query => params['query']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back','','/images/back_down.gif',1);"%>
+<% end %>
+</div>
+<%= tag "div", {:id => @divname+"search_register" } %>
+</div>
+<% if params['internal'] == nil %>
+<p><b>Created by:</b> <%= @register.created_by %> [<%= @register.created_at %>]<br>
+<b>Last updated by:</b> <%= @register.updated_by %> [<%= @register.updated_at %>]<br>
+<span id="show_history">
+<a href="#" onClick="Element.hide('show_history');Effect.BlindDown('history');"><b>Show History</b></a><br>
+</span>
+<div id="history" style="display:none;">
+<div>
+<b>Update History:</b><a href="#" onClick="Effect.BlindUp('history');Element.show('show_history')">(Hide)</a><br>
+<div style="width:400;height:70;background-color:eeeeee;border:1px solid;overflow:auto;">
+<%= textilize @register.update_history %>
+</div>
+</div>
+</div></p>
+<% end %>

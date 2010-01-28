@@ -1,0 +1,36 @@
+<% if params['relatedtype'] == "definition" %>
+<div id="pronunciation_definitions">
+<% form_remote_tag(:update => "pronunciation_definitions", :url => {:controller => "pronunciations", :action => 'edit_add_to_list_action', :id => params['id']}, :html =>{:name => "related"}) do%>
+  <h3>Check Definition to Add:</h3>
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "pronunciationlistupdate4"+params['level'].to_s), "if(document.related.onsubmit()) { document.related.submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('pronunciationlistupdate4"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "pronunciationquerycancel0"+params['level'].to_s), {:update => 'pronunciation_definitions',  :url => {:controller => 'pronunciations', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'pronunciations', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('pronunciationquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @pronunciation.definition != nil %>
+     <p><%= build_radiolist_group(@definitions,@pronunciation.definition.displayInfo) %></p>
+   <% else %>
+     <p><%= build_radiolist_group(@definitions) %></p>
+   <% end %>
+   <input type=hidden name=relatedtype value=definition />
+<% end %>
+<input type="hidden" name="pronunciation[id]" value="<%= @pronunciation.id %>"/> 
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "pronunciationlistupdate3"+params['level'].to_s), "if(document.related.onsubmit()) { document.related.submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('pronunciationlistupdate3"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "pronunciationquerycancel"+params['level'].to_s), {:update => 'pronunciation_definitions',  :url => {:controller => 'pronunciations', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'pronunciations', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('pronunciationquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+</div>
+<% end %>
+<% if params['relatedtype'] == "meta" %>
+<div id="pronunciation_metas">
+<% form_remote_tag(:update => "pronunciation_metas", :url => {:controller => "pronunciations", :action => 'edit_add_to_list_action', :id => params['id']}, :html =>{:name => "related"}) do%>
+  <h3>Check Meta to Add:</h3>
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "pronunciationlistupdate4"+params['level'].to_s), "if(document.related.onsubmit()) { document.related.submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('pronunciationlistupdate4"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "pronunciationquerycancel0"+params['level'].to_s), {:update => 'pronunciation_metas',  :url => {:controller => 'pronunciations', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'pronunciations', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('pronunciationquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @pronunciation.meta != nil %>
+     <p><%= build_radiolist_group(@metas,@pronunciation.meta.displayInfo) %></p>
+   <% else %>
+     <p><%= build_radiolist_group(@metas) %></p>
+   <% end %>
+   <input type=hidden name=relatedtype value=meta />
+<% end %>
+<input type="hidden" name="pronunciation[id]" value="<%= @pronunciation.id %>"/> 
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "pronunciationlistupdate3"+params['level'].to_s), "if(document.related.onsubmit()) { document.related.submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('pronunciationlistupdate3"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "pronunciationquerycancel"+params['level'].to_s), {:update => 'pronunciation_metas',  :url => {:controller => 'pronunciations', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'pronunciations', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('pronunciationquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+</div>
+<% end %>

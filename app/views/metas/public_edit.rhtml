@@ -1,0 +1,10 @@
+<dl><dd>
+<div id="internal_box" class="internal_box">
+
+
+<%= edit_dynamic_meta %>
+
+<br>
+<%= link_to_remote image_tag("close_up.gif", :size => "87x19", :border => 0, :alt => "close"), :update=> 'definition_space', :url => {:controller => 'definitions', :action => 'public_content_only', :id => params['definition_id']}%>	
+</div>
+</dd></dl>

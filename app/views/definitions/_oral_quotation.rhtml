@@ -1,0 +1,54 @@
+<% for t in oral_quotation.translations %>
+<% if t.translation != nil and t.translation != ''%>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>TRANSLATION:</strong> </span><%= t.translation %> <%= "(#{t.language_type.title})" if t.language_type != nil %>
+		</dd>
+	</dl>
+	<% end %>
+	<% if t.analytical_note != nil and t.analytical_note != ''%>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+		<span class="inner_def_header"><strong>TRANSLATION NOTE:</strong> </span><%= t.analytical_note%>
+			</dd>
+		</dl>
+	<% end %>
+	
+<% end %>
+<% if oral_quotation.source_speaker_dialect_type != '' and oral_quotation.source_speaker_dialect_type != nil %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>SOURCE SPEAKER TIBETAN DIALECT:</strong> </span><%= oral_quotation.source_speaker_dialect_type.title%>
+		</dd>
+	</dl>
+<% end %>
+<% if oral_quotation.source_speech_date != '' and oral_quotation.source_speech_date != nil %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>SPEECH DATE:</strong> </span><%= oral_quotation.source_speech_date%>
+		</dd>
+	</dl>
+<% end %>
+<% if oral_quotation.source_location_within_title != '' and oral_quotation.source_location_within_title != nil %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>SOURCE LOCATION:</strong> </span><%= oral_quotation.source_location_within_title%>
+		</dd>
+	</dl>
+<% end %>
+<% if oral_quotation.analytical_note != nil and oral_quotation.analytical_note != ''%>
+<dl class="inner_dl">
+	<dd class="inner_dd">
+	<span class="inner_def_header"><strong>NOTE:</strong> </span><%= oral_quotation.analytical_note%>
+		</dd>
+	</dl>
+<% end %>
+		
+<% if oral_quotation.meta != nil%>
+		<dl class="inner_dl">
+				<dd>
+		<% t = Time.now %>
+		<%= render :partial => 'public_meta', :locals => {:meta_location => t.to_f, :meta => oral_quotation.meta , :head_id => head_id} %>
+				</dd>
+		</dl>
+<% end %>

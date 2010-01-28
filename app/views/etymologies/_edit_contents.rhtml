@@ -1,0 +1,23 @@
+<% if params['relatedtype'] == "definition" %>
+  <% if @etymology.definition != nil %>
+  <%= link_to_remote @etymology.definition.displayInfo, :update => "etymology_definitions", :url=> {:controller=> "definitions", :action => "edit_dynamic", :id => @etymology.definition.id,:params => {:level => params['level'], :relatedtype =>'definition',:internal => 'etymologies', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "meta" %>
+  <% if @etymology.meta != nil %>
+  <%= link_to_remote @etymology.meta.displayInfo, :update => "etymology_metas", :url=> {:controller=> "metas", :action => "edit_dynamic", :id => @etymology.meta.id,:params => {:level => params['level'], :relatedtype =>'meta',:internal => 'etymologies', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "translation" %>
+  <% if @etymology.translations != nil %>
+<% if @etymology.translations.size > 5 %>
+<div id="scrolltranslations" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for translation in @etymology.translations %>
+  <%= link_to_remote translation.displayInfo, :update => "etymology_translations", :url=> {:controller=> "translations", :action => "edit_dynamic", :id => translation.id,:params => {:level => params['level'], :relatedtype =>'translation',:internal => 'etymologies', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @etymology.translations.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>

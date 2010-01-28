@@ -1,0 +1,18 @@
+<% if params['relatedtype'] == "sub_definition" %>
+  <% if @definition_definition.sub_definition != nil %>
+<% if params['internal'] == 'definitions'%>
+	<%= @definition_definition.sub_definition.displayInfo %>
+<% else %>
+  <%= link_to_remote @definition_definition.sub_definition.displayInfo, :update => "definition_definition_sub_definitions", :url=> {:controller=> "definitions", :action => "edit_dynamic", :id => @definition_definition.sub_definition.id,:params => {:level => params['level'], :relatedtype =>'sub_definition',:internal => 'definition_definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "super_definition" %>
+  <% if @definition_definition.super_definition != nil %>
+<% if params['internal'] == 'definitions'%>
+	<%= @definition_definition.super_definition.displayInfo %>
+<% else %>
+  <%= link_to_remote @definition_definition.super_definition.displayInfo, :update => "definition_definition_super_definitions", :url=> {:controller=> "definitions", :action => "edit_dynamic", :id => @definition_definition.super_definition.id,:params => {:level => params['level'], :relatedtype =>'super_definition',:internal => 'definition_definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+<% end %>
+  <% end %>
+<% end %>

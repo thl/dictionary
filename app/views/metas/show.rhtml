@@ -1,0 +1,76 @@
+  <% if $allow_editing %>
+<%= link_to image_tag("edit_up.gif", :size => "87x19", :border => 0, :alt => "edit", :name => "edit1"), {:action => 'edit_dynamic', :id => @meta.id}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('edit1','','/images/edit_down.gif',1);"%>
+<% end %>
+<%= link_to_function image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back1"), "history.go(-1)", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back1','','/images/back_down.gif',1);" %>
+<h1>Meta</h1>
+<%= show_meta %>
+<p><b>Full synonym: </label></b>
+<br />
+<% if !@meta.full_synonym.nil? %>
+  <%= link_to @meta.full_synonym.displayInfo, :controller => "full_synonyms", :action => "show",  :id => @meta.full_synonym.id  %>
+<% end %>
+</p>
+<p><b>Definition: </label></b>
+<br />
+<% if !@meta.definition.nil? %>
+  <%= link_to @meta.definition.displayInfo, :controller => "definitions", :action => "show",  :id => @meta.definition.id  %>
+<% end %>
+</p>
+<p><b>Translation: </label></b>
+<br />
+<% if !@meta.translation.nil? %>
+  <%= link_to @meta.translation.displayInfo, :controller => "translations", :action => "show",  :id => @meta.translation.id  %>
+<% end %>
+</p>
+<p><b>Oral quotation: </label></b>
+<br />
+<% if !@meta.oral_quotation.nil? %>
+  <%= link_to @meta.oral_quotation.displayInfo, :controller => "oral_quotations", :action => "show",  :id => @meta.oral_quotation.id  %>
+<% end %>
+</p>
+<p><b>Spelling: </label></b>
+<br />
+<% if !@meta.spelling.nil? %>
+  <%= link_to @meta.spelling.displayInfo, :controller => "spellings", :action => "show",  :id => @meta.spelling.id  %>
+<% end %>
+</p>
+<p><b>Group: </label></b>
+<br />
+<% if !@meta.group.nil? %>
+  <%= link_to @meta.group.displayInfo, :controller => "groups", :action => "show",  :id => @meta.group.id  %>
+<% end %>
+</p>
+<p><b>Model sentence: </label></b>
+<br />
+<% if !@meta.model_sentence.nil? %>
+  <%= link_to @meta.model_sentence.displayInfo, :controller => "model_sentences", :action => "show",  :id => @meta.model_sentence.id  %>
+<% end %>
+</p>
+<p><b>Etymology: </label></b>
+<br />
+<% if !@meta.etymology.nil? %>
+  <%= link_to @meta.etymology.displayInfo, :controller => "etymologies", :action => "show",  :id => @meta.etymology.id  %>
+<% end %>
+</p>
+<p><b>Literary quotation: </label></b>
+<br />
+<% if !@meta.literary_quotation.nil? %>
+  <%= link_to @meta.literary_quotation.displayInfo, :controller => "literary_quotations", :action => "show",  :id => @meta.literary_quotation.id  %>
+<% end %>
+</p>
+<p><b>Pronunciation: </label></b>
+<br />
+<% if !@meta.pronunciation.nil? %>
+  <%= link_to @meta.pronunciation.displayInfo, :controller => "pronunciations", :action => "show",  :id => @meta.pronunciation.id  %>
+<% end %>
+</p>
+<p><b>Translation equivalent: </label></b>
+<br />
+<% if !@meta.translation_equivalent.nil? %>
+  <%= link_to @meta.translation_equivalent.displayInfo, :controller => "translation_equivalents", :action => "show",  :id => @meta.translation_equivalent.id  %>
+<% end %>
+</p>
+  <% if $allow_editing %>
+<%= link_to image_tag("edit_up.gif", :size => "87x19", :border => 0, :alt => "edit", :name => "edit"), {:action => 'edit_dynamic', :id => @meta.id}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('edit','','/images/edit_down.gif',1);"%>
+<% end %>
+<%= link_to_function image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back2"), "history.go(-1)", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back2','','/images/back_down.gif',1);" %>

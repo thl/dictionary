@@ -1,0 +1,10 @@
+<ul><li>
+<%= show_pronunciation %>
+<br><b>Meta: </b>
+<br />
+<% if !@pronunciation.meta.nil? %>
+<%= @pronunciation.meta.displayInfo %>
+  <%#= link_to @pronunciation.meta.displayInfo, :controller => "metas", :action => "show",  :id => @pronunciation.meta.id  %>
+<% end %>
+<br>
+</li></ul>

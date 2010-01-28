@@ -1,0 +1,24 @@
+<% if params['relatedtype'] == "grammar_function_level_two" %>
+<div id="grammar_function_level_one_grammar_function_level_twos">
+<%= form_remote_tag(:update => "grammar_function_level_one_grammar_function_level_twos", :url => {:controller => "grammar_function_level_ones", :action => 'edit_add_to_list_action', :id => params['id']}, :name => "listrelated") %>
+  <h3>Check Grammar function level two to Add:</h3>
+<% if !@grammar_function_level_twos.nil? %>
+<% if @grammar_function_level_twos.size > 10 %>
+<div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+<% end %>
+   <% if @grammar_function_level_one.grammar_function_level_twos != nil %>
+     <%= build_checklist_group(@grammar_function_level_twos,@grammar_function_level_one.grammar_function_level_twos) %>
+   <% else %>
+     <p><%= build_checklist_group(@grammar_function_level_one.grammar_function_level_twos) %></p>
+   <% end %>
+<% if @grammar_function_level_twos.size > 10 %>
+</div>
+<% end %> 
+<% end %>
+   <input type=hidden name=relatedtype value=grammar_function_level_two />
+<%= end_form_tag %>
+<input type="hidden" name="grammar_function_level_one[id]" value="<%= @grammar_function_level_one.id %>"/> 
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "grammar_function_level_onelistupdate3"+params['level'].to_s), "if(document.forms["+params['level'].to_s+"].onsubmit()) { document.forms["+params['level'].to_s+"].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('grammar_function_level_onelistupdate3"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "grammar_function_level_onequerycancel"+params['level'].to_s), {:update => 'grammar_function_level_one_grammar_function_level_twos',  :url => {:controller => 'grammar_function_level_ones', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'grammar_function_level_ones', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('grammar_function_level_onequerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+</div>
+<% end %>

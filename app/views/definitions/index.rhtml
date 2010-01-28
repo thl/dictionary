@@ -1,0 +1,24 @@
+
+<% form_tag :action => "find_head_terms" do %>
+<p>
+Enter the term you want to find: &nbsp;&nbsp;<input type="text" name="term" style="font-size:14pt;width:350px;height:40px;" >
+<!-- <input type="hidden" name="definition[level]" value="head term"> -->
+<input type="hidden" name="mode" value="search">
+<br/><br>
+<% search_type = session['search_type'] != nil ? session['search_type'] : 'term' %>
+<input type="radio" name="search_field" value="tibetan" <% if search_type =='term'%>checked<% end %>> Tibetan Unicode Script &nbsp;&nbsp;&nbsp;
+<input type="radio" name="search_field" value="wylie" <% if search_type =='wylie'%>checked<% end %>> THL Wylie Transliteration &nbsp;&nbsp;&nbsp; 
+<input type="radio" name="search_field" value="phonetic" <% if search_type =='phonetic'%>checked<% end %>> THL Phonetic Transcription
+<br><br>
+<input type="radio" name="search_type" value="exact" > Exact match<br>
+<input type="radio" name="search_type" value="beginning" > Starts with<br>
+<input type="radio" name="search_type" value="anywhere" checked> Contains<br>
+<br>
+<!-- <input type="radio" name="search_extent" value="all" >full text search<br> -->
+
+</p>
+<%= submit_tag "Search"%>
+<% end %>
+<br>
+<div id="results">
+</div>

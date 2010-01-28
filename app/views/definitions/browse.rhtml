@@ -1,0 +1,32 @@
+<% count = 0 %>
+<script>
+	function clear_bars(){
+		<% @alphabet.each do |letter|%>
+		Element.hide('<%=letter%>');
+		<% end %>
+	}
+</script>
+<table id="alphabet" width="100%">
+	<tr>
+<% @alphabet.each do |letter|%>
+	<td>
+	<%= link_to_remote(letter.span, :update => 'letter_list', :loading => "Element.show('loader');clear_bars();Element.show('#{letter}');", :complete => "Element.hide('loader');", :url => {:controller => 'browse', :action => 'index', :params => {:letter => "#{count}", :junk => Time.new.to_f.to_s}})%> 
+	</td>
+	<% count += 1%>
+<% end %>
+	</tr>
+		<tr>
+	<% @alphabet.each do |letter|%>
+		<td>
+			<%= image_tag('bar.png',:id => letter, :style => 'display:none')%>
+		</td>
+		<% count += 1%>
+	<% end %>
+		</tr>
+</table>
+<hr>
+<div id="loader" style="display:none"><%= image_tag('loadingAnimation2.gif')%></div>
+
+<div id="letter_list">
+	Clicking a Tibetan letter above will give you a list of every 100th Tibetan term with that root letter. Clicking on one of the terms will then expand the full set of 100 terms beginning with that term. You can thus quickly browse to find the range where your term will be.  Clicking on any of the resultant terms will then expand the corresponding dictionary entry within the browsing mode. If you prefer to see only the entry on the screen, click on the word "view" to the right of the term you want to view.
+</div>

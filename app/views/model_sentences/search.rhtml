@@ -1,0 +1,15 @@
+<h1>Search Model sentence</h1>
+<%= form_tag({:action => "searchaction"}, {:method => 'get',:name => "searchform"})  %>
+<%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "search1"), "document.searchform.submit()", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('search1','','/images/search_down.gif',1);"}) %>
+  <table>
+  <%= search_model_sentence %>
+  <tr><td><b><label>Definition:</label></b></td>
+  <td><input name="definition" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Meta:</label></b></td>
+  <td><input name="meta" size=50 type=text value="" /></td></tr>
+  <tr><td><b><label>Translations:</label></b></td>
+  <td><input name="translations" size=50 type=text value="" /></td></tr>
+  </table>
+  <input type="hidden" name="model_sentence[id]" value="<%= params["id"] %>"/> 
+<%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "search2"), "document.searchform.submit()", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('search2','','/images/search_down.gif',1);"}) %>
+<%= end_form_tag %>

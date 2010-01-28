@@ -1,0 +1,23 @@
+<% if translation.language_type != '' and translation.language_type != nil %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>LANGUAGE:</strong> </span><%= translation.language_type.title%>
+		</dd>
+	</dl>
+<% end %>
+<% if translation.analytical_note != nil and translation.analytical_note != ''%>
+<dl class="inner_dl">
+	<dd class="inner_dd">
+	<span class="inner_def_header"><strong>NOTE:</strong> </span><%= translation.analytical_note%>
+		</dd>
+	</dl>
+<% end %>
+		
+<% if translation.meta != nil%>
+		<dl class="inner_dl">
+				<dd>
+		<% t = Time.now %>
+		<%= render :partial => 'public_meta', :locals => {:meta_location => t.to_f, :meta => translation.meta , :head_id => head_id} %>
+				</dd>
+		</dl>
+<% end %>

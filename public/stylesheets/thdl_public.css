@@ -1,0 +1,115 @@
+div#login {
+	position:absolute;
+	left:400px;
+}
+.def_header {
+	font-size: 9px;
+	padding: 10px;
+	color: #000000;
+}
+.inner_def_header {
+	font-size: 9px;
+	padding: 10px;
+	color: #2b2b2b;
+}
+.bo {
+ font-size: 140%;
+ font-family: "XenoType Tibetan New", "Jomolhari", "Tibetan Machine Uni"!important;
+ line-height: 140%;
+ text-align: left;
+ font-weight: normal;
+}
+/*.tib1 
+{
+	font-family: "Tibetan Machine Uni"!important; 
+	font-size: 14pt; 
+	line-height: 16pt; 
+	font-style: normal; 
+	text-align: left;
+} 
+.tib1 p {
+	font-family: "Tibetan Machine Uni"!important; 
+	font-size: 12pt; 
+	line-height: 14pt; 
+	font-style: normal; 
+	text-align: left;
+	
+}
+*/
+.dictionary_content {
+	font-family: "Arial Unicode MS", "Gentium", "Lucida Grande", "Microsoft Sans Serif", "Tahoma", sans-serif, "XenoType","Tibetan Machine Uni"!important;
+	font-size:10pt;
+	line-height: 12pt; 
+}
+
+.dictionary_content dl dd{
+	font-size: 10pt;
+}
+
+.dictionary_content dd a{
+	border-bottom: 0px;
+	color:blue;
+	text-decoration: none;
+}
+
+.dictionary_content td, th{
+	padding: 3px;
+}
+
+.other_dictionaries {
+	line-height: 16pt;
+}
+.head_term
+{
+	font-family: "Tibetan Machine Uni"!important; 
+	font-size: 16pt; 
+	line-height: 18pt; 
+	font-style: normal; 
+/*	text-align: left;*/
+} 
+
+#content a:link, a:hover, a:visited {
+	border-bottom: 0px;
+	text-decoration: none;
+	color:blue;
+}
+
+#alphabet td {
+	padding: 0px;
+}
+
+#content img {
+	display: inline;
+}
+/*#content {
+	font-size:12pt;
+}
+*/
+textarea {
+	width: auto;
+}
+#show_meta_menu a:link {
+	font-size:8pt;
+}
+
+.selector_link {
+	text-decoration: none;
+	color: black;
+}
+
+.internal_box {
+	border-style:solid; border-width:thin; padding: 5px;
+}
+.inner_dl {
+	margin-top:0em;
+	margin-bottom:0em;
+}
+.inner_dd {
+	margin: 0;padding: 0;
+	padding-left: 40px;
+}
+.inner_dl dd {
+	margin: 0;padding: 0;
+	padding-left: 40px;
+}
+.inner_dl

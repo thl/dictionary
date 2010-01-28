@@ -1,0 +1,559 @@
+<script>
+	level = <%= params['level'].to_s %>;
+/*	alert(level);*/
+  if(document.forms[level] == null)
+		level = 0;
+</script>
+<% if params["relatedtype"] == "full_synonym" %>
+  <div id="definition_full_synonyms">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_full_synonyms", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Full synonyms to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_full_synonyms',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.full_synonyms.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.full_synonyms != nil %>
+     <p><%= build_checklist_group(@definition.full_synonyms,@definition.full_synonyms) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.full_synonyms) %></p>
+   <% end %>
+  <% if @definition.full_synonyms.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=full_synonym />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_full_synonyms',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "super_definition" %>
+  <div id="definition_super_definitions">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_super_definitions", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck definitions to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_super_definitions',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.super_definitions.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.super_definitions != nil %>
+     <p><%= build_checklist_group(@definition.super_definitions,@definition.super_definitions) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.super_definitions) %></p>
+   <% end %>
+  <% if @definition.super_definitions.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=super_definition />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_super_definitions',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "literary_quotation" %>
+  <div id="definition_literary_quotations">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_literary_quotations", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Literary quotations to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_literary_quotations',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.literary_quotations.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.literary_quotations != nil %>
+     <p><%= build_checklist_group(@definition.literary_quotations,@definition.literary_quotations) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.literary_quotations) %></p>
+   <% end %>
+  <% if @definition.literary_quotations.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=literary_quotation />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_literary_quotations',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "full_synonyms_to" %>
+  <div id="definition_full_synonyms_tos">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_full_synonyms_tos", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Full synonyms tos to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_full_synonyms_tos',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.full_synonyms_tos.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.full_synonyms_tos != nil %>
+     <p><%= build_checklist_group(@definition.full_synonyms_tos,@definition.full_synonyms_tos) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.full_synonyms_tos) %></p>
+   <% end %>
+  <% if @definition.full_synonyms_tos.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=full_synonyms_to />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_full_synonyms_tos',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "translation_equivalent" %>
+  <div id="definition_translation_equivalents">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_translation_equivalents", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Translation equivalents to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_translation_equivalents',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.translation_equivalents.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.translation_equivalents != nil %>
+     <p><%= build_checklist_group(@definition.translation_equivalents,@definition.translation_equivalents) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.translation_equivalents) %></p>
+   <% end %>
+  <% if @definition.translation_equivalents.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=translation_equivalent />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_translation_equivalents',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "sub_definition" %>
+  <div id="definition_sub_definitions">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_sub_definitions", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck definitions to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_sub_definitions',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.sub_definitions.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.sub_definitions != nil %>
+     <p><%= build_checklist_group(@definition.sub_definitions,@definition.sub_definitions) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.sub_definitions) %></p>
+   <% end %>
+  <% if @definition.sub_definitions.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=sub_definition />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_sub_definitions',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "etymology" %>
+  <div id="definition_etymology">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_etymology", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Etymologies to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_etymology',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.etymologies.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.etymologies != nil %>
+     <p><%= build_checklist_group(@definition.etymologies,@definition.etymologies) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.etymologies) %></p>
+   <% end %>
+  <% if @definition.etymologies.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=etymology />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_etymology',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "related_definition" %>
+  <div id="definition_related_definitions">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_related_definitions", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Related definitions to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_related_definitions',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.related_definitions.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.related_definitions != nil %>
+     <p><%= build_checklist_group(@definition.related_definitions,@definition.related_definitions) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.related_definitions) %></p>
+   <% end %>
+  <% if @definition.related_definitions.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=related_definition />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_related_definitions',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "oral_quotation" %>
+  <div id="definition_oral_quotations">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_oral_quotations", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Oral quotations to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_oral_quotations',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.oral_quotations.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.oral_quotations != nil %>
+     <p><%= build_checklist_group(@definition.oral_quotations,@definition.oral_quotations) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.oral_quotations) %></p>
+   <% end %>
+  <% if @definition.oral_quotations.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=oral_quotation />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_oral_quotations',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "meta" %>
+  <div id="definition_metas">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_metas", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Meta to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_metas',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+   <% if @definition.meta != nil %>
+     <p><%= build_checklist_group([@definition.meta],[@definition.meta]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=metum />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_metas',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "spelling" %>
+  <div id="definition_spellings">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_spellings", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Spellings to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_spellings',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.spellings.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.spellings != nil %>
+     <p><%= build_checklist_group(@definition.spellings,@definition.spellings) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.spellings) %></p>
+   <% end %>
+  <% if @definition.spellings.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=spelling />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_spellings',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "model_sentence" %>
+  <div id="definition_model_sentences">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_model_sentences", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Model sentences to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_model_sentences',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.model_sentences.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.model_sentences != nil %>
+     <p><%= build_checklist_group(@definition.model_sentences,@definition.model_sentences) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.model_sentences) %></p>
+   <% end %>
+  <% if @definition.model_sentences.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=model_sentence />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_model_sentences',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "definition_definition_form_to" %>
+  <div id="definition_definition_definition_form_tos">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_definition_definition_form_tos", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Definition definition form to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_definition_definition_form_tos',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.definition_definition_form_tos.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.definition_definition_form_tos != nil %>
+     <p><%= build_checklist_group(@definition.definition_definition_form_tos,@definition.definition_definition_form_tos) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.definition_definition_form_tos) %></p>
+   <% end %>
+  <% if @definition.definition_definition_form_tos.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=definition_definition_form_to />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_definition_definition_form_tos',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "translation" %>
+  <div id="definition_translations">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_translations", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Translations to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_translations',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.translations.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.translations != nil %>
+     <p><%= build_checklist_group(@definition.translations,@definition.translations) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.translations) %></p>
+   <% end %>
+  <% if @definition.translations.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=translation />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_translations',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "pronunciation" %>
+  <div id="definition_pronunciations">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_pronunciations", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Pronunciations to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_pronunciations',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+<% end %>
+  <% if @definition.pronunciations.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.pronunciations != nil %>
+     <p><%= build_checklist_group(@definition.pronunciations,@definition.pronunciations) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.pronunciations) %></p>
+   <% end %>
+  <% if @definition.pronunciations.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=pronunciation />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_pronunciations',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "definition_definition_form_from" %>
+  <div id="definition_definition_definition_form_froms">
+	<% if params['internal'] == 'edit_box' %>
+<%= form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") %>
+<% else %>
+  <%= form_remote_tag(:update => "definition_definition_definition_form_froms", :url => {:controller => "definitions", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+<% end %>
+  <h3>Uncheck Definition definition form to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel"+params['level'].to_s), {:update => 'definition_definition_definition_form_froms',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @definition.definition_definition_form_froms.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @definition.definition_definition_form_froms != nil %>
+     <p><%= build_checklist_group(@definition.definition_definition_form_froms,@definition.definition_definition_form_froms) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@definition.definition_definition_form_froms) %></p>
+   <% end %>
+  <% if @definition.definition_definition_form_froms.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=definition_definition_form_from />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definitiondeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[level].onsubmit()) { document.forms[level].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitiondeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitionquerycancel0"+params['level'].to_s), {:update => 'definition_definition_definition_form_froms',  :url => {:controller => 'definitions', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definitions', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitionquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>

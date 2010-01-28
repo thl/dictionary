@@ -1,0 +1,16 @@
+<% if params['relatedtype'] == "major_dialect" %>
+  <div id="specific_dialect_major_dialects">
+  <%= form_remote_tag(:update => "specific_dialect_major_dialects", :url => {:controller => "specific_dialects", :action => "edit_search_action", :id => params['id'], :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']}}, :name => "searchrelated")  %>
+    <h3>Find Major dialect:</h3>
+  <%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "specific_dialectsearch1"+params['level'].to_s), "if(document.forms[0].onsubmit()) { document.forms[0].submit();} ", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('specific_dialectsearch1"+params['level'].to_s+"','','/images/search_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "specific_dialectquerycancel0"+params['level'].to_s), {:update => 'specific_dialect_major_dialects',  :url => {:controller => 'specific_dialects', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'specific_dialects', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('specific_dialectquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+    <table>
+    <%= search_major_dialect %>
+    </table>
+  <input type="hidden" name="relatedtype" value="<%= params['relatedtype'] %>" />
+  <input type="hidden" name="specific_dialect[id]" value="<%= params['id'] %>" />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "specific_dialectsearch2"+params['level'].to_s), "if(document.forms[0].onsubmit()) { document.forms[0].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('specific_dialectsearch2"+params['level'].to_s+"','','/images/search_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "specific_dialectquerycancel"+params['level'].to_s), {:update => 'specific_dialect_major_dialects',  :url => {:controller => 'specific_dialects', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'specific_dialects', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('specific_dialectquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>

@@ -1,0 +1,97 @@
+digraph x {
+Definition
+Definition -> Pronunciation [label=has_many]
+Definition -> FullSynonymsFrom [label=has_many]
+Definition -> LiteraryQuotation [label=has_many]
+Definition -> Metum [label=has_one]
+Definition -> Definition [label=has_and_belongs_to_many]
+Definition -> FullSynonymsTo [label=has_many]
+Definition -> TranslationEquivalent [label=has_many]
+Definition -> Etymology [label=has_many]
+Definition -> OralQuotation [label=has_many]
+Definition -> Spelling [label=has_many]
+Definition -> DefinitionDefinitionForm [label=has_many]
+Definition -> ModelSentence [label=has_many]
+Definition -> Translation [label=has_many]
+Definition -> RelatedDefinition [label=has_and_belongs_to_many]
+DefinitionDefinitionForm
+DefinitionDefinitionForm -> DefinitionTo [label=belongs_to]
+DefinitionDefinitionForm -> DefinitionFrom [label=belongs_to]
+Derivation
+Etymology
+Etymology -> Metum [label=has_one]
+Etymology -> Definition [label=belongs_to]
+Etymology -> Translation [label=has_many]
+EtymologyType
+FullSynonym
+FullSynonym -> Metum [label=has_one]
+FullSynonym -> DefinitionTo [label=belongs_to]
+FullSynonym -> DefinitionFrom [label=belongs_to]
+GrammarFunctionLevelOne
+GrammarFunctionLevelOne -> GrammarFunctionLevelTwo [label=has_many]
+GrammarFunctionLevelThree
+GrammarFunctionLevelThree -> GrammarFunctionLevelTwo [label=belongs_to]
+GrammarFunctionLevelTwo
+GrammarFunctionLevelTwo -> GrammarFunctionLevelThree [label=has_many]
+GrammarFunctionLevelTwo -> GrammarFunctionLevelOne [label=belongs_to]
+Group
+Group -> Metum [label=has_one]
+Language
+LanguageContext
+LiteraryForm
+LiteraryPeriod
+LiteraryQuotation
+LiteraryQuotation -> Metum [label=has_one]
+LiteraryQuotation -> Definition [label=belongs_to]
+LiteraryQuotation -> Translation [label=has_many]
+MajorDialect
+MajorDialect -> SpecificDialect [label=has_many]
+Meta
+Meta -> FullSynonym [label=belongs_to]
+Meta -> Translation [label=belongs_to]
+Meta -> OralQuotation [label=belongs_to]
+Meta -> Spelling [label=belongs_to]
+Meta -> Group [label=belongs_to]
+Meta -> ModelSentence [label=belongs_to]
+Meta -> Definition [label=belongs_to]
+Meta -> LiteraryQuotation [label=belongs_to]
+Meta -> Pronunciation [label=belongs_to]
+Meta -> Etymology [label=belongs_to]
+Meta -> TranslationEquivalent [label=belongs_to]
+ModelSentence
+ModelSentence -> Metum [label=has_one]
+ModelSentence -> Definition [label=belongs_to]
+ModelSentence -> Translation [label=has_many]
+ModelSentenceType
+OralQuotation
+OralQuotation -> Metum [label=has_one]
+OralQuotation -> Definition [label=belongs_to]
+OralQuotation -> Translation [label=has_many]
+Project
+Pronunciation
+Pronunciation -> Metum [label=has_one]
+Pronunciation -> Definition [label=belongs_to]
+PronunciationType
+Register
+Script
+SourceType
+SpecificDialect
+SpecificDialect -> MajorDialect [label=belongs_to]
+Spelling
+Spelling -> Metum [label=has_one]
+Spelling -> Definition [label=belongs_to]
+SpellingMajorDialect
+SpellingSpecificDialect
+ThematicClassification
+ThemeLevelOne
+ThemeLevelOne -> ThemeLevelTwo [label=has_many]
+ThemeLevelThree
+ThemeLevelThree -> ThemeLevelTwo [label=belongs_to]
+ThemeLevelTwo
+ThemeLevelTwo -> ThemeLevelThree [label=has_many]
+ThemeLevelTwo -> ThemeLevelOne [label=belongs_to]
+TranslationEquivalent
+TranslationEquivalent -> Metum [label=has_one]
+TranslationEquivalent -> Definition [label=belongs_to]
+User
+}

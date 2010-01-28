@@ -1,0 +1,44 @@
+<% if params['relatedtype'] == "definition" %>
+<div id="full_synonym_definitions">
+<% form_remote_tag(:update => "full_synonym_definitions", :url => {:controller => "full_synonyms", :action => 'edit_add_to_list_action', :id => params['id']}, :name => "listrelated") do %>
+  <h3>Check Definition to Add:</h3>
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "full_synonymlistupdate4"+params['level'].to_s), "if(document.forms["+params['level'].to_s+"].onsubmit()) { document.forms["+params['level'].to_s+"].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('full_synonymlistupdate4"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "full_synonymquerycancel0"+params['level'].to_s), {:update => 'full_synonym_definitions',  :url => {:controller => 'full_synonyms', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'full_synonyms', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('full_synonymquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+<% if !@definitions.nil? %>
+<% if @definitions.size > 10 %>
+<div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+<% end %>
+   <% if @full_synonym.definitions != nil %>
+     <%= build_checklist_group(@definitions,@full_synonym.definitions) %>
+   <% else %>
+     <p><%= build_checklist_group(@full_synonym.definitions) %></p>
+   <% end %>
+<% if @definitions.size > 10 %>
+</div>
+<% end %> 
+<% end %>
+   <input type=hidden name=relatedtype value=definition />
+<% end %>
+<input type="hidden" name="full_synonym[id]" value="<%= @full_synonym.id %>"/> 
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "full_synonymlistupdate3"+params['level'].to_s), "if(document.forms["+params['level'].to_s+"].onsubmit()) { document.forms["+params['level'].to_s+"].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('full_synonymlistupdate3"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "full_synonymquerycancel"+params['level'].to_s), {:update => 'full_synonym_definitions',  :url => {:controller => 'full_synonyms', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'full_synonyms', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('full_synonymquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+</div>
+<% end %>
+<% if params['relatedtype'] == "meta" %>
+<div id="full_synonym_metas">
+<% form_remote_tag(:update => "full_synonym_metas", :url => {:controller => "full_synonyms", :action => 'edit_add_to_list_action', :id => params['id']}, :name => "listrelated") do %>
+  <h3>Check Meta to Add:</h3>
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "full_synonymlistupdate4"+params['level'].to_s), "if(document.forms["+params['level'].to_s+"].onsubmit()) { document.forms["+params['level'].to_s+"].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('full_synonymlistupdate4"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "full_synonymquerycancel0"+params['level'].to_s), {:update => 'full_synonym_metas',  :url => {:controller => 'full_synonyms', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'full_synonyms', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('full_synonymquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @full_synonym.meta != nil %>
+     <p><%= build_radiolist_group(@metas,@full_synonym.meta.displayInfo) %></p>
+   <% else %>
+     <p><%= build_radiolist_group(@metas) %></p>
+   <% end %>
+   <input type=hidden name=relatedtype value=meta />
+<% end %>
+<input type="hidden" name="full_synonym[id]" value="<%= @full_synonym.id %>"/> 
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "full_synonymlistupdate3"+params['level'].to_s), "if(document.forms["+params['level'].to_s+"].onsubmit()) { document.forms["+params['level'].to_s+"].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('full_synonymlistupdate3"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "full_synonymquerycancel"+params['level'].to_s), {:update => 'full_synonym_metas',  :url => {:controller => 'full_synonyms', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'full_synonyms', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('full_synonymquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+</div>
+<% end %>

@@ -1,0 +1,2 @@
+module TermTypesHelper
+end

@@ -1,0 +1,10 @@
+  <!-- <% if $allow_editing %>
+<%= link_to image_tag("edit_up.gif", :size => "87x19", :border => 0, :alt => "edit", :name => "edit1"), {:action => 'edit_dynamic', :id => @loan_language.id}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('edit1','','/images/edit_down.gif',1);"%>
+<% end %>
+<%= link_to_function image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back1"), "history.go(-1)", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back1','','/images/back_down.gif',1);" %> -->
+<h1>Loan language</h1>
+<%= show_loan_language %>
+  <% if $allow_editing %>
+<%= link_to image_tag("edit_up.gif", :size => "87x19", :border => 0, :alt => "edit", :name => "edit"), {:action => 'edit_dynamic', :id => @loan_language.id}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('edit','','/images/edit_down.gif',1);"%>
+<% end %>
+<%= link_to_function image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back2"), "history.go(-1)", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back2','','/images/back_down.gif',1);" %>

@@ -1,0 +1,22 @@
+<div id="navcontainer">
+<ul id="navlist">
+<li id="active"><a href="<%= url_for(:controller => 'definitions', :action => 'index') %>" id="current">Editing</a></li>
+<li><a href="<%= url_for(:controller => 'definitions', :action => 'new', :params => {'new' => 'true'}) %>">New Term</a></li>
+<li><a href="#">Adv. Search</a></li>
+<li><a href="#">Fields</a></li>
+<li><a href="<%= url_for(:controller => 'definitions', :action => 'control_vocab') %>">Controlled Vocab</a></li>
+<li><a href="#">Public</a></li>
+</ul>
+</div>
+<%= form_tag :action => "find_head_terms" %>
+<p>
+Enter the head term you want to edit: &nbsp;&nbsp;<input type="text" name="definition[term]" >
+<input type="hidden" name="definition[level]" value="head term">
+<br/>
+<input type="radio" name="search_type" value="exact" >Exact match
+<input type="radio" name="search_type" value="beginning" >At beginning of term
+<input type="radio" name="search_type" value="anywhere" checked>Anywhere in Term
+<br/>
+</p>
+<%= submit_tag "Search"%>
+<% end_form_tag %>

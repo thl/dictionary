@@ -1,0 +1,54 @@
+<SCRIPT language="javascript">document.header.mode="edit";</SCRIPT>
+<%= tag "div", {:id => @divname } %>
+<h1>Editing Thematic classification</h1>
+<%= error_messages_for 'thematic_classification' %>
+<% if params['internal'] == nil or params['internal'] == ''%>
+  <%= form_tag({:controller => "thematic_classifications", :action => "update"}, :name => "editthematic_classification")  %>
+<% else %>
+  <%= form_remote_tag(:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_thematic_classification');new Effect.Fade('"+@divname+"update_thematic_classification');", :url => {:controller => 'thematic_classifications', :action => 'update', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}})  %>
+<% end %>
+<!-- <%= image_submit_tag "update_up.gif", :size => "87x19", :border => 0 %>
+<% if params['internal'] != nil %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "thematic_classificationcancel0"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_thematic_classification');new Effect.Fade('"+@divname+"update_thematic_classification');", :url => {:controller => 'thematic_classifications', :action => 'cancel', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level'], 'new' => params['new']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('thematic_classificationcancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "Cancel", :name => "cancelz"), {:controller => 'thematic_classifications', :action => 'cancel', :id => params[:id], :params => {'new' => params['new']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('cancelz','','/images/cancel_down.gif',1);", :confirm => "Abandon any changes?"%>
+<% end %>
+<% if params["query"] != nil %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back1"), {:action => 'searchaction', :params => { :query => params['query']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back1','','/images/back_down.gif',1);"%>
+<% end %> -->
+<%= edit_dynamic_thematic_classification %>
+<input type="hidden" name="id" value="<%= params["id"] %>"/>
+<input type="hidden" name="internal" value="<%= params['internal'] %>">
+<input type="hidden" name="pk" value="<%= params['pk'] %>">
+<p>
+	<%= link_to_function image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back1"), "history.go(-1)", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back1','','/images/back_down.gif',1);" %>
+
+<!-- <%= image_submit_tag "update_up.gif", :size => "87x19", :border => 0 %>
+<% if params['internal'] != nil %>
+<%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "thematic_classificationcancel2"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_thematic_classification');new Effect.Fade('"+@divname+"update_thematic_classification');", :url => {:controller => 'thematic_classifications', :action => 'cancel', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('thematic_classificationcancel2"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "Cancel", :name => "cancelzw"), {:controller => 'thematic_classifications', :action => 'cancel', :id => params[:id], :params => {'new' => params['new']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('cancelzw','','/images/cancel_down.gif',1);", :confirm => "Abandon any changes?"%>
+<% end %>
+<p>
+<% if params["query"] != nil %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back"), {:action => 'searchaction', :params => { :query => params['query']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back','','/images/back_down.gif',1);"%>
+<% end %> -->
+<%= end_form_tag %>
+</div>
+<%= tag "div", {:id => @divname+"search_thematic_classification" } %>
+</div>
+<% if params['internal'] == nil %>
+<p><b>Created by:</b> <%= @thematic_classification.created_by %> [<%= @thematic_classification.created_at %>]<br>
+<b>Last updated by:</b> <%= @thematic_classification.updated_by %> [<%= @thematic_classification.updated_at %>]<br>
+<span id="show_history">
+<a href="#" onClick="Element.hide('show_history');Effect.BlindDown('history');"><b>Show History</b></a><br>
+</span>
+<div id="history" style="display:none;">
+<div>
+<b>Update History:</b><a href="#" onClick="Effect.BlindUp('history');Element.show('show_history')">(Hide)</a><br>
+<div style="width:400;height:70;background-color:eeeeee;border:1px solid;overflow:auto;">
+<%= textilize @thematic_classification.update_history %>
+</div>
+</div>
+</div></p>
+<% end %>

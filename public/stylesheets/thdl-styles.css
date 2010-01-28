@@ -1,0 +1,251 @@
+/*------------------
+   IMPORT STYLESHEETS
+	This import hides layout rules from the following older browsers
+--------------------*/
+
+@import url( "thdl-advanced.css" );
+/* @import url("coolmenus4.css"); This has been replaced by code at the bottom of thdl-styles.js which links to this stylesheet so 
+	different stylesheets can be used for different languages. */
+/*-------------
+Element Selectors
+---------------*/
+
+body {
+/*margin:0;
+padding:0;
+color: #000033;
+background-color: #FFFFFF;*/
+/*font-size: small;*/
+font-family: "Arial Unicode MS", "Gentium", "Lucida Grande", "Microsoft Sans Serif", "Tahoma", sans-serif, "XenoType","Tibetan Machine Uni"!important;
+font-size: 10pt; 
+/*line-height: 12pt; 
+font-family: "Tibetan Machine Uni"!important;*/
+}
+
+tt {
+font-family: "Arial Unicode MS", "Gentium", "Lucida Grande", "Microsoft Sans Serif", "Tahoma", sans-serif, "XenoType","Tibetan Machine Uni"!important;
+}
+
+.head_term
+{
+	font-family: "Tibetan Machine Uni"!important; 
+	font-size: 24pt; 
+	line-height: 26pt; 
+	font-style: normal; 
+/*	text-align: left;*/
+} 
+
+a {
+color: #0033CC;
+border: 0;
+text-decoration: none;
+}
+
+a:hover {
+/*background-color: #e1e1e1;
+*/
+}
+
+/*p, pre {
+color: #000033;
+font-size: 1em;
+margin: 5px 5px 5px 10px;
+}
+
+p {
+text-align: justify!important;
+margin: 5px 5px 7px 5px;
+}
+*/
+h1, h2, h3, h4, h5, h6 {
+font-family: "Arial Unicode MS", "Gentium", "Lucida Grande", "Microsoft Sans Serif", "Tahoma", sans-serif, "XenoType","Tibetan Machine Uni"!important;                    
+font-style: normal;
+font-weight: bold;
+font-variant: normal;
+margin: 5px 5px 5px 3px;
+padding:0;
+text-transform: none;
+line-height: normal;
+border-style: none;
+}	
+
+h1 {
+font-size: 1.2em;
+/*text-transform: uppercase;*/
+}
+
+h2 {
+font-size: 1.1em;
+}
+
+h3 {
+font-size: 1em;
+}
+
+h4, h5, h6 {
+font-size: 1em;
+}
+
+
+form {
+margin: 0;
+padding: 0;
+}
+
+li {
+margin-top: 5px;
+font-size: 1em;
+font-style: normal;
+font-weight: normal;
+color: #000033;
+}
+
+blockquote {
+font-style: normal;
+font-weight: normal;
+}
+
+dt {
+font-weight: bold;
+}
+
+.alert, .warning, .dangerous {
+font-style: normal;
+color: red;
+}
+
+.alert .label, .warning .label, .dangerous .label {
+color: red;
+}
+
+.message, .inline-help
+{
+color: #006666;
+}
+
+
+
+.caption, .smallgray, .low-emph-small
+{
+font-size: .9em;
+font-style: italic;
+font-weight: normal;
+color: #000033;
+}
+
+.low-emph, .low-emph *, .low-emph-small
+{
+color: gray;
+text-decoration: none !important;
+}
+
+.smallgray, .low-emph-small
+{
+font-style: normal;
+}
+
+.smalllink
+{
+font-size: .9em;
+color: #333399;
+}
+
+.bodytext
+{
+font-size: 1em;
+text-align: justify;
+}
+
+.label, .bold
+{
+font-weight: bold;
+color: black;
+}
+
+.credits
+{
+font-size: 1.1em;
+color: #660033;
+text-align: justify;
+font-weight: bold;
+}
+
+.bibl 
+{
+        margin-left: 16pt;
+        text-indent: -12pt;
+}
+
+.bo {
+ font-size: 140%;
+ font-family: "XenoType Tibetan New", "Jomolhari", "Tibetan Machine Uni"!important;
+ line-height: 140%;
+ text-align: left;
+ font-weight: normal;
+}
+
+/*.tib1 
+{
+	font-family: "Tibetan Machine Uni"!important; 
+	font-size: 12pt; 
+	line-height: 14pt; 
+	font-style: normal; 
+/*	text-align: left;*/
+} 
+
+.tib1 p
+{
+	
+}
+*/
+table.glossary td
+{
+	font-size: 12pt;
+}
+
+
+table th
+{
+	font-family: "Arial Unicode MS", "Gentium", "Lucida Grande", "Microsoft Sans Serif", "Tahoma", sans-serif, "XenoType";
+}
+
+#navlist
+{
+padding: 3px 0;
+margin-left: 0;
+border-bottom: 1px solid #778;
+font: bold 12px Verdana, sans-serif;
+}
+
+#navlist li
+{
+list-style: none;
+margin: 0;
+display: inline;
+}
+
+#navlist li a
+{
+padding: 3px 0.5em;
+margin-left: 3px;
+border: 1px solid #778;
+border-bottom: none;
+background: #DDE;
+text-decoration: none;
+}
+
+#navlist li a:link { color: #448; }
+#navlist li a:visited { color: #667; }
+
+#navlist li a:hover
+{
+color: #000;
+background: #AAE;
+border-color: #227;
+}
+
+#navlist li a#current
+{
+background: white;
+border-bottom: 1px solid white;
+}

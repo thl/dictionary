@@ -1,0 +1,110 @@
+class Definition < ActiveRecord::Base
+  
+  #has_many :definition_definition_forms, :foreign_key => 'term_id'
+  has_many :definition_definition_form_tos, :class_name => "DefinitionDefinitionForm", :foreign_key => "def2_id"
+  has_many :definition_definition_form_froms, :class_name => "DefinitionDefinitionForm", :foreign_key => "def1_id"
+  has_many :super_definitions, :class_name => "DefinitionDefinition", :foreign_key => "def1_id"
+  has_many :sub_definitions, :class_name => "DefinitionDefinition", :foreign_key => "def2_id"
+  has_and_belongs_to_many :related_definitions, :class_name => "Definition", :join_table => "related_definitions", :foreign_key => "def1_id", :association_foreign_key => "def2_id", :after_add => :relate_defs, :after_remove => :unrelate_defs
+  has_and_belongs_to_many :full_synonyms, :join_table => 'definition_full_synonyms', :foreign_key => 'definition_id', :association_foreign_key => 'full_synonym_id'
+  # has_many :full_synonyms_froms, :class_name => 'FullSynonym', :foreign_key => 'def1_id'
+  # has_many :full_synonyms_tos, :class_name => 'FullSynonym', :foreign_key => 'def2_id'
+  has_many :etymologies, :foreign_key => 'definition_id'
+  has_many :spellings, :foreign_key => 'definition_id'
+  has_many :translations, :foreign_key => 'definition_id'
+  has_many :pronunciations, :foreign_key => 'def_id'
+  has_and_belongs_to_many :literary_quotations, :join_table => 'definitions_literary_quotations', :foreign_key => 'definition_id'
+  has_many :translation_equivalents, :foreign_key => 'def_id'
+  has_and_belongs_to_many :oral_quotations, :join_table => 'definitions_oral_quotations', :foreign_key => 'definition_id'
+  # has_many :oral_quotations, :foreign_key => 'def_id'
+  has_and_belongs_to_many :model_sentences, :join_table => 'definitions_model_sentences', :foreign_key => 'definition_id'
+  # has_many :model_sentences, :foreign_key => 'def_id'
+  has_one :meta, :foreign_key => 'definition_id'
+
+  belongs_to :grammatical_function_type, :class_name => 'Category'
+  belongs_to :language_type, :class_name => 'Category'
+  belongs_to :register_type, :class_name => 'Category'
+  belongs_to :language_context_type, :class_name => 'Category'
+  belongs_to :literary_genre_type, :class_name => 'Category'
+  belongs_to :literary_period_type, :class_name => 'Category'
+  belongs_to :major_dialect_family_type, :class_name => 'Category'
+  belongs_to :thematic_classification_type, :class_name => 'Category'
+
+  before_save :save_user_info
+  before_update :update_user_info
+  # before_add
+  # before_remove
+
+  def find_head_term
+    if level == 'head term'
+      return id
+    end
+    if sub_definitions.size > 0
+      if sub_definitions[0].super_definition != nil
+        if sub_definitions[0].super_definition.level == 'head term'
+          return sub_definitions[0].super_definition.id
+        else
+          return sub_definitions[0].super_definition.find_head_term
+        end
+      else
+        return nil
+      end
+    else
+      return nil
+    end
+  end
+
+
+  def save_user_info
+    puts 'save?????????????'
+    puts self.updated_by
+  end
+
+  def update_user_info
+    puts 'update?????????????'
+    # puts session
+  end
+
+  # def update_attribute(attribute,value)
+  #   puts '~~~~~~~~~~~~~~~updated'
+  #   self.update_attribute(attribute,value)
+  # end
+    
+  def relate_defs(definition)
+    definition.related_definitions << self unless definition.related_definitions.include?(self)
+  end
+
+  def unrelate_defs(definition)
+    definition.related_definitions.delete(self) rescue nil
+  end
+  
+  def displayInfo
+    str = ""
+    str += term unless term == nil
+    str += " ["+level+"] " unless level == nil
+    str += " | "
+    #str += " ["+grammatical_function+"] " unless grammatical_function == nil
+    #str += " ["+level+"] " unless level == nil
+    str += definition unless definition == nil
+    str += " ("+super_definitions.size.to_s+" sub def)"
+    return str
+  end
+
+  def displayInfoPublic
+    str = ""
+    str += " ["+level+"] " unless level == nil
+    str += " | "
+    #str += " ["+grammatical_function+"] " unless grammatical_function == nil
+    #str += " ["+level+"] " unless level == nil
+    str += definition unless definition == nil
+    str += " ("+super_definitions.size.to_s+" sub def)"
+    return str
+  end
+
+  def displayInfoPublicBasic
+    str = ""
+    str += definition unless definition == nil
+    return str
+  end
+
+end

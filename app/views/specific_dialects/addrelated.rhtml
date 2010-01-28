@@ -1,0 +1,15 @@
+<h1>Specific dialect:</h1>
+<%= show_specific_dialect() %>
+<hr />
+<%= form_tag({:action => 'addrelatedaction', :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "addrelated") %>
+<%= link_to_function(image_tag("add_up.gif", :size => "87x19", :border => 0, :alt => "add", :name => "add1"), "document.addrelated.submit()", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('add1','','/images/add_down.gif',1);"}) %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back1"), {:action => 'edit', :id => @specific_dialect.id}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back1','','/images/back_down.gif',1);"%>
+<% if params["relatedtype"] == "major_dialect" %>
+  <h3>Add Major dialect:</h3>
+   <%= edit_major_dialect %><br><br>
+   <input type=hidden name=type value=major_dialect />
+<% end %>
+<input type="hidden" name="specific_dialect[id]" value="<%= params["id"] %>"/> 
+<%= link_to_function(image_tag("add_up.gif", :size => "87x19", :border => 0, :alt => "add", :name => "add"), "document.addrelated.submit()", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('add','','/images/add_down.gif',1);"}) %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back"), {:action => 'edit', :id => @specific_dialect.id}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back','','/images/back_down.gif',1);"%>
+<%= end_form_tag %>

@@ -1,0 +1,202 @@
+<% if params['relatedtype'] == "full_synonym" %>
+  <% if @definition.full_synonyms != nil %>
+<% if @definition.full_synonyms.size > 5 %>
+<div id="scrollfull_synonyms" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for full_synonym in @definition.full_synonyms %>
+  <%= link_to_remote full_synonym.displayInfo, :update => "definition_full_synonyms", :url=> {:controller=> "full_synonyms", :action => "edit_dynamic", :id => full_synonym.id,:params => {:level => params['level'], :relatedtype =>'full_synonym',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.full_synonyms.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "super_definition" %>
+  <% if @definition.super_definitions != nil %>
+<% if @definition.super_definitions.size > 5 %>
+<div id="scrollsuper_definitions" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for super_definition in @definition.super_definitions %>
+<%= super_definition.displaySuperInfo %>
+  <%#= link_to_remote super_definition.displaySuperInfo, :update => "definition_super_definitions", :url=> {:controller=> "definition_definitions", :action => "edit_dynamic", :id => super_definition.id,:params => {:level => params['level'], :relatedtype =>'super_definition',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.super_definitions.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "literary_quotation" %>
+  <% if @definition.literary_quotations != nil %>
+<% if @definition.literary_quotations.size > 5 %>
+<div id="scrollliterary_quotations" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for literary_quotation in @definition.literary_quotations %>
+  <%= link_to_remote literary_quotation.displayInfo, :update => "definition_literary_quotations", :url=> {:controller=> "literary_quotations", :action => "edit_dynamic", :id => literary_quotation.id,:params => {:level => params['level'], :relatedtype =>'literary_quotation',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.literary_quotations.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "full_synonyms_to" %>
+  <% if @definition.full_synonyms_tos != nil %>
+<% if @definition.full_synonyms_tos.size > 5 %>
+<div id="scrollfull_synonyms_tos" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for full_synonyms_to in @definition.full_synonyms_tos %>
+  <%= link_to_remote full_synonyms_to.displayToInfo, :update => "definition_full_synonyms_tos", :url=> {:controller=> "full_synonyms", :action => "edit_dynamic", :id => full_synonyms_to.id,:params => {:level => params['level'], :relatedtype =>'full_synonyms_to',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.full_synonyms_tos.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "translation_equivalent" %>
+  <% if @definition.translation_equivalents != nil %>
+<% if @definition.translation_equivalents.size > 5 %>
+<div id="scrolltranslation_equivalents" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for translation_equivalent in @definition.translation_equivalents %>
+  <%= link_to_remote translation_equivalent.displayInfo, :update => "definition_translation_equivalents", :url=> {:controller=> "translation_equivalents", :action => "edit_dynamic", :id => translation_equivalent.id,:params => {:level => params['level'], :relatedtype =>'translation_equivalent',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.translation_equivalents.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "sub_definition" %>
+  <% if @definition.sub_definitions != nil %>
+<% if @definition.sub_definitions.size > 5 %>
+<div id="scrollsub_definitions" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for sub_definition in @definition.sub_definitions %>
+<%= sub_definition.displaySubInfo %>
+  <%#= link_to_remote sub_definition.displaySubInfo, :update => "definition_sub_definitions", :url=> {:controller=> "definition_definitions", :action => "edit_dynamic", :id => sub_definition.id,:params => {:level => params['level'], :relatedtype =>'sub_definition',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.sub_definitions.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "etymology" %>
+  <% if @definition.etymologies != nil %>
+<% if @definition.etymologies.size > 5 %>
+<div id="scrolletymology" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for etymology in @definition.etymologies %>
+  <%= link_to_remote etymology.displayInfo, :update => "definition_etymology", :url=> {:controller=> "etymologies", :action => "edit_dynamic", :id => etymology.id,:params => {:level => params['level'], :relatedtype =>'etymology',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.etymologies.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "related_definition" %>
+  <% if @definition.related_definitions != nil %>
+<% if @definition.related_definitions.size > 5 %>
+<div id="scrollrelated_definitions" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for related_definition in @definition.related_definitions %>
+  <%= link_to_remote related_definition.displayInfo, :update => "definition_related_definitions", :url=> {:controller=> "definitions", :action => "edit_dynamic", :id => related_definition.id,:params => {:level => params['level'], :relatedtype =>'related_definition',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.related_definitions.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "oral_quotation" %>
+  <% if @definition.oral_quotations != nil %>
+<% if @definition.oral_quotations.size > 5 %>
+<div id="scrolloral_quotations" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for oral_quotation in @definition.oral_quotations %>
+  <%= link_to_remote oral_quotation.displayInfo, :update => "definition_oral_quotations", :url=> {:controller=> "oral_quotations", :action => "edit_dynamic", :id => oral_quotation.id,:params => {:level => params['level'], :relatedtype =>'oral_quotation',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.oral_quotations.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "meta" %>
+  <% if @definition.meta != nil %>
+  <%= link_to_remote @definition.meta.displayInfo, :update => "definition_metas", :url=> {:controller=> "metas", :action => "edit_dynamic", :id => @definition.meta.id,:params => {:level => params['level'], :relatedtype =>'meta',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "spelling" %>
+  <% if @definition.spellings != nil %>
+<% if @definition.spellings.size > 5 %>
+<div id="scrollspellings" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for spelling in @definition.spellings %>
+  <%= link_to_remote spelling.displayInfo, :update => "definition_spellings", :url=> {:controller=> "spellings", :action => "edit_dynamic", :id => spelling.id,:params => {:level => params['level'], :relatedtype =>'spelling',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.spellings.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "model_sentence" %>
+  <% if @definition.model_sentences != nil %>
+<% if @definition.model_sentences.size > 5 %>
+<div id="scrollmodel_sentences" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for model_sentence in @definition.model_sentences %>
+  <%= link_to_remote model_sentence.displayInfo, :update => "definition_model_sentences", :url=> {:controller=> "model_sentences", :action => "edit_dynamic", :id => model_sentence.id,:params => {:level => params['level'], :relatedtype =>'model_sentence',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.model_sentences.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "definition_definition_form_to" %>
+  <% if @definition.definition_definition_form_tos != nil %>
+<% if @definition.definition_definition_form_tos.size > 5 %>
+<div id="scrolldefinition_definition_form_tos" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for definition_definition_form_to in @definition.definition_definition_form_tos %>
+  <%= link_to_remote definition_definition_form_to.displayToInfo, :update => "definition_definition_definition_form_tos", :url=> {:controller=> "definition_definition_forms", :action => "edit_dynamic", :id => definition_definition_form_to.id,:params => {:level => params['level'], :relatedtype =>'definition_definition_form_to',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.definition_definition_form_tos.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "translation" %>
+  <% if @definition.translations != nil %>
+<% if @definition.translations.size > 5 %>
+<div id="scrolltranslations" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for translation in @definition.translations %>
+  <%= link_to_remote translation.displayInfo, :update => "definition_translations", :url=> {:controller=> "translations", :action => "edit_dynamic", :id => translation.id,:params => {:level => params['level'], :relatedtype =>'translation',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.translations.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "pronunciation" %>
+  <% if @definition.pronunciations != nil %>
+<% if @definition.pronunciations.size > 5 %>
+<div id="scrollpronunciations" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for pronunciation in @definition.pronunciations %>
+  <%= link_to_remote pronunciation.displayInfo, :update => "definition_pronunciations", :url=> {:controller=> "pronunciations", :action => "edit_dynamic", :id => pronunciation.id,:params => {:level => params['level'], :relatedtype =>'pronunciation',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.pronunciations.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "definition_definition_form_from" %>
+  <% if @definition.definition_definition_form_froms != nil %>
+<% if @definition.definition_definition_form_froms.size > 5 %>
+<div id="scrolldefinition_definition_form_froms" style="height:100;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+    <% for definition_definition_form_from in @definition.definition_definition_form_froms %>
+  <%= link_to_remote definition_definition_form_from.displayFromInfo, :update => "definition_definition_definition_form_froms", :url=> {:controller=> "definition_definition_forms", :action => "edit_dynamic", :id => definition_definition_form_from.id,:params => {:level => params['level'], :relatedtype =>'definition_definition_form_from',:internal => 'definitions', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+    <% end %>
+<% if @definition.definition_definition_form_froms.size > 5 %>
+</div>
+<% end %>
+  <% end %>
+<% end %>

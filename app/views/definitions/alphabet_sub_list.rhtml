@@ -1,0 +1,83 @@
+<dl>
+	<dd>
+
+	
+	
+	    <table width=\"100%\" cellspacing=0 border=0 cellpadding=1 bgcolor=#eeeeee>
+	    <tr bgcolor=#FFFFFF>
+			<th/>
+			<th align="left">Term</th>
+			<th align="left">Transliteration</th>
+			<th align="left">Transcription</th>
+			<th align="left">Function</th>
+			<th align="left">Definition</th>
+	    <th/><th/><th/><th/>
+	    </tr><TR HEIGHT=2><TD COLSPAN=50 BGCOLOR=#ffffff><IMG BORDER=0 HEIGHT=2 WIDTH=1></TD></TR>
+	    <% odd_or_even = 0
+	    for definition in @definitions
+	      odd_or_even = 1 - odd_or_even %>
+	        <tr class="ListLine<%=odd_or_even.to_s %>">
+				<td>
+					<span id="show_<%= definition.id %>"><%= link_to_remote(image_tag('btn-plus-sm.gif', :border => 0), :update => ''+definition.id.to_s+'', :url => {:action => :public_term, :id => definition.id, :params => {'list_view' => 'true', 'mode' => 'browse'}}, :loading => "Element.hide('show_"+definition.id.to_s+"');Element.show('hide_"+definition.id.to_s+"');Element.show('"+definition.id.to_s+"row')") %></span>
+					<span id="hide_<%= definition.id %>" style="display:none">
+						<%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('hide_"+definition.id.to_s+"');Element.show('show_"+definition.id.to_s+"');Element.hide('"+definition.id.to_s+"row')") %>
+					<!-- <span id="show_<%= definition.id %>"><%= link_to_remote(image_tag('right.gif', :border => 0), :update => ''+definition.id.to_s+'', :url => {:action => :public_show_list, :id => definition.id, :params => {'list_view' => 'true'}}, :complete => "Element.hide('show_"+definition.id.to_s+"');Element.show('hide_"+definition.id.to_s+"');Element.show('"+definition.id.to_s+"row')") %></span>
+					<span id="hide_<%= definition.id %>" style="display:none">
+						<%= link_to_remote(image_tag('up.gif', :border => 0), :update => ''+definition.id.to_s+'', :url => {:action => :public_show_list, :id => definition.id, :params => {'list_view' => 'true'}}, :complete => "Element.hide('hide_"+definition.id.to_s+"');Element.show('show_"+definition.id.to_s+"');Element.hide('"+definition.id.to_s+"row')") %>
+						</span> -->
+				</td>
+	     	<td valign=top>
+				<span class="tib1">
+				<% if params['mode'] != 'search' and params['mode'] != 'browse' %>
+	     		<%#= definition.term.to_s.s unless definition.term == nil %>
+	     		<%#= link_to_function(definition.term.to_s.s, "window.open('#{url_for(:controller => 'definitions', :action => 'public_term', :params => {'mode' => 'browse'},:id => definition.id)}')") unless definition.term == nil %>
+		 		<%= link_to_function(definition.term.to_s.s, "Modalbox.show('#{url_for(:controller => 'definitions', :action => 'public_term', :params => {'mode' => 'browse', :list_view => 'true'},:id => definition.id)}',{title: 'Term', width: 600, height: 500})") unless definition.term == nil %>
+				<% else %>
+		 		<%= link_to_function(definition.term.to_s.s, "Modalbox.show('#{url_for(:controller => 'definitions', :action => 'public_term', :params => {'mode' => 'browse', :list_view => 'true'},:id => definition.id)}',{title: 'Term', width: 600, height: 500})") unless definition.term == nil %>
+	     		<%#= link_to(definition.term.to_s.s, :controller => 'definitions', :action => 'public_term', :params => {'mode' => 'browse'},:id => definition.id) unless definition.term == nil %>
+				<% end %>
+				(<%= definition.sort_order%>)
+				</span>
+	     	</td>
+	     	<td valign=top>
+	     	<%= definition.wylie.to_s unless definition.wylie == nil %>
+			</td>
+	     	<td valign=top>
+	     	<%= definition.phonetic.to_s unless definition.phonetic == nil %>
+			</td>
+	     	<td valign=top>
+	     	<%= definition.grammatical_function.to_s unless definition.grammatical_function == nil %>
+			<%= definition.grammatical_function_type.title unless definition.grammatical_function_type == nil %>
+				</td>
+	     	<td valign=top>
+				<span class="tib1">
+	     	<%= definition.definition.to_s unless definition.definition == nil %>
+				</span>
+				</td>
+					<% if @logged_in %>
+		        <td width=20 valign=top>
+		         <%= link_to('Edit', :controller => 'definitions', :action => 'public_edit', :id => definition.id) %>
+		        </td>
+				<% end %>
+		        <td width=20 valign=top>
+			 		<%= link_to_function('View', "Modalbox.show('#{url_for(:controller => 'definitions', :action => 'public_term', :params => {'mode' => 'browse', :list_view => 'true'},:id => definition.id)}',{title: 'Term', width: 600, height: 500})") unless definition.term == nil %>
+		    
+		     		<%#= link_to('View', :controller => 'definitions', :action => 'public_term', :id => definition.id, :params => {'mode' => 'browse'}) %>
+				</td>
+	</tr>
+	<% if definition.id != nil %>
+	<tr id="<%= definition.id %>row" style="display:none">
+		<td colspan="6"><span id="<%= definition.id %>"><%= image_tag('loadingAnimation2.gif')%><%#= render :action => 'public_show_list', :id => definition.id %></span></td>
+	</tr>
+	<% else %>
+	<tr id="<%= definition.other_id %>other_row" style="display:none">
+		<td colspan="3"><span id="other_<%= definition.other_id %>"><%= render :controller => 'old_definitions', :action => 'public_show_list', :id => definition.other_id %></span></td>
+	</tr>
+	<% end %>
+	<TR HEIGHT=2>  <TD COLSPAN=50 BGCOLOR=#ffffff><IMG BORDER=0 HEIGHT=2 WIDTH=1>
+	      </tr>
+	   <% end %>
+	    </table>
+	
+	</dd>
+</dl>

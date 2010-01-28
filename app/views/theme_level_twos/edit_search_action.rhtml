@@ -1,0 +1,44 @@
+<% if params['relatedtype'] == "theme_level_three" %>
+<div id="theme_level_two_theme_level_threes">
+<%= form_remote_tag(:update => "theme_level_two_theme_level_threes", :url => {:controller => "theme_level_twos", :action => 'edit_add_to_list_action', :id => params['id']}, :name => "listrelated") %>
+  <h3>Check Theme level three to Add:</h3>
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "theme_level_twolistupdate4"+params['level'].to_s), "if(document.forms["+params['level'].to_s+"].onsubmit()) { document.forms["+params['level'].to_s+"].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('theme_level_twolistupdate4"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "theme_level_twoquerycancel0"+params['level'].to_s), {:update => 'theme_level_two_theme_level_threes',  :url => {:controller => 'theme_level_twos', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'theme_level_twos', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('theme_level_twoquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+<% if !@theme_level_threes.nil? %>
+<% if @theme_level_threes.size > 10 %>
+<div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+<% end %>
+   <% if @theme_level_two.theme_level_threes != nil %>
+     <%= build_checklist_group(@theme_level_threes,@theme_level_two.theme_level_threes) %>
+   <% else %>
+     <p><%= build_checklist_group(@theme_level_two.theme_level_threes) %></p>
+   <% end %>
+<% if @theme_level_threes.size > 10 %>
+</div>
+<% end %> 
+<% end %>
+   <input type=hidden name=relatedtype value=theme_level_three />
+<%= end_form_tag %>
+<input type="hidden" name="theme_level_two[id]" value="<%= @theme_level_two.id %>"/> 
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "theme_level_twolistupdate3"+params['level'].to_s), "if(document.forms["+params['level'].to_s+"].onsubmit()) { document.forms["+params['level'].to_s+"].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('theme_level_twolistupdate3"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "theme_level_twoquerycancel"+params['level'].to_s), {:update => 'theme_level_two_theme_level_threes',  :url => {:controller => 'theme_level_twos', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'theme_level_twos', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('theme_level_twoquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+</div>
+<% end %>
+<% if params['relatedtype'] == "theme_level_one" %>
+<div id="theme_level_two_theme_level_ones">
+<%= form_remote_tag(:update => "theme_level_two_theme_level_ones", :url => {:controller => "theme_level_twos", :action => 'edit_add_to_list_action', :id => params['id']}, :name => "listrelated") %>
+  <h3>Check Theme level one to Add:</h3>
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "theme_level_twolistupdate4"+params['level'].to_s), "if(document.forms["+params['level'].to_s+"].onsubmit()) { document.forms["+params['level'].to_s+"].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('theme_level_twolistupdate4"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "theme_level_twoquerycancel0"+params['level'].to_s), {:update => 'theme_level_two_theme_level_ones',  :url => {:controller => 'theme_level_twos', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'theme_level_twos', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('theme_level_twoquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @theme_level_two.theme_level_one != nil %>
+     <p><%= build_radiolist_group(@theme_level_ones,@theme_level_two.theme_level_one.displayInfo) %></p>
+   <% else %>
+     <p><%= build_radiolist_group(@theme_level_ones) %></p>
+   <% end %>
+   <input type=hidden name=relatedtype value=theme_level_one />
+<%= end_form_tag %>
+<input type="hidden" name="theme_level_two[id]" value="<%= @theme_level_two.id %>"/> 
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "theme_level_twolistupdate3"+params['level'].to_s), "if(document.forms["+params['level'].to_s+"].onsubmit()) { document.forms["+params['level'].to_s+"].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('theme_level_twolistupdate3"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "theme_level_twoquerycancel"+params['level'].to_s), {:update => 'theme_level_two_theme_level_ones',  :url => {:controller => 'theme_level_twos', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'theme_level_twos', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('theme_level_twoquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+</div>
+<% end %>

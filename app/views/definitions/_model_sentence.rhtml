@@ -1,0 +1,89 @@
+<% for t in model_sentence.translations %>
+<% if t.translation != nil and t.translation != ''%>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>TRANSLATION:</strong> </span><%= t.translation %> <%#= "(#{t.language_type.title})" if t.language_type != nil %>
+		</dd>
+	</dl>
+	<% end %>
+	<% if t.analytical_note != nil and t.analytical_note != ''%>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+		<span class="inner_def_header"><strong>TRANSLATION NOTE:</strong> </span><%= t.analytical_note%>
+			</dd>
+		</dl>
+	<% end %>
+	
+<% end %>
+<% if model_sentence.language_type != '' and model_sentence.language_type != nil %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>LANGUAGE:</strong> </span><%= model_sentence.language_type.title%>
+		</dd>
+	</dl>
+<% end %>
+<% if model_sentence.major_dialect_family_type != '' and model_sentence.major_dialect_family_type != nil %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>TIBETAN DIALECT:</strong> </span><%= model_sentence.major_dialect_family_type.title%>
+		</dd>
+	</dl>
+<% end %>
+<% if model_sentence.sentence_type != '' and model_sentence.sentence_type != nil %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>SENTENCE TYPE:</strong> </span><%= model_sentence.sentence_type%>
+		</dd>
+	</dl>
+<% end %>
+<% if model_sentence.spelling != '' and model_sentence.spelling != nil %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>SPELLING:</strong> </span><%= model_sentence.spelling%>
+		</dd>
+	</dl>
+<% end %>
+<% if model_sentence.source != '' and model_sentence.source != nil %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>SOURCE:</strong> </span><%= model_sentence.source%>
+		</dd>
+	</dl>
+<% end %>
+<% if model_sentence.literary_genre_type != '' and model_sentence.literary_genre_type != nil %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>LITERARY GENRE TYPE:</strong> </span><%= model_sentence.literary_genre_type.title%>
+		</dd>
+	</dl>
+<% end %>
+<% if model_sentence.literary_period_type != '' and model_sentence.literary_period_type != nil %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>LITERARY PERIOD TYPE:</strong> </span><%= model_sentence.literary_period_type.title%>
+		</dd>
+	</dl>
+<% end %>
+<% if model_sentence.literary_form_type != '' and model_sentence.literary_form_type != nil %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>LITERARY FORM TYPE:</strong> </span><%= model_sentence.literary_form_type.title%>
+		</dd>
+	</dl>
+<% end %>
+<% if model_sentence.analytical_note != nil and model_sentence.analytical_note != ''%>
+<dl class="inner_dl">
+	<dd class="inner_dd">
+	<span class="inner_def_header"><strong>NOTE:</strong> </span><%= model_sentence.analytical_note%>
+		</dd>
+	</dl>
+<% end %>
+		
+<% if model_sentence.meta != nil%>
+		<dl class="inner_dl">
+				<dd>
+		<% t = Time.now %>
+		<%= render :partial => 'public_meta', :locals => {:meta_location => t.to_f, :meta => model_sentence.meta , :head_id => head_id} %>
+				</dd>
+		</dl>
+<% end %>

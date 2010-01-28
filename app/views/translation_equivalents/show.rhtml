@@ -1,0 +1,22 @@
+  <% if $allow_editing %>
+<%= link_to image_tag("edit_up.gif", :size => "87x19", :border => 0, :alt => "edit", :name => "edit1"), {:action => 'edit_dynamic', :id => @translation_equivalent.id}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('edit1','','/images/edit_down.gif',1);"%>
+<% end %>
+<%= link_to_function image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back1"), "history.go(-1)", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back1','','/images/back_down.gif',1);" %>
+<h1>Translation equivalent</h1>
+<%= show_translation_equivalent %>
+<p><b>Definition: </label></b>
+<br />
+<% if !@translation_equivalent.definition.nil? %>
+  <%= link_to @translation_equivalent.definition.displayInfo, :controller => "definitions", :action => "show",  :id => @translation_equivalent.definition.id  %>
+<% end %>
+</p>
+<p><b>Meta: </label></b>
+<br />
+<% if !@translation_equivalent.meta.nil? %>
+  <%= link_to @translation_equivalent.meta.displayInfo, :controller => "metas", :action => "show",  :id => @translation_equivalent.meta.id  %>
+<% end %>
+</p>
+  <% if $allow_editing %>
+<%= link_to image_tag("edit_up.gif", :size => "87x19", :border => 0, :alt => "edit", :name => "edit"), {:action => 'edit_dynamic', :id => @translation_equivalent.id}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('edit','','/images/edit_down.gif',1);"%>
+<% end %>
+<%= link_to_function image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back2"), "history.go(-1)", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back2','','/images/back_down.gif',1);" %>

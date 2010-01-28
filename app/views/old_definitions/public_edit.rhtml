@@ -1,0 +1,13 @@
+<div class="dictionary_content">
+		<%#= link_to_remote(image_tag('cross',:border=>0, :title => 'Delete definition'), :update => 'complete_definition', :url => {:action => 'public_destroy', :id => d.id, :params => {:parent_id => @head_id, :head_id => @head_id}}, :confirm => "Are you sure you want to delete this entry?") %>
+				<%#= link_to_remote(image_tag('cross',:border=>0, :title => 'Delete entry'), :update => 'complete_definition', :url => {:action => 'public_destroy', :id => @old_definition.id}  :confirm => "Are you sure you want to delete this entry?") %>
+	<span class="tib1">
+	<b><font size="+2"><%#= @definition.term %>  <%= in_place_editor_field(:old_definition, :term)%></font></b>
+	</span>
+	<br><br>
+	<div id="<%= @old_definition.id %>div">
+		<%= render(:partial => 'public_definition', :locals => {:d => @old_definition})%>
+	</div>
+
+
+</div>

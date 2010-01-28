@@ -1,0 +1,34 @@
+		<b>Meta: </b>
+			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => meta.id, :history_class => meta.class.to_s }}) %>			
+	<%= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => meta_location, :url => {:controller => 'metas', :action => 'public_edit', :id => meta.id, :params => {'definition_id' => head_id}} %>
+			<span class=menuvalue onclick=show_menu(meta_menu,getCoord(arguments[0]));>
+			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'meta_id='+meta.id.to_s, :title => 'Edit Relationships' %> 
+			</span>
+			<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Meta'), :update => 'definition_space', :url => {:action => 'public_remove_meta', :id => meta.id, :params => { :head_id => head_id, :meta => meta.id }}, :confirm => "Are you sure you want to remove this Meta?") %>			
+			<% if (meta.project != nil and meta.project != '') or (meta.project_type != nil)%>
+				<!-- <br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+				<b>Project: </b><%= meta.project %><%= meta.project_type.title if meta.project_type != nil %>
+			<% end %>
+			<% if meta.title != nil and meta.title != ''%>
+				<br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<b>Title: </b><%= meta.title %>
+			<% end %>
+			<% if meta.author != nil and meta.author != ''%>
+				<br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<b>Author: </b><%= meta.author %>
+			<% end %>
+		<span id="<%= meta_location %>" > </span>
+			<dl style="margin-top:0em;margin-bottom:0em;">
+				<dd style="display:none"></dd>
+				<% for s in meta.sources %>
+					<dd>
+						<b>Source: </b>
+						<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history => s.update_history }}) %>			
+				<%= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => meta.id.to_s+'_source', :url => {:controller => 'sources', :action => 'edit_dynamic', :id => s.id, :params => {'definition_id' => head_id}} %>
+						<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Source'), :update => 'definition_space', :url => {:action => 'public_remove_source', :id => s.id, :params => { :head_id => head_id, :source => s.id }}, :confirm => "Are you sure you want to remove this Source?") %>			
+						<b>Source ID: </b><%= s.source_id_value %>
+					</dd>
+				<% end %>
+			</dl>
+		<span id="<%= meta.id%>_source" ></span>
+

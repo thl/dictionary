@@ -1,0 +1,60 @@
+<% if @definitions.size > 0 %>
+	<strong>Definitions:</strong><br>
+	<ul>
+		<table width="650px" >
+	<% @definitions.each do |d| %>
+		<tr><td>
+			<% if @logged_in %> 
+				<%= link_to('Edit', :action => 'public_edit', :id => d.id) %> 
+			<% else %>
+				<%= link_to('Show', :action => 'public_term', :id => d.id, :params => {'mode' => 'search'}) %>
+			<% end %> 
+			<%= d.term %></td><td> <%= d.updated_at %></td></tr>
+	<% end %>
+		</table>
+	</ul>
+<% end %>
+<% if @etymologies.size > 0 %>
+	<strong>Etymologies:</strong><br>
+	<ul>
+		<table width="650px" >
+	<% @etymologies.each do |d| %>
+		<% if d.definition != nil and d.definition.id != nil %>
+			<tr><td><%= link_to('Edit', :action => 'public_edit', :id => d.definition.id) %> <%= d.etymology %></td><td> <%= d.updated_at%></td></tr>
+		<% end %>
+	<% end %>
+	</ul>
+<% end %>
+<% if @literary_quotations.size > 0 %>
+	<strong>Literary quotations:</strong><br>
+	<ul>
+		<table width="650px" >
+	<% @literary_quotations.each do |d| %>
+		<% if d.definitions.size > 0 %>
+			<tr><td><%= link_to('Edit', :action => 'public_edit', :id => d.definitions[0].id) %> <%= d.passage %></td><td> <%= d.updated_at%></td></tr>
+		<% end %>
+	<% end %>
+	</ul>
+<% end %>
+<% if @oral_quotations.size > 0 %>
+	<strong>Oral quotations:</strong><br>
+	<ul>
+		<table width="650px" >
+	<% @oral_quotations.each do |d| %>
+		<% if d.definitions.size > 0 %>
+			<tr><td><%= link_to('Edit', :action => 'public_edit', :id => d.definitions[0].id) %> <%= d.transcript_in_tibetan %></td><td> <%= d.updated_at%></td></tr>
+		<% end %>
+	<% end %>
+	</ul>
+<% end %>
+<% if @model_sentences.size > 0 %>
+	<strong>Model sentences:</strong><br>
+	<ul>
+		<table width="650px" >
+	<% @model_sentences.each do |d| %>
+		<% if d.definitions.size > 0 %>
+			<tr><td><%= link_to('Edit', :action => 'public_edit', :id => d.definitions[0].id) %> <%= d.model_sentence %></td><td> <%= d.updated_at%></td></tr>
+		<% end %>
+	<% end %>
+	</ul>
+<% end %>

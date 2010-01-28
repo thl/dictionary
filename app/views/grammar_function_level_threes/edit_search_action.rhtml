@@ -1,0 +1,18 @@
+<% if params['relatedtype'] == "grammar_function_level_two" %>
+<div id="grammar_function_level_three_grammar_function_level_twos">
+<%= form_remote_tag(:update => "grammar_function_level_three_grammar_function_level_twos", :url => {:controller => "grammar_function_level_threes", :action => 'edit_add_to_list_action', :id => params['id']}, :name => "listrelated") %>
+  <h3>Check Grammar function level two to Add:</h3>
+<!-- <br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "grammar_function_level_threelistupdate4"+params['level'].to_s), "if(document.forms["+params['level'].to_s+"].onsubmit()) { document.forms["+params['level'].to_s+"].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('grammar_function_level_threelistupdate4"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "grammar_function_level_threequerycancel0"+params['level'].to_s), {:update => 'grammar_function_level_three_grammar_function_level_twos',  :url => {:controller => 'grammar_function_level_threes', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'grammar_function_level_threes', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('grammar_function_level_threequerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br> -->
+   <% if @grammar_function_level_three.grammar_function_level_two != nil %>
+     <p><%= build_radiolist_group(@grammar_function_level_twos,@grammar_function_level_three.grammar_function_level_two.displayInfo) %></p>
+   <% else %>
+     <p><%= build_radiolist_group(@grammar_function_level_twos) %></p>
+   <% end %>
+   <input type=hidden name=relatedtype value=grammar_function_level_two />
+<%= end_form_tag %>
+<input type="hidden" name="grammar_function_level_three[id]" value="<%= @grammar_function_level_three.id %>"/> 
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "grammar_function_level_threelistupdate3"+params['level'].to_s), "if(document.forms["+params['level'].to_s+"].onsubmit()) { document.forms["+params['level'].to_s+"].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('grammar_function_level_threelistupdate3"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "grammar_function_level_threequerycancel"+params['level'].to_s), {:update => 'grammar_function_level_three_grammar_function_level_twos',  :url => {:controller => 'grammar_function_level_threes', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'grammar_function_level_threes', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('grammar_function_level_threequerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+</div>
+<% end %>

@@ -1,0 +1,22 @@
+<h1>Listing Languages</h1>
+<table border='1' >
+   <tr>
+     <th>Language</th>
+     <th>Code</th>
+     <th>Locale</th>
+	 <th>Unicode Range</th>
+     <th>Interface?</th>
+   </tr>
+<% for language in @languages %>
+   <tr>
+     <td><%=link_to h(language.title),language_path(language) %></td>
+	 <td><%=h language.code %></td>
+     <td><%=h language.locale %></td>
+	 <td><%= "#{language.unicode_codepoint_start} - #{language.unicode_codepoint_end}" if !language.unicode_codepoint_start.nil? && !language.unicode_codepoint_end.nil? %></td>
+     <td align="center"><%= 'X' if language.use_for_interface %></td>
+   </tr>
+<% end %>
+</table>
+<p><br />&nbsp;
+<%= link_to 'New language', new_language_path %>
+</p>

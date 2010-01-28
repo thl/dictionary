@@ -1,0 +1,5 @@
+<% if params['relatedtype'] == "grammar_function_level_two" %>
+  <% if @grammar_function_level_three.grammar_function_level_two != nil %>
+  <%= link_to_remote @grammar_function_level_three.grammar_function_level_two.displayInfo, :update => "grammar_function_level_three_grammar_function_level_twos", :url=> {:controller=> "grammar_function_level_twos", :action => "edit_dynamic", :id => @grammar_function_level_three.grammar_function_level_two.id,:params => {:level => params['level'], :relatedtype =>'grammar_function_level_two',:internal => 'grammar_function_level_threes', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>

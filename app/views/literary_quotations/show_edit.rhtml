@@ -1,0 +1,98 @@
+<SCRIPT language="javascript">document.header.mode="edit";</SCRIPT>
+<%= tag "div", {:id => @divname } %>
+<% if params['internal'] != nil %>
+  <%= link_to_remote image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "literary_quotationupdate0"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_literary_quotation');new Effect.Fade('"+@divname+"update_literary_quotation');", :url => {:controller => 'literary_quotations', :action => 'update_related', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('literary_quotationupdate0"+params['level'].to_s+"','','/images/update_down.gif',1);"%>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "literary_quotationcancel0"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_literary_quotation');new Effect.Fade('"+@divname+"update_literary_quotation');", :url => {:controller => 'literary_quotations', :action => 'cancel', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('literary_quotationcancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back1"), session['return_to'] , :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back1','','/images/back_down.gif',1);" %>
+<% end %>
+<h1>Edit Literary quotation</h1>
+<%= error_messages_for 'literary_quotation' %>
+<% if params["query"] != nil or params['definition'] != nil or params['meta'] != nil or params['translations'] != nil %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back1"), {:action => 'searchaction', :params => { :query => params['query'], :definition => params['definition'] , :meta => params['meta'] , :translations => params['translations'] }}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back1','','/images/back_down.gif',1);"%>
+<% end %>
+<%= show_edit_literary_quotation %>
+<% if params['internal'] != nil %>
+<br><br>  <%= link_to_remote image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "literary_quotationupdate1"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_literary_quotation');new Effect.Fade('"+@divname+"update_literary_quotation');", :url => {:controller => 'literary_quotations', :action => 'update_related', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('literary_quotationupdate1"+params['level'].to_s+"','','/images/update_down.gif',1);"%>
+<%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "literary_quotationcancel2"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_literary_quotation');new Effect.Fade('"+@divname+"update_literary_quotation');", :url => {:controller => 'literary_quotations', :action => 'cancel', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('literary_quotationcancel2"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+<br><br><%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back2"), session['return_to'] , :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back2','','/images/back_down.gif',1);" %>
+<% end %>
+<% if params["query"] != nil or params['definition'] != nil or params['meta'] != nil or params['translations'] != nil %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back"), {:action => 'searchaction', :params => { :query => params['query'], :definition => params['definition'] , :meta => params['meta'] , :translations => params['translations'] }}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back','','/images/back_down.gif',1);"%>
+<% end %>
+</div>
+<%= tag "div", {:id => @divname+"search_literary_quotation" } %>
+<% if params['internal'] == nil  or params['internal'] != "definitions" %>
+<p><b>Definition: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "literary_quotation_definitions", :url => {:controller => "literary_quotations", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "definition", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "definitions" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "literary_quotation_definitions", :url => {:controller => "literary_quotations", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "definition", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "literary_quotation_definitions", :url => {:controller => "literary_quotations", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "definition", :internal => params['internal']}} %>
+<br />
+<div id="literary_quotation_definitions" class="internal">
+<% if !@literary_quotation.definition.nil? %>
+    <%= link_to_remote @literary_quotation.definition.displayInfo, :update => "literary_quotation_definitions", :url => {:controller => "definitions", :action => "show_edit", :id => @literary_quotation.definition.id , :params => {:level => params['level'], :relatedtype => "definition", :internal => 'internal'}} %>
+<% end %>
+</div>
+<% end %>
+</p>
+<% if params['internal'] == nil  or params['internal'] != "metas" %>
+<p><b>Meta: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "literary_quotation_metas", :url => {:controller => "literary_quotations", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "metum", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "metas" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "literary_quotation_metas", :url => {:controller => "literary_quotations", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "metum", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "literary_quotation_metas", :url => {:controller => "literary_quotations", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "metum", :internal => params['internal']}} %>
+<br />
+<div id="literary_quotation_metas" class="internal">
+<% if !@literary_quotation.meta.nil? %>
+    <%= link_to_remote @literary_quotation.meta.displayInfo, :update => "literary_quotation_metas", :url => {:controller => "metas", :action => "show_edit", :id => @literary_quotation.meta.id , :params => {:level => params['level'], :relatedtype => "metum", :internal => 'internal'}} %>
+<% end %>
+</div>
+<% end %>
+</p>
+<% if params['internal'] == nil  or params['internal'] != "translations" %>
+<p><b>Translations: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "literary_quotation_translations", :url => {:controller => "literary_quotations", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "translation", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "translations" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "literary_quotation_translations", :url => {:controller => "literary_quotations", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "translation", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "literary_quotation_translations", :url => {:controller => "literary_quotations", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "translation", :internal => params['internal']}} %>
+<br />
+<div id="literary_quotation_translations" class="internal">
+<% if @literary_quotation.translations.size > 5 %>
+<div id="scrolltranslations" style="height:70;background-color:e6e6e6;border:0px solid;overflow:auto;">
+<% end %>
+<% for o in @literary_quotation.translations %>
+    <%= link_to_remote o.displayInfo, :update => "literary_quotation_translations", :url => {:controller => "translations", :action => "show_edit", :id => @literary_quotation.translations.id , :params => {:level => params['level'], :relatedtype => "translation", :internal => 'internal'}} %>
+<% end %>
+<% if @literary_quotation.translations.size > 5 %>
+</div>
+<% end %>
+</div>
+<% end %>
+</p>
+</div>
+<% if params['internal'] == nil %>
+<p><b>Created by:</b> <%= @literary_quotation.created_by %> [<%= @literary_quotation.created_at %>]<br>
+<b>Last updated by:</b> <%= @literary_quotation.updated_by %> [<%= @literary_quotation.updated_at %>]<br>
+<span id="show_history">
+<a href="#" onClick="Element.hide('show_history');Effect.BlindDown('history');"><b>Show History</b></a><br>
+</span>
+<div id="history" style="display:none;">
+<div>
+<b>Update History:</b><a href="#" onClick="Effect.BlindUp('history');Element.show('show_history')">(Hide)</a><br>
+<div style="width:400;height:70;background-color:eeeeee;border:1px solid;overflow:auto;">
+<%= textilize @literary_quotation.update_history %>
+</div>
+</div>
+</div></p>
+<% end %>

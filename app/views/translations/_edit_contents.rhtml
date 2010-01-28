@@ -1,0 +1,30 @@
+<% if params['relatedtype'] == "definition" %>
+  <% if @translation.definition != nil %>
+  <%= link_to_remote @translation.definition.displayInfo, :update => "translation_definitions", :url=> {:controller=> "definitions", :action => "edit_dynamic", :id => @translation.definition.id,:params => {:level => params['level'], :relatedtype =>'definition',:internal => 'translations', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "oral_quotation" %>
+  <% if @translation.oral_quotation != nil %>
+  <%= link_to_remote @translation.oral_quotation.displayInfo, :update => "translation_oral_quotations", :url=> {:controller=> "oral_quotations", :action => "edit_dynamic", :id => @translation.oral_quotation.id,:params => {:level => params['level'], :relatedtype =>'oral_quotation',:internal => 'translations', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "model_sentence" %>
+  <% if @translation.model_sentence != nil %>
+  <%= link_to_remote @translation.model_sentence.displayInfo, :update => "translation_model_sentences", :url=> {:controller=> "model_sentences", :action => "edit_dynamic", :id => @translation.model_sentence.id,:params => {:level => params['level'], :relatedtype =>'model_sentence',:internal => 'translations', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "meta" %>
+  <% if @translation.meta != nil %>
+  <%= link_to_remote @translation.meta.displayInfo, :update => "translation_metas", :url=> {:controller=> "metas", :action => "edit_dynamic", :id => @translation.meta.id,:params => {:level => params['level'], :relatedtype =>'meta',:internal => 'translations', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "literary_quotation" %>
+  <% if @translation.literary_quotation != nil %>
+  <%= link_to_remote @translation.literary_quotation.displayInfo, :update => "translation_literary_quotations", :url=> {:controller=> "literary_quotations", :action => "edit_dynamic", :id => @translation.literary_quotation.id,:params => {:level => params['level'], :relatedtype =>'literary_quotation',:internal => 'translations', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>
+<% if params['relatedtype'] == "etymology" %>
+  <% if @translation.etymology != nil %>
+  <%= link_to_remote @translation.etymology.displayInfo, :update => "translation_etymologies", :url=> {:controller=> "etymologies", :action => "edit_dynamic", :id => @translation.etymology.id,:params => {:level => params['level'], :relatedtype =>'etymology',:internal => 'translations', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
+  <% end %>
+<% end %>

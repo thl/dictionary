@@ -1,0 +1,176 @@
+<% if params["relatedtype"] == "full_synonym" %>
+  <div id="meta_full_synonyms">
+  <%= form_remote_tag(:update => "meta_full_synonyms", :url => {:controller => "metas", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+  <h3>Uncheck Full synonym to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate1','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel"+params['level'].to_s), {:update => 'meta_full_synonyms',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @meta.full_synonym != nil %>
+     <p><%= build_checklist_group([@meta.full_synonym],[@meta.full_synonym]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=full_synonym />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate2','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel0"+params['level'].to_s), {:update => 'meta_full_synonyms',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "definition" %>
+  <div id="meta_definitions">
+  <%= form_remote_tag(:update => "meta_definitions", :url => {:controller => "metas", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+  <h3>Uncheck Definition to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate1','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel"+params['level'].to_s), {:update => 'meta_definitions',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @meta.definition != nil %>
+     <p><%= build_checklist_group([@meta.definition],[@meta.definition]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=definition />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate2','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel0"+params['level'].to_s), {:update => 'meta_definitions',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "translation" %>
+  <div id="meta_translations">
+  <%= form_remote_tag(:update => "meta_translations", :url => {:controller => "metas", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+  <h3>Uncheck Translation to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate1','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel"+params['level'].to_s), {:update => 'meta_translations',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @meta.translation != nil %>
+     <p><%= build_checklist_group([@meta.translation],[@meta.translation]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=translation />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate2','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel0"+params['level'].to_s), {:update => 'meta_translations',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "oral_quotation" %>
+  <div id="meta_oral_quotations">
+  <%= form_remote_tag(:update => "meta_oral_quotations", :url => {:controller => "metas", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+  <h3>Uncheck Oral quotation to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate1','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel"+params['level'].to_s), {:update => 'meta_oral_quotations',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @meta.oral_quotation != nil %>
+     <p><%= build_checklist_group([@meta.oral_quotation],[@meta.oral_quotation]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=oral_quotation />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate2','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel0"+params['level'].to_s), {:update => 'meta_oral_quotations',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "spelling" %>
+  <div id="meta_spellings">
+  <%= form_remote_tag(:update => "meta_spellings", :url => {:controller => "metas", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+  <h3>Uncheck Spelling to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate1','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel"+params['level'].to_s), {:update => 'meta_spellings',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @meta.spelling != nil %>
+     <p><%= build_checklist_group([@meta.spelling],[@meta.spelling]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=spelling />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate2','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel0"+params['level'].to_s), {:update => 'meta_spellings',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "group" %>
+  <div id="meta_groups">
+  <%= form_remote_tag(:update => "meta_groups", :url => {:controller => "metas", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+  <h3>Uncheck Group to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate1','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel"+params['level'].to_s), {:update => 'meta_groups',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @meta.group != nil %>
+     <p><%= build_checklist_group([@meta.group],[@meta.group]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=group />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate2','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel0"+params['level'].to_s), {:update => 'meta_groups',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "model_sentence" %>
+  <div id="meta_model_sentences">
+  <%= form_remote_tag(:update => "meta_model_sentences", :url => {:controller => "metas", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+  <h3>Uncheck Model sentence to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate1','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel"+params['level'].to_s), {:update => 'meta_model_sentences',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @meta.model_sentence != nil %>
+     <p><%= build_checklist_group([@meta.model_sentence],[@meta.model_sentence]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=model_sentence />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate2','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel0"+params['level'].to_s), {:update => 'meta_model_sentences',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "etymology" %>
+  <div id="meta_etymologies">
+  <%= form_remote_tag(:update => "meta_etymologies", :url => {:controller => "metas", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+  <h3>Uncheck Etymology to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate1','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel"+params['level'].to_s), {:update => 'meta_etymologies',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @meta.etymology != nil %>
+     <p><%= build_checklist_group([@meta.etymology],[@meta.etymology]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=etymology />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate2','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel0"+params['level'].to_s), {:update => 'meta_etymologies',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "literary_quotation" %>
+  <div id="meta_literary_quotations">
+  <%= form_remote_tag(:update => "meta_literary_quotations", :url => {:controller => "metas", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+  <h3>Uncheck Literary quotation to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate1','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel"+params['level'].to_s), {:update => 'meta_literary_quotations',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @meta.literary_quotation != nil %>
+     <p><%= build_checklist_group([@meta.literary_quotation],[@meta.literary_quotation]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=literary_quotation />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate2','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel0"+params['level'].to_s), {:update => 'meta_literary_quotations',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "pronunciation" %>
+  <div id="meta_pronunciations">
+  <%= form_remote_tag(:update => "meta_pronunciations", :url => {:controller => "metas", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+  <h3>Uncheck Pronunciation to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate1','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel"+params['level'].to_s), {:update => 'meta_pronunciations',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @meta.pronunciation != nil %>
+     <p><%= build_checklist_group([@meta.pronunciation],[@meta.pronunciation]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=pronunciation />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate2','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel0"+params['level'].to_s), {:update => 'meta_pronunciations',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "translation_equivalent" %>
+  <div id="meta_translation_equivalents">
+  <%= form_remote_tag(:update => "meta_translation_equivalents", :url => {:controller => "metas", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") %>
+  <h3>Uncheck Translation equivalent to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate1','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel"+params['level'].to_s), {:update => 'meta_translation_equivalents',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @meta.translation_equivalent != nil %>
+     <p><%= build_checklist_group([@meta.translation_equivalent],[@meta.translation_equivalent]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=translation_equivalent />
+  <%= end_form_tag %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "metadeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metadeleteupdate2','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "metaquerycancel0"+params['level'].to_s), {:update => 'meta_translation_equivalents',  :url => {:controller => 'metas', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'metas', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('metaquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>

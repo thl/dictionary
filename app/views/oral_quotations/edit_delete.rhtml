@@ -1,0 +1,75 @@
+<% if params["relatedtype"] == "definition" %>
+  <div id="oral_quotation_definitions">
+  <% form_remote_tag(:update => "oral_quotation_definitions", :url => {:controller => "oral_quotations", :action => 'edit_delete_action', :id => params['id'], :params => {:internal => params['internal'], :pk => params['pk']}}, :name => "deleterelated") do %>
+  <h3>Uncheck Definition to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "oral_quotationdeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('oral_quotationdeleteupdate1','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "oral_quotationquerycancel"+params['level'].to_s), {:update => 'oral_quotation_definitions',  :url => {:controller => 'oral_quotations', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'oral_quotations', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('oral_quotationquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+   <% if @oral_quotation.definition != nil %>
+     <p><%= build_checklist_group([@oral_quotation.definition],[@oral_quotation.definition]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=definition />
+  <% end %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "oral_quotationdeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('oral_quotationdeleteupdate2','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "oral_quotationquerycancel0"+params['level'].to_s), {:update => 'oral_quotation_definitions',  :url => {:controller => 'oral_quotations', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'oral_quotations', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('oral_quotationquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "meta" %>
+  <div id="oral_quotation_metas">
+
+<% form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "oral_quotations", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") do %>
+
+  <h3>Uncheck Meta to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "oral_quotationdeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('oral_quotationdeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "oral_quotationquerycancel"+params['level'].to_s), {:update => 'oral_quotation_metas',  :url => {:controller => 'oral_quotations', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'oral_quotations', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('oral_quotationquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+   <% if @oral_quotation.meta != nil %>
+     <p><%= build_checklist_group([@oral_quotation.meta],[@oral_quotation.meta]) %></p>
+   <% else %>
+   <% end %>
+   <input type=hidden name=relatedtype value=metum />
+  <% end %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "oral_quotationdeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('oral_quotationdeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "oral_quotationquerycancel0"+params['level'].to_s), {:update => 'oral_quotation_metas',  :url => {:controller => 'oral_quotations', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'oral_quotations', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('oral_quotationquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>
+<% if params["relatedtype"] == "translation" %>
+  <div id="oral_quotation_translations">
+
+<% form_remote_tag(:update => 'edit_box', :complete => "new Effect.Fade('edit_box');window.location.reload()", :url => {:controller => "oral_quotations", :action => 'edit_delete_action', :id => params['id'],:params =>{ :internal => params['internal'],:test => 'true'}}, :name => "listrelated") do %>
+
+  <h3>Uncheck Translations to Remove:</h3>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "oral_quotationdeleteupdate1"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('oral_quotationdeleteupdate1','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "oral_quotationquerycancel"+params['level'].to_s), {:update => 'oral_quotation_translations',  :url => {:controller => 'oral_quotations', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'oral_quotations', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('oral_quotationquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  <% if @oral_quotation.translations.size > 10 %>
+    <div id="scrollwindow" style="width:600;height:200;background-color:e6e6e6;overflow:auto">
+  <% end %>
+   <% if @oral_quotation.translations != nil %>
+     <p><%= build_checklist_group(@oral_quotation.translations,@oral_quotation.translations) %></p>
+   <% else %>
+     <p><%= build_checklist_group(@oral_quotation.translations) %></p>
+   <% end %>
+  <% if @oral_quotation.translations.size > 10 %>
+  </div>
+<% end %>
+   <input type=hidden name=relatedtype value=translation />
+  <% end %>
+  <%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "oral_quotationdeleteupdate2"), "b = confirm('Are you sure?'); if (b) {if(document.forms[0].onsubmit()) { document.forms[0].submit(); }}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('oral_quotationdeleteupdate2','','/images/update_down.gif',1);"}) %>
+<% if params['internal'] == 'edit_box' %>
+	<%= link_to_function image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel"+params['level'].to_s), "new Effect.Fade('edit_box');", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "oral_quotationquerycancel0"+params['level'].to_s), {:update => 'oral_quotation_translations',  :url => {:controller => 'oral_quotations', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'oral_quotations', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('oral_quotationquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% end %><br>
+  </div>
+<% end %>

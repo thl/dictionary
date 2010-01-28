@@ -1,0 +1,41 @@
+<% if params['relatedtype'] == "definition_from" %>
+<div id="definition_definition_form_definition_froms">
+<% form_remote_tag(:update => "definition_definition_form_definition_froms", :url => {:controller => "definition_definition_forms", :action => 'edit_add_to_list_action', :id => params['id'], :internal => 'definitions'}, :html => {:name => "listrelated"}) do %>
+  <h3>Check Definition to Add:</h3>
+<!-- <br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definition_definition_formlistupdate4"+params['level'].to_s), "if(document.forms[1].onsubmit()) { document.forms[1].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formlistupdate4"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definition_definition_formquerycancel0"+params['level'].to_s), {:update => 'definition_definition_form_definition_froms',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definition_definition_forms', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br> -->
+   <% if @definition_definition_form.definition_from != nil %>
+     <p><%= build_form_radiolist_group(@definition_froms,@definition_definition_form.definition_from.displayInfo) %></p>
+   <% else %>
+     <p><%= build_form_radiolist_group(@definition_froms) %></p>
+   <% end %>
+   <input type=hidden name=relatedtype value=definition_from />
+<% end %>
+<input type="hidden" name="definition_definition_form[id]" value="<%= @definition_definition_form.id %>"/> 
+<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definition_definition_formlistupdate3"+params['level'].to_s), "if(document.forms[1].onsubmit()) { document.forms[1].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formlistupdate3"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definition_definition_formquerycancel"+params['level'].to_s), {:update => 'definition_definition_form_definition_froms',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definition_definition_forms', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+</div>
+<% end %>
+<% if params['relatedtype'] == "definition_to" %>
+<div id="definition_definition_form_definition_tos">
+<% form_remote_tag(:update => "definition_definition_form_definition_tos", :url => {:controller => "definition_definition_forms", :action => 'edit_add_to_list_action', :id => params['id']}, :html => {:name => "listrelated"}) do %>
+	<% if @definition_tos.size > 0 %>
+  <h3>Check Definition to Add:</h3>
+<!-- <br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definition_definition_formlistupdate4"+params['level'].to_s), "if(document.forms[1].onsubmit()) { document.forms[1].submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formlistupdate4"+params['level'].to_s+"','','/images/update_down.gif',1);"}) %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definition_definition_formquerycancel0"+params['level'].to_s), {:update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definition_definition_forms', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formquerycancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br> -->
+   <% if @definition_definition_form.definition_to != nil %>
+     <p><%= build_form_radiolist_group(@definition_tos,@definition_definition_form.definition_to.displayInfo) %></p>
+   <% else %>
+     <p><%= build_form_radiolist_group(@definition_tos) %></p>
+   <% end %>
+	<% else %>
+	<h3>No Results Found</h3>
+	<% end %>
+   <input type=hidden name=relatedtype value=definition_to />
+<% end %>
+<input type="hidden" name="definition_definition_form[id]" value="<%= @definition_definition_form.id %>"/> 
+<br>
+<%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definition_definition_formlistupdate3"+params['level'].to_s), "if(document.listrelated.onsubmit()) { document.listrelated.submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formlistupdate3"+params['level'].to_s+"','','/images/update_down.gif',1);"}) if @definition_tos.size > 0 %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definition_definition_formquerycancel"+params['level'].to_s), {:update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definition_definition_forms', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%><br>
+</div>
+<% end %>

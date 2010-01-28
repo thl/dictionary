@@ -1,0 +1,120 @@
+<%# if ((odd_or_even % 2) == 0) %>
+	<% color = 'background-color:#ffffff' %>
+<%# else %>	
+	<%# color = 'background-color:#eeeeee' %>
+<%# end %>
+<tr style="<%= color %>">
+
+<% head_id = 0
+	parent_id=0
+%>
+<% if d != nil 
+	@definition = d %>
+	<% t = Time.now 
+		time = t.to_f.to_s
+	%>
+	<%# if ((odd_or_even % 2) == 0) %>
+		<% color = 'background-color:#ffffff' %>
+	<%# else %>	
+		<%# color = 'background-color:#eeeeee' %>
+	<%# end %>
+			<% str = '' %>
+		<% if (d.grammatical_function != nil and d.grammatical_function != "") or d.grammatical_function_type != nil %>
+		<!-- <b>Function:</b>   -->
+			<td style="<%= color %>" class="def_header"  align="right">
+				<strong>FUNCTION:</strong>
+				</td>
+				<td style="<%= color %>">
+				<% if d.language == 'Tibetan' %>
+				<% str += '<span class="tib1">' %>
+				<% end %>
+				<% str += '<b>'+d.grammatical_function.span+'</b>' if d.grammatical_function != nil %>
+				<% str += '<b>'+d.grammatical_function_type.title+'</b>' if d.grammatical_function_type != nil %>
+				<% if d.language == 'Tibetan' %>
+				<% str += '</span>' %>
+				<% end %>
+				<%= str %>
+				<% if d.definition != nil%>
+					<br>
+				<% end %>
+				</td>
+				</tr>
+				<tr>
+		<% end %>
+
+<% str = render :partial => 'public_term_sub_content', :locals => {:d => d, :time => time, :head_id => head_id, :level => level }%>
+<% str.strip! %>
+<% if str.size > 0  and level == 'head' %>
+<tr><td colspan="2">
+<hr>
+</td></tr>
+<tr><td colspan="2">
+	<table width="100%"><tr><td>
+<font size="+2">THL DICTIONARY </font>
+	</td><td align="right">
+	<span id="show_meta_menu">
+	<span id="hide_info" style="display:none"><%= link_to_function("#{image_tag('user.png',:border=>0)} HIDE CONTRIBUTORS","hide_content('contributors');Element.hide('hide_info');Element.show('show_info')")%></span>
+	<span id="show_info"><%= link_to_function("#{image_tag('user.png',:border=>0)} SHOW CONTRIBUTORS","show_content('contributors');Element.hide('show_info');Element.show('hide_info')")%></span>
+
+	<span id="hide_meta"><%= link_to_function("#{image_tag('icon-info.gif',:border=>0)} HIDE SOURCES","hide_content('meta');Element.hide('hide_meta');Element.show('show_meta')")%></span>
+	<span id="show_meta" style="display:none"><%= link_to_function("#{image_tag('icon-info.gif',:border=>0)} SHOW SOURCES","show_content('meta');Element.hide('show_meta');Element.show('hide_meta')")%></span>
+	</span>
+	</td></tr>
+	</table>
+</td>
+
+</tr>
+<tr><td colspan="2">
+<hr>
+</td></tr>
+<tr>
+	<td></td>
+</tr>
+
+<% end %>
+
+<% if str.size > 0 or (d.definition != nil and d.definition != '')%>
+<% if d.definition != nil and d.definition != '' and label == 'DEFINITION'%>
+<td style="<%= color %>" class="def_header" align="right" valign="top">
+	<strong><%= label %>: </strong>
+</td>
+<% elsif d.definition != nil and d.definition != '' %>
+<td style="<%= color %>"  align="right" valign="top">
+	<strong><%= label %>: </strong>
+</td>
+<% end %>
+<% end %>
+<td style="<%= color %>">
+	
+	<%# if head_id != parent_id %>
+				<% if d.language == 'Tibetan' %>
+				<span class="tib1">
+				<% end %>
+				<%= d.definition.span if d.definition != nil %>
+				
+	<%#= in_place_editor_field( :definition, :definition, {},{:cols=> 50, :rows=> 7, :external_control => d.id})%>
+				<% if d.language == 'Tibetan' %>
+				</span>
+				<% end %>
+				<% if (d.language != 'English' and d.language != '' and d.language != nil) or (d.language_type != nil) %>
+				 <!-- (<%#= d.language%><%= d.language_type.title if d.language_type != nil %>) -->
+				<% end %>
+				<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => d.id, :history_class => d.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
+				<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => d.id, :history_class => d.class.to_s }}) %>			
+
+
+<% if level == 'head' %>
+	<% style = color %>
+<% else %>
+	<% if str.size > 0 %>
+	<%# debugger %>
+<%= link_to_function( image_tag('btn_plus.gif', :border => 0, :id => 'right_'+d.id.to_s), "Element.hide('right_"+d.id.to_s+"');Element.show('up_"+d.id.to_s+"');show_content('display_"+time+"');", :title => 'Show') %>
+<%= link_to_function( image_tag('btn_minus.gif', :border => 0, :id => 'up_'+d.id.to_s, :style => 'display:none'), "Element.hide('up_"+d.id.to_s+"');Element.show('right_"+d.id.to_s+"');hide_content('display_"+time+"');", :title => 'Show') %>
+	<% end %>
+	<% @style = 'display:none;'+color %>
+<% end %>
+</td>
+</tr>
+	<%= str %>
+
+<% end %>

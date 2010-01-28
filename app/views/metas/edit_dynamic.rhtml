@@ -1,0 +1,232 @@
+<%= tag "div", {:id => @divname } %>
+<h1>Editing Meta</h1>
+<%= error_messages_for 'meta' %>
+
+  <% form_remote_tag(:update => @divname, :complete => "Element.hide('edit_box');clear_contents('edit_box');window.location.reload()", :url => {:controller => 'metas', :action => 'update', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}, :condition => "open_windows['meta'].length > 0 ? alert('You have unsaved changes.') : true") do %>
+
+<!-- <p>
+	<%= link_to_remote image_tag("close_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');",:update=> 'definition_space', :url => {:controller => 'definitions', :action => 'public_content_only', :id => params['definition_id']}%>	
+	<% if params['new'] != nil %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');", :update => 'definition_space',  :url => {:controller => 'metas', :action => 'cancel', :id => params[:id], :params => {'definition_id' => params['definition_id'], 'editing' => 'true'}}%>
+<% end %>
+
+	<%#= link_to_function image_tag("close_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "Element.hide('edit_box');clear_contents('edit_box');window.location.reload()", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/close_down.gif',1);"%></p> -->
+
+<%= edit_dynamic_meta %>
+<input type="hidden" name="id" value="<%= params["id"] %>"/>
+<input type="hidden" name="internal" value="<%= params['internal'] %>">
+<input type="hidden" name="pk" value="<%= params['pk'] %>">
+<p>
+	<%= link_to_remote image_tag("close_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');",:complete=>"re_initialize();",:update=> 'definition_space', :url => {:controller => 'definitions', :action => 'public_content_only', :id => params['definition_id']}%>	
+	<% if params['new'] != nil %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');",:complete=>"re_initialize();", :update => 'definition_space',  :url => {:controller => 'metas', :action => 'cancel', :id => params[:id], :params => {'definition_id' => params['definition_id'], 'editing' => 'true'}}%>
+<% end %>
+
+	<%#= link_to_function image_tag("close_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definitioncancel0"+params['level'].to_s), "Element.hide('edit_box');clear_contents('edit_box');window.location.reload()", :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definitioncancel0"+params['level'].to_s+"','','/images/close_down.gif',1);"%></p>
+<p>
+<% end %>
+</div>
+<!-- <%= tag "div", {:id => @divname+"search_meta" } %>
+<% if params['internal'] == nil  or params['internal'] != "full_synonyms" %>
+<p><b>Full synonym: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "meta_full_synonyms", :url => {:controller => "metas", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "full_synonym", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "full_synonyms" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "meta_full_synonyms", :url => {:controller => "metas", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "full_synonym", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "meta_full_synonyms", :url => {:controller => "metas", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "full_synonym", :internal => params['internal']}} %>
+<br />
+<div id="meta_full_synonyms" class="internal">
+<% if !@meta.full_synonym.nil? %>
+    <%= link_to_remote @meta.full_synonym.displayInfo, :update => "meta_full_synonyms", :url => {:controller => "full_synonyms", :action => "edit_dynamic", :id => @meta.full_synonym.id , :params => {:level => params['level'], :relatedtype => "full_synonym", :internal => 'metas','pk' => params['id']}} %>
+<% end %>
+</div>
+<% end %>
+</p>
+<% if params['internal'] == nil  or params['internal'] != "definitions" %>
+<p><b>Definition: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "meta_definitions", :url => {:controller => "metas", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "definition", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "definitions" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "meta_definitions", :url => {:controller => "metas", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "definition", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "meta_definitions", :url => {:controller => "metas", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "definition", :internal => params['internal']}} %>
+<br />
+<div id="meta_definitions" class="internal">
+<% if !@meta.definition.nil? %>
+    <%= link_to_remote @meta.definition.displayInfo, :update => "meta_definitions", :url => {:controller => "definitions", :action => "edit_dynamic", :id => @meta.definition.id , :params => {:level => params['level'], :relatedtype => "definition", :internal => 'metas','pk' => params['id']}} %>
+<% end %>
+</div>
+<% end %>
+</p>
+<% if params['internal'] == nil  or params['internal'] != "translations" %>
+<p><b>Translation: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "meta_translations", :url => {:controller => "metas", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "translation", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "translations" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "meta_translations", :url => {:controller => "metas", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "translation", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "meta_translations", :url => {:controller => "metas", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "translation", :internal => params['internal']}} %>
+<br />
+<div id="meta_translations" class="internal">
+<% if !@meta.translation.nil? %>
+    <%= link_to_remote @meta.translation.displayInfo, :update => "meta_translations", :url => {:controller => "translations", :action => "edit_dynamic", :id => @meta.translation.id , :params => {:level => params['level'], :relatedtype => "translation", :internal => 'metas','pk' => params['id']}} %>
+<% end %>
+</div>
+<% end %>
+</p>
+<% if params['internal'] == nil  or params['internal'] != "oral_quotations" %>
+<p><b>Oral quotation: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "meta_oral_quotations", :url => {:controller => "metas", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "oral_quotation", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "oral_quotations" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "meta_oral_quotations", :url => {:controller => "metas", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "oral_quotation", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "meta_oral_quotations", :url => {:controller => "metas", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "oral_quotation", :internal => params['internal']}} %>
+<br />
+<div id="meta_oral_quotations" class="internal">
+<% if !@meta.oral_quotation.nil? %>
+    <%= link_to_remote @meta.oral_quotation.displayInfo, :update => "meta_oral_quotations", :url => {:controller => "oral_quotations", :action => "edit_dynamic", :id => @meta.oral_quotation.id , :params => {:level => params['level'], :relatedtype => "oral_quotation", :internal => 'metas','pk' => params['id']}} %>
+<% end %>
+</div>
+<% end %>
+</p>
+<% if params['internal'] == nil  or params['internal'] != "spellings" %>
+<p><b>Spelling: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "meta_spellings", :url => {:controller => "metas", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "spelling", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "spellings" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "meta_spellings", :url => {:controller => "metas", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "spelling", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "meta_spellings", :url => {:controller => "metas", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "spelling", :internal => params['internal']}} %>
+<br />
+<div id="meta_spellings" class="internal">
+<% if !@meta.spelling.nil? %>
+    <%= link_to_remote @meta.spelling.displayInfo, :update => "meta_spellings", :url => {:controller => "spellings", :action => "edit_dynamic", :id => @meta.spelling.id , :params => {:level => params['level'], :relatedtype => "spelling", :internal => 'metas','pk' => params['id']}} %>
+<% end %>
+</div>
+<% end %>
+</p>
+<% if params['internal'] == nil  or params['internal'] != "groups" %>
+<p><b>Group: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "meta_groups", :url => {:controller => "metas", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "group", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "groups" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "meta_groups", :url => {:controller => "metas", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "group", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "meta_groups", :url => {:controller => "metas", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "group", :internal => params['internal']}} %>
+<br />
+<div id="meta_groups" class="internal">
+<% if !@meta.group.nil? %>
+    <%= link_to_remote @meta.group.displayInfo, :update => "meta_groups", :url => {:controller => "groups", :action => "edit_dynamic", :id => @meta.group.id , :params => {:level => params['level'], :relatedtype => "group", :internal => 'metas','pk' => params['id']}} %>
+<% end %>
+</div>
+<% end %>
+</p>
+<% if params['internal'] == nil  or params['internal'] != "model_sentences" %>
+<p><b>Model sentence: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "meta_model_sentences", :url => {:controller => "metas", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "model_sentence", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "model_sentences" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "meta_model_sentences", :url => {:controller => "metas", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "model_sentence", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "meta_model_sentences", :url => {:controller => "metas", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "model_sentence", :internal => params['internal']}} %>
+<br />
+<div id="meta_model_sentences" class="internal">
+<% if !@meta.model_sentence.nil? %>
+    <%= link_to_remote @meta.model_sentence.displayInfo, :update => "meta_model_sentences", :url => {:controller => "model_sentences", :action => "edit_dynamic", :id => @meta.model_sentence.id , :params => {:level => params['level'], :relatedtype => "model_sentence", :internal => 'metas','pk' => params['id']}} %>
+<% end %>
+</div>
+<% end %>
+</p>
+<% if params['internal'] == nil  or params['internal'] != "etymologies" %>
+<p><b>Etymology: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "meta_etymologies", :url => {:controller => "metas", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "etymology", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "etymologies" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "meta_etymologies", :url => {:controller => "metas", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "etymology", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "meta_etymologies", :url => {:controller => "metas", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "etymology", :internal => params['internal']}} %>
+<br />
+<div id="meta_etymologies" class="internal">
+<% if !@meta.etymology.nil? %>
+    <%= link_to_remote @meta.etymology.displayInfo, :update => "meta_etymologies", :url => {:controller => "etymologies", :action => "edit_dynamic", :id => @meta.etymology.id , :params => {:level => params['level'], :relatedtype => "etymology", :internal => 'metas','pk' => params['id']}} %>
+<% end %>
+</div>
+<% end %>
+</p>
+<% if params['internal'] == nil  or params['internal'] != "literary_quotations" %>
+<p><b>Literary quotation: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "meta_literary_quotations", :url => {:controller => "metas", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "literary_quotation", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "literary_quotations" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "meta_literary_quotations", :url => {:controller => "metas", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "literary_quotation", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "meta_literary_quotations", :url => {:controller => "metas", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "literary_quotation", :internal => params['internal']}} %>
+<br />
+<div id="meta_literary_quotations" class="internal">
+<% if !@meta.literary_quotation.nil? %>
+    <%= link_to_remote @meta.literary_quotation.displayInfo, :update => "meta_literary_quotations", :url => {:controller => "literary_quotations", :action => "edit_dynamic", :id => @meta.literary_quotation.id , :params => {:level => params['level'], :relatedtype => "literary_quotation", :internal => 'metas','pk' => params['id']}} %>
+<% end %>
+</div>
+<% end %>
+</p>
+<% if params['internal'] == nil  or params['internal'] != "pronunciations" %>
+<p><b>Pronunciation: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "meta_pronunciations", :url => {:controller => "metas", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "pronunciation", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "pronunciations" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "meta_pronunciations", :url => {:controller => "metas", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "pronunciation", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "meta_pronunciations", :url => {:controller => "metas", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "pronunciation", :internal => params['internal']}} %>
+<br />
+<div id="meta_pronunciations" class="internal">
+<% if !@meta.pronunciation.nil? %>
+    <%= link_to_remote @meta.pronunciation.displayInfo, :update => "meta_pronunciations", :url => {:controller => "pronunciations", :action => "edit_dynamic", :id => @meta.pronunciation.id , :params => {:level => params['level'], :relatedtype => "pronunciation", :internal => 'metas','pk' => params['id']}} %>
+<% end %>
+</div>
+<% end %>
+</p>
+<% if params['internal'] == nil  or params['internal'] != "translation_equivalents" %>
+<p><b>Translation equivalent: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "meta_translation_equivalents", :url => {:controller => "metas", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "translation_equivalent", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "translation_equivalents" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "meta_translation_equivalents", :url => {:controller => "metas", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "translation_equivalent", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "meta_translation_equivalents", :url => {:controller => "metas", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "translation_equivalent", :internal => params['internal']}} %>
+<br />
+<div id="meta_translation_equivalents" class="internal">
+<% if !@meta.translation_equivalent.nil? %>
+    <%= link_to_remote @meta.translation_equivalent.displayInfo, :update => "meta_translation_equivalents", :url => {:controller => "translation_equivalents", :action => "edit_dynamic", :id => @meta.translation_equivalent.id , :params => {:level => params['level'], :relatedtype => "translation_equivalent", :internal => 'metas','pk' => params['id']}} %>
+<% end %>
+</div>
+<% end %>
+</p>
+</div>
+<% if params['internal'] == nil %>
+<p><b>Created by:</b> <%= @meta.created_by %> [<%= @meta.created_at %>]<br>
+<b>Last updated by:</b> <%= @meta.updated_by %> [<%= @meta.updated_at %>]<br>
+<span id="show_history">
+<a href="#" onClick="Element.hide('show_history');Effect.BlindDown('history');"><b>Show History</b></a><br>
+</span>
+<div id="history" style="display:none;">
+<div>
+<b>Update History:</b><a href="#" onClick="Effect.BlindUp('history');Element.show('show_history')">(Hide)</a><br>
+<div style="width:400;height:70;background-color:eeeeee;border:1px solid;overflow:auto;">
+<%= textilize @meta.update_history %>
+</div>
+</div>
+</div></p>
+<% end %> -->

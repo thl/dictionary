@@ -1,0 +1,9 @@
+<h1>Search Language</h1>
+<%= form_tag({:action => "searchaction"}, {:method => 'get',:name => "searchform"})  %>
+<%#= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "search1"), "document.searchform.submit()", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('search1','','/images/search_down.gif',1);"}) %>
+  <table>
+  <%= search_language %>
+  </table>
+  <input type="hidden" name="language[id]" value="<%= params["id"] %>"/> 
+<%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "search2"), "document.searchform.submit()", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('search2','','/images/search_down.gif',1);"}) %>
+<%= end_form_tag %>

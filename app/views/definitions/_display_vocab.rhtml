@@ -1,0 +1,62 @@
+<% url = 'http://staging.tmb.thdl.org/categories/'+id.to_s+'/children/all.xml'
+
+# get the XML data as a string
+xml_data = Net::HTTP.get_response(URI.parse(url)).body
+
+# extract event information
+doc = REXML::Document.new(xml_data)
+a = doc.elements.to_a('/category/title') %>
+<% count = 0 %>
+<b><%= a[0].children[0] %></b>
+<br><br>
+<% a = doc.elements.to_a('/category/description') %>
+<%= a[0].children[0] %> 
+<br><br>
+<% a = doc.elements.to_a('/category/categories/category') %>
+<% a.each do |x| %>
+	<% if x.elements.to_a('categories/category').size == 0 %>
+ &#9674;
+	<% else %>
+		<% count += 1%>
+		<span id="show_<%= id %>_<%= count %>"><%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.hide('show_"+id.to_s+'_'+count.to_s+"');Element.show('hide_"+id.to_s+'_'+count.to_s+"');Element.show('"+count.to_s+'_'+id.to_s+"_row')") %></span>
+		<span id="hide_<%= id %>_<%= count %>" style="display:none"><%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('hide_"+id.to_s+'_'+count.to_s+"');Element.show('show_"+id.to_s+'_'+count.to_s+"');Element.hide('"+count.to_s+'_'+id.to_s+"_row')") %></span>
+	<% end %>	
+	<%= x.elements['title'].children %>
+	<% if x.elements.to_a('categories/category').size > 0 %>
+		<br>
+		<span id="<%= count %>_<%= id %>_row" style="display:none">
+		<ul>
+	<% else %>
+		<br>
+	<% end %>
+	<% x.elements.to_a('categories/category').each do |y| %>
+		<% if y.elements.to_a('categories/category').size == 0 %>
+	 &#9674;
+		<% else %>
+			<% count += 1%>
+			<span id="show_<%= id %>_<%= count %>"><%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.hide('show_"+id.to_s+'_'+count.to_s+"');Element.show('hide_"+id.to_s+'_'+count.to_s+"');Element.show('"+count.to_s+'_'+id.to_s+"_row')") %></span>
+			<span id="hide_<%= id %>_<%= count %>" style="display:none"><%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('hide_"+id.to_s+'_'+count.to_s+"');Element.show('show_"+id.to_s+'_'+count.to_s+"');Element.hide('"+count.to_s+'_'+id.to_s+"_row')") %></span>
+		<% end %>	
+	
+		<%= y.elements['title'].children.to_s %>
+		<% if y.elements.to_a('categories/category').size > 0 %>
+			<br>
+			<span id="<%= count %>_<%= id %>_row" style="display:none">
+			<ul>
+		<% else %>
+			<br>
+		<% end %>
+  	<% y.elements.to_a('categories/category').each do |z| %>
+			<%= z.elements['title'].children.to_s %>
+			<br>
+		<% end %>
+		<% if y.elements.to_a('categories/category').size > 0 %>
+			</ul>
+			</span>
+		<% end %>
+  <% end %>
+	<% if x.elements.to_a('categories/category').size > 0 %>
+		</ul>
+		</span>
+	<% end %>
+<% end %>

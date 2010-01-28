@@ -1,0 +1,68 @@
+<SCRIPT language="javascript">document.header.mode="edit";</SCRIPT>
+<%= tag "div", {:id => @divname } %>
+<h1>Editing Grammar function level three</h1>
+<%= error_messages_for 'grammar_function_level_three' %>
+<% if params['internal'] == nil or params['internal'] == ''%>
+  <%= form_tag({:controller => "grammar_function_level_threes", :action => "update"}, :name => "editgrammar_function_level_three")  %>
+<% else %>
+  <%= form_remote_tag(:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_grammar_function_level_three');new Effect.Fade('"+@divname+"update_grammar_function_level_three');", :url => {:controller => 'grammar_function_level_threes', :action => 'update', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}})  %>
+<% end %>
+<%= image_submit_tag "update_up.gif", :size => "87x19", :border => 0 %>
+<% if params['internal'] != nil %>
+  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "grammar_function_level_threecancel0"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_grammar_function_level_three');new Effect.Fade('"+@divname+"update_grammar_function_level_three');", :url => {:controller => 'grammar_function_level_threes', :action => 'cancel', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('grammar_function_level_threecancel0"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "Cancel", :name => "cancelz"), {:controller => 'grammar_function_level_threes', :action => 'cancel', :id => params[:id], :params => {'new' => params['new']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('cancelz','','/images/cancel_down.gif',1);", :confirm => "Abandon any changes?"%>
+<% end %>
+<% if params["query"] != nil or params['grammar_function_level_two'] != nil %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back1"), {:action => 'searchaction', :params => { :query => params['query'], :grammar_function_level_two => params['grammar_function_level_two'] }}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back1','','/images/back_down.gif',1);"%>
+<% end %>
+<%= edit_grammar_function_level_three %>
+<input type="hidden" name="id" value="<%= params["id"] %>"/>
+<input type="hidden" name="internal" value="<%= params['internal'] %>">
+<input type="hidden" name="pk" value="<%= params['pk'] %>">
+<p><%= image_submit_tag "update_up.gif", :size => "87x19", :border => 0 %>
+<% if params['internal'] != nil %>
+<%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "grammar_function_level_threecancel2"+params['level'].to_s), {:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_grammar_function_level_three');new Effect.Fade('"+@divname+"update_grammar_function_level_three');", :url => {:controller => 'grammar_function_level_threes', :action => 'cancel', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('grammar_function_level_threecancel2"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
+<% else %>
+  <%= link_to image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "Cancel", :name => "cancelzw"), {:controller => 'grammar_function_level_threes', :action => 'cancel', :id => params[:id], :params => {'new' => params['new']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('cancelzw','','/images/cancel_down.gif',1);", :confirm => "Abandon any changes?"%>
+<% end %>
+<p>
+<% if params["query"] != nil or params['grammar_function_level_two'] != nil %>
+<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back"), {:action => 'searchaction', :params => { :query => params['query'], :grammar_function_level_two => params['grammar_function_level_two'] }}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back','','/images/back_down.gif',1);"%>
+<% end %>
+<%= end_form_tag %>
+</div>
+<%= tag "div", {:id => @divname+"search_grammar_function_level_three" } %>
+<% if params['internal'] == nil  or params['internal'] != "grammar_function_level_twos" %>
+<p><b>Grammar function level two: </label></b>
+<%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "grammar_function_level_three_grammar_function_level_twos", :url => {:controller => "grammar_function_level_threes", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "grammar_function_level_two", :internal => params['internal']}} %>
+<% if params['internal'] == nil %>
+  <% if params['internal'] != "grammar_function_level_twos" %>
+    <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "grammar_function_level_three_grammar_function_level_twos", :url => {:controller => "grammar_function_level_threes", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "grammar_function_level_two", :internal => params['internal']}} %>
+  <% end %>
+<% end %>
+<%= link_to_remote image_tag("minus.gif", :size => "16x16", :border => 0), :update => "grammar_function_level_three_grammar_function_level_twos", :url => {:controller => "grammar_function_level_threes", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "grammar_function_level_two", :internal => params['internal']}} %>
+<br />
+<div id="grammar_function_level_three_grammar_function_level_twos" class="internal">
+<% if !@grammar_function_level_three.grammar_function_level_two.nil? %>
+  <%= @grammar_function_level_three.grammar_function_level_two.displayInfo %>
+<% end %>
+</div>
+<% end %>
+</p>
+</div>
+<% if params['internal'] == nil %>
+<p><b>Created by:</b> <%= @grammar_function_level_three.created_by %> [<%= @grammar_function_level_three.created_at %>]<br>
+<b>Last updated by:</b> <%= @grammar_function_level_three.updated_by %> [<%= @grammar_function_level_three.updated_at %>]<br>
+<span id="show_history">
+<a href="#" onClick="Element.hide('show_history');Effect.BlindDown('history');"><b>Show History</b></a><br>
+</span>
+<div id="history" style="display:none;">
+<div>
+<b>Update History:</b><a href="#" onClick="Effect.BlindUp('history');Element.show('show_history')">(Hide)</a><br>
+<div style="width:400;height:70;background-color:eeeeee;border:1px solid;overflow:auto;">
+<%= textilize @grammar_function_level_three.update_history %>
+</div>
+</div>
+</div></p>
+<% end %>

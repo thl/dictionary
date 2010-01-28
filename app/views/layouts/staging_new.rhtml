@@ -1,0 +1,37 @@
+<%= render :partial => 'shared/header' %>
+<script>
+function hide_content(class_name) {
+	var cols = document.getElementsByClassName(class_name);
+	for (x=0;x < cols.length;x++) {
+		c = cols[x];
+		c.style.display = 'none';
+	}
+}
+function show_content(class_name) {
+	var cols = document.getElementsByClassName(class_name);
+	for (x=0;x < cols.length;x++) {
+		c = cols[x];
+		c.style.display = '';
+	}
+}
+function clear_contents(node)
+{
+  if (!node) return false;
+  if (typeof node == 'string')
+    node = document.getElementById(node);
+  if (node) node.innerHTML = '';
+}
+</script>
+<div id="login">
+	
+	<% if session[:user] != nil %>
+		You are logged in as <%= session[:user].login %> <%= link_to('Logout', :controller => 'account', :action => 'logout')%>
+	<% end %>
+</div>
+<div id="content" class="dictionary_content">
+	<div class="shell-1">
+
+		<%= @content_for_layout %>
+	</div>
+</div>
+<%= footer %>
