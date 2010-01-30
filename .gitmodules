@@ -3,7 +3,7 @@
 	url = git://github.com/thl/thl_integration.git
 [submodule "vendor/plugins/complex_scripts"]
 	path = vendor/plugins/complex_scripts
-	url = git@github.com:thl/complex_scripts.git
+	url = git://github.com/thl/complex_scripts.git
 [submodule "vendor/plugins/kmaps_integration"]
 	path = vendor/plugins/kmaps_integration
-	url = git@github.com:thl/kmaps_integration.git
+	url = git://github.com/thl/kmaps_integration.git
