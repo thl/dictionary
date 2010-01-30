@@ -1,0 +1,14 @@
+.dz, .bo, .bigger input {
+  font-size: 140%;
+  font-family: "Jomolhari", "Kailasa", "XenoType Tibetan New", "Tibetan Machine Uni"!important;
+  line-height: 150%;
+  text-align: left;
+  font-weight: normal;
+}
+
+.ne {
+  font-size: 120%;
+  font-family: "Arial Unicode MS"!important;
+  text-align: left;
+  font-weight: normal;
+}

@@ -21,7 +21,7 @@ module ApplicationHelper
   end
 
   def banner
-      get_content('http://www.thlib.org/global/php/offsite.php?url=/reference/dictionaries/tibetan-dictionary/dictionary-template.php') do |document|
+      get_content('http://www.thlib.org/global/php/offsite.php?url=/reference/dictionaries/tibetan-dictionary/dictionary-offsite.php') do |document|
         content = document.at("//div[@id=masthead-title]")
         $title = content.to_html
         content = document.at("//div[@id=thdlmenu-link-1]")
@@ -209,34 +209,19 @@ module ApplicationHelper
       return resultstr
     end
     
+    def stylesheet_files
+      super + ['modalbox', 'menu', 'http://www.thlib.org/global/css/thdl_style.css', 'http://www.thlib.org//reference/dictionaries/tibetan-dictionary/css/tibetan-dictionary.css', 'thdl_public']
+    end
+
+    def javascript_files
+      super + ['in_place_select_editor', 'modalbox','menu', 'menu_items', 'menu_tpl']
+    end
+    
     def side_column_links
-      
+      ''
     end
-
-    def stylesheets
-      styles = stylesheet_link_tag('base')
-      styles += "\n"
-      styles += stylesheet_link_tag('modalbox')
-      styles += "\n"
-      styles += stylesheet_link_tag('menu')
-      styles += "\n"
-      styles += stylesheet_link_tag('http://www.thlib.org/global/css/thdl_style.css')
-      styles += "\n"
-      styles += stylesheet_link_tag('http://www.thlib.org//reference/dictionaries/tibetan-dictionary/css/tibetan-dictionary.css')
-      styles += "\n"
-      styles += stylesheet_link_tag('thdl_public')
-      
-      return styles
+    
+    def login_status
+      ''
     end
-      
-    def javascripts
-      js = javascript_include_tag :defaults
-      js += "\n"
-      js += javascript_include_tag 'in_place_select_editor'
-      js += "\n"
-      js += javascript_include_tag 'modalbox','menu', 'menu_items', 'menu_tpl'
-      
-      return js
-    end
-
-end
+  end

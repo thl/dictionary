@@ -15,3 +15,4 @@ config.action_controller.perform_caching             = true
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
+require 'ruby-debug'
