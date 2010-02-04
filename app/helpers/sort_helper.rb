@@ -105,7 +105,7 @@ module SortHelper
       icon = nil
       order = 'asc'
     end
-    caption = titleize(Inflector::humanize(column)) unless caption
+    caption = column.humanize.titleize unless caption
 
 	# --------- rwb3y -> added parameters to maintain search form data
 	# flash[query] = the regular search form content
@@ -141,7 +141,7 @@ module SortHelper
       caption = options[:caption]
       options.delete(:caption)
     else
-      caption = titleize(Inflector::humanize(column))
+      caption = column.humanize.titleize
     end
     options[:title]= "Sort by #{caption}" unless options[:title]
     content_tag('th', sort_link(column, caption), options)

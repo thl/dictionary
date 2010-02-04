@@ -2,6 +2,12 @@
 module ApplicationHelper
   def test_helper
   end
+  
+  # Temporary rewriting of this method to avoid conflicts with the new category_selector defined in kmaps_integration;
+  # this method will be removed once this app's references to category_selector jive with the kmaps_integration's 
+  # category_selector. 
+  def category_selector(a1, a2, a3, a4, a5, a6)
+  end
 
   def stylesheet_link_tag_html4( _n )
     return stylesheet_link_tag( _n ).gsub( ' />', '>' )
