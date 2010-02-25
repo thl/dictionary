@@ -7,3 +7,6 @@
 [submodule "vendor/plugins/kmaps_integration"]
 	path = vendor/plugins/kmaps_integration
 	url = git://github.com/thl/kmaps_integration.git
+[submodule "vendor/plugins/tiny_mce"]
+	path = vendor/plugins/tiny_mce
+	url = git://github.com/kete/tiny_mce.git
