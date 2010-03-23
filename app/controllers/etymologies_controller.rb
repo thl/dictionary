@@ -776,6 +776,48 @@ class EtymologiesController < ApplicationController
          end
   end
 
+    def update_etymology
+      @etymology = Etymology.find(params[:etymology][:id])
+      if @etymology.created_by == nil or @etymology.created_by == ""
+        @etymology.created_by = session[:user].login
+        @etymology.created_at = Time.now
+      end
+      if session[:user] != nil
+        @etymology.updated_by = session[:user].login
+      end
+      @etymology.updated_at = Time.now
+      if @etymology.update_history == nil
+        @etymology.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @etymology.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end    
+      respond_to do |format|
+        if @etymology.update_attributes(params[:etymology])
+          format.html do
+            render :partial => 'etymology_show', :locals => {:e => @etymology}
+          end
+          #flash[:notice] = 'Definition was successfully updated.'
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @definition
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @definition
+        end
+      end
+    end
+
+    def etymology_show
+      @etymology = Etymology.find(params[:id])
+      render :partial => "etymology_show", :locals => {:e => @etymology}
+    end
+
+    def etymology_edit
+      @etymology = Etymology.find(params[:id])
+      render :partial => "etymology_edit", :locals => {:e => @etymology}
+    end
+
   def update_analytical_note
     @etymology = Etymology.find(params[:etymology][:id])
     if @etymology.created_by == nil or @etymology.created_by == ""
@@ -813,6 +855,123 @@ class EtymologiesController < ApplicationController
   def analytical_note_edit
     @etymology = Etymology.find(params[:id])
     render :partial => "analytical_note_edit", :locals => {:e => @etymology}
+  end
+  
+  def update_image_description
+    @etymology = Etymology.find(params[:etymology][:id])
+    if @etymology.created_by == nil or @etymology.created_by == ""
+      @etymology.created_by = session[:user].login
+      @etymology.created_at = Time.now
+    end
+    if session[:user] != nil
+      @etymology.updated_by = session[:user].login
+    end
+    @etymology.updated_at = Time.now
+    if @etymology.update_history == nil
+      @etymology.update_history = session[:user].login + " ["+Time.now.to_s+"]
+"
+    else
+      @etymology.update_history += session[:user].login + " ["+Time.now.to_s+"]
+"
+    end    
+    respond_to do |format|
+      if @etymology.update_attributes(params[:etymology])
+        format.html do
+          render :partial => 'image_description_show', :locals => {:e => @etymology}
+        end
+      else
+        #redirect_to :action => 'index_edit'
+        #redirect_to :action => 'public_edit', :id => @definition
+      end
+    end
+  end
+
+  def image_description_show
+    @etymology = Etymology.find(params[:id])
+    render :partial => "image_description_show", :locals => {:e => @etymology}
+  end
+
+  def image_description_edit
+    @etymology = Etymology.find(params[:id])
+    render :partial => "image_description_edit", :locals => {:e => @etymology}
+  end 
+
+  def update_audio_description
+    @etymology = Etymology.find(params[:etymology][:id])
+    if @etymology.created_by == nil or @etymology.created_by == ""
+      @etymology.created_by = session[:user].login
+      @etymology.created_at = Time.now
+    end
+    if session[:user] != nil
+      @etymology.updated_by = session[:user].login
+    end
+    @etymology.updated_at = Time.now
+    if @etymology.update_history == nil
+      @etymology.update_history = session[:user].login + " ["+Time.now.to_s+"]
+"
+    else
+      @etymology.update_history += session[:user].login + " ["+Time.now.to_s+"]
+"
+    end    
+    respond_to do |format|
+      if @etymology.update_attributes(params[:etymology])
+        format.html do
+          render :partial => 'audio_description_show', :locals => {:e => @etymology}
+        end
+      else
+        #redirect_to :action => 'index_edit'
+        #redirect_to :action => 'public_edit', :id => @definition
+      end
+    end
+  end
+
+  def audio_description_show
+    @etymology = Etymology.find(params[:id])
+    render :partial => "audio_description_show", :locals => {:e => @etymology}
+  end
+
+  def audio_description_edit
+    @etymology = Etymology.find(params[:id])
+    render :partial => "audio_description_edit", :locals => {:e => @etymology}
+  end 
+
+  def update_video_description
+    @etymology = Etymology.find(params[:etymology][:id])
+    if @etymology.created_by == nil or @etymology.created_by == ""
+      @etymology.created_by = session[:user].login
+      @etymology.created_at = Time.now
+    end
+    if session[:user] != nil
+      @etymology.updated_by = session[:user].login
+    end
+    @etymology.updated_at = Time.now
+    if @etymology.update_history == nil
+      @etymology.update_history = session[:user].login + " ["+Time.now.to_s+"]
+"
+    else
+      @etymology.update_history += session[:user].login + " ["+Time.now.to_s+"]
+"
+    end    
+    respond_to do |format|
+      if @etymology.update_attributes(params[:etymology])
+        format.html do
+          render :partial => 'video_description_show', :locals => {:e => @etymology}
+        end
+      else
+        #redirect_to :action => 'index_edit'
+        #redirect_to :action => 'public_edit', :id => @definition
+      end
+    end
+  end
+
+  def video_description_show
+    @etymology = Etymology.find(params[:id])
+    render :partial => "video_description_show", :locals => {:e => @etymology}
+  end
+
+  def video_description_edit
+    @etymology = Etymology.find(params[:id])
+    render :partial => "video_description_edit", :locals => {:e => @etymology}
   end
   
 end

@@ -1603,6 +1603,7 @@ module DefinitionsHelper
     #  @definition.definition = 'Click to modify definition'
     #end
     #resultstr << in_place_editor_field( :definition, :definition, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[definition]'}) +"<br>"
+    resultstr << "<span class='definitions_show'>"
     resultstr << "<div id='" + "#{@definition.id}_defdiv" + "'>"
     edit_path = definition_edit_url(:id => @definition.id)
     if @definition.definition == nil or @definition.definition == ''
@@ -1612,6 +1613,8 @@ module DefinitionsHelper
     end    
     resultstr << link_to_remote(t_definition, :url => edit_path, :update => "#{@definition.id}_defdiv", :method => :get ) 
     resultstr << "</div>"
+    resultstr << "</span>"
+    
     resultstr << "<b>Language of definition: </b>"
     
     resultstr << "<input type=hidden name=internal_definition[language] id=internal_definition[language] value=\""+@definition.language.to_s+"\" >"
@@ -1809,6 +1812,7 @@ module DefinitionsHelper
     #  @definition.analytical_note = 'Click to modify'
     #end
     #resultstr << in_place_editor_field( :definition, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[analytical_note]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@definition.id}_anotediv" + "'>"
     edit_path = analytical_note_edit_url(:id => @definition.id)
     if @definition.analytical_note == nil or @definition.analytical_note == ''
@@ -1818,6 +1822,7 @@ module DefinitionsHelper
     end  
     resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@definition.id}_anotediv", :method => :get ) 
     resultstr << "</div>"
+    resultstr << "</span>"
     
 		resultstr <<	"<span id=\"show_av_"+@definition.id.to_s+"\"><b>Edit Multimedia Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_"+@definition.id.to_s+"');Element.show('hide_av_"+@definition.id.to_s+"');Element.show('av_definition_"+@definition.id.to_s+"');", :title => 'Show')+"</span>"
 		resultstr <<	"<span id=\"hide_av_"+@definition.id.to_s+"\" style=\"display:none\"><b>Hide Multimedia Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_"+@definition.id.to_s+"');Element.show('show_av_"+@definition.id.to_s+"');Element.hide('av_definition_"+@definition.id.to_s+"');", :title => 'Hide')+"</span>"
@@ -1854,6 +1859,7 @@ module DefinitionsHelper
     #  @definition.image_description = 'Click to modify'
     #end
     #resultstr << in_place_editor_field( :definition, :image_description, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[image_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@definition.id}_imagedescdiv" + "'>"
     edit_path = image_description_edit_url(:id => @definition.id)
     if @definition.image_description == nil or @definition.image_description == ''
@@ -1863,6 +1869,7 @@ module DefinitionsHelper
     end    
     resultstr << link_to_remote(t_imagedescription, :url => edit_path, :update => "#{@definition.id}_imagedescdiv", :method => :get ) 
     resultstr << "</div>"  
+    resultstr << "</span>"
     resultstr << "<b>Audio: </b>"
     resultstr << "<input type=hidden name=internal_definition[audio] id=internal_definition[audio] value=\""+@definition.audio.to_s+"\" >"
     if @definition.audio == nil or @definition.audio == ''
@@ -1905,6 +1912,7 @@ module DefinitionsHelper
     #  @definition.audio_description = 'Click to modify'
     #end
     #resultstr << in_place_editor_field( :definition, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[audio_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@definition.id}_audiodescdiv" + "'>"
     edit_path = audio_description_edit_url(:id => @definition.id)
     if @definition.audio_description == nil or @definition.audio_description == ''
@@ -1914,6 +1922,7 @@ module DefinitionsHelper
     end    
     resultstr << link_to_remote(t_audiodescription, :url => edit_path, :update => "#{@definition.id}_audiodescdiv", :method => :get ) 
     resultstr << "</div>" 
+    resultstr << "</span>"
     resultstr << "<b>Video: </b>"
     resultstr << "<input type=hidden name=internal_definition[video] id=internal_definition[video] value=\""+@definition.video.to_s+"\" >"
     if @definition.video == nil or @definition.video == ''
@@ -1957,6 +1966,7 @@ module DefinitionsHelper
     #  @definition.video_description = 'Click to modify'
     #end
     #resultstr << in_place_editor_field( :definition, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[video_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@definition.id}_videodescdiv" + "'>"
     edit_path = video_description_edit_url(:id => @definition.id)
     if @definition.video_description == nil or @definition.video_description == ''
@@ -1966,6 +1976,7 @@ module DefinitionsHelper
     end    
     resultstr << link_to_remote(t_videodescription, :url => edit_path, :update => "#{@definition.id}_videodescdiv", :method => :get ) 
     resultstr << "</div>" 
+    resultstr << "</span>"
     
     resultstr << "</dd></dl></span>"
   end

@@ -1,0 +1,7 @@
+<% edit_path = etymology_video_description_edit_url(:id => e.id) %>
+<% if e.video_description == nil or e.video_description == ''
+  t_videodescription = 'Click to modify'
+else
+  t_videodescription = e.video_description  
+end %>
+<%=  "#{link_to_remote("#{t_videodescription}", :url => edit_path, :update => "#{e.id}_videodescdiv", :method => :get ) }" %>

@@ -409,10 +409,22 @@ module EtymologiesHelper
     resultstr = ""
     resultstr << "<b>Etymology: </b>"
     resultstr << "<input type=hidden name=etymology[etymology] id=etymology[etymology] value=\""+@etymology.etymology.to_s+"\" >"
+    #if @etymology.etymology == nil or @etymology.etymology == ''
+    #  @etymology.etymology = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :etymology, :etymology, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[etymology]'}) +"<br>"
+    resultstr << "<span class='etymologies_show'>"
+    resultstr << "<div id='" + "#{@etymology.id}_etydiv" + "'>"
+    edit_path = etymology_edit_url(:id => @etymology.id)
     if @etymology.etymology == nil or @etymology.etymology == ''
-      @etymology.etymology = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :etymology, :etymology, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[etymology]'}) +"<br>"
+      t_etymology = 'Click to modify etymology'
+    else
+      t_etymology = @etymology.etymology      
+    end    
+    resultstr << link_to_remote(t_etymology, :url => edit_path, :update => "#{@etymology.id}_etydiv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
     resultstr << "<b>Etymology type: </b>"
     resultstr << "<input type=hidden name=etymology[etymology_type] id=etymology[etymology_type] value=\""+@etymology.etymology_type.to_s+"\" >"
     if @etymology.etymology_category == nil
@@ -538,15 +550,21 @@ module EtymologiesHelper
 
     resultstr << "<b>Analytical note: </b>"
     resultstr << "<input type=hidden name=etymology[analytical_note] id=etymology[analytical_note] value=\""+@etymology.analytical_note.to_s+"\" >"
-    if @etymology.analytical_note == nil or @etymology.analytical_note == ''
-      @etymology.analytical_note = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :etymology, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[analytical_note]'}) +"<br>"
+    #if @etymology.analytical_note == nil or @etymology.analytical_note == ''
+    #  @etymology.analytical_note = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :etymology, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[analytical_note]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@etymology.id}_anotediv" + "'>"
     edit_path = etymology_analytical_note_edit_url(:id => @etymology.id)
-    t_analytical = @etymology.analytical_note
+    if @etymology.analytical_note == nil or @etymology.analytical_note == ''
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @etymology.analytical_note      
+    end    
     resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@etymology.id}_anotediv", :method => :get ) 
     resultstr << "</div>"
+    resultstr << "</span>"
     
 		resultstr <<	"<span id=\"show_av_etymology"+@etymology.id.to_s+"\"><b>Edit Multimedia Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_etymology"+@etymology.id.to_s+"');Element.show('hide_av_etymology"+@etymology.id.to_s+"');Element.show('av_etymology_"+@etymology.id.to_s+"');", :title => 'Show')+"</span>"
 		resultstr <<	"<span id=\"hide_av_etymology"+@etymology.id.to_s+"\" style=\"display:none\"><b>Hide Multimedia Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_etymology"+@etymology.id.to_s+"');Element.show('show_av_etymology"+@etymology.id.to_s+"');Element.hide('av_etymology_"+@etymology.id.to_s+"');", :title => 'Hide')+"</span>"
@@ -578,10 +596,22 @@ module EtymologiesHelper
     resultstr << in_place_form_editor_field( :etymology, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[image_link]'}) +"<br>"
     resultstr << "<b>Image description: </b>"
     resultstr << "<input type=hidden name=etymology[image_description] id=etymology[image_description] value=\""+@etymology.image_description.to_s+"\" >"
+    #if @etymology.image_description == nil or @etymology.image_description == ''
+    #  @etymology.image_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :etymology, :image_description, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[image_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@etymology.id}_imagedescdiv" + "'>"
+    edit_path = etymology_image_description_edit_url(:id => @etymology.id)
     if @etymology.image_description == nil or @etymology.image_description == ''
-      @etymology.image_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :etymology, :image_description, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[image_description]'}) +"<br>"
+      t_imagedescription = 'Click to modify'
+    else
+      t_imagedescription = @etymology.image_description     
+    end    
+    resultstr << link_to_remote(t_imagedescription, :url => edit_path, :update => "#{@etymology.id}_imagedescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
     resultstr << "<b>Audio: </b>"
     resultstr << "<input type=hidden name=etymology[audio] id=etymology[audio] value=\""+@etymology.audio.to_s+"\" >"
     if @etymology.audio == nil or @etymology.audio == ''
@@ -620,10 +650,22 @@ module EtymologiesHelper
     resultstr << in_place_form_editor_field( :etymology, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[audio_link]'}) +"<br>"
     resultstr << "<b>Audio description: </b>"
     resultstr << "<input type=hidden name=etymology[audio_description] id=etymology[audio_description] value=\""+@etymology.audio_description.to_s+"\" >"
+    #if @etymology.audio_description == nil or @etymology.audio_description == ''
+    #  @etymology.audio_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :etymology, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[audio_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@etymology.id}_audiodescdiv" + "'>"
+    edit_path = etymology_audio_description_edit_url(:id => @etymology.id)
     if @etymology.audio_description == nil or @etymology.audio_description == ''
-      @etymology.audio_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :etymology, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[audio_description]'}) +"<br>"
+      t_audiodescription = 'Click to modify'
+    else
+      t_audiodescription = @etymology.audio_description     
+    end    
+    resultstr << link_to_remote(t_audiodescription, :url => edit_path, :update => "#{@etymology.id}_audiodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
     resultstr << "<b>Video: </b>"
     resultstr << "<input type=hidden name=etymology[video] id=etymology[video] value=\""+@etymology.video.to_s+"\" >"
     if @etymology.video == nil or @etymology.video == ''
@@ -662,10 +704,22 @@ module EtymologiesHelper
     resultstr << in_place_form_editor_field( :etymology, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[video_link]'}) +"<br>"
     resultstr << "<b>Video description: </b>"
     resultstr << "<input type=hidden name=etymology[video_description] id=etymology[video_description] value=\""+@etymology.video_description.to_s+"\" >"
+    #if @etymology.video_description == nil or @etymology.video_description == ''
+    #  @etymology.video_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :etymology, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[video_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@etymology.id}_videodescdiv" + "'>"
+    edit_path = etymology_video_description_edit_url(:id => @etymology.id)
     if @etymology.video_description == nil or @etymology.video_description == ''
-      @etymology.video_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :etymology, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[video_description]'}) +"<br>"
+      t_videodescription = 'Click to modify'
+    else
+      t_videodescription = @etymology.video_description     
+    end    
+    resultstr << link_to_remote(t_videodescription, :url => edit_path, :update => "#{@etymology.id}_videodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+    
     resultstr << "</dd></dl></span>"
   end
 

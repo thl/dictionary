@@ -311,7 +311,9 @@
 				<% if e.etymology_category != nil %>
 					<i><%= e.etymology_category.title %></i>&nbsp;
 				<% end %>
+			<span class="etymologies_show">	
 			<%= e.etymology.s if e.etymology != nil %>
+			</span>
 			<dl style="margin-top:0em;margin-bottom:0em;">
 				<dd style="display:none"></dd>
 			<% if e.loan_language != nil and e.loan_language != ''%>
