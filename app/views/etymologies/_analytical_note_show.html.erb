@@ -1,0 +1,2 @@
+<% edit_path = etymology_analytical_note_edit_url(:id => e.id) %>
+<%=  "#{link_to_remote("#{e.analytical_note}", :url => edit_path, :update => "#{e.id}_anotediv", :method => :get ) }" %>

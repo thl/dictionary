@@ -542,7 +542,12 @@ module EtymologiesHelper
       @etymology.analytical_note = 'Click to modify'
     end
     resultstr << in_place_form_editor_field( :etymology, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[analytical_note]'}) +"<br>"
-
+    resultstr << "<div id='" + "#{@etymology.id}_anotediv" + "'>"
+    edit_path = etymology_analytical_note_edit_url(:id => @etymology.id)
+    t_analytical = @etymology.analytical_note
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@etymology.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    
 		resultstr <<	"<span id=\"show_av_etymology"+@etymology.id.to_s+"\"><b>Edit Multimedia Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_etymology"+@etymology.id.to_s+"');Element.show('hide_av_etymology"+@etymology.id.to_s+"');Element.show('av_etymology_"+@etymology.id.to_s+"');", :title => 'Show')+"</span>"
 		resultstr <<	"<span id=\"hide_av_etymology"+@etymology.id.to_s+"\" style=\"display:none\"><b>Hide Multimedia Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_etymology"+@etymology.id.to_s+"');Element.show('show_av_etymology"+@etymology.id.to_s+"');Element.hide('av_etymology_"+@etymology.id.to_s+"');", :title => 'Hide')+"</span>"
     

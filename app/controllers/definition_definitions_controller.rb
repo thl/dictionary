@@ -8,6 +8,7 @@ class DefinitionDefinitionsController < ApplicationController
 
 
   DefinitionDefinition.content_columns.each do |column|
+    debugger
     in_place_update_form :definition_definition, column.name
   end
   Definition.content_columns.each do |column|

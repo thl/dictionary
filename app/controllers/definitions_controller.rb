@@ -2218,6 +2218,200 @@ end
       end
   end
 
+  def update_definition
+    @definition = Definition.find(params[:definition][:id])
+    if @definition.created_by == nil or @definition.created_by == ""
+      @definition.created_by = session[:user].login
+      @definition.created_at = Time.now
+    end
+    if session[:user] != nil
+      @definition.updated_by = session[:user].login
+    end
+    @definition.updated_at = Time.now
+    if @definition.update_history == nil
+      @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+    else
+    	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+    end   
+    respond_to do |format|
+      if @definition.update_attributes(params[:definition])
+        format.html do
+          render :partial => 'definition_show', :locals => {:d => @definition}
+        end
+        #flash[:notice] = 'Definition was successfully updated.'
+        #redirect_to :action => 'index_edit'
+        #redirect_to :action => 'public_edit', :id => @definition
+      else
+        #redirect_to :action => 'index_edit'
+        #redirect_to :action => 'public_edit', :id => @definition
+      end
+    end
+  end
+  
+  def definition_show
+    @definition = Definition.find(params[:id])
+    render :partial => "definition_show", :locals => {:d => @definition}
+  end
+  
+  def definition_edit
+    @definition = Definition.find(params[:id])
+    render :partial => "definition_edit", :locals => {:d => @definition}
+  end
+
+  def update_analytical_note
+     @definition = Definition.find(params[:definition][:id])
+     if @definition.created_by == nil or @definition.created_by == ""
+       @definition.created_by = session[:user].login
+       @definition.created_at = Time.now
+     end
+     if session[:user] != nil
+       @definition.updated_by = session[:user].login
+     end
+     @definition.updated_at = Time.now
+     if @definition.update_history == nil
+       @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+     else
+     	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end   
+     respond_to do |format|
+       if @definition.update_attributes(params[:definition])
+         format.html do
+           render :partial => 'analytical_note_show', :locals => {:d => @definition}
+         end
+       else
+         #redirect_to :action => 'index_edit'
+         #redirect_to :action => 'public_edit', :id => @definition
+       end
+     end
+   end
+  
+  def analytical_note_show
+    @definition = Definition.find(params[:id])
+    render :partial => "analytical_note_show", :locals => {:d => @definition}
+  end
+  
+  def analytical_note_edit
+    @definition = Definition.find(params[:id])
+    render :partial => "analytical_note_edit", :locals => {:d => @definition}
+  end
+  
+   def update_image_description
+     @definition = Definition.find(params[:definition][:id])
+     if @definition.created_by == nil or @definition.created_by == ""
+       @definition.created_by = session[:user].login
+       @definition.created_at = Time.now
+     end
+     if session[:user] != nil
+       @definition.updated_by = session[:user].login
+     end
+     @definition.updated_at = Time.now
+     if @definition.update_history == nil
+       @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+     else
+     	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end   
+     respond_to do |format|
+       if @definition.update_attributes(params[:definition])
+         format.html do
+           render :partial => 'image_description_show', :locals => {:d => @definition}
+         end
+       else
+         #redirect_to :action => 'index_edit'
+         #redirect_to :action => 'public_edit', :id => @definition
+       end
+     end
+   end
+
+  def image_description_show
+     @definition = Definition.find(params[:id])
+     render :partial => "image_description_show", :locals => {:d => @definition}
+  end
+
+  def image_description_edit
+     @definition = Definition.find(params[:id])
+     render :partial => "image_description_edit", :locals => {:d => @definition}
+  end 
+
+   def update_audio_description
+     @definition = Definition.find(params[:definition][:id])
+     if @definition.created_by == nil or @definition.created_by == ""
+       @definition.created_by = session[:user].login
+       @definition.created_at = Time.now
+     end
+     if session[:user] != nil
+       @definition.updated_by = session[:user].login
+     end
+     @definition.updated_at = Time.now
+     if @definition.update_history == nil
+       @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+     else
+     	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end   
+     respond_to do |format|
+       if @definition.update_attributes(params[:definition])
+         format.html do
+           render :partial => 'audio_description_show', :locals => {:d => @definition}
+         end
+       else
+         #redirect_to :action => 'index_edit'
+         #redirect_to :action => 'public_edit', :id => @definition
+       end
+     end
+   end
+
+  def audio_description_show
+     @definition = Definition.find(params[:id])
+     render :partial => "audio_description_show", :locals => {:d => @definition}
+  end
+
+  def audio_description_edit
+     @definition = Definition.find(params[:id])
+     render :partial => "audio_description_edit", :locals => {:d => @definition}
+  end 
+
+   def update_video_description
+     @definition = Definition.find(params[:definition][:id])
+     if @definition.created_by == nil or @definition.created_by == ""
+       @definition.created_by = session[:user].login
+       @definition.created_at = Time.now
+     end
+     if session[:user] != nil
+       @definition.updated_by = session[:user].login
+     end
+     @definition.updated_at = Time.now
+     if @definition.update_history == nil
+       @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+     else
+     	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end   
+     respond_to do |format|
+       if @definition.update_attributes(params[:definition])
+         format.html do
+           render :partial => 'video_description_show', :locals => {:d => @definition}
+         end
+       else
+         #redirect_to :action => 'index_edit'
+         #redirect_to :action => 'public_edit', :id => @definition
+       end
+     end
+   end
+
+  def video_description_show
+     @definition = Definition.find(params[:id])
+     render :partial => "video_description_show", :locals => {:d => @definition}
+  end
+
+  def video_description_edit
+     @definition = Definition.find(params[:id])
+     render :partial => "video_description_edit", :locals => {:d => @definition}
+  end
+        
+  def tinymce_text_area
+    @definition = Definition.find(params[:id])
+    
+    render :layout => 'staging_new' #'definitions' #'staging_new'
+  end
+  
   def public_destroy
     dd = DefinitionDefinition.find(:first, :conditions => 'def2_id = '+params[:id]+' and def1_id = '+params['parent_id'])
     dd.destroy unless dd == nil

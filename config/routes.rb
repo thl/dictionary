@@ -1,5 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources(:categories, :member => {:expand => :get, :contract => :get}) { |category| category.resources(:children, :controller => 'categories', :member => {:expand => :get, :contract => :get}) }
+  #map.definition_edit 'definition_edit', :controller => 'definitions', :action => 'definition_edit'
+  #map.resources :definitions, :member => {:definition_edit => :get}
+  map.definition_edit 'definitions/:id/definition_edit', :controller => 'definitions', :action => 'definition_edit'
+  map.analytical_note_edit 'definitions/:id/analytical_note_edit', :controller => 'definitions', :action => 'analytical_note_edit'
+  map.image_description_edit 'definitions/:id/image_description_edit', :controller => 'definitions', :action => 'image_description_edit'
+  map.audio_description_edit 'definitions/:id/audio_description_edit', :controller => 'definitions', :action => 'audio_description_edit'
+  map.video_description_edit 'definitions/:id/video_description_edit', :controller => 'definitions', :action => 'video_description_edit'
+  map.etymology_analytical_note_edit 'etymologies/:id/analytical_note_edit', :controller => 'etymologies', :action => 'analytical_note_edit'
+  map.etymology_image_description_edit 'etymologies/:id/image_description_edit', :controller => 'etymologies', :action => 'image_description_edit'
+  map.etymology_audio_description_edit 'etymologies/:id/audio_description_edit', :controller => 'etymologies', :action => 'audio_description_edit'
+  map.etymology_video_description_edit 'etymologies/:id/video_description_edit', :controller => 'etymologies', :action => 'video_description_edit'
+ 
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
