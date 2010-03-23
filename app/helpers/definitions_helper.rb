@@ -1,6 +1,6 @@
 module DefinitionsHelper
   def javascripts
-    [super].join("\n")
+    [super, include_tiny_mce_if_needed].join("\n")
   end
   def get_themes
     theme_ones = ThemeLevelOne.find(:all)
