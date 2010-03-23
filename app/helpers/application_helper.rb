@@ -220,7 +220,7 @@ module ApplicationHelper
     end
 
     def javascript_files
-      super + ['in_place_select_editor', 'modalbox','menu', 'menu_items', 'menu_tpl', 'tiny_mce/tiny_mce_src']
+      super + ['in_place_select_editor', 'modalbox','menu', 'menu_items', 'menu_tpl']
     end
     
     def side_column_links
