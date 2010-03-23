@@ -1599,10 +1599,10 @@ module DefinitionsHelper
     resultstr << in_place_editor_select_field( :definition, :level, {}, {:collection => @level})+"<br>"
     resultstr << "<b>Definition: </b>"
     resultstr << "<input type=hidden name=internal_definition[definition] id=internal_definition[definition] value=\""+@definition.definition.to_s+"\" >"
-    if @definition.definition == nil or @definition.definition == ''
-      @definition.definition = 'Click to modify definition'
-    end
-    resultstr << in_place_editor_field( :definition, :definition, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[definition]'}) +"<br>"
+    #if @definition.definition == nil or @definition.definition == ''
+    #  @definition.definition = 'Click to modify definition'
+    #end
+    #resultstr << in_place_editor_field( :definition, :definition, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[definition]'}) +"<br>"
     resultstr << "<div id='" + "#{@definition.id}_defdiv" + "'>"
     edit_path = definition_edit_url(:id => @definition.id)
     if @definition.definition == nil or @definition.definition == ''
@@ -1805,10 +1805,10 @@ module DefinitionsHelper
 
     resultstr << "<b>Analytical note: </b>"
     resultstr << "<input type=hidden name=internal_definition[analytical_note] id=internal_definition[analytical_note] value=\""+@definition.analytical_note.to_s+"\" >"
-    if @definition.analytical_note == nil or @definition.analytical_note == ''
-      @definition.analytical_note = 'Click to modify'
-    end
-    resultstr << in_place_editor_field( :definition, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[analytical_note]'}) +"<br>"
+    #if @definition.analytical_note == nil or @definition.analytical_note == ''
+    #  @definition.analytical_note = 'Click to modify'
+    #end
+    #resultstr << in_place_editor_field( :definition, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[analytical_note]'}) +"<br>"
     resultstr << "<div id='" + "#{@definition.id}_anotediv" + "'>"
     edit_path = analytical_note_edit_url(:id => @definition.id)
     if @definition.analytical_note == nil or @definition.analytical_note == ''
@@ -1850,10 +1850,10 @@ module DefinitionsHelper
     resultstr << in_place_editor_field( :definition, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[image_link]'}) +"<br>"
     resultstr << "<b>Image description: </b>"
     resultstr << "<input type=hidden name=internal_definition[image_description] id=internal_definition[image_description] value=\""+@definition.image_description.to_s+"\" >"
-    if @definition.image_description == nil or @definition.image_description == ''
-      @definition.image_description = 'Click to modify'
-    end
-    resultstr << in_place_editor_field( :definition, :image_description, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[image_description]'}) +"<br>"
+    #if @definition.image_description == nil or @definition.image_description == ''
+    #  @definition.image_description = 'Click to modify'
+    #end
+    #resultstr << in_place_editor_field( :definition, :image_description, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[image_description]'}) +"<br>"
     resultstr << "<div id='" + "#{@definition.id}_imagedescdiv" + "'>"
     edit_path = image_description_edit_url(:id => @definition.id)
     if @definition.image_description == nil or @definition.image_description == ''
@@ -1901,10 +1901,10 @@ module DefinitionsHelper
     resultstr << in_place_editor_field( :definition, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[audio_link]'}) +"<br>"
     resultstr << "<b>Audio description: </b>"
     resultstr << "<input type=hidden name=internal_definition[audio_description] id=internal_definition[audio_description] value=\""+@definition.audio_description.to_s+"\" >"
-    if @definition.audio_description == nil or @definition.audio_description == ''
-      @definition.audio_description = 'Click to modify'
-    end
-    resultstr << in_place_editor_field( :definition, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[audio_description]'}) +"<br>"
+    #if @definition.audio_description == nil or @definition.audio_description == ''
+    #  @definition.audio_description = 'Click to modify'
+    #end
+    #resultstr << in_place_editor_field( :definition, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[audio_description]'}) +"<br>"
     resultstr << "<div id='" + "#{@definition.id}_audiodescdiv" + "'>"
     edit_path = audio_description_edit_url(:id => @definition.id)
     if @definition.audio_description == nil or @definition.audio_description == ''
@@ -1953,10 +1953,10 @@ module DefinitionsHelper
     
     resultstr << "<b>Video description: </b>"
     resultstr << "<input type=hidden name=internal_definition[video_description] id=internal_definition[video_description] value=\""+@definition.audio_description.to_s+"\" >"
-    if @definition.video_description == nil or @definition.video_description == ''
-      @definition.video_description = 'Click to modify'
-    end
-    resultstr << in_place_editor_field( :definition, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[video_description]'}) +"<br>"
+    #if @definition.video_description == nil or @definition.video_description == ''
+    #  @definition.video_description = 'Click to modify'
+    #end
+    #resultstr << in_place_editor_field( :definition, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[video_description]'}) +"<br>"
     resultstr << "<div id='" + "#{@definition.id}_videodescdiv" + "'>"
     edit_path = video_description_edit_url(:id => @definition.id)
     if @definition.video_description == nil or @definition.video_description == ''
