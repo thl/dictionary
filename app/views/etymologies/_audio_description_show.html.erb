@@ -1,0 +1,7 @@
+<% edit_path = etymology_audio_description_edit_url(:id => e.id) %>
+<% if e.audio_description == nil or e.audio_description == ''
+  t_audiodescription = 'Click to modify'
+else
+  t_audiodescription = e.audio_description  
+end %>
+<%=  "#{link_to_remote("#{t_audiodescription}", :url => edit_path, :update => "#{e.id}_audiodescdiv", :method => :get ) }" %>

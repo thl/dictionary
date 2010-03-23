@@ -1,0 +1,7 @@
+<% edit_path = etymology_image_description_edit_url(:id => e.id) %>
+<% if e.image_description == nil or e.image_description == ''
+  t_imagedescription = 'Click to modify'
+else
+  t_imagedescription = e.image_description     
+end %>
+<%=  "#{link_to_remote("#{t_imagedescription}", :url => edit_path, :update => "#{e.id}_imagedescdiv", :method => :get ) }" %>
