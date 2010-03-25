@@ -241,6 +241,10 @@ module ApplicationHelper
         "audio_description_show"
       when "video_description_edit"
         "video_description_show"
+      when "metadata_note_edit"
+        "metadata_note_show"
+      when "passage_edit"
+        "passage_show"  
       end
     end
     
@@ -254,6 +258,10 @@ module ApplicationHelper
         "update_audio_description"
       when "video_description_edit"
         "update_video_description"
+      when "metadata_note_edit"
+        "update_metadata_note"
+      when "passage_edit"
+        "update_passage"    
       end
     end
     
@@ -268,7 +276,7 @@ module ApplicationHelper
         when "pronunciations"
           pronunciation_analytical_note_edit_url(:id => id)
         when "literary_quotations"
-          literary_quotation_analytical_note_edit_url(:id => id)
+          literary_quotation_analytical_note_edit_url(:id => id)  
         end
       when "update_image_description", "image_description_show"
         case controller
@@ -303,7 +311,17 @@ module ApplicationHelper
           when "literary_quotations"
             literary_quotation_video_description_edit_url(:id => id)  
         end
-      end          
+      when "update_passage", "passage_show"
+        case controller
+          when "literary_quotations"
+            literary_quotation_passage_edit_url(:id => id)  
+        end  
+      when "update_metadata_note", "metadata_note_show"
+        case controller
+          when "metas"
+            meta_metadata_note_edit_url(:id => id)  
+        end
+      end            
     end
     
     def tinymce_field(edit_action)
@@ -316,6 +334,10 @@ module ApplicationHelper
         "audio_description"
       when "video_description_edit"
         "video_description"
+      when "metadata_note_edit"
+        "metadata_note"  
+      when "passage_edit"
+        "passage"  
       end
     end
     
@@ -329,6 +351,10 @@ module ApplicationHelper
         "audio_description"
       when "update_video_description", "video_description_show"
         "video_description"
+      when "update_metadata_note", "metadata_note_show"
+        "metadata_note"
+      when "update_passage", "passage_show"
+        "passage"      
       end
     end
     

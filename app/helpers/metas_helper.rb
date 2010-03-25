@@ -211,10 +211,23 @@ module MetasHelper
 
     resultstr << "<b>Metadata note: </b>"
     resultstr << "<input type=hidden name=meta[metadata_note] id=meta[metadata_note] value=\""+@meta.metadata_note.to_s+"\" >"
+    #if @meta.metadata_note == nil or @meta.metadata_note == ''
+    #  @meta.metadata_note = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :meta, :metadata_note, {}, {:cols => 80, :rows => 10, :fieldname => 'meta[metadata_note]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@meta.id}_anotediv" + "'>"
+    edit_path = meta_metadata_note_edit_url(:id => @meta.id)
     if @meta.metadata_note == nil or @meta.metadata_note == ''
-      @meta.metadata_note = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :meta, :metadata_note, {}, {:cols => 80, :rows => 10, :fieldname => 'meta[metadata_note]'}) +"<br>"
+      t_note = 'Click to modify'
+    else
+      t_note = @meta.metadata_note      
+    end    
+    resultstr << link_to_remote(t_note, :url => edit_path, :update => "#{@meta.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
+
     resultstr << "<b>Precedence: </b>"
     resultstr << "<input type=hidden name=meta[precedence] id=meta[precedence] value=\""+@meta.precedence.to_s+"\" >"
     if @meta.precedence == nil or @meta.precedence == ''

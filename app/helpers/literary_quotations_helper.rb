@@ -680,10 +680,22 @@ module LiteraryQuotationsHelper
     # resultstr << in_place_form_editor_field( :literary_quotation, :author, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[author]'}) +"<br>"
     resultstr << "<b>Passage: </b>"
     resultstr << "<input type=hidden name=literary_quotation[passage] id=literary_quotation[passage] value=\""+@literary_quotation.passage.to_s+"\" >"
+    #if @literary_quotation.passage == nil or @literary_quotation.passage == ''
+    #  @literary_quotation.passage = 'Click to modify'
+    #end
+    #resultstr << '<br>'+in_place_form_editor_field( :literary_quotation, :passage, {}, {:cols => 50, :rows => 3, :fieldname => 'literary_quotation[passage]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@literary_quotation.id}_passagediv" + "'>"
+    edit_path = literary_quotation_passage_edit_url(:id => @literary_quotation.id)
     if @literary_quotation.passage == nil or @literary_quotation.passage == ''
-      @literary_quotation.passage = 'Click to modify'
-    end
-    resultstr << '<br>'+in_place_form_editor_field( :literary_quotation, :passage, {}, {:cols => 50, :rows => 3, :fieldname => 'literary_quotation[passage]'}) +"<br>"
+      t_passage = 'Click to modify'
+    else
+      t_passage = @literary_quotation.passage     
+    end    
+    resultstr << link_to_remote(t_passage, :url => edit_path, :update => "#{@literary_quotation.id}_passagediv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+    
     resultstr << "<b>Spelling: </b>"
     resultstr << "<input type=hidden name=literary_quotation[spelling] id=literary_quotation[spelling] value=\""+@literary_quotation.spelling.to_s+"\" >"
     if @literary_quotation.spelling == nil or @literary_quotation.spelling == ''

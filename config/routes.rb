@@ -16,10 +16,12 @@ ActionController::Routing::Routes.draw do |map|
   map.pronunciation_image_description_edit 'pronunciations/:id/image_description_edit', :controller => 'pronunciations', :action => 'image_description_edit'
   map.pronunciation_audio_description_edit 'pronunciations/:id/audio_description_edit', :controller => 'pronunciations', :action => 'audio_description_edit'
   map.pronunciation_video_description_edit 'pronunciations/:id/video_description_edit', :controller => 'pronunciations', :action => 'video_description_edit'
+  map.literary_quotation_passage_edit 'literary_quotations/:id/passage_edit', :controller => 'literary_quotations', :action => 'passage_edit'
   map.literary_quotation_analytical_note_edit 'literary_quotations/:id/analytical_note_edit', :controller => 'literary_quotations', :action => 'analytical_note_edit'
   map.literary_quotation_image_description_edit 'literary_quotations/:id/image_description_edit', :controller => 'literary_quotations', :action => 'image_description_edit'
   map.literary_quotation_audio_description_edit 'literary_quotations/:id/audio_description_edit', :controller => 'literary_quotations', :action => 'audio_description_edit'
   map.literary_quotation_video_description_edit 'literary_quotations/:id/video_description_edit', :controller => 'literary_quotations', :action => 'video_description_edit'
+  map.meta_metadata_note_edit 'metas/:id/metadata_note_edit', :controller => 'metas', :action => 'metadata_note_edit'
  
   # The priority is based upon order of creation: first created -> highest priority.
 
