@@ -863,10 +863,22 @@ module LiteraryQuotationsHelper
     # resultstr << in_place_form_editor_field( :literary_quotation, :page_image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[page_image_link]'}) +"<br>"
     resultstr << "<b>Analytical note: </b>"
     resultstr << "<input type=hidden name=literary_quotation[analytical_note] id=literary_quotation[analytical_note] value=\""+@literary_quotation.analytical_note.to_s+"\" >"
+    #if @literary_quotation.analytical_note == nil or @literary_quotation.analytical_note == ''
+    #  @literary_quotation.analytical_note = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :literary_quotation, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[analytical_note]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@literary_quotation.id}_anotediv" + "'>"
+    edit_path = literary_quotation_analytical_note_edit_url(:id => @literary_quotation.id)
     if @literary_quotation.analytical_note == nil or @literary_quotation.analytical_note == ''
-      @literary_quotation.analytical_note = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :literary_quotation, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[analytical_note]'}) +"<br>"
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @literary_quotation.analytical_note      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@literary_quotation.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
 
 		resultstr <<	"<span id=\"show_av_literary_quotation"+@literary_quotation.id.to_s+"\"><b>Edit Multimedia Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_literary_quotation"+@literary_quotation.id.to_s+"');Element.show('hide_av_literary_quotation"+@literary_quotation.id.to_s+"');Element.show('av_literary_quotation_"+@literary_quotation.id.to_s+"');", :title => 'Show')+"</span>"
 		resultstr <<	"<span id=\"hide_av_literary_quotation"+@literary_quotation.id.to_s+"\" style=\"display:none\"><b>Hide Multimedia Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_literary_quotation"+@literary_quotation.id.to_s+"');Element.show('show_av_literary_quotation"+@literary_quotation.id.to_s+"');Element.hide('av_literary_quotation_"+@literary_quotation.id.to_s+"');", :title => 'Hide')+"</span>"
@@ -899,10 +911,23 @@ module LiteraryQuotationsHelper
     resultstr << in_place_form_editor_field( :literary_quotation, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[image_link]'}) +"<br>"
     resultstr << "<b>Image description: </b>"
     resultstr << "<input type=hidden name=literary_quotation[image_description] id=literary_quotation[image_description] value=\""+@literary_quotation.image_description.to_s+"\" >"
+    #if @literary_quotation.image_description == nil or @literary_quotation.image_description == ''
+    #  @literary_quotation.image_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :literary_quotation, :image_description, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[image_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@literary_quotation.id}_imagedescdiv" + "'>"
+    edit_path = literary_quotation_image_description_edit_url(:id => @literary_quotation.id)
     if @literary_quotation.image_description == nil or @literary_quotation.image_description == ''
-      @literary_quotation.image_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :literary_quotation, :image_description, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[image_description]'}) +"<br>"
+      t_imagedescription = 'Click to modify'
+    else
+      t_imagedescription = @literary_quotation.image_description     
+    end    
+    resultstr << link_to_remote(t_imagedescription, :url => edit_path, :update => "#{@literary_quotation.id}_imagedescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
+
     resultstr << "<b>Audio: </b>"
     resultstr << "<input type=hidden name=literary_quotation[audio] id=literary_quotation[audio] value=\""+@literary_quotation.audio.to_s+"\" >"
     if @literary_quotation.audio == nil or @literary_quotation.audio == ''
@@ -941,10 +966,23 @@ module LiteraryQuotationsHelper
     resultstr << in_place_form_editor_field( :literary_quotation, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[audio_link]'}) +"<br>"
     resultstr << "<b>Audio description: </b>"
     resultstr << "<input type=hidden name=literary_quotation[audio_description] id=literary_quotation[audio_description] value=\""+@literary_quotation.audio_description.to_s+"\" >"
+    #if @literary_quotation.audio_description == nil or @literary_quotation.audio_description == ''
+    #  @literary_quotation.audio_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :literary_quotation, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[audio_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@literary_quotation.id}_audiodescdiv" + "'>"
+    edit_path = literary_quotation_audio_description_edit_url(:id => @literary_quotation.id)
     if @literary_quotation.audio_description == nil or @literary_quotation.audio_description == ''
-      @literary_quotation.audio_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :literary_quotation, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[audio_description]'}) +"<br>"
+      t_audiodescription = 'Click to modify'
+    else
+      t_audiodescription = @literary_quotation.audio_description     
+    end    
+    resultstr << link_to_remote(t_audiodescription, :url => edit_path, :update => "#{@literary_quotation.id}_audiodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
+
     resultstr << "<b>Video: </b>"
     resultstr << "<input type=hidden name=literary_quotation[video] id=literary_quotation[video] value=\""+@literary_quotation.video.to_s+"\" >"
     if @literary_quotation.video == nil or @literary_quotation.video == ''
@@ -983,10 +1021,22 @@ module LiteraryQuotationsHelper
     resultstr << in_place_form_editor_field( :literary_quotation, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[video_link]'}) +"<br>"
     resultstr << "<b>Video description: </b>"
     resultstr << "<input type=hidden name=literary_quotation[video_description] id=literary_quotation[video_description] value=\""+@literary_quotation.video_description.to_s+"\" >"
+    #if @literary_quotation.video_description == nil or @literary_quotation.video_description == ''
+    #  @literary_quotation.video_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :literary_quotation, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[video_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@literary_quotation.id}_videodescdiv" + "'>"
+    edit_path = literary_quotation_video_description_edit_url(:id => @literary_quotation.id)
     if @literary_quotation.video_description == nil or @literary_quotation.video_description == ''
-      @literary_quotation.video_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :literary_quotation, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[video_description]'}) +"<br>"
+      t_videodescription = 'Click to modify'
+    else
+      t_videodescription = @literary_quotation.video_description     
+    end    
+    resultstr << link_to_remote(t_videodescription, :url => edit_path, :update => "#{@literary_quotation.id}_videodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+  
     
     resultstr << "</dd></dl></span>"
   end

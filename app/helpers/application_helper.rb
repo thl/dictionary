@@ -267,6 +267,8 @@ module ApplicationHelper
           etymology_analytical_note_edit_url(:id => id)
         when "pronunciations"
           pronunciation_analytical_note_edit_url(:id => id)
+        when "literary_quotations"
+          literary_quotation_analytical_note_edit_url(:id => id)
         end
       when "update_image_description", "image_description_show"
         case controller
@@ -276,6 +278,8 @@ module ApplicationHelper
             etymology_image_description_edit_url(:id => id)
           when "pronunciations"
             pronunciation_image_description_edit_url(:id => id)
+          when "literary_quotations"
+            literary_quotation_image_description_edit_url(:id => id)  
         end
       when "update_audio_description", "audio_description_show"
         case controller
@@ -285,6 +289,8 @@ module ApplicationHelper
             etymology_audio_description_edit_url(:id => id)
           when "pronunciations"
             pronunciation_audio_description_edit_url(:id => id)
+          when "literary_quotations"
+            literary_quotation_audio_description_edit_url(:id => id)  
         end
       when "update_video_description", "video_description_show"
         case controller
@@ -294,6 +300,8 @@ module ApplicationHelper
             etymology_video_description_edit_url(:id => id)
           when "pronunciations"
             pronunciation_video_description_edit_url(:id => id)
+          when "literary_quotations"
+            literary_quotation_video_description_edit_url(:id => id)  
         end
       end          
     end
