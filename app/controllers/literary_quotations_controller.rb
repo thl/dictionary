@@ -750,10 +750,48 @@ class LiteraryQuotationsController < ApplicationController
            render_action 'list'
          end
   end
+ 
+  def update_passage
+      @literary_quotation = LiteraryQuotation.find(params[:literary_quotation][:id])
+      if @literary_quotation.created_by == nil or @literary_quotation.created_by == ""
+             @literary_quotation.created_by = session[:user].login
+             @literary_quotation.created_at = Time.now
+      end
+      if session[:user] != nil
+             @literary_quotation.updated_by = session[:user].login
+      end
+      @literary_quotation.updated_at = Time.now
+      if @literary_quotation.update_history == nil
+        @literary_quotation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @literary_quotation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @literary_quotation.update_attributes(params[:literary_quotation])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @literary_quotation, :divsuffix => "_passagediv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @literary_quotation
+        end
+      end
+  end
+
+  def passage_show
+      @literary_quotation = LiteraryQuotation.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @literary_quotation, :divsuffix => "_passagediv"}
+  end
+
+  def passage_edit
+      @literary_quotation = LiteraryQuotation.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @literary_quotation, :divsuffix => "_passagediv"}
+  end
   
   
   def update_analytical_note
-    debugger
       @literary_quotation = LiteraryQuotation.find(params[:literary_quotation][:id])
       if @literary_quotation.created_by == nil or @literary_quotation.created_by == ""
              @literary_quotation.created_by = session[:user].login
@@ -793,7 +831,6 @@ class LiteraryQuotationsController < ApplicationController
   end
 
   def update_image_description
-    debugger
       @literary_quotation = LiteraryQuotation.find(params[:literary_quotation][:id])
       if @literary_quotation.created_by == nil or @literary_quotation.created_by == ""
         @literary_quotation.created_by = session[:user].login
