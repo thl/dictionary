@@ -437,10 +437,21 @@ module PronunciationsHelper
     # resultstr << in_place_select_editor_field( :pronunciation, :literary_form, {}, {:select_options => @literary_form, :fieldname => 'pronunciation[literary_form]'})+"<br>"
     resultstr << "<b>Analytical note: </b>"
     resultstr << "<input type=hidden name=pronunciation[analytical_note] id=pronunciation[analytical_note] value=\""+@pronunciation.analytical_note.to_s+"\" >"
+    #if @pronunciation.analytical_note == nil or @pronunciation.analytical_note == ''
+    #  @pronunciation.analytical_note = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :pronunciation, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[analytical_note]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@pronunciation.id}_anotediv" + "'>"
+    edit_path = pronunciation_analytical_note_edit_url(:id => @pronunciation.id)
     if @pronunciation.analytical_note == nil or @pronunciation.analytical_note == ''
-      @pronunciation.analytical_note = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :pronunciation, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[analytical_note]'}) +"<br>"
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @pronunciation.analytical_note      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@pronunciation.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
     
 		resultstr <<	"<span id=\"show_av_pronunciation"+@pronunciation.id.to_s+"\"><b>Edit Multimedia Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_pronunciation"+@pronunciation.id.to_s+"');Element.show('hide_av_pronunciation"+@pronunciation.id.to_s+"');Element.show('av_pronunciation_"+@pronunciation.id.to_s+"');", :title => 'Show')+"</span>"
 		resultstr <<	"<span id=\"hide_av_pronunciation"+@pronunciation.id.to_s+"\" style=\"display:none\"><b>Hide Multimedia Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_pronunciation"+@pronunciation.id.to_s+"');Element.show('show_av_pronunciation"+@pronunciation.id.to_s+"');Element.hide('av_pronunciation_"+@pronunciation.id.to_s+"');", :title => 'Hide')+"</span>"
@@ -473,10 +484,22 @@ module PronunciationsHelper
     resultstr << in_place_form_editor_field( :pronunciation, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[image_link]'}) +"<br>"
     resultstr << "<b>Image description: </b>"
     resultstr << "<input type=hidden name=pronunciation[image_description] id=pronunciation[image_description] value=\""+@pronunciation.image_description.to_s+"\" >"
+    #if @pronunciation.image_description == nil or @pronunciation.image_description == ''
+    #  @pronunciation.image_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :pronunciation, :image_description, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[image_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@pronunciation.id}_imagedescdiv" + "'>"
+    edit_path = pronunciation_image_description_edit_url(:id => @pronunciation.id)
     if @pronunciation.image_description == nil or @pronunciation.image_description == ''
-      @pronunciation.image_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :pronunciation, :image_description, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[image_description]'}) +"<br>"
+      t_imagedescription = 'Click to modify'
+    else
+      t_imagedescription = @pronunciation.image_description     
+    end    
+    resultstr << link_to_remote(t_imagedescription, :url => edit_path, :update => "#{@pronunciation.id}_imagedescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+    
     resultstr << "<b>Audio: </b>"
     resultstr << "<input type=hidden name=pronunciation[audio] id=pronunciation[audio] value=\""+@pronunciation.audio.to_s+"\" >"
     if @pronunciation.audio == nil or @pronunciation.audio == ''
@@ -515,10 +538,22 @@ module PronunciationsHelper
     resultstr << in_place_form_editor_field( :pronunciation, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[audio_link]'}) +"<br>"
     resultstr << "<b>Audio description: </b>"
     resultstr << "<input type=hidden name=pronunciation[audio_description] id=pronunciation[audio_description] value=\""+@pronunciation.audio_description.to_s+"\" >"
+    #if @pronunciation.audio_description == nil or @pronunciation.audio_description == ''
+    #  @pronunciation.audio_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :pronunciation, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[audio_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@pronunciation.id}_audiodescdiv" + "'>"
+    edit_path = pronunciation_audio_description_edit_url(:id => @pronunciation.id)
     if @pronunciation.audio_description == nil or @pronunciation.audio_description == ''
-      @pronunciation.audio_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :pronunciation, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[audio_description]'}) +"<br>"
+      t_audiodescription = 'Click to modify'
+    else
+      t_audiodescription = @pronunciation.audio_description     
+    end    
+    resultstr << link_to_remote(t_audiodescription, :url => edit_path, :update => "#{@pronunciation.id}_audiodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+    
     resultstr << "<b>Video: </b>"
     resultstr << "<input type=hidden name=pronunciation[video] id=pronunciation[video] value=\""+@pronunciation.video.to_s+"\" >"
     if @pronunciation.video == nil or @pronunciation.video == ''
@@ -557,10 +592,22 @@ module PronunciationsHelper
     resultstr << in_place_form_editor_field( :pronunciation, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[video_link]'}) +"<br>"
     resultstr << "<b>Video description: </b>"
     resultstr << "<input type=hidden name=pronunciation[video_description] id=pronunciation[video_description] value=\""+@pronunciation.audio_description.to_s+"\" >"
+    #if @pronunciation.video_description == nil or @pronunciation.video_description == ''
+    #  @pronunciation.video_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :pronunciation, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[video_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@pronunciation.id}_videodescdiv" + "'>"
+    edit_path = pronunciation_video_description_edit_url(:id => @pronunciation.id)
     if @pronunciation.video_description == nil or @pronunciation.video_description == ''
-      @pronunciation.video_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :pronunciation, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[video_description]'}) +"<br>"
+      t_videodescription = 'Click to modify'
+    else
+      t_videodescription = @pronunciation.video_description     
+    end    
+    resultstr << link_to_remote(t_videodescription, :url => edit_path, :update => "#{@pronunciation.id}_videodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+    
     resultstr << "</dd></dl></span>"
   end
 
