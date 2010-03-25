@@ -655,7 +655,6 @@ class PronunciationsController < ApplicationController
   end
   
   def update_analytical_note
-    debugger
       @pronunciation = Pronunciation.find(params[:pronunciation][:id])
       if @pronunciation.created_by == nil or @pronunciation.created_by == ""
              @pronunciation.created_by = session[:user].login

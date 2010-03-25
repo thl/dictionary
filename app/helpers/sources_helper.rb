@@ -78,11 +78,21 @@ module SourcesHelper
     resultstr << in_place_form_editor_field( :source, :spelling, {}, {:cols => 50, :rows => 1, :fieldname => 'source[spelling]'}) +"<br>"
     resultstr << "<b>Source note: </b>"
     resultstr << "<input type=hidden name=source[source_note] id=source[source_note] value=\""+@source.source_note.to_s+"\" >"
+    #if @source.source_note == nil or @source.source_note == ''
+    #  @source.source_note = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :source, :source_note, {}, {:cols => 70, :rows => 4, :fieldname => 'source[source_note]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@source.id}_snotediv" + "'>"
+    edit_path = source_source_note_edit_url(:id => @source.id)
     if @source.source_note == nil or @source.source_note == ''
-      @source.source_note = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :source, :source_note, {}, {:cols => 70, :rows => 4, :fieldname => 'source[source_note]'}) +"<br>"
-    
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @source.source_note      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@source.id}_snotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"    
   end
 
   def show_source

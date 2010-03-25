@@ -395,4 +395,44 @@ class SourcesController < ApplicationController
            render_action 'list'
          end
   end
+
+  def update_source_note
+      @source = Source.find(params[:source][:id])
+      if @source.created_by == nil or @source.created_by == ""
+             @source.created_by = session[:user].login
+             @source.created_at = Time.now
+      end
+      if session[:user] != nil
+             @source.updated_by = session[:user].login
+      end
+      @source.updated_at = Time.now
+      if @source.update_history == nil
+        @source.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @source.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @source.update_attributes(params[:source])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @source, :divsuffix => "_snotediv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @source
+        end
+      end
+  end
+
+  def source_note_show
+      @source = Source.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @source, :divsuffix => "_snotediv"}
+  end
+
+  def source_note_edit
+      @source = Source.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @source, :divsuffix => "_snotediv"}
+  end  
+  
 end

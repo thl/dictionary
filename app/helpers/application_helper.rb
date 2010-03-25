@@ -246,7 +246,9 @@ module ApplicationHelper
       when "passage_edit"
         "passage_show"  
       when "translation_edit"
-        "translation_show"  
+        "translation_show" 
+      when "source_note_edit"
+        "source_note_show"   
       end
     end
     
@@ -265,7 +267,9 @@ module ApplicationHelper
       when "passage_edit"
         "update_passage" 
       when "translation_edit"
-        "update_translation"   
+        "update_translation" 
+      when "source_note_edit"
+        "update_source_note"    
       end
     end
     
@@ -332,6 +336,11 @@ module ApplicationHelper
           when "translations"
             translation_translation_edit_url(:id => id)  
         end
+      when "update_source_note", "source_note_show"
+        case controller
+          when "sources"
+            source_source_note_edit_url(:id => id)  
+        end  
       end            
     end
     
@@ -350,7 +359,9 @@ module ApplicationHelper
       when "passage_edit"
         "passage"
       when "translation_edit"
-        "translation"    
+        "translation" 
+      when "source_note_edit"
+        "source_note"     
       end
     end
     
@@ -369,7 +380,9 @@ module ApplicationHelper
       when "update_passage", "passage_show"
         "passage" 
       when "update_translation", "translation_show"
-        "translation"       
+        "translation"
+      when "update_source_note", "source_note_show"
+        "source_note"         
       end
     end
     

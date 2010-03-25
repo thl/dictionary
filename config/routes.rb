@@ -24,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
   map.meta_metadata_note_edit 'metas/:id/metadata_note_edit', :controller => 'metas', :action => 'metadata_note_edit'
   map.translation_translation_edit 'translations/:id/translation_edit', :controller => 'translations', :action => 'translation_edit'
   map.translation_analytical_note_edit 'translations/:id/analytical_note_edit', :controller => 'translations', :action => 'analytical_note_edit'
+  map.source_source_note_edit 'sources/:id/source_note_edit', :controller => 'sources', :action => 'source_note_edit'
  
   # The priority is based upon order of creation: first created -> highest priority.
 
