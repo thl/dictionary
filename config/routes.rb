@@ -22,6 +22,8 @@ ActionController::Routing::Routes.draw do |map|
   map.literary_quotation_audio_description_edit 'literary_quotations/:id/audio_description_edit', :controller => 'literary_quotations', :action => 'audio_description_edit'
   map.literary_quotation_video_description_edit 'literary_quotations/:id/video_description_edit', :controller => 'literary_quotations', :action => 'video_description_edit'
   map.meta_metadata_note_edit 'metas/:id/metadata_note_edit', :controller => 'metas', :action => 'metadata_note_edit'
+  map.translation_translation_edit 'translations/:id/translation_edit', :controller => 'translations', :action => 'translation_edit'
+  map.translation_analytical_note_edit 'translations/:id/analytical_note_edit', :controller => 'translations', :action => 'analytical_note_edit'
  
   # The priority is based upon order of creation: first created -> highest priority.
 
