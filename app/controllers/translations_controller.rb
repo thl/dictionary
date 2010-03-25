@@ -772,4 +772,83 @@ class TranslationsController < ApplicationController
            render_action 'list'
          end
   end
+  
+  def update_translation
+      @translation = Translation.find(params[:translation][:id])
+      if @translation.created_by == nil or @translation.created_by == ""
+             @translation.created_by = session[:user].login
+             @translation.created_at = Time.now
+      end
+      if session[:user] != nil
+             @translation.updated_by = session[:user].login
+      end
+      @translation.updated_at = Time.now
+      if @translation.update_history == nil
+        @translation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @translation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @translation.update_attributes(params[:translation])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @translation, :divsuffix => "_translationdiv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @translation
+        end
+      end
+  end
+
+  def translation_show
+      @translation = Translation.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @translation, :divsuffix => "_translationdiv"}
+  end
+
+  def translation_edit
+      @translation = Translation.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @translation, :divsuffix => "_translationdiv"}
+  end
+
+  def update_analytical_note
+      @translation = Translation.find(params[:translation][:id])
+      if @translation.created_by == nil or @translation.created_by == ""
+             @translation.created_by = session[:user].login
+             @translation.created_at = Time.now
+      end
+      if session[:user] != nil
+             @translation.updated_by = session[:user].login
+      end
+      @translation.updated_at = Time.now
+      if @translation.update_history == nil
+        @translation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @translation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @translation.update_attributes(params[:translation])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @translation, :divsuffix => "_anotediv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @translation
+        end
+      end
+  end
+
+  def analytical_note_show
+      @translation = Translation.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @translation, :divsuffix => "_anotediv"}
+  end
+
+  def analytical_note_edit
+      @translation = Translation.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @translation, :divsuffix => "_anotediv"}
+  end
+  
 end

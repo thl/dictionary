@@ -245,6 +245,8 @@ module ApplicationHelper
         "metadata_note_show"
       when "passage_edit"
         "passage_show"  
+      when "translation_edit"
+        "translation_show"  
       end
     end
     
@@ -261,7 +263,9 @@ module ApplicationHelper
       when "metadata_note_edit"
         "update_metadata_note"
       when "passage_edit"
-        "update_passage"    
+        "update_passage" 
+      when "translation_edit"
+        "update_translation"   
       end
     end
     
@@ -276,7 +280,9 @@ module ApplicationHelper
         when "pronunciations"
           pronunciation_analytical_note_edit_url(:id => id)
         when "literary_quotations"
-          literary_quotation_analytical_note_edit_url(:id => id)  
+          literary_quotation_analytical_note_edit_url(:id => id) 
+        when "translations"
+          translation_analytical_note_edit_url(:id => id)   
         end
       when "update_image_description", "image_description_show"
         case controller
@@ -321,6 +327,11 @@ module ApplicationHelper
           when "metas"
             meta_metadata_note_edit_url(:id => id)  
         end
+      when "update_translation", "translation_show"
+        case controller
+          when "translations"
+            translation_translation_edit_url(:id => id)  
+        end
       end            
     end
     
@@ -337,7 +348,9 @@ module ApplicationHelper
       when "metadata_note_edit"
         "metadata_note"  
       when "passage_edit"
-        "passage"  
+        "passage"
+      when "translation_edit"
+        "translation"    
       end
     end
     
@@ -354,7 +367,9 @@ module ApplicationHelper
       when "update_metadata_note", "metadata_note_show"
         "metadata_note"
       when "update_passage", "passage_show"
-        "passage"      
+        "passage" 
+      when "update_translation", "translation_show"
+        "translation"       
       end
     end
     

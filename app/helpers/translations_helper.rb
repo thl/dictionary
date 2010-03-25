@@ -79,10 +79,22 @@ module TranslationsHelper
     resultstr = ""
     resultstr << "<b>Translation: </b>"
     resultstr << "<input type=hidden name=translation[translation] id=translation[translation] value=\""+@translation.translation.to_s+"\" >"
+    #if @translation.translation == nil or @translation.translation == ''
+    #  @translation.translation = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :translation, :translation, {}, {:cols => 80, :rows => 10, :fieldname => 'translation[translation]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@translation.id}_translationdiv" + "'>"
+    edit_path = translation_translation_edit_url(:id => @translation.id)
     if @translation.translation == nil or @translation.translation == ''
-      @translation.translation = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :translation, :translation, {}, {:cols => 80, :rows => 10, :fieldname => 'translation[translation]'}) +"<br>"
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @translation.translation      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@translation.id}_translationdiv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
     resultstr << "<b>Language: </b>"
     resultstr << "<input type=hidden name=translation[language] id=translation[language] value=\""+@translation.language.to_s+"\" >"
     if @translation.language_type == nil
@@ -97,10 +109,22 @@ module TranslationsHelper
     resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('translation[language_type"+@translation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('translation[language_type"+@translation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('translation[language_type"+@translation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('translation[language_type"+@translation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     resultstr << "<b>Analytical note: </b>"
     resultstr << "<input type=hidden name=translation[analytical_note] id=translation[analytical_note] value=\""+@translation.analytical_note.to_s+"\" >"
+    #if @translation.analytical_note == nil or @translation.analytical_note == ''
+    #  @translation.analytical_note = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :translation, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'translation[analytical_note]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@translation.id}_anotediv" + "'>"
+    edit_path = translation_analytical_note_edit_url(:id => @translation.id)
     if @translation.analytical_note == nil or @translation.analytical_note == ''
-      @translation.analytical_note = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :translation, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'translation[analytical_note]'}) +"<br>"
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @translation.analytical_note      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@translation.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
   end
 
   def show_edit_translation
