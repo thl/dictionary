@@ -653,4 +653,162 @@ class PronunciationsController < ApplicationController
            render_action 'list'
          end
   end
+  
+  def update_analytical_note
+    debugger
+      @pronunciation = Pronunciation.find(params[:pronunciation][:id])
+      if @pronunciation.created_by == nil or @pronunciation.created_by == ""
+             @pronunciation.created_by = session[:user].login
+             @pronunciation.created_at = Time.now
+      end
+      if session[:user] != nil
+             @pronunciation.updated_by = session[:user].login
+      end
+      @pronunciation.updated_at = Time.now
+      if @pronunciation.update_history == nil
+        @pronunciation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @pronunciation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @pronunciation.update_attributes(params[:pronunciation])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @pronunciation, :divsuffix => "_anotediv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @pronunciation
+        end
+      end
+  end
+
+  def analytical_note_show
+      @pronunciation = Pronunciation.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @pronunciation, :divsuffix => "_anotediv"}
+  end
+
+  def analytical_note_edit
+      @pronunciation = Pronunciation.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @pronunciation, :divsuffix => "_anotediv"}
+  end
+
+  def update_image_description
+    debugger
+      @pronunciation = Pronunciation.find(params[:pronunciation][:id])
+      if @pronunciation.created_by == nil or @pronunciation.created_by == ""
+        @pronunciation.created_by = session[:user].login
+        @pronunciation.created_at = Time.now
+      end
+      if session[:user] != nil
+        @pronunciation.updated_by = session[:user].login
+      end
+      @pronunciation.updated_at = Time.now
+      if @pronunciation.update_history == nil
+        @pronunciation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @pronunciation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end    
+      respond_to do |format|
+        if @pronunciation.update_attributes(params[:pronunciation])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @pronunciation, :divsuffix => "_imagedescdiv"}
+          end
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @pronunciation
+        end
+      end
+  end
+
+    def image_description_show
+      @pronunciation = Pronunciation.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @pronunciation, :divsuffix => "_imagedescdiv"}
+    end
+
+    def image_description_edit
+      @pronunciation = Pronunciation.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @pronunciation, :divsuffix => "_imagedescdiv"}
+    end 
+
+    def update_audio_description
+      @pronunciation = Pronunciation.find(params[:pronunciation][:id])
+      if @pronunciation.created_by == nil or @pronunciation.created_by == ""
+        @pronunciation.created_by = session[:user].login
+        @pronunciation.created_at = Time.now
+      end
+      if session[:user] != nil
+        @pronunciation.updated_by = session[:user].login
+      end
+      @pronunciation.updated_at = Time.now
+      if @pronunciation.update_history == nil
+        @pronunciation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @pronunciation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end    
+      respond_to do |format|
+        if @pronunciation.update_attributes(params[:pronunciation])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @pronunciation, :divsuffix => "_audiodescdiv"}
+          end
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @pronunciation
+        end
+      end
+    end
+
+    def audio_description_show
+      @pronunciation = Pronunciation.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @pronunciation, :divsuffix => "_audiodescdiv"}
+    end
+
+    def audio_description_edit
+      @pronunciation = Pronunciation.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @pronunciation, :divsuffix => "_audiodescdiv"}
+    end 
+
+    def update_video_description
+      @pronunciation = Pronunciation.find(params[:pronunciation][:id])
+      if @pronunciation.created_by == nil or @pronunciation.created_by == ""
+        @pronunciation.created_by = session[:user].login
+        @pronunciation.created_at = Time.now
+      end
+      if session[:user] != nil
+        @pronunciation.updated_by = session[:user].login
+      end
+      @pronunciation.updated_at = Time.now
+      if @pronunciation.update_history == nil
+        @pronunciation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @pronunciation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end    
+      respond_to do |format|
+        if @pronunciation.update_attributes(params[:pronunciation])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @pronunciation, :divsuffix => "_videodescdiv"}
+          end
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @pronunciation
+        end
+      end
+    end
+
+    def video_description_show
+      @pronunciation = Pronunciation.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @pronunciation, :divsuffix => "_videodescdiv"}
+    end
+
+    def video_description_edit
+      @pronunciation = Pronunciation.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @pronunciation, :divsuffix => "_videodescdiv"}
+    end  
 end

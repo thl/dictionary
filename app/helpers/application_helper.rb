@@ -230,4 +230,98 @@ module ApplicationHelper
     def login_status
       ''
     end
+    
+    def tinymce_show_action(edit_action)
+      case edit_action
+      when "analytical_note_edit"
+        "analytical_note_show"
+      when "image_description_edit"
+        "image_description_show"
+      when "audio_description_edit"
+        "audio_description_show"
+      when "video_description_edit"
+        "video_description_show"
+      end
+    end
+    
+    def tinymce_update_action(edit_action)
+      case edit_action
+      when "analytical_note_edit"
+        "update_analytical_note"
+      when "image_description_edit"
+        "update_image_description"
+      when "audio_description_edit"
+        "update_audio_description"
+      when "video_description_edit"
+        "update_video_description"
+      end
+    end
+    
+    def tinymce_edit_url(controller, update_action, id)
+      case update_action
+      when "update_analytical_note", "analytical_note_show"
+        case controller
+        when "definitions"
+          definition_analytical_note_edit_url(:id => id)
+        when "etymologies"
+          etymology_analytical_note_edit_url(:id => id)
+        when "pronunciations"
+          pronunciation_analytical_note_edit_url(:id => id)
+        end
+      when "update_image_description", "image_description_show"
+        case controller
+          when "definitions"
+            definition_image_description_edit_url(:id => id)
+          when "etymologies"
+            etymology_image_description_edit_url(:id => id)
+          when "pronunciations"
+            pronunciation_image_description_edit_url(:id => id)
+        end
+      when "update_audio_description", "audio_description_show"
+        case controller
+          when "definitions"
+            definition_audio_description_edit_url(:id => id)
+          when "etymologies"
+            etymology_audio_description_edit_url(:id => id)
+          when "pronunciations"
+            pronunciation_audio_description_edit_url(:id => id)
+        end
+      when "update_video_description", "video_description_show"
+        case controller
+          when "definitions"
+            definition_video_description_edit_urll(:id => id)
+          when "etymologies"
+            etymology_video_description_edit_url(:id => id)
+          when "pronunciations"
+            pronunciation_video_description_edit_url(:id => id)
+        end
+      end          
+    end
+    
+    def tinymce_field(edit_action)
+      case edit_action
+      when "analytical_note_edit"
+        "analytical_note"
+      when "image_description_edit"
+        "image_description"
+      when "audio_description_edit"
+        "audio_description"
+      when "video_description_edit"
+        "video_description"
+      end
+    end
+    
+    def tinymce_field_show(update_action)
+      case update_action
+      when "update_analytical_note", "analytical_note_show"
+        "analytical_note"
+      when "update_image_description", "image_description_show"
+        "image_description"
+      when "update_audio_description", "audio_description_show"
+        "audio_description"
+      when "update_video_description", "video_description_show"
+        "video_description"
+      end
+    end
+    
   end
