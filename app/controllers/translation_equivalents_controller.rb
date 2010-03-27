@@ -492,4 +492,122 @@ class TranslationEquivalentsController < ApplicationController
            render_action 'list'
          end
   end
+  
+  def update_translation_equivalent
+      @translation_equivalent = TranslationEquivalent.find(params[:translation_equivalent][:id])
+      if @translation_equivalent.created_by == nil or @translation_equivalent.created_by == ""
+             @translation_equivalent.created_by = session[:user].login
+             @translation_equivalent.created_at = Time.now
+      end
+      if session[:user] != nil
+             @translation_equivalent.updated_by = session[:user].login
+      end
+      @translation_equivalent.updated_at = Time.now
+      if @translation_equivalent.update_history == nil
+        @translation_equivalent.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @translation_equivalent.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @translation_equivalent.update_attributes(params[:translation_equivalent])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @translation_equivalent, :divsuffix => "_transdiv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @translation_equivalent
+        end
+      end
+  end
+
+  def translation_equivalent_show
+      @translation_equivalent = TranslationEquivalent.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @translation_equivalent, :divsuffix => "_transdiv"}
+  end
+
+  def translation_equivalent_edit
+      @translation_equivalent = TranslationEquivalent.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @translation_equivalent, :divsuffix => "_transdiv"}
+  end
+  
+  def update_analytical_note
+      @translation_equivalent = TranslationEquivalent.find(params[:translation_equivalent][:id])
+      if @translation_equivalent.created_by == nil or @translation_equivalent.created_by == ""
+             @translation_equivalent.created_by = session[:user].login
+             @translation_equivalent.created_at = Time.now
+      end
+      if session[:user] != nil
+             @translation_equivalent.updated_by = session[:user].login
+      end
+      @translation_equivalent.updated_at = Time.now
+      if @translation_equivalent.update_history == nil
+        @translation_equivalent.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @translation_equivalent.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @translation_equivalent.update_attributes(params[:translation_equivalent])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @translation_equivalent, :divsuffix => "_anotediv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @translation_equivalent
+        end
+      end
+  end
+
+  def analytical_note_show
+      @translation_equivalent = TranslationEquivalent.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @translation_equivalent, :divsuffix => "_anotediv"}
+  end
+
+  def analytical_note_edit
+      @translation_equivalent = TranslationEquivalent.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @translation_equivalent, :divsuffix => "_anotediv"}
+  end
+
+  def update_image_description
+      @translation_equivalent = TranslationEquivalent.find(params[:translation_equivalent][:id])
+      if @translation_equivalent.created_by == nil or @translation_equivalent.created_by == ""
+        @translation_equivalent.created_by = session[:user].login
+        @translation_equivalent.created_at = Time.now
+      end
+      if session[:user] != nil
+        @translation_equivalent.updated_by = session[:user].login
+      end
+      @translation_equivalent.updated_at = Time.now
+      if @translation_equivalent.update_history == nil
+        @translation_equivalent.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @translation_equivalent.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end    
+      respond_to do |format|
+        if @translation_equivalent.update_attributes(params[:translation_equivalent])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @translation_equivalent, :divsuffix => "_imagedescdiv"}
+          end
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @translation_equivalent
+        end
+      end
+  end
+
+    def image_description_show
+      @translation_equivalent = TranslationEquivalent.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @translation_equivalent, :divsuffix => "_imagedescdiv"}
+    end
+
+    def image_description_edit
+      @translation_equivalent = TranslationEquivalent.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @translation_equivalent, :divsuffix => "_imagedescdiv"}
+    end 
+    
 end

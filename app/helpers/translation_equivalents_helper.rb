@@ -303,10 +303,22 @@ module TranslationEquivalentsHelper
     resultstr = ""
     resultstr << "<b>Translation equivalent: </b>"
     resultstr << "<input type=hidden name=translation_equivalent[translation_equivalent] id=translation_equivalent[translation_equivalent] value=\""+@translation_equivalent.translation_equivalent.to_s+"\" >"
+    #if @translation_equivalent.translation_equivalent == nil or @translation_equivalent.translation_equivalent == ''
+    #  @translation_equivalent.translation_equivalent = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :translation_equivalent, :translation_equivalent, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[translation_equivalent]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@translation_equivalent.id}_transdiv" + "'>"
+    edit_path = translation_equivalent_translation_equivalent_edit_url(:id => @translation_equivalent.id)
     if @translation_equivalent.translation_equivalent == nil or @translation_equivalent.translation_equivalent == ''
-      @translation_equivalent.translation_equivalent = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :translation_equivalent, :translation_equivalent, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[translation_equivalent]'}) +"<br>"
+      t_transequivalent = 'Click to modify'
+    else
+      t_transequivalent = @translation_equivalent.translation_equivalent      
+    end    
+    resultstr << link_to_remote(t_transequivalent, :url => edit_path, :update => "#{@translation_equivalent.id}_transdiv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
     resultstr << "<b>Language: </b>"
     if @translation_equivalent.language_type == nil
       title = 'Click to modify'
@@ -320,10 +332,21 @@ module TranslationEquivalentsHelper
     resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     resultstr << "<b>Analytical note: </b>"
     resultstr << "<input type=hidden name=translation_equivalent[analytical_note] id=translation_equivalent[analytical_note] value=\""+@translation_equivalent.analytical_note.to_s+"\" >"
+    #if @translation_equivalent.analytical_note == nil or @translation_equivalent.analytical_note == ''
+    #  @translation_equivalent.analytical_note = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :translation_equivalent, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'translation_equivalent[analytical_note]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@translation_equivalent.id}_anotediv" + "'>"
+    edit_path = translation_equivalent_analytical_note_edit_url(:id => @translation_equivalent.id)
     if @translation_equivalent.analytical_note == nil or @translation_equivalent.analytical_note == ''
-      @translation_equivalent.analytical_note = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :translation_equivalent, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'translation_equivalent[analytical_note]'}) +"<br>"
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @translation_equivalent.analytical_note      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@translation_equivalent.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
 
 		resultstr <<	"<span id=\"show_av_translation_equivalent"+@translation_equivalent.id.to_s+"\"><b>Edit A/V Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_translation_equivalent"+@translation_equivalent.id.to_s+"');Element.show('hide_av_translation_equivalent"+@translation_equivalent.id.to_s+"');Element.show('av_translation_equivalent_"+@translation_equivalent.id.to_s+"');", :title => 'Show')+"</span>"
 		resultstr <<	"<span id=\"hide_av_translation_equivalent"+@translation_equivalent.id.to_s+"\" style=\"display:none\"><b>Hide A/V Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_translation_equivalent"+@translation_equivalent.id.to_s+"');Element.show('show_av_translation_equivalent"+@translation_equivalent.id.to_s+"');Element.hide('av_translation_equivalent_"+@translation_equivalent.id.to_s+"');", :title => 'Hide')+"</span>"
@@ -356,10 +379,23 @@ module TranslationEquivalentsHelper
     resultstr << "<br>"+in_place_form_editor_field( :translation_equivalent, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'translation_equivalent[image_link]'}) +"<br>"
     resultstr << "<b>Image description: </b>"
     resultstr << "<input type=hidden name=translation_equivalent[image_description] id=translation_equivalent[image_description] value=\""+@translation_equivalent.image_description.to_s+"\" >"
+    #if @translation_equivalent.image_description == nil or @translation_equivalent.image_description == ''
+    #  @translation_equivalent.image_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :translation_equivalent, :image_description, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[image_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@translation_equivalent.id}_imagedescdiv" + "'>"
+    edit_path = translation_equivalent_image_description_edit_url(:id => @translation_equivalent.id)
     if @translation_equivalent.image_description == nil or @translation_equivalent.image_description == ''
-      @translation_equivalent.image_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :translation_equivalent, :image_description, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[image_description]'}) +"<br>"
+      t_imagedescription = 'Click to modify'
+    else
+      t_imagedescription = @translation_equivalent.image_description     
+    end    
+    resultstr << link_to_remote(t_imagedescription, :url => edit_path, :update => "#{@translation_equivalent.id}_imagedescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
+
     resultstr << "<b>Audio: </b>"
     resultstr << "<input type=hidden name=translation_equivalent[audio] id=translation_equivalent[audio] value=\""+@translation_equivalent.audio.to_s+"\" >"
     if @translation_equivalent.audio == nil or @translation_equivalent.audio == ''
