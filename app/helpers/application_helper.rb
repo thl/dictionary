@@ -248,7 +248,9 @@ module ApplicationHelper
       when "translation_edit"
         "translation_show" 
       when "source_note_edit"
-        "source_note_show"   
+        "source_note_show"  
+      when "translation_equivalent_edit"
+        "translation_equivalent_show"   
       end
     end
     
@@ -269,7 +271,9 @@ module ApplicationHelper
       when "translation_edit"
         "update_translation" 
       when "source_note_edit"
-        "update_source_note"    
+        "update_source_note"   
+      when "translation_equivalent_edit"
+        "update_translation_equivalent"   
       end
     end
     
@@ -286,7 +290,9 @@ module ApplicationHelper
         when "literary_quotations"
           literary_quotation_analytical_note_edit_url(:id => id) 
         when "translations"
-          translation_analytical_note_edit_url(:id => id)   
+          translation_analytical_note_edit_url(:id => id) 
+         when "translation_equivalents"
+            translation_equivalent_analytical_note_edit_url(:id => id)    
         end
       when "update_image_description", "image_description_show"
         case controller
@@ -297,7 +303,9 @@ module ApplicationHelper
           when "pronunciations"
             pronunciation_image_description_edit_url(:id => id)
           when "literary_quotations"
-            literary_quotation_image_description_edit_url(:id => id)  
+            literary_quotation_image_description_edit_url(:id => id) 
+          when "translation_equivalents"
+            translation_equivalent_image_description_edit_url(:id => id)   
         end
       when "update_audio_description", "audio_description_show"
         case controller
@@ -340,7 +348,12 @@ module ApplicationHelper
         case controller
           when "sources"
             source_source_note_edit_url(:id => id)  
-        end  
+        end 
+      when "update_translation_equivalent", "translation_equivalent_show"
+        case controller
+          when "translation_equivalents"
+            translation_equivalent_translation_equivalent_edit_url(:id => id)  
+        end   
       end            
     end
     
@@ -361,7 +374,9 @@ module ApplicationHelper
       when "translation_edit"
         "translation" 
       when "source_note_edit"
-        "source_note"     
+        "source_note" 
+      when "translation_equivalent_edit"
+        "translation_equivalent"      
       end
     end
     
@@ -382,7 +397,9 @@ module ApplicationHelper
       when "update_translation", "translation_show"
         "translation"
       when "update_source_note", "source_note_show"
-        "source_note"         
+        "source_note" 
+      when "update_translation_equivalent", "translation_equivalent_show"
+        "translation_equivalent"          
       end
     end
     
