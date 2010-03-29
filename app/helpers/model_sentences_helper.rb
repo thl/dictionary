@@ -420,10 +420,22 @@ module ModelSentencesHelper
     resultstr = ""
     resultstr << "<b>Model sentence: </b>"
     resultstr << "<input type=hidden name=model_sentence[model_sentence] id=model_sentence[model_sentence] value=\""+@model_sentence.model_sentence.to_s+"\" >"
+    #if @model_sentence.model_sentence == nil or @model_sentence.model_sentence == ''
+    #  @model_sentence.model_sentence = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :model_sentence, :model_sentence, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[model_sentence]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@model_sentence.id}_model_sentencediv" + "'>"
+    edit_path = model_sentence_model_sentence_edit_url(:id => @model_sentence.id)
     if @model_sentence.model_sentence == nil or @model_sentence.model_sentence == ''
-      @model_sentence.model_sentence = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :model_sentence, :model_sentence, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[model_sentence]'}) +"<br>"
+      t_model_sentence = 'Click to modify'
+    else
+      t_model_sentence = @model_sentence.model_sentence     
+    end    
+    resultstr << link_to_remote(t_model_sentence, :url => edit_path, :update => "#{@model_sentence.id}_model_sentencediv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+    
     resultstr << "<b>Language: </b>"
     if @model_sentence.language_type == nil
       title = 'Click to modify'
@@ -509,10 +521,21 @@ module ModelSentencesHelper
     resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     resultstr << "<b>Analytical note: </b>"
     resultstr << "<input type=hidden name=model_sentence[analytical_note] id=model_sentence[analytical_note] value=\""+@model_sentence.analytical_note.to_s+"\" >"
+    #if @model_sentence.analytical_note == nil or @model_sentence.analytical_note == ''
+    #  @model_sentence.analytical_note = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :model_sentence, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[analytical_note]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@model_sentence.id}_anotediv" + "'>"
+    edit_path = model_sentence_analytical_note_edit_url(:id => @model_sentence.id)
     if @model_sentence.analytical_note == nil or @model_sentence.analytical_note == ''
-      @model_sentence.analytical_note = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :model_sentence, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[analytical_note]'}) +"<br>"
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @model_sentence.analytical_note      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@model_sentence.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
   
 		resultstr <<	"<span id=\"show_av_model_sentence"+@model_sentence.id.to_s+"\"><b>Edit Multimedia Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_model_sentence"+@model_sentence.id.to_s+"');Element.show('hide_av_model_sentence"+@model_sentence.id.to_s+"');Element.show('av_model_sentence_"+@model_sentence.id.to_s+"');", :title => 'Show')+"</span>"
 		resultstr <<	"<span id=\"hide_av_model_sentence"+@model_sentence.id.to_s+"\" style=\"display:none\"><b>Hide Multimedia Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_model_sentence"+@model_sentence.id.to_s+"');Element.show('show_av_model_sentence"+@model_sentence.id.to_s+"');Element.hide('av_model_sentence_"+@model_sentence.id.to_s+"');", :title => 'Hide')+"</span>"
@@ -545,10 +568,22 @@ module ModelSentencesHelper
     resultstr << in_place_form_editor_field( :model_sentence, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[image_link]'}) +"<br>"
     resultstr << "<b>Image description: </b>"
     resultstr << "<input type=hidden name=model_sentence[image_description] id=model_sentence[image_description] value=\""+@model_sentence.image_description.to_s+"\" >"
+    #if @model_sentence.image_description == nil or @model_sentence.image_description == ''
+    #  @model_sentence.image_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :model_sentence, :image_description, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[image_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@model_sentence.id}_imagedescdiv" + "'>"
+    edit_path = model_sentence_image_description_edit_url(:id => @model_sentence.id)
     if @model_sentence.image_description == nil or @model_sentence.image_description == ''
-      @model_sentence.image_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :model_sentence, :image_description, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[image_description]'}) +"<br>"
+      t_imagedescription = 'Click to modify'
+    else
+      t_imagedescription = @model_sentence.image_description     
+    end    
+    resultstr << link_to_remote(t_imagedescription, :url => edit_path, :update => "#{@model_sentence.id}_imagedescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+      
     resultstr << "<b>Audio: </b>"
     resultstr << "<input type=hidden name=model_sentence[audio] id=model_sentence[audio] value=\""+@model_sentence.audio.to_s+"\" >"
     if @model_sentence.audio == nil or @model_sentence.audio == ''
@@ -587,10 +622,22 @@ module ModelSentencesHelper
     resultstr << in_place_form_editor_field( :model_sentence, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[audio_link]'}) +"<br>"
     resultstr << "<b>Audio description: </b>"
     resultstr << "<input type=hidden name=model_sentence[audio_description] id=model_sentence[audio_description] value=\""+@model_sentence.audio_description.to_s+"\" >"
+    #if @model_sentence.audio_description == nil or @model_sentence.audio_description == ''
+    #  @model_sentence.audio_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :model_sentence, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[audio_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@model_sentence.id}_audiodescdiv" + "'>"
+    edit_path = model_sentence_audio_description_edit_url(:id => @model_sentence.id)
     if @model_sentence.audio_description == nil or @model_sentence.audio_description == ''
-      @model_sentence.audio_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :model_sentence, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[audio_description]'}) +"<br>"
+      t_audiodescription = 'Click to modify'
+    else
+      t_audiodescription = @model_sentence.audio_description     
+    end    
+    resultstr << link_to_remote(t_audiodescription, :url => edit_path, :update => "#{@model_sentence.id}_audiodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
     resultstr << "<b>Video: </b>"
     resultstr << "<input type=hidden name=model_sentence[video] id=model_sentence[video] value=\""+@model_sentence.video.to_s+"\" >"
     if @model_sentence.video == nil or @model_sentence.video == ''
@@ -629,10 +676,22 @@ module ModelSentencesHelper
     resultstr << in_place_form_editor_field( :model_sentence, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[video_link]'}) +"<br>"
     resultstr << "<b>Video description: </b>"
     resultstr << "<input type=hidden name=model_sentence[video_description] id=model_sentence[video_description] value=\""+@model_sentence.video_description.to_s+"\" >"
+    #if @model_sentence.video_description == nil or @model_sentence.video_description == ''
+    #  @model_sentence.video_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :model_sentence, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[video_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@model_sentence.id}_videodescdiv" + "'>"
+    edit_path = model_sentence_video_description_edit_url(:id => @model_sentence.id)
     if @model_sentence.video_description == nil or @model_sentence.video_description == ''
-      @model_sentence.video_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :model_sentence, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[video_description]'}) +"<br>"
+      t_videodescription = 'Click to modify'
+    else
+      t_videodescription = @model_sentence.video_description     
+    end    
+    resultstr << link_to_remote(t_videodescription, :url => edit_path, :update => "#{@model_sentence.id}_videodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
     resultstr << "</dd></dl></span>"
   end
 

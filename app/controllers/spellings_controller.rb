@@ -658,4 +658,162 @@ class SpellingsController < ApplicationController
            render_action 'list'
          end
   end
+  
+  def update_analytical_note
+      @spelling = Spelling.find(params[:spelling][:id])
+      if @spelling.created_by == nil or @spelling.created_by == ""
+             @spelling.created_by = session[:user].login
+             @spelling.created_at = Time.now
+      end
+      if session[:user] != nil
+             @spelling.updated_by = session[:user].login
+      end
+      @spelling.updated_at = Time.now
+      if @spelling.update_history == nil
+        @spelling.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @spelling.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @spelling.update_attributes(params[:spelling])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @spelling, :divsuffix => "_anotediv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @spelling
+        end
+      end
+  end
+
+  def analytical_note_show
+      @spelling = Spelling.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @spelling, :divsuffix => "_anotediv"}
+  end
+
+  def analytical_note_edit
+      @spelling = Spelling.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @spelling, :divsuffix => "_anotediv"}
+  end
+
+  def update_image_description
+    debugger
+      @spelling = Spelling.find(params[:spelling][:id])
+      if @spelling.created_by == nil or @spelling.created_by == ""
+        @spelling.created_by = session[:user].login
+        @spelling.created_at = Time.now
+      end
+      if session[:user] != nil
+        @spelling.updated_by = session[:user].login
+      end
+      @spelling.updated_at = Time.now
+      if @spelling.update_history == nil
+        @spelling.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @spelling.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end    
+      respond_to do |format|
+        if @spelling.update_attributes(params[:spelling])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @spelling, :divsuffix => "_imagedescdiv"}
+          end
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @spelling
+        end
+      end
+  end
+
+    def image_description_show
+      @spelling = Spelling.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @spelling, :divsuffix => "_imagedescdiv"}
+    end
+
+    def image_description_edit
+      @spelling = Spelling.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @spelling, :divsuffix => "_imagedescdiv"}
+    end 
+
+    def update_audio_description
+      @spelling = Spelling.find(params[:spelling][:id])
+      if @spelling.created_by == nil or @spelling.created_by == ""
+        @spelling.created_by = session[:user].login
+        @spelling.created_at = Time.now
+      end
+      if session[:user] != nil
+        @spelling.updated_by = session[:user].login
+      end
+      @spelling.updated_at = Time.now
+      if @spelling.update_history == nil
+        @spelling.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @spelling.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end    
+      respond_to do |format|
+        if @spelling.update_attributes(params[:spelling])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @spelling, :divsuffix => "_audiodescdiv"}
+          end
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @spelling
+        end
+      end
+    end
+
+    def audio_description_show
+      @spelling = Spelling.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @spelling, :divsuffix => "_audiodescdiv"}
+    end
+
+    def audio_description_edit
+      @spelling = Spelling.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @spelling, :divsuffix => "_audiodescdiv"}
+    end 
+
+    def update_video_description
+      @spelling = Spelling.find(params[:spelling][:id])
+      if @spelling.created_by == nil or @spelling.created_by == ""
+        @spelling.created_by = session[:user].login
+        @spelling.created_at = Time.now
+      end
+      if session[:user] != nil
+        @spelling.updated_by = session[:user].login
+      end
+      @spelling.updated_at = Time.now
+      if @spelling.update_history == nil
+        @spelling.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @spelling.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end    
+      respond_to do |format|
+        if @spelling.update_attributes(params[:spelling])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @spelling, :divsuffix => "_videodescdiv"}
+          end
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @spelling
+        end
+      end
+  end
+
+  def video_description_show
+      @spelling = Spelling.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @spelling, :divsuffix => "_videodescdiv"}
+  end
+
+  def video_description_edit
+      @spelling = Spelling.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @spelling, :divsuffix => "_videodescdiv"}
+  end  
+  
 end
