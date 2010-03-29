@@ -469,10 +469,22 @@ module SpellingsHelper
     
     resultstr << "<b>Analytical note: </b>"
     resultstr << "<input type=hidden name=spelling[analytical_note] id=spelling[analytical_note] value=\""+@spelling.analytical_note.to_s+"\" >"
+    #if @spelling.analytical_note == nil or @spelling.analytical_note == ''
+    #  @spelling.analytical_note = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :spelling, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[analytical_note]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@spelling.id}_anotediv" + "'>"
+    edit_path = spelling_analytical_note_edit_url(:id => @spelling.id)
     if @spelling.analytical_note == nil or @spelling.analytical_note == ''
-      @spelling.analytical_note = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :spelling, :analytical_note, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[analytical_note]'}) +"<br>"
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @spelling.analytical_note      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@spelling.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
 
 		resultstr <<	"<span id=\"show_av_spelling"+@spelling.id.to_s+"\"><b>Edit Multimedia Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_spelling"+@spelling.id.to_s+"');Element.show('hide_av_spelling"+@spelling.id.to_s+"');Element.show('av_spelling_"+@spelling.id.to_s+"');", :title => 'Show')+"</span>"
 		resultstr <<	"<span id=\"hide_av_spelling"+@spelling.id.to_s+"\" style=\"display:none\"><b>Hide Multimedia Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_spelling"+@spelling.id.to_s+"');Element.show('show_av_spelling"+@spelling.id.to_s+"');Element.hide('av_spelling_"+@spelling.id.to_s+"');", :title => 'Hide')+"</span>"
@@ -505,10 +517,22 @@ module SpellingsHelper
     resultstr << in_place_form_editor_field( :spelling, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[image_link]'}) +"<br>"
     resultstr << "<b>Image description: </b>"
     resultstr << "<input type=hidden name=spelling[image_description] id=spelling[image_description] value=\""+@spelling.image_description.to_s+"\" >"
+    #if @spelling.image_description == nil or @spelling.image_description == ''
+    #  @spelling.image_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :spelling, :image_description, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[image_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@spelling.id}_imagedescdiv" + "'>"
+    edit_path = spelling_image_description_edit_url(:id => @spelling.id)
     if @spelling.image_description == nil or @spelling.image_description == ''
-      @spelling.image_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :spelling, :image_description, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[image_description]'}) +"<br>"
+      t_imagedescription = 'Click to modify'
+    else
+      t_imagedescription = @spelling.image_description     
+    end    
+    resultstr << link_to_remote(t_imagedescription, :url => edit_path, :update => "#{@spelling.id}_imagedescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
     resultstr << "<b>Audio: </b>"
     resultstr << "<input type=hidden name=spelling[audio] id=spelling[audio] value=\""+@spelling.audio.to_s+"\" >"
     if @spelling.audio == nil or @spelling.audio == ''
@@ -547,10 +571,22 @@ module SpellingsHelper
     resultstr << in_place_form_editor_field( :spelling, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[audio_link]'}) +"<br>"
     resultstr << "<b>Audio description: </b>"
     resultstr << "<input type=hidden name=spelling[audio_description] id=spelling[audio_description] value=\""+@spelling.audio_description.to_s+"\" >"
+    #if @spelling.audio_description == nil or @spelling.audio_description == ''
+    #  @spelling.audio_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :spelling, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[audio_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@spelling.id}_audiodescdiv" + "'>"
+    edit_path = spelling_audio_description_edit_url(:id => @spelling.id)
     if @spelling.audio_description == nil or @spelling.audio_description == ''
-      @spelling.audio_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :spelling, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[audio_description]'}) +"<br>"
+      t_audiodescription = 'Click to modify'
+    else
+      t_audiodescription = @spelling.audio_description     
+    end    
+    resultstr << link_to_remote(t_audiodescription, :url => edit_path, :update => "#{@spelling.id}_audiodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
     resultstr << "<b>Video: </b>"
     resultstr << "<input type=hidden name=spelling[video] id=spelling[video] value=\""+@spelling.video.to_s+"\" >"
     if @spelling.video == nil or @spelling.video == ''
@@ -589,10 +625,23 @@ module SpellingsHelper
     resultstr << in_place_form_editor_field( :spelling, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[video_link]'}) +"<br>"
     resultstr << "<b>Video description: </b>"
     resultstr << "<input type=hidden name=spelling[video_description] id=spelling[video_description] value=\""+@spelling.video_description.to_s+"\" >"
+    #if @spelling.video_description == nil or @spelling.video_description == ''
+    #  @spelling.video_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :spelling, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[video_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@spelling.id}_videodescdiv" + "'>"
+    edit_path = spelling_video_description_edit_url(:id => @spelling.id)
     if @spelling.video_description == nil or @spelling.video_description == ''
-      @spelling.video_description = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :spelling, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[video_description]'}) +"<br>"
+      t_videodescription = 'Click to modify'
+    else
+      t_videodescription = @spelling.video_description     
+    end    
+    resultstr << link_to_remote(t_videodescription, :url => edit_path, :update => "#{@spelling.id}_videodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+    
+    
     resultstr << "</dd></dl></span>"
   end
 

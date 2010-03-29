@@ -597,4 +597,160 @@ class OralQuotationsController < ApplicationController
            render_action 'list'
          end
   end
+  
+  def update_analytical_note
+      @oral_quotation = OralQuotation.find(params[:oral_quotation][:id])
+      if @oral_quotation.created_by == nil or @oral_quotation.created_by == ""
+             @oral_quotation.created_by = session[:user].login
+             @oral_quotation.created_at = Time.now
+      end
+      if session[:user] != nil
+             @oral_quotation.updated_by = session[:user].login
+      end
+      @oral_quotation.updated_at = Time.now
+      if @oral_quotation.update_history == nil
+        @oral_quotation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @oral_quotation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @oral_quotation.update_attributes(params[:oral_quotation])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @oral_quotation, :divsuffix => "_anotediv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @oral_quotation
+        end
+      end
+  end
+
+  def analytical_note_show
+      @oral_quotation = OralQuotation.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @oral_quotation, :divsuffix => "_anotediv"}
+  end
+
+  def analytical_note_edit
+      @oral_quotation = OralQuotation.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @oral_quotation, :divsuffix => "_anotediv"}
+  end
+
+  def update_image_description
+      @oral_quotation = OralQuotation.find(params[:oral_quotation][:id])
+      if @oral_quotation.created_by == nil or @oral_quotation.created_by == ""
+        @oral_quotation.created_by = session[:user].login
+        @oral_quotation.created_at = Time.now
+      end
+      if session[:user] != nil
+        @oral_quotation.updated_by = session[:user].login
+      end
+      @oral_quotation.updated_at = Time.now
+      if @oral_quotation.update_history == nil
+        @oral_quotation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @oral_quotation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end    
+      respond_to do |format|
+        if @oral_quotation.update_attributes(params[:oral_quotation])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @oral_quotation, :divsuffix => "_imagedescdiv"}
+          end
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @oral_quotation
+        end
+      end
+  end
+
+    def image_description_show
+      @oral_quotation = OralQuotation.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @oral_quotation, :divsuffix => "_imagedescdiv"}
+    end
+
+    def image_description_edit
+      @oral_quotation = OralQuotation.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @oral_quotation, :divsuffix => "_imagedescdiv"}
+    end 
+
+    def update_audio_description
+      @oral_quotation = OralQuotation.find(params[:oral_quotation][:id])
+      if @oral_quotation.created_by == nil or @oral_quotation.created_by == ""
+        @oral_quotation.created_by = session[:user].login
+        @oral_quotation.created_at = Time.now
+      end
+      if session[:user] != nil
+        @oral_quotation.updated_by = session[:user].login
+      end
+      @oral_quotation.updated_at = Time.now
+      if @oral_quotation.update_history == nil
+        @oral_quotation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @oral_quotation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end    
+      respond_to do |format|
+        if @oral_quotation.update_attributes(params[:oral_quotation])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @oral_quotation, :divsuffix => "_audiodescdiv"}
+          end
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @oral_quotation
+        end
+      end
+    end
+
+    def audio_description_show
+      @oral_quotation = OralQuotation.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @oral_quotation, :divsuffix => "_audiodescdiv"}
+    end
+
+    def audio_description_edit
+      @oral_quotation = OralQuotation.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @oral_quotation, :divsuffix => "_audiodescdiv"}
+    end 
+
+    def update_video_description
+      @oral_quotation = OralQuotation.find(params[:oral_quotation][:id])
+      if @oral_quotation.created_by == nil or @oral_quotation.created_by == ""
+        @oral_quotation.created_by = session[:user].login
+        @oral_quotation.created_at = Time.now
+      end
+      if session[:user] != nil
+        @oral_quotation.updated_by = session[:user].login
+      end
+      @oral_quotation.updated_at = Time.now
+      if @oral_quotation.update_history == nil
+        @oral_quotation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @oral_quotation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end    
+      respond_to do |format|
+        if @oral_quotation.update_attributes(params[:oral_quotation])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @oral_quotation, :divsuffix => "_videodescdiv"}
+          end
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @oral_quotation
+        end
+      end
+    end
+
+    def video_description_show
+      @oral_quotation = OralQuotation.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @oral_quotation, :divsuffix => "_videodescdiv"}
+    end
+
+    def video_description_edit
+      @oral_quotation = OralQuotation.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @oral_quotation, :divsuffix => "_videodescdiv"}
+    end  
 end

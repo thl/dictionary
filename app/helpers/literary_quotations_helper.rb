@@ -939,7 +939,6 @@ module LiteraryQuotationsHelper
     resultstr << "</div>"  
     resultstr << "</span>"
 
-
     resultstr << "<b>Audio: </b>"
     resultstr << "<input type=hidden name=literary_quotation[audio] id=literary_quotation[audio] value=\""+@literary_quotation.audio.to_s+"\" >"
     if @literary_quotation.audio == nil or @literary_quotation.audio == ''
@@ -993,7 +992,6 @@ module LiteraryQuotationsHelper
     resultstr << link_to_remote(t_audiodescription, :url => edit_path, :update => "#{@literary_quotation.id}_audiodescdiv", :method => :get ) 
     resultstr << "</div>"  
     resultstr << "</span>"
-
 
     resultstr << "<b>Video: </b>"
     resultstr << "<input type=hidden name=literary_quotation[video] id=literary_quotation[video] value=\""+@literary_quotation.video.to_s+"\" >"

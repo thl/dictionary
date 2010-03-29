@@ -28,6 +28,19 @@ ActionController::Routing::Routes.draw do |map|
   map.translation_equivalent_translation_equivalent_edit 'translation_equivalents/:id/translation_equivalent_edit', :controller => 'translation_equivalents', :action => 'translation_equivalent_edit'
   map.translation_equivalent_analytical_note_edit 'translation_equivalents/:id/analytical_note_edit', :controller => 'translation_equivalents', :action => 'analytical_note_edit'
   map.translation_equivalent_image_description_edit 'translation_equivalents/:id/image_description_edit', :controller => 'translation_equivalents', :action => 'image_description_edit'
+  map.spelling_analytical_note_edit 'spellings/:id/analytical_note_edit', :controller => 'spellings', :action => 'analytical_note_edit'
+  map.spelling_image_description_edit 'spellings/:id/image_description_edit', :controller => 'spellings', :action => 'image_description_edit'
+  map.spelling_audio_description_edit 'spellings/:id/audio_description_edit', :controller => 'spellings', :action => 'audio_description_edit'
+  map.spelling_video_description_edit 'spellings/:id/video_description_edit', :controller => 'spellings', :action => 'video_description_edit'
+  map.model_sentence_model_sentence_edit 'model_sentences/:id/model_sentence_edit', :controller => 'model_sentences', :action => 'model_sentence_edit'
+  map.model_sentence_analytical_note_edit 'model_sentences/:id/analytical_note_edit', :controller => 'model_sentences', :action => 'analytical_note_edit'
+  map.model_sentence_image_description_edit 'model_sentences/:id/image_description_edit', :controller => 'model_sentences', :action => 'image_description_edit'
+  map.model_sentence_audio_description_edit 'model_sentences/:id/audio_description_edit', :controller => 'model_sentences', :action => 'audio_description_edit'
+  map.model_sentence_video_description_edit 'model_sentences/:id/video_description_edit', :controller => 'model_sentences', :action => 'video_description_edit'
+  map.oral_quotation_analytical_note_edit 'oral_quotations/:id/analytical_note_edit', :controller => 'oral_quotations', :action => 'analytical_note_edit'
+  map.oral_quotation_image_description_edit 'oral_quotations/:id/image_description_edit', :controller => 'oral_quotations', :action => 'image_description_edit'
+  map.oral_quotation_audio_description_edit 'oral_quotations/:id/audio_description_edit', :controller => 'oral_quotations', :action => 'audio_description_edit'
+  map.oral_quotation_video_description_edit 'oral_quotations/:id/video_description_edit', :controller => 'oral_quotations', :action => 'video_description_edit'
  
   # The priority is based upon order of creation: first created -> highest priority.
 
