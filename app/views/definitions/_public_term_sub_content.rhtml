@@ -19,7 +19,9 @@
 				<% if e.language == 'Tibetan' %>
 					<span class="tib1">
 					<% end %>
+					<span class='tinyfied_public_show'>
 			<%= e.translation.span if e.translation != nil %>
+					</span>
 					<% if e.language == 'Tibetan' %>
 					</span>
 					<% end %>
@@ -37,7 +39,9 @@
 		<b>TIBETAN DIALECT:</b>
 				</td>
 				<td>
+					<span class='tinyfied_public_show'>
 					<%= d.major_dialect_family_type.title %>
+					</span>
 				</td>
 			</tr>
 		<% end %>
@@ -54,7 +58,9 @@
 		   size = d.translation_equivalents.size;
 			for e in d.translation_equivalents %>
 				<%= "<br>" if count > 0 %>
+				<span class='tinyfied_public_show_inline'>
 					<%= e.translation_equivalent %>
+				</span>
 					<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
 					<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>		
 					<% str = render :partial => 'translation_equivalent', :locals => {:translation_equivalent => e, :head_id => head_id} %>
@@ -89,7 +95,9 @@
 				<% if count > 0 %>
 				 <br>
 				<% end %>
+				<span class='tinyfied_public_show_inline'>
 				<%= e.phonetic_transliteration %> <% if e.pronunciation_category != nil %>(<%= e.pronunciation_category.title%>)<% end %>
+				</span>
 				<% count += 1 %>
 			<% end %>
 			<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
@@ -120,8 +128,10 @@
 			   size = d.spellings.size;
 				for e in d.spellings %>
 					<%= '<br> ' if count > 0 %>
+					
 				<%= e.spelling if e.spelling != nil %>
 				<%= " (#{e.spelling_category.title})" if e.spelling_category != nil %>
+				
 				<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
 				<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 				<% str = render :partial => 'spelling', :locals => {:spelling => e, :head_id => head_id} %>	
@@ -155,8 +165,10 @@
 			<% if count > 0 %>
 				<br>
 			<% end %>
+			<span class='tinyfied_public_show_inline'>
 			<%= "#{e.etymology_category.title} - " if e.etymology_category != nil %>
 			<%= e.etymology if e.etymology != nil %>
+			</span>
 			<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
 			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>		
 			<% str = render :partial => 'etymology', :locals => {:etymology => e, :head_id => head_id} %>	
@@ -496,7 +508,9 @@
 		   size = d.model_sentences.size;
 			for e in d.model_sentences %>
 				<%= '<br>' if count > 0%>
+				<span class='tinyfied_public_show'>
 			<%= e.model_sentence if e.model_sentence != nil %>
+				</span>
 			<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
 					<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 					<% str = render :partial => 'model_sentence', :locals => {:model_sentence => e, :head_id => head_id} %>	
@@ -530,7 +544,11 @@
 				<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
 			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 			<% if e.passage != nil and e.passage	 != ''%>
-						<span class="tib1"><%= e.passage.s.gsub(@tibetan_space,@tibetan_space_fix) if e.passage != nil %></span>
+						<span class="tib1">
+						<span class='tinyfied_public_show_inline'>
+						<%= e.passage.s.gsub(@tibetan_space,@tibetan_space_fix) if e.passage != nil %>
+						</span>
+						</span>
 			<% end %>
 			<% str = render :partial => 'literary_quotation', :locals => {:literary_quotation => e, :head_id => head_id} %>	
 			<% if str.strip.size > 0 %>

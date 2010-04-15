@@ -8,7 +8,10 @@
 <% if translation_equivalent.analytical_note != nil and translation_equivalent.analytical_note != ''%>
 <dl class="inner_dl">
 	<dd class="inner_dd">
-	<span class="inner_def_header"><strong>NOTE:</strong> </span><%= translation_equivalent.analytical_note%>
+	<span class="inner_def_header"><strong>NOTE:</strong> </span>
+		<span class='tinyfied_public_show_inline'>
+			<%= translation_equivalent.analytical_note%>
+		</span>
 		</dd>
 	</dl>
 <% end %>

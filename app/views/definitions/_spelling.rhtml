@@ -16,7 +16,10 @@
 <% if spelling.analytical_note != nil and spelling.analytical_note != ''%>
 <dl class="inner_dl">
 	<dd class="inner_dd">
-	<span class="inner_def_header"><strong>NOTE:</strong> </span><%= spelling.analytical_note%>
+	<span class="inner_def_header"><strong>NOTE:</strong> </span>
+	<span class='tinyfied_public_show'>
+		<%= spelling.analytical_note%>
+	</span>
 		</dd>
 	</dl>
 <% end %>

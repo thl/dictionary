@@ -9,7 +9,10 @@
 	<% if t.analytical_note != nil and t.analytical_note != ''%>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-		<span class="inner_def_header"><strong>TRANSLATION NOTE:</strong> </span><%= t.analytical_note%>
+		<span class="inner_def_header"><strong>TRANSLATION NOTE:</strong> </span>
+		<span class='tinyfied_public_show'>
+			<%= t.analytical_note%>
+		</span>
 			</dd>
 		</dl>
 	<% end %>
@@ -74,7 +77,10 @@
 <% if model_sentence.analytical_note != nil and model_sentence.analytical_note != ''%>
 <dl class="inner_dl">
 	<dd class="inner_dd">
-	<span class="inner_def_header"><strong>NOTE:</strong> </span><%= model_sentence.analytical_note%>
+	<span class="inner_def_header"><strong>NOTE:</strong> </span>
+		<span class='tinyfied_public_show'>
+			<%= model_sentence.analytical_note%>
+		</span>
 		</dd>
 	</dl>
 <% end %>
