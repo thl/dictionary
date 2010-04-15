@@ -28,8 +28,10 @@
 				<% if d.language == 'Tibetan' %>
 				<% str += '<span class="tib1">' %>
 				<% end %>
+				<span class='tinyfied_public_show'>
 				<% str += '<b>'+d.grammatical_function.span+'</b>' if d.grammatical_function != nil %>
 				<% str += '<b>'+d.grammatical_function_type.title+'</b>' if d.grammatical_function_type != nil %>
+				</span>
 				<% if d.language == 'Tibetan' %>
 				<% str += '</span>' %>
 				<% end %>
@@ -90,8 +92,9 @@
 				<% if d.language == 'Tibetan' %>
 				<span class="tib1">
 				<% end %>
-				<%= d.definition.span if d.definition != nil %>
-				
+				<span class='tinyfied_public_show'>
+				  <%= d.definition.span if d.definition != nil %>
+				</span>
 	<%#= in_place_editor_field( :definition, :definition, {},{:cols=> 50, :rows=> 7, :external_control => d.id})%>
 				<% if d.language == 'Tibetan' %>
 				</span>

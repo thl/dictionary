@@ -55,7 +55,8 @@
 						<% end %>
 						<% if s.source_note != nil and s.source_note != '' %>
 							<dd>
-								<span class="inner_def_header"><strong>SOURCE NOTE:</strong></span> <%= s.source_note %>
+								<span class="inner_def_header"><strong>SOURCE NOTE:</strong></span>
+								<span class='tinyfied_public_show'> <%= s.source_note %> </span>
 							</dd>
 						<% end %>
 
@@ -72,7 +73,8 @@
 			<% end %>
 			<% if meta.metadata_note != nil and meta.metadata_note != ''%>
 				<dd class="inner_dd">
-					<span class="inner_def_header"><strong>NOTE:</strong></span> <%= meta.metadata_note %>
+					<span class="inner_def_header"><strong>NOTE:</strong></span> 
+					<span class='tinyfied_public_show'><%= meta.metadata_note %></span>
 				</dd>
 			<% end %>
 			<% if (meta.project != nil and meta.project != '') or meta.project_type != nil%>

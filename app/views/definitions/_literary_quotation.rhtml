@@ -2,14 +2,20 @@
 <% if t.translation != nil and t.translation != ''%>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>TRANSLATION:</strong> </span><%= t.translation %> <%= "(#{t.language_type.title})" if t.language_type != nil %>
+			<span class="inner_def_header"><strong>TRANSLATION:</strong> </span>
+			<span class='tinyfied_public_show'>
+			<%= t.translation %> <%= "(#{t.language_type.title})" if t.language_type != nil %>
+			</span>
 		</dd>
 	</dl>
 	<% end %>
 	<% if t.analytical_note != nil and t.analytical_note != ''%>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-		<span class="inner_def_header"><strong>TRANSLATION NOTE:</strong> </span><%= t.analytical_note%>
+		<span class="inner_def_header"><strong>TRANSLATION NOTE:</strong> </span>
+			<span class='tinyfied_public_show'>
+				<%= t.analytical_note%>
+			</span>
 			</dd>
 		</dl>
 	<% end %>
@@ -104,7 +110,10 @@
 <% if literary_quotation.analytical_note != nil and literary_quotation.analytical_note != ''%>
 <dl class="inner_dl">
 	<dd class="inner_dd">
-	<span class="inner_def_header"><strong>NOTE:</strong> </span><%= literary_quotation.analytical_note%>
+	<span class="inner_def_header"><strong>NOTE:</strong> </span>
+		<span class='tinyfied_public_show'>
+			<%= literary_quotation.analytical_note%>
+		</span>
 		</dd>
 	</dl>
 <% end %>
