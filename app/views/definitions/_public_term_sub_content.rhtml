@@ -551,6 +551,7 @@
 						</span>
 			<% end %>
 			<% str = render :partial => 'literary_quotation', :locals => {:literary_quotation => e, :head_id => head_id} %>	
+			
 			<% if str.strip.size > 0 %>
 			<span id="plus_item_lq_<%= e.id %>">
 				<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_lq_#{e.id}');Element.show('lq_#{e.id}');Element.hide('plus_item_lq_#{e.id}')")%>

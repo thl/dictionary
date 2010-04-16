@@ -9,3 +9,11 @@
 .tibetan{ font-size: 1.2em; color:brown;}
 .topic{ font-size: 1.2em; color:orange;}
 .tibtext{ font-size: 1.2em; color:blue;}
+
+.bo {
+ font-size: 140%;
+ font-family: "XenoType Tibetan New", "Jomolhari", "Tibetan Machine Uni"!important;
+ line-height: 140%;
+ text-align: left;
+ font-weight: normal;
+}
