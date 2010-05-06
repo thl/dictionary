@@ -3,6 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   #map.definition_edit 'definition_edit', :controller => 'definitions', :action => 'definition_edit'
   #map.resources :definitions, :member => {:definition_edit => :get}
   map.definition_edit 'definitions/:id/definition_edit', :controller => 'definitions', :action => 'definition_edit'
+  map.definition_show 'definitions/:id/definition_show', :controller => 'definitions', :action => 'definition_show'
   map.analytical_note_edit 'definitions/:id/analytical_note_edit', :controller => 'definitions', :action => 'analytical_note_edit'
   map.image_description_edit 'definitions/:id/image_description_edit', :controller => 'definitions', :action => 'image_description_edit'
   map.audio_description_edit 'definitions/:id/audio_description_edit', :controller => 'definitions', :action => 'audio_description_edit'

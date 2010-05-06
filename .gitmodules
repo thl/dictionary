@@ -10,3 +10,9 @@
 [submodule "vendor/plugins/tiny_mce"]
 	path = vendor/plugins/tiny_mce
 	url = git://github.com/kete/tiny_mce.git
+[submodule "vendor/plugins/jrails_in_place_editing"]
+	path = vendor/plugins/jrails_in_place_editing
+	url = git://github.com/rakuto/jrails_in_place_editing.git
+[submodule "vendor/plugins/jrails"]
+	path = vendor/plugins/jrails
+	url = git://github.com/aaronchi/jrails.git

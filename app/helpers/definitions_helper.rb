@@ -1583,11 +1583,14 @@ module DefinitionsHelper
   
   def internal_edit_dynamic_definition
     resultstr = ""
+    #resultstr << in_place_editor_field(:definition, :term)
     resultstr << "<b>Term: </b>"
     resultstr << "<input type=hidden name=internal_definition[term] id=internal_definition[term] value=\""+@definition.term.to_s+"\" >"
     if @definition.term == nil or @definition.term == ''
       @definition.term = 'Click to modify new term'
     end
+    
+    
     resultstr << in_place_editor_field( :definition, :term, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[term]'}) +"<br>"
     resultstr << "<b>Level: </b>"
     resultstr << "<input type=hidden name=internal_definition[level] id=internal_definition[level] value=\""+@definition.level.to_s+"\" >"
@@ -1596,7 +1599,7 @@ module DefinitionsHelper
     end
     
     # resultstr << in_place_select_editor_field( :definition, :level, {}, {:select_options => @level, :fieldname => 'internal_definition[level]'})+"<br>"
-    resultstr << in_place_editor_select_field( :definition, :level, {}, {:collection => @level})+"<br>"
+    #resultstr << in_place_editor_select_field( :definition, :level, {}, {:collection => @level})+"<br>"
     resultstr << "<b>Definition: </b>"
     resultstr << "<input type=hidden name=internal_definition[definition] id=internal_definition[definition] value=\""+@definition.definition.to_s+"\" >"
     #if @definition.definition == nil or @definition.definition == ''
@@ -1616,7 +1619,9 @@ module DefinitionsHelper
     resultstr << "</span>"
     
     resultstr << "<b>Language of definition: </b>"
-    
+    #resultstr << "<span id=123lang_selector>"
+    #resultstr << " category_selector(@data, 'definition', 'language_type, false, @definition.id, '123lang_selector' ) "
+    #resultstr << "</span><br>"
     resultstr << "<input type=hidden name=internal_definition[language] id=internal_definition[language] value=\""+@definition.language.to_s+"\" >"
     if @definition.language_type == nil or @definition.language_type == ''
       title = 'Click to modify'
@@ -1676,7 +1681,7 @@ module DefinitionsHelper
     if @definition.tense == nil or @definition.tense == ''
       @definition.tense = 'Click to modify'
     end
-    resultstr << in_place_select_editor_field( :definition, :tense, {}, {:select_options => @tense, :fieldname => 'internal_definition[tense]'})+"<br>"
+    #resultstr << in_place_select_editor_field( :definition, :tense, {}, {:select_options => @tense, :fieldname => 'internal_definition[tense]'})+"<br>"
     resultstr << "</div>"
 
     # resultstr << observe_field('internal_definition[grammatical_function"+@definition.id.to_s+"]', :frequency => 0.1, :update => "tense"+@definition.id.to_s, :url => {  :action => 'tense' ,:id => params[:id]}, :with=>'value', :loaded => "new Effect.Highlight('strata_types');") 
@@ -1981,5 +1986,368 @@ module DefinitionsHelper
     resultstr << "</dd></dl></span>"
   end
   
+  
+  def modal_internal_edit_dynamic_definition
+    resultstr = ""
+    resultstr << "<b>Term: </b>"
+    resultstr << "<input type=hidden name=internal_definition[term] id=internal_definition[term] value=\""+@definition.term.to_s+"\" >"
+    if @definition.term == nil or @definition.term == ''
+      @definition.term = 'Click to modify new term'
+    end
+    resultstr << in_place_editor_field( :definition, :term, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[term]'}) +"<br>"
+ 
+    resultstr << "<b>Level: </b>"
+    resultstr << "<input type=hidden name=internal_definition[level] id=internal_definition[level] value=\""+@definition.level.to_s+"\" >"
+    if @definition.level == nil or @definition.level == ''
+      @definition.level = 'Click to modify'
+    end  
+    # resultstr << in_place_select_editor_field( :definition, :level, {}, {:select_options => @level, :fieldname => 'internal_definition[level]'})+"<br>"
+    #resultstr << in_place_editor_select_field( :definition, :level, {}, {:collection => @level})+"<br>"
+    #debugger
+    #@level = ['one','two','three']
+    resultstr << in_place_editor_field( :definition, :level, {}, {:field_type => 'select', :select_options => @level, :fieldname => 'internal_definition[level]'}) + "<br>"
 
+    resultstr << "<b>Definition: </b>"
+    resultstr << "<input type=hidden name=internal_definition[definition] id=internal_definition[definition] value=\""+@definition.definition.to_s+"\" >"
+    resultstr << "<span class='definitions_show'>"
+    resultstr << "<div id='" + "#{@definition.id}_defdiv" + "'>"
+    edit_path = definition_edit_url(:id => @definition.id)
+    if @definition.definition == nil or @definition.definition == ''
+      t_definition = 'Click to modify definition'
+    else
+      t_definition = @definition.definition      
+    end    
+    resultstr << link_to_remote(t_definition, :url => edit_path, :update => "#{@definition.id}_defdiv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+    
+    resultstr << "<b>Language of definition: </b>"
+    #resultstr << "<input type=hidden name=internal_definition[language] id=internal_definition[language] value=\""+@definition.language.to_s+"\" >"
+    #if @definition.language_type == nil or @definition.language_type == ''
+    #  title = 'Click to modify'
+    #else
+    #  title = @definition.language_type.title
+    #end
+    #resultstr << "<span id=\"internal_definition[language_type#{@definition.id}]_selector\">"
+    #resultstr << '['+@definition.language+']' if @definition.language != nil
+    @data = Category.find(184)
+    resultstr << category_selector(@data, :definition, :language_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    resultstr << "<br>"
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[language_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[language_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[language_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[language_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    
+    
+    resultstr << "<b>Tibetan Dialect: </b>"
+    #resultstr << "<input type=hidden name=definition[major_dialect_family] id=definition[major_dialect_family"+@definition.id.to_s+"] value=\""+@definition.major_dialect_family.to_s+"\" >"
+    #if @definition.major_dialect_family_type == nil or @definition.major_dialect_family_type == ''
+    #  title = 'Click to modify'
+    #else
+    #  title = @definition.major_dialect_family_type.title
+    #end
+    #resultstr << "<span id=\"internal_definition[major_dialect_family_type#{@definition.id}]_selector\">"
+    #resultstr << '['+@definition.major_dialect_family+']' if @definition.major_dialect_family != nil
+    ##resultstr << link_to_remote( title,{:update => "internal_definition[major_dialect_family_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 638, 'model_name' => 'definition', 'function_name' => "major_dialect_family_type", :update_id => "internal_definition[major_dialect_family_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
+    @data = Category.find(638)
+    resultstr << category_selector(@data, :definition, :major_dialect_family_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[major_dialect_family_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[major_dialect_family_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[major_dialect_family_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[major_dialect_family_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    
+    
+    resultstr << "<b>Grammatical function: </b>" 
+    #resultstr << "<input type=hidden name=internal_definition[grammatical_function] id=internal_definition[grammatical_function"+@definition.id.to_s+"] value=\""+@definition.grammatical_function.to_s+"\" >"
+    # if @definition.grammatical_function == nil or @definition.grammatical_function == ''
+    #   @definition.grammatical_function = 'Click to modify'
+    # end
+    #resultstr << 	"<span id=internal_definition[grammatical_function"+@definition.id.to_s+"]_value class=menuvalue onclick1=show_menu(internal_grammar_menu,getCoord(arguments[0]));>"
+    #resultstr << "<span id=internal_definition[grammatical_function_type#{@definition.id}]_selector>"
+    #resultstr << '['+@definition.grammatical_function+']' if @definition.grammatical_function != nil
+    #resultstr << link_to_remote( (@definition.grammatical_function_type != nil ? @definition.grammatical_function_type.title : 'Select A Value'),{:update => "internal_definition[grammatical_function_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 286, 'model_name' => 'definition', 'function_name' => "grammatical_function_type", :update_id => "internal_definition[grammatical_function_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
+    @data = Category.find(286)
+    resultstr << category_selector(@data, :definition, :grammatical_function_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+    #resultstr <<"</span>"
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[grammatical_function_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[grammatical_function_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[grammatical_function_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[grammatical_function_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+  
+  
+    resultstr << "<div id=tense"+@definition.id.to_s
+    resultstr << " style=\"display:none;\""  unless @definition.grammatical_function == 'Verb'
+    resultstr << ">"
+    resultstr << "<b>Tense: </b>"
+    resultstr << "<input type=hidden name=internal_definition[tense] id=internal_definition[tense] value=\""+@definition.tense.to_s+"\" >"
+    if @definition.tense == nil or @definition.tense == ''
+      @definition.tense = 'Click to modify'
+    end
+    #resultstr << in_place_select_editor_field( :definition, :tense, {}, {:select_options => @tense, :fieldname => 'internal_definition[tense]'})+"<br>"
+    resultstr << "</div>"
+
+    # resultstr << observe_field('internal_definition[grammatical_function"+@definition.id.to_s+"]', :frequency => 0.1, :update => "tense"+@definition.id.to_s, :url => {  :action => 'tense' ,:id => params[:id]}, :with=>'value', :loaded => "new Effect.Highlight('strata_types');") 
+
+
+    resultstr << "<b>Register: </b>"
+    resultstr << "<input type=hidden name=internal_definition[register] id=internal_definition[register] value=\""+@definition.register.to_s+"\" >"
+    if @definition.register_type == nil or @definition.register_type == ''
+      title = 'Click to modify'
+    else
+      title = @definition.register_type.title
+    end
+    resultstr << "<span id=\"internal_definition[register_type#{@definition.id}]_selector\">"
+    resultstr << '['+@definition.register+']' if @definition.register != nil
+    #resultstr << link_to_remote( title,{:update => "internal_definition[register_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 190, 'model_name' => 'definition', 'function_name' => "register_type", :update_id => "internal_definition[register_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
+    @data = Category.find(190)
+    resultstr << category_selector(@data, :definition, :register_type, true, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "</span><br>"
+    resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[register_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[register_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[register_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[register_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    # resultstr << in_place_select_editor_field( :definition, :register, {}, {:select_options => @register, :fieldname => 'internal_definition[register]'})+"<br>"
+
+
+    resultstr << "<b>Language context: </b>"
+    resultstr << "<input type=hidden name=internal_definition[language_context] id=internal_definition[language_context] value=\""+@definition.language_context.to_s+"\" >"
+    if @definition.language_context_type == nil or @definition.language_context_type == ''
+      title = 'Click to modify'
+    else
+      title = @definition.language_context_type.title
+    end
+    resultstr << "<span id=\"internal_definition[language_context_type#{@definition.id}]_selector\">"
+    resultstr << '['+@definition.language_context+']' if @definition.language_context != nil
+    #resultstr << link_to_remote( title,{:update => "internal_definition[language_context_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 185, 'model_name' => 'definition', 'function_name' => "language_context_type", :update_id => "internal_definition[language_context_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
+    @data = Category.find(185)
+    resultstr << category_selector(@data, :definition, :language_context_type, true, :hasTree => 'true', :singleSelectionTree => 'true')        
+    resultstr << "</span><br>"
+    resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[language_context_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[language_context_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[language_context_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[language_context_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    # resultstr << in_place_select_editor_field( :definition, :language_context, {}, {:select_options => @language_context, :fieldname => 'internal_definition[language_context]'})+"<br>"
+
+    resultstr << "<b>Literary genre: </b>"
+    resultstr << "<input type=hidden name=internal_definition[literary_genre] id=internal_definition[literary_genre"+@definition.id.to_s+"] value=\""+@definition.literary_genre.to_s+"\" >"
+    if @definition.literary_genre_type == nil or @definition.literary_genre_type == ''
+      title = 'Click to modify'
+    else
+      title = @definition.literary_genre_type.title
+    end
+    resultstr << "<span id=\"internal_definition[literary_genre_type#{@definition.id}]_selector\">"
+    resultstr << '['+@definition.literary_genre+']' if @definition.literary_genre != nil
+    #resultstr << link_to_remote( title,{:update => "internal_definition[literary_genre_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 119, 'model_name' => 'definition', 'function_name' => "literary_genre_type", :update_id => "internal_definition[literary_genre_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
+    @data = Category.find(119)
+    resultstr << category_selector(@data, :definition, :literary_genre_type, true, :hasTree => 'true', :singleSelectionTree => 'true')            
+    resultstr << "</span><br>"
+    # resultstr <<  "<span id=internal_definition[literary_genre"+@definition.id.to_s+"]_value class=menuvalue onclick=dialect_id="+@definition.id.to_s+";show_menu(genre_menu,getCoord(arguments[0]));>"+@definition.literary_genre+"</span><br>"
+    resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    
+    
+    resultstr << "<b>Literary period: </b>"
+    resultstr << "<input type=hidden name=internal_definition[literary_period] id=internal_definition[literary_period] value=\""+@definition.literary_period.to_s+"\" >"
+    if @definition.literary_period_type == nil
+      title = 'Click to modify'
+    else
+      title = @definition.literary_period_type.title
+    end
+    resultstr << "<span id=\"internal_definition[literary_period_type#{@definition.id}]_selector\">"
+    resultstr << '['+@definition.literary_period+']' if @definition.literary_period != nil
+    #resultstr << link_to_remote( title,{:update => "internal_definition[literary_period_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 187, 'model_name' => 'definition', 'function_name' => "literary_period_type", :update_id => "internal_definition[literary_period_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
+    @data = Category.find(187)
+    resultstr << category_selector(@data, :definition, :literary_period_type, true, :hasTree => 'true', :singleSelectionTree => 'true')            
+    resultstr << "</span><br>"
+    resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+
+
+    resultstr << "<b>Thematic classification: </b>"
+    resultstr << "<input type=hidden name=internal_definition[thematic_classification] id=internal_definition[thematic_classification] value=\""+@definition.thematic_classification.to_s+"\" >"
+    if @definition.thematic_classification_type == nil
+      title = 'Click to modify'
+    else
+      title = @definition.thematic_classification_type.title
+    end
+    resultstr << "<span id=\"internal_definition[thematic_classification_type#{@definition.id}]_selector\">"
+    resultstr << '['+@definition.thematic_classification+']' if @definition.thematic_classification != nil
+    #resultstr << link_to_remote( title,{:update => "internal_definition[thematic_classification_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 272, 'model_name' => 'definition', 'function_name' => "thematic_classification_type", :update_id => "internal_definition[thematic_classification_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
+    @data = Category.find(272)
+    resultstr << category_selector(@data, :definition, :thematic_classification_type, true, :hasTree => 'true', :singleSelectionTree => 'true')            
+    resultstr << "</span><br>"
+    resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    
+    resultstr << "<b>Numerology: </b>"
+    resultstr << "<input type=hidden name=internal_definition[numerology] id=internal_definition[numerology] value=\""+@definition.numerology.to_s+"\" >"
+    if @definition.numerology == nil or @definition.numerology == ''
+      @definition.numerology = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :numerology, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[numerology]'}) +"<br>"
+    resultstr << "<b>Encyclopedia entry: </b>"
+    resultstr << "<input type=hidden name=internal_definition[encyclopedia_entry] id=internal_definition[encyclopedia_entry] value=\""+@definition.encyclopedia_entry.to_s+"\" >"
+    if @definition.encyclopedia_entry == nil or @definition.encyclopedia_entry == ''
+      @definition.encyclopedia_entry = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :encyclopedia_entry, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[encyclopedia_entry]'}) +"<br>"
+
+
+    resultstr << "<b>Analytical note: </b>"
+    resultstr << "<input type=hidden name=internal_definition[analytical_note] id=internal_definition[analytical_note] value=\""+@definition.analytical_note.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@definition.id}_anotediv" + "'>"
+    edit_path = analytical_note_edit_url(:id => @definition.id)
+    if @definition.analytical_note == nil or @definition.analytical_note == ''
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @definition.analytical_note
+    end  
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@definition.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+    
+    #Multimedia collapsable data
+    #resultstr << "<div class='showhide'>"
+    #resultstr << "something to show and hide"
+    #resultstr << "</div>" #showhide
+    #resultstr << "<input type='submit' name='hideh1' value='hide multimedia' id='hideh1'"
+    #resultstr << "<input type='submit' name='showh1' value='show multimedia' id='showh1'"
+    #resultstr << "<input type='submit' name='toggleh1' value='toggle multimedia' id='toggleh1'"
+    resultstr << "<b>Edit Multimedia Data: </b>"
+    resultstr << "<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>"
+    
+		#resultstr <<	"<span id=\"show_av_"+@definition.id.to_s+"\"><b>Edit Multimedia Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_"+@definition.id.to_s+"');Element.show('hide_av_"+@definition.id.to_s+"');Element.show('av_definition_"+@definition.id.to_s+"');", :title => 'Show')+"</span>"
+	  
+		#resultstr <<	"<span id=\"hide_av_"+@definition.id.to_s+"\" style=\"display:none\"><b>Hide Multimedia Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_"+@definition.id.to_s+"');Element.show('show_av_"+@definition.id.to_s+"');Element.hide('av_definition_"+@definition.id.to_s+"');", :title => 'Hide')+"</span>"
+    
+    #resultstr << "<span id=\"av_definition_"+@definition.id.to_s+"\" style=\"display:none\"/><dl><dd>"
+    resultstr << "<div class='showhide'>"
+    resultstr << "<br><b>Image: </b>"
+    resultstr << "<input type=hidden name=internal_definition[image] id=internal_definition[image] value=\""+@definition.image.to_s+"\" >"
+    if @definition.image == nil or @definition.image == ''
+      @definition.image = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :image, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[image]'}) +"<br>"
+    resultstr << "<b>Image caption: </b>"
+    resultstr << "<input type=hidden name=internal_definition[image_caption] id=internal_definition[image_caption] value=\""+@definition.image_caption.to_s+"\" >"
+    if @definition.image_caption == nil or @definition.image_caption == ''
+      @definition.image_caption = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :image_caption, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[image_caption]'}) +"<br>"
+    resultstr << "<b>Image photographer: </b>"
+    resultstr << "<input type=hidden name=internal_definition[image_photographer] id=internal_definition[image_photographer] value=\""+@definition.image_photographer.to_s+"\" >"
+    if @definition.image_photographer == nil or @definition.image_photographer == ''
+      @definition.image_photographer = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :image_photographer, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[image_photographer]'}) +"<br>"
+    resultstr << "<b>Image link: </b>"
+    resultstr << "<input type=hidden name=internal_definition[image_link] id=internal_definition[image_link] value=\""+@definition.image_link.to_s+"\" >"
+    if @definition.image_link == nil or @definition.image_link == ''
+      @definition.image_link = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[image_link]'}) +"<br>"
+    resultstr << "<b>Image description: </b>"
+    resultstr << "<input type=hidden name=internal_definition[image_description] id=internal_definition[image_description] value=\""+@definition.image_description.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@definition.id}_imagedescdiv" + "'>"
+    edit_path = image_description_edit_url(:id => @definition.id)
+    if @definition.image_description == nil or @definition.image_description == ''
+      t_imagedescription = 'Click to modify'
+    else
+      t_imagedescription = @definition.image_description     
+    end    
+    resultstr << link_to_remote(t_imagedescription, :url => edit_path, :update => "#{@definition.id}_imagedescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+    resultstr << "<b>Audio: </b>"
+    resultstr << "<input type=hidden name=internal_definition[audio] id=internal_definition[audio] value=\""+@definition.audio.to_s+"\" >"
+    if @definition.audio == nil or @definition.audio == ''
+      @definition.audio = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :audio, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio]'}) +"<br>"
+    resultstr << "<b>Audio id number: </b>"
+    resultstr << "<input type=hidden name=internal_definition[audio_id_number] id=internal_definition[audio_id_number] value=\""+@definition.audio_id_number.to_s+"\" >"
+    if @definition.audio_id_number == nil or @definition.audio_id_number == ''
+      @definition.audio_id_number = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :audio_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio_id_number]'}) +"<br>"
+    resultstr << "<b>Audio speaker: </b>"
+    resultstr << "<input type=hidden name=internal_definition[audio_speaker] id=internal_definition[audio_speaker] value=\""+@definition.audio_speaker.to_s+"\" >"
+    if @definition.audio_speaker == nil or @definition.audio_speaker == ''
+      @definition.audio_speaker = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :audio_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio_speaker]'}) +"<br>"
+    resultstr << "<b>Audio date: </b>"
+    resultstr << "<input type=hidden name=internal_definition[audio_date] id=internal_definition[audio_date] value=\""+@definition.audio_date.to_s+"\" >"
+    if @definition.audio_date == nil or @definition.audio_date == ''
+      @definition.audio_date = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :audio_date, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio_date]'}) +"<br>"
+    resultstr << "<b>Audio place of recording: </b>"
+    resultstr << "<input type=hidden name=internal_definition[audio_place_of_recording] id=internal_definition[audio_place_of_recording] value=\""+@definition.audio_place_of_recording.to_s+"\" >"
+    if @definition.audio_place_of_recording == nil or @definition.audio_place_of_recording == ''
+      @definition.audio_place_of_recording = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :audio_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio_place_of_recording]'}) +"<br>"
+    resultstr << "<b>Audio link: </b>"
+    resultstr << "<input type=hidden name=internal_definition[audio_link] id=internal_definition[audio_link] value=\""+@definition.audio_link.to_s+"\" >"
+    if @definition.audio_link == nil or @definition.audio_link == ''
+      @definition.audio_link = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[audio_link]'}) +"<br>"
+    resultstr << "<b>Audio description: </b>"
+    resultstr << "<input type=hidden name=internal_definition[audio_description] id=internal_definition[audio_description] value=\""+@definition.audio_description.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@definition.id}_audiodescdiv" + "'>"
+    edit_path = audio_description_edit_url(:id => @definition.id)
+    if @definition.audio_description == nil or @definition.audio_description == ''
+      t_audiodescription = 'Click to modify'
+    else
+      t_audiodescription = @definition.audio_description  
+    end    
+    resultstr << link_to_remote(t_audiodescription, :url => edit_path, :update => "#{@definition.id}_audiodescdiv", :method => :get ) 
+    resultstr << "</div>" 
+    resultstr << "</span>"
+    resultstr << "<b>Video: </b>"
+    resultstr << "<input type=hidden name=internal_definition[video] id=internal_definition[video] value=\""+@definition.video.to_s+"\" >"
+    if @definition.video == nil or @definition.video == ''
+      @definition.video = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :video, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video]'}) +"<br>"
+    resultstr << "<b>Video id number: </b>"
+    resultstr << "<input type=hidden name=internal_definition[video_id_number] id=internal_definition[video_id_number] value=\""+@definition.video_id_number.to_s+"\" >"
+    if @definition.video_id_number == nil or @definition.video_id_number == ''
+      @definition.video_id_number = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :video_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video_id_number]'}) +"<br>"
+    resultstr << "<b>Video speaker: </b>"
+    resultstr << "<input type=hidden name=internal_definition[video_speaker] id=internal_definition[video_speaker] value=\""+@definition.video_speaker.to_s+"\" >"
+    if @definition.video_speaker == nil or @definition.video_speaker == ''
+      @definition.video_speaker = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :video_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video_speaker]'}) +"<br>"
+    resultstr << "<b>Video date: </b>"
+    resultstr << "<input type=hidden name=internal_definition[video_date] id=internal_definition[video_date] value=\""+@definition.video_date.to_s+"\" >"
+    if @definition.video_date == nil or @definition.video_date == ''
+      @definition.video_date = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :video_date, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video_date]'}) +"<br>"
+    resultstr << "<b>Video place of recording: </b>"
+    resultstr << "<input type=hidden name=internal_definition[video_place_of_recording] id=internal_definition[video_place_of_recording] value=\""+@definition.video_place_of_recording.to_s+"\" >"
+    if @definition.video_place_of_recording == nil or @definition.video_place_of_recording == ''
+      @definition.video_place_of_recording = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :video_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video_place_of_recording]'}) +"<br>"
+    resultstr << "<b>Video link: </b>"
+    resultstr << "<input type=hidden name=internal_definition[video_link] id=internal_definition[video_link] value=\""+@definition.video_link.to_s+"\" >"
+    if @definition.video_link == nil or @definition.video_link == ''
+      @definition.video_link = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :definition, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[video_link]'}) +"<br>"
+    
+    resultstr << "<b>Video description: </b>"
+    resultstr << "<input type=hidden name=internal_definition[video_description] id=internal_definition[video_description] value=\""+@definition.audio_description.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@definition.id}_videodescdiv" + "'>"
+    edit_path = video_description_edit_url(:id => @definition.id)
+    if @definition.video_description == nil or @definition.video_description == ''
+      t_videodescription = 'Click to modify'
+    else
+      t_videodescription = @definition.video_description
+    end    
+    resultstr << link_to_remote(t_videodescription, :url => edit_path, :update => "#{@definition.id}_videodescdiv", :method => :get ) 
+    resultstr << "</div>" 
+    #resultstr << "</span>"
+    resultstr << "</div>" #showhide
+    #resultstr << "</dd></dl></span>"
+  end
+  
 end

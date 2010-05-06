@@ -7,4 +7,5 @@
 @id = id
 @update_id = update_id
 %>
-<%= category_selector(@data, @model_name, @function_name, false, @id, @update_id ) %>
+<%#= category_selector(@data, @model_name, @function_name, false, @id, @update_id ) %>
+<%= category_selector(@data, @model_name, @function_name, true, :hasTree => 'true', :singleSelectionTree => 'true') %>

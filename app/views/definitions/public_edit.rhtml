@@ -260,6 +260,26 @@ function clear_contents(node)
 }
 
 </script>
+<script type="text/javascript">
+ // var $j = jQuery.noConflict();
+  var root_dir="<%= $root_dir %>";
+  var controller = 'definitions';
+  var id = '51';
+  var parent_id = '51';
+
+  $j(document).ready(function(){
+   //$j("a").click(function(event){
+     //alert("Thanks for visiting!");
+	//alert(root_dir);
+	event.preventDefault();
+    //$j('#edit_box').load(root_dir+'/'+controller+'/edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition);
+   });
+
+
+  });
+</script>
+
+
 <script language="JavaScript">
 
 	var root_dir="<%= $root_dir%>";
@@ -344,7 +364,7 @@ function clear_contents(node)
 	<div id="<%= @definition.id %>div">
 		<%= render(:partial => 'public_definition', :locals => {:d => @definition, :parent_id => @head_id, :head_id => @head_id, :level => 'head'})%>
 	</div>
-
+<a href="http://jquery.com/">jQuery</a>
 		<!-- <span id=definition[grammatical_function]_value class=menuvalue onclick=show_menu(menu1,getCoord(arguments[0]));><%= image_tag 'edit_up.gif', :alt => 'Edit' %> </span> -->
 <br>
 <% if @definition.super_definitions.size > 0 %>

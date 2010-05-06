@@ -250,6 +250,7 @@ class DefinitionsController < ApplicationController
   end
 
   def display_category_selector
+    debugger
     @data = Category.find(params['data_id'])
     @definition = Definition.find(params[:id])
     # debugger
@@ -1886,7 +1887,17 @@ end
     render :layout => false if params['internal'] != nil
   end
 
+  def test_jrails_edit
+    
+  end
+  
+  def set_definition_term
+    
+  end
+  
   def edit_dynamic
+    
+    @data = Category.find(184)
     # @level = ["","head term","not head"]
     @level = '[["",""],["head term","head term"],["not head","not head"]]'
     @language = []
@@ -2058,7 +2069,9 @@ end
     @definition = Definition.find(params[:id])
     print "-----------------"+@definition.sub_definitions.size.to_s
     print "\nno layout\n" if params['internal'] != nil or params['public'] != nil
-    render :layout => false if params['internal'] != nil or params['public'] != nil
+    #render :layout => false if params['internal'] != nil or params['public'] != nil
+    #render :layout => 'staging_new'
+    render :layout => 'staging_popup'
   end
 
   def show_edit
@@ -2216,6 +2229,184 @@ end
       else
         redirect_to :action => 'show', :id => @definition
       end
+  end
+
+  def edit_dynamic_definition
+    @data = Category.find(184)
+    # @level = ["","head term","not head"]
+    @level = '[["",""],["head term","head term"],["not head","not head"]]'
+    @language = []
+    Language.find(:all, :order => 'language asc').each do |l|
+      @language += [l.language]
+    end
+    @tense = "imperative, past, present, future".split(', ')
+    @register = []
+    Register.find(:all).each do |l|
+      @register += [l.register]
+    end
+    @language_context = []
+    LanguageContext.find(:all).each do |l|
+      @language_context += [l.language_context]
+    end
+    @literary_genre = []
+    LiteraryGenre.find(:all).each do |l|
+      @literary_genre += [l.literary_genre]
+    end
+    @literary_period = []
+    LiteraryPeriod.find(:all).each do |l|
+      @literary_period += [l.literary_period]
+    end
+    @literary_form = []
+    LiteraryForm.find(:all).each do |l|
+      @literary_form += [l.literary_form]
+    end
+
+    @theme_ones = ThemeLevelOne.find(:all)
+    @theme_array = ""
+    @internal_theme_array = ""
+    for md in @theme_ones
+      @theme_array += ",\n" unless @theme_array == ""
+      md.theme = '-' if md.theme == nil
+      @theme_array += "['"+md.theme+"', \"javascript:set_field('"+md.theme+"','definition[thematic_classification]','"+url_for(:action => 'set_thematic_classification',:id => params[:id].to_s)+"');\",null"
+      @internal_theme_array += ",\n" unless @internal_theme_array == ""
+      @internal_theme_array += "['"+md.theme+"', \"javascript:set_field('"+md.theme+"','internal_definition[thematic_classification]','"+url_for(:action => 'set_thematic_classification',:id => params[:id].to_s)+"');\",null"
+      if md.theme_level_twos.size > 0
+        @theme_array += ",\n"
+        @internal_theme_array += ",\n"
+      else
+        @theme_array += ",null,\n"
+        @internal_theme_array += ",null,\n"
+      end
+      theme_two_array = ""
+      internal_theme_two_array = ""
+      for sd in md.theme_level_twos
+        theme_two_array += ",\n" unless theme_two_array == ""
+        sd.theme = '-' if sd.theme == nil
+        theme_two_array += "  ['"+sd.theme+"', \"javascript:set_field('"+md.theme+" > "+sd.theme+"','definition[thematic_classification]','"+url_for(:action => 'set_thematic_classification',:id => params[:id].to_s)+"');\",null"
+        internal_theme_two_array += ",\n" unless internal_theme_two_array == ""
+        internal_theme_two_array += "  ['"+sd.theme+"', \"javascript:set_field('"+md.theme+" > "+sd.theme+"','internal_definition[thematic_classification]','"+url_for(:action => 'set_thematic_classification',:id => params[:id].to_s)+"');\",null"
+        if sd.theme_level_threes.size > 0
+          theme_two_array += ",\n"
+          internal_theme_two_array += ",\n"
+        else
+          theme_two_array += ",null,\n"
+          internal_theme_two_array += ",null,\n"
+        end
+        theme_three_array = ""
+        internal_theme_three_array = ""
+        for td in sd.theme_level_threes
+          theme_three_array += ",\n" unless theme_three_array == ""
+          td.theme = '-' if td.theme == nil
+          theme_three_array += "    ['"+td.theme+"', \"javascript:set_field('"+md.theme+" > "+sd.theme+" > "+td.theme+"','definition[thematic_classification]','"+url_for(:action => 'set_thematic_classification',:id => params[:id].to_s)+"');\"]\n"
+          internal_theme_three_array += ",\n" unless internal_theme_three_array == ""
+          internal_theme_three_array += "    ['"+td.theme+"', \"javascript:set_field('"+md.theme+" > "+sd.theme+" > "+td.theme+"','internal_definition[thematic_classification]','"+url_for(:action => 'set_thematic_classification',:id => params[:id].to_s)+"');\"]\n"
+        end
+        theme_two_array += theme_three_array+"\n]"
+        internal_theme_two_array += internal_theme_three_array+"\n]"
+      end
+      @theme_array += theme_two_array+"\n]"
+      @internal_theme_array += internal_theme_two_array+"\n]"
+    end
+    @theme_array = "[\n['Choose Theme',null,null,\n"+@theme_array+"],['Cancel',null,null]	]"
+    @internal_theme_array = "[\n['Choose Theme',null,null,\n"+@internal_theme_array+"],['Cancel',null,null]	]"
+
+    @grammar_function_level_ones = GrammarFunctionLevelOne.find(:all)
+    @grammar_function_array = ""
+    @internal_grammar_function_array = ""
+    for md in @grammar_function_level_ones
+      @grammar_function_array += ",\n" unless @grammar_function_array == ""
+      md.grammar_function = "-" if md.grammar_function == nil
+      @grammar_function_array += "['"+md.grammar_function.to_s+"', \"javascript:set_field('"+md.grammar_function.to_s+"','definition[grammatical_function]','"+url_for(:action => 'set_grammatical_function',:id => params[:id].to_s)+"');\",null" #unless md.grammar_function != nil
+      @internal_grammar_function_array += ",\n" unless @internal_grammar_function_array == ""
+      @internal_grammar_function_array += "['"+md.grammar_function+"', \"javascript:set_field('"+md.grammar_function+"','internal_definition[grammatical_function]','"+url_for(:action => 'set_grammatical_function',:id => params[:id].to_s)+"');\",null"
+      if md.grammar_function_level_twos.size > 0
+        @grammar_function_array += ",\n"
+        @internal_grammar_function_array += ",\n"
+      else
+        @grammar_function_array += ",null,\n"
+        @internal_grammar_function_array += ",null,\n"
+      end
+      grammar_function_two_array = ""
+      internal_grammar_function_two_array = ""
+      for sd in md.grammar_function_level_twos
+        grammar_function_two_array += ",\n" unless grammar_function_two_array == ""
+        sd.grammar_function = "-" if sd.grammar_function == nil
+        grammar_function_two_array += "  ['"+sd.grammar_function+"', \"javascript:set_field('"+md.grammar_function+" > "+sd.grammar_function+"','definition[grammatical_function]','"+url_for(:action => 'set_grammatical_function',:id => params[:id].to_s)+"');\",null" unless sd.grammar_function == nil or md.grammar_function == nil
+        internal_grammar_function_two_array += ",\n" unless internal_grammar_function_two_array == ""
+        internal_grammar_function_two_array += "  ['"+sd.grammar_function+"', \"javascript:set_field('"+md.grammar_function+" > "+sd.grammar_function+"','internal_definition[grammatical_function]','"+url_for(:action => 'set_grammatical_function',:id => params[:id].to_s)+"');\",null" unless sd.grammar_function == nil or md.grammar_function == nil
+        if sd.grammar_function_level_threes.size > 0
+          grammar_function_two_array += ",\n"
+          internal_grammar_function_two_array += ",\n"
+        else
+          grammar_function_two_array += ",null,\n"
+          internal_grammar_function_two_array += ",null,\n"
+        end
+        grammar_function_three_array = ""
+        internal_grammar_function_three_array = ""
+        for td in sd.grammar_function_level_threes
+          grammar_function_three_array += ",\n" unless grammar_function_three_array == ""
+          td.grammar_function = "-" if td.grammar_function == nil
+          grammar_function_three_array += "    ['"+td.grammar_function+"', \"javascript:set_field('"+md.grammar_function+" > "+sd.grammar_function+" > "+td.grammar_function+"','definition[grammatical_function]','"+url_for(:action => 'set_grammatical_function',:id => params[:id].to_s)+"');\"]\n"
+          internal_grammar_function_three_array += ",\n" unless internal_grammar_function_three_array == ""
+          internal_grammar_function_three_array += "    ['"+td.grammar_function+"', \"javascript:set_field('"+md.grammar_function+" > "+sd.grammar_function+" > "+td.grammar_function+"','internal_definition[grammatical_function]','"+url_for(:action => 'set_grammatical_function',:id => params[:id].to_s)+"');\"]\n"
+        end
+        grammar_function_two_array += grammar_function_three_array+"\n]"
+        internal_grammar_function_two_array += internal_grammar_function_three_array+"\n]"
+      end
+      @grammar_function_array += grammar_function_two_array+"\n]"
+      @internal_grammar_function_array += internal_grammar_function_two_array+"\n]"
+    end
+    @grammar_function_array = "[\n['Choose Grammatical Function',null,null,\n"+@grammar_function_array+"],['Cancel',null,null]	]"
+    @internal_grammar_function_array = "[\n['Choose Grammatical Function',null,null,\n"+@internal_grammar_function_array+"],['Cancel',null,null]	]"
+    
+    @major_dialects = MajorDialect.find(:all)
+    @dialect_array = ""
+    @internal_dialect_array = ""
+    for md in @major_dialects
+      @dialect_array += ",\n" unless @dialect_array == ""
+      md.name = '-' if md.name == nil
+      @dialect_array += "['"+md.name+"', \"javascript:set_field('"+md.name+"','definition[major_dialect_family]','"+url_for(:action => 'set_major_dialect_family',:id => params[:id].to_s)+"');\",null"
+      @internal_dialect_array += ",\n" unless @internal_dialect_array == ""
+      @internal_dialect_array += "['"+md.name+"', \"javascript:set_field('"+md.name+"','internal_definition[major_dialect_family]','"+url_for(:action => 'set_major_dialect_family',:id => params[:id].to_s)+"');\",null"
+      if md.specific_dialects.size > 0
+        @dialect_array += ",\n"
+        @internal_dialect_array += ",\n"
+      else
+        @dialect_array += ",null,\n"
+        @internal_dialect_array += ",null,\n"
+      end
+      specific_dialect_array = ""
+      internal_specific_dialect_array = ""
+      for sd in md.specific_dialects
+        specific_dialect_array += ",\n" unless specific_dialect_array == ""
+        sd.name = '-' if sd.name == nil
+        specific_dialect_array += "  ['"+sd.name+"', \"javascript:set_field('"+md.name+" > "+sd.name+"','definition[major_dialect_family]','"+url_for(:action => 'set_major_dialect_family',:id => params[:id].to_s)+"');\"]\n"
+        internal_specific_dialect_array += ",\n" unless internal_specific_dialect_array == ""
+        internal_specific_dialect_array += "  ['"+sd.name+"', \"javascript:set_field('"+md.name+" > "+sd.name+"','internal_definition[major_dialect_family]','"+url_for(:action => 'set_major_dialect_family',:id => params[:id].to_s)+"');\"]\n"
+      end
+      @dialect_array += specific_dialect_array+"\n]"
+      @internal_dialect_array += internal_specific_dialect_array+"\n]"
+    end
+    @dialect_array = "[\n['Choose Dialect',null,null,\n"+@dialect_array+"],['Cancel',null,null]	]"
+    @internal_dialect_array = "[\n['Choose Dialect',null,null,\n"+@internal_dialect_array+"],['Cancel',null,null]	]"
+
+
+    if(params['internal'] != nil)
+      @divname = 'definition_internal'
+    else
+    	@divname = 'definition'
+    end
+    if params['level'] != nil
+      params['level'] = (params['level'].to_i + 1).to_s
+    else
+      params['level'] = '1'
+    end
+    @definition = Definition.find(params[:id])
+    print "-----------------"+@definition.sub_definitions.size.to_s
+    print "\nno layout\n" if params['internal'] != nil or params['public'] != nil
+    #render :layout => false if params['internal'] != nil or params['public'] != nil
+    #render :layout => 'staging_new'
+    render :layout => 'staging_popup'
   end
 
   def update_definition
@@ -2405,6 +2596,39 @@ end
      @definition = Definition.find(params[:id])
      render :partial => "video_description_edit", :locals => {:d => @definition}
   end
+        
+  def update_dynamic_definition
+    debugger
+    @definition = Definition.find(params[:id])
+    if @definition.created_by == nil or @definition.created_by == ""
+      @definition.created_by = session[:user].login
+      @definition.created_at = Time.now
+    end
+    if session[:user] != nil
+      @definition.updated_by = session[:user].login
+    end
+    @definition.updated_at = Time.now
+    if @definition.update_history == nil
+      @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+    else
+    	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+    end   
+    respond_to do |format|
+      if @definition.update_attributes(params[:definition])
+        #format.html do
+        #  render :partial => 'definition_show', :locals => {:d => @definition}
+        #end
+        render :nothing => true
+        #flash[:notice] = 'Definition was successfully updated.'
+        #redirect_to :action => 'index_edit'
+        #redirect_to :action => 'public_edit', :id => @definition
+      else
+        #redirect_to :action => 'index_edit'
+        #redirect_to :action => 'public_edit', :id => @definition
+      end
+    end
+  end
+        
         
   def tinymce_text_area
     @definition = Definition.find(params[:id])

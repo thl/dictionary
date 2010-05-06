@@ -6,8 +6,8 @@ module ApplicationHelper
   # Temporary rewriting of this method to avoid conflicts with the new category_selector defined in kmaps_integration;
   # this method will be removed once this app's references to category_selector jive with the kmaps_integration's 
   # category_selector. 
-  def category_selector(a1, a2, a3, a4, a5, a6)
-  end
+  #def category_selector(a1, a2, a3, a4, a5, a6)
+  #end
 
   def stylesheet_link_tag_html4( _n )
     return stylesheet_link_tag( _n ).gsub( ' />', '>' )
@@ -216,11 +216,11 @@ module ApplicationHelper
     end
     
     def stylesheet_files
-      super + ['modalbox', 'menu', 'http://www.thlib.org/global/css/thdl_style.css', 'http://www.thlib.org//reference/dictionaries/tibetan-dictionary/css/tibetan-dictionary.css', 'thdl_public']
+      super + ['jquery.autocomplete', 'jquery.checktree','thickbox', 'modalbox', 'menu', 'http://www.thlib.org/global/css/thdl_style.css', 'http://www.thlib.org//reference/dictionaries/tibetan-dictionary/css/tibetan-dictionary.css', 'thdl_public']
     end
 
     def javascript_files
-      super + ['in_place_select_editor', 'modalbox','menu', 'menu_items', 'menu_tpl']
+      super +  ['jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl']
     end
     
     def side_column_links
