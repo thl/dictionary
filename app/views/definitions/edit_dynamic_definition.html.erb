@@ -1,0 +1,46 @@
+<script>
+$(document).ready(function() {
+	$('div.showhide,h1').hide();
+  	$('#hideh1').click(function(){
+	     $('div.showhide').hide();
+	   });
+	$('#showh1').click(function(){
+	     $('div.showhide').show();
+	   });
+	$('#toggleh1').click(function(){
+	     $('div.showhide').slideToggle("slow");
+	     //$('#toggleh1').val('collapse');
+	   });
+	
+	$("#cancel_button").click(function () { parent.eval('tb_remove()'); });
+	$("#update_button").click(function () {	parent.eval('tb_remove()'); });
+		
+});
+</script>
+
+
+
+<%= tag "div", {:id => @divname } %>
+<h1>Editing Definition</h1>
+<%= error_messages_for 'definition' %>
+<% form_for :definition, :url => { :action => "update_dynamic_definition" } do |f| %>
+
+
+<% if params['internal'] != nil %>
+<%= modal_internal_edit_dynamic_definition %>
+<% else %>
+<%= edit_dynamic_definition %>
+<% end %>
+
+<input type="hidden" name="id" value="<%= params["id"] %>"/>
+<input type="hidden" name="internal" value="<%= params['internal'] %>">
+<input type="hidden" name="pk" value="<%= params['pk'] %>">
+
+
+<%#= submit_to_remote 'update_button','update', :url => { :action => "update_dynamic_definition" } %>
+<br>
+<%= submit_tag 'Update', :id => 'update_button' %>
+<input type='button' name='cancel_button' value='Close' id='cancel_button'">
+<% end %>
+<!--<a onclick=" parent.eval('tb_remove()')" > [X] </a> -->
+

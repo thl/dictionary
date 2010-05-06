@@ -1,61 +1,61 @@
-var ModelSearcher = {
+function ModelSearcher(){
 
 	// URL for JSON that lists categories in the form [{"name":"Agricultrure","id":4074},{"name":"Agriculture","id":2558}]
-	listService: "",
+	this.listService = "";
 	
 	// URL for JSON that lists categories in a hierachy (see ModelSearch.createTreeFromArray() for details)
-	treeService: "",
+	this.treeService = "";
 	
 	// A script on the same subdomain. When a URL is appended to this string, the resulting URL should return the original URL's content.
 	// The proxy can be bypassed by using service URLs that don't begin with "http" (and are thus on the subdomain and don't need a proxy)
-	proxy: "/thl/utils/proxy/",
+	this.proxy = "";
 	
 	// The id attribute of the div which contains all of DOM elements for this 
-	divId: "",
+	this.divId = "";
 	
 	// The jQuery-wrapped DOM element of the div which contains all of DOM elements for this
-	div: null,
+	this.div = null;
 	
 	// The name, label, and style attributes of the hidden field in which the selected ID(s) will be entered
-	fieldName: "searcher_id_input",
-	fieldLabel: "",
-	fieldStyle: "",
+	this.fieldName = "searcher_id_input";
+	this.fieldLabel = "";
+	this.fieldStyle = "";
 	
 	// Another method of adding objects (instead of using services)
-	objectList: null,
+	this.objectList = null;
 	
 	// A JS array of the object(s) which should be selected in the form [{id: '2594', name: 'animals'}]
-	selectedObjects: null,
+	this.selectedObjects = null;
 	
 	// The jQuery-wrapped DOM element of the hidden input which stores the selected ID(s)
-	hiddenIdInput: null,
+	this.hiddenIdInput = null;
 	
 	// The jQuery-wrapped DOM element of the autocomplete text field input
-	autocompleteInput: null,
+	this.autocompleteInput = null;
 	
 	// Whether or not a tree (and the accompanying tree link) should be used 
-	hasTree: false,
+	this.hasTree = true;
 	
 	// Whether the user can select only one category from the tree (if present) or select multiple categories
-	singleSelectionTree: false,
+	this.singleSelectionTree = false;
 	
 	// The id attribute of the div which contains the tree popup
-	treePopupId: "model_searcher_tree_popup",
+	this.treePopupId = null;
 	
 	// The jQuery-wrapped DOM element of the div which contains the tree popup
-	treePopup: null,
+	this.treePopup = null;
 	
 	// The jQuery-wrapped DOM element that lists the names selected from the tree
-	treeNames: null,
+	this.treeNames = null;
 	
 	// The jQuery-wrapped DOM element that removes the names selected from the tree
-	treeRemove: null,
+	this.treeRemove = null;
 	
-	treeHtml: null,
-	treeLoaded: false,
+	this.treeHtml = null;
+	this.treeLoaded = false;
 	
 	// See the attribute documentation above for explanations of these arguments
-	init: function(divId, listService, treeService, options){
+	this.init = function(divId, listService, treeService, options){
 		this.listService = listService;
 		this.treeService = treeService;
 		if(options.fieldName)			{ this.fieldName = options.fieldName; }
@@ -82,19 +82,20 @@ var ModelSearcher = {
 			this.treeService = this.proxy+this.treeService;
 		}
 		
+		var thisModelSearcher = this;
 		jQuery.getJSON(this.listService, function(data){
-			ModelSearcher.autocompleteInput.autocomplete(data, {
+			thisModelSearcher.autocompleteInput.autocomplete(data, {
 				matchContains: true,
 				mustMatch: true,
 				max: 20,
-				formatItem: ModelSearcher.autocompleteFormatItem,
-				formatMatch: ModelSearcher.autocompleteFormatMatch,
-				formatResult: ModelSearcher.autocompleteFormatItem
+				formatItem: thisModelSearcher.autocompleteFormatItem,
+				formatMatch: thisModelSearcher.autocompleteFormatMatch,
+				formatResult: thisModelSearcher.autocompleteFormatItem
 			});
-			ModelSearcher.autocompleteInput.result(ModelSearcher.autocompleteCallback);
-			ModelSearcher.objectList = [];
+			thisModelSearcher.autocompleteInput.result(thisModelSearcher.autocompleteCallback);
+			thisModelSearcher.objectList = [];
 			for(var i in data){
-				ModelSearcher.objectList[data[i].id] = data[i];
+				thisModelSearcher.objectList[data[i].id] = data[i];
 			}
 		});
 		if(this.selectedObjects && this.selectedObjects.length == 1){
@@ -104,39 +105,40 @@ var ModelSearcher = {
 		if(this.hasTree){
 			this.div.append('<br />Input type above or <a href="#" class="tree-link">select from tree</a>'+
 				'<span class="tree-names"></span> <a href="#" class="tree-remove">(remove)</a><span class="tree-loading" style="float:right;"></span>');
+			this.treePopupId = this.divId+"_model_searcher_tree_popup";
 			this.treeLink = this.div.find('.tree-link');
 			this.treeRemove = this.div.find('.tree-remove');
 			this.treeNames = this.div.find('.tree-names');
 			this.treeLoading = this.div.find('.tree-loading');
 			this.treeRemove.hide();
 			this.treeRemove.click(function(){
-				ModelSearcher.treeNames.html('');
-				ModelSearcher.treeRemove.hide();
-				ModelSearcher.hiddenIdInput.val('');
+				thisModelSearcher.treeNames.html('');
+				thisModelSearcher.treeRemove.hide();
+				thisModelSearcher.hiddenIdInput.val('');
 				return false;
 			});
 			this.treeLink.click(function(){
-				if(ModelSearcher.treeLoaded){
-					jQuery('#'+ModelSearcher.treePopupId).show();
+				if(thisModelSearcher.treeLoaded){
+					jQuery('#'+thisModelSearcher.treePopupId).show();
 				}else{
-					ModelSearcher.treeLoading.html(' <img src="http://thlib.org/global/images/ajax-loader.gif" />');
-					jQuery.getJSON(ModelSearcher.treeService, function(data){
-						ModelSearcher.treeHtml = ModelSearcher.createTreeFromArray(data.category);
-						ModelSearcher.loadPopup();
-						ModelSearcher.treeHtml = null;
+					thisModelSearcher.treeLoading.html(' <img src="../images/ajax-loader.gif" />');
+					jQuery.getJSON(thisModelSearcher.treeService, function(data){
+						thisModelSearcher.treeHtml = thisModelSearcher.createTreeFromArray(data.category ? data.category.categories : data.categories);
+						thisModelSearcher.loadPopup();
+						thisModelSearcher.treeHtml = null;
 						data = null;
-						ModelSearcher.treeLoading.html('');
-						ModelSearcher.treeLoaded = true;
+						thisModelSearcher.treeLoading.html('');
+						thisModelSearcher.treeLoaded = true;
 					});
 				}
 				return false;
 			});
 		}
-	},
+	};
 	
-	loadPopup: function(){
-		ModelSearcher.treePopup = jQuery().thlPopup({
-			id: ModelSearcher.treePopupId,
+	this.loadPopup = function(){
+		thisModelSearcher.treePopup = jQuery().draggablePopup({
+			id: thisModelSearcher.treePopupId,
 			header: '',
 			content: '',
 			footer: '',
@@ -148,17 +150,17 @@ var ModelSearcher = {
 			'For each type, click on the left box to select the type and its subcategories; '+
 			'click on the right box to select only the type without its subcategories.</div><br />'+
 			'<form method="get" action="">'+
-			'<div'+(ModelSearcher.singleSelectionTree ? ' class="single_selection_tree"' : '' )+
+			'<div'+(thisModelSearcher.singleSelectionTree ? ' class="single_selection_tree"' : '' )+
 			' style="max-height: 400px; height:auto !important; height: 400px; overflow: auto;">'+
-			ModelSearcher.treeHtml+
+			thisModelSearcher.treeHtml+
 			'</div>'+
-			'<br /><input type="submit" value="Select" /> <input type="button" value="Cancel" onclick="jQuery(this).parents(\'.thl-popup:first\').hide(); return false;" />'+
+			'<br /><input type="submit" value="Select" /> <input type="button" value="Cancel" onclick="jQuery(this).parents(\'.draggable-popup:first\').hide(); return false;" />'+
 			'</form>'+
 			'</div>'
 			;
-		ModelSearcher.treePopup.setContent(content);
-		ModelSearcher.treePopup.div.checkTree({});
-		ModelSearcher.treePopup.div.find('form:first').submit(function(){
+		thisModelSearcher.treePopup.setContent(content);
+		thisModelSearcher.treePopup.div.checkTree({});
+		thisModelSearcher.treePopup.div.find('form:first').submit(function(){
 			var ids = [];
 			jQuery(this).find(':checkbox:checked').each(function(){
 				var label_name = jQuery(this).siblings('label').attr('name');
@@ -168,27 +170,27 @@ var ModelSearcher = {
 			});
 			if(ids.length == 0){
 			}else{
-				ModelSearcher.selectedObjects = [];
+				thisModelSearcher.selectedObjects = [];
 				var names = [];
 				for(var i in ids){
-					ModelSearcher.selectedObjects.push(ModelSearcher.objectList[ids[i]]);
-					names.push(ModelSearcher.objectList[ids[i]].name);
+					thisModelSearcher.selectedObjects.push(thisModelSearcher.objectList[ids[i]]);
+					names.push(thisModelSearcher.objectList[ids[i]].name);
 				}
-				ModelSearcher.hiddenIdInput.val(ids.join(','));
-				ModelSearcher.autocompleteInput.val('');
-				ModelSearcher.treeNames.html(':<br />'+names.join(', '));
-				ModelSearcher.treeRemove.show();
+				thisModelSearcher.hiddenIdInput.val(ids.join(','));
+				thisModelSearcher.autocompleteInput.val('');
+				thisModelSearcher.treeNames.html(':<br />'+names.join(', '));
+				thisModelSearcher.treeRemove.show();
 			}
-			//ModelSearcher.treePopup.close();
-			jQuery('#'+ModelSearcher.treePopupId).hide();
+			//thisModelSearcher.treePopup.close();
+			jQuery('#'+thisModelSearcher.treePopupId).hide();
 			return false;
 		});
 		// For large trees, keeping this in memory can cause performance issues, so we'll set it to null
-		// and use ModelSearcher.treePopupId when we need it.
-		ModelSearcher.treePopup = null;
-	},
+		// and use thisModelSearcher.treePopupId when we need it.
+		thisModelSearcher.treePopup = null;
+	};
 	
-	resetFields: function(){
+	this.resetFields = function(){
 		this.autocompleteInput.val('');
 		this.hiddenIdInput.val('');
 		if(this.hasTree){
@@ -196,49 +198,49 @@ var ModelSearcher = {
 			this.treeRemove.hide();
 			jQuery('#'+this.treePopupId).hide();
 		}
-	},
+	};
 	
-	autocompleteFormatItem: function(item, i, max){
+	this.autocompleteFormatItem = function(item, i, max){
 		return jQuery.trim(item.name);
-	},
+	};
 	
-	autocompleteFormatMatch: function(item, i, max){
+	this.autocompleteFormatMatch = function(item, i, max){
 		return jQuery.trim(item.name);
-	},
+	};
 	
-	autocompleteFormatResult: function(item, i, max){
+	this.autocompleteFormatResult = function(item, i, max){
 		return item.id;
-	},
-	
-	autocompleteCallback: function(event, data, formatted) {
+	};
+	var thisModelSearcher = this;
+	this.autocompleteCallback = function(event, data, formatted) {
 		if(data){
-			ModelSearcher.hiddenIdInput.val(data.id);
+			thisModelSearcher.hiddenIdInput.val(data.id);
 		}else{
-			ModelSearcher.hiddenIdInput.val('');
+			thisModelSearcher.hiddenIdInput.val('');
 		}
-		ModelSearcher.treeNames.html('');
-		ModelSearcher.treeRemove.hide();
+		thisModelSearcher.treeNames.html('');
+		thisModelSearcher.treeRemove.hide();
 		return false;
-	},
+	};
 	
-	createTreeFromArray: function(arr){
+	this.createTreeFromArray = function(arr){
 		var html = '';
-		if(arr.categories && arr.categories.category){
+		if(arr && arr.category){
 			html += '<ul class="tree">';
-			if(arr.categories.category && arr.categories.category[0]){
-				for(var i in arr.categories.category) {
+			if(arr.category && arr.category[0]){
+				for(var i in arr.category) {
 					html += '<li>';
-					html += '<input type="checkbox" class="toggle"><label name="record_'+arr.categories.category[i].id+'">'+arr.categories.category[i].title+'</label>';
-					if(arr.categories.category[i].categories){
-						html += this.createTreeFromArray(arr.categories.category[i]);
+					html += '<input type="checkbox" class="toggle"><label name="record_'+arr.category[i].id+'">'+arr.category[i].title+'</label>';
+					if(arr.category[i].categories){
+						html += this.createTreeFromArray(arr.category[i].categories);
 					}
 					html += '</li>';
 				}
-			}else if(arr.categories.category){
+			}else if(arr.category){
 				html += '<li>';
-				html += '<input type="checkbox" class="toggle"><label name="record_'+arr.categories.category.id+'">'+arr.categories.category.title+'</label>';
-				if(arr.categories.category.categories){
-					html += this.createTreeFromArray(arr.categories.category);
+				html += '<input type="checkbox" class="toggle"><label name="record_'+arr.category.id+'">'+arr.category.title+'</label>';
+				if(arr.category.categories){
+					html += this.createTreeFromArray(arr.category.categories);
 				}
 				html += '</li>';
 			}
@@ -248,4 +250,3 @@ var ModelSearcher = {
 	}
 
 };
-
