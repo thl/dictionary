@@ -2005,11 +2005,13 @@ module DefinitionsHelper
     #resultstr << in_place_editor_select_field( :definition, :level, {}, {:collection => @level})+"<br>"
     #debugger
     #@level = ['one','two','three']
-    resultstr << in_place_editor_field( :definition, :level, {}, {:field_type => 'select', :select_options => @level, :fieldname => 'internal_definition[level]'}) + "<br>"
-
+    #resultstr << in_place_editor_field( :definition, :level, {}, {:field_type => 'select', :select_options => @level, :fieldname => 'internal_definition[level]'}) + "<br>"
+     resultstr << in_place_editor_field( :definition, :level, {}, {:field_type => 'select', :select_options => @level})
+    resultstr << select(:definition, :level, @level) + "<br>"
+    
     resultstr << "<b>Definition: </b>"
-    resultstr << "<input type=hidden name=internal_definition[definition] id=internal_definition[definition] value=\""+@definition.definition.to_s+"\" >"
-    resultstr << "<span class='definitions_show'>"
+    #resultstr << "<input type=hidden name=internal_definition[definition] id=internal_definition[definition] value=\""+@definition.definition.to_s+"\" >"
+    resultstr << "<span class='definitions_thickbox_show'>"
     resultstr << "<div id='" + "#{@definition.id}_defdiv" + "'>"
     edit_path = definition_edit_url(:id => @definition.id)
     if @definition.definition == nil or @definition.definition == ''

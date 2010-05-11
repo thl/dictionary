@@ -364,7 +364,7 @@ function clear_contents(node)
 	<div id="<%= @definition.id %>div">
 		<%= render(:partial => 'public_definition', :locals => {:d => @definition, :parent_id => @head_id, :head_id => @head_id, :level => 'head'})%>
 	</div>
-<a href="http://jquery.com/">jQuery</a>
+
 		<!-- <span id=definition[grammatical_function]_value class=menuvalue onclick=show_menu(menu1,getCoord(arguments[0]));><%= image_tag 'edit_up.gif', :alt => 'Edit' %> </span> -->
 <br>
 <% if @definition.super_definitions.size > 0 %>
