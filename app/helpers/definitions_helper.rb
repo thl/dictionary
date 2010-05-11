@@ -2006,7 +2006,7 @@ module DefinitionsHelper
     #debugger
     #@level = ['one','two','three']
     #resultstr << in_place_editor_field( :definition, :level, {}, {:field_type => 'select', :select_options => @level, :fieldname => 'internal_definition[level]'}) + "<br>"
-     resultstr << in_place_editor_field( :definition, :level, {}, {:field_type => 'select', :select_options => @level})
+    #resultstr << in_place_editor_field( :definition, :level, {}, {:field_type => 'select', :select_options => @level})
     resultstr << select(:definition, :level, @level) + "<br>"
     
     resultstr << "<b>Definition: </b>"
