@@ -2233,7 +2233,7 @@ end
 
   def edit_dynamic_definition
     @data = Category.find(184)
-    # @level = ["","head term","not head"]
+    #@level = ["","head term","not head"]
     @level = '[["",""],["head term","head term"],["not head","not head"]]'
     @language = []
     Language.find(:all, :order => 'language asc').each do |l|
@@ -2598,7 +2598,6 @@ end
   end
         
   def update_dynamic_definition
-    debugger
     @definition = Definition.find(params[:id])
     if @definition.created_by == nil or @definition.created_by == ""
       @definition.created_by = session[:user].login
