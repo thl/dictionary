@@ -2233,8 +2233,8 @@ end
 
   def edit_dynamic_definition
     @data = Category.find(184)
-    #@level = ["","head term","not head"]
-    @level = '[["",""],["head term","head term"],["not head","not head"]]'
+    @level = ["","head term","not head"]
+    #@level = '[["",""],["head term","head term"],["not head","not head"]]'
     @language = []
     Language.find(:all, :order => 'language asc').each do |l|
       @language += [l.language]
