@@ -723,6 +723,349 @@ module EtymologiesHelper
     resultstr << "</dd></dl></span>"
   end
 
+  def modal_edit_dynamic_etymology
+    resultstr = ""
+    resultstr << "<b>Etymology: </b>"
+    resultstr << "<input type=hidden name=etymology[etymology] id=etymology[etymology] value=\""+@etymology.etymology.to_s+"\" >"
+    resultstr << "<span class='etymologies_show'>"
+    resultstr << "<div id='" + "#{@etymology.id}_etydiv" + "'>"
+    edit_path = etymology_edit_url(:id => @etymology.id)
+    if @etymology.etymology == nil or @etymology.etymology == ''
+      t_etymology = 'Click to modify etymology'
+    else
+      t_etymology = @etymology.etymology      
+    end    
+    resultstr << link_to_remote(t_etymology, :url => edit_path, :update => "#{@etymology.id}_etydiv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
+    resultstr << "<b>Etymology type: </b>"
+    #resultstr << "<input type=hidden name=etymology[etymology_type] id=etymology[etymology_type] value=\""+@etymology.etymology_type.to_s+"\" >"
+    #if @etymology.etymology_category == nil
+    #  title = 'Click to modify'
+    #else
+    #  title = @etymology.etymology_category.title
+    #end
+    #resultstr << "<span id=\"etymology[etymology_category#{@etymology.id}]_selector\">"
+    #resultstr << '['+@etymology.etymology_type+']' if @etymology.etymology_type != nil
+    #resultstr << link_to_remote( title,{:update => "etymology[etymology_category#{@etymology.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'etymologies', :action => 'display_category_selector', :id => @etymology.id, :params => {'data_id' => 182, 'model_name' => 'etymology', 'function_name' => "etymology_category", :update_id => "etymology[etymology_category#{@etymology.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('etymology[etymology_category"+@etymology.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('etymology[etymology_category"+@etymology.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('etymology[etymology_category"+@etymology.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('etymology[etymology_category"+@etymology.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    ## if @etymology.etymology_type == nil or @etymology.etymology_type == ''
+    ##   @etymology.etymology_type = 'Click to modify'
+    ## end
+    ## resultstr << in_place_select_editor_field( :etymology, :etymology_type, {}, {:select_options => @etymology_type, :fieldname => 'etymology[etymology_type]'})+"<br>"
+    @data = Category.find(182)
+    resultstr << category_selector(@data, :etymology, :etymology_category, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    resultstr << "<br>"
+
+
+    resultstr << "<b>Loan language: </b>"
+    #resultstr << "<input type=hidden name=etymology[loan_language] id=etymology[loan_language] value=\""+@etymology.loan_language.to_s+"\" >"
+    #if @etymology.loan_language_type == nil
+    #  title = 'Click to modify'
+    #else
+    #  title = @etymology.loan_language_type.title
+    #end
+    #resultstr << "<span id=\"etymology[loan_language_type#{@etymology.id}]_selector\">"
+    #resultstr << '['+@etymology.loan_language+']' if @etymology.loan_language != nil
+    #resultstr << link_to_remote( title,{:update => "etymology[loan_language_type#{@etymology.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'etymologies', :action => 'display_category_selector', :id => @etymology.id, :params => {'data_id' => 184, 'model_name' => 'etymology', 'function_name' => "loan_language_type", :update_id => "etymology[loan_language_type#{@etymology.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('etymology[loan_language_type"+@etymology.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('etymology[loan_language_type"+@etymology.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('etymology[loan_language_type"+@etymology.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('etymology[loan_language_type"+@etymology.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    ## if @etymology.loan_language == nil or @etymology.loan_language == ''
+    ##   @etymology.loan_language = 'Click to modify'
+    ## end
+    ## resultstr << in_place_select_editor_field( :etymology, :loan_language, {}, {:select_options => @loan_language, :fieldname => 'etymology[loan_language]'})+"<br>"
+    ## resultstr << in_place_form_editor_field( :etymology, :loan_language, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[loan_language]'}) +"<br>"
+    @data = Category.find(184)
+    resultstr << category_selector(@data, :etymology, :loan_language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+
+    resultstr << "<b>Derivation type: </b>"
+    #resultstr << "<input type=hidden name=etymology[derivation] id=etymology[derivation] value=\""+@etymology.derivation.to_s+"\" >"
+    #if @etymology.derivation_type == nil
+    #  title = 'Click to modify'
+    #else
+    #  title = @etymology.derivation_type.title
+    #end
+    #resultstr << "<span id=\"etymology[derivation_type#{@etymology.id}]_selector\">"
+    #resultstr << '['+@etymology.derivation+']' if @etymology.derivation != nil
+    #resultstr << link_to_remote( title,{:update => "etymology[derivation_type#{@etymology.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'etymologies', :action => 'display_category_selector', :id => @etymology.id, :params => {'data_id' => 180, 'model_name' => 'etymology', 'function_name' => "derivation_type", :update_id => "etymology[derivation_type#{@etymology.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('etymology[derivation_type"+@etymology.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('etymology[derivation_type"+@etymology.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('etymology[derivation_type"+@etymology.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('etymology[derivation_type"+@etymology.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"  
+    ## if @etymology.derivation == nil or @etymology.derivation == ''
+    ##   @etymology.derivation = 'Click to modify'
+    ## end
+    ## resultstr << in_place_select_editor_field( :etymology, :derivation, {}, {:select_options => @derivation, :fieldname => 'etymology[derivation]'})+"<br>"
+    @data = Category.find(180)
+    resultstr << category_selector(@data, :etymology, :derivation_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+
+    resultstr << "<b>Tibetan Dialect: </b>"
+    #resultstr << "<input type=hidden name=etymology[major_dialect_family] id=etymology[major_dialect_family"+@etymology.id.to_s+"] value=\""+@etymology.major_dialect_family.to_s+"\" >"
+    #if @etymology.major_dialect_family_type == nil
+    #  title = 'Click to modify'
+    #else
+    #  title = @etymology.major_dialect_family_type.title
+    #end
+    #resultstr << "<span id=\"etymology[major_dialect_family_type#{@etymology.id}]_selector\">"
+    #resultstr << '['+@etymology.major_dialect_family+']' if @etymology.major_dialect_family != nil
+    #resultstr << link_to_remote( title,{:update => "etymology[major_dialect_family_type#{@etymology.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'etymologies', :action => 'display_category_selector', :id => @etymology.id, :params => {'data_id' => 638, 'model_name' => 'etymology', 'function_name' => "major_dialect_family_type", :update_id => "etymology[major_dialect_family_type#{@etymology.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('etymology[major_dialect_family_type"+@etymology.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('etymology[major_dialect_family_type"+@etymology.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('etymology[major_dialect_family_type"+@etymology.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('etymology[major_dialect_family_type"+@etymology.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    #    # if @etymology.major_dialect_family == nil or @etymology.major_dialect_family == ''
+    ##   @etymology.major_dialect_family = 'Click to modify'
+    ## end
+    ## resultstr <<  "<span id=etymology[major_dialect_family"+@etymology.id.to_s+"]_value class=menuvalue onclick=dialect_id="+@etymology.id.to_s+";show_menu(etymology_dialect_menu,getCoord(arguments[0]));>"+@etymology.major_dialect_family+"</span><br>"
+    ## resultstr << in_place_form_editor_field( :etymology, :major_dialect_family, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[major_dialect_family]'}) +"<br>"
+    ## resultstr << "<b>Specific dialect: </b>"
+    ## resultstr << "<input type=hidden name=etymology[specific_dialect] id=etymology[specific_dialect] value=\""+@etymology.specific_dialect.to_s+"\" >"
+    ## if @etymology.specific_dialect == nil or @etymology.specific_dialect == ''
+    ##   @etymology.specific_dialect = 'Click to modify'
+    ## end
+    ## resultstr << in_place_form_editor_field( :etymology, :specific_dialect, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[specific_dialect]'}) +"<br>"
+    @data = Category.find(638)
+    resultstr << category_selector(@data, :etymology, :major_dialect_family_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+    
+    resultstr << "<b>Literary genre: </b>"
+    #resultstr << "<input type=hidden name=etymology[literary_genre] id=etymology[literary_genre"+@etymology.id.to_s+"] value=\""+@etymology.literary_genre.to_s+"\" >"
+    #if @etymology.literary_genre_type == nil
+    #  title = 'Click to modify'
+    #else
+    #  title = @etymology.literary_genre_type.title
+    #end
+    #resultstr << "<span id=\"etymology[literary_genre_type#{@etymology.id}]_selector\">"
+    #resultstr << '['+@etymology.literary_genre+']' if @etymology.literary_genre != nil
+    #resultstr << link_to_remote( title,{:update => "etymology[literary_genre_type#{@etymology.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'etymologies', :action => 'display_category_selector', :id => @etymology.id, :params => {'data_id' => 119, 'model_name' => 'etymology', 'function_name' => "literary_genre_type", :update_id => "etymology[literary_genre_type#{@etymology.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "<script type=\"text/javascript\" language=\"javascript\">Event.observe('etymology[literary_genre_type"+@etymology.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('etymology[literary_genre_type"+@etymology.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('etymology[literary_genre_type"+@etymology.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('etymology[literary_genre_type"+@etymology.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    ## if @etymology.literary_genre == nil or @etymology.literary_genre == ''
+    ##   @etymology.literary_genre = 'Click to modify'
+    ## end
+    ## resultstr <<  "<span id=etymology[literary_genre"+@etymology.id.to_s+"]_value class=menuvalue onclick=dialect_id="+@etymology.id.to_s+";show_menu(etymology_literary_genre_menu,getCoord(arguments[0]));>"+@etymology.literary_genre+"</span><br>"
+    ## resultstr << in_place_select_editor_field( :etymology, :literary_genre, {}, {:select_options => @literary_genre, :fieldname => 'etymology[literary_genre]'})+"<br>"
+    @data = Category.find(119)
+    resultstr << category_selector(@data, :etymology, :literary_genre_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+    
+    resultstr << "<b>Literary period: </b>"
+    #resultstr << "<input type=hidden name=etymology[literary_period] id=etymology[literary_period] value=\""+@etymology.literary_period.to_s+"\" >"
+    #if @etymology.literary_period_type == nil
+    #  title = 'Click to modify'
+    #else
+    #  title = @etymology.literary_period_type.title
+    #end
+    #resultstr << "<span id=\"etymology[literary_period_type#{@etymology.id}]_selector\">"
+    #resultstr << '['+@etymology.literary_period+']' if @etymology.literary_period != nil
+    #resultstr << link_to_remote( title,{:update => "etymology[literary_period_type#{@etymology.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'etymologies', :action => 'display_category_selector', :id => @etymology.id, :params => {'data_id' => 187, 'model_name' => 'etymology', 'function_name' => "literary_period_type", :update_id => "etymology[literary_period_type#{@etymology.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('etymology[literary_period_type"+@etymology.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('etymology[literary_period_type"+@etymology.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('etymology[literary_period_type"+@etymology.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('etymology[literary_period_type"+@etymology.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    ## if @etymology.literary_period == nil or @etymology.literary_period == ''
+    ##   @etymology.literary_period = 'Click to modify'
+    ## end
+    ## resultstr << in_place_select_editor_field( :etymology, :literary_period, {}, {:select_options => @literary_period, :fieldname => 'etymology[literary_period]'})+"<br>"
+    @data = Category.find(187)
+    resultstr << category_selector(@data, :etymology, :literary_period_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+
+    resultstr << "<b>Literary form: </b>"
+    #resultstr << "<input type=hidden name=etymology[literary_form] id=etymology[literary_form] value=\""+@etymology.literary_form.to_s+"\" >"
+    #if @etymology.literary_form_type == nil
+    #  title = 'Click to modify'
+    #else
+    #  title = @etymology.literary_form_type.title
+    #end
+    #resultstr << "<span id=\"etymology[literary_form_type#{@etymology.id}]_selector\">"
+    #resultstr << '['+@etymology.literary_form+']' if @etymology.literary_form != nil
+    #resultstr << link_to_remote( title,{:update => "etymology[literary_form_type#{@etymology.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'etymologies', :action => 'display_category_selector', :id => @etymology.id, :params => {'data_id' => 186, 'model_name' => 'etymology', 'function_name' => "literary_form_type", :update_id => "etymology[literary_form_type#{@etymology.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('etymology[literary_form_type"+@etymology.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('etymology[literary_form_type"+@etymology.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('etymology[literary_form_type"+@etymology.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('etymology[literary_form_type"+@etymology.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    ## if @etymology.literary_form == nil or @etymology.literary_form == ''
+    ##   @etymology.literary_form = 'Click to modify'
+    ## end
+    ## resultstr << in_place_select_editor_field( :etymology, :literary_form, {}, {:select_options => @literary_form, :fieldname => 'etymology[literary_form]'})+"<br>"
+    @data = Category.find(186)
+    resultstr << category_selector(@data, :etymology, :literary_form_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+
+    resultstr << "<b>Analytical note: </b>"
+    resultstr << "<input type=hidden name=etymology[analytical_note] id=etymology[analytical_note] value=\""+@etymology.analytical_note.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@etymology.id}_anotediv" + "'>"
+    edit_path = etymology_analytical_note_edit_url(:id => @etymology.id)
+    if @etymology.analytical_note == nil or @etymology.analytical_note == ''
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @etymology.analytical_note      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@etymology.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+    
+		#resultstr <<	"<span id=\"show_av_etymology"+@etymology.id.to_s+"\"><b>Edit Multimedia Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_etymology"+@etymology.id.to_s+"');Element.show('hide_av_etymology"+@etymology.id.to_s+"');Element.show('av_etymology_"+@etymology.id.to_s+"');", :title => 'Show')+"</span>"
+		#resultstr <<	"<span id=\"hide_av_etymology"+@etymology.id.to_s+"\" style=\"display:none\"><b>Hide Multimedia Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_etymology"+@etymology.id.to_s+"');Element.show('show_av_etymology"+@etymology.id.to_s+"');Element.hide('av_etymology_"+@etymology.id.to_s+"');", :title => 'Hide')+"</span>"
+    #resultstr << "<span id=\"av_etymology_"+@etymology.id.to_s+"\" style=\"display:none\"/><dl><dd>"
+    resultstr << "<b>Edit Multimedia Data: </b>"
+    resultstr << "<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>"
+    resultstr << "<div class='showhide'>"
+    resultstr << "<b>Image: </b>"
+    resultstr << "<input type=hidden name=etymology[image] id=etymology[image] value=\""+@etymology.image.to_s+"\" >"
+    if @etymology.image == nil or @etymology.image == ''
+      @etymology.image = 'Click to modify'
+    end
+    #resultstr << in_place_form_editor_field( :etymology, :image, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[image]'}) +"<br>"
+    resultstr <<      in_place_editor_field( :etymology, :image, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[image]'}) +"<br>"
+    
+    resultstr << "<b>Image caption: </b>"
+    resultstr << "<input type=hidden name=etymology[image_caption] id=etymology[image_caption] value=\""+@etymology.image_caption.to_s+"\" >"
+    if @etymology.image_caption == nil or @etymology.image_caption == ''
+      @etymology.image_caption = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :image_caption, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[image_caption]'}) +"<br>"
+    resultstr << "<b>Image photographer: </b>"
+    resultstr << "<input type=hidden name=etymology[image_photographer] id=etymology[image_photographer] value=\""+@etymology.image_photographer.to_s+"\" >"
+    if @etymology.image_photographer == nil or @etymology.image_photographer == ''
+      @etymology.image_photographer = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :image_photographer, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[image_photographer]'}) +"<br>"
+    
+    resultstr << "<b>Image link: </b>"
+    resultstr << "<input type=hidden name=etymology[image_link] id=etymology[image_link] value=\""+@etymology.image_link.to_s+"\" >"
+    if @etymology.image_link == nil or @etymology.image_link == ''
+      @etymology.image_link = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[image_link]'}) +"<br>"
+    resultstr << "<b>Image description: </b>"
+    resultstr << "<input type=hidden name=etymology[image_description] id=etymology[image_description] value=\""+@etymology.image_description.to_s+"\" >"
+    #if @etymology.image_description == nil or @etymology.image_description == ''
+    #  @etymology.image_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :etymology, :image_description, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[image_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@etymology.id}_imagedescdiv" + "'>"
+    edit_path = etymology_image_description_edit_url(:id => @etymology.id)
+    if @etymology.image_description == nil or @etymology.image_description == ''
+      t_imagedescription = 'Click to modify'
+    else
+      t_imagedescription = @etymology.image_description     
+    end    
+    resultstr << link_to_remote(t_imagedescription, :url => edit_path, :update => "#{@etymology.id}_imagedescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
+    resultstr << "<b>Audio: </b>"
+    resultstr << "<input type=hidden name=etymology[audio] id=etymology[audio] value=\""+@etymology.audio.to_s+"\" >"
+    if @etymology.audio == nil or @etymology.audio == ''
+      @etymology.audio = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :audio, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[audio]'}) +"<br>"
+    resultstr << "<b>Audio id number: </b>"
+    resultstr << "<input type=hidden name=etymology[audio_id_number] id=etymology[audio_id_number] value=\""+@etymology.audio_id_number.to_s+"\" >"
+    if @etymology.audio_id_number == nil or @etymology.audio_id_number == ''
+      @etymology.audio_id_number = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :audio_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[audio_id_number]'}) +"<br>"
+    resultstr << "<b>Audio speaker: </b>"
+    resultstr << "<input type=hidden name=etymology[audio_speaker] id=etymology[audio_speaker] value=\""+@etymology.audio_speaker.to_s+"\" >"
+    if @etymology.audio_speaker == nil or @etymology.audio_speaker == ''
+      @etymology.audio_speaker = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :audio_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[audio_speaker]'}) +"<br>"
+    resultstr << "<b>Audio date: </b>"
+    resultstr << "<input type=hidden name=etymology[audio_date] id=etymology[audio_date] value=\""+@etymology.audio_date.to_s+"\" >"
+    if @etymology.audio_date == nil or @etymology.audio_date == ''
+      @etymology.audio_date = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :audio_date, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[audio_date]'}) +"<br>"
+    resultstr << "<b>Audio place of recording: </b>"
+    resultstr << "<input type=hidden name=etymology[audio_place_of_recording] id=etymology[audio_place_of_recording] value=\""+@etymology.audio_place_of_recording.to_s+"\" >"
+    if @etymology.audio_place_of_recording == nil or @etymology.audio_place_of_recording == ''
+      @etymology.audio_place_of_recording = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :audio_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[audio_place_of_recording]'}) +"<br>"
+    resultstr << "<b>Audio link: </b>"
+    resultstr << "<input type=hidden name=etymology[audio_link] id=etymology[audio_link] value=\""+@etymology.audio_link.to_s+"\" >"
+    if @etymology.audio_link == nil or @etymology.audio_link == ''
+      @etymology.audio_link = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[audio_link]'}) +"<br>"
+    resultstr << "<b>Audio description: </b>"
+    resultstr << "<input type=hidden name=etymology[audio_description] id=etymology[audio_description] value=\""+@etymology.audio_description.to_s+"\" >"
+    #if @etymology.audio_description == nil or @etymology.audio_description == ''
+    #  @etymology.audio_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :etymology, :audio_description, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[audio_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@etymology.id}_audiodescdiv" + "'>"
+    edit_path = etymology_audio_description_edit_url(:id => @etymology.id)
+    if @etymology.audio_description == nil or @etymology.audio_description == ''
+      t_audiodescription = 'Click to modify'
+    else
+      t_audiodescription = @etymology.audio_description     
+    end    
+    resultstr << link_to_remote(t_audiodescription, :url => edit_path, :update => "#{@etymology.id}_audiodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
+    resultstr << "<b>Video: </b>"
+    resultstr << "<input type=hidden name=etymology[video] id=etymology[video] value=\""+@etymology.video.to_s+"\" >"
+    if @etymology.video == nil or @etymology.video == ''
+      @etymology.video = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :video, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[video]'}) +"<br>"
+    resultstr << "<b>Video id number: </b>"
+    resultstr << "<input type=hidden name=etymology[video_id_number] id=etymology[video_id_number] value=\""+@etymology.video_id_number.to_s+"\" >"
+    if @etymology.video_id_number == nil or @etymology.video_id_number == ''
+      @etymology.video_id_number = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :video_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[video_id_number]'}) +"<br>"
+    resultstr << "<b>Video speaker: </b>"
+    resultstr << "<input type=hidden name=etymology[video_speaker] id=etymology[video_speaker] value=\""+@etymology.video_speaker.to_s+"\" >"
+    if @etymology.video_speaker == nil or @etymology.video_speaker == ''
+      @etymology.video_speaker = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :video_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[video_speaker]'}) +"<br>"
+    resultstr << "<b>Video date: </b>"
+    resultstr << "<input type=hidden name=etymology[video_date] id=etymology[video_date] value=\""+@etymology.video_date.to_s+"\" >"
+    if @etymology.video_date == nil or @etymology.video_date == ''
+      @etymology.video_date = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :video_date, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[video_date]'}) +"<br>"
+    resultstr << "<b>Video place of recording: </b>"
+    resultstr << "<input type=hidden name=etymology[video_place_of_recording] id=etymology[video_place_of_recording] value=\""+@etymology.video_place_of_recording.to_s+"\" >"
+    if @etymology.video_place_of_recording == nil or @etymology.video_place_of_recording == ''
+      @etymology.video_place_of_recording = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :video_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[video_place_of_recording]'}) +"<br>"
+    resultstr << "<b>Video link: </b>"
+    resultstr << "<input type=hidden name=etymology[video_link] id=etymology[video_link] value=\""+@etymology.video_link.to_s+"\" >"
+    if @etymology.video_link == nil or @etymology.video_link == ''
+      @etymology.video_link = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :etymology, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[video_link]'}) +"<br>"
+    resultstr << "<b>Video description: </b>"
+    resultstr << "<input type=hidden name=etymology[video_description] id=etymology[video_description] value=\""+@etymology.video_description.to_s+"\" >"
+    #if @etymology.video_description == nil or @etymology.video_description == ''
+    #  @etymology.video_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :etymology, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'etymology[video_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@etymology.id}_videodescdiv" + "'>"
+    edit_path = etymology_video_description_edit_url(:id => @etymology.id)
+    if @etymology.video_description == nil or @etymology.video_description == ''
+      t_videodescription = 'Click to modify'
+    else
+      t_videodescription = @etymology.video_description     
+    end    
+    resultstr << link_to_remote(t_videodescription, :url => edit_path, :update => "#{@etymology.id}_videodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+        
+    resultstr << "</div>" #showhide
+    #resultstr << "</dd></dl></span>"
+  end
+  
   def show_edit_etymology
     resultstr = ""
     resultstr << "<p><b>Etymology: </b><br>"

@@ -2612,7 +2612,7 @@ end
     else
     	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
     end   
-    respond_to do |format|
+    #respond_to do |format|
       if @definition.update_attributes(params[:definition])
         #format.html do
         #  render :partial => 'definition_show', :locals => {:d => @definition}
@@ -2625,7 +2625,7 @@ end
         #redirect_to :action => 'index_edit'
         #redirect_to :action => 'public_edit', :id => @definition
       end
-    end
+    #end
   end
         
         

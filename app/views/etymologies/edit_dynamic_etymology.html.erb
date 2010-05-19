@@ -1,0 +1,34 @@
+<script>
+$(document).ready(function() {
+	$('div.showhide').hide();
+  	$('#hideh1').click(function(){
+	     $('div.showhide').hide();
+	   });
+	$('#showh1').click(function(){
+	     $('div.showhide').show();
+	   });
+	$('#toggleh1').click(function(){
+	     $('div.showhide').slideToggle("slow");
+	     //$('#toggleh1').val('collapse');
+	   });
+	
+	$("#cancel_button").click(function () { parent.eval('tb_remove()'); });
+	$("#update_button").click(function () {	parent.eval('tb_remove()'); });
+		
+});
+</script>
+
+
+<h1>Editing Etymology</h1>
+<%= error_messages_for 'etymology' %>
+<% form_for :etymology, :url => { :action => "update_dynamic_etymology" } do |f| %>
+	
+  <%= modal_edit_dynamic_etymology %>
+
+  <input type="hidden" name="id" value="<%= params["id"] %>"/>
+  <input type="hidden" name="pk" value="<%= params['pk'] %>">
+  <br>
+  <%= submit_tag 'Update', :id => 'update_button' %>
+  <input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+<% end %> <!--form_for-->	
+

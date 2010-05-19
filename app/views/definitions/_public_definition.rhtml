@@ -10,7 +10,7 @@
 	<%# if head_id != parent_id %>
 	<!--<a href="/images/familylg.jpg" title="add a caption to title attribute / or leave blank" class="thickbox"><img src="/images/shoulder.gif" alt="Single Image"/></a>-->
 			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => d.id, :history_class => d.class.to_s }}) %>	
-			<%= link_to image_tag('pencil.png',:border => 0), url_for( :action => 'edit_dynamic_definition', :id => d.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Definition Edit via Thickbox' %>		
+			<%= link_to image_tag('pencil.png',:border => 0), url_for( :action => 'edit_dynamic_definition', :id => d.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Definition Edit' %>		
 			<%#= link_to_function image_tag('pencil.png',:border => 0), 'definition_id='+d.id.to_s+';parent_id='+head_id.to_s+";dialect_id="+d.id.to_s+";edit_popup('definitions','"+d.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
 			<span class=menuvalue onclick='definition_id=<%= d.id.to_s %>;parent_id=<%= head_id.to_s %>;show_menu(definition_menu,getCoord(arguments[0]));'>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), '', :title => 'Edit Relationships' %> 
@@ -303,8 +303,9 @@
 		<b>Etymology:</b>
 				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 	<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('etymologies','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
-			<%= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_etymology', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'etymologies', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
+			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>		
+			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'etymologies', :action => 'edit_dynamic_etymology', :id => d.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Etymology Edit' %>	
+			<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_etymology', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'etymologies', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 			<span class=menuvalue onclick=show_menu(etymology_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'etymology_id='+e.id.to_s, :title => 'Edit Relationships' %> 
 			</span>
