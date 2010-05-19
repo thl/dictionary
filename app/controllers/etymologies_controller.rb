@@ -776,6 +776,77 @@ class EtymologiesController < ApplicationController
          end
   end
 
+  def edit_dynamic_etymology
+    # @etymology_type = []
+    # EtymologyType.find(:all).each do |l|
+    #   @etymology_type += [l.etymology_type]
+    # end
+    # @derivation = []
+    # Derivation.find(:all).each do |l|
+    #   @derivation += [l.derivation]
+    # end
+    # @literary_genre = []
+    # LiteraryGenre.find(:all).each do |l|
+    #   @literary_genre += [l.literary_genre]
+    # end
+    # @literary_period = []
+    # LiteraryPeriod.find(:all).each do |l|
+    #   @literary_period += [l.literary_period]
+    # end
+    # @literary_form = []
+    # LiteraryForm.find(:all).each do |l|
+    #   @literary_form += [l.literary_form]
+    # end
+    # @loan_language = []
+    # Language.find(:all).each do |l|
+    #   @loan_language += [l.language]
+    # end
+    if(params['internal'] != nil)
+      @divname = 'etymology_internal'
+    else
+    	@divname = 'etymology'
+    end
+    if params['level'] != nil
+      params['level'] = (params['level'].to_i + 1).to_s
+    else
+      params['level'] = '1'
+    end
+    @etymology = Etymology.find(params[:id]) 
+    render :layout => 'staging_popup'
+  end
+
+  def update_dynamic_etymology
+    
+      @etymology = Etymology.find(params[:id])
+      
+      if @etymology.created_by == nil or @etymology.created_by == ""
+        @etymology.created_by = session[:user].login
+        @etymology.created_at = Time.now
+      end
+      if session[:user] != nil
+        @etymology.updated_by = session[:user].login
+      end
+      @etymology.updated_at = Time.now
+      if @etymology.update_history == nil
+        @etymology.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @etymology.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end    
+      #respond_to do |format|
+        if @etymology.update_attributes(params[:etymology])
+          #format.html do
+          #  render :partial => 'etymology_show', :locals => {:e => @etymology}
+          #end
+          render :nothing => true
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @definition
+        end
+      #end
+  end
+
     def update_etymology
       @etymology = Etymology.find(params[:etymology][:id])
       if @etymology.created_by == nil or @etymology.created_by == ""
