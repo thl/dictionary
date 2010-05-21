@@ -773,6 +773,49 @@ class TranslationsController < ApplicationController
          end
   end
   
+  def edit_dynamic_translation
+    @language = []
+    Language.find(:all, :order => 'language asc').each do |l|
+      @language += [l.language]
+    end
+    if(params['internal'] != nil)
+      @divname = 'translation_internal'
+    else
+    	@divname = 'translation'
+    end
+    if params['level'] != nil
+      params['level'] = (params['level'].to_i + 1).to_s
+    else
+      params['level'] = '1'
+    end
+    @translation = Translation.find(params[:id])
+    @definition = Definition.find(51)
+    render :layout => 'staging_popup'
+  end
+  
+  def update_dynamic_translation
+      @translation = Translation.find(params[:id])
+      if @translation.created_by == nil or @translation.created_by == ""
+        @translation.created_by = session[:user].login
+        @translation.created_at = Time.now
+      end
+      if session[:user] != nil
+        @translation.updated_by = session[:user].login
+      end
+      @translation.updated_at = Time.now
+      if @translation.update_history == nil
+        @translation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+      	@translation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end
+      if @translation.update_attributes(params[:translation])
+        render :nothing => true
+      else
+      end
+    end  
+  
   def update_translation
       @translation = Translation.find(params[:translation][:id])
       if @translation.created_by == nil or @translation.created_by == ""
