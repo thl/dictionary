@@ -654,6 +654,56 @@ class PronunciationsController < ApplicationController
          end
   end
   
+  def edit_dynamic_pronunciation
+    # @pronunciation_type = []
+    # PronunciationType.find(:all).each do |l|
+    #   @pronunciation_type += [l.pronunciation_type]
+    # end
+    # @literary_genre = []
+    # LiteraryGenre.find(:all).each do |l|
+    #   @literary_genre += [l.literary_genre]
+    # end
+    # @literary_period = []
+    # LiteraryPeriod.find(:all).each do |l|
+    #   @literary_period += [l.literary_period]
+    # end
+    # @literary_form = []
+    # LiteraryForm.find(:all).each do |l|
+    #   @literary_form += [l.literary_form]
+    # end
+    if(params['internal'] != nil)
+      @divname = 'pronunciation_internal'
+    else
+    	@divname = 'pronunciation'
+    end
+    @pronunciation = Pronunciation.find(params[:id])
+    render :layout => 'staging_popup'
+  end  
+  
+  def update_dynamic_pronunciation
+      @pronunciation = Pronunciation.find(params[:id])
+      if @pronunciation.created_by == nil or @pronunciation.created_by == ""
+        @pronunciation.created_by = session[:user].login
+        @pronunciation.created_at = Time.now
+      end
+      if session[:user] != nil
+        @pronunciation.updated_by = session[:user].login
+      end
+      @pronunciation.updated_at = Time.now
+      if @pronunciation.update_history == nil
+        @pronunciation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+      	@pronunciation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end
+      if @pronunciation.update_attributes(params[:pronunciation])
+        render :nothing => true
+      else
+       
+      end
+    end
+      
   def update_analytical_note
       @pronunciation = Pronunciation.find(params[:pronunciation][:id])
       if @pronunciation.created_by == nil or @pronunciation.created_by == ""

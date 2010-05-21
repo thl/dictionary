@@ -822,4 +822,236 @@ module PronunciationsHelper
     resultstr << "\" /></td></tr>"
   end
 
+  def modal_edit_dynamic_pronunciation
+    resultstr = ""
+    resultstr << "<b>Phonetic transliteration: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[phonetic_transliteration] id=pronunciation[phonetic_transliteration] value=\""+@pronunciation.phonetic_transliteration.to_s+"\" >"
+    if @pronunciation.phonetic_transliteration == nil or @pronunciation.phonetic_transliteration == ''
+      @pronunciation.phonetic_transliteration = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :phonetic_transliteration, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[phonetic_transliteration]'}) +"<br>"
+    
+    resultstr << "<b>Pronunciation type: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[pronunciation_type] id=pronunciation[pronunciation_type] value=\""+@pronunciation.pronunciation_type.to_s+"\" >"
+    #if @pronunciation.pronunciation_category == nil
+    #  title = 'Click to modify'
+    #else
+    #  title = @pronunciation.pronunciation_category.title
+    #end
+    #resultstr << "<span id=\"pronunciation[pronunciation_category#{@pronunciation.id}]_selector\">"
+    #resultstr << '['+@pronunciation.pronunciation_type+']' if @pronunciation.pronunciation_type != nil
+    #resultstr << link_to_remote( title,{:update => "pronunciation[pronunciation_category#{@pronunciation.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'pronunciations', :action => 'display_category_selector', :id => @pronunciation.id, :params => {'data_id' => 189, 'model_name' => 'pronunciation', 'function_name' => "pronunciation_category", :update_id => "pronunciation[pronunciation_category#{@pronunciation.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('pronunciation[pronunciation_category"+@pronunciation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('pronunciation[pronunciation_category"+@pronunciation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('pronunciation[pronunciation_category"+@pronunciation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('pronunciation[pronunciation_category"+@pronunciation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    @data = Category.find(189)
+    resultstr << category_selector(@data, :pronunciation, :pronunciation_category, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    resultstr << "<br>"
+    
+    resultstr << "<b>Tibetan Dialect: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[major_dialect_family] id=pronunciation[major_dialect_family"+@pronunciation.id.to_s+"] value=\""+@pronunciation.major_dialect_family.to_s+"\" >"
+    #if @pronunciation.major_dialect_family_type == nil
+    #  title = 'Click to modify'
+    #else
+    #  title = @pronunciation.major_dialect_family_type.title
+    #end
+    #resultstr << "<span id=\"pronunciation[major_dialect_family_type#{@pronunciation.id}]_selector\">"
+    #resultstr << '['+@pronunciation.major_dialect_family+']' if @pronunciation.major_dialect_family != nil
+    #resultstr << link_to_remote( title,{:update => "pronunciation[major_dialect_family_type#{@pronunciation.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'pronunciations', :action => 'display_category_selector', :id => @pronunciation.id, :params => {'data_id' => 638, 'model_name' => 'pronunciation', 'function_name' => "major_dialect_family_type", :update_id => "pronunciation[major_dialect_family_type#{@pronunciation.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('pronunciation[major_dialect_family_type"+@pronunciation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('pronunciation[major_dialect_family_type"+@pronunciation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('pronunciation[major_dialect_family_type"+@pronunciation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('pronunciation[major_dialect_family_type"+@pronunciation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    @data = Category.find(638)
+    resultstr << category_selector(@data, :pronunciation, :major_dialect_family_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    resultstr << "<br>"
+    
+    
+    # resultstr << in_place_form_editor_field( :pronunciation, :major_dialect_family, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[major_dialect_family]'}) +"<br>"
+    # resultstr << "<b>Specific dialect: </b>"
+    # resultstr << "<input type=hidden name=pronunciation[specific_dialect] id=pronunciation[specific_dialect] value=\""+@pronunciation.specific_dialect.to_s+"\" >"
+    # if @pronunciation.specific_dialect == nil or @pronunciation.specific_dialect == ''
+    #   @pronunciation.specific_dialect = 'Click to modify'
+    # end
+    # resultstr << in_place_form_editor_field( :pronunciation, :specific_dialect, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[specific_dialect]'}) +"<br>"
+
+    # resultstr << "<b>Literary genre: </b>"
+    # resultstr << "<input type=hidden name=pronunciation[literary_genre] id=pronunciation[literary_genre] value=\""+@pronunciation.literary_genre.to_s+"\" >"
+    # if @pronunciation.literary_genre == nil or @pronunciation.literary_genre == ''
+    #   @pronunciation.literary_genre = 'Click to modify'
+    # end
+    # resultstr << in_place_select_editor_field( :pronunciation, :literary_genre, {}, {:select_options => @literary_genre, :fieldname => 'pronunciation[literary_genre]'})+"<br>"
+    # resultstr << "<b>Literary period: </b>"
+    # resultstr << "<input type=hidden name=pronunciation[literary_period] id=pronunciation[literary_period] value=\""+@pronunciation.literary_period.to_s+"\" >"
+    # if @pronunciation.literary_period == nil or @pronunciation.literary_period == ''
+    #   @pronunciation.literary_period = 'Click to modify'
+    # end
+    # resultstr << in_place_select_editor_field( :pronunciation, :literary_period, {}, {:select_options => @literary_period, :fieldname => 'pronunciation[literary_period]'})+"<br>"
+    # resultstr << "<b>Literary form: </b>"
+    # resultstr << "<input type=hidden name=pronunciation[literary_form] id=pronunciation[literary_form] value=\""+@pronunciation.literary_form.to_s+"\" >"
+    # if @pronunciation.literary_form == nil or @pronunciation.literary_form == ''
+    #   @pronunciation.literary_form = 'Click to modify'
+    # end
+    # resultstr << in_place_select_editor_field( :pronunciation, :literary_form, {}, {:select_options => @literary_form, :fieldname => 'pronunciation[literary_form]'})+"<br>"
+
+    resultstr << "<b>Analytical note: </b>"
+    resultstr << "<input type=hidden name=pronunciation[analytical_note] id=pronunciation[analytical_note] value=\""+@pronunciation.analytical_note.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@pronunciation.id}_anotediv" + "'>"
+    edit_path = pronunciation_analytical_note_edit_url(:id => @pronunciation.id)
+    if @pronunciation.analytical_note == nil or @pronunciation.analytical_note == ''
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @pronunciation.analytical_note      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@pronunciation.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+    
+		#resultstr <<	"<span id=\"show_av_pronunciation"+@pronunciation.id.to_s+"\"><b>Edit Multimedia Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_pronunciation"+@pronunciation.id.to_s+"');Element.show('hide_av_pronunciation"+@pronunciation.id.to_s+"');Element.show('av_pronunciation_"+@pronunciation.id.to_s+"');", :title => 'Show')+"</span>"
+		#resultstr <<	"<span id=\"hide_av_pronunciation"+@pronunciation.id.to_s+"\" style=\"display:none\"><b>Hide Multimedia Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_pronunciation"+@pronunciation.id.to_s+"');Element.show('show_av_pronunciation"+@pronunciation.id.to_s+"');Element.hide('av_pronunciation_"+@pronunciation.id.to_s+"');", :title => 'Hide')+"</span>"
+    #resultstr << "<span id=\"av_pronunciation_"+@pronunciation.id.to_s+"\" style=\"display:none\"/><dl><dd>"
+    resultstr << "<b>Edit Multimedia Data: </b>"
+    resultstr << "<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>"
+    resultstr << "<div class='showhide'>"
+    resultstr << "<b>Image: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[image] id=pronunciation[image] value=\""+@pronunciation.image.to_s+"\" >"
+    if @pronunciation.image == nil or @pronunciation.image == ''
+      @pronunciation.image = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :image, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[image]'}) +"<br>"
+    resultstr << "<b>Image caption: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[image_caption] id=pronunciation[image_caption] value=\""+@pronunciation.image_caption.to_s+"\" >"
+    if @pronunciation.image_caption == nil or @pronunciation.image_caption == ''
+      @pronunciation.image_caption = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :image_caption, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[image_caption]'}) +"<br>"
+    resultstr << "<b>Image photographer: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[image_photographer] id=pronunciation[image_photographer] value=\""+@pronunciation.image_photographer.to_s+"\" >"
+    if @pronunciation.image_photographer == nil or @pronunciation.image_photographer == ''
+      @pronunciation.image_photographer = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :image_photographer, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[image_photographer]'}) +"<br>"
+    resultstr << "<b>Image link: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[image_link] id=pronunciation[image_link] value=\""+@pronunciation.image_link.to_s+"\" >"
+    if @pronunciation.image_link == nil or @pronunciation.image_link == ''
+      @pronunciation.image_link = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[image_link]'}) +"<br>"
+    resultstr << "<b>Image description: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[image_description] id=pronunciation[image_description] value=\""+@pronunciation.image_description.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@pronunciation.id}_imagedescdiv" + "'>"
+    edit_path = pronunciation_image_description_edit_url(:id => @pronunciation.id)
+    if @pronunciation.image_description == nil or @pronunciation.image_description == ''
+      t_imagedescription = 'Click to modify'
+    else
+      t_imagedescription = @pronunciation.image_description     
+    end    
+    resultstr << link_to_remote(t_imagedescription, :url => edit_path, :update => "#{@pronunciation.id}_imagedescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+    
+    resultstr << "<b>Audio: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[audio] id=pronunciation[audio] value=\""+@pronunciation.audio.to_s+"\" >"
+    if @pronunciation.audio == nil or @pronunciation.audio == ''
+      @pronunciation.audio = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :audio, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[audio]'}) +"<br>"
+    resultstr << "<b>Audio id number: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[audio_id_number] id=pronunciation[audio_id_number] value=\""+@pronunciation.audio_id_number.to_s+"\" >"
+    if @pronunciation.audio_id_number == nil or @pronunciation.audio_id_number == ''
+      @pronunciation.audio_id_number = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :audio_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[audio_id_number]'}) +"<br>"
+    resultstr << "<b>Audio speaker: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[audio_speaker] id=pronunciation[audio_speaker] value=\""+@pronunciation.audio_speaker.to_s+"\" >"
+    if @pronunciation.audio_speaker == nil or @pronunciation.audio_speaker == ''
+      @pronunciation.audio_speaker = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :audio_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[audio_speaker]'}) +"<br>"
+    resultstr << "<b>Audio date: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[audio_date] id=pronunciation[audio_date] value=\""+@pronunciation.audio_date.to_s+"\" >"
+    if @pronunciation.audio_date == nil or @pronunciation.audio_date == ''
+      @pronunciation.audio_date = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :audio_date, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[audio_date]'}) +"<br>"
+    resultstr << "<b>Audio place of recording: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[audio_place_of_recording] id=pronunciation[audio_place_of_recording] value=\""+@pronunciation.audio_place_of_recording.to_s+"\" >"
+    if @pronunciation.audio_place_of_recording == nil or @pronunciation.audio_place_of_recording == ''
+      @pronunciation.audio_place_of_recording = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :audio_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[audio_place_of_recording]'}) +"<br>"
+    resultstr << "<b>Audio link: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[audio_link] id=pronunciation[audio_link] value=\""+@pronunciation.audio_link.to_s+"\" >"
+    if @pronunciation.audio_link == nil or @pronunciation.audio_link == ''
+      @pronunciation.audio_link = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[audio_link]'}) +"<br>"
+    resultstr << "<b>Audio description: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[audio_description] id=pronunciation[audio_description] value=\""+@pronunciation.audio_description.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@pronunciation.id}_audiodescdiv" + "'>"
+    edit_path = pronunciation_audio_description_edit_url(:id => @pronunciation.id)
+    if @pronunciation.audio_description == nil or @pronunciation.audio_description == ''
+      t_audiodescription = 'Click to modify'
+    else
+      t_audiodescription = @pronunciation.audio_description     
+    end    
+    resultstr << link_to_remote(t_audiodescription, :url => edit_path, :update => "#{@pronunciation.id}_audiodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+    
+    resultstr << "<b>Video: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[video] id=pronunciation[video] value=\""+@pronunciation.video.to_s+"\" >"
+    if @pronunciation.video == nil or @pronunciation.video == ''
+      @pronunciation.video = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :video, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[video]'}) +"<br>"
+    resultstr << "<b>Video id number: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[video_id_number] id=pronunciation[video_id_number] value=\""+@pronunciation.video_id_number.to_s+"\" >"
+    if @pronunciation.video_id_number == nil or @pronunciation.video_id_number == ''
+      @pronunciation.video_id_number = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :video_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[video_id_number]'}) +"<br>"
+    resultstr << "<b>Video speaker: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[video_speaker] id=pronunciation[video_speaker] value=\""+@pronunciation.video_speaker.to_s+"\" >"
+    if @pronunciation.video_speaker == nil or @pronunciation.video_speaker == ''
+      @pronunciation.video_speaker = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :video_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[video_speaker]'}) +"<br>"
+    resultstr << "<b>Video date: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[video_date] id=pronunciation[video_date] value=\""+@pronunciation.video_date.to_s+"\" >"
+    if @pronunciation.video_date == nil or @pronunciation.video_date == ''
+      @pronunciation.video_date = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :video_date, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[video_date]'}) +"<br>"
+    resultstr << "<b>Video place of recording: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[video_place_of_recording] id=pronunciation[video_place_of_recording] value=\""+@pronunciation.video_place_of_recording.to_s+"\" >"
+    if @pronunciation.video_place_of_recording == nil or @pronunciation.video_place_of_recording == ''
+      @pronunciation.video_place_of_recording = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :video_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[video_place_of_recording]'}) +"<br>"
+    resultstr << "<b>Video link: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[video_link] id=pronunciation[video_link] value=\""+@pronunciation.video_link.to_s+"\" >"
+    if @pronunciation.video_link == nil or @pronunciation.video_link == ''
+      @pronunciation.video_link = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :pronunciation, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[video_link]'}) +"<br>"
+    resultstr << "<b>Video description: </b>"
+    #resultstr << "<input type=hidden name=pronunciation[video_description] id=pronunciation[video_description] value=\""+@pronunciation.audio_description.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@pronunciation.id}_videodescdiv" + "'>"
+    edit_path = pronunciation_video_description_edit_url(:id => @pronunciation.id)
+    if @pronunciation.video_description == nil or @pronunciation.video_description == ''
+      t_videodescription = 'Click to modify'
+    else
+      t_videodescription = @pronunciation.video_description     
+    end    
+    resultstr << link_to_remote(t_videodescription, :url => edit_path, :update => "#{@pronunciation.id}_videodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+    resultstr << "</div>" #showhide
+    #resultstr << "</dd></dl></span>"
+  end
+
+
+
 end

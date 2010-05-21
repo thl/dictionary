@@ -2347,7 +2347,7 @@ module DefinitionsHelper
     end    
     resultstr << link_to_remote(t_videodescription, :url => edit_path, :update => "#{@definition.id}_videodescdiv", :method => :get ) 
     resultstr << "</div>" 
-    #resultstr << "</span>"
+    resultstr << "</span>"
     resultstr << "</div>" #showhide
     #resultstr << "</dd></dl></span>"
   end

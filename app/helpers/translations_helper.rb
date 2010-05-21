@@ -127,6 +127,63 @@ module TranslationsHelper
 
   end
 
+  def modal_edit_dynamic_translationa
+    debugger
+    resultstr = ""
+    resultstr << "<b>Translation: </b>"
+    @data = Category.find(184)
+    resultstr << category_selector(@data, :definition, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+  end
+  def modal_edit_dynamic_translation
+    debugger
+    resultstr = ""
+    resultstr << "<b>Translation: </b>"
+    #resultstr << "<input type=hidden name=translation[translation] id=translation[translation] value=\""+@translation.translation.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@translation.id}_translationdiv" + "'>"
+    edit_path = translation_translation_edit_url(:id => @translation.id)
+    if @translation.translation == nil or @translation.translation == ''
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @translation.translation      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@translation.id}_translationdiv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
+    resultstr << "<b>Language: </b>"
+    #resultstr << "<input type=hidden name=translation[language] id=translation[language] value=\""+@translation.language.to_s+"\" >"
+    #if @translation.language_type == nil
+    #  title = 'Click to modify'
+    #else
+    #  title = @translation.language_type.title
+    #end
+    #resultstr << "<span id=\"translation[language_type#{@translation.id}]_selector\">"
+    #resultstr << '['+@translation.language+']' if @translation.language != nil
+    #resultstr << link_to_remote( title,{:update => "translation[language_type#{@translation.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'translations', :action => 'display_category_selector', :id => @translation.id, :params => {'data_id' => 184, 'model_name' => 'translation', 'function_name' => "language_type", :update_id => "translation[language_type#{@translation.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('translation[language_type"+@translation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('translation[language_type"+@translation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('translation[language_type"+@translation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('translation[language_type"+@translation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    @data = Category.find(184)
+    resultstr << category_selector(@data, :translation, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+        
+    resultstr << "<b>Analytical note: </b>"
+    #resultstr << "<input type=hidden name=translation[analytical_note] id=translation[analytical_note] value=\""+@translation.analytical_note.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@translation.id}_anotediv" + "'>"
+    edit_path = translation_analytical_note_edit_url(:id => @translation.id)
+    if @translation.analytical_note == nil or @translation.analytical_note == ''
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @translation.analytical_note      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@translation.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+  end
+
+
   def show_edit_translation
     resultstr = ""
     resultstr << "<p><b>Translation: </b><br>"
