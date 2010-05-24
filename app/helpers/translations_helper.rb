@@ -136,7 +136,6 @@ module TranslationsHelper
     resultstr << "<br>"
   end
   def modal_edit_dynamic_translation
-    debugger
     resultstr = ""
     resultstr << "<b>Translation: </b>"
     #resultstr << "<input type=hidden name=translation[translation] id=translation[translation] value=\""+@translation.translation.to_s+"\" >"
@@ -165,7 +164,7 @@ module TranslationsHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('translation[language_type"+@translation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('translation[language_type"+@translation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('translation[language_type"+@translation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('translation[language_type"+@translation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     @data = Category.find(184)
-    resultstr << category_selector(@data, :translation, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << category_selector(@data, :translation, :language_type, false, :hasTree => 'false', :singleSelectionTree => 'true')    
     resultstr << "<br>"
         
     resultstr << "<b>Analytical note: </b>"

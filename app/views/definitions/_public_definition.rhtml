@@ -386,8 +386,9 @@
 		<b>Spelling:</b>
 				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 	<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('spellings','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
-			<%= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_spelling', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'spellings', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
+			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>
+			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'spellings', :action => 'edit_dynamic_spelling', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Spelling Edit' %>			
+			<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_spelling', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'spellings', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 	
 			<span class=menuvalue onclick=show_menu(spelling_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'spelling_id='+e.id.to_s, :title => 'Edit Relationships' %> 

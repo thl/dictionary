@@ -658,6 +658,44 @@ class SpellingsController < ApplicationController
            render_action 'list'
          end
   end
+
+  def edit_dynamic_spelling
+    if(params['internal'] != nil)
+      @divname = 'spelling_internal'
+    else
+    	@divname = 'spelling'
+    end
+    if params['level'] != nil
+      params['level'] = (params['level'].to_i + 1).to_s
+    else
+      params['level'] = '1'
+    end
+    @spelling = Spelling.find(params[:id])
+    render :layout => 'staging_popup'
+  end
+  
+  def update_dynamic_spelling
+      @spelling = Spelling.find(params[:id])
+      if @spelling.created_by == nil or @spelling.created_by == ""
+        @spelling.created_by = session[:user].login
+        @spelling.created_at = Time.now
+      end
+      if session[:user] != nil
+        @spelling.updated_by = session[:user].login
+      end
+      @spelling.updated_at = Time.now
+      if @spelling.update_history == nil
+        @spelling.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+      	@spelling.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end
+      if @spelling.update_attributes(params[:spelling])
+        render :nothing => true
+      end
+  end
+  
   
   def update_analytical_note
       @spelling = Spelling.find(params[:spelling][:id])

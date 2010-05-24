@@ -14,7 +14,7 @@ class Translation < ActiveRecord::Base
     return str
   end
 
-  $language = "English, Tibetan, Classical Chinese, Modern Chinese, Sanskrit, Hindi, Nepali, Zhangzhung, Mongolian, Korean, Japanese, Pali".split(', ')
+  #$language = "English, Tibetan, Classical Chinese, Modern Chinese, Sanskrit, Hindi, Nepali, Zhangzhung, Mongolian, Korean, Japanese, Pali".split(', ')
   $project = "Buddhist Tantra Terminology, TLLR Colloquial, Tournadre/Dorje Manual Glossary, TLLR Colloquial Standardized Spelling, TLLR Literary Glossary, THDL Architecture Terminology, THDL Astrology Terminology, THDL/Rubin Art Terminology, THDL Colophons, THDL Computer Science Terminology, THDL Library Science Terminology, THDL Medical Terminology, THDL Music Terminology, THDL Samantabhadra Titles, Public Domain Dictionary Entry Project".split(', ')
   $source_type = "personal communication, text, original".split(", ")
 
