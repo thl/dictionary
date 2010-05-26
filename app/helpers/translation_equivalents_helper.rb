@@ -471,6 +471,174 @@ module TranslationEquivalentsHelper
     resultstr << "</dd></dl></span>"
   end
 
+  def modal_edit_dynamic_translation_equivalent
+    resultstr = ""
+    resultstr << "<b>Translation equivalent: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[translation_equivalent] id=translation_equivalent[translation_equivalent] value=\""+@translation_equivalent.translation_equivalent.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@translation_equivalent.id}_transdiv" + "'>"
+    edit_path = translation_equivalent_translation_equivalent_edit_url(:id => @translation_equivalent.id)
+    if @translation_equivalent.translation_equivalent == nil or @translation_equivalent.translation_equivalent == ''
+      t_transequivalent = 'Click to modify'
+    else
+      t_transequivalent = @translation_equivalent.translation_equivalent      
+    end    
+    resultstr << link_to_remote(t_transequivalent, :url => edit_path, :update => "#{@translation_equivalent.id}_transdiv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
+    resultstr << "<b>Language: </b>"
+    if @translation_equivalent.language_type == nil
+      title = 'Click to modify'
+    else
+      title = @translation_equivalent.language_type.title
+    end
+    #resultstr << "<span id=\"translation_equivalent[language_type#{@translation_equivalent.id}]_selector\">"
+    #resultstr << '['+@translation_equivalent.language+']' if @translation_equivalent.language != nil
+    #resultstr << link_to_remote( title,{:update => "translation_equivalent[language_type#{@translation_equivalent.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'translation_equivalents', :action => 'display_category_selector', :id => @translation_equivalent.id, :params => {'data_id' => 184, 'model_name' => 'translation_equivalent', 'function_name' => "language_type", :update_id => "translation_equivalent[language_type#{@translation_equivalent.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    @data = Category.find(184)
+    resultstr << category_selector(@data, :translation_equivalent, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+    
+    resultstr << "<b>Analytical note: </b>"
+    resultstr << "<input type=hidden name=translation_equivalent[analytical_note] id=translation_equivalent[analytical_note] value=\""+@translation_equivalent.analytical_note.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@translation_equivalent.id}_anotediv" + "'>"
+    edit_path = translation_equivalent_analytical_note_edit_url(:id => @translation_equivalent.id)
+    if @translation_equivalent.analytical_note == nil or @translation_equivalent.analytical_note == ''
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @translation_equivalent.analytical_note      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@translation_equivalent.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
+		#resultstr <<	"<span id=\"show_av_translation_equivalent"+@translation_equivalent.id.to_s+"\"><b>Edit A/V Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_translation_equivalent"+@translation_equivalent.id.to_s+"');Element.show('hide_av_translation_equivalent"+@translation_equivalent.id.to_s+"');Element.show('av_translation_equivalent_"+@translation_equivalent.id.to_s+"');", :title => 'Show')+"</span>"
+		#resultstr <<	"<span id=\"hide_av_translation_equivalent"+@translation_equivalent.id.to_s+"\" style=\"display:none\"><b>Hide A/V Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_translation_equivalent"+@translation_equivalent.id.to_s+"');Element.show('show_av_translation_equivalent"+@translation_equivalent.id.to_s+"');Element.hide('av_translation_equivalent_"+@translation_equivalent.id.to_s+"');", :title => 'Hide')+"</span>"
+    #resultstr << "<span id=\"av_translation_equivalent_"+@translation_equivalent.id.to_s+"\" style=\"display:none\"/><dl><dd>"
+  
+    resultstr << "<b>Edit Multimedia Data: </b>"
+    resultstr << "<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>"
+    resultstr << "<div class='showhide'>"
+        
+    resultstr << "<b>Image: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[image] id=translation_equivalent[image] value=\""+@translation_equivalent.image.to_s+"\" >"
+    if @translation_equivalent.image == nil or @translation_equivalent.image == ''
+      @translation_equivalent.image = 'Click to modify'
+    end
+    resultstr << "<br>"+in_place_editor_field( :translation_equivalent, :image, {}, {:cols => 80, :rows => 10, :fieldname => 'translation_equivalent[image]'}) +"<br>"
+    resultstr << "<b>Image caption: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[image_caption] id=translation_equivalent[image_caption] value=\""+@translation_equivalent.image_caption.to_s+"\" >"
+    if @translation_equivalent.image_caption == nil or @translation_equivalent.image_caption == ''
+      @translation_equivalent.image_caption = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :translation_equivalent, :image_caption, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[image_caption]'}) +"<br>"
+    resultstr << "<b>Image photographer: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[image_photographer] id=translation_equivalent[image_photographer] value=\""+@translation_equivalent.image_photographer.to_s+"\" >"
+    if @translation_equivalent.image_photographer == nil or @translation_equivalent.image_photographer == ''
+      @translation_equivalent.image_photographer = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :translation_equivalent, :image_photographer, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[image_photographer]'}) +"<br>"
+    resultstr << "<b>Image link: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[image_link] id=translation_equivalent[image_link] value=\""+@translation_equivalent.image_link.to_s+"\" >"
+    if @translation_equivalent.image_link == nil or @translation_equivalent.image_link == ''
+      @translation_equivalent.image_link = 'Click to modify'
+    end
+    resultstr << "<br>"+in_place_editor_field( :translation_equivalent, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'translation_equivalent[image_link]'}) +"<br>"
+    resultstr << "<b>Image description: </b>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@translation_equivalent.id}_imagedescdiv" + "'>"
+    edit_path = translation_equivalent_image_description_edit_url(:id => @translation_equivalent.id)
+    if @translation_equivalent.image_description == nil or @translation_equivalent.image_description == ''
+      t_imagedescription = 'Click to modify'
+    else
+      t_imagedescription = @translation_equivalent.image_description     
+    end    
+    resultstr << link_to_remote(t_imagedescription, :url => edit_path, :update => "#{@translation_equivalent.id}_imagedescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
+
+    resultstr << "<b>Audio: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[audio] id=translation_equivalent[audio] value=\""+@translation_equivalent.audio.to_s+"\" >"
+    if @translation_equivalent.audio == nil or @translation_equivalent.audio == ''
+      @translation_equivalent.audio = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :translation_equivalent, :audio, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[audio]'}) +"<br>"
+    resultstr << "<b>Audio id number: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[audio_id_number] id=translation_equivalent[audio_id_number] value=\""+@translation_equivalent.audio_id_number.to_s+"\" >"
+    if @translation_equivalent.audio_id_number == nil or @translation_equivalent.audio_id_number == ''
+      @translation_equivalent.audio_id_number = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :translation_equivalent, :audio_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[audio_id_number]'}) +"<br>"
+    resultstr << "<b>Audio speaker: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[audio_speaker] id=translation_equivalent[audio_speaker] value=\""+@translation_equivalent.audio_speaker.to_s+"\" >"
+    if @translation_equivalent.audio_speaker == nil or @translation_equivalent.audio_speaker == ''
+      @translation_equivalent.audio_speaker = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :translation_equivalent, :audio_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[audio_speaker]'}) +"<br>"
+    resultstr << "<b>Audio date: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[audio_date] id=translation_equivalent[audio_date] value=\""+@translation_equivalent.audio_date.to_s+"\" >"
+    if @translation_equivalent.audio_date == nil or @translation_equivalent.audio_date == ''
+      @translation_equivalent.audio_date = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :translation_equivalent, :audio_date, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[audio_date]'}) +"<br>"
+    resultstr << "<b>Audio place of recording: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[audio_place_of_recording] id=translation_equivalent[audio_place_of_recording] value=\""+@translation_equivalent.audio_place_of_recording.to_s+"\" >"
+    if @translation_equivalent.audio_place_of_recording == nil or @translation_equivalent.audio_place_of_recording == ''
+      @translation_equivalent.audio_place_of_recording = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :translation_equivalent, :audio_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[audio_place_of_recording]'}) +"<br>"
+    resultstr << "<b>Audio link: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[audio_link] id=translation_equivalent[audio_link] value=\""+@translation_equivalent.audio_link.to_s+"\" >"
+    if @translation_equivalent.audio_link == nil or @translation_equivalent.audio_link == ''
+      @translation_equivalent.audio_link = 'Click to modify'
+    end
+    resultstr << "<br>"+in_place_editor_field( :translation_equivalent, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'translation_equivalent[audio_link]'}) +"<br>"
+    resultstr << "<b>Video: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[video] id=translation_equivalent[video] value=\""+@translation_equivalent.video.to_s+"\" >"
+    if @translation_equivalent.video == nil or @translation_equivalent.video == ''
+      @translation_equivalent.video = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :translation_equivalent, :video, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[video]'}) +"<br>"
+    resultstr << "<b>Video id number: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[video_id_number] id=translation_equivalent[video_id_number] value=\""+@translation_equivalent.video_id_number.to_s+"\" >"
+    if @translation_equivalent.video_id_number == nil or @translation_equivalent.video_id_number == ''
+      @translation_equivalent.video_id_number = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :translation_equivalent, :video_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[video_id_number]'}) +"<br>"
+    resultstr << "<b>Video speaker: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[video_speaker] id=translation_equivalent[video_speaker] value=\""+@translation_equivalent.video_speaker.to_s+"\" >"
+    if @translation_equivalent.video_speaker == nil or @translation_equivalent.video_speaker == ''
+      @translation_equivalent.video_speaker = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :translation_equivalent, :video_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[video_speaker]'}) +"<br>"
+    resultstr << "<b>Video date: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[video_date] id=translation_equivalent[video_date] value=\""+@translation_equivalent.video_date.to_s+"\" >"
+    if @translation_equivalent.video_date == nil or @translation_equivalent.video_date == ''
+      @translation_equivalent.video_date = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :translation_equivalent, :video_date, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[video_date]'}) +"<br>"
+    resultstr << "<b>Video place of recording: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[video_place_of_recording] id=translation_equivalent[video_place_of_recording] value=\""+@translation_equivalent.video_place_of_recording.to_s+"\" >"
+    if @translation_equivalent.video_place_of_recording == nil or @translation_equivalent.video_place_of_recording == ''
+      @translation_equivalent.video_place_of_recording = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :translation_equivalent, :video_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'translation_equivalent[video_place_of_recording]'}) +"<br>"
+    resultstr << "<b>Video link: </b>"
+    #resultstr << "<input type=hidden name=translation_equivalent[video_link] id=translation_equivalent[video_link] value=\""+@translation_equivalent.video_link.to_s+"\" >"
+    if @translation_equivalent.video_link == nil or @translation_equivalent.video_link == ''
+      @translation_equivalent.video_link = 'Click to modify'
+    end
+    resultstr << "<br>"+in_place_editor_field( :translation_equivalent, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'translation_equivalent[video_link]'}) +"<br>"
+    resultstr << "</div>" #showhide
+    #resultstr << "</dd></dl></span>"
+    
+  end
+
   def show_edit_translation_equivalent
     resultstr = ""
     resultstr << "<p><b>Translation equivalent: </b><br>"
