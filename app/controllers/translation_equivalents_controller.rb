@@ -493,6 +493,48 @@ class TranslationEquivalentsController < ApplicationController
          end
   end
   
+  def edit_dynamic_translation_equivalent
+    @language = []
+    Language.find(:all, :order => 'language asc').each do |l|
+      @language += [l.language]
+    end
+    if(params['internal'] != nil)
+      @divname = 'translation_equivalent_internal'
+    else
+    	@divname = 'translation_equivalent'
+    end
+    if params['level'] != nil
+      params['level'] = (params['level'].to_i + 1).to_s
+    else
+      params['level'] = '1'
+    end
+    @translation_equivalent = TranslationEquivalent.find(params[:id])
+    render :layout => 'staging_popup'
+  end  
+ 
+  def update_dynamic_translation_equivalent
+      @translation_equivalent = TranslationEquivalent.find(params[:id])
+      if @translation_equivalent.created_by == nil or @translation_equivalent.created_by == ""
+        @translation_equivalent.created_by = session[:user].login
+        @translation_equivalent.created_at = Time.now
+      end
+      if session[:user] != nil
+        @translation_equivalent.updated_by = session[:user].login
+      end
+      @translation_equivalent.updated_at = Time.now
+      if @translation_equivalent.update_history == nil
+        @translation_equivalent.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+      	@translation_equivalent.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end
+      if @translation_equivalent.update_attributes(params[:translation_equivalent])
+        render :nothing => true
+      else
+      end
+  end 
+  
   def update_translation_equivalent
       @translation_equivalent = TranslationEquivalent.find(params[:translation_equivalent][:id])
       if @translation_equivalent.created_by == nil or @translation_equivalent.created_by == ""

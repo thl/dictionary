@@ -35,6 +35,15 @@ ActionController::Routing::Routes.draw do |map|
   map.spelling_video_description_edit 'spellings/:id/video_description_edit', :controller => 'spellings', :action => 'video_description_edit'
   map.spelling_video_description_show 'spellings/:id/video_description_show', :controller => 'spellings', :action => 'video_description_show'
 
+  map.translation_equivalent_translation_equivalent_edit 'translation_equivalents/:id/translation_equivalent_edit', :controller => 'translation_equivalents', :action => 'translation_equivalent_edit'
+  map.translation_equivalent_translation_equivalent_show 'translation_equivalents/:id/translation_equivalent_show', :controller => 'translation_equivalents', :action => 'translation_equivalent_show'
+  map.translation_equivalent_analytical_note_edit 'translation_equivalents/:id/analytical_note_edit', :controller => 'translation_equivalents', :action => 'analytical_note_edit'
+  map.translation_equivalent_analytical_note_show 'translation_equivalents/:id/analytical_note_show', :controller => 'translation_equivalents', :action => 'analytical_note_show'
+  map.translation_equivalent_image_description_edit 'translation_equivalents/:id/image_description_edit', :controller => 'translation_equivalents', :action => 'image_description_edit'
+  map.translation_equivalent_image_description_show 'translation_equivalents/:id/image_description_show', :controller => 'translation_equivalents', :action => 'image_description_show'
+
+
+
   map.pronunciation_analytical_note_edit 'pronunciations/:id/analytical_note_edit', :controller => 'pronunciations', :action => 'analytical_note_edit'
   map.pronunciation_image_description_edit 'pronunciations/:id/image_description_edit', :controller => 'pronunciations', :action => 'image_description_edit'
   map.pronunciation_audio_description_edit 'pronunciations/:id/audio_description_edit', :controller => 'pronunciations', :action => 'audio_description_edit'
@@ -46,9 +55,6 @@ ActionController::Routing::Routes.draw do |map|
   map.literary_quotation_video_description_edit 'literary_quotations/:id/video_description_edit', :controller => 'literary_quotations', :action => 'video_description_edit'
   map.meta_metadata_note_edit 'metas/:id/metadata_note_edit', :controller => 'metas', :action => 'metadata_note_edit'
   map.source_source_note_edit 'sources/:id/source_note_edit', :controller => 'sources', :action => 'source_note_edit'
-  map.translation_equivalent_translation_equivalent_edit 'translation_equivalents/:id/translation_equivalent_edit', :controller => 'translation_equivalents', :action => 'translation_equivalent_edit'
-  map.translation_equivalent_analytical_note_edit 'translation_equivalents/:id/analytical_note_edit', :controller => 'translation_equivalents', :action => 'analytical_note_edit'
-  map.translation_equivalent_image_description_edit 'translation_equivalents/:id/image_description_edit', :controller => 'translation_equivalents', :action => 'image_description_edit'
   map.model_sentence_model_sentence_edit 'model_sentences/:id/model_sentence_edit', :controller => 'model_sentences', :action => 'model_sentence_edit'
   map.model_sentence_analytical_note_edit 'model_sentences/:id/analytical_note_edit', :controller => 'model_sentences', :action => 'analytical_note_edit'
   map.model_sentence_image_description_edit 'model_sentences/:id/image_description_edit', :controller => 'model_sentences', :action => 'image_description_edit'
