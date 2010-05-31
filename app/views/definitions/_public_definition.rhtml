@@ -553,8 +553,9 @@
 		<b>Model sentences:</b>
 				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 	<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('model_sentences','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
-	<%= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_model_sentence', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'model_sentences', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
+			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>
+			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'model_sentences', :action => 'edit_dynamic_model_sentence', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Model Sentence Edit' %>			
+	<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_model_sentence', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'model_sentences', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 			<span class=menuvalue onclick=show_menu(model_sentence_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'model_sentence_id='+e.id.to_s, :title => 'Edit Relationships' %> 
 			</span>

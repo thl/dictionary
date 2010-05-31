@@ -727,6 +727,46 @@ class ModelSentencesController < ApplicationController
          end
   end
   
+  def edit_dynamic_model_sentence
+    @type = ["literary","oral"]
+    if(params['internal'] != nil)
+      @divname = 'model_sentence_internal'
+    else
+    	@divname = 'model_sentence'
+    end
+    if params['level'] != nil
+      params['level'] = (params['level'].to_i + 1).to_s
+    else
+      params['level'] = '1'
+    end
+    @model_sentence = ModelSentence.find(params[:id])
+    render :layout => 'staging_popup' 
+  end  
+
+  def update_dynamic_model_sentence
+      @model_sentence = ModelSentence.find(params[:id])
+      if @model_sentence.created_by == nil or @model_sentence.created_by == ""
+        @model_sentence.created_by = session[:user].login
+        @model_sentence.created_at = Time.now
+      end
+      if session[:user] != nil
+        @model_sentence.updated_by = session[:user].login
+      end
+      @model_sentence.updated_at = Time.now
+      if @model_sentence.update_history == nil
+        @model_sentence.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+      	@model_sentence.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end
+      if @model_sentence.update_attributes(params[:model_sentence])
+        render :nothing => true
+      else
+      end
+  end
+  
+  
   def update_model_sentence
       @model_sentence = ModelSentence.find(params[:model_sentence][:id])
       if @model_sentence.created_by == nil or @model_sentence.created_by == ""
