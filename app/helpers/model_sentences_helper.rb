@@ -695,6 +695,288 @@ module ModelSentencesHelper
     resultstr << "</dd></dl></span>"
   end
 
+  def modal_edit_dynamic_model_sentence
+     resultstr = ""
+     resultstr << "<b>Model sentence: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[model_sentence] id=model_sentence[model_sentence] value=\""+@model_sentence.model_sentence.to_s+"\" >"
+     resultstr << "<span class='tinyfied_show'>"
+     resultstr << "<div id='" + "#{@model_sentence.id}_model_sentencediv" + "'>"
+     edit_path = model_sentence_model_sentence_edit_url(:id => @model_sentence.id)
+     if @model_sentence.model_sentence == nil or @model_sentence.model_sentence == ''
+       t_model_sentence = 'Click to modify'
+     else
+       t_model_sentence = @model_sentence.model_sentence     
+     end    
+     resultstr << link_to_remote(t_model_sentence, :url => edit_path, :update => "#{@model_sentence.id}_model_sentencediv", :method => :get ) 
+     resultstr << "</div>"  
+     resultstr << "</span>"
+
+     resultstr << "<b>Language: </b>"
+     #if @model_sentence.language_type == nil
+     #  title = 'Click to modify'
+     #else
+     # title = @model_sentence.language_type.title
+     #end
+     #resultstr << "<span id=\"model_sentence[language_type#{@model_sentence.id}]_selector\">"
+     #resultstr << '['+@model_sentence.language+']' if @model_sentence.language != nil
+     #resultstr << link_to_remote( title,{:update => "model_sentence[language_type#{@model_sentence.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'model_sentences', :action => 'display_category_selector', :id => @model_sentence.id, :params => {'data_id' => 184, 'model_name' => 'model_sentence', 'function_name' => "language_type", :update_id => "model_sentence[language_type#{@model_sentence.id}]_selector"}}}, :class => 'selector_link' )
+     #resultstr << "</span><br>"
+     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[language_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[language_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[language_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[language_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+     @data = Category.find(184)
+     resultstr << category_selector(@data, :model_sentence, :language_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     resultstr << "<br>"
+     
+     resultstr << "<b>Tibetan Dialect: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[major_dialect_family] id=model_sentence[major_dialect_family"+@model_sentence.id.to_s+"] value=\""+@model_sentence.major_dialect_family.to_s+"\" >"
+     #if @model_sentence.major_dialect_family_type == nil
+    #   title = 'Click to modify'
+    # else
+    #   title = @model_sentence.major_dialect_family_type.title
+    # end
+     #resultstr << "<span id=\"model_sentence[major_dialect_family_type#{@model_sentence.id}]_selector\">"
+     #resultstr << '['+@model_sentence.major_dialect_family+']' if @model_sentence.major_dialect_family != nil
+     #resultstr << link_to_remote( title,{:update => "model_sentence[major_dialect_family_type#{@model_sentence.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'model_sentences', :action => 'display_category_selector', :id => @model_sentence.id, :params => {'data_id' => 638, 'model_name' => 'model_sentence', 'function_name' => "major_dialect_family_type", :update_id => "model_sentence[major_dialect_family_type#{@model_sentence.id}]_selector"}}}, :class => 'selector_link' )
+     #resultstr << "</span><br>"
+     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[major_dialect_family_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[major_dialect_family_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[major_dialect_family_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[major_dialect_family_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+     @data = Category.find(638)
+     resultstr << category_selector(@data, :model_sentence, :major_dialect_family_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     resultstr << "<br>"
+
+     resultstr << "<b>Sentence type: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[sentence_type] id=model_sentence[sentence_type] value=\""+@model_sentence.sentence_type.to_s+"\" >"
+     if @model_sentence.sentence_type == nil or @model_sentence.sentence_type == ''
+       @model_sentence.sentence_type = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :sentence_type, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[sentence_type]'}) +"<br>"
+     resultstr << "<b>Source: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[source] id=model_sentence[source] value=\""+@model_sentence.source.to_s+"\" >"
+     if @model_sentence.source == nil or @model_sentence.source == ''
+       @model_sentence.source = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :source, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[source]'}) +"<br>"
+     resultstr << "<b>Spelling: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[spelling] id=model_sentence[spelling] value=\""+@model_sentence.spelling.to_s+"\" >"
+     if @model_sentence.spelling == nil or @model_sentence.spelling == ''
+       @model_sentence.spelling = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :spelling, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[spelling]'}) +"<br>"
+     ## resultstr << in_place_form_editor_field( :model_sentence, :major_dialect_family, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[major_dialect_family]'}) +"<br>"
+     ## resultstr << "<b>Specific dialect: </b>"
+     ## resultstr << "<input type=hidden name=model_sentence[specific_dialect] id=model_sentence[specific_dialect] value=\""+@model_sentence.specific_dialect.to_s+"\" >"
+     ## if @model_sentence.specific_dialect == nil or @model_sentence.specific_dialect == ''
+     ##   @model_sentence.specific_dialect = 'Click to modify'
+     ## end
+     ## resultstr << in_place_form_editor_field( :model_sentence, :specific_dialect, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[specific_dialect]'}) +"<br>"
+     resultstr << "<b>Literary genre: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[literary_genre] id=model_sentence[literary_genre"+@model_sentence.id.to_s+"] value=\""+@model_sentence.literary_genre.to_s+"\" >"
+     #if @model_sentence.literary_genre_type == nil
+    #   title = 'Click to modify'
+     #else
+    #   title = @model_sentence.literary_genre_type.title
+     #end
+     #resultstr << "<span id=\"model_sentence[literary_genre_type#{@model_sentence.id}]_selector\">"
+     #resultstr << '['+@model_sentence.literary_genre+']' if @model_sentence.literary_genre != nil
+     #resultstr << link_to_remote( title,{:update => "model_sentence[literary_genre_type#{@model_sentence.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'model_sentences', :action => 'display_category_selector', :id => @model_sentence.id, :params => {'data_id' => 119, 'model_name' => 'model_sentence', 'function_name' => "literary_genre_type", :update_id => "model_sentence[literary_genre_type#{@model_sentence.id}]_selector"}}}, :class => 'selector_link' )
+     #resultstr << "</span><br>"
+     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[literary_genre_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[literary_genre_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[literary_genre_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[literary_genre_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+     @data = Category.find(119)
+     resultstr << category_selector(@data, :model_sentence, :literary_genre_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     resultstr << "<br>"
+     
+     resultstr << "<b>Literary period: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[literary_period] id=model_sentence[literary_period] value=\""+@model_sentence.literary_period.to_s+"\" >"
+     #if @model_sentence.literary_period_type == nil
+    #   title = 'Click to modify'
+    # else
+     #  title = @model_sentence.literary_period_type.title
+     #end
+     #resultstr << "<span id=\"model_sentence[literary_period_type#{@model_sentence.id}]_selector\">"
+     #resultstr << '['+@model_sentence.literary_period+']' if @model_sentence.literary_period != nil
+     #resultstr << link_to_remote( title,{:update => "model_sentence[literary_period_type#{@model_sentence.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'model_sentences', :action => 'display_category_selector', :id => @model_sentence.id, :params => {'data_id' => 187, 'model_name' => 'model_sentence', 'function_name' => "literary_period_type", :update_id => "model_sentence[literary_period_type#{@model_sentence.id}]_selector"}}}, :class => 'selector_link' )
+     #resultstr << "</span><br>"
+     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[literary_period_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[literary_period_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[literary_period_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[literary_period_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+     @data = Category.find(187)
+     resultstr << category_selector(@data, :model_sentence, :literary_period_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     resultstr << "<br>"
+     
+     resultstr << "<b>Literary form: </b>"
+     #if @model_sentence.literary_form_type == nil
+    #   title = 'Click to modify'
+     #else
+    #   title = @model_sentence.literary_form_type.title
+     #end
+     #resultstr << "<span id=\"model_sentence[literary_form_type#{@model_sentence.id}]_selector\">"
+     #resultstr << '['+@model_sentence.literary_form+']' if @model_sentence.literary_form != nil
+     #resultstr << link_to_remote( title,{:update => "model_sentence[literary_form_type#{@model_sentence.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'model_sentences', :action => 'display_category_selector', :id => @model_sentence.id, :params => {'data_id' => 186, 'model_name' => 'model_sentence', 'function_name' => "literary_form_type", :update_id => "model_sentence[literary_form_type#{@model_sentence.id}]_selector"}}}, :class => 'selector_link' )
+     #resultstr << "</span><br>"
+     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+     @data = Category.find(186)
+     resultstr << category_selector(@data, :model_sentence, :literary_form_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     resultstr << "<br>"
+
+     resultstr << "<b>Analytical note: </b>"
+     resultstr << "<input type=hidden name=model_sentence[analytical_note] id=model_sentence[analytical_note] value=\""+@model_sentence.analytical_note.to_s+"\" >"
+     resultstr << "<span class='tinyfied_show'>"
+     resultstr << "<div id='" + "#{@model_sentence.id}_anotediv" + "'>"
+     edit_path = model_sentence_analytical_note_edit_url(:id => @model_sentence.id)
+     if @model_sentence.analytical_note == nil or @model_sentence.analytical_note == ''
+       t_analytical = 'Click to modify'
+     else
+       t_analytical = @model_sentence.analytical_note      
+     end    
+     resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@model_sentence.id}_anotediv", :method => :get ) 
+     resultstr << "</div>"
+     resultstr << "</span>"
+
+ 		 #resultstr <<	"<span id=\"show_av_model_sentence"+@model_sentence.id.to_s+"\"><b>Edit Multimedia Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_model_sentence"+@model_sentence.id.to_s+"');Element.show('hide_av_model_sentence"+@model_sentence.id.to_s+"');Element.show('av_model_sentence_"+@model_sentence.id.to_s+"');", :title => 'Show')+"</span>"
+ 		 #resultstr <<	"<span id=\"hide_av_model_sentence"+@model_sentence.id.to_s+"\" style=\"display:none\"><b>Hide Multimedia Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_model_sentence"+@model_sentence.id.to_s+"');Element.show('show_av_model_sentence"+@model_sentence.id.to_s+"');Element.hide('av_model_sentence_"+@model_sentence.id.to_s+"');", :title => 'Hide')+"</span>"
+     #resultstr << "<span id=\"av_model_sentence_"+@model_sentence.id.to_s+"\" style=\"display:none\"/><dl><dd>"
+     resultstr << "<b>Edit Multimedia Data: </b>"
+     resultstr << "<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>"
+     resultstr << "<div class='showhide'>"
+     
+     resultstr << "<b>Image: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[image] id=model_sentence[image] value=\""+@model_sentence.image.to_s+"\" >"
+     if @model_sentence.image == nil or @model_sentence.image == ''
+       @model_sentence.image = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :image, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[image]'}) +"<br>"
+     resultstr << "<b>Image caption: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[image_caption] id=model_sentence[image_caption] value=\""+@model_sentence.image_caption.to_s+"\" >"
+     if @model_sentence.image_caption == nil or @model_sentence.image_caption == ''
+       @model_sentence.image_caption = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :image_caption, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[image_caption]'}) +"<br>"
+     resultstr << "<b>Image photographer: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[image_photographer] id=model_sentence[image_photographer] value=\""+@model_sentence.image_photographer.to_s+"\" >"
+     if @model_sentence.image_photographer == nil or @model_sentence.image_photographer == ''
+       @model_sentence.image_photographer = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :image_photographer, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[image_photographer]'}) +"<br>"
+     resultstr << "<b>Image link: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[image_link] id=model_sentence[image_link] value=\""+@model_sentence.image_link.to_s+"\" >"
+     if @model_sentence.image_link == nil or @model_sentence.image_link == ''
+       @model_sentence.image_link = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[image_link]'}) +"<br>"
+     resultstr << "<b>Image description: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[image_description] id=model_sentence[image_description] value=\""+@model_sentence.image_description.to_s+"\" >"
+     resultstr << "<span class='tinyfied_show'>"
+     resultstr << "<div id='" + "#{@model_sentence.id}_imagedescdiv" + "'>"
+     edit_path = model_sentence_image_description_edit_url(:id => @model_sentence.id)
+     if @model_sentence.image_description == nil or @model_sentence.image_description == ''
+       t_imagedescription = 'Click to modify'
+     else
+       t_imagedescription = @model_sentence.image_description     
+     end    
+     resultstr << link_to_remote(t_imagedescription, :url => edit_path, :update => "#{@model_sentence.id}_imagedescdiv", :method => :get ) 
+     resultstr << "</div>"  
+     resultstr << "</span>"
+
+     resultstr << "<b>Audio: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[audio] id=model_sentence[audio] value=\""+@model_sentence.audio.to_s+"\" >"
+     if @model_sentence.audio == nil or @model_sentence.audio == ''
+       @model_sentence.audio = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :audio, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[audio]'}) +"<br>"
+     resultstr << "<b>Audio id number: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[audio_id_number] id=model_sentence[audio_id_number] value=\""+@model_sentence.audio_id_number.to_s+"\" >"
+     if @model_sentence.audio_id_number == nil or @model_sentence.audio_id_number == ''
+       @model_sentence.audio_id_number = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :audio_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[audio_id_number]'}) +"<br>"
+     resultstr << "<b>Audio speaker: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[audio_speaker] id=model_sentence[audio_speaker] value=\""+@model_sentence.audio_speaker.to_s+"\" >"
+     if @model_sentence.audio_speaker == nil or @model_sentence.audio_speaker == ''
+       @model_sentence.audio_speaker = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :audio_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[audio_speaker]'}) +"<br>"
+     resultstr << "<b>Audio date: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[audio_date] id=model_sentence[audio_date] value=\""+@model_sentence.audio_date.to_s+"\" >"
+     if @model_sentence.audio_date == nil or @model_sentence.audio_date == ''
+       @model_sentence.audio_date = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :audio_date, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[audio_date]'}) +"<br>"
+     resultstr << "<b>Audio place of recording: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[audio_place_of_recording] id=model_sentence[audio_place_of_recording] value=\""+@model_sentence.audio_place_of_recording.to_s+"\" >"
+     if @model_sentence.audio_place_of_recording == nil or @model_sentence.audio_place_of_recording == ''
+       @model_sentence.audio_place_of_recording = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :audio_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[audio_place_of_recording]'}) +"<br>"
+     resultstr << "<b>Audio link: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[audio_link] id=model_sentence[audio_link] value=\""+@model_sentence.audio_link.to_s+"\" >"
+     if @model_sentence.audio_link == nil or @model_sentence.audio_link == ''
+       @model_sentence.audio_link = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[audio_link]'}) +"<br>"
+     resultstr << "<b>Audio description: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[audio_description] id=model_sentence[audio_description] value=\""+@model_sentence.audio_description.to_s+"\" >"
+     resultstr << "<span class='tinyfied_show'>"
+     resultstr << "<div id='" + "#{@model_sentence.id}_audiodescdiv" + "'>"
+     edit_path = model_sentence_audio_description_edit_url(:id => @model_sentence.id)
+     if @model_sentence.audio_description == nil or @model_sentence.audio_description == ''
+       t_audiodescription = 'Click to modify'
+     else
+       t_audiodescription = @model_sentence.audio_description     
+     end    
+     resultstr << link_to_remote(t_audiodescription, :url => edit_path, :update => "#{@model_sentence.id}_audiodescdiv", :method => :get ) 
+     resultstr << "</div>"  
+     resultstr << "</span>"
+
+     resultstr << "<b>Video: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[video] id=model_sentence[video] value=\""+@model_sentence.video.to_s+"\" >"
+     if @model_sentence.video == nil or @model_sentence.video == ''
+       @model_sentence.video = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :video, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[video]'}) +"<br>"
+     resultstr << "<b>Video id number: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[video_id_number] id=model_sentence[video_id_number] value=\""+@model_sentence.video_id_number.to_s+"\" >"
+     if @model_sentence.video_id_number == nil or @model_sentence.video_id_number == ''
+       @model_sentence.video_id_number = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :video_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[video_id_number]'}) +"<br>"
+     resultstr << "<b>Video speaker: </b>"
+     resultstr << "<input type=hidden name=model_sentence[video_speaker] id=model_sentence[video_speaker] value=\""+@model_sentence.video_speaker.to_s+"\" >"
+     if @model_sentence.video_speaker == nil or @model_sentence.video_speaker == ''
+       @model_sentence.video_speaker = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :video_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[video_speaker]'}) +"<br>"
+     resultstr << "<b>Video date: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[video_date] id=model_sentence[video_date] value=\""+@model_sentence.video_date.to_s+"\" >"
+     if @model_sentence.video_date == nil or @model_sentence.video_date == ''
+       @model_sentence.video_date = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :video_date, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[video_date]'}) +"<br>"
+     resultstr << "<b>Video place of recording: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[video_place_of_recording] id=model_sentence[video_place_of_recording] value=\""+@model_sentence.video_place_of_recording.to_s+"\" >"
+     if @model_sentence.video_place_of_recording == nil or @model_sentence.video_place_of_recording == ''
+       @model_sentence.video_place_of_recording = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :video_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[video_place_of_recording]'}) +"<br>"
+     resultstr << "<b>Video link: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[video_link] id=model_sentence[video_link] value=\""+@model_sentence.video_link.to_s+"\" >"
+     if @model_sentence.video_link == nil or @model_sentence.video_link == ''
+       @model_sentence.video_link = 'Click to modify'
+     end
+     resultstr << in_place_editor_field( :model_sentence, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[video_link]'}) +"<br>"
+     resultstr << "<b>Video description: </b>"
+     #resultstr << "<input type=hidden name=model_sentence[video_description] id=model_sentence[video_description] value=\""+@model_sentence.video_description.to_s+"\" >"
+     resultstr << "<span class='tinyfied_show'>"
+     resultstr << "<div id='" + "#{@model_sentence.id}_videodescdiv" + "'>"
+     edit_path = model_sentence_video_description_edit_url(:id => @model_sentence.id)
+     if @model_sentence.video_description == nil or @model_sentence.video_description == ''
+       t_videodescription = 'Click to modify'
+     else
+       t_videodescription = @model_sentence.video_description     
+     end    
+     resultstr << link_to_remote(t_videodescription, :url => edit_path, :update => "#{@model_sentence.id}_videodescdiv", :method => :get ) 
+     resultstr << "</div>"  
+     resultstr << "</span>"
+  
+     resultstr << "</div>" #showhide
+     #resultstr << "</dd></dl></span>"
+   end
+
   def show_edit_model_sentence
     resultstr = ""
     resultstr << "<p><b>Model sentence: </b><br>"
