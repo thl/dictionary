@@ -1199,6 +1199,56 @@ class MetasController < ApplicationController
          end
   end
   
+  def edit_dynamic_meta
+    @language = []
+    Language.find(:all).each do |l|
+      @language += [l.language]
+    end
+    @project = []
+    Project.find(:all).each do |l|
+      @project += [l.project]
+    end
+    @source_type = []
+    SourceType.find(:all).each do |l|
+      @source_type += [l.source_type]
+    end
+
+    if(params['internal'] != nil)
+      @divname = 'meta_internal'
+    else
+    	@divname = 'meta'
+    end
+    if params['level'] != nil
+      params['level'] = (params['level'].to_i + 1).to_s
+    else
+      params['level'] = '1'
+    end
+    @meta = Meta.find(params[:id])
+    render :layout => 'staging_popup'
+  end  
+  
+  def update_dynamic_meta 
+      @meta = Meta.find(params[:id])
+      if @meta.created_by == nil or @meta.created_by == ""
+             @meta.created_by = session[:user].login
+             @meta.created_at = Time.now
+      end
+      if session[:user] != nil
+             @meta.updated_by = session[:user].login
+      end
+      @meta.updated_at = Time.now
+      if @meta.update_history == nil
+        @meta.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @meta.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      if @meta.update_attributes(params[:meta])
+        render :nothing => true
+      end
+  end  
+  
   def update_metadata_note
       @meta = Meta.find(params[:meta][:id])
       if @meta.created_by == nil or @meta.created_by == ""

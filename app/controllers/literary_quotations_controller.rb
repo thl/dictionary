@@ -751,6 +751,46 @@ class LiteraryQuotationsController < ApplicationController
          end
   end
  
+  def edit_dynamic_literary_quotation
+    if(params['internal'] != nil)
+      @divname = 'literary_quotation_internal'
+    else
+    	@divname = 'literary_quotation'
+    end
+    if params['level'] != nil
+      params['level'] = (params['level'].to_i + 1).to_s
+    else
+      params['level'] = '1'
+    end
+    @literary_quotation = LiteraryQuotation.find(params[:id])
+    render :layout => 'staging_popup' 
+  end
+ 
+  def update_dynamic_literary_quotation
+      @literary_quotation = LiteraryQuotation.find(params[:id])
+      if @literary_quotation.created_by == nil or @literary_quotation.created_by == ""
+        @literary_quotation.created_by = session[:user].login
+        @literary_quotation.created_at = Time.now
+      end
+      if session[:user] != nil
+        @literary_quotation.updated_by = session[:user].login
+      end
+      @literary_quotation.updated_at = Time.now
+      if @literary_quotation.update_history == nil
+        @literary_quotation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+      	@literary_quotation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end
+      if @literary_quotation.update_attributes(params[:literary_quotation])
+         render :nothing => true
+      else
+
+      end
+    end
+
+ 
   def update_passage
       @literary_quotation = LiteraryQuotation.find(params[:literary_quotation][:id])
       if @literary_quotation.created_by == nil or @literary_quotation.created_by == ""

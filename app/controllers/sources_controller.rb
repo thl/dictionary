@@ -396,6 +396,49 @@ class SourcesController < ApplicationController
          end
   end
 
+  def edit_dynamic_source
+    if(params['internal'] != nil)
+      @divname = 'source_internal'
+    else
+    	@divname = 'source'
+    end
+    if params['level'] != nil
+      params['level'] = (params['level'].to_i + 1).to_s
+    else
+      params['level'] = '1'
+    end
+    @source = Source.find(params[:id])
+    @meta = Meta.find(params[:meta])
+    @source_type = []
+    SourceType.find(:all).each do |l|
+      @source_type += [l.source_type]
+    end
+    render :layout => 'staging_popup'
+  end
+  
+  def update_dynamic_source
+      @source = Source.find(params[:id])
+      if @source.created_by == nil or @source.created_by == ""
+        @source.created_by = session[:user].login
+      @source.created_at = Time.now
+      end
+      if session[:user] != nil
+        @source.updated_by = session[:user].login
+      end
+      @source.updated_at = Time.now
+      if @source.update_history == nil
+        @source.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+      	@source.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end
+      if @source.update_attributes(params[:source])
+        render :nothing => true
+      else
+      end
+  end  
+  
   def update_source_note
       @source = Source.find(params[:source][:id])
       if @source.created_by == nil or @source.created_by == ""

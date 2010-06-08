@@ -1051,6 +1051,395 @@ module LiteraryQuotationsHelper
     resultstr << "</dd></dl></span>"
   end
 
+
+  def modal_edit_dynamic_literary_quotation
+    resultstr = ""
+    resultstr << "<b>Source ID: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[source_id] id=literary_quotation[source_id] value=\""+@literary_quotation.source_id.to_s+"\" >"
+    if @literary_quotation.source_id == nil or @literary_quotation.source_id == ''
+      @literary_quotation.source_id = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :source_id, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[source_id]'}) +"<br>"
+    resultstr << "<b>Title: </b>"
+    resultstr << @literary_quotation.title if @literary_quotation.title != nil 
+    #resultstr << "<br>"
+    # resultstr << "<input type=hidden name=literary_quotation[title] id=literary_quotation[title] value=\""+@literary_quotation.title.to_s+"\" >"
+     if @literary_quotation.title == nil or @literary_quotation.title == ''
+       @literary_quotation.title = 'Click to modify'
+     end
+    resultstr << in_place_editor_field( :literary_quotation, :title, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[title]'}) +"<br>"
+    resultstr << "<b>Author: </b>"
+    resultstr << @literary_quotation.author if @literary_quotation.author != nil 
+    #resultstr << "<br>"
+    # resultstr << "<input type=hidden name=literary_quotation[author] id=literary_quotation[author] value=\""+@literary_quotation.author.to_s+"\" >"
+    if @literary_quotation.author == nil or @literary_quotation.author == ''
+      @literary_quotation.author = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :author, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[author]'}) +"<br>"
+    resultstr << "<b>Passage: </b>"
+    resultstr << "<input type=hidden name=literary_quotation[passage] id=literary_quotation[passage] value=\""+@literary_quotation.passage.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@literary_quotation.id}_passagediv" + "'>"
+    edit_path = literary_quotation_passage_edit_url(:id => @literary_quotation.id)
+    if @literary_quotation.passage == nil or @literary_quotation.passage == ''
+      t_passage = 'Click to modify'
+    else
+      t_passage = @literary_quotation.passage     
+    end    
+    resultstr << link_to_remote(t_passage, :url => edit_path, :update => "#{@literary_quotation.id}_passagediv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+    
+    resultstr << "<b>Spelling: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[spelling] id=literary_quotation[spelling] value=\""+@literary_quotation.spelling.to_s+"\" >"
+    if @literary_quotation.spelling == nil or @literary_quotation.spelling == ''
+      @literary_quotation.spelling = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :spelling, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[spelling]'}) +"<br>"
+    resultstr << "<b>Script: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[script] id=literary_quotation[script] value=\""+@literary_quotation.script.to_s+"\" >"
+    #if @literary_quotation.script_type == nil
+    #  title = 'Click to modify'
+    #else
+    #  title = @literary_quotation.script_type.title
+    #end
+    #resultstr << "<span id=\"literary_quotation[script_type#{@literary_quotation.id}]_selector\">"
+    #resultstr << '['+@literary_quotation.script+']' if @literary_quotation.script != nil
+    #resultstr << link_to_remote( title,{:update => "literary_quotation[script_type#{@literary_quotation.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'literary_quotations', :action => 'display_category_selector', :id => @literary_quotation.id, :params => {'data_id' => 192, 'model_name' => 'literary_quotation', 'function_name' => "script_type", :update_id => "literary_quotation[script_type#{@literary_quotation.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "<script type=\"text/javascript\" language=\"javascript\">Event.observe('literary_quotation[script_type"+@literary_quotation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('literary_quotation[script_type"+@literary_quotation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('literary_quotation[script_type"+@literary_quotation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('literary_quotation[script_type"+@literary_quotation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    ## resultstr << in_place_form_editor_field( :literary_quotation, :script, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[script]'}) +"<br>"
+    @data = Category.find(192)
+    resultstr << category_selector(@data, :literary_quotation, :script_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+    
+    
+    resultstr << "<b>Literary genre: </b>"
+    resultstr << @literary_quotation.literary_genre unless @literary_quotation.literary_genre == nil
+    #resultstr << "<br>"
+    # resultstr << "<input type=hidden name=literary_quotation[literary_genre] id=literary_quotation[literary_genre] value=\""+@literary_quotation.literary_genre.to_s+"\" >"
+    if @literary_quotation.literary_genre == nil or @literary_quotation.literary_genre == ''
+      @literary_quotation.literary_genre = 'Click to modify'
+    end
+    # resultstr << in_place_select_editor_field( :literary_quotation, :literary_genre, {}, {:select_options => @literary_genre, :fieldname => 'literary_quotation[literary_genre]'})+"<br>"
+    resultstr << in_place_editor_field( :literary_quotation, :literary_genre, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[literary_genre]'}) +"<br>"
+    resultstr << "<b>Literary period: </b>"
+    resultstr << @literary_quotation.literary_period unless @literary_quotation.literary_period == nil
+    #resultstr << "<br>"
+    # resultstr << "<input type=hidden name=literary_quotation[literary_period] id=literary_quotation[literary_period] value=\""+@literary_quotation.literary_period.to_s+"\" >"
+    if @literary_quotation.literary_period == nil or @literary_quotation.literary_period == ''
+      @literary_quotation.literary_period = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :literary_period, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[literary_period]'}) +"<br>"
+    resultstr << "<b>Literary form: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[literary_form] id=literary_quotation[literary_form] value=\""+@literary_quotation.literary_form.to_s+"\" >"
+    #if @literary_quotation.literary_form_type == nil
+    #  title = 'Click to modify'
+    #else
+    #  title = @literary_quotation.literary_form_type.title
+    #end
+    #resultstr << "<span id=\"literary_quotation[literary_form_type#{@literary_quotation.id}]_selector\">"
+    #resultstr << '['+@literary_quotation.literary_form+']' if @literary_quotation.literary_form != nil
+    #resultstr << link_to_remote( title,{:update => "literary_quotation[literary_form_type#{@literary_quotation.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'literary_quotations', :action => 'display_category_selector', :id => @literary_quotation.id, :params => {'data_id' => 186, 'model_name' => 'literary_quotation', 'function_name' => "literary_form_type", :update_id => "literary_quotation[literary_form_type#{@literary_quotation.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "<script type=\"text/javascript\" language=\"javascript\">Event.observe('literary_quotation[literary_form_type"+@literary_quotation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('literary_quotation[literary_form_type"+@literary_quotation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('literary_quotation[literary_form_type"+@literary_quotation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('literary_quotation[literary_form_type"+@literary_quotation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    @data = Category.find(186)
+    resultstr << category_selector(@data, :literary_quotation, :literary_form_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+    
+    resultstr << "<b>Western date of composition: </b>"
+    resultstr << @literary_quotation.western_date if @literary_quotation.western_date != nil
+    #resultstr << "<br>"
+    # resultstr << "<input type=hidden name=literary_quotation[western_date] id=literary_quotation[western_date] value=\""+@literary_quotation.western_date.to_s+"\" >"
+    if @literary_quotation.western_date == nil or @literary_quotation.western_date == ''
+      @literary_quotation.western_date = 'Click to modify'
+    end
+    resultstr << in_place_form_editor_field( :literary_quotation, :western_date, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[western_date]'}) +"<br>"
+  
+    resultstr << "<b>Western date note: </b>"
+    resultstr << @literary_quotation.western_date_note if @literary_quotation.western_date_note != nil
+    #resultstr << "<br>"
+    # resultstr << "<input type=hidden name=literary_quotation[western_date_note] id=literary_quotation[western_date_note] value=\""+@literary_quotation.western_date_note.to_s+"\" >"
+    if @literary_quotation.western_date_note == nil or @literary_quotation.western_date_note == ''
+      @literary_quotation.western_date_note = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :western_date_note, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[western_date_note]'}) +"<br>"
+    resultstr << "<b>Tibetan date of composition: </b>"
+    resultstr << @literary_quotation.tibetan_date if @literary_quotation.tibetan_date != nil
+    resultstr << "<br>"
+    # resultstr << "<input type=hidden name=literary_quotation[tibetan_date] id=literary_quotation[tibetan_date] value=\""+@literary_quotation.tibetan_date.to_s+"\" >"
+    if @literary_quotation.tibetan_date == nil or @literary_quotation.tibetan_date == ''
+      @literary_quotation.tibetan_date = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :tibetan_date, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[tibetan_date]'}) +"<br>"
+    resultstr << "<b>Tibetan date note: </b>"
+    resultstr << @literary_quotation.tibetan_date_note if @literary_quotation.tibetan_date_note != nil
+    #resultstr << "<br>"
+    # resultstr << "<input type=hidden name=literary_quotation[tibetan_date_note] id=literary_quotation[tibetan_date_note] value=\""+@literary_quotation.tibetan_date_note.to_s+"\" >"
+    if @literary_quotation.tibetan_date_note == nil or @literary_quotation.tibetan_date_note == ''
+      @literary_quotation.tibetan_date_note = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :tibetan_date_note, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[tibetan_date_note]'}) +"<br>"
+    resultstr << "<b>Edition: </b>"
+    resultstr << @literary_quotation.edition if @literary_quotation.edition != nil
+    #resultstr << "<br>"
+    # resultstr << "<input type=hidden name=literary_quotation[edition] id=literary_quotation[edition] value=\""+@literary_quotation.edition.to_s+"\" >"
+    if @literary_quotation.edition == nil or @literary_quotation.edition == ''
+      @literary_quotation.edition = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :edition, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[edition]'}) +"<br>"
+    resultstr << "<b>Publisher: </b>"
+    resultstr << @literary_quotation.publisher if @literary_quotation.publisher != nil
+    #resultstr << "<br>"
+    # resultstr << "<input type=hidden name=literary_quotation[publisher] id=literary_quotation[publisher] value=\""+@literary_quotation.publisher.to_s+"\" >"
+    if @literary_quotation.publisher == nil or @literary_quotation.publisher == ''
+      @literary_quotation.publisher = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :publisher, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[publisher]'}) +"<br>"
+    resultstr << "<b>Place of publication: </b>"
+    resultstr << @literary_quotation.place_of_publication if @literary_quotation.place_of_publication != nil
+    #resultstr << "<br>"
+    # resultstr << "<input type=hidden name=literary_quotation[place_of_publication] id=literary_quotation[place_of_publication] value=\""+@literary_quotation.place_of_publication.to_s+"\" >"
+    if @literary_quotation.place_of_publication == nil or @literary_quotation.place_of_publication == ''
+      @literary_quotation.place_of_publication = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :place_of_publication, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[place_of_publication]'}) +"<br>"
+    resultstr << "<b>Date of publication: </b>"
+    resultstr << @literary_quotation.published_date if @literary_quotation.published_date != nil
+    #resultstr << "<br>"
+    # resultstr << "<input type=hidden name=literary_quotation[published_date] id=literary_quotation[published_date] value=\""+@literary_quotation.published_date.to_s+"\" >"
+    if @literary_quotation.published_date == nil or @literary_quotation.published_date == ''
+      @literary_quotation.published_date = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :published_date, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[published_date]'}) +"<br>"
+    resultstr << "<b>ISBN: </b>"
+    resultstr << @literary_quotation.isbn if @literary_quotation.isbn != nil
+    # resultstr << "<br>"
+    # resultstr << "<input type=hidden name=literary_quotation[isbn] id=literary_quotation[isbn] value=\""+@literary_quotation.isbn.to_s+"\" >"
+    if @literary_quotation.isbn != nil and @literary_quotation.isbn != ''
+      resultstr << @literary_quotation.isbn
+    end
+    #resultstr << "<br>"
+    resultstr << in_place_editor_field( :literary_quotation, :isbn, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[isbn]'}) +"<br>"
+    resultstr << "<b>Volume number: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[volume_number] id=literary_quotation[volume_number] value=\""+@literary_quotation.volume_number.to_s+"\" >"
+    if @literary_quotation.volume_number == nil or @literary_quotation.volume_number == ''
+      @literary_quotation.volume_number = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :volume_number, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[volume_number]'}) +"<br>"
+    resultstr << "<b>Passage number: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[passage_pound] id=literary_quotation[passage_pound] value=\""+@literary_quotation.passage_pound.to_s+"\" >"
+    if @literary_quotation.passage_pound == nil or @literary_quotation.passage_pound == ''
+      @literary_quotation.passage_pound = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :passage_pound, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[passage_pound]'}) +"<br>"
+    resultstr << "<b>Page number: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[passage_number] id=literary_quotation[passage_number] value=\""+@literary_quotation.passage_number.to_s+"\" >"
+    if @literary_quotation.passage_number == nil or @literary_quotation.passage_number == ''
+      @literary_quotation.passage_number = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :passage_number, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[passage_number]'}) +"<br>"
+    resultstr << "<b>Page side: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[page_side] id=literary_quotation[page_side] value=\""+@literary_quotation.page_side.to_s+"\" >"
+    if @literary_quotation.page_side == nil or @literary_quotation.page_side == ''
+      @literary_quotation.page_side = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :page_side, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[page_side]'}) +"<br>"
+    resultstr << "<b>Line number: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[line_number] id=literary_quotation[line_number] value=\""+@literary_quotation.line_number.to_s+"\" >"
+    if @literary_quotation.line_number == nil or @literary_quotation.line_number == ''
+      @literary_quotation.line_number = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :line_number, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[line_number]'}) +"<br>"
+    # resultstr << "<b>Line ID: </b>"
+    # resultstr << "<input type=hidden name=literary_quotation[line_id] id=literary_quotation[line_id] value=\""+@literary_quotation.line_id.to_s+"\" >"
+    # if @literary_quotation.line_id == nil or @literary_quotation.line_id == ''
+    #   @literary_quotation.line_id = 'Click to modify'
+    # end
+    # resultstr << in_place_form_editor_field( :literary_quotation, :line_id, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[line_id]'}) +"<br>"
+    resultstr << "<b>Passage Url: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[url] id=literary_quotation[url] value=\""+@literary_quotation.url.to_s+"\" >"
+    if @literary_quotation.url == nil or @literary_quotation.url == ''
+      @literary_quotation.url = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :url, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[url]'}) +"<br>"
+    # resultstr << "<b>Page image link: </b>"
+    # resultstr << "<input type=hidden name=literary_quotation[page_image_link] id=literary_quotation[page_image_link] value=\""+@literary_quotation.page_image_link.to_s+"\" >"
+    # if @literary_quotation.page_image_link == nil or @literary_quotation.page_image_link == ''
+    #   @literary_quotation.page_image_link = 'Click to modify'
+    # end
+    # resultstr << in_place_form_editor_field( :literary_quotation, :page_image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[page_image_link]'}) +"<br>"
+
+    resultstr << "<b>Analytical note: </b>"
+    resultstr << "<input type=hidden name=literary_quotation[analytical_note] id=literary_quotation[analytical_note] value=\""+@literary_quotation.analytical_note.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@literary_quotation.id}_anotediv" + "'>"
+    edit_path = literary_quotation_analytical_note_edit_url(:id => @literary_quotation.id)
+    if @literary_quotation.analytical_note == nil or @literary_quotation.analytical_note == ''
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @literary_quotation.analytical_note      
+    end    
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@literary_quotation.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
+
+		#resultstr <<	"<span id=\"show_av_literary_quotation"+@literary_quotation.id.to_s+"\"><b>Edit Multimedia Data</b> "+link_to_function(image_tag('right.gif', :border => 0), "Element.hide('show_av_literary_quotation"+@literary_quotation.id.to_s+"');Element.show('hide_av_literary_quotation"+@literary_quotation.id.to_s+"');Element.show('av_literary_quotation_"+@literary_quotation.id.to_s+"');", :title => 'Show')+"</span>"
+		#resultstr <<	"<span id=\"hide_av_literary_quotation"+@literary_quotation.id.to_s+"\" style=\"display:none\"><b>Hide Multimedia Data</b> "+link_to_function(image_tag('up.gif', :border => 0),  "Element.hide('hide_av_literary_quotation"+@literary_quotation.id.to_s+"');Element.show('show_av_literary_quotation"+@literary_quotation.id.to_s+"');Element.hide('av_literary_quotation_"+@literary_quotation.id.to_s+"');", :title => 'Hide')+"</span>"
+    #resultstr << "<span id=\"av_literary_quotation_"+@literary_quotation.id.to_s+"\" style=\"display:none\"/><dl><dd>"
+
+    resultstr << "<b>Edit Multimedia Data: </b>"
+    resultstr << "<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>"
+    resultstr << "<div class='showhide'>"
+
+    resultstr << "<b>Image: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[image] id=literary_quotation[image] value=\""+@literary_quotation.image.to_s+"\" >"
+    if @literary_quotation.image == nil or @literary_quotation.image == ''
+      @literary_quotation.image = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :image, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[image]'}) +"<br>"
+    resultstr << "<b>Image caption: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[image_caption] id=literary_quotation[image_caption] value=\""+@literary_quotation.image_caption.to_s+"\" >"
+    if @literary_quotation.image_caption == nil or @literary_quotation.image_caption == ''
+      @literary_quotation.image_caption = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :image_caption, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[image_caption]'}) +"<br>"
+    resultstr << "<b>Image photographer: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[image_photographer] id=literary_quotation[image_photographer] value=\""+@literary_quotation.image_photographer.to_s+"\" >"
+    if @literary_quotation.image_photographer == nil or @literary_quotation.image_photographer == ''
+      @literary_quotation.image_photographer = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :image_photographer, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[image_photographer]'}) +"<br>"
+    resultstr << "<b>Image link: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[image_link] id=literary_quotation[image_link] value=\""+@literary_quotation.image_link.to_s+"\" >"
+    if @literary_quotation.image_link == nil or @literary_quotation.image_link == ''
+      @literary_quotation.image_link = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[image_link]'}) +"<br>"
+    resultstr << "<b>Image description: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[image_description] id=literary_quotation[image_description] value=\""+@literary_quotation.image_description.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@literary_quotation.id}_imagedescdiv" + "'>"
+    edit_path = literary_quotation_image_description_edit_url(:id => @literary_quotation.id)
+    if @literary_quotation.image_description == nil or @literary_quotation.image_description == ''
+      t_imagedescription = 'Click to modify'
+    else
+      t_imagedescription = @literary_quotation.image_description     
+    end    
+    resultstr << link_to_remote(t_imagedescription, :url => edit_path, :update => "#{@literary_quotation.id}_imagedescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
+    resultstr << "<b>Audio: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[audio] id=literary_quotation[audio] value=\""+@literary_quotation.audio.to_s+"\" >"
+    if @literary_quotation.audio == nil or @literary_quotation.audio == ''
+      @literary_quotation.audio = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :audio, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[audio]'}) +"<br>"
+    resultstr << "<b>Audio id number: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[audio_id_number] id=literary_quotation[audio_id_number] value=\""+@literary_quotation.audio_id_number.to_s+"\" >"
+    if @literary_quotation.audio_id_number == nil or @literary_quotation.audio_id_number == ''
+      @literary_quotation.audio_id_number = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :audio_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[audio_id_number]'}) +"<br>"
+    resultstr << "<b>Audio speaker: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[audio_speaker] id=literary_quotation[audio_speaker] value=\""+@literary_quotation.audio_speaker.to_s+"\" >"
+    if @literary_quotation.audio_speaker == nil or @literary_quotation.audio_speaker == ''
+      @literary_quotation.audio_speaker = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :audio_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[audio_speaker]'}) +"<br>"
+    resultstr << "<b>Audio date: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[audio_date] id=literary_quotation[audio_date] value=\""+@literary_quotation.audio_date.to_s+"\" >"
+    if @literary_quotation.audio_date == nil or @literary_quotation.audio_date == ''
+      @literary_quotation.audio_date = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :audio_date, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[audio_date]'}) +"<br>"
+    resultstr << "<b>Audio place of recording: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[audio_place_of_recording] id=literary_quotation[audio_place_of_recording] value=\""+@literary_quotation.audio_place_of_recording.to_s+"\" >"
+    if @literary_quotation.audio_place_of_recording == nil or @literary_quotation.audio_place_of_recording == ''
+      @literary_quotation.audio_place_of_recording = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :audio_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[audio_place_of_recording]'}) +"<br>"
+    resultstr << "<b>Audio link: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[audio_link] id=literary_quotation[audio_link] value=\""+@literary_quotation.audio_link.to_s+"\" >"
+    if @literary_quotation.audio_link == nil or @literary_quotation.audio_link == ''
+      @literary_quotation.audio_link = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[audio_link]'}) +"<br>"
+    resultstr << "<b>Audio description: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[audio_description] id=literary_quotation[audio_description] value=\""+@literary_quotation.audio_description.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@literary_quotation.id}_audiodescdiv" + "'>"
+    edit_path = literary_quotation_audio_description_edit_url(:id => @literary_quotation.id)
+    if @literary_quotation.audio_description == nil or @literary_quotation.audio_description == ''
+      t_audiodescription = 'Click to modify'
+    else
+      t_audiodescription = @literary_quotation.audio_description     
+    end    
+    resultstr << link_to_remote(t_audiodescription, :url => edit_path, :update => "#{@literary_quotation.id}_audiodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+
+    resultstr << "<b>Video: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[video] id=literary_quotation[video] value=\""+@literary_quotation.video.to_s+"\" >"
+    if @literary_quotation.video == nil or @literary_quotation.video == ''
+      @literary_quotation.video = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :video, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[video]'}) +"<br>"
+    resultstr << "<b>Video id number: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[video_id_number] id=literary_quotation[video_id_number] value=\""+@literary_quotation.video_id_number.to_s+"\" >"
+    if @literary_quotation.video_id_number == nil or @literary_quotation.video_id_number == ''
+      @literary_quotation.video_id_number = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :video_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[video_id_number]'}) +"<br>"
+    resultstr << "<b>Video speaker: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[video_speaker] id=literary_quotation[video_speaker] value=\""+@literary_quotation.video_speaker.to_s+"\" >"
+    if @literary_quotation.video_speaker == nil or @literary_quotation.video_speaker == ''
+      @literary_quotation.video_speaker = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :video_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[video_speaker]'}) +"<br>"
+    resultstr << "<b>Video date: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[video_date] id=literary_quotation[video_date] value=\""+@literary_quotation.video_date.to_s+"\" >"
+    if @literary_quotation.video_date == nil or @literary_quotation.video_date == ''
+      @literary_quotation.video_date = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :video_date, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[video_date]'}) +"<br>"
+    resultstr << "<b>Video place of recording: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[video_place_of_recording] id=literary_quotation[video_place_of_recording] value=\""+@literary_quotation.video_place_of_recording.to_s+"\" >"
+    if @literary_quotation.video_place_of_recording == nil or @literary_quotation.video_place_of_recording == ''
+      @literary_quotation.video_place_of_recording = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :video_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[video_place_of_recording]'}) +"<br>"
+    resultstr << "<b>Video link: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[video_link] id=literary_quotation[video_link] value=\""+@literary_quotation.video_link.to_s+"\" >"
+    if @literary_quotation.video_link == nil or @literary_quotation.video_link == ''
+      @literary_quotation.video_link = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :literary_quotation, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[video_link]'}) +"<br>"
+    resultstr << "<b>Video description: </b>"
+    #resultstr << "<input type=hidden name=literary_quotation[video_description] id=literary_quotation[video_description] value=\""+@literary_quotation.video_description.to_s+"\" >"
+    #if @literary_quotation.video_description == nil or @literary_quotation.video_description == ''
+    #  @literary_quotation.video_description = 'Click to modify'
+    #end
+    #resultstr << in_place_form_editor_field( :literary_quotation, :video_description, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[video_description]'}) +"<br>"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@literary_quotation.id}_videodescdiv" + "'>"
+    edit_path = literary_quotation_video_description_edit_url(:id => @literary_quotation.id)
+    if @literary_quotation.video_description == nil or @literary_quotation.video_description == ''
+      t_videodescription = 'Click to modify'
+    else
+      t_videodescription = @literary_quotation.video_description     
+    end    
+    resultstr << link_to_remote(t_videodescription, :url => edit_path, :update => "#{@literary_quotation.id}_videodescdiv", :method => :get ) 
+    resultstr << "</div>"  
+    resultstr << "</span>"
+    resultstr << "</div>" #showhide
+    
+    #resultstr << "</dd></dl></span>"
+  end
+
+
   def show_edit_literary_quotation
     resultstr = ""
     resultstr << "<p><b>Source: </b><br>"

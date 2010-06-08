@@ -518,7 +518,7 @@ module SpellingsHelper
     end
     resultstr << in_place_editor_field( :spelling, :image_caption, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[image_caption]'}) +"<br>"
     resultstr << "<b>Image photographer: </b>"
-    resultstr << "<input type=hidden name=spelling[image_photographer] id=spelling[image_photographer] value=\""+@spelling.image_photographer.to_s+"\" >"
+    #resultstr << "<input type=hidden name=spelling[image_photographer] id=spelling[image_photographer] value=\""+@spelling.image_photographer.to_s+"\" >"
     if @spelling.image_photographer == nil or @spelling.image_photographer == ''
       @spelling.image_photographer = 'Click to modify'
     end
