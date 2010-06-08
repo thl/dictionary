@@ -135,6 +135,7 @@ module TranslationsHelper
     resultstr << category_selector(@data, :definition, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
     resultstr << "<br>"
   end
+  
   def modal_edit_dynamic_translation
     resultstr = ""
     resultstr << "<b>Translation: </b>"

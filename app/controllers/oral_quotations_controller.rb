@@ -598,6 +598,44 @@ class OralQuotationsController < ApplicationController
          end
   end
   
+  def edit_dynamic_oral_quotation
+    if(params['internal'] != nil)
+      @divname = 'oral_quotation_internal'
+    else
+    	@divname = 'oral_quotation'
+    end
+    if params['level'] != nil
+      params['level'] = (params['level'].to_i + 1).to_s
+    else
+      params['level'] = '1'
+    end
+    @oral_quotation = OralQuotation.find(params[:id])
+    render :layout => 'staging_popup' 
+  end  
+  
+  def update_dynamic_oral_quotation
+      @oral_quotation = OralQuotation.find(params[:id])
+      if @oral_quotation.created_by == nil or @oral_quotation.created_by == ""
+        @oral_quotation.created_by = session[:user].login
+        @oral_quotation.created_at = Time.now
+      end
+      if session[:user] != nil
+        @oral_quotation.updated_by = session[:user].login
+      end
+      @oral_quotation.updated_at = Time.now
+      if @oral_quotation.update_history == nil
+        @oral_quotation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+      	@oral_quotation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end
+      if @oral_quotation.update_attributes(params[:oral_quotation])
+        render :nothing => true
+      else
+      end
+  end  
+  
   def update_analytical_note
       @oral_quotation = OralQuotation.find(params[:oral_quotation][:id])
       if @oral_quotation.created_by == nil or @oral_quotation.created_by == ""

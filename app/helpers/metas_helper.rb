@@ -248,6 +248,129 @@ module MetasHelper
     resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('meta[language_type"+@meta.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('meta[language_type"+@meta.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('meta[language_type"+@meta.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('meta[language_type"+@meta.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
   end
 
+  def modal_edit_dynamic_meta
+    resultstr = ""
+    #resultstr << "<b>Project: </b>"
+    #resultstr << "<input type=hidden name=meta[project] id=meta[project] value=\""+@meta.project.to_s+"\" >"
+    resultstr << "<b>Project Type: </b>"
+    #if @meta.project_type == nil or @meta.project_type == ''
+    #  title = 'Click to modify'
+    #else
+    #  title = @meta.project_type.title
+    #end
+    #resultstr << "<span id=\"meta[project_type#{@meta.id}]_selector\">"
+    #resultstr << '['+@meta.project+']' if @meta.project != nil
+    #resultstr << link_to_remote( title,{:update => "meta[project_type#{@meta.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'metas', :action => 'display_category_selector', :id => @meta.id, :params => {'data_id' => 236, 'model_name' => 'meta', 'function_name' => "project_type", :update_id => "meta[project_type#{@meta.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('meta[project_type"+@meta.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('meta[project_type"+@meta.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('meta[project_type"+@meta.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('meta[project_type"+@meta.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    @data = Category.find(236)
+    resultstr << category_selector(@data, :meta, :project_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>" 
+ 
+    # resultstr << "<b>Source ID: </b>"
+    # resultstr << "<input type=hidden name=meta[source] id=meta[source] value=\""+@meta.source.to_s+"\" >"
+    # if @meta.source == nil or @meta.source == ''
+    #   @meta.source = 'Click to modify'
+    # end
+    ## resultstr << in_place_form_editor_field( :meta, :source, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[source]'}) +"<br>"
+    #resultstr << "<b>Source type: </b>"
+    ## resultstr << "<input type=hidden name=meta[source_type] id=meta[source_type] value=\""+@meta.source_type.to_s+"\" >"
+    #if @meta.source_type == nil or @meta.source_type == ''
+    #  @meta.source_type = 'Click to modify'
+    #end
+    ## resultstr << in_place_select_editor_field( :meta, :source_type, {}, {:select_options => @source_type, :fieldname => 'meta[source_type]'})+"<br>"
+    #resultstr << select(:meta, :source_type, @source_type) + "<br>"
+    
+    resultstr << "<b>Title: </b>"
+    #resultstr << @meta.title unless @meta.title == nil
+    #resultstr << "<br>"
+    if @meta.title == nil or @meta.title == ''
+      @meta.title = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :meta, :title, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[title]'}) +"<br>"
+    
+    # 
+    resultstr << "<b>Author: </b>"
+    # resultstr << @meta.author unless @meta.author == nil
+    # resultstr << "<br>"
+    if @meta.author == nil or @meta.author == ''
+      @meta.author = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :meta, :author, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[author]'}) +"<br>"
+     
+    # # resultstr << "<b>Page number: </b>"
+    # # resultstr << "<input type=hidden name=meta[page_number] id=meta[page_number] value=\""+@meta.page_number.to_s+"\" >"
+    # # if @meta.page_number == nil or @meta.page_number == ''
+    # #   @meta.page_number = 'Click to modify'
+    # # end
+    # # resultstr << in_place_form_editor_field( :meta, :page_number, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[page_number]'}) +"<br>"
+    # # resultstr << @meta.page_number unless @meta.page_number == nil
+    # # resultstr << "<br>"
+    # 
+    resultstr << "<b>Date of publication: </b>"
+    # resultstr << @meta.date_of_publication unless @meta.date_of_publication == nil
+    # resultstr << "<br>"
+    if @meta.date_of_publication == nil or @meta.date_of_publication == ''
+      @meta.date_of_publication = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :meta, :date_of_publication, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[date_of_publication]'}) +"<br>"
+     
+    resultstr << "<b>Publisher: </b>"
+    # resultstr << @meta.publisher unless @meta.publisher == nil
+    # resultstr << "<br>"
+    if @meta.publisher == nil or @meta.publisher == ''
+      @meta.publisher = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :meta, :publisher, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[publisher]'}) +"<br>"
+    
+    
+    resultstr << "<b>Place of publication: </b>"
+    # resultstr << @meta.place_of_publicatio unless @meta.place_of_publication == nil
+    # resultstr << "<br>"
+    if @meta.place_of_publication == nil or @meta.place_of_publication == ''
+      @meta.place_of_publication = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :meta, :place_of_publication, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[place_of_publication]'}) +"<br>"
+
+    resultstr << "<b>Metadata note: </b>"
+    #resultstr << "<input type=hidden name=meta[metadata_note] id=meta[metadata_note] value=\""+@meta.metadata_note.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@meta.id}_anotediv" + "'>"
+    edit_path = meta_metadata_note_edit_url(:id => @meta.id)
+    if @meta.metadata_note == nil or @meta.metadata_note == ''
+      t_note = 'Click to modify'
+    else
+      t_note = @meta.metadata_note      
+    end    
+    resultstr << link_to_remote(t_note, :url => edit_path, :update => "#{@meta.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
+
+    resultstr << "<b>Precedence: </b>"
+    #resultstr << "<input type=hidden name=meta[precedence] id=meta[precedence] value=\""+@meta.precedence.to_s+"\" >"
+    if @meta.precedence == nil or @meta.precedence == ''
+      @meta.precedence = 'Click to modify'
+    end
+    resultstr << in_place_editor_field( :meta, :precedence, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[precedence]'}) +"<br>"
+    
+    resultstr << "<b>Language: </b>"
+    #if @meta.language_type == nil or @meta.language_type == ''
+    #  title = 'Click to modify'
+    #else
+    #  title = @meta.language_type.title
+    #end
+    #resultstr << "<span id=\"meta[language_type#{@meta.id}]_selector\">"
+    #resultstr << '['+@meta.language+']' if @meta.language != nil
+    #resultstr << link_to_remote( title,{:update => "meta[language_type#{@meta.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'metas',:action => 'display_category_selector', :id => @meta.id, :params => {'data_id' => 184, 'model_name' => 'meta', 'function_name' => "language_type", :update_id => "meta[language_type#{@meta.id}]_selector"}}}, :class => 'selector_link' )
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('meta[language_type"+@meta.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('meta[language_type"+@meta.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('meta[language_type"+@meta.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('meta[language_type"+@meta.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    @data = Category.find(184)
+    resultstr << category_selector(@data, :meta, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    resultstr << "<br>"
+
+  end
+
   def show_edit_meta
     resultstr = ""
     resultstr << "<p><b>Project: </b><br>"

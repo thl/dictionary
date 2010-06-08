@@ -1,6 +1,7 @@
 		<b>Meta: </b>
 			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => meta.id, :history_class => meta.class.to_s }}) %>			
-	<%= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => meta_location, :url => {:controller => 'metas', :action => 'public_edit', :id => meta.id, :params => {'definition_id' => head_id}} %>
+	<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => meta_location, :url => {:controller => 'metas', :action => 'public_edit', :id => meta.id, :params => {'definition_id' => head_id}} %>
+	<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'metas', :action => 'edit_dynamic_meta', :id => meta.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Meta Edit' %>
 			<span class=menuvalue onclick=show_menu(meta_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'meta_id='+meta.id.to_s, :title => 'Edit Relationships' %> 
 			</span>
@@ -23,8 +24,9 @@
 				<% for s in meta.sources %>
 					<dd>
 						<b>Source: </b>
-						<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history => s.update_history }}) %>			
-				<%= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => meta.id.to_s+'_source', :url => {:controller => 'sources', :action => 'edit_dynamic', :id => s.id, :params => {'definition_id' => head_id}} %>
+						<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history => s.update_history }}) %>
+						<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'sources', :action => 'edit_dynamic_source', :id => s.id, :meta => meta.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Source Edit' %>			
+				<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => meta.id.to_s+'_source', :url => {:controller => 'sources', :action => 'edit_dynamic', :id => s.id, :params => {'definition_id' => head_id}} %>
 						<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Source'), :update => 'definition_space', :url => {:action => 'public_remove_source', :id => s.id, :params => { :head_id => head_id, :source => s.id }}, :confirm => "Are you sure you want to remove this Source?") %>			
 						<b>Source ID: </b><%= s.source_id_value %>
 					</dd>

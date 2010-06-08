@@ -503,7 +503,7 @@ module TranslationEquivalentsHelper
     resultstr << "<br>"
     
     resultstr << "<b>Analytical note: </b>"
-    resultstr << "<input type=hidden name=translation_equivalent[analytical_note] id=translation_equivalent[analytical_note] value=\""+@translation_equivalent.analytical_note.to_s+"\" >"
+    #resultstr << "<input type=hidden name=translation_equivalent[analytical_note] id=translation_equivalent[analytical_note] value=\""+@translation_equivalent.analytical_note.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@translation_equivalent.id}_anotediv" + "'>"
     edit_path = translation_equivalent_analytical_note_edit_url(:id => @translation_equivalent.id)

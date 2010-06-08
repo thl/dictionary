@@ -892,7 +892,7 @@ module PronunciationsHelper
     # resultstr << in_place_select_editor_field( :pronunciation, :literary_form, {}, {:select_options => @literary_form, :fieldname => 'pronunciation[literary_form]'})+"<br>"
 
     resultstr << "<b>Analytical note: </b>"
-    resultstr << "<input type=hidden name=pronunciation[analytical_note] id=pronunciation[analytical_note] value=\""+@pronunciation.analytical_note.to_s+"\" >"
+    #resultstr << "<input type=hidden name=pronunciation[analytical_note] id=pronunciation[analytical_note] value=\""+@pronunciation.analytical_note.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@pronunciation.id}_anotediv" + "'>"
     edit_path = pronunciation_analytical_note_edit_url(:id => @pronunciation.id)

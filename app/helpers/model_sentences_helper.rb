@@ -815,7 +815,7 @@ module ModelSentencesHelper
      resultstr << "<br>"
 
      resultstr << "<b>Analytical note: </b>"
-     resultstr << "<input type=hidden name=model_sentence[analytical_note] id=model_sentence[analytical_note] value=\""+@model_sentence.analytical_note.to_s+"\" >"
+     #resultstr << "<input type=hidden name=model_sentence[analytical_note] id=model_sentence[analytical_note] value=\""+@model_sentence.analytical_note.to_s+"\" >"
      resultstr << "<span class='tinyfied_show'>"
      resultstr << "<div id='" + "#{@model_sentence.id}_anotediv" + "'>"
      edit_path = model_sentence_analytical_note_edit_url(:id => @model_sentence.id)
@@ -936,7 +936,7 @@ module ModelSentencesHelper
      end
      resultstr << in_place_editor_field( :model_sentence, :video_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[video_id_number]'}) +"<br>"
      resultstr << "<b>Video speaker: </b>"
-     resultstr << "<input type=hidden name=model_sentence[video_speaker] id=model_sentence[video_speaker] value=\""+@model_sentence.video_speaker.to_s+"\" >"
+     #resultstr << "<input type=hidden name=model_sentence[video_speaker] id=model_sentence[video_speaker] value=\""+@model_sentence.video_speaker.to_s+"\" >"
      if @model_sentence.video_speaker == nil or @model_sentence.video_speaker == ''
        @model_sentence.video_speaker = 'Click to modify'
      end
