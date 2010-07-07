@@ -263,20 +263,38 @@ function clear_contents(node)
 <script type="text/javascript">
  // var $j = jQuery.noConflict();
   var root_dir="<%= $root_dir %>";
-  var controller = 'definitions';
-  var id = '51';
-  var parent_id = '51';
-
-  $j(document).ready(function(){
-   //$j("a").click(function(event){
-     //alert("Thanks for visiting!");
-	//alert(root_dir);
-	event.preventDefault();
-    //$j('#edit_box').load(root_dir+'/'+controller+'/edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition);
-   });
-
-
-  });
+ 	function add_new_content(controller,relatedtype,id) {
+/*		//alert(root);
+		$.ajax({
+	    url: 'http://localhost:3000/metas/1771/edit_dynamic_meta?height=500&internal=edit_box&modal=true&public=yes&width=670&TB_iframe=true',
+	    error: function() {
+		        alert("Error talking to server.");
+		        $(this).attr("disabled", "false");
+		},
+		success: function(data) {
+		        $("#messages").html(data);
+		        $(this).attr("disabled", "false");
+		      }
+	    timeout: 3000
+	    
+	  });*/
+	/*$("#TB_ajaxContent").html(result);*/
+	/*$("#TB_ajaxContent").load("http://localhost:3000/metas/1771/edit_dynamic_meta?height=500&internal=edit_box&modal=true&public=yes&width=670&TB_iframe=true");
+		//new Ajax.Updater(id+'_'+relatedtype, root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true}); 
+	};*/
+	//tb_show("example title","http://localhost:3000/internal_definitions/public_edit/51?height=500&modal=true&width=670&TB_iframe=true",null);
+	//alert(root_dir+'/'+controller+'/edit_new/'+id);
+	//alert(relatedtype);
+		tb_show("add new content", root_dir+'/'+controller+'/edit_new/'+id+'?level=0&relatedtype='+relatedtype+'&definition_id='+head_definition+'height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);
+	};
+	
+	function search_popup(controller,relatedtype,id) {
+		//new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_search/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
+	    tb_show("add new popup", root_dir+'/'+controller+'/edit_search/'+id+'?level=0&relatedtype='+relatedtype+'height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);
+	};	
+ 	function add_new_popup(controller,relatedtype,id) {	
+		tb_show("add new popup", root_dir+'/'+controller+'/edit_new/'+id+'?level=0&relatedtype='+relatedtype+'&definition_id='+head_definition+'height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);
+	};
 </script>
 
 
@@ -296,18 +314,18 @@ function clear_contents(node)
 	function edit_form_from(controller,id,parent_id) {
 		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_to', {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
 	}
-	function search_popup(controller,relatedtype,id) {
+	/*function search_popup(controller,relatedtype,id) {
 		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_search/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
-	}
+	}*/
 	function delete_popup(controller,relatedtype,id) {
 		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_delete/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
 	}
-	function add_new_popup(controller,relatedtype,id) {
+	/*function add_new_popup(controller,relatedtype,id) {
 		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
 	}
 	function add_new_content(controller,relatedtype,id) {
 		new Ajax.Updater(id+'_'+relatedtype, root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true}); 
-	}
+	}*/
 	function etymology_popup(controller,id,parent_id) {
 		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/related_etymologies/'+id+'?internal=edit_box&public=yes&parent_id=<%= @definition.id %>', {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
 	}
@@ -329,6 +347,7 @@ function clear_contents(node)
 	}
 
 </script>
+<div id="messages"></div>
 <div id="edit_box" style="display:none;
 		position:absolute;
 		top:20%;

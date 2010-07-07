@@ -352,7 +352,8 @@ class TranslationsController < ApplicationController
       o.save
       @translation.meta = o
       @translation.save
-      render_component :controller => "metas", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "edit_box", 'pk' => params['id'], 'relatedtype'=> 'meta', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #render_component :controller => "metas", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "edit_box", 'pk' => params['id'], 'relatedtype'=> 'meta', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to meta_metadata_edit_dynamic_meta_url(o.id), :something => "heiser"  #:params => {'internal' => "edit_box", 'pk' => params['id'], 'relatedtype'=> 'meta', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
     end
     if params["relatedtype"] == "etymology"
       o = Etymology.new
@@ -789,7 +790,7 @@ class TranslationsController < ApplicationController
       params['level'] = '1'
     end
     @translation = Translation.find(params[:id])
-    @definition = Definition.find(51)
+    #@definition = Definition.find(51)
     render :layout => 'staging_popup'
   end
   

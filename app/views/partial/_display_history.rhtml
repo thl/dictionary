@@ -1,8 +1,17 @@
+<script>
+$(document).ready(function() {
+
+	
+	$("#cancel_button").click(function () { parent.eval('tb_remove()'); });
+		
+});
+</script>
 <% if params['modal'] == nil %>
 	<b>Contributors:</b><br>
 <% end %>
-<%= textilize @history %>
+<%#= textilize @history %>
+<%= @history %>
 <br>
-<% if params['modal'] == nil %>
-<%= link_to_function(image_tag('close_up.gif', :border=>0),'Element.hide("edit_box");clear_contents("edit_box");') %>
-<% end %>
+<%# if params['modal'] == nil %>
+<%#= link_to_function(image_tag('close_up.gif', :border=>0),'Element.hide("edit_box");clear_contents("edit_box");') %>
+<%# end %>

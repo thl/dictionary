@@ -349,6 +349,7 @@ class DefinitionsController < ApplicationController
 	  c = eval(params[:history_class])
 	  o = c.find params[:history_id]
 	  h = o.update_history #params[:history]
+	  debugger
 	  a = h.split("\n")
     a.each {|k| hash[k.split(' ')[0]] = k}
     # breakpoint
@@ -3013,6 +3014,7 @@ end
       o.save
       @definition.full_synonyms << o
       render_component :controller => "full_synonyms", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'full_synonym', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      
     end
     if params["relatedtype"] == "super_definition"
       o = DefinitionDefinition.new
@@ -3030,7 +3032,8 @@ end
       o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
       o.save
       @definition.literary_quotations << o
-      render_component :controller => "literary_quotations", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'literary_quotation', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #render_component :controller => "literary_quotations", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'literary_quotation', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to edit_dynamic_literary_quotation_url(o.id) 
     end
     if params["relatedtype"] == "full_synonyms_to"
       o = FullSynonym.new
@@ -3048,7 +3051,8 @@ end
       o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
       o.save
       @definition.translation_equivalents << o
-      render_component :controller => "translation_equivalents", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'translation_equivalent', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #render_component :controller => "translation_equivalents", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'translation_equivalent', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to edit_dynamic_translation_equivalent_url(o.id)
     end
     if params["relatedtype"] == "sub_definition"
       o = DefinitionDefinition.new
@@ -3066,7 +3070,8 @@ end
       o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
       o.save
       @definition.etymologies << o
-      render_component :controller => "etymologies", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'etymology', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #render_component :controller => "etymologies", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'etymology', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to edit_dynamic_etymology_url(o.id)
     end
     if params["relatedtype"] == "related_definition"
       o = Definition.new

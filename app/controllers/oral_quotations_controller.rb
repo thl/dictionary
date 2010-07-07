@@ -318,7 +318,8 @@ class OralQuotationsController < ApplicationController
       o.save
       @oral_quotation.meta = o
       @oral_quotation.save
-      render_component :controller => "metas", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "edit_box", 'pk' => params['id'], 'relatedtype'=> 'meta', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #render_component :controller => "metas", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "edit_box", 'pk' => params['id'], 'relatedtype'=> 'meta', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to meta_metadata_edit_dynamic_meta_url(o.id)
     end
     if params["relatedtype"] == "translation"
       o = Translation.new
@@ -327,7 +328,8 @@ class OralQuotationsController < ApplicationController
       o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
       o.save
       @oral_quotation.translations << o
-      render_component :controller => "translations", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "edit_box", 'pk' => params['id'], 'relatedtype'=> 'translation', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #render_component :controller => "translations", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "edit_box", 'pk' => params['id'], 'relatedtype'=> 'translation', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to translation_edit_dynamic_translation_url(o.id)
     end
   end
 
