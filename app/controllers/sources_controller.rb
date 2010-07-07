@@ -408,7 +408,7 @@ class SourcesController < ApplicationController
       params['level'] = '1'
     end
     @source = Source.find(params[:id])
-    @meta = Meta.find(params[:meta])
+    #@meta = Meta.find(params[:meta])
     @source_type = []
     SourceType.find(:all).each do |l|
       @source_type += [l.source_type]

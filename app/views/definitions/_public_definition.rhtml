@@ -9,7 +9,8 @@
 	<b>Definition: </b>
 	<%# if head_id != parent_id %>
 	<!--<a href="/images/familylg.jpg" title="add a caption to title attribute / or leave blank" class="thickbox"><img src="/images/shoulder.gif" alt="Single Image"/></a>-->
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => d.id, :history_class => d.class.to_s }}) %>	
+			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => d.id, :history_class => d.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => d.id, :history_class => d.class.to_s }}) %>	
 			<%= link_to image_tag('pencil.png',:border => 0), url_for( :action => 'edit_dynamic_definition', :id => d.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Definition Edit' %>		
 			<%#= link_to_function image_tag('pencil.png',:border => 0), 'definition_id='+d.id.to_s+';parent_id='+head_id.to_s+";dialect_id="+d.id.to_s+";edit_popup('definitions','"+d.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
 			<span class=menuvalue onclick='definition_id=<%= d.id.to_s %>;parent_id=<%= head_id.to_s %>;show_menu(definition_menu,getCoord(arguments[0]));'>
@@ -48,12 +49,15 @@
 		   size = d.translations.size;
 			for e in d.translations %>
 		<b>Translation<% if e.language != nil and e.language != '' %> (<%= e.language %>)<% end %>:</b>
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
+			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
 	<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translations', :action => 'edit_dynamic_translation', :id => d.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Translation Edit' %>					
 	<%#= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => d.id.to_s+'_translation', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'translations', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 			<span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'translation_id='+e.id.to_s, :title => 'Edit Relationships' %> 
 			</span>
+			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translations', :action => 'edit_new', :id => e.id, :internal=>'edit_box', :public=>'yes', :level=>'0', :relatedtype=>'meta', :definition_id=>head_id, :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'New Translation Meta' %>					
+			
 			<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Translation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_translation', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :translation => e.id }}, :confirm => "Are you sure you want to remove this translation?") %>			
 					<% if e.language == 'Tibetan' %>
 					<span class="tib1">
@@ -64,6 +68,7 @@
 					<% if e.language == 'Tibetan' %>
 					</span>
 					<% end %>
+			
 				<% if e.meta != nil%>
 				<dl style="margin-top:0em;margin-bottom:0em;">
 						<dd style="display:none"></dd>
@@ -244,7 +249,8 @@
 				:</b>
 				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 	<%#= link_to_function image_tag('pencil.png',:border => 0), "dialect_id="+e.id.to_s+";edit_popup('pronunciations','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
+			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
 			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'pronunciations', :action => 'edit_dynamic_pronunciation', :id => d.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Pronunciation Edit' %>		
 			<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_pronunciation', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'pronunciations', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 			<span class=menuvalue onclick=show_menu(pro_menu,getCoord(arguments[0]));>
@@ -305,8 +311,9 @@
 		<b>Etymology:</b>
 				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 	<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('etymologies','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>		
-			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'etymologies', :action => 'edit_dynamic_etymology', :id => d.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Etymology Edit' %>	
+			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>		
+			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'etymologies', :action => 'edit_dynamic_etymology', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Etymology Edit' %>	
 			<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_etymology', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'etymologies', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 			<span class=menuvalue onclick=show_menu(etymology_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'etymology_id='+e.id.to_s, :title => 'Edit Relationships' %> 
@@ -346,7 +353,8 @@
 				<% for t in e.translations %>
 					<% if t.translation != nil and t.translation != ''%>
 						<dd><b>Translation: </b>
-						<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => t.id, :history_class => t.class.to_s }}) %>			
+						<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => t.id, :history_class => t.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+						<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => t.id, :history_class => t.class.to_s }}) %>			
 				<%= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => e.id.to_s+'_translation', :loading => 'dialect_id='+t.id.to_s, :url => {:controller => 'translations', :action => 'public_edit', :id => t.id, :params => {'definition_id' => head_id}} %>
 						<span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>
 						<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'translation_id='+t.id.to_s, :title => 'Edit Relationships' %> 
@@ -386,12 +394,10 @@
 		<b>Spelling:</b>
 				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 	<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('spellings','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>
+			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>
 			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'spellings', :action => 'edit_dynamic_spelling', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Spelling Edit' %>			
 			<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_spelling', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'spellings', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
-			<%= link_to image_tag('plugin.png', :alt => 'Edit', :border => 0), url_for(:controller => 'spellings', :action => 'edit_dynamic_spelling', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Spelling Edit' %>
-			
-			 
 			<span class=menuvalue onclick=show_menu(spelling_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'spelling_id='+e.id.to_s, :title => 'Edit Relationships' %> 
 			</span>
@@ -425,7 +431,8 @@
 			for e in d.definition_definition_form_tos %>
 		<b>Related term:</b>
 				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
+			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 			<%= link_to_function image_tag('pencil.png',:border => 0), "edit_form_from('definition_definition_forms','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
 			<span class=menuvalue onclick=show_menu(related_term_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'definition_definition_form_id='+e.id.to_s, :title => 'Edit Relationships' %> 
@@ -451,7 +458,8 @@
 			for e in d.definition_definition_form_froms %>
 		<b>Related term:</b>
 				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
+			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 			<%= link_to_function image_tag('pencil.png',:border => 0), "edit_form_to('definition_definition_forms','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
 			<span class=menuvalue onclick=show_menu(related_term_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'definition_definition_form_id='+e.id.to_s, :title => 'Edit Relationships' %> 
@@ -482,7 +490,8 @@
 		  for e in d.full_synonyms %>
 		<b>Full Synonym:</b>
 	<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('full_synonyms','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
+			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 	<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_full_synonym', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'full_synonyms', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 			<span class=menuvalue onclick=show_menu(full_synonym_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'full_synonym_id='+e.id.to_s, :title => 'Edit Relationships' %> 
@@ -513,7 +522,8 @@
 			for e in d.translation_equivalents %>
 		<b>Translation equivalent:</b>
 				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
+			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
 			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translation_equivalents', :action => 'edit_dynamic_translation_equivalent', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Translation Equivalent Edit' %>		
 	<%#= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => d.id.to_s+'_translation_equivalent', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'translation_equivalents', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 	
@@ -553,7 +563,8 @@
 		<b>Model sentences:</b>
 				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 	<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('model_sentences','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>
+			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>
 			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'model_sentences', :action => 'edit_dynamic_model_sentence', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Model Sentence Edit' %>			
 	<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_model_sentence', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'model_sentences', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 			<span class=menuvalue onclick=show_menu(model_sentence_menu,getCoord(arguments[0]));>
@@ -586,7 +597,8 @@
 				<% for t in e.translations %>
 					<% if t.translation != nil and t.translation != ''%>
 						<dd><b>Translation: </b>
-						<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => t.id, :history_class => t.class.to_s }}) %>			
+						<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => t.id, :history_class => t.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+						<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => t.id, :history_class => t.class.to_s }}) %>			
 				<%#= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => e.id.to_s+'_translation', :loading => 'dialect_id='+t.id.to_s, :url => {:controller => 'translations', :action => 'public_edit', :id => t.id, :params => {'definition_id' => head_id}} %>
 				<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translations', :action => 'edit_dynamic_translation', :id => t.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Translations Edit' %>
 						<span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>
@@ -626,7 +638,8 @@
 		<b>Literary quotation:</b>
 				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 	<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('literary_quotations','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
+			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 	<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_literary_quotation', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'literary_quotations', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 	<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'literary_quotations', :action => 'edit_dynamic_literary_quotation', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Literary Quotation Edit' %>	
 			<span class=menuvalue onclick=show_menu(literary_quotation_menu,getCoord(arguments[0]));>
@@ -663,7 +676,8 @@
 				<% for t in e.translations %>
 					<% if t.translation != nil and t.translation != ''%>
 						<dd><b>Translation: </b>
-						<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => t.id, :history_class => t.class.to_s }}) %>			
+						<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => t.id, :history_class => t.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+						<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => t.id, :history_class => t.class.to_s }}) %>			
 				<%#= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => e.id.to_s+'_translation', :loading => 'dialect_id='+t.id.to_s, :url => {:controller => 'translations', :action => 'public_edit', :id => t.id, :params => {'definition_id' => head_id}} %>
 				<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translations', :action => 'edit_dynamic_translation', :id => t.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Translations Edit' %>
 						<span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>
@@ -703,7 +717,8 @@
 		<b>Oral quotation:</b>
 				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 	<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('oral_quotations','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
+			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 	<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_oral_quotation', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'oral_quotations', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 	<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'oral_quotations', :action => 'edit_dynamic_oral_quotation', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Oral Quotations Edit' %>
 			<span class=menuvalue onclick=show_menu(oral_quotation_menu,getCoord(arguments[0]));>
@@ -722,7 +737,8 @@
 				<% for t in e.translations %>
 					<% if t.translation != nil and t.translation != ''%>
 						<dd><b>Translation: </b>
-						<%= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history => t.update_history }}) %>			
+						<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => t.id, :history_class => t.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+						<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history => t.update_history }}) %>			
 				<%#= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => e.id.to_s+'_translation', :loading => 'dialect_id='+t.id.to_s, :url => {:controller => 'translations', :action => 'public_edit', :id => t.id, :params => {'definition_id' => head_id}} %>
 				<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translations', :action => 'edit_dynamic_translation', :id => t.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Translations Edit' %>
 						<span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>

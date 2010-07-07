@@ -1061,7 +1061,7 @@ module LiteraryQuotationsHelper
     end
     resultstr << in_place_editor_field( :literary_quotation, :source_id, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[source_id]'}) +"<br>"
     resultstr << "<b>Title: </b>"
-    resultstr << @literary_quotation.title if @literary_quotation.title != nil 
+    #resultstr << @literary_quotation.title if @literary_quotation.title != nil 
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[title] id=literary_quotation[title] value=\""+@literary_quotation.title.to_s+"\" >"
      if @literary_quotation.title == nil or @literary_quotation.title == ''
@@ -1069,7 +1069,7 @@ module LiteraryQuotationsHelper
      end
     resultstr << in_place_editor_field( :literary_quotation, :title, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[title]'}) +"<br>"
     resultstr << "<b>Author: </b>"
-    resultstr << @literary_quotation.author if @literary_quotation.author != nil 
+    #resultstr << @literary_quotation.author if @literary_quotation.author != nil 
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[author] id=literary_quotation[author] value=\""+@literary_quotation.author.to_s+"\" >"
     if @literary_quotation.author == nil or @literary_quotation.author == ''
@@ -1077,7 +1077,7 @@ module LiteraryQuotationsHelper
     end
     resultstr << in_place_editor_field( :literary_quotation, :author, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[author]'}) +"<br>"
     resultstr << "<b>Passage: </b>"
-    resultstr << "<input type=hidden name=literary_quotation[passage] id=literary_quotation[passage] value=\""+@literary_quotation.passage.to_s+"\" >"
+    #resultstr << "<input type=hidden name=literary_quotation[passage] id=literary_quotation[passage] value=\""+@literary_quotation.passage.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@literary_quotation.id}_passagediv" + "'>"
     edit_path = literary_quotation_passage_edit_url(:id => @literary_quotation.id)

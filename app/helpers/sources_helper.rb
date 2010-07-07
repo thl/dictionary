@@ -122,44 +122,44 @@ module SourcesHelper
   def modal_edit_dynamic_source
     resultstr = ""
     # resultstr << in_place_select_editor_field( :meta, :source_type, {}, {:select_options => @source_type, :fieldname => 'meta[source_type]'})+"<br>"
-    resultstr << "<b>Title: </b>"
-    resultstr << @meta.title unless @meta.title == nil
-    resultstr << "<br>"
+#    resultstr << "<b>Title: </b>"
+#    resultstr << @meta.title unless @meta.title == nil
+#    resultstr << "<br>"
     #if @source.title == nil or @source.title == ''
     #  @source.title = 'Click to modify'
     #end
     #resultstr << in_place_editor_field( :source, :title, {}, {:cols => 50, :rows => 1, :fieldname => 'source[title]'}) +"<br>"
 
-    resultstr << "<b>Author: </b>"
-    resultstr << @meta.author unless @meta.author == nil
-    resultstr << "<br>"
+#    resultstr << "<b>Author: </b>"
+#    resultstr << @meta.author unless @meta.author == nil
+#    resultstr << "<br>"
     #if @source.author == nil or @source.author == ''
     #  @source.author = 'Click to modify'
     #end
     #resultstr << in_place_editor_field( :source, :author, {}, {:cols => 50, :rows => 1, :fieldname => 'source[author]'}) +"<br>"
 
 
-    resultstr << "<b>Date of publication: </b>"
-    resultstr << @meta.date_of_publication unless @meta.date_of_publication == nil
-    resultstr << "<br>"
+#    resultstr << "<b>Date of publication: </b>"
+#    resultstr << @meta.date_of_publication unless @meta.date_of_publication == nil
+#    resultstr << "<br>"
     #if @source.date_of_publication == nil or @source.date_of_publication == ''
     #  @source.date_of_publication = 'Click to modify'
     #end
     #resultstr << in_place_editor_field( :source, :date_of_publication, {}, {:cols => 50, :rows => 1, :fieldname => 'source[date_of_publication]'}) +"<br>"
     
 
-    resultstr << "<b>Publisher: </b>"
-    resultstr << @meta.publisher unless @meta.publisher == nil
-    resultstr << "<br>"
+#    resultstr << "<b>Publisher: </b>"
+#    resultstr << @meta.publisher unless @meta.publisher == nil
+#    resultstr << "<br>"
     #if @source.publisher == nil or @source.publisher == ''
     #  @source.publisher = 'Click to modify'
     #end
     #resultstr << in_place_editor_field( :source, :publisher, {}, {:cols => 50, :rows => 1, :fieldname => 'source[publisher]'}) +"<br>"
     
     
-    resultstr << "<b>Place of publication: </b>"
-    resultstr << @meta.place_of_publication unless @meta.place_of_publication == nil
-    resultstr << "<br>"
+#    resultstr << "<b>Place of publication: </b>"
+#    resultstr << @meta.place_of_publication unless @meta.place_of_publication == nil
+#    resultstr << "<br>"
     #if @source.place_of_publicatio == nil or @source.place_of_publicatio == ''
     #  @source.place_of_publicatio = 'Click to modify'
     #end
