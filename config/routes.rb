@@ -31,6 +31,9 @@ ActionController::Routing::Routes.draw do |map|
   map.translation_translation_show 'translations/:id/translation_show', :controller => 'translations', :action => 'translation_show'
   map.translation_analytical_note_edit 'translations/:id/analytical_note_edit', :controller => 'translations', :action => 'analytical_note_edit'
   map.translation_analytical_note_show 'translations/:id/analytical_note_show', :controller => 'translations', :action => 'analytical_note_show'
+
+
+  map.edit_dynamic_spelling 'spellings/:id/edit_dynamic_spelling', :controller => 'spellings', :action => 'edit_dynamic_spelling'
   map.spelling_analytical_note_edit 'spellings/:id/analytical_note_edit', :controller => 'spellings', :action => 'analytical_note_edit'
   map.spelling_analytical_note_show 'spellings/:id/analytical_note_show', :controller => 'spellings', :action => 'analytical_note_show'
   map.spelling_image_description_edit 'spellings/:id/image_description_edit', :controller => 'spellings', :action => 'image_description_edit'
@@ -69,11 +72,16 @@ ActionController::Routing::Routes.draw do |map|
   
   map.source_source_edit_dynamic_source 'sources/:id/edit_dynamic_sources', :controller => 'sources', :action => 'edit_dynamic_source'
   
+  
+  map.edit_dynamic_model_sentence 'model_sentences/:id/edit_dynamic_model_sentence', :controller => 'model_sentences', :action => 'edit_dynamic_model_sentence'
   map.model_sentence_model_sentence_edit 'model_sentences/:id/model_sentence_edit', :controller => 'model_sentences', :action => 'model_sentence_edit'
   map.model_sentence_analytical_note_edit 'model_sentences/:id/analytical_note_edit', :controller => 'model_sentences', :action => 'analytical_note_edit'
   map.model_sentence_image_description_edit 'model_sentences/:id/image_description_edit', :controller => 'model_sentences', :action => 'image_description_edit'
   map.model_sentence_audio_description_edit 'model_sentences/:id/audio_description_edit', :controller => 'model_sentences', :action => 'audio_description_edit'
   map.model_sentence_video_description_edit 'model_sentences/:id/video_description_edit', :controller => 'model_sentences', :action => 'video_description_edit'
+
+  
+  map.edit_dynamic_oral_quotation 'oral_quotations/:id/edit_dynamic_oral_quotation', :controller => 'oral_quotations', :action => 'edit_dynamic_oral_quotation'  
   map.oral_quotation_analytical_note_edit 'oral_quotations/:id/analytical_note_edit', :controller => 'oral_quotations', :action => 'analytical_note_edit'
   map.oral_quotation_image_description_edit 'oral_quotations/:id/image_description_edit', :controller => 'oral_quotations', :action => 'image_description_edit'
   map.oral_quotation_audio_description_edit 'oral_quotations/:id/audio_description_edit', :controller => 'oral_quotations', :action => 'audio_description_edit'

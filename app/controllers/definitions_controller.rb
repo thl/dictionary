@@ -3089,7 +3089,8 @@ end
       o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
       o.save
       @definition.oral_quotations << o
-      render_component :controller => "oral_quotations", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'oral_quotation', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #render_component :controller => "oral_quotations", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'oral_quotation', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to edit_dynamic_oral_quotation_url(o.id)
     end
     if params["relatedtype"] == "meta"
       o = Meta.new
@@ -3099,7 +3100,8 @@ end
       o.save
       @definition.meta = o
       @definition.save
-      render_component :controller => "metas", :action => "edit_dynamic", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'meta', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #render_component :controller => "metas", :action => "edit_dynamic", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'meta', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to meta_metadata_edit_dynamic_meta_url(o.id)
     end
     if params["relatedtype"] == "spelling"
       o = Spelling.new
@@ -3108,7 +3110,8 @@ end
       o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
       o.save
       @definition.spellings << o
-      render_component :controller => "spellings", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'spelling', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #render_component :controller => "spellings", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'spelling', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to edit_dynamic_spelling_url(o.id)
     end
     if params["relatedtype"] == "model_sentence"
       o = ModelSentence.new
@@ -3117,7 +3120,8 @@ end
       o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
       o.save
       @definition.model_sentences << o
-      render_component :controller => "model_sentences", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'model_sentence', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #render_component :controller => "model_sentences", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'model_sentence', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to edit_dynamic_model_sentence_url(o.id)
     end
     if params["relatedtype"] == "definition_definition_form_to"
       o = DefinitionDefinitionForm.new
