@@ -3141,7 +3141,8 @@ end
       o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
       o.save
       @definition.translations << o
-      render_component :controller => "translations", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'translation', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #render_component :controller => "translations", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'translation', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to edit_dynamic_translation_url(o.id)
     end
     if params["relatedtype"] == "pronunciation"
       o = Pronunciation.new

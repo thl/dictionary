@@ -329,7 +329,7 @@ class OralQuotationsController < ApplicationController
       o.save
       @oral_quotation.translations << o
       #render_component :controller => "translations", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "edit_box", 'pk' => params['id'], 'relatedtype'=> 'translation', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
-      redirect_to translation_edit_dynamic_translation_url(o.id)
+      redirect_to edit_dynamic_translation_url(o.id)
     end
   end
 
