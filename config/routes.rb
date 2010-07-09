@@ -26,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
   map.etymology_video_description_edit 'etymologies/:id/video_description_edit', :controller => 'etymologies', :action => 'video_description_edit'
   map.etymology_video_description_show 'etymologies/:id/video_description_show', :controller => 'etymologies', :action => 'video_description_show'
 
-  map.translation_edit_dynamic_translation 'translations/:id/edit_dynamic_translation', :controller => 'translations', :action => 'edit_dynamic_translation'
+  map.edit_dynamic_translation 'translations/:id/edit_dynamic_translation', :controller => 'translations', :action => 'edit_dynamic_translation'
   map.translation_translation_edit 'translations/:id/translation_edit', :controller => 'translations', :action => 'translation_edit'
   map.translation_translation_show 'translations/:id/translation_show', :controller => 'translations', :action => 'translation_show'
   map.translation_analytical_note_edit 'translations/:id/analytical_note_edit', :controller => 'translations', :action => 'analytical_note_edit'
