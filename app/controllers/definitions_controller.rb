@@ -1453,6 +1453,7 @@ end
   end
   
   def public_content_only
+    debugger
     # initialize_variables
     
     # @register = @@register
@@ -2663,7 +2664,8 @@ end
     "
         end
     d.save
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_grammatical_function
@@ -2680,7 +2682,8 @@ end
     "
         end
     d.save
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_thematic_classification
@@ -2697,7 +2700,8 @@ end
     "
         end
     d.save
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_dialect
@@ -2714,7 +2718,8 @@ end
     "
         end
     d.save
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_register
@@ -2731,7 +2736,8 @@ end
     "
         end
     d.save
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_language_context
@@ -2748,7 +2754,8 @@ end
     "
         end
     d.save
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
   
   def public_remove_numerology
@@ -2764,7 +2771,8 @@ end
     "
         end
     d.save
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
   
   def public_remove_literary_form
@@ -2781,7 +2789,8 @@ end
     "
         end
     d.save
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_literary_genre
@@ -2798,7 +2807,8 @@ end
     "
         end
     d.save
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_literary_period
@@ -2815,96 +2825,134 @@ end
     "
         end
     d.save
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_pronunciation
     d = Definition.find(params[:id])
     p = Pronunciation.find(params['pronunciation'])
     d.pronunciations.delete(p) unless d == nil
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_literary_quotation
     d = Definition.find(params[:id])
     p = LiteraryQuotation.find(params['literary_quotation'])
     d.literary_quotations.delete(p) unless d == nil
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_oral_quotation
     d = Definition.find(params[:id])
     p = OralQuotation.find(params['oral_quotation'])
     d.oral_quotations.delete(p) unless d == nil
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_translation
     d = Definition.find(params[:id])
     p = Translation.find(params['translation'])
     d.translations.delete(p) unless d == nil
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
+  def public_remove_etymology_translation
+    e = Etymology.find(params[:id])
+    p = Translation.find(params['translation'])
+    e.translations.delete(p) unless e == nil
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
+  end
+
+  def public_remove_model_sentence_translation
+    m = ModelSentence.find(params[:id])
+    t = Translation.find(params['translation'])
+    m.translations.delete(t) unless m == nil
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
+  end
+
+  def public_remove_literary_quotation_translation
+    l = LiteraryQuotation.find(params[:id])
+    t = Translation.find(params['translation'])
+    l.translations.delete(t) unless l == nil
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
+  end
+      
   def public_remove_model_sentence
     d = Definition.find(params[:id])
     p = ModelSentence.find(params['model_sentence'])
     d.model_sentences.delete(p) unless d == nil
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_spelling
     d = Definition.find(params[:id])
     p = Spelling.find(params['spelling'])
     d.spellings.delete(p) unless d == nil
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_meta
     # d = Definition.find(params[:id])
     p = Meta.destroy(params['meta'])
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_source
     # d = Definition.find(params[:id])
     p = Source.destroy(params['source'])
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_etymology
     d = Definition.find(params[:id])
     p = Etymology.find(params['etymology'])
     d.etymologies.delete(p) unless d == nil
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_translation_equivalent
     d = Definition.find(params[:id])
     p = TranslationEquivalent.find(params['translation_equivalent'])
     d.translation_equivalents.delete(p) unless d == nil
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_form_to
     d = Definition.find(params[:id])
     p = DefinitionDefinitionForm.find(params['form_to'])
     d.definition_definition_form_tos.delete(p) unless d == nil
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_form_from
     d = Definition.find(params[:id])
     p = DefinitionDefinitionForm.find(params['form_from'])
     d.definition_definition_form_froms.delete(p) unless d == nil
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def public_remove_full_synonym
     d = Definition.find(params[:id])
     p = FullSynonym.find(params['full_synonym'])
     d.full_synonyms.delete(p) unless d == nil
-    redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
   def destroy
@@ -3151,7 +3199,8 @@ end
       o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
       o.save
       @definition.pronunciations << o
-      render_component :controller => "pronunciations", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'pronunciation', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #render_component :controller => "pronunciations", :action => "public_edit", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'pronunciation', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to edit_dynamic_pronunciation_url(o.id)
     end
     if params["relatedtype"] == "definition_definition_form_from"
       o = DefinitionDefinitionForm.new

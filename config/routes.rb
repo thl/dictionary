@@ -52,7 +52,7 @@ ActionController::Routing::Routes.draw do |map|
   map.translation_equivalent_image_description_show 'translation_equivalents/:id/image_description_show', :controller => 'translation_equivalents', :action => 'image_description_show'
 
 
-
+  map.edit_dynamic_pronunciation 'pronunciations/:id/edit_dynamic_pronunciation', :controller => 'pronunciations', :action => 'edit_dynamic_pronunciation'
   map.pronunciation_analytical_note_edit 'pronunciations/:id/analytical_note_edit', :controller => 'pronunciations', :action => 'analytical_note_edit'
   map.pronunciation_image_description_edit 'pronunciations/:id/image_description_edit', :controller => 'pronunciations', :action => 'image_description_edit'
   map.pronunciation_audio_description_edit 'pronunciations/:id/audio_description_edit', :controller => 'pronunciations', :action => 'audio_description_edit'
