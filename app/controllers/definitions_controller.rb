@@ -2884,7 +2884,15 @@ end
     #redirect_to :action => 'public_content_only', :id => params['head_id']
     redirect_to :action => 'public_edit', :id => params['head_id']
   end
-      
+ 
+  def public_remove_oral_quotation_translation
+    o = OralQuotation.find(params[:id])
+    t = Translation.find(params['translation'])
+    o.translations.delete(t) unless o == nil
+    #redirect_to :action => 'public_content_only', :id => params['head_id']
+    redirect_to :action => 'public_edit', :id => params['head_id']
+  end
+        
   def public_remove_model_sentence
     d = Definition.find(params[:id])
     p = ModelSentence.find(params['model_sentence'])
