@@ -740,7 +740,8 @@
 			<span class=menuvalue onclick=show_menu(oral_quotation_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'oral_quotation_id='+e.id.to_s, :title => 'Edit Relationships' %> 
 			</span>
-			<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Oral Quotation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_oral_quotation', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :oral_quotation => e.id }}, :confirm => "Are you sure you want to remove this Oral Quotation?") %>			
+			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Oral Quotation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_oral_quotation', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :oral_quotation => e.id }}, :confirm => "Are you sure you want to remove this Oral Quotation?") %>			
+			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_oral_quotation' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :oral_quotation => e.id),  :title=>'Remove Oral Quotation', :confirm => "Are you sure you want to remove this Oral Quotation?" %>		
 			<%= e.displayInfo.s %>
 			<dl style="margin-top:0em;margin-bottom:0em;">
 				<dd style="display:none"></dd>
@@ -760,7 +761,8 @@
 						<span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>
 						<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'translation_id='+t.id.to_s, :title => 'Edit Relationships' %> 
 						</span>
-						<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Translation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_translation', :id => e.id, :params => {:parent_id => parent_id, :head_id => head_id, :translation => t.id }}, :confirm => "Are you sure you want to remove this Translation?") %>			
+						<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Translation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_translation', :id => e.id, :params => {:parent_id => parent_id, :head_id => head_id, :translation => t.id }}, :confirm => "Are you sure you want to remove this Translation?") %>			
+						<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_oral_quotation_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => e.id, :parent_id => parent_id, :head_id => head_id, :translation => t.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>		
 						<% if t.language == 'Tibetan' %>
 						<span class="tib1">
 						<% end %>
