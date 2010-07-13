@@ -263,28 +263,12 @@ function clear_contents(node)
 <script type="text/javascript">
  // var $j = jQuery.noConflict();
   var root_dir="<%= $root_dir %>";
- 	function add_new_content(controller,relatedtype,id) {
-/*		//alert(root);
-		$.ajax({
-	    url: 'http://localhost:3000/metas/1771/edit_dynamic_meta?height=500&internal=edit_box&modal=true&public=yes&width=670&TB_iframe=true',
-	    error: function() {
-		        alert("Error talking to server.");
-		        $(this).attr("disabled", "false");
-		},
-		success: function(data) {
-		        $("#messages").html(data);
-		        $(this).attr("disabled", "false");
-		      }
-	    timeout: 3000
-	    
-	  });*/
-	/*$("#TB_ajaxContent").html(result);*/
-	/*$("#TB_ajaxContent").load("http://localhost:3000/metas/1771/edit_dynamic_meta?height=500&internal=edit_box&modal=true&public=yes&width=670&TB_iframe=true");
-		//new Ajax.Updater(id+'_'+relatedtype, root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true}); 
-	};*/
-	//tb_show("example title","http://localhost:3000/internal_definitions/public_edit/51?height=500&modal=true&width=670&TB_iframe=true",null);
-	//alert(root_dir+'/'+controller+'/edit_new/'+id);
-	//alert(relatedtype);
+	function add_def_popup(controller,id,parent_id,head_id) {
+		/*new Ajax.Updater('edit_box', root_dir+'/'+controller+'/public_add/'+id+'?parent_id='+parent_id+'&head_id='+head_id, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}});*/ 
+		tb_show("add new content", root_dir+'/'+controller+'/public_add/'+id+'?parent_id='+parent_id+'&head_id='+head_id+'height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);
+
+	} 
+	function add_new_content(controller,relatedtype,id) {
 		tb_show("add new content", root_dir+'/'+controller+'/edit_new/'+id+'?level=0&relatedtype='+relatedtype+'&definition_id='+head_definition+'height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);
 	};
 	
@@ -302,9 +286,9 @@ function clear_contents(node)
 
 	var root_dir="<%= $root_dir%>";
 	
-	function add_def_popup(controller,id,parent_id,head_id) {
+	/*function add_def_popup(controller,id,parent_id,head_id) {
 		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/public_add/'+id+'?parent_id='+parent_id+'&head_id='+head_id, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
-	}
+	}*/
 	function edit_popup(controller,id,parent_id) {
 		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
 	}
@@ -366,8 +350,10 @@ function clear_contents(node)
 <%= test_helper %>
 <%#s= link_to_remote "reload", :update=> 'definition_space', :url => {:action => 'public_content_only', :id => @definition.id, :params => {:no_layout => true}}%>
 <div id="definition_space">
-		<%#= link_to_remote(image_tag('cross',:border=>0, :title => 'Delete definition'), :update => 'complete_definition', :url => {:action => 'public_destroy', :id => d.id, :params => {:parent_id => @head_id, :head_id => @head_id}}, :confirm => "Are you sure you want to delete this entry?") %>
-				<%= link_to(image_tag('cross.png',:border=>0, :title => 'Delete entire entry'),{:action => 'public_destroy', :id => @definition.id, :params => {:parent_id => @head_id, :head_id => @head_id}}, :confirm => "Are you sure you want to delete this entire entry?") %>
+		<%##= link_to_remote(image_tag('cross',:border=>0, :title => 'Delete definition'), :update => 'complete_definition', :url => {:action => 'public_destroy', :id => d.id, :params => {:parent_id => @head_id, :head_id => @head_id}}, :confirm => "Are you sure you want to delete this entry?") %>
+		<%#= link_to(image_tag('cross.png',:border=>0, :title => 'Delete entire entry'),{:action => 'public_destroy', :id => @definition.id, :params => {:parent_id => @head_id, :head_id => @head_id}}, :confirm => "Are you sure you want to delete this entire entry?") %>
+		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_destroy' , :update => 'definition_space', :complete => 're_initialize();',  :id => @definition.id, :parent_id => @head_id, :head_id => @head_id),  :title=>'Delete entire entry', :confirm => "Are you sure you want to delete this entire entry?" %>	
+
 	<span class="tib1">
 	<b><font size="+2"><%#= @definition.term %>  <%= in_place_editor_field(:definition, :term)%></font></b>
 	</span> 

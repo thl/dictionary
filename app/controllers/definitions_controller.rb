@@ -859,7 +859,8 @@ class DefinitionsController < ApplicationController
     dd.save
 puts 'id------------------'
 puts params['parent_id']
-    redirect_to :action => 'edit_dynamic', :id => definition.id, :params => {'internal' => 'edit_box','public'=>'yes','definition_id'=> params['parent_id']} #head_id']}
+    #redirect_to :action => 'edit_dynamic', :id => definition.id, :params => {'internal' => 'edit_box','public'=>'yes','definition_id'=> params['parent_id']} #head_id']}
+    redirect_to :action => 'edit_dynamic_definition', :id => definition.id, :params => {'internal' => 'edit_box','public'=>'yes','definition_id'=> params['parent_id']} #head_id']}
   end
   
 def browse_old
@@ -2643,10 +2644,12 @@ end
     d = Definition.find(params[:id])
     d.destroy unless d == nil
     if params[:id] != params['head_id']
-      redirect_to :action => 'public_content_only', :id => params['head_id']
+      #redirect_to :action => 'public_content_only', :id => params['head_id']
+      redirect_to :action => 'public_edit', :id => params['head_id']
     else
       puts '--------------removed'
       # render :text => 'Term Removed'  #'index'
+      debugger
       redirect_to :action => 'index_edit'
     end
   end
