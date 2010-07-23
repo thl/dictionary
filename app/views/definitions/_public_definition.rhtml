@@ -141,7 +141,9 @@
 
 		<% if d.register_type_id != nil %>
 		<b>Register: </b>
-			<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Register'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_register', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Register?") %>			
+			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Register'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_register', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Register?") %>			
+			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_register' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Register', :confirm => "Are you sure you want to remove this Register?" %>
+
 			<%#= link_to image_tag('comment.png',:border => 0,:id => 'register'+d.id.to_s), '#', :title => 'Edit register' %>
 
 		    <span id=definition[register<%= d.id %>]_value class=menuvalue onclick1='definition_id=<%= d.id %>;dialect_id=<%= d.id %>;show_menu(grammar_menu,getCoord(arguments[0]));'>
@@ -162,7 +164,8 @@
 		
 		<% if d.language_context_type_id != nil %>
 		<b>Language context: </b>
-			<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Language Context'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_language_context', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Language Content?") %>			
+			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Language Context'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_language_context', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Language Content?") %>			
+			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language_context' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language Context', :confirm => "Are you sure you want to remove this Language Content?" %>
 		    <span id=definition[language_context<%= d.id %>]_value class=menuvalue onclick1='definition_id=<%= d.id %>;dialect_id=<%= d.id %>;show_menu(grammar_menu,getCoord(arguments[0]));'>
 					<%#= link_to image_tag('comment.png',:border => 0), '#', :title => 'Edit function' %>
 
@@ -180,7 +183,8 @@
 		
 		<% if d.numerology != nil and d.numerology != "" %>
 		<b>Numerology: </b>
- 			<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Numerology'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_numerology', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Numerology?") %>			
+ 			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Numerology'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_numerology', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Numerology?") %>			
+			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_numerology' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Numerology', :confirm => "Are you sure you want to remove this Numerology?" %>
 			<%= link_to image_tag('comment.png',:border => 0,:id => 'numerology'+d.id.to_s), '#', :title => 'Edit numerology' %>
    <%= in_place_editor_field( :definition, :numerology, {}, {:cols => 50, :rows => 1, :fieldname => 'definition[numerology]', :external_control => 'numerology'+d.id.to_s}) %> <br>
 		<% end %>
@@ -188,7 +192,8 @@
 		<% if d.literary_genre_type_id != nil %>
     <b>Literary genre: </b>
     <input type=hidden name=definition[literary_genre<%= d.id %>] id=definition[literary_genre<%= d.id %>] value="<%= d.literary_genre %>" >
-			<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Literary Genre'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_literary_genre', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Literary Genre?") %>			
+			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Literary Genre'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_literary_genre', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Literary Genre?") %>			
+			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_genre' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Literary Genre', :confirm => "Are you sure you want to remove this Literary Genre?" %>
 		    <span id=definition[literary_genre<%= d.id %>]_value class=menuvalue onclick1='definition_id=<%= d.id %>;dialect_id=<%= d.id %>;show_menu(grammar_menu,getCoord(arguments[0]));'>
 					<%#= link_to image_tag('comment.png',:border => 0), '#', :title => 'Edit function' %>
 
@@ -207,7 +212,8 @@
 
 		<% if d.literary_period_type_id != nil %>
 		<b>Literary period: </b>
-			<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Literary Period'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_literary_period', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Literary Period?") %>			
+			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Literary Period'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_literary_period', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Literary Period?") %>			
+			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_period' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Literary Period', :confirm => "Are you sure you want to remove this Literary Period?" %>
 		    <span id=definition[literary_period<%= d.id %>]_value class=menuvalue onclick1='definition_id=<%= d.id %>;dialect_id=<%= d.id %>;show_menu(grammar_menu,getCoord(arguments[0]));'>
 					<%#= link_to image_tag('comment.png',:border => 0), '#', :title => 'Edit function' %>
 
@@ -226,6 +232,8 @@
 		<% if d.literary_form_type_id != nil %>
     <b>Literary form: </b>
 			<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Literary Form'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_literary_form', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Literary Form?") %>			
+			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_form' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Literary Form', :confirm => "Are you sure you want to remove this Literary Form?" %>
+
 		    <span id=definition[literary_form<%= d.id %>]_value class=menuvalue onclick1='definition_id=<%= d.id %>;dialect_id=<%= d.id %>;show_menu(grammar_menu,getCoord(arguments[0]));'>
 					<%#= link_to image_tag('comment.png',:border => 0), '#', :title => 'Edit function' %>
 
@@ -451,8 +459,8 @@
 			<span class=menuvalue onclick=show_menu(related_term_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'definition_definition_form_id='+e.id.to_s, :title => 'Edit Relationships' %> 
 			</span>
-			<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove related term'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_form_to', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :form_to => e.id }}, :confirm => "Are you sure you want to remove this Term?") %>			
-						<%#= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_spelling' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :spelling => e.id),  :title=>'Remove Spelling', :confirm => "Are you sure you want to remove this Spelling?" %>
+			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove related term'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_form_to', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :form_to => e.id }}, :confirm => "Are you sure you want to remove this Term?") %>			
+			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_form_to' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :form_to => e.id),  :title=>'Remove Related Term', :confirm => "Are you sure you want to remove this Term?" %>
 			<span class="tib1">
 			<%= e.displayToInfoPublic.s %>
 			<%= link_to(e.displayToTerm.s, :controller => 'definitions', :action => 'public_edit', :id => e.definition_from.id) unless e.definition_from == nil %>
@@ -475,11 +483,13 @@
 				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
+			<%#= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'definition_definition_forms', :action => 'modal_edit_dynamic', :id => e.id, :internal=>'edit_box', :public=>'yes', :relatedtype=> 'definition_definition_form_from', :parent_id => head_id.to_s, :definition_id => head_definition,  :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Related Term Edit' %>
 			<%= link_to_function image_tag('pencil.png',:border => 0), "edit_form_to('definition_definition_forms','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
 			<span class=menuvalue onclick=show_menu(related_term_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'definition_definition_form_id='+e.id.to_s, :title => 'Edit Relationships' %> 
 			</span>
-			<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove related term'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_form_from', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :form_from => e.id }}, :confirm => "Are you sure you want to remove this related term?") %>			
+			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove related term'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_form_from', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :form_from => e.id }}, :confirm => "Are you sure you want to remove this related term?") %>			
+			<%= link_to image_tag('cross.png',:border => 0, :title => 'Remove related term'), url_for(:controller => 'definitions', :action => 'public_remove_form_from' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :form_from => e.id),  :title=>'Remove Related Term', :confirm => "Are you sure you want to remove this Term?" %>
 			<span class="tib1">
 			<%= e.displayFromInfoPublic.s %>
 			<%= link_to(e.displayFromTerm.s, :controller => 'definitions', :action => 'public_edit', :id => e.definition_to.id) unless e.definition_to == nil%>

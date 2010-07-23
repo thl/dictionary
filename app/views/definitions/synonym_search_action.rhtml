@@ -1,3 +1,9 @@
+<script>
+$(document).ready(function() {	
+	$("#cancel_button").click(function () { parent.eval('tb_remove()'); });
+	//$("#search_button").click(function () {	parent.eval('tb_remove()'); });
+});
+</script>
 <div id="definition_definition_form_definition_froms">
 <% form_remote_tag(:update => "definition_space", :loading => "Element.hide('edit_box');clear_contents('edit_box');", :url => {:controller => "definitions", :action => 'add_synonym', :id => params['id'], :internal => 'definitions'}, :html => {:name => "listrelated"}) do %>
   <h3>Check Synonym:</h3>
@@ -6,5 +12,7 @@
 <% end %>
 <br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definition_definition_formlistupdate3"), "if(document.listrelated.onsubmit()) { document.listrelated.submit();}") %>
 <%= link_to_remote image_tag("close_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');",:update=> 'definition_space', :url => {:action => 'public_content_only', :id => params['id']}%>	
+<%= submit_tag 'Search', :id => 'search_button' %>
+<input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
 <br>
 </div>

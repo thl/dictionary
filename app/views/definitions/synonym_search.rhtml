@@ -1,6 +1,14 @@
+<script>
+$(document).ready(function() {	
+	$("#cancel_button").click(function () { parent.eval('tb_remove()'); });
+	//$("#search_button").click(function () {	parent.eval('tb_remove()'); });
+});
+</script>
   <div id="definition_full_synonyms">
-  <% form_remote_tag(:update => "edit_box", :url => {:controller => "definitions", :action => "synonym_search_action", :id => params['id'], :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']}}, :html => {:name => "searchrelated"}) do %>
-    <h3>Find Term:</h3>
+  <%# form_remote_tag(:update => "edit_box", :url => {:controller => "definitions", :action => "synonym_search_action", :id => params['id'], :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']}}, :html => {:name => "searchrelated"}) do %>
+  <% form_remote_tag(:url => {:controller => "definitions", :action => "synonym_search_action", :id => params['id'], :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']}}) do %>
+
+  <h3>Find Term:</h3>
     <table>
     <tr>
 			<td>
@@ -11,8 +19,13 @@
   <input type="hidden" name="relatedtype" value="<%= params['relatedtype'] %>" />
   <input type="hidden" name="definition_id" value="<%= params['definition_id'] %>" />
   <% end %>
-<br>
+  <br>
   <%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "definitionsearch2"), "if(document.searchrelated.onsubmit()) { document.searchrelated.submit();}") %>
-<%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');",:update=> 'definition_space', :url => {:action => 'public_content_only', :id => params[:id]}%>	
-<br>
+  <%#= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');",:update=> 'definition_space', :url => {:action => 'public_content_only', :id => params[:id]}%>	
+
+  <%= link_to  "Search", :controller => "definitions", :action => "synonym_search_action", :id => params[:id], :class => "thickbox", :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']},  :html => {:method => :post} %>	
+ 
+ <%= submit_tag 'Search', :id => 'search_button' %>
+  <input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+  <br>
   </div>

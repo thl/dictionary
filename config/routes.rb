@@ -87,6 +87,15 @@ ActionController::Routing::Routes.draw do |map|
   map.oral_quotation_audio_description_edit 'oral_quotations/:id/audio_description_edit', :controller => 'oral_quotations', :action => 'audio_description_edit'
   map.oral_quotation_video_description_edit 'oral_quotations/:id/video_description_edit', :controller => 'oral_quotations', :action => 'video_description_edit'
  
+  #map.edit_dynamic_definition_definition_forms 'definition_definition_forms/:id/edit_dynamic_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_dynamic'
+  map.edit_dynamic_definition_definition_forms 'definition_definition_forms/:id/edit_dynamic_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'modal_edit_dynamic'
+  map.edit_search_definition_definition_forms 'definition_definition_forms/:id/edit_search_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_search'
+  map.edit_search_action_definition_definition_forms 'definition_definition_forms/:id/edit_search_action_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_search_action'
+  map.edit_add_to_list_action_definition_definition_forms 'definition_definition_forms/:id/edit_add_to_list_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_add_to_list'
+  #map.cancel_definition_definition_forms 'definition_definition_forms/:id/cancel_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'cancel'
+  #map.edit_delete_action_definition_definition_forms 'definition_definition_forms/:id/edit_delete_action_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_delete_action'
+  map.edit_delete_definition_definition_forms 'definition_definition_forms/:id/edit_delete_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_delete'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

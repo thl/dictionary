@@ -1667,7 +1667,9 @@ end
     @definition.term = 'Click to modify' if @definition.term == nil or @definition.term == ''
     @definition.definition = 'Click to modify'  if @definition.definition == nil or @definition.definition == ''
     # render :template => '/definitions/edit_show'
-    render :layout => false
+    
+    #render :layout => false
+    render :layout => 'staging_new'
   end
     
   def public_other_term
@@ -3222,7 +3224,8 @@ end
       o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
       o.save
       @definition.definition_definition_form_froms << o
-      render_component :controller => "definition_definition_forms", :action => "edit_dynamic", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'definition_definition_form_from', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #render_component :controller => "definition_definition_forms", :action => "edit_dynamic", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'definition_definition_form_from', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to edit_dynamic_definition_definition_forms_url(o.id, :internal => internal, :pk => params['id'], :relatedtype => 'definition_definition_form_from', :level => params['level'], :new => 'yes', :definition_id => params['definition_id'] )  
     end
   end
 
@@ -3462,16 +3465,19 @@ end
 
   def synonym_search
     @definition = Definition.find(params['id'])
-    render :layout => false
-    
+    #render :layout => false
+    render :layout => 'staging_popup'
   end
 
   def synonym_search_action
+    debugger
     @terms = Definition.find(:all, :conditions => "term ilike '%"+params['term']+"%'")
     render :layout => false
+    #render :layout => 'staging_popup'
   end
 
   def add_synonym
+    debugger
     puts '------------'
     puts params[:id]
     puts params['tags']
