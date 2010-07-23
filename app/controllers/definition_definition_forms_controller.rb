@@ -106,7 +106,24 @@ class DefinitionDefinitionFormsController < ApplicationController
       params['level'] = '1'
     end
     @definition_definition_form = DefinitionDefinitionForm.find(params[:id])
-    render :layout => false if params['internal'] != nil
+    #render :layout => false if params['internal'] != nil
+    render :layout => 'staging_popup'
+  end
+  
+  def modal_edit_dynamic
+    @role = "Honorific Form, Non-honorific Form, Conjugated Form Past, Conjugated Form Present, Conjugated Form Future, Conjugated Form Imperative, Dialectical correlates, Literary and colloquial correlates, Compounds, Abbreviation, Expansion, Phrases, Paired term, Partial Synonym, Antonym, Poetic expressions, Gloss".split(', ')
+    if(params['internal'] != nil)
+      @divname = 'definition_definition_form_internal'
+    else
+    	@divname = 'definition_definition_form'
+    end
+    if params['level'] != nil
+      params['level'] = (params['level'].to_i + 1).to_s
+    else
+      params['level'] = '1'
+    end
+    @definition_definition_form = DefinitionDefinitionForm.find(params[:id])
+    render :layout => 'staging_popup'
   end
 
   def show_edit
@@ -187,17 +204,21 @@ class DefinitionDefinitionFormsController < ApplicationController
       if params['new'] != nil
         DefinitionDefinitionForm.find(params['id']).destroy unless params['id'] == nil
       end
-    if params['internal'] == 'definitions'
-      render :partial => "definitions/edit_contents", :locals => {'@definition' => Definition.find(params['pk'])}
-    end
-    if params['internal'] == 'definition_tos'
-      render :partial => "definitions/edit_contents", :locals => {'@definition' => Definition.find(params['pk'])}
-    end
-     if params['internal'] == 'definition_definition_forms'
-       render :partial => 'definition_definition_forms/edit_contents', :locals => {'@definition_definition_form' => DefinitionDefinitionForm.find(params['pk'])}
-     end
+      if params['internal'] == 'definitions'
+        #render :partial => "definitions/edit_contents", :locals => {'@definition' => Definition.find(params['pk'])}
+        render :partial => "definitions/edit_contents", :locals => {:definition => Definition.find(params['pk'])}
+      end
+      if params['internal'] == 'definition_tos'
+        #render :partial => "definitions/edit_contents", :locals => {'@definition' => Definition.find(params['pk'])}
+        render :partial => "definitions/edit_contents", :locals => {:definition => Definition.find(params['pk'])}
+      end
+      if params['internal'] == 'definition_definition_forms'
+        render :partial => 'definition_definition_forms/edit_contents', :locals => {:definition_definition_form => DefinitionDefinitionForm.find(params['pk'])}
+      end
     else
-    redirect_to :controller => 'definitions', :action => 'public_content_only', :id => params['definition_id'] 
+      #redirect_to :controller => 'definitions', :action => 'public_content_only', :id => params['definition_id'] 
+      redirect_to :controller => 'definitions', :action => 'public_edit', :id => params['definition_id']
+
       # DefinitionDefinitionForm.find(params['id']).destroy unless params['new'] == nil
       # if session['previous_page'] != 'invalid' and session['previous_page'] != nil
       #   redirect_to session['previous_page']
@@ -275,7 +296,8 @@ class DefinitionDefinitionFormsController < ApplicationController
       @definition_definition_form.definition_to = nil if params['tags'] == nil 
       @definition_definition_form.save
     end
-    render :partial => "edit_contents"
+    #render :partial => "edit_contents"
+    render :partial => "edit_contents", :locals => {:definition_definition_form => @definition_definition_form}
   end
 
   def edit_search
@@ -284,12 +306,13 @@ class DefinitionDefinitionFormsController < ApplicationController
     else
     	params['level'] = '3'
     end
-      @definition_definition_form = DefinitionDefinitionForm.find(params['id'])
-      render :layout => false
+    @definition_definition_form = DefinitionDefinitionForm.find(params['id'])
+    render :layout => false
   end
 
   def edit_search_action
     @definition_definition_form = DefinitionDefinitionForm.find(params['definition_definition_form']['id'])
+    #@definition_definition_form = DefinitionDefinitionForm.find(params['id'])
     query = ""
      @definition_froms = nil
      if params["relatedtype"] == "definition_from"
@@ -367,7 +390,8 @@ class DefinitionDefinitionFormsController < ApplicationController
         @definition_definition_form.save
       end
     end
-    render :partial => 'edit_contents'
+    #render :partial => 'edit_contents'
+    render :partial => 'edit_contents', :locals => {:definition_definition_form => @definition_definition_form}
   end
 
   def search
