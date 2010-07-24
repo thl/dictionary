@@ -268,8 +268,8 @@ function clear_contents(node)
 		tb_show("add new content", root_dir+'/'+controller+'/public_add/'+id+'?parent_id='+parent_id+'&head_id='+head_id+'&height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);
 	} 
 	function edit_form_to(controller,id,parent_id) {
-		new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from', {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
-		/*tb_show("edit form from", root_dir+'/'+controller+'/modal_edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from'+'&height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);*/
+		/*new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from', {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); */
+		tb_show("edit form from", root_dir+'/'+controller+'/modal_edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from'+'&height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);
 	}
 	function search_popup(controller,relatedtype,id) {
 		//new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_search/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
