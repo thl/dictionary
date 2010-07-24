@@ -511,17 +511,19 @@
 		<span id="<%= d.id%>_form_to" > </span>
 		<% if d.full_synonyms.size > 0%>
 		<% count = 0;
-		   size = d.pronunciations.size;
+		   size = d.full_synonyms.size;
 		  for e in d.full_synonyms %>
 		<b>Full Synonym:</b>
-	<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('full_synonyms','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
+	        <%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('full_synonyms','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
 			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
-	<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_full_synonym', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'full_synonyms', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
+	        <%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_full_synonym', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'full_synonyms', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 			<span class=menuvalue onclick=show_menu(full_synonym_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'full_synonym_id='+e.id.to_s, :title => 'Edit Relationships' %> 
 			</span>
-			<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Full Synyonym'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_full_synonym', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :full_synonym => e.id }}, :confirm => "Are you sure you want to remove this Full Synonym?") %>			
+			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Full Synyonym'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_full_synonym', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :full_synonym => e.id }}, :confirm => "Are you sure you want to remove this Full Synonym?") %>			
+			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_full_synonym' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id,  :parent_id => parent_id, :head_id => head_id, :full_synonym => e.id),  :title=>'Remove Full Synyonym', :confirm => "Are you sure you want to remove this Full Synonym?" %>	
+			
 			<span class="tib1">
 				<% for t in e.definitions %>
 					<%= link_to(t.term.s, :action => 'public_edit', :id => t.id) unless t.term == d.term %>&nbsp;

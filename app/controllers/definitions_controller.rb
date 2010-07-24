@@ -3470,7 +3470,6 @@ end
   end
 
   def synonym_search_action
-    debugger
     @terms = Definition.find(:all, :conditions => "term ilike '%"+params['term']+"%'")
     render :layout => false
     #render :layout => 'staging_popup'
@@ -3610,7 +3609,8 @@ end
         end
       end
     end
-    redirect_to :action => 'public_content_only', :id => params['definition_id']
+    #redirect_to :action => 'public_content_only', :id => params['definition_id']
+    redirect_to :action => 'public_edit', :id => params['id']
   end
   
   def edit_search_action

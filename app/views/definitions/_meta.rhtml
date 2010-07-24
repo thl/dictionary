@@ -1,13 +1,11 @@
 		<b>Meta: </b>
 			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => meta.id, :history_class => meta.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => meta.id, :history_class => meta.class.to_s }}) %>			
-	<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => meta_location, :url => {:controller => 'metas', :action => 'public_edit', :id => meta.id, :params => {'definition_id' => head_id}} %>
-	<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'metas', :action => 'edit_dynamic_meta', :id => meta.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Meta Edit' %>
-			<span class=menuvalue onclick=show_menu(meta_menu,getCoord(arguments[0]));>
+	        <%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'metas', :action => 'edit_dynamic_meta', :id => meta.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Meta Edit' %>
+			<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => meta_location, :url => {:controller => 'metas', :action => 'public_edit', :id => meta.id, :params => {'definition_id' => head_id}} %>
+	        <span class=menuvalue onclick=show_menu(meta_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'meta_id='+meta.id.to_s, :title => 'Edit Relationships' %> 
 			</span>
-			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'metas', :action => 'edit_new', :id => meta.id, :internal=>'edit_box', :public=>'yes', :level=>'0', :relatedtype=>'source', :definition_id=>head_id, :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'New Translation Meta' %>					
-			
 			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Meta'), :update => 'definition_space', :url => {:action => 'public_remove_meta', :id => meta.id, :params => { :head_id => head_id, :meta => meta.id }}, :confirm => "Are you sure you want to remove this Meta?") %>			
 			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_meta' , :update => 'definition_space', :complete => 're_initialize();',  :id => meta.id, :head_id => head_id, :meta => meta.id),  :title=>'Remove Meta', :confirm => "Are you sure you want to remove this Meta?" %>
 			<% if (meta.project != nil and meta.project != '') or (meta.project_type != nil)%>
