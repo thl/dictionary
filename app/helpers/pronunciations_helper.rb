@@ -844,9 +844,10 @@ module PronunciationsHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('pronunciation[pronunciation_category"+@pronunciation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('pronunciation[pronunciation_category"+@pronunciation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('pronunciation[pronunciation_category"+@pronunciation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('pronunciation[pronunciation_category"+@pronunciation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     @data = Category.find(189)
-    resultstr << category_selector(@data, :pronunciation, :pronunciation_category, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    @pronunciation_type = @data.children.collect {|l| [ h(l.title), l.id ] } #@data.children.collect(&:id)
+    #resultstr << category_selector(@data, :pronunciation, :pronunciation_category, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    resultstr << select(:pronunciation, :pronunciation_category_id, @pronunciation_type, { :include_blank => true })
     resultstr << "<br>"
-    
     resultstr << "<b>Tibetan Dialect: </b>"
     #resultstr << "<input type=hidden name=pronunciation[major_dialect_family] id=pronunciation[major_dialect_family"+@pronunciation.id.to_s+"] value=\""+@pronunciation.major_dialect_family.to_s+"\" >"
     #if @pronunciation.major_dialect_family_type == nil

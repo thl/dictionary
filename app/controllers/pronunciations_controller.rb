@@ -682,6 +682,7 @@ class PronunciationsController < ApplicationController
   end  
   
   def update_dynamic_pronunciation
+    debugger
       @pronunciation = Pronunciation.find(params[:id])
       if @pronunciation.created_by == nil or @pronunciation.created_by == ""
         @pronunciation.created_by = session[:user].login
