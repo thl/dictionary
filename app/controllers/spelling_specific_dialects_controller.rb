@@ -6,9 +6,9 @@ class SpellingSpecificDialectsController < ApplicationController
 
 
 
-  SpellingSpecificDialect.content_columns.each do |column|
-    in_place_update_form :spelling_specific_dialect, column.name
-  end
+  #SpellingSpecificDialect.content_columns.each do |column|
+  #  in_place_update_form :spelling_specific_dialect, column.name
+  #end
 
   def index
     list

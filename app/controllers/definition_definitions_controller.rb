@@ -7,13 +7,13 @@ class DefinitionDefinitionsController < ApplicationController
   helper :definitions
 
 
-  DefinitionDefinition.content_columns.each do |column|
-    debugger
-    in_place_update_form :definition_definition, column.name
-  end
-  Definition.content_columns.each do |column|
-    in_place_update_form :definition, column.name
-  end
+  #DefinitionDefinition.content_columns.each do |column|
+  #  debugger
+  #  in_place_update_form :definition_definition, column.name
+  #end
+  #Definition.content_columns.each do |column|
+  #  in_place_update_form :definition, column.name
+  #end
 
   def index
     list

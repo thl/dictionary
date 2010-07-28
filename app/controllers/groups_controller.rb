@@ -7,12 +7,12 @@ class GroupsController < ApplicationController
   helper :metas
 
 
-  Group.content_columns.each do |column|
-    in_place_update_form :group, column.name
-  end
-  Meta.content_columns.each do |column|
-    in_place_update_form :meta, column.name
-  end
+  #Group.content_columns.each do |column|
+  #  in_place_update_form :group, column.name
+  #end
+  #Meta.content_columns.each do |column|
+  #  in_place_update_form :meta, column.name
+  #end
 
   def index
     list
