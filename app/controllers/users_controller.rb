@@ -6,12 +6,12 @@ class UsersController < ApplicationController
 
 
 
-  User.content_columns.each do |column|
-    in_place_update_form :user, column.name
-  end
+  #User.content_columns.each do |column|
+  #  in_place_update_form :user, column.name
+  #end
 
   def index
-    list
+    #list
     render :action => 'list'
   end
 
@@ -39,9 +39,11 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @user.created_by = session[:user].login
-    @user.created_at = Time.now
+    #@user.created_by = session[:user].login
+    @user.login
+    #@user.created_at = Time.now
     @user.save
+    debugger
     redirect_to :action => 'edit_dynamic', :id => @user.id, :params => {'new' => 'true'}
   end
 
@@ -81,6 +83,7 @@ class UsersController < ApplicationController
   end
 
   def edit_dynamic
+    debugger
     if(params['internal'] != nil)
       @divname = 'user_internal'
     else

@@ -6,9 +6,9 @@ class ModelSentenceTypesController < ApplicationController
 
 
 
-  ModelSentenceType.content_columns.each do |column|
-    in_place_update_form :model_sentence_type, column.name
-  end
+  #ModelSentenceType.content_columns.each do |column|
+  #  in_place_update_form :model_sentence_type, column.name
+  #end
 
   def index
     list
