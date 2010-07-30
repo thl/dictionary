@@ -220,7 +220,7 @@ module ApplicationHelper
     end
 
     def javascript_files
-      ['jquery','jquery-ui'] + super +  ['jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl']
+      ['jquery','jquery-ui'] + super +  ['jquery.inplace.pack','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl']
     end
     
     def side_column_links
