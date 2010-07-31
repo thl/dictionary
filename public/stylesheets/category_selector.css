@@ -1,10 +1,10 @@
 #loadingCategory
 {
-  background: url(/images/loadingAnimation2.gif) no-repeat center right;
+  background: url(../images/loadingAnimation2.gif) no-repeat center right;
 }
 
 .selectedCategory
 {
-  // background: url(/images/loadingAnimation2.gif) no-repeat center right;
+  // background: url(../images/loadingAnimation2.gif) no-repeat center right;
   background-color: LightBlue; color: #003366;
 }
