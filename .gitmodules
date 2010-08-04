@@ -19,3 +19,6 @@
 [submodule "vendor/plugins/active_resource_extensions"]
 	path = vendor/plugins/active_resource_extensions
 	url = git://github.com/thl/active_resource_extensions.git
+[submodule "vendor/plugins/proxy_engine"]
+	path = vendor/plugins/proxy_engine
+	url = git://github.com/thl/proxy_engine.git
