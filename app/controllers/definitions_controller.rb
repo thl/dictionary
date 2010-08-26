@@ -334,12 +334,16 @@ class DefinitionsController < ApplicationController
   def alphabet_sub_list
     @alphabet = "ཀ	ཁ	ག	ང	ཅ	ཆ	ཇ	ཉ	ཏ	ཐ	ད	ན	པ	ཕ	བ	མ	ཙ	ཚ	ཛ	ཝ	ཞ	ཟ	འ	ཡ	ར	ལ	ཤ	ས	ཧ	ཨ".split("\t")
     @terms = []
-    # @definitions = Definition.find( :all, :conditions => ["term like ? and level = 'head term'","#{@alphabet[params[:letter].to_i]}%"], :order => 'sort_order asc', :offset => params[:offset], :limit => 100)
-    @definitions = Definition.find(:all, :conditions => ["sort_order >= ? and sort_order <= ? and level = 'head term'", "#{params['start']}","#{params['start'].to_i+params['total'].to_i}"], :order => 'sort_order asc')
+     @definitions = Definition.find( :all, :conditions => ["term like ? and level = 'head term'","#{@alphabet[params[:letter].to_i]}%"], :order => 'sort_order asc', :offset => params[:offset], :limit => 100)
+    #above was commented
+    
+    #below wasn't commented
+    #@definitions = Definition.find(:all, :conditions => ["sort_order >= ? and sort_order <= ? and level = 'head term'", "#{params['start']}","#{params['start'].to_i+params['total'].to_i}"], :order => 'sort_order asc')
     @definitions.each do |d|
       @terms << {:term => "#{d.term.span} #{d.wylie} #{d.phonetic}", :id => d.id}
     end
     render :layout => false
+    #render :layout => 'dynamic_content' #'staging_new'
   end
 
 	def display_history
@@ -1796,7 +1800,7 @@ end
     end
     # render :template => '/definitions/edit_show'
   end
-
+  
   def debug_me
     d = Definition.find(params[:id])
     breakpoint
