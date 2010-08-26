@@ -281,8 +281,7 @@ jQuery.fn.checkTree = function(settings) {
 				var $checkbox_placeholder = jQuery("<div class=\"checkbox_placeholder\"></div>");
 				jQuery(this).prepend($checkbox_placeholder)
             }
-            
-            jQuery(this)
+            else jQuery(this)
                 .prepend($arrow)
             ;
         })

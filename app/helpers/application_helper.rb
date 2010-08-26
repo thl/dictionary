@@ -220,11 +220,16 @@ module ApplicationHelper
     end
 
     def javascript_files
-      super +  ['jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl']
+      ['jquery','jquery-ui'] + super +  ['jquery.inplace.pack','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl']
     end
     
     def side_column_links
-      ''
+      #''
+      str = "<h3 class=\"head\">#{link_to 'Dictionary App', '#nogo', {:hreflang => 'Description for Dictionary.'}}</h3>\n<ul>\n"
+  	  str += "<li>#{link_to 'New', definitions_new_path, {:hreflang => 'New'}}</li>\n" 
+      str += "<li>#{link_to 'Edit', definitions_edit_path, {:hreflang => 'Edit'}}</li>\n" 
+      str += "</ul>"
+      return str      
     end
     
     def login_status

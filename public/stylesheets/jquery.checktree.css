@@ -34,16 +34,16 @@ ul.tree li .arrow {
 	margin-left: 6px;
 }
 ul.tree li .collapsed {
-	background-image: url(/images/jquery_checktree/btn-plus-lg.gif);
+	background-image: url(../images/jquery_checktree/btn-plus-lg.gif);
 }
 ul.tree li .expanded {
-	background-image: url(/images/jquery_checktree/btn-minus-lg.gif);
+	background-image: url(../images/jquery_checktree/btn-minus-lg.gif);
 }
 #feature_types_accordion > li > .collapsed {
-	background-image: url(/images/jquery_checktree/btn-plus-lg.gif);
+	background-image: url(../images/jquery_checktree/btn-plus-lg.gif);
 }
 #feature_types_accordion > li > .expanded {
-	background-image: url(/images/jquery_checktree/btn-minus-lg.gif);
+	background-image: url(../images/jquery_checktree/btn-minus-lg.gif);
 }
 ul.tree li .checkbox, ul.tree li .single_checkbox {
 	width: 18px;
@@ -52,23 +52,25 @@ ul.tree li .checkbox, ul.tree li .single_checkbox {
 	margin: 0;
 	cursor: pointer;
 	float: left;
-	background: url(/images/jquery_checktree/check0.gif) no-repeat 0 0px;
+	background: url(../images/jquery_checktree/check0.gif) no-repeat 0 0px;
 }
 ul.tree li .checkbox_placeholder {
 	float:left;
 	padding-left:2px;
 	padding-right:0;
-	width:16px;
+	width:24px;
 	height:16px;
-	background: url(/images/jquery_checktree/btn-empty-lg.gif) no-repeat 2px 5px;
+	background: url(../images/jquery_checktree/btn-empty-lg.gif) no-repeat 6px 5px;
 }
 ul.tree li .checked {
-	background-image: url(/images/jquery_checktree/check2.gif);
+	background-image: url(../images/jquery_checktree/check2.gif);
 }
 ul.tree li .half_checked {
-	background-image: url(/images/jquery_checktree/check1.gif);
+	background-image: url(../images/jquery_checktree/check1.gif);
 }
 
 .single_selection_tree .checkbox {
 	display: none;
 }
+
+ul.tree li { line-height: 1.6em }

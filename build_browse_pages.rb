@@ -1,13 +1,19 @@
 require 'rubygems'
 require 'active_record' 
+#ActiveRecord::Base.establish_connection( 
+#:adapter => "postgresql", 
+#:host => "trinity.village.virginia.edu", 
+#:username => "postgres", 
+#:password => "4database", 
+#:database => "thdl_dictionary_08-21-07" 
+#) 
 ActiveRecord::Base.establish_connection( 
 :adapter => "postgresql", 
-:host => "trinity.village.virginia.edu", 
-:username => "postgres", 
-:password => "4database", 
-:database => "thdl_dictionary_08-21-07" 
+:host => "localhost", 
+:username => "rubyuser", 
+:password => "rubydude", 
+:database => "dictionary_producton" 
 ) 
- 
 
 class Definition < ActiveRecord::Base
 end
