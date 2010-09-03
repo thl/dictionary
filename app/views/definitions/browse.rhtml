@@ -12,7 +12,7 @@
 	<td>
 	<%#= link_to_remote(letter.span, :update => 'letter_list', :loading => "Element.show('loader');clear_bars();Element.show('#{letter}');", :complete => "Element.hide('loader');", :url => {:controller => 'browse', :action => 'index', :params => {:letter => "#{count}", :junk => Time.new.to_f.to_s}})%> 
 	<%#= link_to_remote letter.span, {:url => expand_page_browse_path(), :update => "letter_list",  :method => 'get'}  %>
-	<%= link_to_remote letter.span, {:url => {:controller => 'browse', :action => 'index',:letter => "#{count}", :junk => Time.new.to_f.to_s}, :update => "letter_list",  :method => 'get', :loading => "$('#loader').show();clear_bars();$('#'+'#{letter}').show();", :success => "tb_init('a.thickbox, area.thickbox, input.thickbox');", :complete => "$('#loader').hide();"}   %>
+	<%= link_to_remote letter.span, {:url => {:controller => 'browse', :action => 'index',:letter => "#{count}", :junk => Time.new.to_f.to_s}, :update => "letter_list",  :method => 'get', :loading => "$('#loader').show();clear_bars();$('#letter_list').hide();", :success => "tb_init('a.thickbox, area.thickbox, input.thickbox');", :complete => "$('#letter_list').show();$('#loader').hide();$('#'+'#{letter}').show();"}   %>
 	<%#= link_to_remote letter.span, {:url => {:controller => 'browse', :action => 'expand_page',:letter => "#{count}", :junk => Time.new.to_f.to_s}, :update => "letter_list",  :method => 'get'}  %>
 	
 	</td>
