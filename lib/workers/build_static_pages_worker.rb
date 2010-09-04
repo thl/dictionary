@@ -16,7 +16,7 @@ class BuildStaticPagesWorker < BackgrounDRb::MetaWorker
       count = 0
       @terms = []
       logger.info "page_#{page}.rhtml"
-      file = File.open("/tmp/page_#{page}.rhtml", 'w')
+      file = File.open("tmp/page_#{page}.rhtml", 'w')
       while count < total
         d = Definition.find( :first, :conditions => ["term like ? and level = 'head term'","#{letter}%"], :order => 'sort_order asc', :offset => count)
 
