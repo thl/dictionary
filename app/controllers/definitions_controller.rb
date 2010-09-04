@@ -1164,6 +1164,11 @@ def find_head_terms
 
 end
 
+  def syllable_terms
+    
+    render :layout => 'staging_new'
+  end
+
   def test_staging
     render :layout => 'staging'
   end
