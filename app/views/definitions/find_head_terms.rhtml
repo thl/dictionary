@@ -76,7 +76,8 @@
 			<% end %>
 	        <td width=20 valign=top>
 	     		<%#= link_to('View', :controller => 'definitions', :action => 'public_term', :id => definition.id, :params => {'mode' => 'search'}) %>
-	    		<%= link_to 'View', url_for(:controller => 'definitions', :action => 'public_term', :id => definition.id, :mode=>'browse', :list_view=>'true', :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Term'  unless definition.term == nil %>
+	    		<%#= link_to 'View', url_for(:controller => 'definitions', :action => 'public_term', :id => definition.id, :mode=>'browse', :list_view=>'true', :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Term'  unless definition.term == nil %>
+				<%= link_to('View', :controller => 'definitions', :action => 'public_term', :id => definition.id, :params => {:mode => 'search'}) %>
 			</td>
 </tr>
 <% if definition.id != nil %>
