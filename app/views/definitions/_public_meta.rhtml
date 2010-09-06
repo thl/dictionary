@@ -1,8 +1,9 @@
 <span class="meta" >
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => meta.id, :history_class => meta.class.to_s }}) %>			
-			<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => meta.id, :history_class => meta.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
+			<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => meta.id, :history_class => meta.class.to_s }}) %>			
+			<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => meta.id, :history_class => meta.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
+			<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => meta.id, :history_class => meta.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 			</dd>
 			<% if meta.sources.size > 0 %>
 			<span class="source" >
@@ -14,9 +15,9 @@
 							<span class="inner_def_header"><strong>SOURCE:</strong></span> 
 							<%#= link_to('Go to Source', "http://staging.thdl.org/reference/spt/SPT--FullRecord.php?ResourceId=#{str.gsub('SPT:','')}", :target => '_new') %>
 							<%= link_to_function('Go to Source', "window.open('http://www.thlib.org/reference/dictionaries/tibetan-dictionary/dictionary-biblio.php#spt=SPT--FullRecord.php?ResourceId=#{str.gsub('SPT:','')}')") %>
-							<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => s.id, :history_class => s.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
-							<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => s.id, :history_class => s.class.to_s }}) %>			
-
+							<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => s.id, :history_class => s.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
+							<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => s.id, :history_class => s.class.to_s }}) %>			
+							<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => s.id, :history_class => s.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 						</dd>
 						<% if s.page_number != nil and s.page_number != '' %>
 							<dd>

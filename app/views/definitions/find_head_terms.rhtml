@@ -33,7 +33,7 @@
         <tr class="ListLine<%=odd_or_even.to_s %>">
 			<td>
 				<span id="show_<%= definition.id %>"><%#= link_to_remote(image_tag('btn-plus-sm.gif', :border => 0), :update => ''+definition.id.to_s+'', :url => {:action => :public_term, :id => definition.id, :params => {'list_view' => 'true', 'mode' => 'browse'}}, :loading => "Element.hide('show_"+definition.id.to_s+"');Element.show('hide_"+definition.id.to_s+"');Element.show('"+definition.id.to_s+"row')") %>
-					                                 <%= link_to_remote image_tag('btn-plus-sm.gif', :border => 0), {:url => {:action => :public_term, :id => definition.id, :list_view => true, :mode => 'browse'}, :update => ''+definition.id.to_s+'', :method => 'get', :loading => "$('#show_"+definition.id.to_s+"').hide();$('#hide_"+definition.id.to_s+"').show();$('#"+definition.id.to_s+"row').show();"} %></span>
+					                                 <%= link_to_remote image_tag('btn-plus-sm.gif', :border => 0), {:url => {:action => :public_term, :id => definition.id, :list_view => true, :mode => 'browse'}, :update => ''+definition.id.to_s+'', :method => 'get', :loading => "$('#show_"+definition.id.to_s+"').hide();$('#hide_"+definition.id.to_s+"').show();$('#"+definition.id.to_s+"row').show();", :success => "tb_init('a.thickbox, area.thickbox, input.thickbox');"} %></span>
 				
 				<span id="hide_<%= definition.id %>" style="display:none">
 					<%#= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('hide_"+definition.id.to_s+"');Element.show('show_"+definition.id.to_s+"');Element.hide('"+definition.id.to_s+"row')") %>
