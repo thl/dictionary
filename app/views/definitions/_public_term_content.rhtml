@@ -55,11 +55,15 @@
 <font size="+2">THL DICTIONARY </font>
 	</td><td align="right">
 	<span id="show_meta_menu">
-	<span id="hide_info" style="display:none"><%= link_to_function("#{image_tag('user.png',:border=>0)} HIDE CONTRIBUTORS","hide_content('contributors');Element.hide('hide_info');Element.show('show_info')")%></span>
-	<span id="show_info"><%= link_to_function("#{image_tag('user.png',:border=>0)} SHOW CONTRIBUTORS","show_content('contributors');Element.hide('show_info');Element.show('hide_info')")%></span>
+	<span id="hide_info" style="display:none"><%#= link_to_function("#{image_tag('user.png',:border=>0)} HIDE CONTRIBUTORS","hide_content('contributors');Element.hide('hide_info');Element.show('show_info')")%>
+		<%= link_to_function("#{image_tag('user.png',:border=>0)} HIDE CONTRIBUTORS","hide_content('contributors');$('#hide_info').hide();$('#show_info').show()")%></span>
+	<span id="show_info"><%#= link_to_function("#{image_tag('user.png',:border=>0)} SHOW CONTRIBUTORS","show_content('contributors');Element.hide('show_info');Element.show('hide_info')")%>
+		<%= link_to_function("#{image_tag('user.png',:border=>0)} SHOW CONTRIBUTORS","show_content('contributors');$('#show_info').hide();$('#hide_info').show();")%></span>
 
-	<span id="hide_meta"><%= link_to_function("#{image_tag('icon-info.gif',:border=>0)} HIDE SOURCES","hide_content('meta');Element.hide('hide_meta');Element.show('show_meta')")%></span>
-	<span id="show_meta" style="display:none"><%= link_to_function("#{image_tag('icon-info.gif',:border=>0)} SHOW SOURCES","show_content('meta');Element.hide('show_meta');Element.show('hide_meta')")%></span>
+	<span id="hide_meta"><%#= link_to_function("#{image_tag('icon-info.gif',:border=>0)} HIDE SOURCES","hide_content('meta');Element.hide('hide_meta');Element.show('show_meta')")%>
+		<%= link_to_function("#{image_tag('icon-info.gif',:border=>0)} HIDE SOURCES","hide_content('meta');$('#hide_meta').hide();$('#show_meta').show();")%></span>
+	<span id="show_meta" style="display:none"><%#= link_to_function("#{image_tag('icon-info.gif',:border=>0)} SHOW SOURCES","show_content('meta');Element.hide('show_meta');Element.show('hide_meta')")%>
+		<%= link_to_function("#{image_tag('icon-info.gif',:border=>0)} SHOW SOURCES","show_content('meta');$('#show_meta').hide();$('#hide_meta').show();")%></span>
 	</span>
 	</td></tr>
 	</table>
@@ -102,8 +106,9 @@
 				<% if (d.language != 'English' and d.language != '' and d.language != nil) or (d.language_type != nil) %>
 				 <!-- (<%#= d.language%><%= d.language_type.title if d.language_type != nil %>) -->
 				<% end %>
-				<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => d.id, :history_class => d.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
-				<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => d.id, :history_class => d.class.to_s }}) %>			
+				<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => d.id, :history_class => d.class.to_s }}) %>			
+				<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => d.id, :history_class => d.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
+				<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => d.id, :history_class => d.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 
 
 <% if level == 'head' %>
@@ -111,8 +116,10 @@
 <% else %>
 	<% if str.size > 0 %>
 	<%# debugger %>
-<%= link_to_function( image_tag('btn_plus.gif', :border => 0, :id => 'right_'+d.id.to_s), "Element.hide('right_"+d.id.to_s+"');Element.show('up_"+d.id.to_s+"');show_content('display_"+time+"');", :title => 'Show') %>
-<%= link_to_function( image_tag('btn_minus.gif', :border => 0, :id => 'up_'+d.id.to_s, :style => 'display:none'), "Element.hide('up_"+d.id.to_s+"');Element.show('right_"+d.id.to_s+"');hide_content('display_"+time+"');", :title => 'Show') %>
+<%#= link_to_function( image_tag('btn_plus.gif', :border => 0, :id => 'right_'+d.id.to_s), "Element.hide('right_"+d.id.to_s+"');Element.show('up_"+d.id.to_s+"');show_content('display_"+time+"');", :title => 'Show') %>
+<%= link_to_function( image_tag('btn_plus.gif', :border => 0, :id => 'right_'+d.id.to_s), "$('#right_"+d.id.to_s+"').hide();$('#up_"+d.id.to_s+"').show();show_content('display_"+time+"');", :title => 'Show') %>
+<%#= link_to_function( image_tag('btn_minus.gif', :border => 0, :id => 'up_'+d.id.to_s, :style => 'display:none'), "Element.hide('up_"+d.id.to_s+"');Element.show('right_"+d.id.to_s+"');hide_content('display_"+time+"');", :title => 'Show') %>
+<%= link_to_function( image_tag('btn_minus.gif', :border => 0, :id => 'up_'+d.id.to_s, :style => 'display:none'), "$('#up_"+d.id.to_s+"').hide();$('#right_"+d.id.to_s+"').show();hide_content('display_"+time+"');", :title => 'Show') %>
 	<% end %>
 	<% @style = 'display:none;'+color %>
 <% end %>

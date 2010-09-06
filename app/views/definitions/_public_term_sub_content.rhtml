@@ -25,8 +25,9 @@
 					<% if e.language == 'Tibetan' %>
 					</span>
 					<% end %>
-					<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
-					<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
+					<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
+					<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
+					<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 					<%= render :partial => 'translation', :locals => {:translation => e, :head_id => head_id} %>
 			</td>
 			</tr>
@@ -61,14 +62,20 @@
 				<span class='tinyfied_public_show_inline'>
 					<%= e.translation_equivalent %>
 				</span>
-					<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
-					<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>		
+					<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
+					<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>		
+					<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+					
 					<% str = render :partial => 'translation_equivalent', :locals => {:translation_equivalent => e, :head_id => head_id} %>
 					<% if str.gsub("\n",'').gsub("\t",'').size > 0 %>
 						<span id="plus_item_te_<%= e.id %>" >
-							<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_te_#{e.id}');Element.show('te_#{e.id}');Element.hide('plus_item_te_#{e.id}')")%>
+							<%#= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_te_#{e.id}');Element.show('te_#{e.id}');Element.hide('plus_item_te_#{e.id}')")%>
+							<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "$('#minus_item_te_#{e.id}').show();$('#te_#{e.id}').show();$('#plus_item_te_#{e.id}').hide();")%>
 						</span>
-						<span id="minus_item_te_<%= e.id %>" style="display:none" ><%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_te_#{e.id}');Element.hide('te_#{e.id}');Element.show('plus_item_te_#{e.id}')")%></span>
+						<span id="minus_item_te_<%= e.id %>" style="display:none" >
+						  <%#= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_te_#{e.id}');Element.hide('te_#{e.id}');Element.show('plus_item_te_#{e.id}')")%>
+						  <%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "$('#minus_item_te_#{e.id}').hide();$('#e_#{e.id}').hide();$('#plus_item_te_#{e.id}').show();")%>
+						</span>
 						
 						<div id="te_<%=e.id%>" style="display:none">
 						<%= str %>
@@ -100,14 +107,19 @@
 				</span>
 				<% count += 1 %>
 			<% end %>
-			<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
-			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
+			<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
+			<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
 			<% str = render :partial => 'pronunciation', :locals => {:pronunciation => e, :head_id => head_id} %>		
 			<% if str.gsub("\n",'').gsub("\t",'').size > 0 %>
 			<span id="plus_item_p_<%= e.id %>">
-				<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_p_#{e.id}');Element.show('p_#{e.id}');Element.hide('plus_item_p_#{e.id}')")%>
+				<%#= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_p_#{e.id}');Element.show('p_#{e.id}');Element.hide('plus_item_p_#{e.id}')")%>
+				<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "$('#minus_item_p_#{e.id}').show();$('#p_#{e.id}').show();$('#plus_item_p_#{e.id}').hide();")%>
 			</span>
-			<span id="minus_item_p_<%= e.id %>" style="display:none" ><%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_p_#{e.id}');Element.hide('p_#{e.id}');Element.show('plus_item_p_#{e.id}')")%></span>
+			<span id="minus_item_p_<%= e.id %>" style="display:none" >
+			  	<%#= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_p_#{e.id}');Element.hide('p_#{e.id}');Element.show('plus_item_p_#{e.id}')")%>
+			  	<%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "$('#minus_item_p_#{e.id}').hide();$('#p_#{e.id}').hide();$('#plus_item_p_#{e.id}').show();")%>
+			</span>
 				
 			<div id="p_<%=e.id%>" style="display:none">
 			<%= str %>
@@ -132,14 +144,19 @@
 				<%= e.spelling if e.spelling != nil %>
 				<%= " (#{e.spelling_category.title})" if e.spelling_category != nil %>
 				
-				<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
-				<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
+				<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+				<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
+				<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 				<% str = render :partial => 'spelling', :locals => {:spelling => e, :head_id => head_id} %>	
 				<% if str.strip.size > 0 %>
 				<span id="plus_item_s_<%= e.id %>" >
-					<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_s_#{e.id}');Element.show('s_#{e.id}');Element.hide('plus_item_s_#{e.id}')")%>
+					<%#= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_s_#{e.id}');Element.show('s_#{e.id}');Element.hide('plus_item_s_#{e.id}')")%>
+					<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "$('#minus_item_s_#{e.id}').show();$('#s_#{e.id}').show();$('#plus_item_s_#{e.id}').hide();")%>
 				</span>
-				<span id="minus_item_s_<%= e.id %>" style="display:none" ><%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_s_#{e.id}');Element.hide('s_#{e.id}');Element.show('plus_item_s_#{e.id}')")%></span>
+				<span id="minus_item_s_<%= e.id %>" style="display:none" >
+					<%#= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_s_#{e.id}');Element.hide('s_#{e.id}');Element.show('plus_item_s_#{e.id}')")%>
+					<%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "$('#minus_item_s_#{e.id}').hide();$('#s_#{e.id}').hide();$('#plus_item_s_#{e.id}').show();")%>
+				</span>
 					
 				<div id="s_<%=e.id%>" style="display:none">
 					<%= str %>
@@ -169,14 +186,19 @@
 			<%= "#{e.etymology_category.title} - " if e.etymology_category != nil %>
 			<%= e.etymology if e.etymology != nil %>
 			</span>
-			<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
-			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>		
+			<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
+			<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>		
 			<% str = render :partial => 'etymology', :locals => {:etymology => e, :head_id => head_id} %>	
 			<% if str.strip.size > 0 %>	
 			<span id="plus_item_e_<%= e.id %>">
-				<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_e_#{e.id}');Element.show('e_#{e.id}');Element.hide('plus_item_e_#{e.id}')")%>
+				<%#= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_e_#{e.id}');Element.show('e_#{e.id}');Element.hide('plus_item_e_#{e.id}')")%>
+				<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "$('#minus_item_e_#{e.id}').show();$('#e_#{e.id}').show();$('#plus_item_e_#{e.id}').hide();")%>
 			</span>
-			<span id="minus_item_e_<%= e.id %>" style="display:none" ><%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_e_#{e.id}');Element.hide('e_#{e.id}');Element.show('plus_item_e_#{e.id}')")%></span>
+			<span id="minus_item_e_<%= e.id %>" style="display:none" >
+				<%#= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_e_#{e.id}');Element.hide('e_#{e.id}');Element.show('plus_item_e_#{e.id}')")%>
+				<%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "$('#minus_item_e_#{e.id}').hide();$('#e_#{e.id}').hide();$('#plus_item_e_#{e.id}').show();")%>
+			</span>
 				
 			<div id="e_<%=e.id%>" style="display:none">
 				<%= str %>
@@ -340,7 +362,8 @@
 			<%= link_to(e[1].s, :controller => 'definitions', :action => 'public_term', :id => e[2]) unless e[2] == nil %>
 			</span>
 			 (<%= e[0]%>)
-			<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history => e[3], :modal => 'true' })}', {title: 'Contributors:'})")%>
+			<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e[2], :history_class => 'Definition', :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history => e[3], :modal => 'true' })}', {title: 'Contributors:'})")%>
 			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history => e[3] }}) %>			
 			<% if e[4] != nil%>
 					<% t = Time.now %>
@@ -363,8 +386,9 @@
 			<%= link_to(e[1].s, :controller => 'definitions', :action => 'public_term', :id => e[2]) unless e[2] == nil %>
 			</span>
 			 (<%= e[0] %>)
-			<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history => e[3], :modal => 'true' })}', {title: 'Contributors:'})")%>
-			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history => e[3] }}) %>			
+			<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e[2], :history_class => 'Definition', :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history => e[3], :modal => 'true' })}', {title: 'Contributors:'})")%>
+			<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history => e[3] }}) %>			
 			<% if e[4] != nil%>
 					<!-- <dl style="margin-top:0em;margin-bottom:0em;">
 							<dd> -->
@@ -386,8 +410,9 @@
 			<%= link_to(e[1].s, :controller => 'definitions', :action => 'public_term', :id => e[2]) unless e[2] == nil %>
 			</span>
 			 (<%= e[0]%>)
-			<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history => e[3], :modal => 'true' })}', {title: 'Contributors:'})")%>
-			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history => e[3] }}) %>			
+			<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e[2], :history_class => 'Definition', :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history => e[3], :modal => 'true' })}', {title: 'Contributors:'})")%>
+			<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history => e[3] }}) %>			
 			<% if e[4] != nil%>
 					<!-- <dl style="margin-top:0em;margin-bottom:0em;">
 							<dd> -->
@@ -416,8 +441,10 @@
 					<% if count < size %>, <% end %>
 					<% end %>
 				<% end %>
-			<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
-			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
+			
+			<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors for Full Synonym' %>	
+			<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
+			<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 			<br>
 			<% if e[3] != nil%>
 					<!-- <dl style="margin-top:0em;margin-bottom:0em;">
@@ -511,14 +538,19 @@
 				<span class='tinyfied_public_show'>
 			<%= e.model_sentence if e.model_sentence != nil %>
 				</span>
-			<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
+				<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>	
+				<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
 					<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 					<% str = render :partial => 'model_sentence', :locals => {:model_sentence => e, :head_id => head_id} %>	
 					<% if str.strip.size > 0 %>
 					<span id="plus_item_ms_<%= e.id %>">
-						<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_ms_#{e.id}');Element.show('ms_#{e.id}');Element.hide('plus_item_ms_#{e.id}')")%>
+						<%#= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_ms_#{e.id}');Element.show('ms_#{e.id}');Element.hide('plus_item_ms_#{e.id}')")%>
+						<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "$('#minus_item_ms_#{e.id}').show();$('#ms_#{e.id}').show();$('#plus_item_ms_#{e.id}').hide();")%>
 					</span>
-					<span id="minus_item_ms_<%= e.id %>" style="display:none" ><%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_ms_#{e.id}');Element.hide('ms_#{e.id}');Element.show('plus_item_ms_#{e.id}')")%></span>
+					<span id="minus_item_ms_<%= e.id %>" style="display:none" >
+						<%#= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_ms_#{e.id}');Element.hide('ms_#{e.id}');Element.show('plus_item_ms_#{e.id}')")%>
+						<%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "$('#minus_item_ms_#{e.id}').hide();$('#ms_#{e.id}').hide();$('#plus_item_ms_#{e.id}').show();")%>
+					</span>
 						
 					<div id="ms_<%=e.id%>" style="display:none">
 						<%= str %>
@@ -541,8 +573,9 @@
 		   size = d.literary_quotations.size;
 			for e in d.literary_quotations %>
 				<%= '<br><br>' if count > 0 %>
-				<%= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
-			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
+				<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>	
+				<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
+			<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 			<% if e.passage != nil and e.passage	 != ''%>
 						<span class="tib1">
 						<span class='tinyfied_public_show_inline'>
@@ -554,9 +587,13 @@
 			
 			<% if str.strip.size > 0 %>
 			<span id="plus_item_lq_<%= e.id %>">
-				<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_lq_#{e.id}');Element.show('lq_#{e.id}');Element.hide('plus_item_lq_#{e.id}')")%>
+				<%#= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_lq_#{e.id}');Element.show('lq_#{e.id}');Element.hide('plus_item_lq_#{e.id}')")%>
+				<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "$('#minus_item_lq_#{e.id}').show();$('#lq_#{e.id}').show();$('#plus_item_lq_#{e.id}').hide();")%>
 			</span>
-			<span id="minus_item_lq_<%= e.id %>" style="display:none" ><%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_lq_#{e.id}');Element.hide('lq_#{e.id}');Element.show('plus_item_lq_#{e.id}')")%></span>
+			<span id="minus_item_lq_<%= e.id %>" style="display:none" >
+				<%#= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_lq_#{e.id}');Element.hide('lq_#{e.id}');Element.show('plus_item_lq_#{e.id}')")%>
+				<%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "$('#minus_item_lq_#{e.id}').hide();$('#lq_#{e.id}').hide();$('#plus_item_lq_#{e.id}').show();")%>
+			</span>
 				
 			<div id="lq_<%=e.id%>" style="display:none">
 				<%= str %>
@@ -584,10 +621,13 @@
 			<% str = render :partial => 'oral_quotation', :locals => {:oral_quotation => e, :head_id => head_id} %>	
 			<% if str.strip.size > 0 %>
 			<span id="plus_item_oq_<%= e.id %>">
-				<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_oq_#{e.id}');Element.show('oq_#{e.id}');Element.hide('plus_item_oq_#{e.id}')")%>
+				<%#= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "Element.show('minus_item_oq_#{e.id}');Element.show('oq_#{e.id}');Element.hide('plus_item_oq_#{e.id}')")%>
+				<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "$('#minus_item_oq_#{e.id}').show();$('#oq_#{e.id}').show();$('#plus_item_oq_#{e.id}').hide();")%>
 			</span>
-			<span id="minus_item_oq_<%= e.id %>" style="display:none" ><%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_oq_#{e.id}');Element.hide('oq_#{e.id}');Element.show('plus_item_oq_#{e.id}')")%></span>
-				
+			<span id="minus_item_oq_<%= e.id %>" style="display:none" >
+				<%#= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_oq_#{e.id}');Element.hide('oq_#{e.id}');Element.show('plus_item_oq_#{e.id}')")%>
+				<%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "$('#minus_item_oq_#{e.id}').hide();$('#oq_#{e.id}').hide();$('#plus_item_oq_#{e.id}').show();")%>
+			</span>	
 			<div id="oq_<%=e.id%>" style="display:none">
 				<%= str %>
 			</div>
