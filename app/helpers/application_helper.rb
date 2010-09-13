@@ -220,7 +220,16 @@ module ApplicationHelper
     end
 
     def javascript_files
-      ['jquery','jquery-ui'] + super +  ['jquery.inplace.pack','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl']
+      if @current_section == :home
+        super 
+      else 
+        if @current_section == :showview
+          super + ['thickbox-compressed']
+        else
+          ['jquery','jquery-ui'] + super +  ['jquery.inplace.pack','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl']
+          #super +  ['jquery.inplace.pack','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl']
+        end
+      end
     end
     
     def side_column_links

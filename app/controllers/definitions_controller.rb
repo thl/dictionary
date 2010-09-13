@@ -310,6 +310,7 @@ class DefinitionsController < ApplicationController
   end
 
   def browse
+    @current_section = :showview
     @alphabet = "ཀ	ཁ	ག	ང	ཅ	ཆ	ཇ	ཉ	ཏ	ཐ	ད	ན	པ	ཕ	བ	མ	ཙ	ཚ	ཛ	ཝ	ཞ	ཟ	འ	ཡ	ར	ལ	ཤ	ས	ཧ	ཨ".split("\t")
     expire_page(:controller => :browse, :action => :index)
     
@@ -838,6 +839,7 @@ class DefinitionsController < ApplicationController
   def index
     # list
     # render :action => 'list'
+    @current_section = :home
     @users = User.find :all, :conditions => 'full_name is not null'
     @page_class = 'search'
     render :layout => 'staging_new' #'thdl_home'
@@ -846,6 +848,7 @@ class DefinitionsController < ApplicationController
   def index_edit
     # list
     # render :action => 'list'
+    @current_section = :home
     @users = User.find :all, :conditions => 'full_name is not null'
     @page_class = 'edit'
     render :layout => 'staging_new' #'staging' #'thdl_home'
@@ -895,7 +898,7 @@ def browse_old
 end  
   
 def find_head_terms
-
+  @current_section = :showview
   if session[:user] != nil
     @logged_in = true
   else
@@ -1801,6 +1804,7 @@ end
     if params['list_view'] == "true"
       render :layout => false #render :layout => 'staging_popup_show' #render :layout => false   #without the layout no jquery calls available
     else
+      @current_section = :showview
       render :layout => 'staging_new'
     end
     # render :template => '/definitions/edit_show'
