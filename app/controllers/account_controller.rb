@@ -2,6 +2,7 @@ class AccountController < ApplicationController
   layout  'staging_new'
 
   def login
+    @current_section = :home
     case request.method
       when :post
       if session[:user] = User.authenticate(params[:user_login], params[:user_password])
@@ -18,7 +19,7 @@ class AccountController < ApplicationController
   
   def signup
     @user = User.new(params[:user])
-
+    @current_section = :home
     if request.post? and @user.save
       session[:user] = User.authenticate(@user.login, params[:user][:password])
       flash['notice']  = "Signup successful"

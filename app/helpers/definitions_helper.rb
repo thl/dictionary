@@ -1,7 +1,16 @@
 module DefinitionsHelper
   def javascripts
-    [super, include_tiny_mce_if_needed].join("\n")
+    if @current_section == :home
+      super 
+    else 
+      if @current_section == :showview
+        super
+      else
+        [super, include_tiny_mce_if_needed].join("\n")
+      end
+    end
   end
+  
   def get_themes
     theme_ones = ThemeLevelOne.find(:all)
     theme_array = ""
