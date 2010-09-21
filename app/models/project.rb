@@ -1,2 +1,15 @@
 class Project < ActiveRecord::Base
 end
+
+
+# == Schema Info
+#
+# Table name: projects
+#
+#  id             :integer         not null, primary key
+#  created_by     :string(80)
+#  project        :string(512)
+#  update_history :text
+#  updated_by     :string(80)
+#  created_at     :string(80)
+#  updated_at     :string(80)

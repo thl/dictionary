@@ -28,3 +28,52 @@ class Etymology < ActiveRecord::Base
   $source_type = "personal communication, text, original".split(", ")
 
 end
+
+
+# == Schema Info
+#
+# Table name: etymologies
+#
+#  id                           :integer         not null, primary key
+#  definition_id                :integer
+#  derivation_type_id           :integer
+#  etymology_category_id        :integer
+#  literary_form_type_id        :integer
+#  literary_genre_type_id       :integer
+#  literary_period_type_id      :integer
+#  loan_language_type_id        :integer
+#  major_dialect_family_type_id :integer
+#  analytical_note              :string(512)
+#  audio                        :string(120)
+#  audio_date                   :string(80)
+#  audio_description            :text
+#  audio_id_number              :string(120)
+#  audio_link                   :string(256)
+#  audio_place_of_recording     :string(120)
+#  audio_speaker                :string(120)
+#  created_by                   :string(80)
+#  derivation                   :string(80)
+#  etymology                    :text
+#  etymology_type               :string(128)
+#  image                        :string(256)
+#  image_caption                :string(256)
+#  image_description            :string(512)
+#  image_link                   :string(256)
+#  image_photographer           :string(128)
+#  literary_form                :string(80)
+#  literary_genre               :string(80)
+#  literary_period              :string(80)
+#  loan_language                :string(80)
+#  major_dialect_family         :string(80)
+#  specific_dialect             :string(80)
+#  update_history               :text
+#  updated_by                   :string(80)
+#  video                        :string(120)
+#  video_date                   :string(80)
+#  video_description            :text
+#  video_id_number              :string(120)
+#  video_link                   :string(256)
+#  video_place_of_recording     :string(120)
+#  video_speaker                :string(120)
+#  created_at                   :string(80)
+#  updated_at                   :string(80)

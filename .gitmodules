@@ -22,3 +22,6 @@
 [submodule "vendor/plugins/proxy_engine"]
 	path = vendor/plugins/proxy_engine
 	url = git://github.com/thl/proxy_engine.git
+[submodule "vendor/plugins/annotate_models"]
+	path = vendor/plugins/annotate_models
+	url = git://github.com/amontano/annotate_models.git

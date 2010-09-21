@@ -57,3 +57,13 @@ class User < ActiveRecord::Base
   validates_length_of :password, :within => 5..40
   validates_presence_of :login, :password, :password_confirmation
 end
+
+
+# == Schema Info
+#
+# Table name: users
+#
+#  id        :integer         not null, primary key
+#  full_name :string(128)     default("THDL")
+#  login     :string(80)
+#  password  :string(80)

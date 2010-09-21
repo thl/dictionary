@@ -7,3 +7,17 @@ class GrammarFunctionLevelThree < ActiveRecord::Base
     return str
   end
 end
+
+
+# == Schema Info
+#
+# Table name: grammar_function_level_threes
+#
+#  id                  :integer         not null, primary key
+#  grammar_function_id :integer
+#  created_by          :string(80)
+#  grammar_function    :string(128)
+#  update_history      :text
+#  updated_by          :string(80)
+#  created_at          :string(80)
+#  updated_at          :string(80)

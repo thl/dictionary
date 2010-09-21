@@ -7,3 +7,16 @@ class ThemeLevelOne < ActiveRecord::Base
     return str
   end
 end
+
+
+# == Schema Info
+#
+# Table name: theme_level_ones
+#
+#  id             :integer         not null, primary key
+#  created_by     :string(80)
+#  theme          :string(128)
+#  update_history :text
+#  updated_by     :string(80)
+#  created_at     :string(80)
+#  updated_at     :string(80)

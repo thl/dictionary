@@ -8,3 +8,17 @@ class DefinitionDefinitionTest < Test::Unit::TestCase
     assert true
   end
 end
+
+
+# == Schema Info
+#
+# Table name: definition_definitions
+#
+#  id             :integer         not null, primary key
+#  def1_id        :integer
+#  def2_id        :integer
+#  created_by     :string(80)
+#  update_history :text
+#  updated_by     :string(80)
+#  created_at     :string(80)
+#  updated_at     :string(80)
