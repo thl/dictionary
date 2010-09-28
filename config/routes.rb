@@ -122,7 +122,10 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
+  map.root :controller => "definitions"
+  map.edit_main_definition 'definitions/index_edit', :controller => 'definitions', :action => 'index_edit'
+  map.new_main_definition 'definitions/new', :controller => 'definitions', :action => 'new'
+  
   map.connect 'internal_definitions/:action/:id', :controller => 'definitions'
   
   map.connect '', :controller => "definitions"

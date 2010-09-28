@@ -89,3 +89,13 @@ class UserTest < Test::Unit::TestCase
 
   
 end
+
+
+# == Schema Info
+#
+# Table name: users
+#
+#  id        :integer         not null, primary key
+#  full_name :string(128)     default("THDL")
+#  login     :string(80)
+#  password  :string(80)

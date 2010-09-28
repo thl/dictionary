@@ -98,13 +98,13 @@ module ApplicationHelper
       $navbar
   end
   
-  def side_column
+  #def side_column
       # get_content('http://staging.thdl.org/global/php/offsite.php?url=/reference/dictionaries/tibetan-dictionary/dictionary-template.php') do |document|
       #   content = document.at("//div[@id=side-column]")
       #   content.to_html
       # end
-      $sidebar
-  end
+  #    $sidebar
+  #end
 
   def footer
       # get_content('http://staging.thdl.org/global/php/offsite.php?url=/reference/dictionaries/tibetan-dictionary/dictionary-template.php') do |document|
@@ -232,12 +232,55 @@ module ApplicationHelper
       end
     end
     
+    def tmb_url
+      hostname = Socket.gethostname.downcase
+      if hostname =~ /sds[3-578].itc.virginia.edu/
+        tmb = 'http://tmb.thlib.org'
+      elsif hostname == 'sds6.itc.virginia.edu'
+        tmb = 'http://tmb.staging.thlib.org'
+      elsif hostname == 'dev.thlib.org'
+        tmb = 'http://tmb.dev.thlib.org'
+      else
+        tmb = 'http://tmb.thlib.org'
+      end
+      return tmb
+    end
+    
     def side_column_links
-      #''
-      str = "<h3 class=\"head\">#{link_to 'Dictionary App', '#nogo', {:hreflang => 'Description for Dictionary.'}}</h3>\n<ul>\n"
-  	  str += "<li>#{link_to 'New', definitions_new_path, {:hreflang => 'New'}}</li>\n" 
-      str += "<li>#{link_to 'Edit', definitions_edit_path, {:hreflang => 'Edit'}}</li>\n" 
+      str = "	<h4 id=\"side-home-link\"><a href=\"/reference/dictionaries/tibetan-dictionary/\" title=\"Tibetan Dictionary Home\">Tibetan Dictionary Home</a></h4>"
+      str += "<h3 class=\"head\">#{link_to 'Tibetan Dictionary Project', '#nogo', {:hreflang => 'Description for Tibetan Dictionary Project.'}}</h3>\n<ul>\n"
+  	  str += "<li>#{link_to 'Home', root_path, {:hreflang => 'Dictionary Home.'}}</li>\n" 
+			str += "<li><a href=\"/reference/dictionaries/tibetan-dictionary/about/wiki/thdl%20tibetan%20historical%20dictionary%20overview.html\" title=\"\">Project Overview</a></li>"
+			str += "<li><a href=\"/reference/dictionaries/tibetan-dictionary/about/wiki/thdl%20tibetan%20historical%20dictionary%20introduction.html\" title=\"\">Historical Dictionary Intro</a></li>"
+			str += "<li><a href=\"/reference/dictionaries/tibetan-dictionary/translate.php\" title=\"\">Tibetan Translation</a></li>"
+			str += "<li><a href=\"/reference/dictionaries/tibetan-dictionary/about/wiki/thdl%20tibetan%20historical%20dictionary%20status%20report.html\" title=\"\">Status</a></li>"
+			str += "<li><a href=\"/reference/dictionaries/tibetan-dictionary/about/wiki/thdl tibetan historical dictionary help.html\" title=\"\">Dictionaries Help</a></li>"
+  	  
+  	  #if !session[:user].nil?
+  	    str += "<li class=\"loggedon\">#{link_to 'Edit', edit_main_definition_path, {:hreflang => 'Dictionary Edit.'}}</li>\n"   
+  	    str += "<li class=\"loggedon\">#{link_to 'New', new_main_definition_path, {:hreflang => 'Dictionary New.'}}</li>\n" 
+      #end
+      str += "<li><a href=\"/reference/dictionaries/tibetan-dictionary/sitewiki/c06fa8cf-c49c-4ebc-007f-482de5382105/tibetan historical dictionary editorial manual.html\">Editorial Manual</a></li>"
+			str += "<li><a href=\"/reference/dictionaries/tibetan-dictionary/about/wiki/thdl%20tibetan%20historical%20dictionary%20about%20us.html\" title=\"\">About Us</a></li>"
+			str += "<li><a href=\"/reference/dictionaries/tibetan-dictionary/about/wiki/thdl%20tibetan%20historical%20dictionary%20how%20to%20participate.html\" title=\"\">How to Participate</a></li>"
+			str += "<li><a href=\"/reference/dictionaries/tibetan-dictionary/about/wiki/thdl%20tibetan%20historical%20dictionary%20sponsors.html\" title=\"\">Sponsors</a></li>"
+			str += "<li><a href=\"/reference/dictionaries/tibetan-dictionary/about/wiki/thdl%20tibetan%20historical%20dictionary%20how%20to%20cite.html\" title=\"\">How to Cite</a></li>"
+			str += "<li><a href=\"javascript:linkTo_UnCryptMailto('nbjmup;uimAdpmmbc/jud/wjshjojb/fev');\">Contact Us</a></li>"
       str += "</ul>"
+      
+  		str += "<h3 class=\"head global-links\"><a href=\"#nogo\" title=\"\">Reference</a></h3>"
+      str += "\n<ul>\n"
+      str += "<li><a href=\"/reference/\" title=\"Link to Reference Home Page\">Reference Home</a></li>"
+    	str += "<li><a href=\"/reference/bibliographies/\" title=\"\">Bibliographies</a></li>"
+    	str += "<li><a href=\"/reference/dictionaries/\" title=\"\">Dictionaries</a></li>"
+    	str += "<li><a href=\"/reference/search-places/\" title=\"\">Search for Places</a></li>"
+    	str += "<li><a href=\"/reference/tibetan-grammar/\" title=\"\">Tibetan Grammars</a></li>"
+    	str += "<li><a href=\"/reference/tibetan-translation/\" title=\"\">Tibetan Translation</a></li>"
+    	str += "<li><a href=\"/reference/timelines/\" title=\"\">Timelines</a></li>"
+    	str += "<li>#{link_to 'Topical Map Builder', tmb_url}</li>"
+    	str += "<li><a href=\"/reference/transliteration/\" title=\"\">Transliteration</a></li>"
+      str += "</ul>"
+      
       return str      
     end
     
