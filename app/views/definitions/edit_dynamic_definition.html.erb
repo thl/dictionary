@@ -31,7 +31,7 @@ $(document).ready(function() {
 <% else %>
 <%= edit_dynamic_definition %>
 <% end %>
-
+<b>Root Letter (calculated automatically, override here):</b> <%= f.select :root_letter_id, @alphabet.collect{|letter| [letter.unicode, letter.id]}, { :include_blank => true } %>
 <input type="hidden" name="id" value="<%= params["id"] %>"/>
 <input type="hidden" name="internal" value="<%= params['internal'] %>">
 <input type="hidden" name="pk" value="<%= params['pk'] %>">
