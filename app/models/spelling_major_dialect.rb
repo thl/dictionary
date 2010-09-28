@@ -1,8 +1,8 @@
 class SpellingMajorDialect < ActiveRecord::Base
 end
 
-
 # == Schema Info
+# Schema version: 20100924060552
 #
 # Table name: spelling_major_dialects
 #

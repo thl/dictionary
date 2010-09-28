@@ -13,8 +13,8 @@ class DefinitionTest < Test::Unit::TestCase
   end
 end
 
-
 # == Schema Info
+# Schema version: 20100924060552
 #
 # Table name: definitions
 #
@@ -27,6 +27,7 @@ end
 #  literary_period_type_id         :integer
 #  major_dialect_family_type_id    :integer
 #  register_type_id                :integer
+#  root_letter_id                  :integer
 #  thematic_classification_type_id :integer
 #  analytical_note                 :string(512)
 #  audio                           :string(120)

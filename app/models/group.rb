@@ -8,8 +8,8 @@ class Group < ActiveRecord::Base
   end
 end
 
-
 # == Schema Info
+# Schema version: 20100924060552
 #
 # Table name: groups
 #

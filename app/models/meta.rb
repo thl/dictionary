@@ -28,8 +28,8 @@ class Meta < ActiveRecord::Base
   $source_type = "personal communication, text, original".split(", ")
 end
 
-
 # == Schema Info
+# Schema version: 20100924060552
 #
 # Table name: metas
 #

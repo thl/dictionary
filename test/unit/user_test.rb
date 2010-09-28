@@ -90,8 +90,8 @@ class UserTest < Test::Unit::TestCase
   
 end
 
-
 # == Schema Info
+# Schema version: 20100924060552
 #
 # Table name: users
 #

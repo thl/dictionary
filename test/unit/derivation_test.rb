@@ -9,8 +9,8 @@ class DerivationTest < Test::Unit::TestCase
   end
 end
 
-
 # == Schema Info
+# Schema version: 20100924060552
 #
 # Table name: derivations
 #

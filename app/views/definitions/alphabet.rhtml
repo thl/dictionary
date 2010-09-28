@@ -1,21 +1,18 @@
-<% count = 0 %>
 <table width="100%">
-	<tr>
+  <tr>
 <% @alphabet.each do |letter|%>
 	<td>
-	<%= link_to_remote(letter, :update => 'letter_list', :loading => "Element.show('loader');", :complete => "Element.hide('loader');", :url => {:controller => 'browse', :action => 'index', :params => {:letter => "#{count}", :junk => Time.new.to_f.to_s}})%> 
+<%=   link_to_remote(letter.unicode.s, :update => 'letter_list', :loading => "Element.show('loader');", :complete => "Element.hide('loader');", :url => {:controller => 'browse', :action => 'index', :params => {:letter => "#{letter.id}", :junk => Time.new.to_f.to_s}})%> 
 	</td>
-	<% count += 1%>
 <% end %>
-	</tr>
-		<tr>
-	<% @alphabet.each do |letter|%>
-		<td>
-			<%= image_tag('bar.png')%>
-		</td>
-		<% count += 1%>
-	<% end %>
-		</tr>
+  </tr>
+  <tr>
+<% @alphabet.size.times do %>
+	<td>
+<%=   image_tag('bar.png')%>
+	</td>
+<% end %>
+  </tr>
 </table>
 <hr>
 <div id="loader" style="display:none"><%= image_tag('loadingAnimation2.gif')%></div>
