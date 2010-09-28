@@ -2251,6 +2251,7 @@ end
   def edit_dynamic_definition
     @data = Category.find(184)
     @level = ["","head term","not head"]
+    @alphabet = ComplexScripts::TibetanLetter.all
     #@level = '[["",""],["head term","head term"],["not head","not head"]]'
     @language = []
     Language.find(:all, :order => 'language asc').each do |l|
