@@ -1,8 +1,7 @@
-<% count = 0 %>
 <script>
 	function clear_bars(){
 		<% @alphabet.each do |letter|%>
-		$('#<%=letter%>').hide();
+		$('#<%=letter.id%>').hide();
 		<% end %>
 	}
 </script>
@@ -12,19 +11,17 @@
 	<td>
 	<%#= link_to_remote(letter.span, :update => 'letter_list', :loading => "Element.show('loader');clear_bars();Element.show('#{letter}');", :complete => "Element.hide('loader');", :url => {:controller => 'browse', :action => 'index', :params => {:letter => "#{count}", :junk => Time.new.to_f.to_s}})%> 
 	<%#= link_to_remote letter.span, {:url => expand_page_browse_path(), :update => "letter_list",  :method => 'get'}  %>
-	<%= link_to_remote letter.span, {:url => {:controller => 'browse', :action => 'index',:letter => "#{count}", :junk => Time.new.to_f.to_s}, :update => "letter_list",  :method => 'get', :loading => "$('#loader').show();clear_bars();$('#letter_list').hide();", :success => "tb_init('a.thickbox, area.thickbox, input.thickbox');", :complete => "$('#letter_list').show();$('#loader').hide();$('#'+'#{letter}').show();"}   %>
+	<%= link_to_remote letter.unicode.span, {:url => {:controller => 'browse', :action => 'index',:letter => "#{letter.id}", :junk => Time.new.to_f.to_s}, :update => "letter_list",  :method => 'get', :loading => "$('#loader').show();clear_bars();$('#letter_list').hide();", :success => "tb_init('a.thickbox, area.thickbox, input.thickbox');", :complete => "$('#letter_list').show();$('#loader').hide();$('#'+'#{letter.id}').show();"}   %>
 	<%#= link_to_remote letter.span, {:url => {:controller => 'browse', :action => 'expand_page',:letter => "#{count}", :junk => Time.new.to_f.to_s}, :update => "letter_list",  :method => 'get'}  %>
 	
 	</td>
-	<% count += 1%>
 <% end %>
 	</tr>
 		<tr>
 	<% @alphabet.each do |letter|%>
 		<td>
-			<%= image_tag('bar.png',:id => letter, :style => 'display:none')%>
+			<%= image_tag('bar.png',:id => letter.id, :style => 'display:none')%>
 		</td>
-		<% count += 1%>
 	<% end %>
 		</tr>
 </table>

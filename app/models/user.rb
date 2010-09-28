@@ -58,8 +58,8 @@ class User < ActiveRecord::Base
   validates_presence_of :login, :password, :password_confirmation
 end
 
-
 # == Schema Info
+# Schema version: 20100924060552
 #
 # Table name: users
 #

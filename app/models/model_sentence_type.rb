@@ -1,8 +1,8 @@
 class ModelSentenceType < ActiveRecord::Base
 end
 
-
 # == Schema Info
+# Schema version: 20100924060552
 #
 # Table name: model_sentence_types
 #

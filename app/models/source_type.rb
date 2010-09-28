@@ -1,8 +1,8 @@
 class SourceType < ActiveRecord::Base
 end
 
-
 # == Schema Info
+# Schema version: 20100924060552
 #
 # Table name: source_types
 #

@@ -2,8 +2,8 @@ class LiteraryGenre < ActiveRecord::Base
   has_many :children, :class_name => 'LiteraryGenre', :foreign_key => 'parent_id'
 end
 
-
 # == Schema Info
+# Schema version: 20100924060552
 #
 # Table name: literary_genres
 #

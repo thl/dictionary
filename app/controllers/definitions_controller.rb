@@ -303,7 +303,7 @@ class DefinitionsController < ApplicationController
   end
 
   def alphabet
-    @alphabet = "ཀ	ཁ	ག	ང	ཅ	ཆ	ཇ	ཉ	ཏ	ཐ	ད	ན	པ	ཕ	བ	མ	ཙ	ཚ	ཛ	ཝ	ཞ	ཟ	འ	ཡ	ར	ལ	ཤ	ས	ཧ	ཨ".split("\t")
+    @alphabet = ComplexScripts::TibetanLetter.all
     expire_page(:controller => :browse, :action => :index)
     
     render :layout => 'staging_new'
@@ -311,21 +311,20 @@ class DefinitionsController < ApplicationController
 
   def browse
     @current_section = :showview
-    @alphabet = "ཀ	ཁ	ག	ང	ཅ	ཆ	ཇ	ཉ	ཏ	ཐ	ད	ན	པ	ཕ	བ	མ	ཙ	ཚ	ཛ	ཝ	ཞ	ཟ	འ	ཡ	ར	ལ	ཤ	ས	ཧ	ཨ".split("\t")
+    @alphabet = ComplexScripts::TibetanLetter.all
     expire_page(:controller => :browse, :action => :index)
     
     render :layout => 'staging_new'
   end
 
   def alphabet_list
-    alphabet = "ཀ	ཁ	ག	ང	ཅ	ཆ	ཇ	ཉ	ཏ	ཐ	ད	ན	པ	ཕ	བ	མ	ཙ	ཚ	ཛ	ཝ	ཞ	ཟ	འ	ཡ	ར	ལ	ཤ	ས	ཧ	ཨ".split("\t")
     # debugger
-    total = Definition.count(:all, :conditions => ["term like ? and level = 'head term'","#{params[:letter]}%"])
+    total = Definition.count(:all, :conditions => {:root_letter_id => params[:letter], :level => 'head term'})
     puts total 
     count = 0
     @terms = []
     while count < total
-      d = Definition.find( :first, :conditions => ["term like ? and level = 'head term'","#{params[:letter]}%"], :order => 'sort_order asc', :offset => count)
+      d = Definition.find(:first, :conditions => {:root_letter_id => params[:letter], :level => 'head term'}, :order => 'sort_order asc', :offset => count)
       @terms << {:term => d.term, :letter => params[:letter], :offset => count, :id => d.id}
       count += 100
     end
@@ -333,9 +332,8 @@ class DefinitionsController < ApplicationController
   end
 
   def alphabet_sub_list
-    @alphabet = "ཀ	ཁ	ག	ང	ཅ	ཆ	ཇ	ཉ	ཏ	ཐ	ད	ན	པ	ཕ	བ	མ	ཙ	ཚ	ཛ	ཝ	ཞ	ཟ	འ	ཡ	ར	ལ	ཤ	ས	ཧ	ཨ".split("\t")
     @terms = []
-     @definitions = Definition.find( :all, :conditions => ["term like ? and level = 'head term'","#{@alphabet[params[:letter].to_i]}%"], :order => 'sort_order asc', :offset => params[:offset], :limit => 100)
+    @definitions = Definition.find( :all, :conditions => {:root_letter_id => params[:letter], :level => 'head term'}, :order => 'sort_order asc', :offset => params[:offset], :limit => 100)
     #above was commented
     
     #below wasn't commented
@@ -1213,6 +1211,7 @@ end
     # puts '////////////'
     
     @level = '[["",""],["head term","head term"],["not head","not head"]]'
+    
     # @language = []
     # Language.find(:all, :order => 'language asc').each do |l|
     #   @language += [l.language]

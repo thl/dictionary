@@ -9,8 +9,8 @@ class SpellingSpecificDialectTest < Test::Unit::TestCase
   end
 end
 
-
 # == Schema Info
+# Schema version: 20100924060552
 #
 # Table name: spelling_specific_dialects
 #

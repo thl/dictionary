@@ -25,3 +25,6 @@
 [submodule "vendor/plugins/annotate_models"]
 	path = vendor/plugins/annotate_models
 	url = git://github.com/amontano/annotate_models.git
+[submodule "vendor/plugins/passiverecord"]
+	path = vendor/plugins/passiverecord
+	url = git://github.com/ambethia/passiverecord.git

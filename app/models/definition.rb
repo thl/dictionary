@@ -29,12 +29,22 @@ class Definition < ActiveRecord::Base
   belongs_to :literary_period_type, :class_name => 'Category'
   belongs_to :major_dialect_family_type, :class_name => 'Category'
   belongs_to :thematic_classification_type, :class_name => 'Category'
+  
+  belongs_to :root_letter, :class_name => 'ComplexScripts::TibetanLetter'
 
-  before_save :save_user_info
-  before_update :update_user_info
   # before_add
   # before_remove
-
+  
+  before_save do |record|
+    if record.wylie_changed? && !record.wylie.blank? && !record.root_letter_id_changed? && record.level == 'head term'
+      root_letter_str = record.wylie.base_letter('bod')
+      if !root_letter_str.nil?
+        root_letter = ComplexScripts::TibetanLetter.find_by_wylie(root_letter_str)
+        record.root_letter = root_letter if !root_letter.nil?
+      end
+    end
+  end
+  
   def find_head_term
     if level == 'head term'
       return id
@@ -52,17 +62,6 @@ class Definition < ActiveRecord::Base
     else
       return nil
     end
-  end
-
-
-  def save_user_info
-    puts 'save?????????????'
-    puts self.updated_by
-  end
-
-  def update_user_info
-    puts 'update?????????????'
-    # puts session
   end
 
   # def update_attribute(attribute,value)
@@ -109,8 +108,8 @@ class Definition < ActiveRecord::Base
 
 end
 
-
 # == Schema Info
+# Schema version: 20100924060552
 #
 # Table name: definitions
 #
@@ -123,6 +122,7 @@ end
 #  literary_period_type_id         :integer
 #  major_dialect_family_type_id    :integer
 #  register_type_id                :integer
+#  root_letter_id                  :integer
 #  thematic_classification_type_id :integer
 #  analytical_note                 :string(512)
 #  audio                           :string(120)

@@ -9,8 +9,8 @@ class GrammarFunctionLevelTwoTest < Test::Unit::TestCase
   end
 end
 
-
 # == Schema Info
+# Schema version: 20100924060552
 #
 # Table name: grammar_function_level_twos
 #
