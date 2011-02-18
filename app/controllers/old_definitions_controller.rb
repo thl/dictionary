@@ -114,8 +114,89 @@ class OldDefinitionsController < ApplicationController
       params['level'] = '1'
     end
     @old_definition = OldDefinition.find(params[:id])
-    render_without_layout if params['internal'] != nil
+    #render_without_layout if params['internal'] != nil
+    render :layout => 'staging_popup'  if params['internal'] != nil
   end
+
+  def update_old_definition
+    @old_definition = OldDefinition.find(params[:old_definition][:id])
+    if @old_definition.created_by == nil or @old_definition.created_by == ""
+      @old_definition.created_by = session[:user].login
+      @old_definition.created_at = Time.now
+    end
+    if session[:user] != nil
+      @old_definition.updated_by = session[:user].login
+    end
+    @old_definition.updated_at = Time.now
+    if @old_definition.update_history == nil
+      @old_definition.update_history = session[:user].login + " ["+Time.now.to_s+"]
+"
+    else
+      @old_definition.update_history += session[:user].login + " ["+Time.now.to_s+"]
+"
+    end
+    respond_to do |format|
+      if @old_definition.update_attributes(params[:old_definition])
+        format.html do
+          render :partial => 'old_definition_show', :locals => {:d => @old_definition}
+        end
+        #flash[:notice] = 'Definition was successfully updated.'
+        #redirect_to :action => 'index_edit'
+        #redirect_to :action => 'public_edit', :id => @definition
+      else
+        #redirect_to :action => 'index_edit'
+        #redirect_to :action => 'public_edit', :id => @definition
+      end
+    end
+  end
+  
+  def old_definition_show
+    @old_definition = OldDefinition.find(params[:id])
+    render :partial => "old_definition_show", :locals => {:d => @old_definition}
+  end
+  
+  def old_definition_edit
+    @old_definition = OldDefinition.find(params[:id])
+    render :partial => "old_definition_edit", :locals => {:d => @old_definition}
+  end
+
+  def update_notes
+     @old_definition = OldDefinition.find(params[:old_definition][:id])
+     if @old_definition.created_by == nil or @old_definition.created_by == ""
+       @old_definition.created_by = session[:user].login
+       @old_definition.created_at = Time.now
+     end
+     if session[:user] != nil
+       @old_definition.updated_by = session[:user].login
+     end
+     @old_definition.updated_at = Time.now
+     if @old_definition.update_history == nil
+       @old_definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+     else
+     	@old_definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end   
+     respond_to do |format|
+       if @old_definition.update_attributes(params[:old_definition])
+         format.html do
+           render :partial => 'notes_show', :locals => {:d => @old_definition}
+         end
+       else
+         #redirect_to :action => 'index_edit'
+         #redirect_to :action => 'public_edit', :id => @definition
+       end
+     end
+   end
+  
+  def notes_show
+    @old_definition = OldDefinition.find(params[:id])
+    render :partial => "notes_show", :locals => {:d => @old_definition}
+  end
+  
+  def notes_edit
+    @old_definition = OldDefinition.find(params[:id])
+    render :partial => "notes_edit", :locals => {:d => @old_definition}
+  end
+
 
   def show_edit
     if(params['internal'] != nil)

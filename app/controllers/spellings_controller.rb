@@ -677,6 +677,7 @@ class SpellingsController < ApplicationController
   
   def update_dynamic_spelling
       @spelling = Spelling.find(params[:id])
+      @definition = @spelling.definition
       if @spelling.created_by == nil or @spelling.created_by == ""
         @spelling.created_by = session[:user].login
         @spelling.created_at = Time.now
@@ -693,10 +694,23 @@ class SpellingsController < ApplicationController
   "
       end
       if @spelling.update_attributes(params[:spelling])
-        render :nothing => true
+        #render :nothing => true
+        render_spellings
       end
   end
   
+  def render_spellings
+    #find a way to save selected expanded description
+    @definition = Definition.find(51)
+    #debugger
+    #render :update do |page|
+	    #yield(page) if block_given?
+	    #debugger
+	    #page.replace_html "<%= @definition.id%>_spellings_div", :partial => 'spellings/index', :locals => {:d => @definition, :parent_id => @definition.id, :head_id => @definition.id}
+	  #end
+	  render :partial => 'spellings/index', :locals => {:d => @definition, :parent_id => @definition.id, :head_id => @definition.id}
+    
+  end
   
   def update_analytical_note
       @spelling = Spelling.find(params[:spelling][:id])

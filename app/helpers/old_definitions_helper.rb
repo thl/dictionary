@@ -109,31 +109,68 @@ module OldDefinitionsHelper
     if @old_definition.term == nil or @old_definition.term == ''
       @old_definition.term = 'Click to modify'
     end
-    resultstr << "<br>"+in_place_form_editor_field( :old_definition, :term, {}, {:rows => 3, :fieldname => 'old_definition[term]'}) +"<br>"
+    #resultstr << "<br>"+in_place_form_editor_field( :old_definition, :term, {}, {:rows => 3, :fieldname => 'old_definition[term]'}) +"<br>"
+    resultstr << "<br>"+ in_place_editor_field( :old_definition, :term, {}, {:cols => 50, :rows => 3,  :fieldname => 'old_definition[term]'}) +"<br>"
+    
     resultstr << "<p><b>Definition: </b>"
-    resultstr << "<input type=hidden name=old_definition[definition] id=old_definition[definition] value=\""+@old_definition.definition.to_s+"\" >"
+    #resultstr << "<input type=hidden name=old_definition[definition] id=old_definition[definition] value=\""+@old_definition.definition.to_s+"\" >"
+    #if @old_definition.definition == nil or @old_definition.definition == ''
+    #  @old_definition.definition = 'Click to modify'
+    #end
+    ##resultstr << in_place_form_editor_field( :old_definition, :definition, {}, {:rows => 1, :fieldname => 'old_definition[definition]'}) +"<br>"
+    #resultstr << "<br>"+ in_place_editor_field( :old_definition, :definition, {}, {:cols => 50, :rows => 3,  :fieldname => 'old_definition[definition]'}) +"<br>"
+    resultstr << "<span class='definitions_thickbox_show'>"
+    resultstr << "<div id='" + "#{@old_definition.id}_defdiv" + "'>"
+    edit_path = old_definition_edit_url(:id => @old_definition.id)
     if @old_definition.definition == nil or @old_definition.definition == ''
-      @old_definition.definition = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :old_definition, :definition, {}, {:rows => 1, :fieldname => 'old_definition[definition]'}) +"<br>"
+      t_definition = 'Click to modify definition'
+    else
+      t_definition = @old_definition.definition      
+    end    
+    resultstr << link_to_remote(t_definition, :url => edit_path, :update => "#{@old_definition.id}_defdiv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+
+
+    
     resultstr << "<p><b>Dictionary: </b>"
     resultstr << "<input type=hidden name=old_definition[library] id=old_definition[library] value=\""+@old_definition.dictionary.to_s+"\" >"
     if @old_definition.dictionary == nil or @old_definition.dictionary == ''
       @old_definition.dictionary = 'Click to modify'
     end
-    resultstr << "<br>"+in_place_form_editor_field( :old_definition, :dictionary, {}, {:rows => 3, :fieldname => 'old_definition[library]'}) +"<br>"
+    #resultstr << "<br>"+in_place_form_editor_field( :old_definition, :dictionary, {}, {:rows => 3, :fieldname => 'old_definition[library]'}) +"<br>"
+    resultstr << "<br>"+ in_place_editor_field( :old_definition, :dictionary, {}, {:cols => 50, :rows => 3,  :fieldname => 'old_definition[library]'}) +"<br>"
+
     resultstr << "<p><b>Url: </b>"
     resultstr << "<input type=hidden name=old_definition[url] id=old_definition[url] value=\""+@old_definition.url.to_s+"\" >"
     if @old_definition.url == nil or @old_definition.url == ''
       @old_definition.url = 'Click to modify'
     end
-    resultstr << "<br>"+in_place_form_editor_field( :old_definition, :url, {}, {:rows => 3, :fieldname => 'old_definition[url]'}) +"<br>"
-    resultstr << "<p><b>notes: </b>"
+    #resultstr << "<br>"+in_place_form_editor_field( :old_definition, :url, {}, {:rows => 3, :fieldname => 'old_definition[url]'}) +"<br>"
+    resultstr << "<br>"+ in_place_editor_field( :old_definition, :url, {}, {:cols => 50, :rows => 3,  :fieldname => 'old_definition[url]'}) +"<br>"
+
+    #resultstr << "<p><b>notes: </b>"
+    #resultstr << "<input type=hidden name=old_definition[notes] id=old_definition[notes] value=\""+@old_definition.notes.to_s+"\" >"
+    #if @old_definition.notes == nil or @old_definition.notes == ''
+    #  @old_definition.notes = 'Click to modify'
+    #end
+    ##resultstr << in_place_form_editor_field( :old_definition, :notes, {}, {:rows => 1, :fieldname => 'old_definition[notes]'}) +"<br>"
+    #resultstr << "<br>"+ in_place_editor_field( :old_definition, :notes, {}, {:cols => 50, :rows => 1,  :fieldname => 'old_definition[notes]'}) +"<br>"
+  
+    resultstr << "<p><b>Notes: </b>"
     resultstr << "<input type=hidden name=old_definition[notes] id=old_definition[notes] value=\""+@old_definition.notes.to_s+"\" >"
+    resultstr << "<span class='tinyfied_show'>"
+    resultstr << "<div id='" + "#{@old_definition.id}_anotediv" + "'>"
+    edit_path = old_definition_notes_edit_url(:id => @old_definition.id)
     if @old_definition.notes == nil or @old_definition.notes == ''
-      @old_definition.notes = 'Click to modify'
-    end
-    resultstr << in_place_form_editor_field( :old_definition, :notes, {}, {:rows => 1, :fieldname => 'old_definition[notes]'}) +"<br>"
+      t_analytical = 'Click to modify'
+    else
+      t_analytical = @old_definition.notes
+    end  
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@old_definition.id}_anotediv", :method => :get ) 
+    resultstr << "</div>"
+    resultstr << "</span>"
+  
   end
 
   def show_edit_old_definition

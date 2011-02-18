@@ -35,11 +35,19 @@ module HabtmHelper
     	str << %{<input type="radio" name="tags[]" id="tag_#{tag.id}" value="#{tag.id}" }
 			str <<  " checked='checked'" if (original == tag.displayInfo)
     	str << %{/> #{tag.displayInfo} }
-
-			str << "&nbsp;&nbsp;<span id=\"show_"+tag.id.to_s+"\">"+link_to_remote(image_tag('right.gif', :border => 0), :update => ''+tag.id.to_s+'', :url => {:controller => 'definitions', :action => :public_show_list, :id => tag.id, :params => {'list_view' => 'true'}}, :complete => "Element.hide('show_"+tag.id.to_s+"');Element.show('hide_"+tag.id.to_s+"');Element.show('"+tag.id.to_s+"');")+"</span>"
+      
+			str << "&nbsp;&nbsp;<span id=\"show_"+tag.id.to_s+"\">"
+			str << link_to_remote(image_tag('right.gif', :border => 0), :update => '' +tag.id.to_s+'' , :url => definition_public_show_list_path( tag.id, :list_view => 'true'), :method => 'get', :complete => "$('#show_"+tag.id.to_s+"').hide();$('#hide_"+tag.id.to_s+"').show();$('#"+tag.id.to_s+"').show();")
+			str << "</span>"
+	    #str << "&nbsp;&nbsp;<span id=\"show_"+tag.id.to_s+"\">"+link_to_remote(image_tag('right.gif', :border => 0), :update => ''+tag.id.to_s+'', :url => {:controller => 'definitions', :action => :public_show_list, :id => tag.id, :params => {'list_view' => 'true'}}, :complete => "$('#show_"+tag.id.to_s+"').hide();$('#hide_"+tag.id.to_s+"').show();$('#"+tag.id.to_s+"').show();")+"</span>"
+  
+		                                                          #link_to_remote image_tag('right.gif', :border => 0), :update => "tag.id.to_s" , :url => edit_search_definition_definition_forms_path(params["id"], :level => params['level'], :relatedtype => "definition_to", :internal => params['internal']),  :method => 'get' %>
+    
+			#str << "&nbsp;&nbsp;<span id=\"show_"+tag.id.to_s+"\">"+link_to_remote(image_tag('right.gif', :border => 0), :update => ''+tag.id.to_s+'', :url => {:controller => 'definitions', :action => :public_show_list, :id => tag.id, :params => {'list_view' => 'true'}}, :complete => "Element.hide('show_"+tag.id.to_s+"');Element.show('hide_"+tag.id.to_s+"');Element.show('"+tag.id.to_s+"');")+"</span>"			
 			str << "<span id=\"hide_"+tag.id.to_s+"\" style=\"display:none\">"
-			str << link_to_function(image_tag('down.gif', :border => 0),"Element.hide('hide_"+tag.id.to_s+"');Element.show('show_"+tag.id.to_s+"');Element.hide('"+tag.id.to_s+"')")
-      # str << link_to_remote(image_tag('down.gif', :border => 0), :update => ''+tag.id.to_s+'', :url => {:controller => 'definitions', :action => :public_show_list, :id => tag.id, :params => {'list_view' => 'true'}}, :complete => "Element.hide('hide_"+tag.id.to_s+"');Element.show('show_"+tag.id.to_s+"');new Effect.Fade('"+tag.id.to_s+"row')")
+			str << link_to_function(image_tag('down.gif', :border => 0),"$('#hide_"+tag.id.to_s+"').hide();$('#show_"+tag.id.to_s+"').show();$('#"+tag.id.to_s+"').hide();")
+			#str << link_to_function(image_tag('down.gif', :border => 0),"Element.hide('hide_"+tag.id.to_s+"');Element.show('show_"+tag.id.to_s+"');Element.hide('"+tag.id.to_s+"')")
+      ## str << link_to_remote(image_tag('down.gif', :border => 0), :update => ''+tag.id.to_s+'', :url => {:controller => 'definitions', :action => :public_show_list, :id => tag.id, :params => {'list_view' => 'true'}}, :complete => "Element.hide('hide_"+tag.id.to_s+"');Element.show('show_"+tag.id.to_s+"');new Effect.Fade('"+tag.id.to_s+"row')")
 			str << "</span>"
     	
     	str << "<br />"

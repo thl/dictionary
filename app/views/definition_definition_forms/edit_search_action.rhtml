@@ -1,7 +1,7 @@
 <% if params['relatedtype'] == "definition_from" %>
 <div id="definition_definition_form_definition_froms">
 <% form_remote_tag(:update => "definition_definition_form_definition_froms", :url => {:controller => "definition_definition_forms", :action => 'edit_add_to_list_action', :id => params['id'], :internal => 'definitions'}, :html => {:name => "listrelated"}) do %>
-  <h3>Check Definition to Add:</h3>
+  <h5>Check Definition to Add:</h5>
    <% if @definition_definition_form.definition_from != nil %>
      <p><%= build_form_radiolist_group(@definition_froms,@definition_definition_form.definition_from.displayInfo) %></p>
    <% else %>
@@ -20,7 +20,7 @@
 <div id="definition_definition_form_definition_tos">
 <% form_remote_tag(:update => "definition_definition_form_definition_tos", :url => {:controller => "definition_definition_forms", :action => 'edit_add_to_list_action', :id => params['id']}, :html => {:name => "listrelated"}) do %>
 	<% if @definition_tos.size > 0 %>
-  <h3>Check Definition to Add:</h3>
+  <h6>Check Definition to Add:</h6>
    <% if @definition_definition_form.definition_to != nil %>
      <p><%= build_form_radiolist_group(@definition_tos,@definition_definition_form.definition_to.displayInfo) %></p>
    <% else %>

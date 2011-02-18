@@ -6,12 +6,13 @@ $(document).ready(function() {
 });
 </script>
 <%= tag "div", {:id => @divname } %>
+
 <%= error_messages_for 'definition_definition_form' %>
 <% form_remote_tag(:update => @divname, :complete => "Element.hide('edit_box');clear_contents('edit_box');window.location.reload()", :url => {:controller => 'definition_definition_forms', :action => 'update', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level'], 'parent_id' => params['parent_id']}}, :condition => "open_windows['definition_definition_form'].length > 0 ? alert('You have unsaved changes.') : true")  do %>
   <p>  
   <% if params['internal'] == 'edit_box' %>	
     <%#= link_to_remote image_tag("close_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');",:complete=>"re_initialize();",:update=> 'definition_space', :url => {:controller => 'definitions', :action => 'public_content_only', :id => params['definition_id']}%>	
-    <%= link_to_remote image_tag("close_up.gif", :size => "87x19", :border => 0, :alt => "close"), :update => 'definition_space', :complete => 're_initialize();',  :url => {:controller => 'definitions', :action => 'public_edit', :id => params['definition_id']}, :html => {:id => 'close_button', :name => 'close_button'}, :method => 'get' %>      
+    <%= link_to_remote image_tag("draggable-popup-close.png", :border => 0, :alt => "close"), :update => 'definition_space', :complete => 're_initialize();',  :url => {:controller => 'definitions', :action => 'public_edit', :id => params['definition_id']}, :html => {:id => 'close_button', :name => 'close_button'}, :method => 'get' %>      
 
     <% if params['new'] != nil %>
       <%#= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');",:complete=>"re_initialize();", :update => 'definition_space',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :id => params[:id], :params => {'definition_id' => params['definition_id'], 'editing' => 'true'}}%>
@@ -57,19 +58,12 @@ $(document).ready(function() {
 
 
   <% if params['relatedtype'] != "definition_definition_form_to" %>
-   <p>
-	<b><%= @definition_definition_form.definition_from.term %><%= @definition_definition_form.relationship_to %>:</b>
-    <%#= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "definition_definition_form_definition_tos", :url => {:controller => "definition_definition_forms", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "definition_to", :internal => params['internal']}} %>
-    <%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0),:update => "definition_definition_form_definition_tos" , :url => edit_search_definition_definition_forms_path(params["id"], :level => params['level'], :relatedtype => "definition_to", :internal => params['internal']),  :method => 'get' %>
-    <% if params['internal'] == nil %>
-      <% if params['internal'] != "definition_tos" %>
-        <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "definition_definition_form_definition_tos", :url => {:controller => "definition_definition_forms", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "definition_to", :internal => params['internal']}} %>
-      <% end %>
-    <% end %>
-    <%#= link_to_remote image_tag("cross.png",:border => 0), :update => "definition_definition_form_definition_tos", :url => {:controller => "definition_definition_forms", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "definition_to", :internal => params['internal']}} %>
-    <%= link_to_remote image_tag("cross.png", :border => 0),:update => "definition_definition_form_definition_tos" , :url => edit_delete_definition_definition_forms_path(params["id"], :level => params['level'], :relatedtype => "definition_to", :internal => params['internal']),  :method => 'get' %>
-    <br />
+    
+	<h3><%= @definition_definition_form.definition_from.term %> 
+	<%= @definition_definition_form.relationship_to %>:</h3>
+    
     <div id="definition_definition_form_definition_tos" class="internal">
+	  <p>
       <% if !@definition_definition_form.definition_to.nil? %>
         <% if params['internal'] == 'definitions' %>
           <%= @definition_definition_form.definition_to.term %>
@@ -77,8 +71,21 @@ $(document).ready(function() {
 	      <%= @definition_definition_form.definition_to.term %>
         <% end %>
       <% end %>
+	  </p> 
     </div>
-   </p>
+
+    <br/><br/>
+    <%#= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0), :update => "definition_definition_form_definition_tos", :url => {:controller => "definition_definition_forms", :action => "edit_search", :id => params["id"], :params => {:level => params['level'], :relatedtype => "definition_to", :internal => params['internal']}} %>
+    <%= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0),:update => "definition_definition_form_definition_tos" , :url => edit_search_definition_definition_forms_path(params["id"], :level => params['level'], :relatedtype => "definition_to", :internal => params['internal']),  :method => 'get' %>
+    <%#= link_to_remote image_tag("cross.png",:border => 0), :update => "definition_definition_form_definition_tos", :url => {:controller => "definition_definition_forms", :action => "edit_delete", :id => params["id"], :params => {:level => params['level'], :relatedtype => "definition_to", :internal => params['internal']}} %>
+    <%= link_to_remote image_tag("cross.png", :border => 0),:update => "definition_definition_form_definition_tos" , :url => edit_delete_definition_definition_forms_path(params["id"], :level => params['level'], :relatedtype => "definition_to", :internal => params['internal']),  :method => 'get' %>
+	
+	<% if params['internal'] == nil %>
+      <% if params['internal'] != "definition_tos" %>
+        <%= link_to_remote image_tag("plus.gif", :size => "16x16", :border => 0), :update => "definition_definition_form_definition_tos", :url => {:controller => "definition_definition_forms", :action => "edit_new", :id => params["id"], :params => {:level => params['level'], :relatedtype => "definition_to", :internal => params['internal']}} %>
+      <% end %>
+    <% end %>
+    
   <% end %>
 
 </div>  <!-- @divname+"search_definition_definition_form" -->

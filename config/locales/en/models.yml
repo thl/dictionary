@@ -1,0 +1,470 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+en:
+    activerecord:
+        # Model names will be kept in lower case. Invoke .capitalize or .titleize if you need them in uppercase.
+        models:
+            all_definition:
+                one: 'all definition'
+                other: 'all definitions'
+            definition:
+                one: 'definition'
+                other: 'definitions' 
+            definition_definition:
+                one: 'definition definition'
+                other: 'definition definitions'
+            definition_definition_form:
+                one: ''
+                other: ''
+            derivation:
+                one: 'derivation'
+                other: 'derivations'
+            etymology:
+                one: 'etymology'
+                other: 'etymologies'
+            full_synonym:
+                one: 'full synonym'
+                other: 'full synonyms'
+            grammar_function_level_one:
+                one: 'grammar function level one'
+                other: 'grammar function levels one' 
+            grammar_function_level_two:
+                one: 'grammar function level two'
+                other: 'grammar function levels two' 
+            grammar_function_level_one:
+                one: 'grammar function level three'
+                other: 'grammar function levels three' 
+            group:
+                one: 'group'
+                other: 'groups' 
+            language:
+                one: 'language'
+                other: 'languages'
+            language_context:
+                one: 'language context'
+                other: 'language contexts'
+            literary_form:
+                one: 'literary form'
+                other: 'literary forms'
+            literary_genre:
+                one: 'literary genre'
+                other: 'litarary genres'
+            literary_period:
+                one: 'literary period'
+                other: 'literary period'
+            literary_quotation:
+                one: 'literary quotation'
+                other: 'literary quotations'
+            loan_language:
+                one: 'loan language'
+                other: 'loan languages'
+            major_dialect:
+                one: 'major dialect'
+                other: 'major dialects'
+            meta:
+                one: 'meta'
+                other: 'metas'
+            model_sentence:
+                one: 'model sentence'
+                other: 'moedel sentences'
+            model_sentence_type:
+                one: 'model sentence type'
+                other: 'model sentence types'
+            old_definition:
+                one: 'old definition'
+                other: 'old definitions'
+            oral_quotation: 
+                one: 'oral quotation'
+                other: 'oral quotations'
+            project:
+                one: 'project'
+                other: 'projects'
+            pronunciation:
+                one: 'pronunciation'
+                other: 'pronunciations'
+            pronunciation_type:
+                one: 'pronunciation type'
+                other: 'pronunciation types'
+            register:
+                one: 'register'
+                #other: 
+            root_letter:
+                one: 'root letter'
+                other: 'root letters'
+            script:
+                one: 'script'
+                other: 'scripts'
+            source:
+                one: 'source'
+                other: 'sources'
+            source_type:
+                one: 'source type'
+                other: 'source types'
+            specific_dialect:
+                one: 'specific dialect'
+                other: 'speciic dialects'
+            spelling:
+                one: 'spelling'
+                other: 'spellings'
+            spelling_major_dialect:
+                one: 'spelling major dialect'
+                other: 'spelling major dialects'
+            spelling_specific_dialect:
+                one: 'spelling specific dialect'
+                other: 'spelling specific dialects'
+            thematic_classification:
+                one: 'thematic classification'
+                other: 'thematic classifications'
+            theme_level_one:
+                one: 'theme level one'
+                other: 'theme level one'
+            theme_level_three:
+                one: 'theme level three'
+                other: 'theme level three'
+            theme_level_two:
+                one: 'theme level two'
+                other: 'theme level two'
+            translation:
+                one: 'translation'
+                other: 'translations' 
+            translation_equivalent:
+                one: 'translation equivalent'
+                other: 'translation equivalents'
+            user:
+                one: 'user'
+                other: 'users'
+            
+        # Attribute names will be titleized.
+        attributes:
+            definition:
+                analytical_note: 'Analytical note'
+                audio: 'Audio'
+                audio_id_number: 'Audio id number'
+                audio_speaker: 'Audio speaker'
+                audio_date: 'Audio date'
+                audio_place_of_recording: 'Audio place of recording'
+                audio_link: 'Audio link'
+                audio_description: 'Audio description'
+                definition: 'Definition'
+                encyclopedia_entry: 'Encyclopedia entry'
+                grammatical_function_type_id: 'Grammatical function'
+                image: 'Image'
+                image_caption: 'Image caption'
+                image_photographer: 'Image photographer'
+                image_link: 'Image link'
+                image_description: 'Image description'
+                language_context_type_id: 'Language context'
+                language_type_id: 'Language of definition'
+                literary_genre_type_id: 'Literary genre'
+                literary_period_type_id: 'Literary period'
+                level: 'Level'
+                major_dialect_family_type_id: 'Tibetan Dialect'
+                numerology: 'Numerology'
+                register: 'Register'
+                register_type_id: 'Register'
+                root_letter_id: 'Root Letter (calculated automatically, override here):'
+                tense: 'Tense'
+                term: 'Term'
+                thematic_classification_type_id: 'Thematic classification'
+                video: 'Video'
+                video_date: 'Video date'
+                video_description: 'Video description'
+                video_id_number: 'Video id number'
+                video_link: 'Video link'
+                video_place_of_recording: 'Video place of recording'
+                video_speaker: 'Video speaker'
+            definition_definition_form:
+                relationship_from: ''
+                relationship_to: ''
+            derivation:
+                derivation: 'Derivation'
+                update_history: 'Contributors'
+            etymology:
+                analytical_note: 'Analytical note'
+                audio: 'Audio'
+                audio_id_number: 'Audio id number'
+                audio_speaker: 'Audio speaker'
+                audio_date: 'Audio date'
+                audio_place_of_recording: 'Audio place of recording'
+                audio_link: 'Audio link'
+                audio_description: 'Audio description'
+                derivation_type_id: 'Derivation type'
+                etymology: 'Etymology'
+                etymology_category_id: 'Etymology Type'
+                image: 'Image'
+                image_caption: 'Image caption'
+                image_description: 'Image description'
+                image_link: 'Image link'
+                image_photographer: 'Image photographer'
+                literary_form_type_id: 'Literary form'
+                literary_genre_type_id: 'Literary genre'
+                literary_period_type_id: 'Literary period'
+                loan_language_type_id: 'Loan language'
+                major_dialect_family_type_id: 'Tibetan Dialect'
+                video: 'Video'
+                video_date: 'Video date'
+                video_description: 'Video description'
+                video_id_number: 'Video id number'
+                video_link: 'Video link'
+                video_place_of_recording: 'Video place of recording'
+                video_speaker: 'Video speaker'
+            etymology_type:
+                etymology_type: 'Etymology type'
+            full_synonym:
+                term: 'Full Synonym'
+            grammar_function_level_one:
+                grammar_function: 'Grammar Function'
+            grammar_function_level_three:
+                grammar_function: 'Grammar Function'
+            grammar_function_level_two:
+                grammar_function: 'Grammar Function'
+            group:
+                group_name: 'Group Name'
+            language:
+                language: 'Language'
+            language_context:
+                language_context: 'Language context'
+            literary_form:
+                literary_form: 'Literary form'
+            literary_genre:
+                literary_genre: 'Literary genre'
+            literary_period:
+                literary_period: 'Literary period'
+            literary_quotation:
+                analytical_note: 'Analytical note'
+                audio: 'Audio'
+                audio_date: 'Audio date'
+                audio_description: 'Audio description'
+                audio_id_number: 'Audio id number'
+                audio_link: 'Audio link'
+                audio_place_of_recording: 'Audio place of recording'
+                audio_speaker: 'Audio speaker'
+                author: 'Author'
+                edition: 'Edition'
+                image: 'Image'
+                image_caption: 'Image caption'
+                image_description: 'Image description'
+                image_link: 'Image link'
+                image_photographer: 'Image photographer'
+                isbn: 'ISBN'
+                language_of_translation_type_id: 'Language of translation'
+                line_number: 'Line number'
+                literary_form_type_id: 'Literary form'
+                literary_genre_type_id: 'Literary genre'
+                literary_period_type_id: 'Literary period'
+                page_side: 'Page side'
+                passage: 'Passage'
+                passage_number: 'Passage number'
+                place_of_publication: 'Place of publication'
+                published_date: 'Date of publication'
+                publisher: 'Publisher'
+                source_id: 'Source ID'
+                tibetan_date: 'Tibetan date of composition'
+                tibetan_date_note: 'Tibetan date note'
+                url: 'Passage URL'
+                video: 'Video'
+                video_date: 'Video date'
+                video_description: 'Video description'
+                video_id_number: 'Video id number'
+                video_link: 'Video link'
+                video_place_of_recording: 'Video place of recording'
+                video_speaker: 'Video speaker'
+                volume_number: 'Volume number'
+                western_date: 'Western date of composition'
+                western_date_note: 'Western date note'
+            loan_language:
+                language: 'Loan language'
+            major_dialect:
+                name: 'Major dialect'
+            meta:
+                author: 'Author'
+                date_of_publication: 'Date of Publication'
+                language_type_id: 'Language'
+                metadata_note: 'Metadata note'
+                place_of_publication: 'Place of publication'
+                precedence: 'Precedence'
+                project_type_id: 'Project Type'
+                publisher: 'Publisher'
+                title: 'Title'
+            model_sentence:
+                analytical_note: 'Analytical note'
+                audio: 'Audio'
+                audio_date: 'Audio date'
+                audio_description: 'Audio description'
+                audio_id_number: 'Audio id number'
+                audio_link: 'Audio link'
+                audio_place_of_recording: 'Audio place of recording'
+                audio_speaker: 'Audio speaker'
+                image: 'Image'
+                image_caption: 'Image caption'
+                image_description: 'Image description'
+                image_link: 'Image link'
+                image_photographer: 'Image photographer'
+                language_type_id: 'Language'
+                literary_form_type_id: 'Literary form'
+                literary_genre_type_id: 'Literary genre'
+                literary_period_type_id: 'Literary period'
+                major_dialect_family_type_id: 'Tibetan dialect'
+                model_sentence: 'Model sentence'
+                sentence_type: 'Sentence type'
+                source: 'Source'
+                spelling: 'Spelling'
+                video: 'Video'
+                video_date: 'Video date'
+                video_description: 'Video description'
+                video_id_number: 'Video id number'
+                video_link: 'Video link'
+                video_place_of_recording: 'Video place of recording'
+                video_speaker: 'Video speaker'
+            model_sentence_type:
+                sentence_type: 'Model sentence type'
+            old_definition:
+                definition: 'Definition'
+                dictionary: 'Dictionary'
+                grammatical_function: 'Grammatical function'
+                level: 'Level'
+                notes: 'Notes'
+                term: 'Term'
+            oral_quotation:
+                analytical_note: 'Analytical note'
+                audio: 'Audio'
+                audio_date: 'Audio date'
+                audio_description: 'Audio description'
+                audio_id_number: 'Audio id number'
+                audio_link: 'Audio link'
+                audio_place_of_recording: 'Audio place of recording'
+                audio_speaker: 'Audio speaker'
+                image: 'Image'
+                image_caption: 'Image caption'
+                image_description: 'Image description'
+                image_link: 'Image link'
+                image_photographer: 'Image photographer'
+                source_id: 'Source ID'
+                source_speaker_dialect_type_id: 'Source speaker Tibetan dialect'
+                source: 'Source'
+                source_location_of_speech: 'Source location of speech'
+                source_location_within_title: 'Source location within title'
+                source_speaker: 'Source speaker'
+                source_speaker_dialect: 'Source speaker Tibetan dialect'
+                source_speech_context: 'Source speech context'
+                source_speech_date: 'Source speech date'
+                source_speech_date_tibetan: 'Source speech date Tibetan'
+                source_speech_date_western: 'Source speech date Western'
+                source_speech_type: 'Source speech type'
+                source_title: 'Source title'
+                source_type: 'Source type'
+                transcript_in_tibetan: 'Transcript in Tibetan'
+                video: 'Video'
+                video_date: 'Video date'
+                video_description: 'Video description'
+                video_id_number: 'Video id number'
+                video_link: 'Video link'
+                video_place_of_recording: 'Video place of recording'
+                video_speaker: 'Video speaker'   
+            project:
+                project: 'Project'
+            pronunciation:
+                analytical_note: 'Analytical note'
+                audio: 'Audio'
+                audio_date: 'Audio date'
+                audio_description: 'Audio description'
+                audio_id_number: 'Audio id number'
+                audio_link: 'Audio link'
+                audio_place_of_recording: 'Audio place of recording'
+                audio_speaker: 'Audio speaker'
+                image: 'Image'
+                image_caption: 'Image caption'
+                image_description: 'Image description'
+                image_link: 'Image link'
+                image_photographer: 'Image photographer'
+                major_dialect_family_type_id: 'Tibetan Dialect'
+                phonetic_transliteration: 'Phonetic transliteration'
+                pronunciation_type: 'Pronunciation type'
+                video: 'Video'
+                video_date: 'Video date'
+                video_description: 'Video description'
+                video_id_number: 'Video id number'
+                video_link: 'Video link'
+                video_place_of_recording: 'Video place of recording'
+                video_speaker: 'Video speaker'
+            pronunciation_type:
+                pronunciation_type: 'Pronunciation type'
+            register:
+                register: 'Register'
+            script:
+                script: 'Script'
+            source:
+                source_note: 'Source note'
+            source_type:
+                source_type: 'Source type'
+            specific_dialect:
+                name: 'Specific dialect'
+            spelling:
+                analytical_note: 'Analytical note'
+                audio: 'Audio'
+                audio_date: 'Audio date'
+                audio_description: 'Audio description'
+                audio_id_number: 'Audio id number'
+                audio_link: 'Audio link'
+                audio_place_of_recording: 'Audio place of recording'
+                audio_speaker: 'Audio speaker'
+                basis_of_spelling_type_id: 'Basis of spelling'
+                image: 'Image'
+                image_caption: 'Image caption'
+                image_description: 'Image description'
+                image_link: 'Image link'
+                image_photographer: 'Image photographer'
+                literary_form_type_id: 'Literary form'
+                literary_genre_type_id: 'Literary genre'
+                literary_period_type_id: 'Literary period'
+                major_dialect_family_type_id: 'Tibetan Dialect'
+                spelling: 'Spelling'
+                spelling_category_id: 'Spelling type'
+                video: 'Video'
+                video_date: 'Video date'
+                video_description: 'Video description'
+                video_id_number: 'Video id number'
+                video_link: 'Video link'
+                video_place_of_recording: 'Video place of recording'
+                video_speaker: 'Video speaker'
+            spelling_major_dialect:
+                name: 'Spelling major dialect'
+            spelling_specific_dialect:
+                name: 'Spelling specific dialect'
+            thematic_classification:
+                level1: 'Level 1'
+                level2: 'Level 2'
+                level3: 'Level 3'
+            theme_level_one:
+                theme: 'Theme'
+            theme_level_three:
+                theme: 'Theme'
+            theme_level_two:
+                theme: 'Theme'     
+            translation:
+                analytical_note: 'Analitical note'  
+                language_type_id: 'Language' 
+                translation: 'Translation'
+            translation_equivalent:
+                analytical_note: 'Analytical note'
+                audio: 'Audio'
+                audio_date: 'Audio date'
+                audio_description: 'Audio description'
+                audio_id_number: 'Audio id number'
+                audio_link: 'Audio link'
+                audio_place_of_recording: 'Audio place of recording'
+                audio_speaker: 'Audio speaker'
+                image: 'Image'
+                image_caption: 'Image caption'
+                image_description: 'Image description'
+                image_link: 'Image link'
+                image_photographer: 'Image photographer'
+                language_type_id: 'Laguage'
+                translation_equivalent: 'Translation equivalent'
+                video: 'Video'
+                video_date: 'Video date'
+                video_description: 'Video description'
+                video_id_number: 'Video id number'
+                video_link: 'Video link'
+                video_place_of_recording: 'Video place of recording'
+                video_speaker: 'Video speaker'

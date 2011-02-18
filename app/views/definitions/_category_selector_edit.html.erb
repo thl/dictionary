@@ -1,0 +1,78 @@
+<% 
+@data = Category.find(data_id)
+@definition = Definition.find(id)
+@model_name = 'definition'
+@function_name = function_name
+@id = id
+@update_id = update_id
+%>
+
+<% if @function_name == 'thematic_classification_type' %>
+  <% form_for :definition, :url => { :action => "update_thematic_classification" } do |f| %>
+    <%= f.hidden_field :id %>
+    <%= category_selector(@data, @model_name, @function_name, true, :hasTree => 'true', :singleSelectionTree => 'true') %>
+    <br/>
+    <%= submit_to_remote 'update_button','update', :url => { :action => "update_thematic_classification" }, :update => "thematic_classification_type#{id}" %>
+    <%= link_to_remote 'cancel', {:url => thematic_classification_show_path(params['id']), :method => 'get', :update => "thematic_classification_type#{id}" } %>
+  <% end %>
+<% else 
+     if @function_name == 'grammatical_function_type' %>
+       <% form_for :definition, :url => { :action => "update_grammatical_function" } do |f| %>
+         <%= f.hidden_field :id %>
+         <%= category_selector(@data, @model_name, @function_name, true, :hasTree => 'true', :singleSelectionTree => 'true') %>
+         <br/>
+         <%= submit_to_remote 'update_button','update', :url => { :action => "update_grammatical_function" }, :update => "grammatical_function_type#{id}" %>
+         <%= link_to_remote 'cancel', {:url => grammatical_function_show_path(params['id']), :method => 'get', :update => "grammatical_function_type#{id}" } %>
+       <% end %>
+<%   else 
+	     if @function_name == 'register_type' %>
+	       <% form_for :definition, :url => { :action => "update_register" } do |f| %>
+	         <%= f.hidden_field :id %>
+	         <%= category_selector(@data, @model_name, @function_name, true, :hasTree => 'true', :singleSelectionTree => 'true') %>
+	         <br/>
+	         <%= submit_to_remote 'update_button','update', :url => { :action => "update_register" }, :update => "register_type#{id}" %>
+	         <%= link_to_remote 'cancel', {:url => register_show_path(params['id']), :method => 'get', :update => "register_type#{id}" } %>
+	       <% end %>
+<%       else 
+		   if @function_name == 'language_context_type' %>
+			 <% form_for :definition, :url => { :action => "update_language_context" } do |f| %>
+			   <%= f.hidden_field :id %>
+			   <%= category_selector(@data, @model_name, @function_name, true, :hasTree => 'true', :singleSelectionTree => 'true') %>
+			   <br/>
+	           <%= submit_to_remote 'update_button','update', :url => { :action => "update_language_context" }, :update => "language_context_type#{id}" %>
+  	           <%= link_to_remote 'cancel', {:url => language_context_show_path(params['id']), :method => 'get', :update => "language_context_type#{id}" } %>
+			 <% end %>
+<%         else 
+			 if @function_name == 'literary_genre_type' %>
+			   <% form_for :definition, :url => { :action => "update_literary_genre" } do |f| %>
+			     <%= f.hidden_field :id %>
+				   <%= category_selector(@data, @model_name, @function_name, true, :hasTree => 'true', :singleSelectionTree => 'true') %>
+				   <br/>
+				    <%= submit_to_remote 'update_button','update', :url => { :action => "update_literary_genre" }, :update => "literary_genre_type#{id}" %>
+			  	    <%= link_to_remote 'cancel', {:url => literary_genre_show_path(params['id']), :method => 'get', :update => "literary_genre_type#{id}" } %>
+				 <% end %>
+<%           else 
+			   if @function_name == 'literary_period_type' %>
+			     <% form_for :definition, :url => { :action => "update_literary_period" } do |f| %>
+				   <%= f.hidden_field :id %>
+				   <%= category_selector(@data, @model_name, @function_name, true, :hasTree => 'true', :singleSelectionTree => 'true') %>
+				   <br/>
+				   <%= submit_to_remote 'update_button','update', :url => { :action => "update_literary_period" }, :update => "literary_period_type#{id}" %>
+				   <%= link_to_remote 'cancel', {:url => literary_period_show_path(params['id']), :method => 'get', :update => "literary_period_type#{id}" } %>
+			     <% end %>
+<%             else 
+				 if @function_name == 'literary_form_type' %>
+				   <% form_for :definition, :url => { :action => "update_literary_form" } do |f| %>
+				     <%= f.hidden_field :id %>
+					 <%= category_selector(@data, @model_name, @function_name, true, :hasTree => 'true', :singleSelectionTree => 'true') %>
+					 <br/>
+					 <%= submit_to_remote 'update_button','update', :url => { :action => "update_literary_form" }, :update => "literary_form_type#{id}" %>
+					 <%= link_to_remote 'cancel', {:url => literary_form_show_path(params['id']), :method => 'get', :update => "literary_form_type#{id}" } %>
+				   <% end %>
+<%               end %>
+<%             end %>
+<%         	 end %>	
+<%         end %>	
+<%       end %>
+<%   end %>
+<% end %>

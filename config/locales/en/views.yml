@@ -1,0 +1,6 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+en:
+    edit_multimedia_data: 'Edit Multimedia Data'
+    show_hide_multimedia: 'show/hide multimedia'
+    root_letter: 'Root Letter (calculated automatically, override here)'

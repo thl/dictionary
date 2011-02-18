@@ -9,12 +9,17 @@
   <% end %>
 <% end %>
 <% if params['relatedtype'] == "definition_to" %>
+  <p>
   <% if definition_definition_form.definition_to != nil %>
     <% if params['internal'] == 'definitions' %>
-	  <%= definition_definition_form.definition_to.displayInfo %>
+	  <%#= definition_definition_form.definition_to.displayInfo %>
+	  <%= definition_definition_form.definition_to.term %>
     <% else %>
-	  <%= definition_definition_form.definition_to.displayInfo %>
+	  <%#= definition_definition_form.definition_to.displayInfo %>
+	  <%= definition_definition_form.definition_to.term %>
       <%#= link_to_remote @definition_definition_form.definition_to.displayInfo, :update => "definition_definition_form_definition_tos", :url=> {:controller=> "definitions", :action => "edit_dynamic", :id => @definition_definition_form.definition_to.id,:params => {:level => params['level'], :relatedtype =>'definition_to',:internal => 'definition_definition_forms', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
     <% end %>
   <% end %>
+  </p>
+  
 <% end %>
