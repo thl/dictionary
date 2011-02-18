@@ -37,14 +37,14 @@ div#login {
 }
 */
 
-.popup_html{min-width:670px;}
+.popup_html{min-width:540px;}  /* .popup_html{min-width:670px;}fix for related term */
 
 #content_popup {
 float:left;
 background-color:#FFFFFF;
 height:auto !important;
 margin:0 0 100px;
-min-height:600px;
+  min-height:520px;    /* min-height:600px; fix for related term */
 padding:0;
 width:100%;
 }

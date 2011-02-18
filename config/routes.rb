@@ -2,8 +2,35 @@ ActionController::Routing::Routes.draw do |map|
   map.resources(:categories, :member => {:expand => :get, :contract => :get}) { |category| category.resources(:children, :controller => 'categories', :member => {:expand => :get, :contract => :get}) }
   #map.definition_edit 'definition_edit', :controller => 'definitions', :action => 'definition_edit'
   #map.resources :definitions, :member => {:definition_edit => :get}
+
+  map.old_definition_edit 'old_definitions/:id/definition_edit', :controller => 'old_definitions', :action => 'old_definition_edit'
+  map.old_definition_show 'old_definitions/:id/definition_show', :controller => 'old_definitions', :action => 'old_definition_show'
+  map.old_definition_notes_edit 'old_definitions/:id/notes_edit', :controller => 'old_definitions', :action => 'notes_edit'
+  map.old_definition_notes_show 'old_definitions/:id/notes_show', :controller => 'old_definitions', :action => 'notes_show'
+
+  map.render_spellings 'spellings/:id/render_spellings', :controller => 'spellings', :action => 'render_spellings'
+
+
   map.definition_edit 'definitions/:id/definition_edit', :controller => 'definitions', :action => 'definition_edit'
   map.definition_show 'definitions/:id/definition_show', :controller => 'definitions', :action => 'definition_show'
+  map.edit_search_definition_definition_forms 'definition_definition_forms/:id/edit_search_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_search'
+  map.definition_public_show_list 'definitions/:id/public_show_list', :controller => 'definitions', :action => 'public_show_list'
+  map.thematic_classification_edit 'definitions/:id/thematic_classification_edit', :controller => 'definitions', :action => 'thematic_classification_edit'
+  map.thematic_classification_show 'definitions/:id/thematic_classification_show', :controller => 'definitions', :action => 'thematic_classification_show'
+  map.grammatical_function_edit 'definitions/:id/grammatical_function_edit', :controller => 'definitions', :action => 'grammatical_function_edit'
+  map.grammatical_function_show 'definitions/:id/grammatical_function_show', :controller => 'definitions', :action => 'grammatical_function_show'
+  map.register_edit 'definitions/:id/register_edit', :controller => 'definitions', :action => 'register_edit'
+  map.register_show 'definitions/:id/register_show', :controller => 'definitions', :action => 'register_show'
+  map.language_context_edit 'definitions/:id/language_context_edit', :controller => 'definitions', :action => 'language_context_edit'
+  map.language_context_show 'definitions/:id/language_context_show', :controller => 'definitions', :action => 'language_context_show'
+  map.literary_genre_edit 'definitions/:id/literary_genre_edit', :controller => 'definitions', :action => 'literary_genre_edit'
+  map.literary_genre_show 'definitions/:id/literary_genre_show', :controller => 'definitions', :action => 'literary_genre_show'
+  map.literary_period_edit 'definitions/:id/literary_period_edit', :controller => 'definitions', :action => 'literary_period_edit'
+  map.literary_period_show 'definitions/:id/literary_period_show', :controller => 'definitions', :action => 'literary_period_show'
+  map.literary_form_edit 'definitions/:id/literary_form_edit', :controller => 'definitions', :action => 'literary_form_edit'
+  map.literary_form_show 'definitions/:id/literary_form_show', :controller => 'definitions', :action => 'literary_form_show'
+
+
   map.analytical_note_edit 'definitions/:id/analytical_note_edit', :controller => 'definitions', :action => 'analytical_note_edit'
   map.analytical_note_show 'definitions/:id/analytical_note_show', :controller => 'definitions', :action => 'analytical_note_show'
   map.image_description_edit 'definitions/:id/image_description_edit', :controller => 'definitions', :action => 'image_description_edit'

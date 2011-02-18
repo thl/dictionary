@@ -269,7 +269,7 @@ function clear_contents(node)
 	} 
 	function edit_form_to(controller,id,parent_id) {
 		/*new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from', {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); */
-		tb_show("edit form from", root_dir+'/'+controller+'/modal_edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from'+'&height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);
+		tb_show("edit form from", root_dir+'/'+controller+'/modal_edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from'+'&TB_iframe=true&height=420&width=470&internal=edit_box&modal=true&public=yes',null);
 	}
 	function search_popup(controller,relatedtype,id) {
 		//new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_search/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
@@ -458,7 +458,9 @@ function clear_contents(node)
 					</span>
 				</td>
 				<td>
-					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
+					<%#= link_to image_tag('pencil.png',:border => 0), url_for( :action => 'edit_dynamic_definition', :id => d.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Other Definition Edit' %>		
+					<%= link_to 'Edit', url_for(:controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :internal=>'edit_box', :public=>'yes', :head_id => @head_id,  :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Other Dictionary (Dan Martin Dictionary) Edit' %>			
+					<%#= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
 					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
 				</td>
 			</tr>
@@ -478,7 +480,8 @@ function clear_contents(node)
 				</span>
 			</td>
 				<td>
-					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
+					<%#= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
+					<%= link_to 'Edit', url_for(:controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :internal=>'edit_box', :public=>'yes', :head_id => @head_id,  :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Other Dictionary (Jeffrey Hopkins) Edit' %>		
 					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
 				</td>
 			</tr>
@@ -498,7 +501,8 @@ function clear_contents(node)
 				</span>
 			</td>
 				<td>
-					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
+					<%= link_to 'Edit', url_for(:controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :internal=>'edit_box', :public=>'yes', :head_id => @head_id,  :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Other Dictionary (Yogācāra Glossary) Edit' %>			
+					<%#= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
 					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
 				</td>
 			</tr>
@@ -518,7 +522,8 @@ function clear_contents(node)
 				</span>
 			</td>
 				<td>
-					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
+					<%= link_to 'Edit', url_for(:controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :internal=>'edit_box', :public=>'yes', :head_id => @head_id,  :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Other Dictionary (Rangjung Yeshe) Edit' %>			
+					<%#= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
 					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
 				</td>
 			</tr>
@@ -538,7 +543,8 @@ function clear_contents(node)
 				</span>
 			</td>
 				<td>
-					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
+					<%= link_to 'Edit', url_for(:controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :internal=>'edit_box', :public=>'yes', :head_id => @head_id,  :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Other Dictionary (Richard Baron) Edit' %>			
+					<%#= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
 					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
 				</td>
 			</tr>
@@ -558,7 +564,8 @@ function clear_contents(node)
 				</span>
 			</td>
 				<td>
-					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
+					<%= link_to 'Edit', url_for(:controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :internal=>'edit_box', :public=>'yes', :head_id => @head_id,  :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Other Dictionary (Jim Valby) Edit' %>			
+					<%#= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %>
 					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
 				</td>
 			</tr>
@@ -578,7 +585,8 @@ function clear_contents(node)
 				</span>
 			</td>
 				<td>
-					<%= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %> 
+					<%= link_to 'Edit', url_for(:controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :internal=>'edit_box', :public=>'yes', :head_id => @head_id,  :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Other Dictionary (Ives Waldo) Edit' %>			
+					<%#= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %> 
 					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
 				</td>
 			</tr>

@@ -2652,7 +2652,271 @@ end
     
     render :layout => 'staging_new' #'definitions' #'staging_new'
   end
+ 
+ 
+  def update_thematic_classification
+     @definition = Definition.find(params[:definition][:id])
+     if @definition.created_by == nil or @definition.created_by == ""
+       @definition.created_by = session[:user].login
+       @definition.created_at = Time.now
+     end
+     if session[:user] != nil
+       @definition.updated_by = session[:user].login
+     end
+     @definition.updated_at = Time.now
+     if @definition.update_history == nil
+       @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+     else
+     	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end   
+     respond_to do |format|
+       if @definition.update_attributes(params[:definition])
+         format.html do
+           render :partial => 'category_selector_show', :locals => {:function_name => 'thematic_classification_type', :title => (@definition.thematic_classification_type != nil ? @definition.thematic_classification_type.title : 'Select A Value'), :id => @definition.id, :data_id => 272, :update_id => "thematic_classification_type#{@definition.id}" }
+         end
+       else
+         #redirect_to :action => 'index_edit'
+         #redirect_to :action => 'public_edit', :id => @definition
+       end
+     end
+   end
   
+  def thematic_classification_show
+    @definition = Definition.find(params[:id])
+    #render :partial => "thematic_classification_show", :locals => {:d => @definition}
+    render :partial => "category_selector_show", :locals => {:function_name => 'thematic_classification_type', :title => (@definition.thematic_classification_type != nil ? @definition.thematic_classification_type.title : 'Select A Value'), :id => @definition.id, :data_id => 272, :update_id => "thematic_classification_type#{@definition.id}" }
+  end
+  
+  def thematic_classification_edit
+    @definition = Definition.find(params[:id])   
+   # render :partial => "category_selector_edit", :locals => {:function_name => 'thematic_classification_type', :title => (@definition.thematic_classification_type != nil ? @definition.thematic_classification_type.title : 'Select A Value'), :id => @definition.id, :data_id => 272, :update_id => "definition[thematic_classification_type#{@definition.id}]_selector" }
+    render :partial => "category_selector_edit", :locals => {:function_name => 'thematic_classification_type', :title => (@definition.thematic_classification_type != nil ? @definition.thematic_classification_type.title : 'Select A Value'), :id => @definition.id, :data_id => 272, :update_id => "thematic_classification_type#{@definition.id}" }
+
+  end
+ 
+  def update_grammatical_function
+     @definition = Definition.find(params[:definition][:id])
+     if @definition.created_by == nil or @definition.created_by == ""
+       @definition.created_by = session[:user].login
+       @definition.created_at = Time.now
+     end
+     if session[:user] != nil
+       @definition.updated_by = session[:user].login
+     end
+     @definition.updated_at = Time.now
+     if @definition.update_history == nil
+       @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+     else
+     	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end   
+     respond_to do |format|
+       if @definition.update_attributes(params[:definition])
+         format.html do
+           render :partial => 'category_selector_show', :locals => {:function_name => 'grammatical_function_type', :title => (@definition.grammatical_function_type != nil ? @definition.grammatical_function_type.title : 'Select A Value'), :id => @definition.id, :data_id => 286, :update_id => "grammatical_function_type#{@definition.id}" }
+         end
+       else
+         #redirect_to :action => 'index_edit'
+         #redirect_to :action => 'public_edit', :id => @definition
+       end
+     end
+   end
+  
+  def grammatical_function_show
+    @definition = Definition.find(params[:id])
+    render :partial => "category_selector_show", :locals => {:function_name => 'grammatical_function_type', :title => (@definition.grammatical_function_type != nil ? @definition.grammatical_function_type.title : 'Select A Value'), :id => @definition.id, :data_id => 286, :update_id => "grammatical_function_type#{@definition.id}" }
+  end
+  
+  def grammatical_function_edit
+    @definition = Definition.find(params[:id])   
+    render :partial => "category_selector_edit", :locals => {:function_name => 'grammatical_function_type', :title => (@definition.grammatical_function_type != nil ? @definition.grammatical_function_type.title : 'Select A Value'), :id => @definition.id, :data_id => 286, :update_id => "grammatical_function_type#{@definition.id}" }
+  end 
+  
+  def update_register
+     @definition = Definition.find(params[:definition][:id])
+     if @definition.created_by == nil or @definition.created_by == ""
+       @definition.created_by = session[:user].login
+       @definition.created_at = Time.now
+     end
+     if session[:user] != nil
+       @definition.updated_by = session[:user].login
+     end
+     @definition.updated_at = Time.now
+     if @definition.update_history == nil
+       @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+     else
+     	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end   
+     respond_to do |format|
+       if @definition.update_attributes(params[:definition])
+         format.html do
+           render :partial => 'category_selector_show', :locals => {:function_name => 'register_type', :title => (@definition.register_type != nil ? @definition.register_type.title : 'Select A Value'), :id => @definition.id, :data_id => 190, :update_id => "register_type#{@definition.id}" }
+         end
+       else
+         #redirect_to :action => 'index_edit'
+         #redirect_to :action => 'public_edit', :id => @definition
+       end
+     end
+   end
+  
+  def register_show
+    @definition = Definition.find(params[:id])
+    render :partial => "category_selector_show", :locals => {:function_name => 'register_type', :title => (@definition.register_type != nil ? @definition.register_type.title : 'Select A Value'), :id => @definition.id, :data_id => 190, :update_id => "register_type#{@definition.id}" }
+  end
+  
+  def register_edit
+    @definition = Definition.find(params[:id])   
+    render :partial => "category_selector_edit", :locals => {:function_name => 'register_type', :title => (@definition.register_type != nil ? @definition.register_type.title : 'Select A Value'), :id => @definition.id, :data_id => 190, :update_id => "register_type#{@definition.id}" }
+  end  
+
+  def update_language_context
+     @definition = Definition.find(params[:definition][:id])
+     if @definition.created_by == nil or @definition.created_by == ""
+       @definition.created_by = session[:user].login
+       @definition.created_at = Time.now
+     end
+     if session[:user] != nil
+       @definition.updated_by = session[:user].login
+     end
+     @definition.updated_at = Time.now
+     if @definition.update_history == nil
+       @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+     else
+     	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end   
+     respond_to do |format|
+       if @definition.update_attributes(params[:definition])
+         format.html do
+           render :partial => 'category_selector_show', :locals => {:function_name => 'language_context_type', :title => (@definition.language_context_type != nil ? @definition.language_context_type.title : 'Select A Value'), :id => @definition.id, :data_id => 185, :update_id => "language_context_type#{@definition.id}" }
+         end
+       else
+         #redirect_to :action => 'index_edit'
+         #redirect_to :action => 'public_edit', :id => @definition
+       end
+     end
+   end
+  
+  def language_context_show
+    @definition = Definition.find(params[:id])
+    render :partial => "category_selector_show", :locals => {:function_name => 'language_context_type', :title => (@definition.language_context_type != nil ? @definition.language_context_type.title : 'Select A Value'), :id => @definition.id, :data_id => 185, :update_id => "language_context_type#{@definition.id}" }
+  end
+  
+  def language_context_edit
+    @definition = Definition.find(params[:id])   
+    render :partial => "category_selector_edit", :locals => {:function_name => 'language_context_type', :title => (@definition.language_context_type != nil ? @definition.language_context_type.title : 'Select A Value'), :id => @definition.id, :data_id => 185, :update_id => "language_context_type#{@definition.id}" }
+  end
+  
+  def update_literary_genre
+     @definition = Definition.find(params[:definition][:id])
+     if @definition.created_by == nil or @definition.created_by == ""
+       @definition.created_by = session[:user].login
+       @definition.created_at = Time.now
+     end
+     if session[:user] != nil
+       @definition.updated_by = session[:user].login
+     end
+     @definition.updated_at = Time.now
+     if @definition.update_history == nil
+       @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+     else
+     	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end   
+     respond_to do |format|
+       if @definition.update_attributes(params[:definition])
+         format.html do
+           render :partial => 'category_selector_show', :locals => {:function_name => 'literary_genre_type', :title => (@definition.literary_genre_type != nil ? @definition.literary_genre_type.title : 'Select A Value'), :id => @definition.id, :data_id => 119, :update_id => "literary_genre_type#{@definition.id}" }
+         end
+       else
+         #redirect_to :action => 'index_edit'
+         #redirect_to :action => 'public_edit', :id => @definition
+       end
+     end
+   end
+  
+  def literary_genre_show
+    @definition = Definition.find(params[:id])
+    render :partial => "category_selector_show", :locals => {:function_name => 'literary_genre_type', :title => (@definition.literary_genre_type != nil ? @definition.literary_genre_type.title : 'Select A Value'), :id => @definition.id, :data_id => 119, :update_id => "literary_genre_type#{@definition.id}" }
+  end
+  
+  def literary_genre_edit
+    @definition = Definition.find(params[:id])   
+    render :partial => "category_selector_edit", :locals => {:function_name => 'literary_genre_type', :title => (@definition.literary_genre_type != nil ? @definition.literary_genre_type.title : 'Select A Value'), :id => @definition.id, :data_id => 119, :update_id => "literary_genre_type#{@definition.id}" }
+  end  
+
+  def update_literary_period
+     @definition = Definition.find(params[:definition][:id])
+     if @definition.created_by == nil or @definition.created_by == ""
+       @definition.created_by = session[:user].login
+       @definition.created_at = Time.now
+     end
+     if session[:user] != nil
+       @definition.updated_by = session[:user].login
+     end
+     @definition.updated_at = Time.now
+     if @definition.update_history == nil
+       @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+     else
+     	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end   
+     respond_to do |format|
+       if @definition.update_attributes(params[:definition])
+         format.html do
+           render :partial => 'category_selector_show', :locals => {:function_name => 'literary_period_type', :title => (@definition.literary_period_type != nil ? @definition.literary_period_type.title : 'Select A Value'), :id => @definition.id, :data_id => 187, :update_id => "literary_period_type#{@definition.id}" }
+         end
+       else
+         #redirect_to :action => 'index_edit'
+         #redirect_to :action => 'public_edit', :id => @definition
+       end
+     end
+   end
+  
+  def literary_period_show
+    @definition = Definition.find(params[:id])
+    render :partial => "category_selector_show", :locals => {:function_name => 'literary_period_type', :title => (@definition.literary_period_type != nil ? @definition.literary_period_type.title : 'Select A Value'), :id => @definition.id, :data_id => 187, :update_id => "literary_period_type#{@definition.id}" }
+  end
+  
+  def literary_period_edit
+    @definition = Definition.find(params[:id])   
+    render :partial => "category_selector_edit", :locals => {:function_name => 'literary_period_type', :title => (@definition.literary_period_type != nil ? @definition.literary_period_type.title : 'Select A Value'), :id => @definition.id, :data_id => 187, :update_id => "literary_period_type#{@definition.id}" }
+  end
+    
+  def update_literary_form
+     @definition = Definition.find(params[:definition][:id])
+     if @definition.created_by == nil or @definition.created_by == ""
+       @definition.created_by = session[:user].login
+       @definition.created_at = Time.now
+     end
+     if session[:user] != nil
+       @definition.updated_by = session[:user].login
+     end
+     @definition.updated_at = Time.now
+     if @definition.update_history == nil
+       @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+     else
+     	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end   
+     respond_to do |format|
+       if @definition.update_attributes(params[:definition])
+         format.html do
+           render :partial => 'category_selector_show', :locals => {:function_name => 'literary_form_type', :title => (@definition.literary_form_type != nil ? @definition.literary_form_type.title : 'Select A Value'), :id => @definition.id, :data_id => 186, :update_id => "literary_form_type#{@definition.id}" }
+         end
+       else
+         #redirect_to :action => 'index_edit'
+         #redirect_to :action => 'public_edit', :id => @definition
+       end
+     end
+   end
+  
+  def literary_form_show
+    @definition = Definition.find(params[:id])
+    render :partial => "category_selector_show", :locals => {:function_name => 'literary_form_type', :title => (@definition.literary_form_type != nil ? @definition.literary_form_type.title : 'Select A Value'), :id => @definition.id, :data_id => 186, :update_id => "literary_form_type#{@definition.id}" }
+  end
+  
+  def literary_form_edit
+    @definition = Definition.find(params[:id])  
+    debugger 
+    render :partial => "category_selector_edit", :locals => {:function_name => 'literary_form_type', :title => (@definition.literary_form_type != nil ? @definition.literary_form_type.title : 'Select A Value'), :id => @definition.id, :data_id => 186, :update_id => "literary_form_type#{@definition.id}" }
+  end    
+    
   def public_destroy
     dd = DefinitionDefinition.find(:first, :conditions => 'def2_id = '+params[:id]+' and def1_id = '+params['parent_id'])
     dd.destroy unless dd == nil

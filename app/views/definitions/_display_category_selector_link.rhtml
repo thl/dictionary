@@ -9,3 +9,7 @@
 %>
 <%#= category_selector(@data, @model_name, @function_name, false, @id, @update_id ) %>
 <%= category_selector(@data, @model_name, @function_name, true, :hasTree => 'true', :singleSelectionTree => 'true') %>
+
+<% if @function_name == "thematic_classification_type" %>
+<%=   @definition.thematic_classification_type.title %>
+<% end %>
