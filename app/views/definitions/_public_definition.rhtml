@@ -46,6 +46,11 @@
 			</dd>
 		</dl>
 		<% end %>
+		
+		<%#= link_to_remote 'translations index', {:url => render_translations_path, :method => 'get'} %>
+		<div id="<%= d.id%>_translations_div"> 
+			<%#=   render :partial => 'translations/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+	
 		<% if d.translations.size > 0%>
 		<% count = 0;
 		   size = d.translations.size;
@@ -53,7 +58,7 @@
 		<b>Translation<% if e.language != nil and e.language != '' %> (<%= e.language %>)<% end %>:</b>
 			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
-			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translations', :action => 'edit_dynamic_translation', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Translation Edit' %>					
+			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translations', :action => 'edit_dynamic_translation', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) , :class=>:thickbox, :title=>'Translation Edit' %>					
 			<%#= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => d.id.to_s+'_translation', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'translations', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 			<span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'translation_id='+e.id.to_s, :title => 'Edit Relationships' %> 
@@ -82,8 +87,11 @@
 					
 			<br>
 		<% end %>
-		<!-- <br> -->
+	
 		<% end %>
+		
+		</div>	<!-- translations div -->
+		<br>
 		<span id="<%= d.id%>_translation" > </span>
 		
 		
@@ -277,53 +285,12 @@
 			<script type="text/javascript" language="javascript">Event.observe('definition[literary_form<%= d.id %>]_value', 'mouseover', function(e){ e=document.getElementById('definition[literary_form<%= d.id %>]_value');e.style.backgroundColor='#FFFF99'; });Event.observe('definition[literary_form<%= d.id %>]_value', 'mouseout', function(e){ new Effect.Highlight('definition[literary_form<%= d.id %>]_value',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>
 		<% end %>
 		
-		<% if d.pronunciations.size > 0 %>
-		<% count = 0;
-		   size = d.pronunciations.size;
-			for e in d.pronunciations %>
-			<%# if e != nil %>			
-			<b>Pronunciation <% if (e.pronunciation_type != nil and e.pronunciation_type != '') or (e.pronunciation_category != nil) %>
-					(
-						<%= '['+e.pronunciation_type.s+']' if (e.pronunciation_type != nil and e.pronunciation_type != '') %>
-						<%= e.pronunciation_category.title if (e.pronunciation_category != nil) %>
-					)
-					<% end %>
-				:</b>
-				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-	<%#= link_to_function image_tag('pencil.png',:border => 0), "dialect_id="+e.id.to_s+";edit_popup('pronunciations','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
-			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
-			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'pronunciations', :action => 'edit_dynamic_pronunciation', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Pronunciation Edit' %>		
-			<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_pronunciation', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'pronunciations', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
-			<span class=menuvalue onclick=show_menu(pro_menu,getCoord(arguments[0]));>
-			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'pronunciation_controller="pronunciation";pronunciation_id='+e.id.to_s, :title => 'Edit Relationships' %> 
-			</span>
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Pronunciation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_pronunciation', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :pronunciation => e.id }}, :confirm => "Are you sure you want to remove this Pronunciation?") %>
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_pronunciation' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :pronunciation => e.id),  :title=>'Remove Pronunciation', :confirm => "Are you sure you want to remove this Pronunciation?" %>
-			<%#= e.displayInfo %>
-			<% if e.phonetic_transliteration != nil %>
-			<!-- <b>Phonetic transliteration: </b> -->
-			<%= e.phonetic_transliteration.s %>
-			<% end %>
-			<dl style="margin-top:0em;margin-bottom:0em;">
-				<dd style="display:none"></dd>
-			<% if (e.major_dialect_family != nil and e.major_dialect_family != '') or (e.major_dialect_family_type != nil) %>
-				 <dd><b>Dialect: </b>
-					<span class="tib1"><%= '['+e.major_dialect_family.s+']' if e.major_dialect_family != nil and e.major_dialect_family != '' %></span>
-					<%= e.major_dialect_family_type.title if e.major_dialect_family_type != nil %>
-					</dd>
-			<% end %>
-			<%# end %>
-			<% if e.meta != nil%>
-				<% tm = Time.now %>
-				<dd><%= render :partial => 'meta', :locals => {:meta_location => tm.to_f, :meta => e.meta , :head_id => head_id} %></dd>
-			<% end %>
+		
+		
+		<div id="<%= d.id%>_pronunciations_div"> 
+		  <%=   render :partial => 'pronunciations/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+		</div> 
 
-			</dl>
-		<% end %>
-		<!-- <br> -->
-		<% end %>
-		<span id="<%= d.id%>_pronunciation" ></span>
 
 		<% if d.major_dialect_family_type_id != nil %>
 			<b>Tibetan Dialect:</b>  
@@ -344,102 +311,18 @@
 <br>
     <script type="text/javascript" language="javascript">Event.observe('definition[major_dialect_family<%= d.id %>]_value', 'mouseover', function(e){ e=document.getElementById('definition[major_dialect_family<%= d.id %>]_value');e.style.backgroundColor='#FFFF99'; });Event.observe('definition[major_dialect_family<%= d.id %>]_value', 'mouseout', function(e){ new Effect.Highlight('definition[major_dialect_family<%= d.id %>]_value',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>
 
-		
 		</span>
 		<% end %>
 		
 		
-		<% if d.etymologies.size > 0 %>
-		<% count = 0;
-		   size = d.etymologies.size;
-		   for e in d.etymologies %>
-		<b>Etymology:</b>
-				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-	<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('etymologies','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
-			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>		
-			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'etymologies', :action => 'edit_dynamic_etymology', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Etymology Edit' %>	
-			<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_etymology', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'etymologies', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
-			<span class=menuvalue onclick=show_menu(etymology_menu,getCoord(arguments[0]));>
-			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'etymology_id='+e.id.to_s, :title => 'Edit Relationships' %> 
-			</span>
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Etymology'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_etymology', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :etymology => e.id }}, :confirm => "Are you sure you want to remove this Etymology?") %>			
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_etymology' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id,  :parent_id => parent_id, :head_id => head_id,:etymology => e.id),  :title=>'Remove Etymology', :confirm => "Are you sure you want to remove this Etymology?" %>	
-			
-				<% if e.etymology_type != nil and e.etymology_type != '' %>
-					<i>[<%= e.etymology_type.s %>]</i>&nbsp;
-				<% end %>
-				<% if e.etymology_category != nil %>
-					<i><%= e.etymology_category.title %></i>&nbsp;
-				<% end %>
-			<span class="etymologies_show">	
-			<%= e.etymology.s if e.etymology != nil %>
-			</span>
-			<dl style="margin-top:0em;margin-bottom:0em;">
-				<dd style="display:none"></dd>
-			<% if e.loan_language != nil and e.loan_language != ''%>
-					<dd><b>Loan language: </b>[<%= e.loan_language %>]</dd>
-			<% end %>
-			<% if e.loan_language_type != nil and e.loan_language_type != ''%>
-					<dd><b>Loan language Type: </b><%= e.loan_language_type.title %></dd>
-			<% end %>
-			<% if e.derivation != nil and e.derivation != ''%>
-					<dd><b>Derivation: </b>[<%= e.derivation.s %>]</dd>
-			<% end %>
-			<% if e.derivation_type != nil%>
-					<dd><b>Derivation Type: </b><%= e.derivation_type.title %></dd>
-			<% end %>
-			<% if e.meta != nil%>
-			<dd>
-			<% t = Time.now %>
-			<%= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
-			</dd>
-			<% end %>
-			<% if e.translations.size > 0 %>
-				<!-- <br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-				<% for t in e.translations %>
-					<% if t.translation != nil and t.translation != ''%>
-						<dd><b>Translation: </b>
-						<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => t.id, :history_class => t.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
-						<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => t.id, :history_class => t.class.to_s }}) %>			
-						<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translations', :action => 'edit_dynamic_translation', :id => t.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Translation Edit' %>					
-						<%#= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => e.id.to_s+'_translation', :loading => 'dialect_id='+t.id.to_s, :url => {:controller => 'translations', :action => 'public_edit', :id => t.id, :params => {'definition_id' => head_id}} %>
-						<span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>
-						<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'translation_id='+t.id.to_s, :title => 'Edit Relationships' %> 
-						</span>
-						<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Translation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_translation', :id => e.id, :params => {:parent_id => parent_id, :head_id => head_id, :translation => t.id }}, :confirm => "Are you sure you want to remove this Translation?") %>			
-						<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_etymology_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => e.id, :parent_id => parent_id, :head_id => head_id, :translation => t.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>		
-						<% if t.language == 'Tibetan' %>
-						<span class="tib1">
-						<% end %>
-						<span class='tinyfied_show'>
-						<%= t.translation.s %>
-						</span>
-						<% if t.language == 'Tibetan' %>
-						</span>
-						<% end %>
-						<% if t.meta != nil%>
-						<dl style="margin-top:0em;margin-bottom:0em;">
-								<dd style="display:none"></dd>
-								<dd>		<% tm = Time.now %>
-						<%= render :partial => 'meta', :locals => {:meta_location => tm.to_f, :meta => t.meta , :head_id => head_id} %>
-							</dd>
-						</dl>
-						<% end %>
-						</dd>
-					<% end %>
-				<% end %>
-				<span id="<%= e.id %>_translation"></span>
-			<% end %>
-			</dl>
-		<% end %>
-		<!-- <br> -->
-		<% end %>
-		<span id="<%= d.id%>_etymology" ></span>
+		<div id="<%= d.id%>_etymologies_div"> 
+		  <%=   render :partial => 'etymologies/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+		</div>
 		
+	
 		<div id="<%= d.id%>_spellings_div">
 			<%#=   render :partial => 'spellings/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>
-		</div>
+
 		<%#= link_to_remote 'spelling index', {:url => render_spellings_path, :update => 'spellings_div', :method => 'get'} %>
 		
 		<% if d.spellings.size > 0%>
@@ -451,7 +334,7 @@
 				<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('spellings','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
 			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>
-			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'spellings', :action => 'edit_dynamic_spelling', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Spelling Edit' %>			
+			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'spellings', :action => 'edit_dynamic_spelling', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) , :class=>:thickbox, :title=>'Spelling Edit' %>			
 			<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_spelling', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'spellings', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 			<span class=menuvalue onclick=show_menu(spelling_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'spelling_id='+e.id.to_s, :title => 'Edit Relationships' %> 
@@ -481,7 +364,8 @@
 		<!-- <br> -->
 		<% end %>
 		<span id="<%= d.id%>_spelling" > </span>
-		<!-- </div> -->
+		</div> <!--  spellings_div -->
+			
 		
 		<% if d.definition_definition_form_tos.size > 0 or d.definition_definition_form_froms.size > 0%>
 		<% count = 0;
@@ -547,81 +431,21 @@
 		<span id="<%= d.id%>_form_to" > </span>
 		
 		
-		<% if d.full_synonyms.size > 0%>
-		<% count = 0;
-		   size = d.full_synonyms.size;
-		  for e in d.full_synonyms %>
-		<b>Full Synonym:</b>
-	        <%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('full_synonyms','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
-			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
-	        <%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_full_synonym', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'full_synonyms', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
-			<span class=menuvalue onclick=show_menu(full_synonym_menu,getCoord(arguments[0]));>
-			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'full_synonym_id='+e.id.to_s, :title => 'Edit Relationships' %> 
-			</span>
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Full Synyonym'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_full_synonym', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :full_synonym => e.id }}, :confirm => "Are you sure you want to remove this Full Synonym?") %>			
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_full_synonym' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id,  :parent_id => parent_id, :head_id => head_id, :full_synonym => e.id),  :title=>'Remove Full Synyonym', :confirm => "Are you sure you want to remove this Full Synonym?" %>	
-			
-			<span class="tib1">
-				<% for t in e.definitions %>
-					<%= link_to(t.term.s, :action => 'public_edit', :id => t.id) unless t.term == d.term %>&nbsp;
-				<% end %>
-			</span>
-			<br>
-			<dl style="margin-top:0em;margin-bottom:0em;">
-				<dd style="display:none"></dd>
-			<% if e.meta != nil%>
-				<dd>
-				<% t = Time.now %>
-				<%= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
-				</dd>
-			<% end %>
-			</dl>
-		<% end %>
-		<!-- <br> -->
-		<% end %>
-		<span id="<%= d.id%>_full_synonym" > </span>
-		<% if d.translation_equivalents.size > 0%>
-		<% count = 0;
-		   size = d.translation_equivalents.size;
-			for e in d.translation_equivalents %>
-		<b>Translation equivalent:</b>
-				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
-			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
-			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translation_equivalents', :action => 'edit_dynamic_translation_equivalent', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Translation Equivalent Edit' %>		
-	<%#= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => d.id.to_s+'_translation_equivalent', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'translation_equivalents', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
-	
-			<span class=menuvalue onclick=show_menu(translation_equivalent_menu,getCoord(arguments[0]));>
-			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'translation_equivalent_id='+e.id.to_s, :title => 'Edit Relationships' %> 
-			</span>
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Translation Equivalent'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_translation_equivalent', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :translation_equivalent => e.id }}, :confirm => "Are you sure you want to remove this Translation Equivalent?") %>			
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_translation_equivalent' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :translation_equivalent => e.id),  :title=>'Remove Translation Equivalent', :confirm => "Are you sure you want to remove this Translation Equivalent?" %>		
-			<% if e.language != nil and e.language != '' %>
-				<i><%= e.language %></i>&nbsp;
-			<% end %>
-					<% if e.language == 'Tibetan' %>
-					<span class="tib1">
-					<% end %>
-					<span class="tinyfied_show">
-			<%= e.translation_equivalent.s if e.translation_equivalent != nil %>
-					</span>
-					<% if e.language == 'Tibetan' %>
-					</span>
-					<% end %>
-			<dl style="margin-top:0em;margin-bottom:0em;">
-				<dd style="display:none"></dd>
-			<% if e.meta != nil%>
-			<dd>
-			<% t = Time.now %>
-			<%= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
-			</dd>
-			<% end %>
-			</dl>
-		<% end %>
-		<!-- <br> -->
-		<% end %>
-		<span id="<%= d.id%>_translation_equivalent" > </span>
+		<div id="<%= d.id%>_full_synonyms_div"> 
+		  <%=   render :partial => 'full_synonyms/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+		</div>
+		
+		
+		<div id="<%= d.id%>_translation_equivalents_div"> 
+		  <%=   render :partial => 'translation_equivalents/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+		</div>
+
+
+
+
+		
+		
+		
 		<% if d.model_sentences.size > 0%>
 		<% count = 0;
 		   size = d.model_sentences.size;

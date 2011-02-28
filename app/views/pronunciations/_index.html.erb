@@ -1,0 +1,47 @@
+	<% if d.pronunciations.size > 0 %>
+	<% count = 0;
+	   size = d.pronunciations.size;
+		for e in d.pronunciations %>
+		<%# if e != nil %>			
+		<b>Pronunciation <% if (e.pronunciation_type != nil and e.pronunciation_type != '') or (e.pronunciation_category != nil) %>
+				(
+					<%= '['+e.pronunciation_type.s+']' if (e.pronunciation_type != nil and e.pronunciation_type != '') %>
+					<%= e.pronunciation_category.title if (e.pronunciation_category != nil) %>
+				)
+				<% end %>
+			:</b>
+			<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<%#= link_to_function image_tag('pencil.png',:border => 0), "dialect_id="+e.id.to_s+";edit_popup('pronunciations','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
+		<%= link_to image_tag('user.png',:border => 0), url_for(:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+		<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
+		<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'pronunciations', :action => 'edit_dynamic_pronunciation', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true), :class=>:thickbox, :title=>'Pronunciation Edit' %>		
+		<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_pronunciation', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'pronunciations', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
+		<span class=menuvalue onclick=show_menu(pro_menu,getCoord(arguments[0]));>
+		<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'pronunciation_controller="pronunciation";pronunciation_id='+e.id.to_s, :title => 'Edit Relationships' %> 
+		</span>
+		<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Pronunciation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_pronunciation', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :pronunciation => e.id }}, :confirm => "Are you sure you want to remove this Pronunciation?") %>
+		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_pronunciation' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :pronunciation => e.id),  :title=>'Remove Pronunciation', :confirm => "Are you sure you want to remove this Pronunciation?" %>
+		<%#= e.displayInfo %>
+		<% if e.phonetic_transliteration != nil %>
+		<!-- <b>Phonetic transliteration: </b> -->
+		<%= e.phonetic_transliteration.s %>
+		<% end %>
+		<dl style="margin-top:0em;margin-bottom:0em;">
+			<dd style="display:none"></dd>
+		<% if (e.major_dialect_family != nil and e.major_dialect_family != '') or (e.major_dialect_family_type != nil) %>
+			 <dd><b>Dialect: </b>
+				<span class="tib1"><%= '['+e.major_dialect_family.s+']' if e.major_dialect_family != nil and e.major_dialect_family != '' %></span>
+				<%= e.major_dialect_family_type.title if e.major_dialect_family_type != nil %>
+				</dd>
+		<% end %>
+		<%# end %>
+		<% if e.meta != nil%>
+			<% tm = Time.now %>
+			<dd><%= render :partial => 'definitions/meta', :locals => {:meta_location => tm.to_f, :meta => e.meta , :head_id => head_id} %></dd>
+		<% end %>
+
+		</dl>
+	<% end %>
+	<!-- <br> -->
+	<% end %>
+	<span id="<%= d.id%>_pronunciation" ></span>

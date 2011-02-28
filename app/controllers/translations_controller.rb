@@ -101,7 +101,8 @@ class TranslationsController < ApplicationController
     @translation.created_by = session[:user].login
     @translation.created_at = Time.now
     @translation.save
-    redirect_to :action => 'edit_dynamic', :id => @translation.id, :params => {'new' => 'true'}
+    #redirect_to :action => 'edit_dynamic', :id => @translation.id, :params => {'new' => 'true'}
+    redirect_to :action => 'edit_dynamic_translation', :id => @translation.id, :params => {'new' => 'true'}
   end
 
   def create
@@ -812,10 +813,20 @@ class TranslationsController < ApplicationController
   "
       end
       if @translation.update_attributes(params[:translation])
-        render :nothing => true
+        #render :nothing => true
+        render_translations  
       else
       end
     end  
+  
+  def render_translations
+    @translation = Translation.find(params[:id])
+    @temp_definition = Definition.find(@translation.definition_id) 
+ 	  render :update do |page|
+      #yield(page) if block_given?     	    
+      page.replace_html "#{@translation.definition_id}_translations_div", :partial => 'translations/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition}
+    end 
+  end
   
   def update_translation
       @translation = Translation.find(params[:translation][:id])

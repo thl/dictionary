@@ -14,6 +14,7 @@ $(document).ready(function() {
 	
 	$("#cancel_button").click(function () { parent.eval('tb_remove()'); });
 	$("#update_button").click(function () {	parent.eval('tb_remove()'); });
+	//$("#update_button").click(function () {	parent.eval('tb_remove()');parent.location.reload(1); });
 		
 });
 </script>
@@ -21,7 +22,7 @@ $(document).ready(function() {
 
 <h1>Editing Translation</h1>
 <%= error_messages_for 'translation' %>
-<% form_for :translation, :url => { :action => "update_dynamic_translation" } do |f| %>
+<% remote_form_for :translation,  :url => { :action => "update_dynamic_translation" } do |f| %>
 	
   <%= modal_edit_dynamic_translation %>
 
@@ -29,6 +30,5 @@ $(document).ready(function() {
   <input type="hidden" name="pk" value="<%= params['pk'] %>">
   <br>
   <%= submit_tag 'Update', :id => 'update_button' %>
-  <input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+  <input type='button' name='cancel_button' value='Cancel' id='cancel_button'>  
 <% end %> <!--form_for-->	
-

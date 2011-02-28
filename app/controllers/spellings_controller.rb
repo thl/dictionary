@@ -216,7 +216,8 @@ class SpellingsController < ApplicationController
     @spelling.created_by = session[:user].login
     @spelling.created_at = Time.now
     @spelling.save
-    redirect_to :action => 'edit_dynamic', :id => @spelling.id, :params => {'new' => 'true'}
+    #redirect_to :action => 'edit_dynamic', :id => @spelling.id, :params => {'new' => 'true'}
+    redirect_to :action => 'edit_dynamic_spelling', :id => @spelling.id, :params => {'new' => 'true'}
   end
 
   def create
@@ -700,15 +701,12 @@ class SpellingsController < ApplicationController
   end
   
   def render_spellings
-    #find a way to save selected expanded description
-    @definition = Definition.find(51)
-    #debugger
-    #render :update do |page|
-	    #yield(page) if block_given?
-	    #debugger
-	    #page.replace_html "<%= @definition.id%>_spellings_div", :partial => 'spellings/index', :locals => {:d => @definition, :parent_id => @definition.id, :head_id => @definition.id}
-	  #end
-	  render :partial => 'spellings/index', :locals => {:d => @definition, :parent_id => @definition.id, :head_id => @definition.id}
+    @spelling = Spelling.find(params[:id])
+    @temp_definition = Definition.find(@spelling.definition_id) 
+ 	  render :update do |page|
+      #yield(page) if block_given?     	    
+      page.replace_html "#{@spelling.definition_id}_spellings_div", :partial => 'spellings/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition.id, :head_id => @temp_definition.id}
+    end
     
   end
   
