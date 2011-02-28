@@ -76,7 +76,8 @@ class TranslationEquivalentsController < ApplicationController
     @translation_equivalent.created_by = session[:user].login
     @translation_equivalent.created_at = Time.now
     @translation_equivalent.save
-    redirect_to :action => 'edit_dynamic', :id => @translation_equivalent.id, :params => {'new' => 'true'}
+    #redirect_to :action => 'edit_dynamic', :id => @translation_equivalent.id, :params => {'new' => 'true'}
+    redirect_to :action => 'edit_dynamic_translation_equivalent', :id => @translation_equivalent.id, :params => {'new' => 'true'}
   end
 
   def create
@@ -531,10 +532,21 @@ class TranslationEquivalentsController < ApplicationController
   "
       end
       if @translation_equivalent.update_attributes(params[:translation_equivalent])
-        render :nothing => true
+        #render :nothing => true
+        render_translation_equivalents
       else
       end
   end 
+  
+  
+  def render_translation_equivalents
+    @translation_equivalent = TranslationEquivalent.find(params[:id])
+    @temp_definition = Definition.find(@translation_equivalent.def_id) 
+ 	  render :update do |page|
+      #yield(page) if block_given?     	    
+      page.replace_html "#{@translation_equivalent.def_id}_translation_equivalents_div", :partial => 'translation_equivalents/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition.id, :head_id => @temp_definition.id}
+    end 
+  end
   
   def update_translation_equivalent
       @translation_equivalent = TranslationEquivalent.find(params[:translation_equivalent][:id])

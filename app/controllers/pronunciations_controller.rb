@@ -244,7 +244,8 @@ class PronunciationsController < ApplicationController
     @pronunciation.created_by = session[:user].login
     @pronunciation.created_at = Time.now
     @pronunciation.save
-    redirect_to :action => 'edit_dynamic', :id => @pronunciation.id, :params => {'new' => 'true'}
+    #redirect_to :action => 'edit_dynamic', :id => @pronunciation.id, :params => {'new' => 'true'}
+    redirect_to :action => 'edit_dynamic_pronunciation', :id => @pronunciation.id, :params => {'new' => 'true'}
   end
 
   def create
@@ -699,11 +700,21 @@ class PronunciationsController < ApplicationController
   "
       end
       if @pronunciation.update_attributes(params[:pronunciation])
-        render :nothing => true
-        #redirect_to :controller => 'definitions', :action => 'public_edit', :id => Pronunciation.find(params[:id]).definition.id
+        #render :nothing => true
+        ##redirect_to :controller => 'definitions', :action => 'public_edit', :id => Pronunciation.find(params[:id]).definition.id
+        render_pronunciations
       else
        
       end
+    end
+   
+    def render_pronunciations
+      @pronunciation = Pronunciation.find(params[:id])
+      @temp_definition = Definition.find(@pronunciation.def_id) 
+   	  render :update do |page|
+        #yield(page) if block_given?     	    
+        page.replace_html "#{@pronunciation.def_id}_pronunciations_div", :partial => 'pronunciations/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition}
+      end 
     end
       
   def update_analytical_note

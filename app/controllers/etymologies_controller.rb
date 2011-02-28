@@ -236,7 +236,8 @@ class EtymologiesController < ApplicationController
     @etymology.created_by = session[:user].login
     @etymology.created_at = Time.now
     @etymology.save
-    redirect_to :action => 'edit_dynamic', :id => @etymology.id, :params => {'new' => 'true'}
+    #redirect_to :action => 'edit_dynamic', :id => @etymology.id, :params => {'new' => 'true'}
+    redirect_to :action => 'edit_dynamic_etymology', :id => @etymology.id, :params => {'new' => 'true'}
   end
 
   def create
@@ -838,15 +839,25 @@ class EtymologiesController < ApplicationController
       end    
       #respond_to do |format|
         if @etymology.update_attributes(params[:etymology])
-          #format.html do
-          #  render :partial => 'etymology_show', :locals => {:e => @etymology}
-          #end
-          render :nothing => true
+          ##format.html do
+          ##  render :partial => 'etymology_show', :locals => {:e => @etymology}
+          ##end
+          #render :nothing => true
+          render_etymologies
         else
           #redirect_to :action => 'index_edit'
           #redirect_to :action => 'public_edit', :id => @definition
         end
       #end
+  end
+
+  def render_etymologies
+    @etymology = Etymology.find(params[:id])
+    @temp_definition = Definition.find(@etymology.definition_id) 
+ 	  render :update do |page|
+      #yield(page) if block_given?     	    
+      page.replace_html "#{@etymology.definition_id}_etymologies_div", :partial => 'etymologies/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition}
+    end 
   end
 
     def update_etymology

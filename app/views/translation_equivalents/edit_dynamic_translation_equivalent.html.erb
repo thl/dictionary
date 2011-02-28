@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 <h1>Editing Translation Equivalent</h1>
 <%= error_messages_for 'translation_equivalent' %>
-<% form_for :etymology, :url => { :action => "update_dynamic_translation_equivalent" } do |f| %>
+<% remote_form_for :etymology, :url => { :action => "update_dynamic_translation_equivalent" } do |f| %>
 	
   <%= modal_edit_dynamic_translation_equivalent %>
 

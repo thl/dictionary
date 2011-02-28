@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.old_definition_notes_show 'old_definitions/:id/notes_show', :controller => 'old_definitions', :action => 'notes_show'
 
   map.render_spellings 'spellings/:id/render_spellings', :controller => 'spellings', :action => 'render_spellings'
-
+  map.render_translations 'translations/:id/render_translations', :controller => 'translations', :action => 'render_translations'
 
   map.definition_edit 'definitions/:id/definition_edit', :controller => 'definitions', :action => 'definition_edit'
   map.definition_show 'definitions/:id/definition_show', :controller => 'definitions', :action => 'definition_show'

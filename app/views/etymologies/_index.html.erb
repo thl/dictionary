@@ -1,0 +1,87 @@
+	<% if d.etymologies.size > 0 %>
+	<% count = 0;
+	   size = d.etymologies.size;
+	   for e in d.etymologies %>
+	<b>Etymology:</b>
+			<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('etymologies','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
+		<%= link_to image_tag('user.png',:border => 0), url_for(:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+		<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>		
+		<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'etymologies', :action => 'edit_dynamic_etymology', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true), :class=>:thickbox, :title=>'Etymology Edit' %>	
+		<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_etymology', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'etymologies', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
+		<span class=menuvalue onclick=show_menu(etymology_menu,getCoord(arguments[0]));>
+		<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'etymology_id='+e.id.to_s, :title => 'Edit Relationships' %> 
+		</span>
+		<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Etymology'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_etymology', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :etymology => e.id }}, :confirm => "Are you sure you want to remove this Etymology?") %>			
+		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_etymology' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id,  :parent_id => parent_id, :head_id => head_id,:etymology => e.id),  :title=>'Remove Etymology', :confirm => "Are you sure you want to remove this Etymology?" %>	
+		
+			<% if e.etymology_type != nil and e.etymology_type != '' %>
+				<i>[<%= e.etymology_type.s %>]</i>&nbsp;
+			<% end %>
+			<% if e.etymology_category != nil %>
+				<i><%= e.etymology_category.title %></i>&nbsp;
+			<% end %>
+		<span class="etymologies_show">	
+		<%= e.etymology.s if e.etymology != nil %>
+		</span>
+		<dl style="margin-top:0em;margin-bottom:0em;">
+			<dd style="display:none"></dd>
+		<% if e.loan_language != nil and e.loan_language != ''%>
+				<dd><b>Loan language: </b>[<%= e.loan_language %>]</dd>
+		<% end %>
+		<% if e.loan_language_type != nil and e.loan_language_type != ''%>
+				<dd><b>Loan language Type: </b><%= e.loan_language_type.title %></dd>
+		<% end %>
+		<% if e.derivation != nil and e.derivation != ''%>
+				<dd><b>Derivation: </b>[<%= e.derivation.s %>]</dd>
+		<% end %>
+		<% if e.derivation_type != nil%>
+				<dd><b>Derivation Type: </b><%= e.derivation_type.title %></dd>
+		<% end %>
+		<% if e.meta != nil%>
+		<dd>
+		<% t = Time.now %>
+		<%= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
+		</dd>
+		<% end %>
+		<% if e.translations.size > 0 %>
+			<!-- <br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+			<% for t in e.translations %>
+				<% if t.translation != nil and t.translation != ''%>
+					<dd><b>Translation: </b>
+					<%= link_to image_tag('user.png',:border => 0), url_for(:controller => 'definitions', :action => 'display_history', :history_id => t.id, :history_class => t.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+					<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => t.id, :history_class => t.class.to_s }}) %>			
+					<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translations', :action => 'edit_dynamic_translation', :id => t.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) , :class=>:thickbox, :title=>'Translation Edit' %>					
+					<%#= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => e.id.to_s+'_translation', :loading => 'dialect_id='+t.id.to_s, :url => {:controller => 'translations', :action => 'public_edit', :id => t.id, :params => {'definition_id' => head_id}} %>
+					<span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>
+					<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'translation_id='+t.id.to_s, :title => 'Edit Relationships' %> 
+					</span>
+					<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Translation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_translation', :id => e.id, :params => {:parent_id => parent_id, :head_id => head_id, :translation => t.id }}, :confirm => "Are you sure you want to remove this Translation?") %>			
+					<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_etymology_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => e.id, :parent_id => parent_id, :head_id => head_id, :translation => t.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>		
+					<% if t.language == 'Tibetan' %>
+					<span class="tib1">
+					<% end %>
+					<span class='tinyfied_show'>
+					<%= t.translation.s %>
+					</span>
+					<% if t.language == 'Tibetan' %>
+					</span>
+					<% end %>
+					<% if t.meta != nil%>
+					<dl style="margin-top:0em;margin-bottom:0em;">
+							<dd style="display:none"></dd>
+							<dd>		<% tm = Time.now %>
+					<%= render :partial => 'definitions/meta', :locals => {:meta_location => tm.to_f, :meta => t.meta , :head_id => head_id} %>
+						</dd>
+					</dl>
+					<% end %>
+					</dd>
+				<% end %>
+			<% end %>
+			<span id="<%= e.id %>_translation"></span>
+		<% end %>
+		</dl>
+	<% end %>
+	<!-- <br> -->
+	<% end %>
+	<span id="<%= d.id%>_etymology" ></span>
