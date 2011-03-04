@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 <h1>Editing Oral Quotation</h1>
 <%= error_messages_for 'oral_quotation' %>
-<% form_for :oral_quotation, :url => { :action => "update_dynamic_oral_quotation" } do |f| %>
+<% remote_form_for :oral_quotation, :url => { :action => "update_dynamic_oral_quotation" } do |f| %>
 	
   <%= modal_edit_dynamic_oral_quotation %>
 
