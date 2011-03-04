@@ -1247,9 +1247,23 @@ class MetasController < ApplicationController
        "
       end
       if @meta.update_attributes(params[:meta])
-        render :nothing => true
+        if @meta.definition_id.nil?
+           render :nothing => true
+        else
+          render_meta
+        end
       end
   end  
+  
+  def render_meta
+    @meta = Meta.find(params[:id])
+    @temp_definition = Definition.find(@meta.definition_id) 
+ 	  render :update do |page|
+      #yield(page) if block_given?  
+      t = Time.now   	    
+      page.replace_html "#{@meta.id}_meta_div", :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => @meta , :head_id => @temp_definition.id}
+    end 
+  end
   
   def update_metadata_note
       @meta = Meta.find(params[:meta][:id])

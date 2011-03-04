@@ -44,11 +44,15 @@
 		<dl style="margin-top:0em;margin-bottom:0em;">
 				<dd style="display:none"></dd>
 				<dd>		<% t = Time.now %>
-		<%= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => d.meta , :head_id => head_id} %>
+				<%#= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => d.meta , :head_id => head_id} %>
+				<div id="<%= d.meta.id%>_meta_div"> 
+		  			<%= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => d.meta , :head_id => head_id} %>	
+				</div>
 			</dd>
 		</dl>
 		<% end %>
-
+		
+		
 		
 		
 		<%#= link_to_remote 'translations index', {:url => render_translations_path, :method => 'get'} %>
