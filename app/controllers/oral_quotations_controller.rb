@@ -106,7 +106,8 @@ class OralQuotationsController < ApplicationController
     @oral_quotation.created_by = session[:user].login
     @oral_quotation.created_at = Time.now
     @oral_quotation.save
-    redirect_to :action => 'edit_dynamic', :id => @oral_quotation.id, :params => {'new' => 'true'}
+    #redirect_to :action => 'edit_dynamic', :id => @oral_quotation.id, :params => {'new' => 'true'}
+    redirect_to :action => 'edit_dynamic_oral_quotation', :id => @oral_quotation.id, :params => {'new' => 'true'}
   end
 
   def create
@@ -633,10 +634,20 @@ class OralQuotationsController < ApplicationController
   "
       end
       if @oral_quotation.update_attributes(params[:oral_quotation])
-        render :nothing => true
+        #render :nothing => true
+        render_oral_quotations
       else
       end
   end  
+  
+  def render_oral_quotations
+    @oral_quotation = OralQuotation.find(params[:id])
+    @temp_definition = Definition.find(@oral_quotation.definitions.first.id) 
+ 	  render :update do |page|
+      #yield(page) if block_given?     	    
+      page.replace_html "#{@oral_quotation.definitions.first.id}_oral_quotations_div", :partial => 'oral_quotations/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition.id, :head_id => @temp_definition.id}
+    end 
+  end
   
   def update_analytical_note
       @oral_quotation = OralQuotation.find(params[:oral_quotation][:id])

@@ -183,7 +183,8 @@ class LiteraryQuotationsController < ApplicationController
     @literary_quotation.created_by = session[:user].login
     @literary_quotation.created_at = Time.now
     @literary_quotation.save
-    redirect_to :action => 'edit_dynamic', :id => @literary_quotation.id, :params => {'new' => 'true'}
+    #redirect_to :action => 'edit_dynamic', :id => @literary_quotation.id, :params => {'new' => 'true'}
+    redirect_to :action => 'edit_dynamic_literary_quotation', :id => @literary_quotation.id, :params => {'new' => 'true'}
   end
 
   def create
@@ -786,12 +787,21 @@ class LiteraryQuotationsController < ApplicationController
   "
       end
       if @literary_quotation.update_attributes(params[:literary_quotation])
-         render :nothing => true
+         #render :nothing => true
+         render_literary_quotations
       else
 
       end
     end
-
+    
+    def render_literary_quotations
+      @literary_quotation = LiteraryQuotation.find(params[:id])
+      @temp_definition = Definition.find(@literary_quotation.definitions.first.id) 
+   	  render :update do |page|
+        #yield(page) if block_given?     	    
+        page.replace_html "#{@literary_quotation.definitions.first.id}_literary_quotations_div", :partial => 'literary_quotations/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition.id, :head_id => @temp_definition.id}
+      end 
+    end
  
   def update_passage
       @literary_quotation = LiteraryQuotation.find(params[:literary_quotation][:id])

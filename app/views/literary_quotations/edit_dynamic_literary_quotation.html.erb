@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 <h1>Editing Literary Quotation</h1>
 <%= error_messages_for 'literary_quotation' %>
-<% form_for :literary_quotation, :url => { :action => "update_dynamic_literary_quotation" } do |f| %>
+<% remote_form_for :literary_quotation, :url => { :action => "update_dynamic_literary_quotation" } do |f| %>
 	
   <%= modal_edit_dynamic_literary_quotation %>
 

@@ -1,0 +1,77 @@
+	<% if d.model_sentences.size > 0%>
+	<% count = 0;
+	   size = d.model_sentences.size;
+		for e in d.model_sentences %>
+	<b>Model sentences:</b>
+			<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('model_sentences','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
+		<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+		<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>
+		<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'model_sentences', :action => 'edit_dynamic_model_sentence', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true), :class=>:thickbox, :title=>'Model Sentence Edit' %>			
+<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_model_sentence', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'model_sentences', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
+		<span class=menuvalue onclick=show_menu(model_sentence_menu,getCoord(arguments[0]));>
+		<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'model_sentence_id='+e.id.to_s, :title => 'Edit Relationships' %> 
+		</span>
+		<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Model Sentence'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_model_sentence', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :model_sentence => e.id }}, :confirm => "Are you sure you want to remove this Model Sentence?") %>			
+		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_model_sentence' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :model_sentence => e.id),  :title=>'Remove Model Sentence', :confirm => "Are you sure you want to remove this Model Sentence?" %>		
+				<% if e.language == 'Tibetan' %>
+				<span class="tib1">
+				<% end %>
+				<span class='tinyfied_show'>
+		<%= e.model_sentence.s if e.model_sentence != nil %>
+				</span>
+				<% if e.language == 'Tibetan' %>
+				</span>
+				<% end %>			
+		<dl style="margin-top:0em;margin-bottom:0em;">
+			<dd style="display:none"></dd>
+		<% if e.sentence_type != nil and e.sentence_type != ''%>
+				<dd><b>Type: </b><%= e.sentence_type %></dd>
+		<% end %>
+		<% if e.source != nil and e.source != ''%>
+				<dd><b>Source: </b><%= e.source %></dd>
+		<% end %>
+		<% if e.meta != nil%>
+		<dd>
+		<% t = Time.now %>
+		<%= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
+		</dd>
+		<% end %>
+			<% for t in e.translations %>
+				<% if t.translation != nil and t.translation != ''%>
+					<dd><b>Translation: </b>
+					<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => t.id, :history_class => t.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+					<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => t.id, :history_class => t.class.to_s }}) %>			
+			<%#= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => e.id.to_s+'_translation', :loading => 'dialect_id='+t.id.to_s, :url => {:controller => 'translations', :action => 'public_edit', :id => t.id, :params => {'definition_id' => head_id}} %>
+			<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translations', :action => 'edit_dynamic_translation', :id => t.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) , :class=>:thickbox, :title=>'Translations Edit' %>
+					<span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>
+					<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'translation_id='+t.id.to_s, :title => 'Edit Relationships' %> 
+					</span>
+					<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Translation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_translation', :id => e.id, :params => {:parent_id => parent_id, :head_id => head_id, :translation => t.id }}, :confirm => "Are you sure you want to remove this Translation?") %>			
+					<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_model_sentence_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => e.id, :parent_id => parent_id, :head_id => head_id, :translation => t.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>		
+					<% if t.language == 'Tibetan' %>
+					<span class="tib1">
+					<% end %>
+					<span class='tinyfied_show'>
+					<%= t.translation.s if t.translation != nil %>
+					</span>
+					<% if t.language == 'Tibetan' %>
+					</span>
+					<% end %>
+					<% if t.meta != nil%>
+					<dl style="margin-top:0em;margin-bottom:0em;">
+							<dd style="display:none"></dd>
+							<dd>		<% tm = Time.now %>
+					<%= render :partial => 'definitions/meta', :locals => {:meta_location => tm.to_f, :meta => t.meta , :head_id => head_id} %>
+						</dd>
+					</dl>
+					<% end %>
+					</dd>
+				<% end %>
+			<% end %>
+			<span id="<%= e.id %>_translation"></span>
+			</dl>
+	<% end %>
+	<!-- <br> -->
+	<% end %>
+	<span id="<%= d.id%>_model_sentence" > </span>

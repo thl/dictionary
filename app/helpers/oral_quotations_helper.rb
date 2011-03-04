@@ -1076,7 +1076,7 @@ module OralQuotationsHelper
     end
     resultstr << in_place_editor_field( :oral_quotation, :source, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source]'}) +"<br>"
     resultstr << "<b>Source title: </b>"
-    resultstr << @oral_quotation.source_title if @oral_quotation.source_title != nil
+    #resultstr << @oral_quotation.source_title if @oral_quotation.source_title != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=oral_quotation[source_title] id=oral_quotation[source_title] value=\""+@oral_quotation.source_title.to_s+"\" >"
     if @oral_quotation.source_title == nil or @oral_quotation.source_title == ''
@@ -1084,7 +1084,7 @@ module OralQuotationsHelper
     end
     resultstr << in_place_editor_field( :oral_quotation, :source_title, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_title]'}) +"<br>"
     resultstr << "<b>Source type: </b>"
-    resultstr << @oral_quotation.source_type if @oral_quotation.source_type != nil
+    #resultstr << @oral_quotation.source_type if @oral_quotation.source_type != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=oral_quotation[source_type] id=oral_quotation[source_type] value=\""+@oral_quotation.source_type.to_s+"\" >"
     if @oral_quotation.source_type == nil or @oral_quotation.source_type == ''
@@ -1130,7 +1130,7 @@ module OralQuotationsHelper
     # end
     # resultstr << in_place_form_editor_field( :oral_quotation, :translation_of_transcript, {}, {:cols => 80, :rows => 10, :fieldname => 'oral_quotation[translation_of_transcript]'}) +"<br>"
     resultstr << "<b>Source speech type: </b>"
-    resultstr << @oral_quotation.source_speech_type if @oral_quotation.source_speech_type != nil
+    #resultstr << @oral_quotation.source_speech_type if @oral_quotation.source_speech_type != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=oral_quotation[source_speech_type] id=oral_quotation[source_speech_type] value=\""+@oral_quotation.source_speech_type.to_s+"\" >"
     if @oral_quotation.source_speech_type == nil or @oral_quotation.source_speech_type == ''
@@ -1138,7 +1138,7 @@ module OralQuotationsHelper
     end
     resultstr << in_place_editor_field( :oral_quotation, :source_speech_type, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_type]'}) +"<br>"
     resultstr << "<b>Source speech context: </b>"
-    resultstr << @oral_quotation.source_speech_context if @oral_quotation.source_speech_context != nil
+    #resultstr << @oral_quotation.source_speech_context if @oral_quotation.source_speech_context != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=oral_quotation[source_speech_context] id=oral_quotation[source_speech_context] value=\""+@oral_quotation.source_speech_context.to_s+"\" >"
     if @oral_quotation.source_speech_context == nil or @oral_quotation.source_speech_context == ''

@@ -200,7 +200,8 @@ class ModelSentencesController < ApplicationController
     @model_sentence.created_by = session[:user].login
     @model_sentence.created_at = Time.now
     @model_sentence.save
-    redirect_to :action => 'edit_dynamic', :id => @model_sentence.id, :params => {'new' => 'true'}
+    #redirect_to :action => 'edit_dynamic', :id => @model_sentence.id, :params => {'new' => 'true'}
+    redirect_to :action => 'edit_dynamic_model_sentence', :id => @model_sentence.id, :params => {'new' => 'true'}
   end
 
   def create
@@ -763,11 +764,20 @@ class ModelSentencesController < ApplicationController
   "
       end
       if @model_sentence.update_attributes(params[:model_sentence])
-        render :nothing => true
+        #render :nothing => true
+        render_model_sentences
       else
       end
   end
-  
+
+  def render_model_sentences
+    @model_sentence = ModelSentence.find(params[:id])
+    @temp_definition = Definition.find(@model_sentence.definitions.first.id) 
+ 	  render :update do |page|
+      #yield(page) if block_given?     	    
+      page.replace_html "#{@model_sentence.definitions.first.id}_model_sentences_div", :partial => 'model_sentences/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition.id, :head_id => @temp_definition.id}
+    end 
+  end  
   
   def update_model_sentence
       @model_sentence = ModelSentence.find(params[:model_sentence][:id])
