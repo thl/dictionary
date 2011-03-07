@@ -13,6 +13,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.definition_edit 'definitions/:id/definition_edit', :controller => 'definitions', :action => 'definition_edit'
   map.definition_show 'definitions/:id/definition_show', :controller => 'definitions', :action => 'definition_show'
+  map.definition_popupedit 'definitions/:id/definition_popupedit', :controller => 'definitions', :action => 'definition_popupedit'
+  map.definition_popupshow 'definitions/:id/definition_popupshow', :controller => 'definitions', :action => 'definition_popupshow'
+
+
   map.edit_search_definition_definition_forms 'definition_definition_forms/:id/edit_search_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_search'
   map.definition_public_show_list 'definitions/:id/public_show_list', :controller => 'definitions', :action => 'public_show_list'
   map.thematic_classification_edit 'definitions/:id/thematic_classification_edit', :controller => 'definitions', :action => 'thematic_classification_edit'

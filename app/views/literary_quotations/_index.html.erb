@@ -31,7 +31,11 @@
 					<b>Passage: </b>
 					<span class="tib1">
 					<span class="tibpassage_show">
-					<%= e.passage.s.gsub(@tibetan_space,@tibetan_space_fix) if e.passage != nil %>
+					<% if !e.passage.nil? & !@tibetan_space.nil? & !@tibetan_space_fix.nil? %>
+					  <%= e.passage.s.gsub(@tibetan_space,@tibetan_space_fix) if e.passage != nil %>
+					<% else %>
+					   <%= e.passage.s %>
+					<% end %>
 					</span>
 					</span>
 				</dd>
