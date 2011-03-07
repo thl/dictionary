@@ -1,0 +1,10 @@
+<%= wide_tagged_tinymce_script %>
+<% form_for :definition, :url => { :action => "update_popupdefinition" } do |f| %>
+<p>
+<%= f.hidden_field :id %>
+<%= f.text_area :definition, :class => 'mceEditor' %>
+<%= submit_to_remote 'update_button','update definition', :url => { :action => "update_popupdefinition" }, :update => "#{d.id}_defpopupdiv", :before => "tinyMCE.triggerSave();" %>
+<%#= link_to_remote 'Cancel', :url => {:action => "definition_show", :params => {'id' => params['id'] }}, :update => "#{d.id}_defdiv" %>
+<%= link_to_remote 'Cancel', {:url => definition_popupshow_path(params['id']), :method => 'get', :update => "#{d.id}_defpopupdiv" } %>
+</p>
+<% end %>

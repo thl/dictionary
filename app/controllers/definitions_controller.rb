@@ -2467,6 +2467,47 @@ end
     render :partial => "definition_edit", :locals => {:d => @definition}
   end
 
+
+  def update_popupdefinition
+    @definition = Definition.find(params[:definition][:id])
+    if @definition.created_by == nil or @definition.created_by == ""
+      @definition.created_by = session[:user].login
+      @definition.created_at = Time.now
+    end
+    if session[:user] != nil
+      @definition.updated_by = session[:user].login
+    end
+    @definition.updated_at = Time.now
+    if @definition.update_history == nil
+      @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+    else
+    	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+    end   
+    respond_to do |format|
+      if @definition.update_attributes(params[:definition])
+        format.html do
+          render :partial => 'definition_popupshow', :locals => {:d => @definition}
+        end
+        #flash[:notice] = 'Definition was successfully updated.'
+        #redirect_to :action => 'index_edit'
+        #redirect_to :action => 'public_edit', :id => @definition
+      else
+        #redirect_to :action => 'index_edit'
+        #redirect_to :action => 'public_edit', :id => @definition
+      end
+    end
+  end
+  
+  def definition_popupshow
+    @definition = Definition.find(params[:id])
+    render :partial => "definition_popupshow", :locals => {:d => @definition}
+  end
+
+  def definition_popupedit
+    @definition = Definition.find(params[:id])
+    render :partial => "definition_popupedit", :locals => {:d => @definition}
+  end
+  
   def update_analytical_note
      @definition = Definition.find(params[:definition][:id])
      if @definition.created_by == nil or @definition.created_by == ""
@@ -2635,7 +2676,14 @@ end
         #format.html do
         #  render :partial => 'definition_show', :locals => {:d => @definition}
         #end
-        render :nothing => true
+        
+        #render :nothing => true
+        render :update do |page|
+            #yield(page) if block_given?  
+            page.replace_html "#{@definition.id}_defdiv", :partial => 'definitions/definition_show', :locals => {:d => @definition}
+        end
+        
+        
         #flash[:notice] = 'Definition was successfully updated.'
         #redirect_to :action => 'index_edit'
         #redirect_to :action => 'public_edit', :id => @definition

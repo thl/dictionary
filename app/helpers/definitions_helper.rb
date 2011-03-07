@@ -2021,14 +2021,14 @@ module DefinitionsHelper
     resultstr << "<b>Definition: </b>"
     #resultstr << "<input type=hidden name=internal_definition[definition] id=internal_definition[definition] value=\""+@definition.definition.to_s+"\" >"
     resultstr << "<span class='definitions_thickbox_show'>"
-    resultstr << "<div id='" + "#{@definition.id}_defdiv" + "'>"
-    edit_path = definition_edit_url(:id => @definition.id)
+    resultstr << "<div id='" + "#{@definition.id}_defpopupdiv" + "'>"
+    edit_path = definition_popupedit_url(:id => @definition.id)
     if @definition.definition == nil or @definition.definition == ''
       t_definition = 'Click to modify definition'
     else
       t_definition = @definition.definition      
     end    
-    resultstr << link_to_remote(t_definition, :url => edit_path, :update => "#{@definition.id}_defdiv", :method => :get ) 
+    resultstr << link_to_remote(t_definition, :url => edit_path, :update => "#{@definition.id}_defpopupdiv", :method => :get ) 
     resultstr << "</div>"
     resultstr << "</span>"
     
