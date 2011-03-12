@@ -118,6 +118,83 @@ class OldDefinitionsController < ApplicationController
     render :layout => 'staging_popup'  if params['internal'] != nil
   end
 
+  def update_dynamic_old_definition
+    
+      @old_definition = OldDefinition.find(params[:id])
+      
+      if @old_definition.created_by == nil or @old_definition.created_by == ""
+        @old_definition.created_by = session[:user].login
+        @old_definition.created_at = Time.now
+      end
+      if session[:user] != nil
+        @old_definition.updated_by = session[:user].login
+      end
+      @old_definition.updated_at = Time.now
+      if @old_definition.update_history == nil
+        @old_definition.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @old_definition.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end
+      
+      #related to other dictionaries
+      
+      @definition = Definition.find(params[:head_id])
+      @head_id = @definition.id
+       val = @definition.term
+         space = Unicode::U0F0B
+         space2 = Unicode::U0F0C
+         line = Unicode::U0F0D
+         nb_space = Unicode::U00A0
+         val = val.strip
+         # val = val.gsub("#{nb_space}",' ')  #remove non-breaking space before tsheg
+
+         val = val.gsub(line,'')
+         val = val.gsub(space2,space)
+          val = val.gsub(space,'_space_')
+          a = val.split('_space_')
+          word = ''
+          a.each {|w| 
+            word += space if word != ''
+            word += w 
+          }
+          val = word                  
+          val = word.gsub("'","''")
+          
+          @dan_martin_definitions = OldDefinition.find(:all, :conditions => "dictionary = 'Dan Martin Dictionary' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
+          @ives_waldo_definitions = OldDefinition.find(:all, :conditions => "dictionary = 'Ives Waldo Dictionary' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
+          @jeffrey_hopkins_definitions = OldDefinition.find(:all, :conditions => "dictionary = 'Jeffrey Hopkins Dictionary' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
+          @jim_valby_definitions = OldDefinition.find(:all, :conditions => "dictionary = 'Jim Valby Dictionary' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
+          @richard_baron_definitions = OldDefinition.find(:all, :conditions => "dictionary = 'Richard Baron Dictionary' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
+          @rangjung_yeshe_definitions = OldDefinition.find(:all, :conditions => "dictionary = 'Rangujung Yeshe Dictionary' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
+          @yogacara_definitions = OldDefinition.find(:all, :conditions => "dictionary = 'Yogācāra Glossary' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
+          @tshig_definitions = OldDefinition.find(:all, :conditions => "dictionary = 'bod rgya tshig mdzod chen mo' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
+          
+      
+      #respond_to do |format|
+        if @old_definition.update_attributes(params[:old_definition])
+          render :update do |page|
+              #yield(page) if block_given?         
+              #case @old_definition.dictionary 
+              #  when "Dan Martin Dictionary"
+              #    @dan_martin_definitions = OldDefinition.find(:all, :conditions => "dictionary = 'Dan Martin Dictionary' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')") 
+              #    page.replace_html "dan_martin_definitions_div", :partial => 'definitions/dan_martin_definitions_index'
+              #end
+              page.replace_html "other_dictionaries_div", :partial => 'definitions/other_dictionaries_index'
+          end
+         
+         
+          #flash[:notice] = 'Definition was successfully updated.'
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @definition
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @definition
+        end
+      #end
+  end
+
   def update_old_definition
     @old_definition = OldDefinition.find(params[:old_definition][:id])
     if @old_definition.created_by == nil or @old_definition.created_by == ""

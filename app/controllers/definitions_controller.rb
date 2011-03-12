@@ -3183,14 +3183,34 @@ end
     redirect_to :action => 'public_edit', :id => params['head_id']
   end
 
+  def remove_translation_test
+    debugger
+    d = Definition.find(params[:id])
+  end
   def public_remove_translation
+    debugger
     d = Definition.find(params[:id])
     p = Translation.find(params['translation'])
     d.translations.delete(p) unless d == nil
-    #redirect_to :action => 'public_content_only', :id => params['head_id']
-    redirect_to :action => 'public_edit', :id => params['head_id']
+    ##redirect_to :action => 'public_content_only', :id => params['head_id']
+    #redirect_to :action => 'public_edit', :id => params['head_id']
+    #redirect_to  :action => 'render_translations_after_removal', :id => params[:id]
+    @temp_definition = d
+ 	  render :update do |page|   	    
+      page.replace_html "#{@temp_definition.id}_translations_div", :partial => 'translations/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition.id, :head_id => @temp_definition.id}
+      #page.replace_html "#{@temp_definition.id}_translations_div", "<p style='color:green'>successfully updated!</p>"
+    end
   end
 
+  def render_translations_after_removal
+    debugger
+    @temp_definition = Definition.find(params[:id]) 
+ 	  render :update do |page|
+      #yield(page) if block_given?     	    
+      page.replace_html "#{@temp_definition.id}_translations_div", :partial => 'translations/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition.id, :head_id => @temp_definition.id}
+    end 
+  end
+  
   def public_remove_etymology_translation
     e = Etymology.find(params[:id])
     p = Translation.find(params['translation'])

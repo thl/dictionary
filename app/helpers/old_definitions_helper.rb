@@ -134,7 +134,7 @@ module OldDefinitionsHelper
 
     
     resultstr << "<p><b>Dictionary: </b>"
-    resultstr << "<input type=hidden name=old_definition[library] id=old_definition[library] value=\""+@old_definition.dictionary.to_s+"\" >"
+    #resultstr << "<input type=hidden name=old_definition[library] id=old_definition[library] value=\""+@old_definition.dictionary.to_s+"\" >"
     if @old_definition.dictionary == nil or @old_definition.dictionary == ''
       @old_definition.dictionary = 'Click to modify'
     end

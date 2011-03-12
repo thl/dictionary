@@ -18,29 +18,44 @@ $(document).ready(function() {
 		
 });
 </script>
+<style type="text/css">
+p {text-decoration:none;}
+</style>
+
 <%= tag "div", {:id => @divname } %>
+
 <h1>Editing Other definition</h1>
 <%= error_messages_for 'old_definition' %>
 <%# if params['internal'] == nil or params['internal'] == ''%>
-  <% form_tag({:controller => "old_definitions", :action => "update"}, {:name => "editold_definition", :onsubmit => "return check_windows('old_definition')"}) do %>
+  
+
+  <%# form_tag({:controller => "old_definitions", :action => "update"}, {:name => "editold_definition", :onsubmit => "return check_windows('old_definition')"}) do %>
+<% remote_form_for :old_definition, :url => { :action => "update_dynamic_old_definition" } do |f| %>
+
+
 <%# else %>
   <%#= form_remote_tag(:update => @divname, :complete => "new Effect.Fade('"+@divname+"search_old_definition');new Effect.Fade('"+@divname+"update_old_definition');", :url => {:controller => 'old_definitions', :action => 'update', :id => params[:id], :params => {:internal => params['internal'], :pk => params['pk'], 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}, :condition => "open_windows['old_definition'].length > 0 ? alert('You have unsaved changes.') : true")  %>
 <%# end %>
 <%#= link_to_function(image_tag('close_up.gif'),"window.location='#{url_for(:controller => 'definitions', :action => 'public_edit', :id => params['head_id'])}'")%>
 <%##= image_submit_tag "close_up.gif", :size => "87x19", :border => 0 %>
-<%= edit_dynamic_old_definition %>
-<input type="hidden" name="id" value="<%= params["id"] %>"/>
-<input type="hidden" name="internal" value="<%= params['internal'] %>">
-<input type="hidden" name="pk" value="<%= params['pk'] %>">
-<p>
-<%#= link_to_function(image_tag('close_up.gif'),"window.location='#{url_for(:controller => 'definitions', :action => 'public_edit', :id => params['head_id'])}'")%>
-<input type='button' name='cancel_button' value='Close' id='cancel_button'>
+  <%= edit_dynamic_old_definition %>
 
-<p>
-<% if params["query"] != nil %>
-<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back"), {:action => 'searchaction', :params => { :query => params['query']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back','','/images/back_down.gif',1);"%>
-<% end %>
-<% end %>
+
+  <input type="hidden" name="id" value="<%= params["id"] %>"/>
+  <input type="hidden" name="internal" value="<%= params['internal'] %>">
+  <input type="hidden" name="pk" value="<%= params['pk'] %>">
+  <input type="hidden" name="head_id" value="<%= params["head_id"] %>"/>
+
+  <p>
+  <%#= link_to_function(image_tag('close_up.gif'),"window.location='#{url_for(:controller => 'definitions', :action => 'public_edit', :id => params['head_id'])}'")%>
+  <%= submit_tag 'Update', :id => 'update_button' %>
+  <input type='button' name='cancel_button' value='Close' id='cancel_button'>
+
+  <p>
+  <% if params["query"] != nil %>
+  <%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back"), {:action => 'searchaction', :params => { :query => params['query']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back','','/images/back_down.gif',1);"%>
+  <% end %>
+<% end %><!--remote_form_for-->
 </div>
 <%= tag "div", {:id => @divname+"search_old_definition" } %>
 </div>

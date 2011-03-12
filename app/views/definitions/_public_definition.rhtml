@@ -74,6 +74,8 @@
 			
 			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Translation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_translation', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :translation => e.id }}, :confirm => "Are you sure you want to remove this translation?") %>			
 			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this translation?" %>
+			<%= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Translation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_translation', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :translation => e.id }}, :confirm => "Are you sure you want to remove this translation?") %>	
+			
 					<% if e.language == 'Tibetan' %>
 					<span class="tib1">
 					<% end %>
