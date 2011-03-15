@@ -1,3 +1,9 @@
+<script>
+$(document).ready(function() {
+	tb_init('a.thickbox, area.thickbox, input.thickbox');
+});
+</script>
+
 		<b>Meta: </b>
 			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => meta.id, :history_class => meta.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => meta.id, :history_class => meta.class.to_s }}) %>			

@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 <h1>Editing Translation</h1>
 <%= error_messages_for 'translation' %>
-<% remote_form_for :translation,  :url => { :action => "update_dynamic_translation" } do |f| %>
+<% remote_form_for :translation,  :url => { :action => "update_dynamic_translation", :success => "tb_init('a.thickbox, area.thickbox, input.thickbox');" }   do |f| %>
 	
   <%= modal_edit_dynamic_translation %>
 
