@@ -727,15 +727,17 @@ module EtymologiesHelper
     resultstr = ""
     resultstr << "<b>Etymology: </b>"
     #resultstr << "<input type=hidden name=etymology[etymology] id=etymology[etymology] value=\""+@etymology.etymology.to_s+"\" >"
+    
     resultstr << "<span class='etymologies_show'>"
-    resultstr << "<div id='" + "#{@etymology.id}_etydiv" + "'>"
-    edit_path = etymology_edit_url(:id => @etymology.id)
+    resultstr << "<div id='" + "#{@etymology.id}_etypopupdiv" + "'>"
+    #edit_path = etymology_edit_url(:id => @etymology.id)
+    edit_path = etymology_popupedit_url(:id => @etymology.id)
     if @etymology.etymology == nil or @etymology.etymology == ''
       t_etymology = 'Click to modify etymology'
     else
       t_etymology = @etymology.etymology      
     end    
-    resultstr << link_to_remote(t_etymology, :url => edit_path, :update => "#{@etymology.id}_etydiv", :method => :get ) 
+    resultstr << link_to_remote(t_etymology, :url => edit_path, :update => "#{@etymology.id}_etypopupdiv", :method => :get ) 
     resultstr << "</div>"
     resultstr << "</span>"
 

@@ -676,6 +676,21 @@ class SpellingsController < ApplicationController
     render :layout => 'staging_popup'
   end
   
+  def edit_dynamic_spelling2
+    if(params['internal'] != nil)
+      @divname = 'spelling_internal'
+    else
+    	@divname = 'spelling'
+    end
+    if params['level'] != nil
+      params['level'] = (params['level'].to_i + 1).to_s
+    else
+      params['level'] = '1'
+    end
+    @spelling = Spelling.find(params[:id])
+    render :partial => 'spellings/edit_dynamic_spelling', :layout => 'staging_popup'
+  end
+  
   def update_dynamic_spelling
       @spelling = Spelling.find(params[:id])
       @definition = @spelling.definition

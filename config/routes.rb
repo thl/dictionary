@@ -48,6 +48,8 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_dynamic_etymology 'etymologies/:id/edit_dynamic_etymology', :controller => 'etymologies', :action => 'edit_dynamic_etymology'
   map.etymology_edit 'etymologies/:id/etymology_edit', :controller => 'etymologies', :action => 'etymology_edit'
   map.etymology_show 'etymologies/:id/etymology_show', :controller => 'etymologies', :action => 'etymology_show'
+  map.etymology_popupedit 'etymologies/:id/etymology_popupedit', :controller => 'etymologies', :action => 'etymology_popupedit'
+  map.etymology_popupshow 'etymologies/:id/etymology_popupshow', :controller => 'etymologies', :action => 'etymology_popupshow'
   map.etymology_analytical_note_edit 'etymologies/:id/analytical_note_edit', :controller => 'etymologies', :action => 'analytical_note_edit'
   map.etymology_analytical_note_show 'etymologies/:id/analytical_note_show', :controller => 'etymologies', :action => 'analytical_note_show'
   map.etymology_image_description_edit 'etymologies/:id/image_description_edit', :controller => 'etymologies', :action => 'image_description_edit'
@@ -60,6 +62,8 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_dynamic_translation 'translations/:id/edit_dynamic_translation', :controller => 'translations', :action => 'edit_dynamic_translation'
   map.translation_translation_edit 'translations/:id/translation_edit', :controller => 'translations', :action => 'translation_edit'
   map.translation_translation_show 'translations/:id/translation_show', :controller => 'translations', :action => 'translation_show'
+  map.translation_translation_popupedit 'translations/:id/translation_popupedit', :controller => 'translations', :action => 'translation_popupedit'
+  map.translation_translation_popupshow 'translations/:id/translation_popupshow', :controller => 'translations', :action => 'translation_popupshow'
   map.translation_analytical_note_edit 'translations/:id/analytical_note_edit', :controller => 'translations', :action => 'analytical_note_edit'
   map.translation_analytical_note_show 'translations/:id/analytical_note_show', :controller => 'translations', :action => 'analytical_note_show'
 

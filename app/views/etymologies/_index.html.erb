@@ -28,7 +28,10 @@ $(document).ready(function() {
 				<i><%= e.etymology_category.title %></i>&nbsp;
 			<% end %>
 		<span class="etymologies_show">	
-		<%= e.etymology.s if e.etymology != nil %>
+		  <%#= e.etymology.s if e.etymology != nil %>
+		  <div id="<%= "#{e.id}_etydiv" %>">
+		    <%= render :partial => 'etymologies/etymology_show', :locals => {:e => e} %>
+	      </div>
 		</span>
 		<dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>

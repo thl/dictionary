@@ -318,7 +318,9 @@ module ApplicationHelper
       when "passage_edit"
         "passage_show"  
       when "translation_edit"
-        "translation_show" 
+        "translation_show"
+      when "translation_popupedit"
+        "translation_popupshow"   
       when "source_note_edit"
         "source_note_show"  
       when "translation_equivalent_edit"
@@ -343,7 +345,9 @@ module ApplicationHelper
       when "passage_edit"
         "update_passage" 
       when "translation_edit"
-        "update_translation" 
+        "update_translation"
+      when "translation_popupedit"
+        "update_popuptranslation"   
       when "source_note_edit"
         "update_source_note"   
       when "translation_equivalent_edit"
@@ -444,6 +448,11 @@ module ApplicationHelper
           when "translations"
             translation_translation_edit_url(:id => id)  
         end
+      when "update_popuptranslation", "translation_popupshow"
+        case controller
+          when "translations"
+            translation_translation_popupedit_url(:id => id)  
+        end  
       when "update_source_note", "source_note_show"
         case controller
           when "sources"
@@ -478,6 +487,8 @@ module ApplicationHelper
         "passage"
       when "translation_edit"
         "translation" 
+      when "translation_popupedit"
+        "translation"  
       when "source_note_edit"
         "source_note" 
       when "translation_equivalent_edit"
@@ -503,6 +514,8 @@ module ApplicationHelper
         "passage" 
       when "update_translation", "translation_show"
         "translation"
+      when "update_popuptranslation", "translation_popupshow"
+        "translation"  
       when "update_source_note", "source_note_show"
         "source_note" 
       when "update_translation_equivalent", "translation_equivalent_show"
@@ -512,4 +525,5 @@ module ApplicationHelper
       end
     end
     
+
   end

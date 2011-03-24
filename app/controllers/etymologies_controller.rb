@@ -902,6 +902,48 @@ class EtymologiesController < ApplicationController
       render :partial => "etymology_edit", :locals => {:e => @etymology}
     end
 
+  def update_popupetymology
+        @etymology = Etymology.find(params[:etymology][:id])
+        if @etymology.created_by == nil or @etymology.created_by == ""
+          @etymology.created_by = session[:user].login
+          @etymology.created_at = Time.now
+        end
+        if session[:user] != nil
+          @etymology.updated_by = session[:user].login
+        end
+        @etymology.updated_at = Time.now
+        if @etymology.update_history == nil
+          @etymology.update_history = session[:user].login + " ["+Time.now.to_s+"]
+    "
+        else
+          @etymology.update_history += session[:user].login + " ["+Time.now.to_s+"]
+    "
+        end    
+        respond_to do |format|
+          if @etymology.update_attributes(params[:etymology])
+            format.html do
+              render :partial => 'etymology_popupshow', :locals => {:e => @etymology}
+            end
+            #flash[:notice] = 'Definition was successfully updated.'
+            #redirect_to :action => 'index_edit'
+            #redirect_to :action => 'public_edit', :id => @definition
+          else
+            #redirect_to :action => 'index_edit'
+            #redirect_to :action => 'public_edit', :id => @definition
+          end
+        end
+  end
+
+  def etymology_popupshow
+    @etymology = Etymology.find(params[:id])
+    render :partial => "etymology_popupshow", :locals => {:e => @etymology}
+  end
+
+  def etymology_popupedit
+    @etymology = Etymology.find(params[:id])
+    render :partial => "etymology_popupedit", :locals => {:e => @etymology}
+  end
+
   def update_analytical_note
     @etymology = Etymology.find(params[:etymology][:id])
     if @etymology.created_by == nil or @etymology.created_by == ""

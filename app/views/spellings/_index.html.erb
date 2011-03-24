@@ -4,12 +4,12 @@ $(document).ready(function() {
 });
 </script>
 
-
 <% if d.spellings.size > 0%>
 <% count = 0;
    size = d.spellings.size;
 	for e in d.spellings %>
 <b>Spelling:</b>
+   
 	<%= link_to image_tag('user.png',:border => 0), url_for(:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 	<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'spellings', :action => 'edit_dynamic_spelling', :id => e.id, :internal=>'edit_box', :d => d, :update => 'spellings_div', :public=>'yes', :parent_id => parent_id, :head_id => head_id, :height=>500,:width=>670, :modal=>true, :method => :get)  + '&TB_iframe=true' , :class=>:thickbox, :title=>'Spelling Edit' %>			
 	<span class=menuvalue onclick=show_menu(spelling_menu,getCoord(arguments[0]));>
@@ -17,6 +17,7 @@ $(document).ready(function() {
 	</span>
 	<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_spelling' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :spelling => e.id),  :title=>'Remove Spelling', :confirm => "Are you sure you want to remove this Spelling?" %>
 	<%= e.spelling %>
+
 	<dl style="margin-top:0em;margin-bottom:0em;">
 		<dd style="display:none"></dd>
 	<% if e.basis_of_spelling != nil and e.basis_of_spelling != ''%>
