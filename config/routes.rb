@@ -81,6 +81,8 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_dynamic_translation_equivalent 'translation_equivalents/:id/edit_dynamic_translation_equivalent', :controller => 'translation_equivalents', :action => 'edit_dynamic_translation_equivalent'
   map.translation_equivalent_translation_equivalent_edit 'translation_equivalents/:id/translation_equivalent_edit', :controller => 'translation_equivalents', :action => 'translation_equivalent_edit'
   map.translation_equivalent_translation_equivalent_show 'translation_equivalents/:id/translation_equivalent_show', :controller => 'translation_equivalents', :action => 'translation_equivalent_show'
+  map.translation_equivalent_translation_equivalent_popupedit 'translation_equivalents/:id/translation_equivalent_popupedit', :controller => 'translation_equivalents', :action => 'translation_equivalent_popupedit'
+  map.translation_equivalent_translation_equivalent_popupshow 'translation_equivalents/:id/translation_equivalent_popupshow', :controller => 'translation_equivalents', :action => 'translation_equivalent_popupshow'
   map.translation_equivalent_analytical_note_edit 'translation_equivalents/:id/analytical_note_edit', :controller => 'translation_equivalents', :action => 'analytical_note_edit'
   map.translation_equivalent_analytical_note_show 'translation_equivalents/:id/analytical_note_show', :controller => 'translation_equivalents', :action => 'analytical_note_show'
   map.translation_equivalent_image_description_edit 'translation_equivalents/:id/image_description_edit', :controller => 'translation_equivalents', :action => 'image_description_edit'

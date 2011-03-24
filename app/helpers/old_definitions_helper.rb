@@ -104,7 +104,7 @@ module OldDefinitionsHelper
 
   def edit_dynamic_old_definition
     resultstr = ""
-    resultstr << "<p><b>Term: </b>"
+    resultstr << "<b>Term: </b>"
     resultstr << "<input type=hidden name=old_definition[term] id=old_definition[term] value=\""+@old_definition.term.to_s+"\" >"
     if @old_definition.term == nil or @old_definition.term == ''
       @old_definition.term = 'Click to modify'
@@ -112,7 +112,7 @@ module OldDefinitionsHelper
     #resultstr << "<br>"+in_place_form_editor_field( :old_definition, :term, {}, {:rows => 3, :fieldname => 'old_definition[term]'}) +"<br>"
     resultstr << "<br>"+ in_place_editor_field( :old_definition, :term, {}, {:cols => 50, :rows => 3,  :fieldname => 'old_definition[term]'}) +"<br>"
     
-    resultstr << "<p><b>Definition: </b>"
+    resultstr << "<b>Definition: </b>"
     #resultstr << "<input type=hidden name=old_definition[definition] id=old_definition[definition] value=\""+@old_definition.definition.to_s+"\" >"
     #if @old_definition.definition == nil or @old_definition.definition == ''
     #  @old_definition.definition = 'Click to modify'
@@ -133,7 +133,7 @@ module OldDefinitionsHelper
 
 
     
-    resultstr << "<p><b>Dictionary: </b>"
+    resultstr << "<b>Dictionary: </b>"
     #resultstr << "<input type=hidden name=old_definition[library] id=old_definition[library] value=\""+@old_definition.dictionary.to_s+"\" >"
     if @old_definition.dictionary == nil or @old_definition.dictionary == ''
       @old_definition.dictionary = 'Click to modify'
@@ -141,7 +141,7 @@ module OldDefinitionsHelper
     #resultstr << "<br>"+in_place_form_editor_field( :old_definition, :dictionary, {}, {:rows => 3, :fieldname => 'old_definition[library]'}) +"<br>"
     resultstr << "<br>"+ in_place_editor_field( :old_definition, :dictionary, {}, {:cols => 50, :rows => 3,  :fieldname => 'old_definition[library]'}) +"<br>"
 
-    resultstr << "<p><b>Url: </b>"
+    resultstr << "<b>Url: </b>"
     resultstr << "<input type=hidden name=old_definition[url] id=old_definition[url] value=\""+@old_definition.url.to_s+"\" >"
     if @old_definition.url == nil or @old_definition.url == ''
       @old_definition.url = 'Click to modify'
@@ -157,7 +157,7 @@ module OldDefinitionsHelper
     ##resultstr << in_place_form_editor_field( :old_definition, :notes, {}, {:rows => 1, :fieldname => 'old_definition[notes]'}) +"<br>"
     #resultstr << "<br>"+ in_place_editor_field( :old_definition, :notes, {}, {:cols => 50, :rows => 1,  :fieldname => 'old_definition[notes]'}) +"<br>"
   
-    resultstr << "<p><b>Notes: </b>"
+    resultstr << "<b>Notes: </b>"
     resultstr << "<input type=hidden name=old_definition[notes] id=old_definition[notes] value=\""+@old_definition.notes.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@old_definition.id}_anotediv" + "'>"
