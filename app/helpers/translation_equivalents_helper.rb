@@ -476,14 +476,14 @@ module TranslationEquivalentsHelper
     resultstr << "<b>Translation equivalent: </b>"
     #resultstr << "<input type=hidden name=translation_equivalent[translation_equivalent] id=translation_equivalent[translation_equivalent] value=\""+@translation_equivalent.translation_equivalent.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
-    resultstr << "<div id='" + "#{@translation_equivalent.id}_transdiv" + "'>"
-    edit_path = translation_equivalent_translation_equivalent_edit_url(:id => @translation_equivalent.id)
+    resultstr << "<div id='" + "#{@translation_equivalent.id}_transpopupdiv" + "'>"
+    edit_path = translation_equivalent_translation_equivalent_popupedit_url(:id => @translation_equivalent.id)
     if @translation_equivalent.translation_equivalent == nil or @translation_equivalent.translation_equivalent == ''
       t_transequivalent = 'Click to modify'
     else
       t_transequivalent = @translation_equivalent.translation_equivalent      
     end    
-    resultstr << link_to_remote(t_transequivalent, :url => edit_path, :update => "#{@translation_equivalent.id}_transdiv", :method => :get ) 
+    resultstr << link_to_remote(t_transequivalent, :url => edit_path, :update => "#{@translation_equivalent.id}_transpopupdiv", :method => :get ) 
     resultstr << "</div>"
     resultstr << "</span>"
 

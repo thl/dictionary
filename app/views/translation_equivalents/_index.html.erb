@@ -28,11 +28,21 @@ $(document).ready(function() {
 				<span class="tib1">
 				<% end %>
 				<span class="tinyfied_show">
-		<%= e.translation_equivalent.s if e.translation_equivalent != nil %>
+					<%#= e.translation_equivalent.s if e.translation_equivalent != nil %>
+					<div id="<%= "#{e.id}_transdiv" %>">
+					  <%  edit_path = translation_equivalent_translation_equivalent_edit_url(:id => e.id) %>
+					  <% if e.translation_equivalent == nil or e.translation_equivalent == ''
+			               t_transequivalent = 'Click to modify'
+			             else
+			               t_transequivalent = e.translation_equivalent      
+			             end %>
+					  <%= link_to_remote(t_transequivalent, :url => edit_path, :update => "#{e.id}_transdiv", :method => :get ) %>
+				    </div>
 				</span>
 				<% if e.language == 'Tibetan' %>
 				</span>
 				<% end %>
+				
 		<dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>
 		<% if e.meta != nil%>
