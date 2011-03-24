@@ -23,7 +23,19 @@ $(document).ready(function() {
 			<span class="tib1">
 			<% end %>
 			<span class='tinyfied_show'>
-			<%= e.translation.s if e.translation != nil %>
+			<%#= e.translation.s if e.translation != nil %>
+			  <div id="<%= "#{e.id}_translationdiv" %>">
+				<%# debugger %>
+				<% edit_path = translation_translation_edit_url(:id => e.id) %>
+				<%  if e.translation == nil or e.translation == ''
+			      t_analytical = 'Click to modify'
+			    else
+			      t_analytical = e.translation      
+			    end %>
+			    <%= link_to_remote(t_analytical, :url => edit_path, :update => "#{e.id}_translationdiv", :method => :get ) %>
+			
+			    <%#= render :partial => "shared/tinymce_field_show", :locals => {:t => e, :divsuffix => "_translationdiv"}%>
+		      </div>
 			</span>
 			<% if e.language == 'Tibetan' %>
 			</span>

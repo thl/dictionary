@@ -1,0 +1,7 @@
+<% edit_path = etymology_popupedit_url(:id => e.id) %>
+<% if e.etymology == nil or e.etymology == '' 
+  t_etymology = 'Click to modify etymology'
+else
+  t_etymology = e.etymology
+end %>
+<%=  "#{link_to_remote("#{t_etymology}", :url => edit_path, :update => "#{e.id}_etypopupdiv", :method => :get, :html => {:class => 'etymologies_show'} ) }" %>

@@ -141,14 +141,14 @@ module TranslationsHelper
     resultstr << "<b>Translation: </b>"
     #resultstr << "<input type=hidden name=translation[translation] id=translation[translation] value=\""+@translation.translation.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
-    resultstr << "<div id='" + "#{@translation.id}_translationdiv" + "'>"
-    edit_path = translation_translation_edit_url(:id => @translation.id)
+    resultstr << "<div id='" + "#{@translation.id}_translationpopupdiv" + "'>"
+    edit_path = translation_translation_popupedit_url(:id => @translation.id)
     if @translation.translation == nil or @translation.translation == ''
       t_analytical = 'Click to modify'
     else
       t_analytical = @translation.translation      
     end    
-    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@translation.id}_translationdiv", :method => :get ) 
+    resultstr << link_to_remote(t_analytical, :url => edit_path, :update => "#{@translation.id}_translationpopupdiv", :method => :get ) 
     resultstr << "</div>"
     resultstr << "</span>"
 

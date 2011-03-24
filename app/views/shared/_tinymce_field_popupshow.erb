@@ -1,5 +1,4 @@
-<%# debugger %>
-<% edit_url = tinymce_edit_url(params[:controller] , params[:action], t.id)
+<% edit_url = tinymce_popupedit_url(params[:controller] , params[:action], t.id)
    field = tinymce_field_show(params[:action])
 %>
 <% if t[field] == nil or t[field] == ''
