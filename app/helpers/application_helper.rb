@@ -328,7 +328,9 @@ module ApplicationHelper
       when "translation_equivalent_popupedit"
         "translation_equivalent_popupshow"
       when "model_sentence_edit"
-        "model_sentence_show"    
+        "model_sentence_show"  
+      when "model_sentence_popupedit"
+        "model_sentence_popupshow"    
       end
     end
     
@@ -358,6 +360,8 @@ module ApplicationHelper
         "update_popup_translation_equivalent"
       when "model_sentence_edit"
         "update_model_sentence" 
+      when "model_sentence_popupedit"
+        "update_popup_model_sentence"
       end
     end
     
@@ -476,7 +480,12 @@ module ApplicationHelper
         case controller
           when "model_sentences"
             model_sentence_model_sentence_edit_url(:id => id)  
-        end     
+        end  
+      when "update_popup_model_sentence", "model_sentence_popupshow"
+        case controller
+          when "model_sentences"
+            model_sentence_model_sentence_popupedit_url(:id => id)  
+        end   
       end            
     end
     
@@ -505,7 +514,9 @@ module ApplicationHelper
       when "translation_equivalent_popupedit"
         "translation_equivalent"
       when "model_sentence_edit"
-        "model_sentence"      
+        "model_sentence" 
+      when "model_sentence_popupedit"
+        "model_sentence"     
       end
     end
     
@@ -534,6 +545,8 @@ module ApplicationHelper
       when "update_popup_translation_equivalent", "translation_equivalent_popupshow"
         "translation_equivalent"  
       when "update_model_sentence", "model_sentence_show"
+        "model_sentence"
+      when "update_popup_model_sentence", "model_sentence_popupshow"
         "model_sentence"        
       end
     end
