@@ -700,14 +700,14 @@ module ModelSentencesHelper
      resultstr << "<b>Model sentence: </b>"
      #resultstr << "<input type=hidden name=model_sentence[model_sentence] id=model_sentence[model_sentence] value=\""+@model_sentence.model_sentence.to_s+"\" >"
      resultstr << "<span class='tinyfied_show'>"
-     resultstr << "<div id='" + "#{@model_sentence.id}_model_sentencediv" + "'>"
-     edit_path = model_sentence_model_sentence_edit_url(:id => @model_sentence.id)
+     resultstr << "<div id='" + "#{@model_sentence.id}_model_sentencepopupdiv" + "'>"
+     edit_path = model_sentence_model_sentence_popupedit_url(:id => @model_sentence.id)
      if @model_sentence.model_sentence == nil or @model_sentence.model_sentence == ''
        t_model_sentence = 'Click to modify'
      else
        t_model_sentence = @model_sentence.model_sentence     
      end    
-     resultstr << link_to_remote(t_model_sentence, :url => edit_path, :update => "#{@model_sentence.id}_model_sentencediv", :method => :get ) 
+     resultstr << link_to_remote(t_model_sentence, :url => edit_path, :update => "#{@model_sentence.id}_model_sentencepopupdiv", :method => :get ) 
      resultstr << "</div>"  
      resultstr << "</span>"
 

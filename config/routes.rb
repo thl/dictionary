@@ -112,6 +112,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.edit_dynamic_model_sentence 'model_sentences/:id/edit_dynamic_model_sentence', :controller => 'model_sentences', :action => 'edit_dynamic_model_sentence'
   map.model_sentence_model_sentence_edit 'model_sentences/:id/model_sentence_edit', :controller => 'model_sentences', :action => 'model_sentence_edit'
+  map.model_sentence_model_sentence_popupedit 'model_sentences/:id/model_sentence_popupedit', :controller => 'model_sentences', :action => 'model_sentence_popupedit'
   map.model_sentence_analytical_note_edit 'model_sentences/:id/analytical_note_edit', :controller => 'model_sentences', :action => 'analytical_note_edit'
   map.model_sentence_image_description_edit 'model_sentences/:id/image_description_edit', :controller => 'model_sentences', :action => 'image_description_edit'
   map.model_sentence_audio_description_edit 'model_sentences/:id/audio_description_edit', :controller => 'model_sentences', :action => 'audio_description_edit'

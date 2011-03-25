@@ -818,6 +818,45 @@ class ModelSentencesController < ApplicationController
       render :partial => "shared/tinymce_field_edit", :locals => {:t => @model_sentence, :divsuffix => "_model_sentencediv"}
   end
   
+  def update_popup_model_sentence
+      @model_sentence = ModelSentence.find(params[:model_sentence][:id])
+      if @model_sentence.created_by == nil or @model_sentence.created_by == ""
+             @model_sentence.created_by = session[:user].login
+             @model_sentence.created_at = Time.now
+      end
+      if session[:user] != nil
+             @model_sentence.updated_by = session[:user].login
+      end
+      @model_sentence.updated_at = Time.now
+      if @model_sentence.update_history == nil
+        @model_sentence.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @model_sentence.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @model_sentence.update_attributes(params[:model_sentence])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @model_sentence, :divsuffix => "_model_sentencepopupdiv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @model_sentence
+        end
+      end
+  end
+
+  def model_sentence_popupshow
+      @model_sentence = ModelSentence.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @model_sentence, :divsuffix => "_model_sentencepopupdiv"}
+  end
+
+  def model_sentence_popupedit
+      @model_sentence = ModelSentence.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @model_sentence, :divsuffix => "_model_sentencepopupdiv"}
+  end
+  
   def update_analytical_note
       @model_sentence = ModelSentence.find(params[:model_sentence][:id])
       if @model_sentence.created_by == nil or @model_sentence.created_by == ""
