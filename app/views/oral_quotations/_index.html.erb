@@ -58,7 +58,16 @@ $(document).ready(function() {
 					<span class="tib1">
 					<% end %>
 					<span class='tinyfied_show'>
-					<%= t.translation.s if t.translation != nil %>
+						<%#= t.translation.s if t.translation != nil %>
+						<div id="<%= "#{t.id}_translationdiv" %>">
+						  <%  edit_path = translation_translation_edit_url(:id => t.id) %>
+						  <% if t.translation == nil or t.translation == ''
+				               t_translation = 'Click to modify'
+				             else
+				               t_translation = t.translation.s     
+				             end %>
+						  <%= link_to_remote(t_translation, :url => edit_path, :update => "#{t.id}_translationdiv", :method => :get ) %>
+					    </div>
 					</span>
 					<% if t.language == 'Tibetan' %>
 					</span>

@@ -1264,7 +1264,85 @@ class MetasController < ApplicationController
       page.replace_html "#{@meta.id}_meta_div", :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => @meta , :head_id => @temp_definition.id}
     end 
   end
+
+  def update_title
+      @meta = Meta.find(params[:meta][:id])
+      if @meta.created_by == nil or @meta.created_by == ""
+             @meta.created_by = session[:user].login
+             @meta.created_at = Time.now
+      end
+      if session[:user] != nil
+             @meta.updated_by = session[:user].login
+      end
+      @meta.updated_at = Time.now
+      if @meta.update_history == nil
+        @meta.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @meta.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @meta.update_attributes(params[:meta])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @meta, :divsuffix => "_metatitlediv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @meta
+        end
+      end
+  end
+
+  def title_show
+      @meta = Meta.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @meta, :divsuffix => "_metatitlediv"}
+  end
+
+  def title_edit
+      @meta = Meta.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @meta, :divsuffix => "_metatitlediv"}
+  end
   
+  def update_author
+      @meta = Meta.find(params[:meta][:id])
+      if @meta.created_by == nil or @meta.created_by == ""
+             @meta.created_by = session[:user].login
+             @meta.created_at = Time.now
+      end
+      if session[:user] != nil
+             @meta.updated_by = session[:user].login
+      end
+      @meta.updated_at = Time.now
+      if @meta.update_history == nil
+        @meta.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @meta.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @meta.update_attributes(params[:meta])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @meta, :divsuffix => "_metaauthordiv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @meta
+        end
+      end
+  end
+
+  def author_show
+      @meta = Meta.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @meta, :divsuffix => "_metaauthordiv"}
+  end
+
+  def author_edit
+      @meta = Meta.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @meta, :divsuffix => "_metaauthordiv"}
+  end  
+    
   def update_metadata_note
       @meta = Meta.find(params[:meta][:id])
       if @meta.created_by == nil or @meta.created_by == ""

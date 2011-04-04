@@ -69,10 +69,20 @@ $(document).ready(function() {
 					<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_etymology_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => e.id, :parent_id => parent_id, :head_id => head_id, :translation => t.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>		
 					<% if t.language == 'Tibetan' %>
 					<span class="tib1">
-					<% end %>
+					<% end %>		
 					<span class='tinyfied_show'>
-					<%= t.translation.s %>
+						<%#= t.translation.s %>
+						<div id="<%= "#{t.id}_translationdiv" %>">
+						  <%  edit_path = translation_translation_edit_url(:id => t.id) %>
+						  <% if t.translation == nil or t.translation == ''
+				               t_translation = 'Click to modify'
+				             else
+				               t_translation = t.translation.s     
+				             end %>
+						  <%= link_to_remote(t_translation, :url => edit_path, :update => "#{t.id}_translationdiv", :method => :get ) %>
+					    </div>
 					</span>
+					
 					<% if t.language == 'Tibetan' %>
 					</span>
 					<% end %>
