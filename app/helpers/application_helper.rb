@@ -345,7 +345,8 @@ module ApplicationHelper
         "title_show"
       when "author_edit"
         "author_show"  
-
+      when "transcript_in_tibetan_edit"
+        "transcript_in_tibetan_show"
       end
     end
     
@@ -391,6 +392,8 @@ module ApplicationHelper
         "update_title" 
       when "author_edit"
         "update_author" 
+      when "transcript_in_tibetan_edit"
+        "update_transcript_in_tibetan"
       end
     end
     
@@ -550,7 +553,11 @@ module ApplicationHelper
           when "literary_quotations"
             literary_quotation_author_edit_url(:id => id)  
         end      
-      
+      when "update_transcript_in_tibetan", "transcript_in_tibetan_show"
+        case controller
+          when "oral_quotations"
+            oral_quotation_transcript_in_tibetan_edit_url(:id => id)
+          end
       end            
     end
     
@@ -596,6 +603,8 @@ module ApplicationHelper
           "title"  
       when "author_edit"
           "author"   
+      when "transcript_in_tibetan_edit"
+          "transcript_in_tibetan"
       end
     end
     
@@ -641,6 +650,8 @@ module ApplicationHelper
         "title"
       when "update_author", "author_show"
         "author"
+      when "update_transcript_in_tibetan", "transcript_in_tibetan_show"
+        "transcript_in_tibetan"
       end
     end
     

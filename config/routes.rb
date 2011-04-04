@@ -119,6 +119,7 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_dynamic_model_sentence 'model_sentences/:id/edit_dynamic_model_sentence', :controller => 'model_sentences', :action => 'edit_dynamic_model_sentence'
   map.model_sentence_model_sentence_edit 'model_sentences/:id/model_sentence_edit', :controller => 'model_sentences', :action => 'model_sentence_edit'
   map.model_sentence_model_sentence_popupedit 'model_sentences/:id/model_sentence_popupedit', :controller => 'model_sentences', :action => 'model_sentence_popupedit'
+  map.model_sentence_model_source_edit 'model_sentences/:id/source_edit', :controller => 'model_sentences', :action => 'source_edit'
   map.model_sentence_analytical_note_edit 'model_sentences/:id/analytical_note_edit', :controller => 'model_sentences', :action => 'analytical_note_edit'
   map.model_sentence_image_description_edit 'model_sentences/:id/image_description_edit', :controller => 'model_sentences', :action => 'image_description_edit'
   map.model_sentence_audio_description_edit 'model_sentences/:id/audio_description_edit', :controller => 'model_sentences', :action => 'audio_description_edit'
@@ -126,6 +127,7 @@ ActionController::Routing::Routes.draw do |map|
 
   
   map.edit_dynamic_oral_quotation 'oral_quotations/:id/edit_dynamic_oral_quotation', :controller => 'oral_quotations', :action => 'edit_dynamic_oral_quotation'  
+  map.oral_quotation_transcript_in_tibetan_edit 'oral_quotations/:id/transcript_in_tibetan_edit', :controller => 'oral_quotations', :action => 'transcript_in_tibetan_edit'
   map.oral_quotation_analytical_note_edit 'oral_quotations/:id/analytical_note_edit', :controller => 'oral_quotations', :action => 'analytical_note_edit'
   map.oral_quotation_image_description_edit 'oral_quotations/:id/image_description_edit', :controller => 'oral_quotations', :action => 'image_description_edit'
   map.oral_quotation_audio_description_edit 'oral_quotations/:id/audio_description_edit', :controller => 'oral_quotations', :action => 'audio_description_edit'
