@@ -717,6 +717,45 @@ class PronunciationsController < ApplicationController
       end 
     end
       
+    def update_pronunciation
+        @pronunciation = Pronunciation.find(params[:pronunciation][:id])
+        if @pronunciation.created_by == nil or @pronunciation.created_by == ""
+               @pronunciation.created_by = session[:user].login
+               @pronunciation.created_at = Time.now
+        end
+        if session[:user] != nil
+               @pronunciation.updated_by = session[:user].login
+        end
+        @pronunciation.updated_at = Time.now
+        if @pronunciation.update_history == nil
+          @pronunciation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+         "
+        else
+          @pronunciation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+         "
+        end
+        respond_to do |format|
+          if @pronunciation.update_attributes(params[:pronunciation])
+            format.html do
+              render :partial => 'shared/tinymce_field_show', :locals => {:t => @pronunciation, :divsuffix => "_pronunciationdiv"}
+            end
+          else
+             #redirect_to :action => 'index_edit'
+             #redirect_to :action => 'public_edit', :id => @pronunciation
+          end
+        end
+    end
+
+    def pronunciation_show
+        @pronunciation = Pronunciation.find(params[:id])
+        render :partial => "shared/tinymce_field_show", :locals => {:t => @pronunciation, :divsuffix => "_pronunciationdiv"}
+    end
+
+    def pronunciation_edit
+        @pronunciation = Pronunciation.find(params[:id])
+        render :partial => "shared/tinymce_field_edit", :locals => {:t => @pronunciation, :divsuffix => "_pronunciationdiv"}
+    end      
+      
   def update_analytical_note
       @pronunciation = Pronunciation.find(params[:pronunciation][:id])
       if @pronunciation.created_by == nil or @pronunciation.created_by == ""

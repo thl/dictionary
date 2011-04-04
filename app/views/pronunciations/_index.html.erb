@@ -28,10 +28,21 @@ $(document).ready(function() {
 		<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Pronunciation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_pronunciation', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :pronunciation => e.id }}, :confirm => "Are you sure you want to remove this Pronunciation?") %>
 		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_pronunciation' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :pronunciation => e.id),  :title=>'Remove Pronunciation', :confirm => "Are you sure you want to remove this Pronunciation?" %>
 		<%#= e.displayInfo %>
-		<% if e.phonetic_transliteration != nil %>
+		<%# if e.phonetic_transliteration != nil %>
 		<!-- <b>Phonetic transliteration: </b> -->
-		<%= e.phonetic_transliteration.s %>
-		<% end %>
+		    <%#= e.phonetic_transliteration.s %>
+			<span class='tinyfied_show'>
+				<div id="<%= "#{e.id}_pronunciationdiv" %>">
+				  <%  edit_path = pronunciation_pronunciation_edit_url(:id => e.id) %>
+				  <% if e.phonetic_transliteration == nil or e.phonetic_transliteration == ''
+		               t_phonetic_transliteration = 'Click to modify'
+		             else
+		               t_phonetic_transliteration = e.phonetic_transliteration      
+		             end %>
+				  <%= link_to_remote(t_phonetic_transliteration, :url => edit_path, :update => "#{e.id}_pronunciationdiv", :method => :get ) %>
+			    </div>
+			</span>
+		<%# end %>
 		<dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>
 		<% if (e.major_dialect_family != nil and e.major_dialect_family != '') or (e.major_dialect_family_type != nil) %>

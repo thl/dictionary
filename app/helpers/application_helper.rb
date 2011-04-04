@@ -317,6 +317,8 @@ module ApplicationHelper
         "metadata_note_show"
       when "passage_edit"
         "passage_show"  
+      when "passage_popupedit"
+        "passage_popupshow"  
       when "translation_edit"
         "translation_show"
       when "translation_popupedit"
@@ -331,6 +333,19 @@ module ApplicationHelper
         "model_sentence_show"  
       when "model_sentence_popupedit"
         "model_sentence_popupshow"    
+      when "spelling_edit"
+        "spelling_show"  
+      when "spelling_popupedit"
+        "spelling_popupshow"    
+      when "pronunciation_edit"
+        "pronunciation_show"  
+      when "pronunciation_popupedit"
+        "pronunciation_popupshow"    
+      when "title_edit"
+        "title_show"
+      when "author_edit"
+        "author_show"  
+
       end
     end
     
@@ -348,6 +363,8 @@ module ApplicationHelper
         "update_metadata_note"
       when "passage_edit"
         "update_passage" 
+      when "passage_popupedit"
+        "update_popuppassage" 
       when "translation_edit"
         "update_translation"
       when "translation_popupedit"
@@ -362,6 +379,18 @@ module ApplicationHelper
         "update_model_sentence" 
       when "model_sentence_popupedit"
         "update_popup_model_sentence"
+      when "spelling_edit"
+        "update_spelling" 
+      when "spelling_popupedit"
+        "update_popup_spelling"
+      when "pronunciation_edit"
+        "update_pronunciation" 
+      when "pronunciation_popupedit"
+        "update_popup_pronunciation"
+      when "title_edit"
+        "update_title" 
+      when "author_edit"
+        "update_author" 
       end
     end
     
@@ -446,6 +475,11 @@ module ApplicationHelper
           when "literary_quotations"
             literary_quotation_passage_edit_url(:id => id)  
         end  
+      when "update_popuppassage", "passage_popupshow"
+        case controller
+          when "literary_quotations"
+            literary_quotation_passage_popupedit_url(:id => id)  
+        end  
       when "update_metadata_note", "metadata_note_show"
         case controller
           when "metas"
@@ -485,7 +519,38 @@ module ApplicationHelper
         case controller
           when "model_sentences"
             model_sentence_model_sentence_popupedit_url(:id => id)  
-        end   
+        end 
+      when "update_spelling", "spelling_show"
+        case controller
+          when "spellings"
+            spelling_spelling_edit_url(:id => id)  
+        end  
+      when "update_popup_spelling", "spelling_popupshow"
+        case controller
+          when "spellings"
+            spelling_spelling_popupedit_url(:id => id)  
+        end          
+      when "update_pronunciation", "pronunciation_show"
+        case controller
+          when "pronunciations"
+            pronunciation_pronunciation_edit_url(:id => id)  
+        end  
+      when "update_popup_pronunciation", "pronunciation_popupshow"
+        case controller
+          when "pronunciations"
+            pronunciation_pronunciation_popupedit_url(:id => id)  
+        end          
+      when "update_title", "title_show"
+        case controller
+          when "literary_quotations"
+            literary_quotation_title_edit_url(:id => id)  
+        end  
+      when "update_author", "author_show"
+        case controller
+          when "literary_quotations"
+            literary_quotation_author_edit_url(:id => id)  
+        end      
+      
       end            
     end
     
@@ -503,6 +568,8 @@ module ApplicationHelper
         "metadata_note"  
       when "passage_edit"
         "passage"
+      when "passage_popupedit"
+        "passage"
       when "translation_edit"
         "translation" 
       when "translation_popupedit"
@@ -516,7 +583,19 @@ module ApplicationHelper
       when "model_sentence_edit"
         "model_sentence" 
       when "model_sentence_popupedit"
-        "model_sentence"     
+        "model_sentence" 
+      when "spelling_edit"
+        "spelling" 
+      when "spelling_popupedit"
+        "spelling"    
+      when "pronunciation_edit"
+         "phonetic_transliteration" 
+      when "pronunciation_popupedit"
+         "phonetic_transliteration"  
+      when "title_edit"
+          "title"  
+      when "author_edit"
+          "author"   
       end
     end
     
@@ -534,6 +613,8 @@ module ApplicationHelper
         "metadata_note"
       when "update_passage", "passage_show"
         "passage" 
+      when "update_popuppassage", "passage_popupshow"
+        "passage" 
       when "update_translation", "translation_show"
         "translation"
       when "update_popuptranslation", "translation_popupshow"
@@ -547,7 +628,19 @@ module ApplicationHelper
       when "update_model_sentence", "model_sentence_show"
         "model_sentence"
       when "update_popup_model_sentence", "model_sentence_popupshow"
-        "model_sentence"        
+        "model_sentence" 
+      when "update_spelling", "spelling_show"
+        "spelling"
+      when "update_popup_spelling", "spelling_popupshow"
+        "spelling"         
+      when "update_pronunciation", "pronunciation_show"
+        "phonetic_transliteration"
+      when "update_popup_pronunciation", "pronunciation_popupshow"
+        "phonetic_transliteration"         
+      when "update_title", "title_show"
+        "title"
+      when "update_author", "author_show"
+        "author"
       end
     end
     

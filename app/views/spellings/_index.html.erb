@@ -16,7 +16,19 @@ $(document).ready(function() {
 	<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'spelling_id='+e.id.to_s, :title => 'Edit Relationships' %> 
 	</span>
 	<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_spelling' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :spelling => e.id),  :title=>'Remove Spelling', :confirm => "Are you sure you want to remove this Spelling?" %>
-	<%= e.spelling %>
+	
+	<%#= e.spelling %>
+	<span class='tinyfied_show'>
+		<div id="<%= "#{e.id}_spellingdiv" %>">
+		  <%  edit_path = spelling_spelling_edit_url(:id => e.id) %>
+		  <% if e.spelling == nil or e.spelling == ''
+               t_spelling = 'Click to modify'
+             else
+               t_spelling = e.spelling      
+             end %>
+		  <%= link_to_remote(t_spelling, :url => edit_path, :update => "#{e.id}_spellingdiv", :method => :get ) %>
+	    </div>
+	</span>
 
 	<dl style="margin-top:0em;margin-bottom:0em;">
 		<dd style="display:none"></dd>

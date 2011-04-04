@@ -25,10 +25,35 @@ $(document).ready(function() {
 		<dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>
 		<% if e.title != nil and e.title != ''%>
-				<dd><b>Title: </b><%= e.title.s %></dd>
+				<dd><b>Title: </b><%#= e.title.s %>
+				<span class='tinyfied_show'>
+					<div id="<%= "#{e.id}_litquotitlediv" %>">
+					  <%  edit_path = literary_quotation_title_edit_url(:id => e.id) %>
+					  <% if e.title == nil or e.title == ''
+			               t_litquotationtitle = 'Click to modify'
+			             else
+			               t_litquotationtitle = e.title.s      
+			             end %>
+					  <%= link_to_remote(t_litquotationtitle, :url => edit_path, :update => "#{e.id}_litquotitlediv", :method => :get ) %>
+				    </div>
+				</span>
+				</dd>
 		<% end %>
+		
 		<% if e.author != nil and e.author != ''%>
-				<dd><b>Author: </b><%= e.author.s %></dd>
+				<dd><b>Author: </b><%#= e.author.s %>
+					<span class='tinyfied_show'>
+						<div id="<%= "#{e.id}_litquoauthordiv" %>">
+						  <%  edit_path = literary_quotation_author_edit_url(:id => e.id) %>
+						  <% if e.author == nil or e.author == ''
+				               t_litquotationauthor = 'Click to modify'
+				             else
+				               t_litquotationauthor = e.author.s      
+				             end %>
+						  <%= link_to_remote(t_litquotationauthor, :url => edit_path, :update => "#{e.id}_litquoauthordiv", :method => :get ) %>
+					    </div>
+					</span>
+				</dd>
 		<% end %>
 		<% if e.passage_number != nil and e.passage_number != ''%>
 				<dd><b>Page number: </b><%= e.passage_number.s %></dd>
@@ -38,11 +63,26 @@ $(document).ready(function() {
 					<b>Passage: </b>
 					<span class="tib1">
 					<span class="tibpassage_show">
-					<% if !e.passage.nil? & !@tibetan_space.nil? & !@tibetan_space_fix.nil? %>
-					  <%= e.passage.s.gsub(@tibetan_space,@tibetan_space_fix) if e.passage != nil %>
-					<% else %>
-					   <%= e.passage.s %>
-					<% end %>
+					<%# if !e.passage.nil? & !@tibetan_space.nil? & !@tibetan_space_fix.nil? %>
+					  <%#= e.passage.s.gsub(@tibetan_space,@tibetan_space_fix) if e.passage != nil %>
+					<%# else %>
+					   <%#= e.passage.s %>
+					<%# end %>
+					<span class='tinyfied_show'>
+						<div id="<%= "#{e.id}_passagediv" %>">
+						  <%  edit_path = literary_quotation_passage_edit_url(:id => e.id) %>
+						  <% if e.passage == nil or e.passage == ''
+				               t_litquotationpassage = 'Click to modify'
+				             else
+							   	if !e.passage.nil? & !@tibetan_space.nil? & !@tibetan_space_fix.nil?
+							   		t_litquotationpassage = e.passage.s.gsub(@tibetan_space,@tibetan_space_fix) if e.passage != nil
+								else
+				                   t_litquotationpassage = e.passage.s  
+			    				end
+				             end %>
+						  <%= link_to_remote(t_litquotationpassage, :url => edit_path, :update => "#{e.id}_passagediv", :method => :get ) %>
+					    </div>
+					</span>
 					</span>
 					</span>
 				</dd>
