@@ -69,6 +69,8 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.edit_dynamic_spelling 'spellings/:id/edit_dynamic_spelling', :controller => 'spellings', :action => 'edit_dynamic_spelling'
+  map.spelling_spelling_edit 'spellings/:id/spelling_edit', :controller => 'spellings', :action => 'spelling_edit'
+
   map.spelling_analytical_note_edit 'spellings/:id/analytical_note_edit', :controller => 'spellings', :action => 'analytical_note_edit'
   map.spelling_analytical_note_show 'spellings/:id/analytical_note_show', :controller => 'spellings', :action => 'analytical_note_show'
   map.spelling_image_description_edit 'spellings/:id/image_description_edit', :controller => 'spellings', :action => 'image_description_edit'
@@ -90,12 +92,16 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.edit_dynamic_pronunciation 'pronunciations/:id/edit_dynamic_pronunciation', :controller => 'pronunciations', :action => 'edit_dynamic_pronunciation'
+  map.pronunciation_pronunciation_edit 'pronunciations/:id/pronunciation_edit', :controller => 'pronunciations', :action => 'pronunciation_edit'
   map.pronunciation_analytical_note_edit 'pronunciations/:id/analytical_note_edit', :controller => 'pronunciations', :action => 'analytical_note_edit'
   map.pronunciation_image_description_edit 'pronunciations/:id/image_description_edit', :controller => 'pronunciations', :action => 'image_description_edit'
   map.pronunciation_audio_description_edit 'pronunciations/:id/audio_description_edit', :controller => 'pronunciations', :action => 'audio_description_edit'
   map.pronunciation_video_description_edit 'pronunciations/:id/video_description_edit', :controller => 'pronunciations', :action => 'video_description_edit'
 
   map.edit_dynamic_literary_quotation 'literary_quotations/:id/edit_dynamic_literary_quotation', :controller => 'literary_quotations', :action => 'edit_dynamic_literary_quotation'  
+  map.literary_quotation_title_edit 'literary_quotations/:id/title_edit', :controller => 'literary_quotations', :action => 'title_edit'
+  map.literary_quotation_author_edit 'literary_quotations/:id/author_edit', :controller => 'literary_quotations', :action => 'author_edit'
+  map.literary_quotation_passage_popupedit 'literary_quotations/:id/passage_popupedit', :controller => 'literary_quotations', :action => 'passage_popupedit'
   map.literary_quotation_passage_edit 'literary_quotations/:id/passage_edit', :controller => 'literary_quotations', :action => 'passage_edit'
   map.literary_quotation_analytical_note_edit 'literary_quotations/:id/analytical_note_edit', :controller => 'literary_quotations', :action => 'analytical_note_edit'
   map.literary_quotation_image_description_edit 'literary_quotations/:id/image_description_edit', :controller => 'literary_quotations', :action => 'image_description_edit'

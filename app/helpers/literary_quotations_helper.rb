@@ -1079,14 +1079,14 @@ module LiteraryQuotationsHelper
     resultstr << "<b>Passage: </b>"
     #resultstr << "<input type=hidden name=literary_quotation[passage] id=literary_quotation[passage] value=\""+@literary_quotation.passage.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
-    resultstr << "<div id='" + "#{@literary_quotation.id}_passagediv" + "'>"
-    edit_path = literary_quotation_passage_edit_url(:id => @literary_quotation.id)
+    resultstr << "<div id='" + "#{@literary_quotation.id}_passagepopupdiv" + "'>"
+    edit_path = literary_quotation_passage_popupedit_url(:id => @literary_quotation.id)
     if @literary_quotation.passage == nil or @literary_quotation.passage == ''
       t_passage = 'Click to modify'
     else
       t_passage = @literary_quotation.passage     
     end    
-    resultstr << link_to_remote(t_passage, :url => edit_path, :update => "#{@literary_quotation.id}_passagediv", :method => :get ) 
+    resultstr << link_to_remote(t_passage, :url => edit_path, :update => "#{@literary_quotation.id}_passagepopupdiv", :method => :get ) 
     resultstr << "</div>"  
     resultstr << "</span>"
     

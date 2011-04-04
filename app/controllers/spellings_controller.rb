@@ -725,6 +725,44 @@ class SpellingsController < ApplicationController
     
   end
   
+  def update_spelling
+        @spelling = Spelling.find(params[:spelling][:id])
+        @definition = @spelling.definition
+        if @spelling.created_by == nil or @spelling.created_by == ""
+          @spelling.created_by = session[:user].login
+          @spelling.created_at = Time.now
+        end
+        if session[:user] != nil
+          @spelling.updated_by = session[:user].login
+        end
+        @spelling.updated_at = Time.now
+        if @spelling.update_history == nil
+          @spelling.update_history = session[:user].login + " ["+Time.now.to_s+"]
+    "
+        else
+        	@spelling.update_history += session[:user].login + " ["+Time.now.to_s+"]
+    "
+        end
+      respond_to do |format|
+        if @spelling.update_attributes(params[:spelling])
+          format.html do
+            render :partial => 'shared/tinymce_field_show', :locals => {:t => @spelling, :divsuffix => "_spellingdiv"}
+          end
+        else
+        end
+      end
+  end
+
+  def spelling_show
+      @spelling = Spelling.find(params[:id])
+      render :partial => "shared/tinymce_field_show", :locals => {:t => @spelling, :divsuffix => "_spellingdiv"}
+  end
+
+  def spelling_edit
+      @spelling = Spelling.find(params[:id])
+      render :partial => "shared/tinymce_field_edit", :locals => {:t => @spelling, :divsuffix => "_spellingdiv"}
+  end  
+  
   def update_analytical_note
       @spelling = Spelling.find(params[:spelling][:id])
       if @spelling.created_by == nil or @spelling.created_by == ""
