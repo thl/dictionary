@@ -347,6 +347,8 @@ module ApplicationHelper
         "author_show"  
       when "transcript_in_tibetan_edit"
         "transcript_in_tibetan_show"
+      when "source_edit"
+        "source_show"  
       end
     end
     
@@ -394,6 +396,8 @@ module ApplicationHelper
         "update_author" 
       when "transcript_in_tibetan_edit"
         "update_transcript_in_tibetan"
+      when "source_edit"
+        "update_source"
       end
     end
     
@@ -547,16 +551,25 @@ module ApplicationHelper
         case controller
           when "literary_quotations"
             literary_quotation_title_edit_url(:id => id)  
+          when "metas"
+            meta_metadata_title_edit_url(:id => id)
         end  
       when "update_author", "author_show"
         case controller
           when "literary_quotations"
-            literary_quotation_author_edit_url(:id => id)  
+            literary_quotation_author_edit_url(:id => id)
+          when "metas"
+            meta_metadata_author_edit_url(:id => id)  
         end      
       when "update_transcript_in_tibetan", "transcript_in_tibetan_show"
         case controller
           when "oral_quotations"
             oral_quotation_transcript_in_tibetan_edit_url(:id => id)
+        end
+      when "update_source", "source_show"
+          case controller
+            when "model_sentences"
+              model_sentence_source_edit_url(:id => id)  
           end
       end            
     end
@@ -605,6 +618,8 @@ module ApplicationHelper
           "author"   
       when "transcript_in_tibetan_edit"
           "transcript_in_tibetan"
+      when "source_edit"
+          "source"
       end
     end
     
@@ -652,6 +667,8 @@ module ApplicationHelper
         "author"
       when "update_transcript_in_tibetan", "transcript_in_tibetan_show"
         "transcript_in_tibetan"
+      when "update_source", "source_show"
+        "source"  
       end
     end
     

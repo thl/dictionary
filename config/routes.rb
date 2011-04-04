@@ -110,16 +110,16 @@ ActionController::Routing::Routes.draw do |map|
   map.meta_metadata_note_edit 'metas/:id/metadata_note_edit', :controller => 'metas', :action => 'metadata_note_edit'
 
   map.meta_metadata_edit_dynamic_meta 'metas/:id/edit_dynamic_meta', :controller => 'metas', :action => 'edit_dynamic_meta'
-
+  map.meta_metadata_title_edit 'metas/:id/title_edit', :controller => 'metas', :action => 'title_edit'
+  map.meta_metadata_author_edit 'metas/:id/author_edit', :controller => 'metas', :action => 'author_edit'
   map.source_source_note_edit 'sources/:id/source_note_edit', :controller => 'sources', :action => 'source_note_edit'
-  
   map.source_source_edit_dynamic_source 'sources/:id/edit_dynamic_sources', :controller => 'sources', :action => 'edit_dynamic_source'
   
   
   map.edit_dynamic_model_sentence 'model_sentences/:id/edit_dynamic_model_sentence', :controller => 'model_sentences', :action => 'edit_dynamic_model_sentence'
   map.model_sentence_model_sentence_edit 'model_sentences/:id/model_sentence_edit', :controller => 'model_sentences', :action => 'model_sentence_edit'
   map.model_sentence_model_sentence_popupedit 'model_sentences/:id/model_sentence_popupedit', :controller => 'model_sentences', :action => 'model_sentence_popupedit'
-  map.model_sentence_model_source_edit 'model_sentences/:id/source_edit', :controller => 'model_sentences', :action => 'source_edit'
+  map.model_sentence_source_edit 'model_sentences/:id/source_edit', :controller => 'model_sentences', :action => 'source_edit'
   map.model_sentence_analytical_note_edit 'model_sentences/:id/analytical_note_edit', :controller => 'model_sentences', :action => 'analytical_note_edit'
   map.model_sentence_image_description_edit 'model_sentences/:id/image_description_edit', :controller => 'model_sentences', :action => 'image_description_edit'
   map.model_sentence_audio_description_edit 'model_sentences/:id/audio_description_edit', :controller => 'model_sentences', :action => 'audio_description_edit'

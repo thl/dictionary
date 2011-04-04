@@ -20,11 +20,35 @@ $(document).ready(function() {
 			<% end %>
 			<% if meta.title != nil and meta.title != ''%>
 				<br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<b>Title: </b><%= meta.title %>
+				<b>Title: </b>
+				<%#= meta.title %>
+				<span class='tinyfied_show'>
+					<div id="<%= "#{meta.id}_metatitlediv" %>">
+					  <%  edit_path = meta_metadata_title_edit_url(:id => meta.id) %>
+					  <% if meta.title == nil or meta.title == ''
+			               t_metatitle = 'Click to modify'
+			             else
+			               t_metatitle = meta.title      
+			             end %>
+					  <%= link_to_remote(t_metatitle, :url => edit_path, :update => "#{meta.id}_metatitlediv", :method => :get ) %>
+				    </div>
+				</span>
 			<% end %>
 			<% if meta.author != nil and meta.author != ''%>
 				<br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<b>Author: </b><%= meta.author %>
+				<b>Author: </b>
+				<%#= meta.author %>
+				<span class='tinyfied_show'>
+					<div id="<%= "#{meta.id}_metaauthordiv" %>">
+					  <%  edit_path = meta_metadata_author_edit_url(:id => meta.id) %>
+					  <% if meta.author == nil or meta.author == ''
+			               t_metaauthor = 'Click to modify'
+			             else
+			               t_metaauthor = meta.author      
+			             end %>
+					  <%= link_to_remote(t_metaauthor, :url => edit_path, :update => "#{meta.id}_metaauthordiv", :method => :get ) %>
+				    </div>
+				</span>
 			<% end %>
 		<span id="<%= meta_location %>" > </span>
 			<dl style="margin-top:0em;margin-bottom:0em;">

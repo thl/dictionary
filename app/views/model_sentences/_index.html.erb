@@ -45,7 +45,20 @@ $(document).ready(function() {
 				<dd><b>Type: </b><%= e.sentence_type %></dd>
 		<% end %>
 		<% if e.source != nil and e.source != ''%>
-				<dd><b>Source: </b><%= e.source %></dd>
+				<dd><b>Source: </b>
+				<%#= e.source %>
+				<span class='tinyfied_show'>
+					<div id="<%= "#{e.id}_sourcediv" %>">
+					  <%  edit_path = model_sentence_source_edit_url(:id => e.id) %>
+					  <% if e.source == nil or e.source == ''
+			               t_source = 'Click to modify'
+			             else
+			               t_source = e.source      
+			             end %>
+					  <%= link_to_remote(t_source, :url => edit_path, :update => "#{e.id}_sourcediv", :method => :get ) %>
+				    </div>
+				</span>
+				</dd>
 		<% end %>
 		<% if e.meta != nil%>
 		<dd>
@@ -69,7 +82,16 @@ $(document).ready(function() {
 					<span class="tib1">
 					<% end %>
 					<span class='tinyfied_show'>
-					<%= t.translation.s if t.translation != nil %>
+						<%#= t.translation.s if t.translation != nil %>
+						<div id="<%= "#{t.id}_translationdiv" %>">
+						  <%  edit_path = translation_translation_edit_url(:id => t.id) %>
+						  <% if t.translation == nil or t.translation == ''
+				               t_translation = 'Click to modify'
+				             else
+				               t_translation = t.translation.s     
+				             end %>
+						  <%= link_to_remote(t_translation, :url => edit_path, :update => "#{t.id}_translationdiv", :method => :get ) %>
+					    </div>
 					</span>
 					<% if t.language == 'Tibetan' %>
 					</span>
