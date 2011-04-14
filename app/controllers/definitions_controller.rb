@@ -3811,7 +3811,8 @@ end
   def synonym_search
     @definition = Definition.find(params['id'])
     #render :layout => false
-    render :layout => 'staging_popup'
+    #render :layout => 'staging_popup'
+    render :layout => 'staging_popup_related_term_edit'
   end
 
   def synonym_search_action
