@@ -41,8 +41,16 @@ $(document).ready(function() {
 });
 </script>
 
-<div id="content_popup" class="dictionary_content">
-	<div class="shell-1">
+<div id="content_popupb" class="dictionary_contentb">
+	<div class="shell-1b">
+		<div class="draggable-popup">
+			<div class="draggable-popup-header"></div>
+			<div class="draggable-popup-close" id="close_popup"></div>
+			<div class="draggable-popup-content">
 				<%= @content_for_layout %>
+			</div>
+			<div class="draggable-popup-footer"></div>
+	
+		</div>
 	</div>
 </div>

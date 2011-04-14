@@ -12,9 +12,14 @@ $(document).ready(function() {
      <p><%= build_form_radiolist_group(@terms) %></p>
   <input type="hidden" name="definition_id" value="<%= params['definition_id'] %>" />
 <% end %>
-<br><%= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definition_definition_formlistupdate3"), "parent.eval('tb_remove()');if(document.listrelated.onsubmit()) { document.listrelated.submit();}") %>
+<br>
+<%#= link_to_function(image_tag("update_up.gif", :size => "87x19", :border => 0, :alt => "update", :name => "definition_definition_formlistupdate3"), "parent.eval('tb_remove()');if(document.listrelated.onsubmit()) { document.listrelated.submit();}") %>
   <%#= link_to_remote image_tag("close_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');",:update=> 'definition_space', :url => {:action => 'public_content_only', :id => params['id']}%>	
-  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"),  :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %><br> 
+<%= link_to_function("Update", "parent.eval('tb_remove()');if(document.listrelated.onsubmit()) { document.listrelated.submit();}") %>
+  <%##= link_to_remote image_tag("close_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');",:update=> 'definition_space', :url => {:action => 'public_content_only', :id => params['id']}%>	
+
+  <%#= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"),  :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %>
+  <%= link_to_remote "Cancel",  :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %><br> 
 
 <!--<input type='button' name='cancel_button' value='Cancel' id='cancel_button'> -->
 <br>

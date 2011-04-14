@@ -1,3 +1,4 @@
+<div id="definition_find_term">
 <% if params['relatedtype'] == "definition_from" %>
   <div id="definition_definition_form_definition_froms">
   <% form_remote_tag(:update => "definition_definition_form_definition_froms", :url => {:controller => "definition_definition_forms", :action => "edit_search_action", :id => params['id'], :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']}}, :html => {:name => "searchrelated"}) do %>
@@ -25,9 +26,17 @@
   <% end %>
   <%#= link_to_function('Search', "if(document.searchrelated.onsubmit()) { document.searchrelated.submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formsearch2"+params['level'].to_s+"','','/images/search_down.gif',1);"}) %>
   <%#= link_to_remote 'Cancel', :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
-  <%= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "definition_definition_formsearch2"+params['level'].to_s), "if(document.searchrelated.onsubmit()) { document.searchrelated.submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formsearch2"+params['level'].to_s+"','','/images/search_down.gif',1);"}) %>
-  <%= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+  
+<%#= submit_tag 'Search' %>
+
+  <%#= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "definition_definition_formsearch2"+params['level'].to_s), "if(document.searchrelated.onsubmit()) { document.searchrelated.submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formsearch2"+params['level'].to_s+"','','/images/search_down.gif',1);"}) %>
+  <%#= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+<br/>
+<%= link_to_function("search", "if(document.searchrelated.onsubmit()) { document.searchrelated.submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formsearch2"+params['level'].to_s+"','','/images/search_down.gif',1);"}) %>
+  <%= link_to_remote  "cancel", :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+
 
   <%#= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel", :name => "definition_definition_formquerycancel"+params['level'].to_s), {:update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :params => {:pk => params[:id], 'internal' => 'definition_definition_forms', 'relatedtype'=> params['relatedtype'], 'level' => params['level']}}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formquerycancel"+params['level'].to_s+"','','/images/cancel_down.gif',1);"%>
  </div>
 <% end %>
+</div>
