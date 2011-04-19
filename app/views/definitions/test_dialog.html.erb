@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<meta charset="utf-8">
+	<title>Basic usage of the jQuery UI dialog</title>
+
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css">
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		var $dialog = $('<div></div>')
+			.html('This dialog will show every time!')
+			.dialog({
+				autoOpen: false,
+				title: 'Basic Dialog'
+			});
+
+		$('#opener').click(function() {
+			$dialog.dialog('open');
+			// prevent the default action, e.g., following a link
+			return false;
+		});
+	});
+	</script>
+</head>
+<body>
+
+<p>This is an example from the Nemikor Blog article <a href="http://blog.nemikor.com/2009/04/08/basic-usage-of-the-jquery-ui-dialog/">Basic usage of the jQuery UI dialog</a>.</p>
+
+<button id="opener">Open the dialog</button>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-9863993-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</body>
+</html>

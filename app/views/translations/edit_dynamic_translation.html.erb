@@ -12,8 +12,11 @@ $(document).ready(function() {
 	     //$('#toggleh1').val('collapse');
 	   });
 	
-	$("#cancel_button").click(function () { parent.eval('tb_remove()'); });
-	$("#update_button").click(function () {	parent.eval('tb_remove()'); });
+	//$("#cancel_button").click(function () { parent.eval('tb_remove()'); });
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	//$("#update_button").click(function () {	parent.eval('tb_remove()'); });
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");  });
+	
 	//$("#update_button").click(function () {	parent.eval('tb_remove()');parent.location.reload(1); });
 		
 });

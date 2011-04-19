@@ -3821,6 +3821,10 @@ end
     #render :layout => 'staging_popup'
   end
 
+  def test_dialog
+    render :layout => false
+  end
+  
   def add_synonym
     debugger
     puts '------------'
