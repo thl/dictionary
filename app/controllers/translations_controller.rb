@@ -792,7 +792,8 @@ class TranslationsController < ApplicationController
     end
     @translation = Translation.find(params[:id])
     #@definition = Definition.find(51)
-    render :layout => 'staging_popup'
+    #render :layout => 'staging_popup'
+    render :layout => false
   end
   
   def update_dynamic_translation

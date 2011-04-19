@@ -25,7 +25,7 @@ $(document).ready(function() {
 <%= link_to_function("search", "if(document.searchrelated.onsubmit()) { document.searchrelated.submit();}") %>
   
 <%#= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');",:update=> 'definition_space', :url => {:action => 'public_content_only', :id => params[:id]}%>	
-  <%#= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :update => 'definition_space',  :url => {:controller => 'definitions', :action => 'public_content_only', :id => params[:id]}, :method => 'get', :html => {:name => "cancel_button2", :id=> "cancel_button2"} %><br> 
+  <%#= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :update => 'definition_space',  :url => {:controller => 'definitions', :action => 'public_content_only', :id => params[:id]}, :method => 'get', :html => {:name => "cancel_button2", :id=> "cancel_button2"} %>
   
   <%#= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"),  :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %>
   <%= link_to_remote "cancel",  :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %>

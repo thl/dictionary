@@ -342,6 +342,69 @@ function clear_contents(node)
 	}
 
 </script>
+
+<!--<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"> -->
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/pepper-grinder/jquery-ui.css">
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			var $dialog = $('<div></div>')
+				.html('This dialog will show every time!')
+				.dialog({
+					autoOpen: false,
+					title: 'Basic Dialog'
+				});
+
+			$('#opener').click(function() {
+				$dialog.dialog('open');
+				// prevent the default action, e.g., following a link
+				return false;
+			});
+			
+			$('.ui_dialog').click(function() {
+			  $("#popup_dialog").dialog('open');
+			});
+			
+			//$('.ui_dialog').bind('click', function() {
+			//  alert('User clicked on "ui_dialog."');
+			//});
+			
+			
+			
+			//$('body').delegate('a','click', function() {
+			//   $("#popup_dialog").dialog('open');
+			//});
+			
+			$('.ui_metadata_dialog').click(function() {
+			  $("#popup_metadata_dialog").dialog('open');
+			});
+			
+
+		});
+		</script>
+		
+		<script>
+		  $(document).ready(function() {
+			$("#popup_dialog").dialog( "destroy" );
+		    $("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false });
+			$("#popup_dialog").dialog("close");
+			
+			$("#popup_metadata_dialog").dialog({ width: 630, resizable: false });
+			$("#popup_metadata_dialog").dialog("close");
+			
+		  });
+		
+		  </script>
+	
+<!--	<div id="dialog" title="Basic dialog">
+		<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+	</div>
+	
+		<button id="opener">Open the dialog</button>
+		<button class="ui_dialog">Open the dialog</button>  -->
+		
 <div id="messages"></div>
 <div id="edit_box" style="display:none;
 		position:absolute;
@@ -358,7 +421,14 @@ function clear_contents(node)
 		">
 		
 </div>
+<div id="popup_dialog">
+</div>
+<div id="popup_metadata_dialog">
+</div>
+
 <%= test_helper %>
+
+
 <%#s= link_to_remote "reload", :update=> 'definition_space', :url => {:action => 'public_content_only', :id => @definition.id, :params => {:no_layout => true}}%>
 <div id="definition_space">
 		<%##= link_to_remote(image_tag('cross',:border=>0, :title => 'Delete definition'), :update => 'complete_definition', :url => {:action => 'public_destroy', :id => d.id, :params => {:parent_id => @head_id, :head_id => @head_id}}, :confirm => "Are you sure you want to delete this entry?") %>

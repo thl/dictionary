@@ -8,6 +8,8 @@ $(document).ready(function() {
 			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => meta.id, :history_class => meta.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => meta.id, :history_class => meta.class.to_s }}) %>			
 	        <%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'metas', :action => 'edit_dynamic_meta', :id => meta.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) , :class=>:thickbox, :title=>'Meta Edit' %>
+	        <%#= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :url => {:controller => 'metas', :action => 'edit_dynamic_meta', :id => meta.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_dialog'} %>
+	
 			<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => meta_location, :url => {:controller => 'metas', :action => 'public_edit', :id => meta.id, :params => {'definition_id' => head_id}} %>
 	        <span class=menuvalue onclick=show_menu(meta_menu,getCoord(arguments[0]));>
 			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'meta_id='+meta.id.to_s, :title => 'Edit Relationships' %> 

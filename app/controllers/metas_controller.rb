@@ -1226,7 +1226,9 @@ class MetasController < ApplicationController
       params['level'] = '1'
     end
     @meta = Meta.find(params[:id])
-    render :layout => 'staging_popup'
+    #render :layout => 'staging_popup'
+    #render :partial => 'test'
+    render :layout => false
   end  
   
   def update_dynamic_meta 

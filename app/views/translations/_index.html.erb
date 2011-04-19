@@ -1,8 +1,16 @@
 <script>
 $(document).ready(function() {
 	tb_init('a.thickbox, area.thickbox, input.thickbox');
+	//$('.ui_dialog')
+	//	.unbind('click')
+	//	.bind('click', function() {
+	//  		$("#popup_dialog").dialog('open');
+	//	});
 });
 </script>
+
+
+	
 
 <% if d.translations.size > 0%>
 <% count = 0;
@@ -11,7 +19,10 @@ $(document).ready(function() {
 <b>Translation<% if e.language != nil and e.language != '' %> (<%= e.language %>)<% end %>:</b>
 	<%= link_to image_tag('user.png',:border => 0), url_for(:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 	<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
-	<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translations', :action => 'edit_dynamic_translation', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true), :class=>:thickbox, :title=>'Translation Edit' %>					
+	
+	<%#= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translations', :action => 'edit_dynamic_translation', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true), :class=>:thickbox, :title=>'Translation Edit' %>	
+	<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :url => {:controller => 'translations', :action => 'edit_dynamic_translation', :id => e.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_dialog'} %>	
+				
 	<%#= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => d.id.to_s+'_translation', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'translations', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 	<span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>
 	<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'translation_id='+e.id.to_s, :title => 'Edit Relationships' %> 

@@ -230,6 +230,7 @@ module ApplicationHelper
           #super +  ['jquery.inplace.pack','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl']
         end
       end
+      #['jquery','jquery-ui'] + super
     end
     
     def tmb_url
