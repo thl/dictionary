@@ -3816,7 +3816,14 @@ end
   end
 
   def synonym_search_action
+    
     @terms = Definition.find(:all, :conditions => "term ilike '%"+params['term']+"%'")
+    
+    #key = 'wylie'
+    #query = ["wylie ilike ? and level = ?", "%"+params['term']+"%", "head term"]
+    #@terms = Definition.find :all, :conditions => query
+    #debugger
+    
     render :layout => false
     #render :layout => 'staging_popup'
   end

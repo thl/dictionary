@@ -358,6 +358,9 @@ class DefinitionDefinitionFormsController < ApplicationController
          end
        end
        query = [query]+@array
+       #this is a temp fix, will implement a full search for options as on main page
+       query = ["wylie ilike ? and level = ?", "%"+params['internal_definition']['term']+"%", "head term"]
+       
        if query == [""]
          @definition_tos = Definition.find :all
        else
