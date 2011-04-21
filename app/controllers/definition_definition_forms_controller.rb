@@ -347,19 +347,97 @@ class DefinitionDefinitionFormsController < ApplicationController
      end
      @definition_tos = nil
      if params["relatedtype"] == "definition_to"
+       
+       
+       vals=""
+       query=""
        @array = []
-       params['internal_definition'].each do |key, val| 
-         if val != ""
-           if query != ""
-             query = query + " and "
-           end
-           query = query + key + " ilike ?"
-           @array.push("%"+val+"%")
+       if params['internal_definition']['term'] != nil and params['internal_definition']['term'] != ''
+         val = params['internal_definition']['term'] #params['term']
+         if params[:search_field] == 'tibetan'
+            key = 'term'
+         elsif params[:search_field] == 'wylie'
+            key = 'wylie'
+         else
+            key = 'phonetic'
          end
-       end
-       query = [query]+@array
-       #this is a temp fix, will implement a full search for options as on main page
-       query = ["wylie ilike ? and level = ?", "%"+params['internal_definition']['term']+"%", "head term"]
+         session['search_type'] = key
+         if query != ""
+             query = query + " and "
+             vals = vals + ","
+         end
+         term_value = val
+         space = Unicode::U0F0B
+         space2 = Unicode::U0F0C
+         line = Unicode::U0F0D
+         nb_space = Unicode::U00A0
+
+         val = val.gsub("#{nb_space}",' ')  #remove non-breaking space before tsheg
+
+         val = val.gsub(line,'')
+          val = val.gsub(space2,space)
+          val = val.gsub(space,'_space_')
+          a = val.split('_space_')
+          word = ''
+          a.each {|w|
+             word += space if word != ''
+             word += w
+          }
+        val = word
+        if params['search_type'] == 'anywhere'
+            query = query + key + " ilike ?"
+            @array.push("%"+val.gsub('/','').strip+"%")
+            vals += 'anywhere:'
+        elsif params['search_type'] == 'exact'
+            query = query +'('+ key + " = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? )"
+            @array.push(val.gsub('/','').strip)
+            @array.push(val.gsub('/','').strip+line)
+            @array.push(val.gsub('/','').strip+space+line)
+            @array.push(val.gsub('/','').strip+space)
+            @array.push(val.gsub('/','').strip+space2+line)
+            @array.push(val.gsub('/','').strip+space2)
+            @array.push(val.gsub('/','').strip+' ')
+            @array.push(val.gsub('/','').strip+'/')
+            @array.push(val.gsub('/','').strip+' /')
+            @array.push(val.gsub('/','').strip+"#{nb_space}")
+            @array.push(val.gsub('/','').strip+"#{nb_space}/")
+            
+            vals += 'exact:'
+        else params['search_type'] == 'beginning'
+            query = query + key + " ilike ?"
+            @array.push(val+"%")
+            vals += 'beginning:'
+        end 
+        if params['search_extent'] == nil
+            query += ' and ' if query != nil
+            query = query + "level = ?"
+            @array.push("head term")
+            vals += ',' if vals != ''
+            vals += 'level:head term'
+         end
+         
+         vals += ',' if vals != ''
+         vals = vals + key + ":" + val
+          
+      end # if params['internal_definition']['term'] != nil
+      query = [query]+@array
+      
+       
+      # previous code
+      # @array = []
+      # params['internal_definition'].each do |key, val| 
+      # if val != ""
+      #     if query != ""
+      #       query = query + " and "
+      #     end
+      #     query = query + key + " ilike ?"
+      #     @array.push("%"+val+"%")
+      #   end
+      # end
+      # query = [query]+@array
+      # #this is a temp fix, will implement a full search for options as on main page
+      # query = ["wylie ilike ? and level = ?", "%"+params['internal_definition']['term']+"%", "head term"]
+       
        
        if query == [""]
          @definition_tos = Definition.find :all
