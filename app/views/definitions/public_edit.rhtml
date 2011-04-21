@@ -269,7 +269,7 @@ function clear_contents(node)
 	} 
 	function edit_form_to(controller,id,parent_id) {
 		/*new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from', {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); */
-		tb_show("edit form from", root_dir+'/'+controller+'/modal_edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from'+'&TB_iframe=true&height=341&width=550&internal=edit_box&modal=true&public=yes',null);
+		tb_show("edit form from", root_dir+'/'+controller+'/modal_edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from'+'&TB_iframe=true&height=341&width=650&internal=edit_box&modal=true&public=yes',null);
 	}
 	function search_popup(controller,relatedtype,id) {
 		//new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_search/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
@@ -284,7 +284,7 @@ function clear_contents(node)
 	
 	function add_new_relationship(controller,relatedtype,id,role_to,role_from) {
 		//new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&relatedtype='+relatedtype+'&role_to='+role_to+'&role_from='+role_from+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
-		tb_show("add new relationship", root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&relatedtype='+relatedtype+'&role_to='+role_to+'&role_from='+role_from+'&definition_id='+head_definition+'&height=341&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);
+		tb_show("add new relationship", root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&relatedtype='+relatedtype+'&role_to='+role_to+'&role_from='+role_from+'&definition_id='+head_definition+'&height=341&internal=edit_box&modal=true&public=yes&width=650&TB_iframe=true',null);
 	}
 	function search_term(controller,relatedtype,id) {
 		//new Ajax.Updater('edit_box', root_dir+'/'+controller+'/synonym_search/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
