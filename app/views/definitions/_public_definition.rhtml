@@ -323,7 +323,7 @@
 		   size = d.definition_definition_form_froms.size;
 			for e in d.definition_definition_form_froms %>
 		<b>Related term:</b>
-				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+						<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 			<%#= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'definition_definition_forms', :action => 'modal_edit_dynamic', :id => e.id, :internal=>'edit_box', :public=>'yes', :relatedtype=> 'definition_definition_form_from', :parent_id => head_id.to_s, :definition_id => head_definition,  :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Related Term Edit' %>

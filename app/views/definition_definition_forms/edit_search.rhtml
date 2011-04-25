@@ -17,8 +17,14 @@
 <% if params['relatedtype'] == "definition_to" %>
   <div id="definition_definition_form_definition_tos">
   <% form_remote_tag(:update => "definition_definition_form_definition_tos", :url => {:controller => "definition_definition_forms", :action => "edit_search_action", :id => params['id'], :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']}}, :html => {:name => "searchrelated"}) do %>
-    <h4>Find New Related Term:</h4>
-    <!-- <table>
+    <!-- <h4>Find New Related Term:</h4> -->
+	<% @relationship = DefinitionDefinitionForm.find(params['id']).relationship_to %>
+	<% @wylie_term = Definition.find(DefinitionDefinitionForm.find(params['id']).def1_id).wylie %>
+	<% @relationship =  @relationship.split(" ").each{|word| word.capitalize!}.join(" ") %>
+	<% @wylie_term =  @wylie_term.split(" ").each{|word| word.capitalize!}.join(" ") %>
+	<h4>Search for term to specify as <%= @relationship %> of <%= @wylie_term %>:</h4>
+    <br/>
+	<!-- <table>
     <%= internal_search_term %>
     </table>
   	<input type="hidden" name="relatedtype" value="<%= params['relatedtype'] %>" />
