@@ -472,8 +472,20 @@ class DefinitionDefinitionFormsController < ApplicationController
         @definition_definition_form.save
       end
     end
-    #render :partial => 'edit_contents'
-    render :partial => 'edit_contents', :locals => {:definition_definition_form => @definition_definition_form}
+    ##render :partial => 'edit_contents'
+    
+    #render :partial => 'edit_contents', :locals => {:definition_definition_form => @definition_definition_form}
+    #here we have to render all related terms instead
+    render_related_terms
+  end
+  
+  def render_related_terms
+    @definition_definition_form = DefinitionDefinitionForm.find(params['id'])
+    @temp_definition = Definition.find(@definition_definition_form.definition_from.id) 
+ 	  render :update do |page|
+      #yield(page) if block_given?     	    
+      page.replace_html "#{@temp_definition.id}_related_terms_div", :partial => 'definition_definition_forms/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition.id, :head_id => @temp_definition.id}
+    end
   end
 
   def search

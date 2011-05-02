@@ -20,7 +20,11 @@ $(document).ready(function() {
 <%#= link_to_function image_tag('pencil.png',:border => 0), "dialect_id="+e.id.to_s+";edit_popup('pronunciations','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
 		<%= link_to image_tag('user.png',:border => 0), url_for(:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 		<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
-		<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'pronunciations', :action => 'edit_dynamic_pronunciation', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true), :class=>:thickbox, :title=>'Pronunciation Edit' %>		
+		
+		<%#= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'pronunciations', :action => 'edit_dynamic_pronunciation', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true), :class=>:thickbox, :title=>'Pronunciation Edit' %>
+		<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :url => {:controller => 'pronunciations', :action => 'edit_dynamic_pronunciation', :id => e.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_dialog'}, :title=>'Pronunciation Edit' %>
+		
+				
 		<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_pronunciation', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'pronunciations', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 		<span class=menuvalue onclick=show_menu(pro_menu,getCoord(arguments[0]));>
 		<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'pronunciation_controller="pronunciation";pronunciation_id='+e.id.to_s, :title => 'Edit Relationships' %> 
