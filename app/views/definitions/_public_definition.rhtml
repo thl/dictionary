@@ -290,69 +290,11 @@
 		</div> <!--  spellings_div -->
 			
 		
-		<% if d.definition_definition_form_tos.size > 0 or d.definition_definition_form_froms.size > 0%>
-		<% count = 0;
-		   size = d.definition_definition_form_tos.size;
-			for e in d.definition_definition_form_tos %>
-		<b>Related term:</b>
-				<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
-			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
-			<%= link_to_function image_tag('pencil.png',:border => 0), "edit_form_from('definition_definition_forms','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<span class=menuvalue onclick=show_menu(related_term_menu,getCoord(arguments[0]));>
-			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'definition_definition_form_id='+e.id.to_s, :title => 'Edit Relationships' %> 
-			</span>
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove related term'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_form_to', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :form_to => e.id }}, :confirm => "Are you sure you want to remove this Term?") %>			
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_form_to' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :form_to => e.id),  :title=>'Remove Related Term', :confirm => "Are you sure you want to remove this Term?" %>
-			<span class="tib1">
-			<%= e.displayToInfoPublic.s %>
-			<%= link_to(e.displayToTerm.s, :controller => 'definitions', :action => 'public_edit', :id => e.definition_from.id) unless e.definition_from == nil %>
-			</span>
-			<dl style="margin-top:0em;margin-bottom:0em;">
-				<dd style="display:none"></dd>
-			<% if e.meta != nil%>
-				<dd>
-				<% t = Time.now %>
-				<%= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
-				</dd>
-			<% end %>
-			</dl>
-			<!-- <br> -->
-		<% end %>
-		<% 
-		   size = d.definition_definition_form_froms.size;
-			for e in d.definition_definition_form_froms %>
-		<b>Related term:</b>
-						<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
-			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
-			<%#= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'definition_definition_forms', :action => 'modal_edit_dynamic', :id => e.id, :internal=>'edit_box', :public=>'yes', :relatedtype=> 'definition_definition_form_from', :parent_id => head_id.to_s, :definition_id => head_definition,  :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Related Term Edit' %>
-			<%= link_to_function image_tag('pencil.png',:border => 0), "edit_form_to('definition_definition_forms','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-			<span class=menuvalue onclick=show_menu(related_term_menu,getCoord(arguments[0]));>
-			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'definition_definition_form_id='+e.id.to_s, :title => 'Edit Relationships' %> 
-			</span>
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove related term'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_form_from', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :form_from => e.id }}, :confirm => "Are you sure you want to remove this related term?") %>			
-			<%= link_to image_tag('cross.png',:border => 0, :title => 'Remove related term'), url_for(:controller => 'definitions', :action => 'public_remove_form_from' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :form_from => e.id),  :title=>'Remove Related Term', :confirm => "Are you sure you want to remove this Term?" %>
-			<span class="tib1">
-			<%= e.displayFromInfoPublic.s %>
-			<%= link_to(e.displayFromTerm.s, :controller => 'definitions', :action => 'public_edit', :id => e.definition_to.id) unless e.definition_to == nil%>
-			</span>
-			<br>
-			<dl style="margin-top:0em;margin-bottom:0em;">
-				<dd style="display:none"></dd>
-			<% if e.meta != nil%>
-				<dd>
-				<% t = Time.now %>
-				<%= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
-				</dd>
-			<% end %>
-			</dl>
-		<% end %>
-		<!-- <br> -->
-		<% end %>
-		<span id="<%= d.id%>_form_from" > </span>
-		<span id="<%= d.id%>_form_to" > </span>
+
 		
+		<div id="<%= d.id%>_related_terms_div"> 
+		  <%=   render :partial => 'definition_definition_forms/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+		</div>
 		
 		<div id="<%= d.id%>_full_synonyms_div"> 
 		  <%=   render :partial => 'full_synonyms/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	

@@ -8,7 +8,7 @@ $(document).ready(function() {
   <%# form_remote_tag(:update => "edit_box", :url => {:controller => "definitions", :action => "synonym_search_action", :id => params['id'], :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']}}, :html => {:name => "searchrelated"}) do %>
   <% form_remote_tag(:update => "definition_full_synonyms", :url => {:controller => "definitions", :action => "synonym_search_action", :id => params['id'], :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']}}, :html => {:name => "searchrelated"}) do %>
 
-  <h3>Find Term:</h3>
+  <!-- <h3>Find Term:</h3>
     <table>
     <tr>
 			<td>
@@ -18,10 +18,36 @@ $(document).ready(function() {
     </table>
   <input type="hidden" name="relatedtype" value="<%= params['relatedtype'] %>" />
   <input type="hidden" name="definition_id" value="<%= params['definition_id'] %>" />
+  
+  -->
+  
+	<%# @relationship = DefinitionDefinitionForm.find(params['id']).relationship_to %>
+	<% @wylie_term = Definition.find(@definition.id).wylie %>
+	<%# @relationship =  @relationship.split(" ").each{|word| word.capitalize!}.join(" ") %>
+	<% @wylie_term =  @wylie_term.split(" ").each{|word| word.capitalize!}.join(" ") %>
+	<h4>Search for term to specify as Full Synonym of <%= @wylie_term %>:</h4>
+	<br/>
+	Enter the term you want to find: &nbsp;&nbsp;<input type="text" name="internal_definition[term]">
+	<input type="hidden" name="relatedtype" value="<%= params['relatedtype'] %>" />
+	<!-- <input type="hidden" name="definition_definition_form[id]" value="<%= params['id'] %>" /> -->
+	<input type="hidden" name="definition_id" value="<%= params['definition_id'] %>" />
+	<input type="hidden" name="mode" value="search">
+	<br/><br>
+	<% search_type = session['search_type'] != nil ? session['search_type'] : 'term' %>
+	<input type="radio" name="search_field" value="tibetan" <% if search_type =='term'%>checked<% end %>> Tibetan Unicode Script &nbsp;&nbsp;&nbsp;
+	<input type="radio" name="search_field" value="wylie" <% if search_type =='wylie'%>checked<% end %>> THL Wylie Transliteration &nbsp;&nbsp;&nbsp; 
+	<input type="radio" name="search_field" value="phonetic" <% if search_type =='phonetic'%>checked<% end %>> THL Phonetic Transcription
+	<br><br>
+	<input type="radio" name="search_type" value="exact" > Exact match<br>
+	<input type="radio" name="search_type" value="beginning" > Starts with<br>
+	<input type="radio" name="search_type" value="anywhere" checked> Contains<br>
+	<br>
+	
+	
   <% end %>
   <br>
   <%#= link_to_function(image_tag("search_up.gif", :size => "87x19", :border => 0, :alt => "search", :name => "definitionsearch2"), "if(document.searchrelated.onsubmit()) { document.searchrelated.submit();}") %>
-<br/><br/><br/><br/>
+
 <%= link_to_function("search", "if(document.searchrelated.onsubmit()) { document.searchrelated.submit();}") %>
   
 <%#= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"), :loading => "Element.hide('edit_box');clear_contents('edit_box');",:update=> 'definition_space', :url => {:action => 'public_content_only', :id => params[:id]}%>	
@@ -33,6 +59,7 @@ $(document).ready(function() {
 
 
   <br>
+<br/><br/><br/><br/>
   </div>
 
 

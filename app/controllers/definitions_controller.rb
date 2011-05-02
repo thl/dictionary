@@ -3816,13 +3816,97 @@ end
   end
 
   def synonym_search_action
+    #previous code
+    #@terms = Definition.find(:all, :conditions => "term ilike '%"+params['term']+"%'")
+    ##key = 'wylie'
+    ##query = ["wylie ilike ? and level = ?", "%"+params['term']+"%", "head term"]
+    ##@terms = Definition.find :all, :conditions => query
+
+    query = ""
+     
+     @definition_tos = nil
+     #if params["relatedtype"] == "full_synonym"
+       
+       
+       vals=""
+       query=""
+       @array = []
+       if params['internal_definition']['term'] != nil and params['internal_definition']['term'] != ''
+         val = params['internal_definition']['term'] #params['term']
+         if params[:search_field] == 'tibetan'
+            key = 'term'
+         elsif params[:search_field] == 'wylie'
+            key = 'wylie'
+         else
+            key = 'phonetic'
+         end
+         session['search_type'] = key
+         if query != ""
+             query = query + " and "
+             vals = vals + ","
+         end
+         term_value = val
+         space = Unicode::U0F0B
+         space2 = Unicode::U0F0C
+         line = Unicode::U0F0D
+         nb_space = Unicode::U00A0
+
+         val = val.gsub("#{nb_space}",' ')  #remove non-breaking space before tsheg
+
+         val = val.gsub(line,'')
+          val = val.gsub(space2,space)
+          val = val.gsub(space,'_space_')
+          a = val.split('_space_')
+          word = ''
+          a.each {|w|
+             word += space if word != ''
+             word += w
+          }
+        val = word
+        if params['search_type'] == 'anywhere'
+            query = query + key + " ilike ?"
+            @array.push("%"+val.gsub('/','').strip+"%")
+            vals += 'anywhere:'
+        elsif params['search_type'] == 'exact'
+            query = query +'('+ key + " = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? or "+key+" = ? )"
+            @array.push(val.gsub('/','').strip)
+            @array.push(val.gsub('/','').strip+line)
+            @array.push(val.gsub('/','').strip+space+line)
+            @array.push(val.gsub('/','').strip+space)
+            @array.push(val.gsub('/','').strip+space2+line)
+            @array.push(val.gsub('/','').strip+space2)
+            @array.push(val.gsub('/','').strip+' ')
+            @array.push(val.gsub('/','').strip+'/')
+            @array.push(val.gsub('/','').strip+' /')
+            @array.push(val.gsub('/','').strip+"#{nb_space}")
+            @array.push(val.gsub('/','').strip+"#{nb_space}/")
+            
+            vals += 'exact:'
+        else params['search_type'] == 'beginning'
+            query = query + key + " ilike ?"
+            @array.push(val+"%")
+            vals += 'beginning:'
+        end 
+        if params['search_extent'] == nil
+            query += ' and ' if query != nil
+            query = query + "level = ?"
+            @array.push("head term")
+            vals += ',' if vals != ''
+            vals += 'level:head term'
+         end
+         
+         vals += ',' if vals != ''
+         vals = vals + key + ":" + val
+          
+      end # if params['internal_definition']['term'] != nil
+      query = [query]+@array  
     
-    @terms = Definition.find(:all, :conditions => "term ilike '%"+params['term']+"%'")
-    
-    #key = 'wylie'
-    #query = ["wylie ilike ? and level = ?", "%"+params['term']+"%", "head term"]
-    #@terms = Definition.find :all, :conditions => query
-    #debugger
+      if query == [""]
+         @terms = Definition.find :all
+      else
+         @terms = Definition.find :all, :conditions => query
+      end
+     #end
     
     render :layout => false
     #render :layout => 'staging_popup'
@@ -3833,7 +3917,7 @@ end
   end
   
   def add_synonym
-    debugger
+    
     puts '------------'
     puts params[:id]
     puts params['tags']

@@ -32,6 +32,6 @@
   </h4> 
   <br/><br/>
   </div>
-
+  <%= link_to_remote image_tag("search.png", :border => 0),:update => "definition_definition_form_definition_tos" , :url => edit_search_definition_definition_forms_path(definition_definition_form.id, :level => params['level'], :relatedtype => "definition_to", :internal => params['internal']),  :method => 'get' %>
 <% end %>
 
