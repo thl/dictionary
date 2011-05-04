@@ -15,7 +15,7 @@ $(document).ready(function() {
 		<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
 		<!-- before ui -->	
 		<%#= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'etymologies', :action => 'edit_dynamic_etymology', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true), :class=>:thickbox, :title=>'Etymology Edit' %>
-		<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :url => {:controller => 'etymologies', :action => 'edit_dynamic_etymology', :id => e.id, :internal=>'edit_box', :public=>'yes'} , :html => {:class => 'ui_dialog'}, :title=>'Etymology Edit' %>
+		<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'etymologies', :action => 'edit_dynamic_etymology', :id => e.id, :internal=>'edit_box', :public=>'yes'} , :html => {:class => 'ui_dialog'}, :title=>'Etymology Edit' %>
 			
 		<%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_etymology', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'etymologies', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 		<span class=menuvalue onclick=show_menu(etymology_menu,getCoord(arguments[0]));>
