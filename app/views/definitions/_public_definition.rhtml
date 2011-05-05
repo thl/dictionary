@@ -10,12 +10,15 @@
 	<b>Definition: </b>
 	<%# if head_id != parent_id %>
 	<!--<a href="/images/familylg.jpg" title="add a caption to title attribute / or leave blank" class="thickbox"><img src="/images/shoulder.gif" alt="Single Image"/></a>-->
-			<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => d.id, :history_class => d.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%# before ui %>
+			<%#= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => d.id, :history_class => d.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%= link_to_remote image_tag('user.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'definitions', :action => 'display_history', :history_id => d.id, :history_class => d.class.to_s}, :html => {:class => 'ui_dialog', :title=>'Contributors'} %>
+			
 			<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => d.id, :history_class => d.class.to_s }}) %>	
 			
 			<%# before ui %>
 			<%#= link_to image_tag('pencil.png',:border => 0), url_for( :action => 'edit_dynamic_definition', :id => d.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) , :class=>:thickbox, :title=>'Definition Edit' %>		
-			<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'definitions', :action => 'edit_dynamic_definition', :id => d.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_dialog'} %>
+			<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'definitions', :action => 'edit_dynamic_definition', :id => d.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_dialog', :title=>'Definition Edit'} %>
 			
 			<%#= link_to_function image_tag('pencil.png',:border => 0), 'definition_id='+d.id.to_s+';parent_id='+head_id.to_s+";dialect_id="+d.id.to_s+";edit_popup('definitions','"+d.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
 			<span class=menuvalue onclick='definition_id=<%= d.id.to_s %>;parent_id=<%= head_id.to_s %>;show_menu(definition_menu,getCoord(arguments[0]));'>
