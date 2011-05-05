@@ -278,8 +278,27 @@ function clear_contents(node)
  	function add_new_popup(controller,relatedtype,id) {	
 		tb_show("add new popup", root_dir+'/'+controller+'/edit_new/'+id+'?level=0&relatedtype='+relatedtype+'&definition_id='+head_definition+'&height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);
 	};	
-	function add_new_content(controller,relatedtype,id) {
+	/*function add_new_content(controller,relatedtype,id) {
 		tb_show("add new content", root_dir+'/'+controller+'/edit_new/'+id+'?level=0&relatedtype='+relatedtype+'&definition_id='+head_definition+'&height=450&internal=edit_box&modal=true&public=yes&width=550',null);
+	};*/
+	function add_new_content(controller,relatedtype,id) {
+		$.ajax({
+		    url: root_dir+'/'+controller+'/edit_new/'+id+'?level=0&relatedtype='+relatedtype+'&definition_id='+head_definition,
+			success: function(data) {
+				$("#popup_dialog").html("<p></p>")
+			    $("#popup_dialog").html(data);
+				$("#popup_dialog").dialog( "destroy" );
+			    $("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false });
+			    $("#popup_dialog").dialog('open');
+			    alert('Load was performed.');
+			  } ,
+		    timeout: 3000 
+		  });
+		
+		new Ajax.Updater('popup_dialog', root_dir+'/'+controller+'/edit_new/'+id+'?level=0&relatedtype='+relatedtype+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true, onLoading:function(request){$("#popup_dialog").html("<p></p>")
+		  $("#popup_dialog").dialog( "destroy" );
+	      $("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false });
+	      $("#popup_dialog").dialog('open');  }}); 
 	};
 	
 	function add_new_relationship(controller,relatedtype,id,role_to,role_from) {
