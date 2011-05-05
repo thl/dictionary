@@ -11,10 +11,12 @@ $(document).ready(function() {
 		for e in d.translation_equivalents %>
 	<b>Translation equivalent:</b>
 			<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-		<%= link_to image_tag('user.png',:border => 0), url_for(:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
-		<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
-		<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translation_equivalents', :action => 'edit_dynamic_translation_equivalent', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true), :class=>:thickbox, :title=>'Translation Equivalent Edit' %>		
-<%#= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => d.id.to_s+'_translation_equivalent', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'translation_equivalents', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
+		<%= link_to_remote image_tag('user.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s}, :html => {:class => 'ui_dialog', :title=>'Contributors'} %>
+		<%#= link_to image_tag('user.png',:border => 0), url_for(:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+		<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>	
+		<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'translation_equivalents', :action => 'edit_dynamic_translation_equivalent', :id => e.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_dialog'}, :title=>'Translation Equivalent Edit' %>
+		<%#= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translation_equivalents', :action => 'edit_dynamic_translation_equivalent', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true), :class=>:thickbox, :title=>'Translation Equivalent Edit' %>		
+<%##= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => d.id.to_s+'_translation_equivalent', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'translation_equivalents', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
 
 		<span class=menuvalue onclick=show_menu(translation_equivalent_menu,getCoord(arguments[0]));>
 		<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'translation_equivalent_id='+e.id.to_s, :title => 'Edit Relationships' %> 
