@@ -352,7 +352,6 @@ class DefinitionsController < ApplicationController
 	  c = eval(params[:history_class])
 	  o = c.find params[:history_id]
 	  h = o.update_history #params[:history]
-	  debugger
 	  a = h.split("\n")
     a.each {|k| hash[k.split(' ')[0]] = k}
     # breakpoint
