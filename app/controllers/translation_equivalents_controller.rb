@@ -511,7 +511,8 @@ class TranslationEquivalentsController < ApplicationController
       params['level'] = '1'
     end
     @translation_equivalent = TranslationEquivalent.find(params[:id])
-    render :layout => 'staging_popup'
+    #render :layout => 'staging_popup'
+    render :layout => false
   end  
  
   def update_dynamic_translation_equivalent

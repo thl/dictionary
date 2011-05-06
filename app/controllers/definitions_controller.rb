@@ -2421,9 +2421,10 @@ end
     @definition = Definition.find(params[:id])
     print "-----------------"+@definition.sub_definitions.size.to_s
     print "\nno layout\n" if params['internal'] != nil or params['public'] != nil
-    #render :layout => false if params['internal'] != nil or params['public'] != nil
-    #render :layout => 'staging_new'
-    render :layout => 'staging_popup'
+    ##render :layout => false if params['internal'] != nil or params['public'] != nil
+    ##render :layout => 'staging_new'
+    #render :layout => 'staging_popup'  
+    render :layout => false  #due to ui
   end
 
   def update_definition
