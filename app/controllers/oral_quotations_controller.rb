@@ -613,7 +613,8 @@ class OralQuotationsController < ApplicationController
       params['level'] = '1'
     end
     @oral_quotation = OralQuotation.find(params[:id])
-    render :layout => 'staging_popup' 
+    #render :layout => 'staging_popup' 
+    render :layout => false
   end  
   
   def update_dynamic_oral_quotation

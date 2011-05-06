@@ -766,7 +766,8 @@ class LiteraryQuotationsController < ApplicationController
       params['level'] = '1'
     end
     @literary_quotation = LiteraryQuotation.find(params[:id])
-    render :layout => 'staging_popup' 
+    #render :layout => 'staging_popup' 
+    render :layout => false
   end
  
   def update_dynamic_literary_quotation

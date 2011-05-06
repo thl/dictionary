@@ -673,7 +673,8 @@ class SpellingsController < ApplicationController
       params['level'] = '1'
     end
     @spelling = Spelling.find(params[:id])
-    render :layout => 'staging_popup'
+    #render :layout => 'staging_popup'
+    render :layout => false
   end
   
   def edit_dynamic_spelling2
