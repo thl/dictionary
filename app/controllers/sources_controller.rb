@@ -397,6 +397,7 @@ class SourcesController < ApplicationController
   end
 
   def edit_dynamic_source
+    #debugger
     if(params['internal'] != nil)
       @divname = 'source_internal'
     else
@@ -413,10 +414,12 @@ class SourcesController < ApplicationController
     SourceType.find(:all).each do |l|
       @source_type += [l.source_type]
     end
-    render :layout => 'staging_popup'
+    #render :layout => 'staging_popup'
+    render :layout => false
   end
   
   def update_dynamic_source
+      
       @source = Source.find(params[:id])
       if @source.created_by == nil or @source.created_by == ""
         @source.created_by = session[:user].login
@@ -434,10 +437,21 @@ class SourcesController < ApplicationController
   "
       end
       if @source.update_attributes(params[:source])
-        render :nothing => true
+        #render :nothing => true
+        render_sources  
       else
       end
   end  
+  
+  def render_sources
+    @source = Source.find(params[:id])
+    @temp_meta = Meta.find(@source.metas.first.id)
+    #@temp_definition = Definition.find(@translation.definition_id) 
+ 	  render :update do |page|
+      #yield(page) if block_given?     	    
+      page.replace_html "#{@source.metas.first.id}_meta_sources_div", :partial => 'sources/index', :locals => {:meta => @temp_meta, :head_id => @temp_definition}
+    end
+  end
   
   def update_source_note
       @source = Source.find(params[:source][:id])

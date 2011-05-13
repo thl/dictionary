@@ -1,0 +1,18 @@
+<dl style="margin-top:0em;margin-bottom:0em;">
+	<dd style="display:none"></dd>
+	<% for s in meta.sources %>
+		<dd>
+			<b>Source: </b>
+			<%= link_to_remote image_tag('user.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'definitions', :action => 'display_history', :history_id => s.id, :history_class => s.class.to_s }, :html => {:class => 'ui_dialog', :title=>'Contributors'} %>
+			<%#= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => s.id, :history_class => s.class.to_s , :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history => s.update_history }}) %>
+			<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'sources', :action => 'edit_dynamic_source', :id => s.id, :meta => meta.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_dialog', :title=>'Source Edit'} %>
+			<%#= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'sources', :action => 'edit_dynamic_source', :id => s.id, :meta => meta.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Source Edit' %>			
+	<%##= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => meta.id.to_s+'_source', :url => {:controller => 'sources', :action => 'edit_dynamic', :id => s.id, :params => {'definition_id' => head_id}} %>
+			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Source'), :update => 'definition_space', :url => {:action => 'public_remove_source', :id => s.id, :params => { :head_id => head_id, :source => s.id }}, :confirm => "Are you sure you want to remove this Source?") %>			
+			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_source' , :update => 'definition_space', :complete => 're_initialize();',  :id => s.id, :head_id => head_id, :source => s.id),  :title=>'Remove Source', :confirm => "Are you sure you want to remove this Source?" %>						
+			<b>Source ID: </b><%= s.source_id_value %>
+		</dd>
+	<% end %>
+</dl>
+<span id="<%= meta.id%>_source" ></span>

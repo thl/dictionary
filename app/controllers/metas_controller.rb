@@ -455,7 +455,7 @@ class MetasController < ApplicationController
   end
 
   def edit_new
-    debugger
+    #debugger
     if params['internal'] != nil
       internal = params['internal']
     else
@@ -477,7 +477,8 @@ class MetasController < ApplicationController
       @meta.save
       puts '----------render source'
       #render_component :controller => "sources", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "metas", 'pk' => params['id'], 'relatedtype'=> 'full_synonym', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
-      redirect_to source_source_edit_dynamic_source_url(o.id), :something => "heiser"  #:params => {'internal' => "edit_box", 'pk' => params['id'], 'relatedtype'=> 'meta', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      #redirect_to source_source_edit_dynamic_source_url(o.id), :something => "heiser"  #:params => {'internal' => "edit_box", 'pk' => params['id'], 'relatedtype'=> 'meta', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+      redirect_to :controller => "sources", :action => "edit_dynamic_source", :id => o.id, :internal => "metas", :pk => params['id'], :relatedtype=> 'full_synonym', :level => params['level'], :new => 'yes', :definition_id => params['definition_id']
     end
     if params["relatedtype"] == "full_synonym"
       o = FullSynonym.new

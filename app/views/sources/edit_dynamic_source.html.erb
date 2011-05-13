@@ -24,7 +24,7 @@ $(document).ready(function() {
 
 <h1>Editing Source</h1>
 <%= error_messages_for 'source' %>
-<% form_for :source, :url => { :action => "update_dynamic_source" } do |f| %>
+<% remote_form_for :source, :url => { :action => "update_dynamic_source" } do |f| %>
 	
   <%= modal_edit_dynamic_source %>
 
