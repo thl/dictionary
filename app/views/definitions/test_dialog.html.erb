@@ -40,5 +40,13 @@ var pageTracker = _gat._getTracker("UA-9863993-1");
 pageTracker._trackPageview();
 } catch(err) {}</script>
 
+
+<h1>Editing Spelling</h1>
+	<%= error_messages_for 'spelling' %>
+	
+  		<%= in_place_editor_field(:definition, :term)%>
+	
+
+
 </body>
 </html>

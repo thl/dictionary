@@ -692,6 +692,12 @@ class SpellingsController < ApplicationController
     render :partial => 'spellings/edit_dynamic_spelling', :layout => 'staging_popup'
   end
   
+  #def test_dialog
+  #  @spelling = Spelling.find(55)
+  #  #render :partial => 'edit_dynamic_spelling', :layout => 'staging_popup'
+  #  render :layout => 'staging_new'
+  #end
+  
   def update_dynamic_spelling
       @spelling = Spelling.find(params[:id])
       @definition = @spelling.definition
