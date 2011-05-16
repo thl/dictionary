@@ -47,17 +47,27 @@
 	<!--  <br> -->
 	
 	
-		<% if d.meta != nil%>
-		<dl style="margin-top:0em;margin-bottom:0em;">
-				<dd style="display:none"></dd>
-				<dd>		<% t = Time.now %>
-				<%#= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => d.meta , :head_id => head_id} %>
-				<div id="<%= d.meta.id%>_meta_div"> 
-		  			<%= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => d.meta , :head_id => head_id} %>	
+		<%# if d.meta != nil%>
+		  <!-- <div id="<%= d.id%>_definition_meta_div">
+		    <dl style="margin-top:0em;margin-bottom:0em;">
+			  <dd style="display:none"></dd>
+			  <dd>		<% t = Time.now %>
+			    <%#= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => d.meta , :head_id => head_id} %>
+			    <div id="<%#= d.meta.id%>_meta_div"> 
+		  			<%#= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => d.meta , :head_id => head_id} %>	
 				</div>
-			</dd>
-		</dl>
-		<% end %>
+			  </dd>
+		    </dl>
+		  </div>
+		  -->
+		<div id="<%= d.id%>_definition_metas_div">
+		  <% if d.meta != nil%>
+		    <% t = Time.now %>
+		    <%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>d, :meta => d.meta , :head_id => head_id} %>	
+		  <% end %>
+		</div>
+		
+		<%# end %>
 		
 		
 		

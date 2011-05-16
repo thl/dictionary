@@ -98,14 +98,23 @@ $(document).ready(function() {
 					<% if t.language == 'Tibetan' %>
 					</span>
 					<% end %>
-					<% if t.meta != nil%>
+					
+					<!--<%# if t.meta != nil%>
 					<dl style="margin-top:0em;margin-bottom:0em;">
 							<dd style="display:none"></dd>
-							<dd>		<% tm = Time.now %>
-					<%= render :partial => 'definitions/meta', :locals => {:meta_location => tm.to_f, :meta => t.meta , :head_id => head_id} %>
+							<dd>		<%# tm = Time.now %>
+					<%#= render :partial => 'definitions/meta', :locals => {:meta_location => tm.to_f, :meta => t.meta , :head_id => head_id} %>
 						</dd>
 					</dl>
-					<% end %>
+					<%# end %> -->
+					<div id="<%= t.id%>_etymology_metas_div">
+				      <% if t.meta != nil%>
+				        <% tm = Time.now %>
+				        <%= render :partial => 'metas/index', :locals => {:t => tm.to_f, :element =>t, :meta => t.meta , :head_id => head_id} %>	
+					  <% end %>
+					
+					</div>
+					
 					</dd>
 				<% end %>
 			<% end %>

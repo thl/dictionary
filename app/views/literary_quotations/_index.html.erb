@@ -87,11 +87,21 @@ $(document).ready(function() {
 					</span>
 				</dd>
 		<% end %>
-		<% if e.meta != nil%>
-			<dd><% t = Time.now %>
-		<%= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
+		
+		
+		<!--<%# if e.meta != nil%>
+			<dd><%# t = Time.now %>
+		<%#= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
 		</dd>
-		<% end %>
+		<%# end %> -->
+		<div id="<%= e.id%>_literaryquotation_metas_div">
+	      <% if e.meta != nil%>
+	        <% t = Time.now %>
+	        <%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+		  <% end %>
+		</div>
+		
+		
 			<% for t in e.translations %>
 				<% if t.translation != nil and t.translation != ''%>
 					<dd><b>Translation: </b>
@@ -122,14 +132,23 @@ $(document).ready(function() {
 					<% if t.language == 'Tibetan' %>
 					</span>
 					<% end %>
-					<% if t.meta != nil%>
+					
+					<!--<%# if t.meta != nil%>
 					<dl style="margin-top:0em;margin-bottom:0em;">
 							<dd style="display:none"></dd>
-							<dd>		<% tm = Time.now %>
-					<%= render :partial => 'definitions/meta', :locals => {:meta_location => tm.to_f, :meta => t.meta , :head_id => head_id} %>
+							<dd>		<%# tm = Time.now %>
+					<%#= render :partial => 'definitions/meta', :locals => {:meta_location => tm.to_f, :meta => t.meta , :head_id => head_id} %>
 						</dd>
-					</dl>
-					<% end %>
+					</dl>-->
+					<%# end %>
+					
+					<div id="<%= t.id%>_literary_quotation_translation_metas_div">
+				      <% if t.meta != nil%>
+				        <% tm = Time.now %>
+				        <%= render :partial => 'metas/index', :locals => {:t => tm.to_f, :element =>t, :meta => t.meta , :head_id => head_id} %>	
+					  <% end %>
+					</div>
+					
 					</dd>
 				<% end %>
 			<% end %>

@@ -42,13 +42,22 @@ $(document).ready(function() {
 	<% if e.spelling_type != nil and e.spelling_type != ''%>
 			<dd><b>Type: </b><%= e.spelling_type.s %></dd>
 	<% end %>
-	<% if e.meta != nil%>
+	
+	<!-- <%# if e.meta != nil%>
 		<dd>
-		<% t = Time.now %>
-		<%= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
+		<%# t = Time.now %>
+		<%#= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
 		</dd>
-	<% end %>
+	<%# end %> -->
 	</dl>
+	
+	<div id="<%= e.id%>_spelling_metas_div">
+      <% if e.meta != nil%>
+        <% t = Time.now %>
+        <%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+	  <% end %>
+	</div>
+	
 <% end %>
 <% end %>
 <span id="<%= d.id%>_spelling" > </span>

@@ -1250,11 +1250,12 @@ class MetasController < ApplicationController
        "
       end
       if @meta.update_attributes(params[:meta])
-        if @meta.definition_id.nil?
-           render :nothing => true
-        else
-          render_meta
-        end
+        #if @meta.definition_id.nil?
+        #   render :nothing => true
+        #else
+        #  render_meta
+        #end
+        render_metas
       end
   end  
   
@@ -1267,6 +1268,65 @@ class MetasController < ApplicationController
       page.replace_html "#{@meta.id}_meta_div", :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => @meta , :head_id => @temp_definition.id}
     end 
   end
+  
+  def render_metas
+    @meta = Meta.find(params[:id])
+    if @meta.definition_id.nil?
+      if @meta.translation_id.nil?
+        if @meta.spelling_id.nil?
+          if @meta.etymology_id.nil?
+            if @meta.literary_quotation_id.nil?
+              if @meta.pronunciation_id.nil?
+                if @meta.oral_quotation_id.nil?
+                  if @meta.model_sentence_id.nil?
+                    if @meta.full_synonym_id.nil?
+                      if @meta.definition_definition_form_id.nil?
+                      else
+                        @temp_element = DefinitionDefinitionForm.find(@meta.definition_definition_form_id)
+                        @temp_definition = @temp_element.def1_id
+                      end
+                    else
+                      
+                    end
+                  else
+                    @temp_element = ModelSentence.find(@meta.model_sentence_id)
+                    @temp_definition = @temp_element.definitions.first.definition_id
+                  end
+                else
+                  @temp_element = OralQuotation.find(@meta.oral_quotation_id)
+                  @temp_definition = @temp_element.definitions.first.definition_id  
+                end
+              else
+                @temp_element = Pronunciation.find(@meta.pronunciation_id)
+                @temp_definition = @temp_element.def_id
+              end
+            else
+              @temp_element = LiteraryQuotation.find(@meta.literary_quotation_id)
+              @temp_definition = @temp_element.definitions.first.definition_id
+            end
+          else
+            @temp_element = Etymology.find(@meta.etymology_id)
+            @temp_definition = @temp_element.definition_id
+          end
+        else
+          @temp_element = Spelling.find(@meta.spelling_id)
+          @temp_definition = @temp_element.definition_id
+        end
+      else
+        @temp_element = Translation.find(@meta.translation_id)
+        @temp_definition = @temp_element.definition_id
+      end
+    else
+      @temp_element = Definition.find(@meta.definition_id)
+      @temp_definition = Definition.find(@meta.definition_id)
+    end
+    
+ 	  render :update do |page|
+      t = Time.now   	    
+      page.replace_html "#{@temp_element.id}_#{@temp_element.class.name.downcase}_metas_div", :partial => 'metas/index', :locals => {:t => t.to_f, :element => @temp_element,  :meta => @meta , :head_id => @temp_definition.id}
+    end 
+  end
+  
 
   def update_title
       @meta = Meta.find(params[:meta][:id])

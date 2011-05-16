@@ -38,14 +38,24 @@ $(document).ready(function() {
 			  <%= link_to_remote(t_transcript_in_tibetan, :url => edit_path, :update => "#{e.id}_transcript_in_tibetandiv", :method => :get ) %>
 		    </div>
 		</span>
-		<dl style="margin-top:0em;margin-bottom:0em;">
+		
+		
+		<!-- <dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>
-		<% if e.meta != nil%>
+		<%# if e.meta != nil%>
 		<dd>
-		<% t = Time.now %>
-		<%= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
+		<%# t = Time.now %>
+		<%#= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
 		</dd>
-		<% end %>
+		<%# end %> -->
+		<div id="<%= e.id%>_oralquotation_metas_div">
+	      <% if e.meta != nil%>
+	        <% t = Time.now %>
+	        <%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+		  <% end %>
+		</div>
+		
+		
 			<% for t in e.translations %>
 				<% if t.translation != nil and t.translation != ''%>
 					<dd><b>Translation: </b>
