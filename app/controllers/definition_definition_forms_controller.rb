@@ -123,7 +123,8 @@ class DefinitionDefinitionFormsController < ApplicationController
       params['level'] = '1'
     end
     @definition_definition_form = DefinitionDefinitionForm.find(params[:id])
-    render :layout => 'staging_popup_related_term_edit'
+    #render :layout => 'staging_popup_related_term_edit'
+    render :layout => false
   end
 
   def show_edit

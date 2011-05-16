@@ -267,10 +267,29 @@ function clear_contents(node)
 		/*new Ajax.Updater('edit_box', root_dir+'/'+controller+'/public_add/'+id+'?parent_id='+parent_id+'&head_id='+head_id, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}});*/ 
 		tb_show("add new content", root_dir+'/'+controller+'/public_add/'+id+'?parent_id='+parent_id+'&head_id='+head_id+'&height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);
 	} 
-	function edit_form_to(controller,id,parent_id) {
+	
+	/*function edit_form_to(controller,id,parent_id) {*/
 		/*new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from', {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); */
-		tb_show("edit form from", root_dir+'/'+controller+'/modal_edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from'+'&TB_iframe=true&height=341&width=650&internal=edit_box&modal=true&public=yes',null);
-	}
+	/*	tb_show("edit form from", root_dir+'/'+controller+'/modal_edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from'+'&TB_iframe=true&height=341&width=650&internal=edit_box&modal=true&public=yes',null);
+	}*/
+	function edit_form_to(controller,id,parent_id) {
+		//alert('edit_form_to');
+		$.ajax({
+		    url: root_dir+'/'+controller+'/modal_edit_dynamic/'+id+'?internal=edit_box&public=yes&parent_id='+parent_id+'&definition_id='+head_definition+'&relatedtype=definition_definition_form_from',
+			success: function(data) {
+				$("#popup_dialog").html("<p></p>")
+			    $("#popup_dialog").html(data);
+				$("#popup_dialog").dialog( "destroy" );
+			    $("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false });
+			    $("#popup_dialog").dialog('open');
+			    //alert('Load was performed.');
+			  } ,
+		    timeout: 3000 
+		  });
+		
+	};
+	
+	
 	function search_popup(controller,relatedtype,id) {
 		//new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_search/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
 	    tb_show("add new popup", root_dir+'/'+controller+'/edit_search/'+id+'?level=0&relatedtype='+relatedtype+'&height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);

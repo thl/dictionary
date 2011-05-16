@@ -14,6 +14,7 @@ $(document).ready(function() {
    
 	
 		 <%= link_to image_tag('user.png',:border => 0), url_for(:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+		 <%#= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'translations', :action => 'edit_dynamic_translation', :id => t.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_dialog', :title=>'Translations Edit'} %>
 		 <%= link_to_function image_tag('pencil.png',:border => 0), "edit_form_to('definition_definition_forms','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
 		 <span class=menuvalue onclick=show_menu(related_term_menu,getCoord(arguments[0]));>
 		 <%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'definition_definition_form_id='+e.id.to_s, :title => 'Edit Relationships' %> 
@@ -25,15 +26,24 @@ $(document).ready(function() {
 			<%= link_to(e.displayFromTerm.s, :controller => 'definitions', :action => 'public_edit', :id => e.definition_to.id) unless e.definition_to == nil%>
 		 </span>
 		 <br>
-		 <dl style="margin-top:0em;margin-bottom:0em;">
+		 
+		<!--<dl style="margin-top:0em;margin-bottom:0em;">
 		 	<dd style="display:none"></dd>
-				<% if e.meta != nil%>
+				<%# if e.meta != nil%>
 					<dd>
-						<% t = Time.now %>
-						<%= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
+						<%# t = Time.now %>
+						<%#= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
 					</dd>
-				<% end %>
-		 </dl>
+				<%# end %>
+		 </dl> -->
+		<div id="<%= e.id%>_definitiondefinitionform_metas_div">
+	      <% if e.meta != nil%>
+	        <% t = Time.now %>
+	        <%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+		  <% end %>
+		</div>
+		
+		
 	   <% end %>
 		
 <% end %>

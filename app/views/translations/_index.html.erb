@@ -53,17 +53,26 @@ $(document).ready(function() {
 			</span>
 			<% end %>
 	
-		<% if e.meta != nil%>
+	<!-- 	<%# if e.meta != nil%>
 		<dl style="margin-top:0em;margin-bottom:0em;">
 				<dd style="display:none"></dd>
-				<dd>		<% t = Time.now %>
-		<%= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
+				<dd>		<%# t = Time.now %>
+		<%#= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
 			</dd>
 		</dl>
-<% end %>
+<%# end %>-->
+
+    <div id="<%= e.id%>_translation_metas_div">
+      <% if e.meta != nil%>
+        <% t = Time.now %>
+        <%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+	  <% end %>
+	</div>
 			
 	<br>
-<% end %>
+<% end %>  
+    
+
 <!-- <br> -->
 <% end %>
 <span id="<%= d.id%>_translation" > </span>

@@ -59,10 +59,18 @@ $(document).ready(function() {
 				</dd>
 		<% end %>
 		<%# end %>
-		<% if e.meta != nil%>
-			<% tm = Time.now %>
-			<dd><%= render :partial => 'definitions/meta', :locals => {:meta_location => tm.to_f, :meta => e.meta , :head_id => head_id} %></dd>
-		<% end %>
+		
+		<!--<%# if e.meta != nil%>
+			<%# tm = Time.now %>
+			<dd><%#= render :partial => 'definitions/meta', :locals => {:meta_location => tm.to_f, :meta => e.meta , :head_id => head_id} %></dd>
+		<%# end %> -->
+		<div id="<%= e.id%>_pronunciation_metas_div">
+	      <% if e.meta != nil%>
+	        <% t = Time.now %>
+	        <%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+		  <% end %>
+		</div>
+
 
 		</dl>
 	<% end %>

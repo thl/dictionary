@@ -64,12 +64,22 @@ $(document).ready(function() {
 				</span>
 				</dd>
 		<% end %>
-		<% if e.meta != nil%>
+		
+		<!--<%# if e.meta != nil%>
 		<dd>
-		<% t = Time.now %>
-		<%= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
+		<%# t = Time.now %>
+		<%#= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
 		</dd>
-		<% end %>
+		<%# end %>-->
+		<div id="<%= e.id%>_modelsentence_metas_div">
+	      <% if e.meta != nil%>
+	        <% t = Time.now %>
+	        <%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+		  <% end %>
+		</div>
+		
+		
+		
 			<% for t in e.translations %>
 				<% if t.translation != nil and t.translation != ''%>
 					<dd><b>Translation: </b>
