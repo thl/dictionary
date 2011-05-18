@@ -3570,7 +3570,10 @@ end
       o.save
       @definition.definition_definition_form_froms << o
       #render_component :controller => "definition_definition_forms", :action => "edit_dynamic", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'definition_definition_form_from', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
-      redirect_to edit_dynamic_definition_definition_forms_url(o.id, :internal => internal, :pk => params['id'], :relatedtype => 'definition_definition_form_from', :level => params['level'], :new => 'yes', :definition_id => params['definition_id'] )  
+      # before hanving new related term with search box as first step
+      #redirect_to edit_dynamic_definition_definition_forms_url(o.id, :internal => internal, :pk => params['id'], :relatedtype => 'definition_definition_form_from', :level => params['level'], :new => 'yes', :definition_id => params['definition_id'] )  
+      redirect_to new_search_definition_definition_forms_url(o.id, :internal => internal, :pk => params['id'], :relatedtype => 'definition_to', :level => params['level'], :new => 'yes', :definition_id => params['definition_id'] )  
+    
     end
   end
 
@@ -3812,7 +3815,9 @@ end
     @definition = Definition.find(params['id'])
     #render :layout => false
     #render :layout => 'staging_popup'
-    render :layout => 'staging_popup_related_term_edit'
+    #before ui
+    #render :layout => 'staging_popup_related_term_edit'
+    render :layout => false
   end
 
   def synonym_search_action
@@ -4060,7 +4065,17 @@ end
       end
     end
     #redirect_to :action => 'public_content_only', :id => params['definition_id']
-    redirect_to :action => 'public_edit', :id => params['id']
+    #before ui
+    #redirect_to :action => 'public_edit', :id => params['id']
+    render_related_terms
+  end
+  
+  def render_related_terms
+    @temp_definition = Definition.find(params['definition_id']) 
+ 	  render :update do |page|
+      #yield(page) if block_given?     	    
+      page.replace_html "#{@temp_definition.id}_full_synonyms_div", :partial => 'full_synonyms/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition.id, :head_id => @temp_definition.id}
+    end
   end
   
   def edit_search_action

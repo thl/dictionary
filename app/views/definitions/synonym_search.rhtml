@@ -1,7 +1,10 @@
 <script>
 $(document).ready(function() {	
-	$("#cancel_button").click(function () { parent.eval('tb_remove()'); });
-	//$("#search_button").click(function () {	parent.eval('tb_remove()'); });
+	//$("#cancel_button").click(function () { parent.eval('tb_remove()'); });
+	////$("#search_button").click(function () {	parent.eval('tb_remove()'); });
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});	
+	
 });
 </script>
   <div id="definition_full_synonyms">

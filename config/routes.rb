@@ -135,6 +135,7 @@ ActionController::Routing::Routes.draw do |map|
  
   #map.edit_dynamic_definition_definition_forms 'definition_definition_forms/:id/edit_dynamic_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_dynamic'
   map.edit_dynamic_definition_definition_forms 'definition_definition_forms/:id/edit_dynamic_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'modal_edit_dynamic'
+  map.new_search_definition_definition_forms 'definition_definition_forms/:id/new_search_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'new_search'
   map.edit_search_definition_definition_forms 'definition_definition_forms/:id/edit_search_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_search'
   map.edit_search_action_definition_definition_forms 'definition_definition_forms/:id/edit_search_action_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_search_action'
   map.edit_add_to_list_action_definition_definition_forms 'definition_definition_forms/:id/edit_add_to_list_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_add_to_list'

@@ -302,6 +302,18 @@ class DefinitionDefinitionFormsController < ApplicationController
     render :partial => "edit_contents", :locals => {:definition_definition_form => @definition_definition_form}
   end
 
+
+  def new_search
+    @role = "Honorific Form, Non-honorific Form, Conjugated Form Past, Conjugated Form Present, Conjugated Form Future, Conjugated Form Imperative, Dialectical correlates, Literary and colloquial correlates, Compounds, Abbreviation, Expansion, Phrases, Paired term, Partial Synonym, Antonym, Poetic expressions, Gloss".split(', ')
+    if params['level'] != nil
+      params['level'] = params['level'].to_i + 1
+    else
+    	params['level'] = '3'
+    end
+    @definition_definition_form = DefinitionDefinitionForm.find(params[:id])
+    render :layout => false
+  end
+  
   def edit_search
     if params['level'] != nil
       params['level'] = params['level'].to_i + 1
@@ -486,6 +498,7 @@ class DefinitionDefinitionFormsController < ApplicationController
  	  render :update do |page|
       #yield(page) if block_given?     	    
       page.replace_html "#{@temp_definition.id}_related_terms_div", :partial => 'definition_definition_forms/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition.id, :head_id => @temp_definition.id}
+      #page.replace_html "#{@temp_definition.id}_related_terms_div", "hola"
     end
   end
 
