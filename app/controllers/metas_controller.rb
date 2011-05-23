@@ -1283,28 +1283,28 @@ class MetasController < ApplicationController
                       if @meta.definition_definition_form_id.nil?
                       else
                         @temp_element = DefinitionDefinitionForm.find(@meta.definition_definition_form_id)
-                        @temp_definition = @temp_element.def1_id
+                        @temp_definition = Definition.find( @temp_element.def1_id)
                       end
                     else
                       debugger
                       @temp_element = FullSynonym.find(@meta.full_synonym_id)
-                      @temp_definition = @temp_element.definitions.first.definition_id 
+                      @temp_definition = Definition.find(@temp_element.definitions.first.definition_id)
                     end
                   else
                     @temp_element = ModelSentence.find(@meta.model_sentence_id)
-                    @temp_definition = @temp_element.definitions.first.definition_id
+                    @temp_definition = Definition.find(@temp_element.definitions.first.definition_id)
                   end
                 else
                   @temp_element = OralQuotation.find(@meta.oral_quotation_id)
-                  @temp_definition = @temp_element.definitions.first.definition_id  
+                  @temp_definition = Definition.find(@temp_element.definitions.first.definition_id)
                 end
               else
                 @temp_element = Pronunciation.find(@meta.pronunciation_id)
-                @temp_definition = @temp_element.def_id
+                @temp_definition = Definition.find(@temp_element.def_id)
               end
             else
               @temp_element = LiteraryQuotation.find(@meta.literary_quotation_id)
-              @temp_definition = @temp_element.definitions.first.definition_id
+              @temp_definition = Definition.find(@temp_element.definitions.first.definition_id)
             end
           else
             @temp_element = Etymology.find(@meta.etymology_id)
@@ -1312,11 +1312,11 @@ class MetasController < ApplicationController
           end
         else
           @temp_element = Spelling.find(@meta.spelling_id)
-          @temp_definition = @temp_element.definition_id
+          @temp_definition = Definition.find(@temp_element.definition_id)
         end
       else
         @temp_element = Translation.find(@meta.translation_id)
-        @temp_definition = @temp_element.definition_id
+        @temp_definition = Definition.find(@temp_element.definition_id)
       end
     else
       @temp_element = Definition.find(@meta.definition_id)
