@@ -38,7 +38,9 @@
 		  <% end %>
 		  
 		<br/>
+		<%= link_to_function(image_tag("magnify.gif", :size => "16x16", :border => 0, :alt => "search", :name => "definitionsearch2", :options => {:display => 'inline'}), "if(document.searchrelated.onsubmit()) { document.searchrelated.submit();}") %>
 		<%= link_to_function("search", "if(document.searchrelated.onsubmit()) { document.searchrelated.submit();}", {:onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('definition_definition_formsearch2"+params['level'].to_s+"','','/images/search_down.gif',1);"}) %>
+		<%= link_to_remote image_tag("cross.png", :size => "16x16", :border => 0, :alt => "cancel"),   :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %> 
 		  <%= link_to_remote  "cancel", :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
 
 

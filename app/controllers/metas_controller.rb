@@ -1286,7 +1286,9 @@ class MetasController < ApplicationController
                         @temp_definition = @temp_element.def1_id
                       end
                     else
-                      
+                      debugger
+                      @temp_element = FullSynonym.find(@meta.full_synonym_id)
+                      @temp_definition = @temp_element.definitions.first.definition_id 
                     end
                   else
                     @temp_element = ModelSentence.find(@meta.model_sentence_id)
@@ -1306,7 +1308,7 @@ class MetasController < ApplicationController
             end
           else
             @temp_element = Etymology.find(@meta.etymology_id)
-            @temp_definition = @temp_element.definition_id
+            @temp_definition = Definition.find(@temp_element.definition_id)
           end
         else
           @temp_element = Spelling.find(@meta.spelling_id)

@@ -23,7 +23,9 @@ $(document).ready(function() {
   <p><%= build_form_radiolist_group(@terms) %></p>
   <input type="hidden" name="definition_id" value="<%= params['definition_id'] %>" />
 
+  <%#= image_submit_tag("accept.png", :size => "16x16", :border => 0,  :alt => "select", :id => 'update_button') %>
   <%= submit_tag 'Select', :id => 'update_button' %>
+  <%#= link_to_remote image_tag("cross.png", :size => "16x16", :border => 0, :alt => "cancel"), :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %>  
   <%= link_to_remote "Cancel",  :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %>
   <%#= link_to_remote "Cancel", :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
   <br> 

@@ -4067,10 +4067,10 @@ end
     #redirect_to :action => 'public_content_only', :id => params['definition_id']
     #before ui
     #redirect_to :action => 'public_edit', :id => params['id']
-    render_related_terms
+    render_full_synonyms
   end
   
-  def render_related_terms
+  def render_full_synonyms
     @temp_definition = Definition.find(params['definition_id']) 
  	  render :update do |page|
       #yield(page) if block_given?     	    

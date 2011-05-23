@@ -90,6 +90,8 @@ width:96%;
 /*	text-align: left;*/
 } 
 
+a img { display:inline !important; }
+
 #content a:link, a:hover, a:visited {
 	border-bottom: 0px;
 	text-decoration: none;
