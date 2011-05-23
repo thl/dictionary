@@ -52,12 +52,24 @@ $(document).ready(function() {
 		<% if e.derivation_type != nil%>
 				<dd><b>Derivation Type: </b><%= e.derivation_type.title %></dd>
 		<% end %>
-		<% if e.meta != nil%>
+		
+		
+		<!--<%# if e.meta != nil%>
 		<dd>
-		<% t = Time.now %>
-		<%= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
+		<%# t = Time.now %>
+		<%#= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
 		</dd>
-		<% end %>
+		<%# end %> -->
+		
+		<div id="<%= e.id%>_etymology_metas_div">
+	      <% if e.meta != nil%>
+	        <% t = Time.now %>
+	        <%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+		  <% end %>
+		</div>
+		
+		
+		
 		<% if e.translations.size > 0 %>
 			<!-- <br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 			<% for t in e.translations %>
@@ -107,7 +119,7 @@ $(document).ready(function() {
 						</dd>
 					</dl>
 					<%# end %> -->
-					<div id="<%= t.id%>_etymology_metas_div">
+					<div id="<%= t.id%>_etymology_translation_metas_div">
 				      <% if t.meta != nil%>
 				        <% tm = Time.now %>
 				        <%= render :partial => 'metas/index', :locals => {:t => tm.to_f, :element =>t, :meta => t.meta , :head_id => head_id} %>	
@@ -120,6 +132,8 @@ $(document).ready(function() {
 			<% end %>
 			<span id="<%= e.id %>_translation"></span>
 		<% end %>
+		
+		
 		</dl>
 	<% end %>
 	<!-- <br> -->

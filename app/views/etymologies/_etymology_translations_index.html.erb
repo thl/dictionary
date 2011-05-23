@@ -1,0 +1,63 @@
+
+<% if e.translations.size > 0 %>
+	<!-- <br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+	<% for t in e.translations %>
+		<% if t.translation != nil and t.translation != ''%>
+			<dd><b>Translation: </b>
+			<%= link_to_remote image_tag('user.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'definitions', :action => 'display_history', :history_id => t.id, :history_class => t.class.to_s}, :html => {:class => 'ui_dialog', :title=>'Contributors'} %>
+			<%#= link_to image_tag('user.png',:border => 0), url_for(:controller => 'definitions', :action => 'display_history', :history_id => t.id, :history_class => t.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+			<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => t.id, :history_class => t.class.to_s }}) %>			
+			
+			<!-- before ui -->
+			<%#= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'translations', :action => 'edit_dynamic_translation', :id => t.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) , :class=>:thickbox, :title=>'Translation Edit' %>
+			<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'translations', :action => 'edit_dynamic_translation', :id => t.id, :internal=>'edit_box', :public=>'yes'} , :html => {:class => 'ui_dialog', :title=>'Translation Edit'} %>
+			
+				
+								
+			<%#= link_to_remote image_tag('pencil.png',:border => 0, :title => "Edit"),:update => e.id.to_s+'_translation', :loading => 'dialect_id='+t.id.to_s, :url => {:controller => 'translations', :action => 'public_edit', :id => t.id, :params => {'definition_id' => head_id}} %>
+			<span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>
+			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'translation_id='+t.id.to_s, :title => 'Edit Relationships' %> 
+			</span>
+			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Translation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_translation', :id => e.id, :params => {:parent_id => parent_id, :head_id => head_id, :translation => t.id }}, :confirm => "Are you sure you want to remove this Translation?") %>			
+			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_etymology_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => e.id, :parent_id => parent_id, :head_id => head_id, :translation => t.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>		
+			<% if t.language == 'Tibetan' %>
+			<span class="tib1">
+			<% end %>		
+			<span class='tinyfied_show'>
+				<%#= t.translation.s %>
+				<div id="<%= "#{t.id}_translationdiv" %>">
+				  <%  edit_path = translation_translation_edit_url(:id => t.id) %>
+				  <% if t.translation == nil or t.translation == ''
+		               t_translation = 'Click to modify'
+		             else
+		               t_translation = t.translation.s     
+		             end %>
+				  <%= link_to_remote(t_translation, :url => edit_path, :update => "#{t.id}_translationdiv", :method => :get ) %>
+			    </div>
+			</span>
+			
+			<% if t.language == 'Tibetan' %>
+			</span>
+			<% end %>
+			
+			<!--<%# if t.meta != nil%>
+			<dl style="margin-top:0em;margin-bottom:0em;">
+					<dd style="display:none"></dd>
+					<dd>		<%# tm = Time.now %>
+			<%#= render :partial => 'definitions/meta', :locals => {:meta_location => tm.to_f, :meta => t.meta , :head_id => head_id} %>
+				</dd>
+			</dl>
+			<%# end %> -->
+			<div id="<%= t.id%>_etymology_translation_metas_div">
+		      <% if t.meta != nil%>
+		        <% tm = Time.now %>
+		        <%= render :partial => 'metas/index', :locals => {:t => tm.to_f, :element =>t, :meta => t.meta , :head_id => head_id} %>	
+			  <% end %>
+			
+			</div>
+			
+			</dd>
+		<% end %>
+	<% end %>
+	<span id="<%= e.id %>_translation"></span>
+<% end %>

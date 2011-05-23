@@ -48,6 +48,7 @@ $(document).ready(function() {
    <input type=hidden name=relatedtype value=definition_to />
    <input type="hidden" name="definition_definition_form[id]" value="<%= @definition_definition_form.id %>"/> 
 
+   <%#= image_submit_tag("accept.png", :size => "16x16", :border => 0,  :alt => "select", :id => 'update_button') %>
    <%= submit_tag 'Select', :id => 'update_button' %>
    <%= link_to_remote "Cancel", :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
   <% end %>

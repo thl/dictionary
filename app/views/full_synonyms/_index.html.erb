@@ -26,15 +26,25 @@ $(document).ready(function() {
 		<% end %>
 	</span>
 	<br>
-	<dl style="margin-top:0em;margin-bottom:0em;">
+	
+	<!--<dl style="margin-top:0em;margin-bottom:0em;">
 		<dd style="display:none"></dd>
-	<% if e.meta != nil%>
+	<%# if e.meta != nil%>
 		<dd>
-		<% t = Time.now %>
-		<%= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
+		<%# t = Time.now %>
+		<%#= render :partial => 'meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
 		</dd>
-	<% end %>
-	</dl>
+	<%# end %>
+	</dl>-->
+	
+	<div id="<%= e.id%>_fullsynonym_metas_div">
+      <% if e.meta != nil%>
+        <% t = Time.now %>
+        <%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+	  <% end %>
+	</div>
+	
+	
 <% end %>
 <!-- <br> -->
 <% end %>
