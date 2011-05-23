@@ -180,6 +180,8 @@ a.definitions_show:hover {color:#222222;}
 
 .tibpassage_show p{font-size: 10pt; margin:0 0 5px;color:#222222;}
 
+#popup_dialog b{font-size: 10pt; font-weight:bold}
+
 .public_show {margin-left:40px;}
 #definition_find_term {margin-left:40px;margin-top:10px}
 .related_term_definition_to {margin-top: 5px; margin-left:20px; }
