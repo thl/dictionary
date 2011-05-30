@@ -822,10 +822,34 @@ class TranslationsController < ApplicationController
   
   def render_translations
     @translation = Translation.find(params[:id])
-    @temp_definition = Definition.find(@translation.definition_id) 
+    if @translation.definition_id.nil?
+      if @translation.etymology_id.nil?
+        if @translation.literary_quotation_id.nil?
+          if @translation.oral_quotation_id.nil?
+            if @translation.model_sentence_id.nil?
+            else
+              @parent_element = ModelSentence.find(@translation.model_sentence_id) 
+              @temp_definition = Definition.find(@parent_element.definitions.first.definition_id)
+            end
+          else
+            @parent_element = OralQuotation.find(@translation.oral_quotation_id) 
+            @temp_definition = Definition.find(@parent_element.definitions.first.definition_id)
+          end
+        else
+          @parent_element = LiteraryQuotation.find(@translation.literary_quotation_id) 
+          @temp_definition = Definition.find(@parent_element.definitions.first.definition_id)
+        end
+      else
+        @parent_element = Etymology.find(@translation.etymology_id) 
+        @temp_definition = Definition.find(@parent_element.definition_id)
+      end
+    else
+      @parent_element = Definition.find(@translation.definition_id) 
+      @temp_definition = Definition.find(@translation.definition_id) 
+    end
  	  render :update do |page|
-      #yield(page) if block_given?     	    
-      page.replace_html "#{@translation.definition_id}_translations_div", :partial => 'translations/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition}
+      #page.replace_html "#{@translation.definition_id}_translations_div", :partial => 'translations/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition}
+      page.replace_html "#{@parent_element.id}_#{@parent_element.class.name.downcase}_translations_div", :partial => 'translations/generic_index', :locals => {:o => @parent_element ,:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition}
     end 
   end
   

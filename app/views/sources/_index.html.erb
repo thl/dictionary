@@ -9,8 +9,15 @@
 			<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'sources', :action => 'edit_dynamic_source', :id => s.id, :meta => meta.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_dialog', :title=>'Source Edit'} %>
 			<%#= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'sources', :action => 'edit_dynamic_source', :id => s.id, :meta => meta.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) + '&TB_iframe=true', :class=>:thickbox, :title=>'Source Edit' %>			
 	<%##= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => meta.id.to_s+'_source', :url => {:controller => 'sources', :action => 'edit_dynamic', :id => s.id, :params => {'definition_id' => head_id}} %>
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Source'), :update => 'definition_space', :url => {:action => 'public_remove_source', :id => s.id, :params => { :head_id => head_id, :source => s.id }}, :confirm => "Are you sure you want to remove this Source?") %>			
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_source' , :update => 'definition_space', :complete => 're_initialize();',  :id => s.id, :head_id => head_id, :source => s.id),  :title=>'Remove Source', :confirm => "Are you sure you want to remove this Source?" %>						
+			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Source'), :update => 'definition_space', :url => {:action => 'public_remove_source', :id => s.id, :params => { :head_id => head_id, :source => s.id }}, :confirm => "Are you sure you want to remove this Source?") %>	
+			<%#  if s.id == 1499 
+			      debugger
+			    end
+				 if s.id == 1490 
+				      debugger
+				    end
+			%>		
+			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_source' , :update => 'definition_space', :complete => 're_initialize();',  :id => s.id,  :head_id => head_id, :source => s.id),  :title=>'Remove Source', :confirm => "Are you sure you want to remove this Source?" %>						
 			<b>Source ID: </b><%= s.source_id_value %>
 		</dd>
 	<% end %>
