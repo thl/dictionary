@@ -1316,7 +1316,32 @@ class MetasController < ApplicationController
         end
       else
         @temp_element = Translation.find(@meta.translation_id)
-        @temp_definition = Definition.find(@temp_element.definition_id)
+        if @temp_element.definition_id.nil?
+          if @temp_element.etymology_id.nil?
+            if @temp_element.literary_quotation_id.nil?
+              if @temp_element.oral_quotation_id.nil?
+                if @temp_element.model_sentence_id.nil?
+                else
+                  @temp_parent_element = ModelSentence.find(@temp_element.model_sentence_id)
+                  @temp_definition = Definition.find(@temp_parent_element.definitions.first.definition_id)
+                end
+              else
+                @temp_parent_element = OralQuotation.find(@temp_element.oral_quotation_id)
+                @temp_definition = Definition.find(@temp_parent_element.definitions.first.definition_id)
+              end
+            else
+              @temp_parent_element = LiteraryQuotation.find(@temp_element.literary_quotation_id)
+              @temp_definition = Definition.find(@temp_parent_element.definition_id)
+            end
+          else
+            @temp_parent_element = Etymology.find(@temp_element.etymology_id)
+            @temp_definition = Definition.find(@temp_parent_element.definition_id)  
+          end  
+        else
+          @temp_parent_element = Definition.find(@temp_element.definition_id)
+          @temp_definition = Definition.find(@temp_element.definition_id)  
+        end
+        
       end
     else
       @temp_element = Definition.find(@meta.definition_id)
@@ -1324,8 +1349,12 @@ class MetasController < ApplicationController
     end
     
  	  render :update do |page|
-      t = Time.now   	    
-      page.replace_html "#{@temp_element.id}_#{@temp_element.class.name.downcase}_metas_div", :partial => 'metas/index', :locals => {:t => t.to_f, :element => @temp_element,  :meta => @meta , :head_id => @temp_definition.id}
+      t = Time.now  
+      if @meta.translation_id.nil? 	    
+        page.replace_html "#{@temp_element.id}_#{@temp_element.class.name.downcase}_metas_div", :partial => 'metas/index', :locals => {:t => t.to_f, :element => @temp_element,  :meta => @meta , :head_id => @temp_definition.id}
+      else
+        page.replace_html "#{@temp_element.id}_#{@temp_parent_element.class.name.downcase}_translation_metas_div", :partial => 'metas/index', :locals => {:t => t.to_f, :element => @temp_element,  :meta => @meta , :head_id => @temp_definition.id}
+      end
     end 
   end
   
