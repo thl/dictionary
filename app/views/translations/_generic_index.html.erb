@@ -46,6 +46,14 @@
 		   </span>
 		 <% end %>
 	
+	     <% if e.language_type != nil and e.language_type != ''%>
+			  <br>	
+			  &nbsp;&nbsp;&nbsp;&nbsp;<b>Language: </b><%= e.language_type.title %>
+		 <% end %>
+		 <% if e.analytical_note != nil and e.analytical_note != '' %>
+		      <br>
+			  &nbsp;&nbsp;&nbsp;&nbsp;<b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span>
+		 <% end %>
 
          <div id="<%= e.id%>_<%= o.class.name.downcase%>_translation_metas_div">
 <%         if e.meta != nil%>
