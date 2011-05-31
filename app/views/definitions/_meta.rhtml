@@ -55,6 +55,30 @@ $(document).ready(function() {
 				    </div>
 				</span>
 			<% end %>
+			<% if meta.date_of_publication != nil and meta.date_of_publication != ''%>
+			     <br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			   <b>Date of publication: </b><%= meta.date_of_publication %>
+			<% end %>
+			<% if meta.publisher != nil and meta.publisher != ''%>
+			     <br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			   <b>Publisher: </b><%= meta.publisher %>
+			<% end %>
+			<% if meta.place_of_publication != nil and meta.place_of_publication != ''%>
+			     <br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			   <b>Place of publication: </b><%= meta.place_of_publication %>
+			<% end %>
+			<% if meta.metadata_note != nil and meta.metadata_note != ''%>
+			     <br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			   <b>Metadata note: </b><span class='tinyfied_show'><%= meta.author %></span>
+			<% end %>
+			<% if meta.precedence != nil and meta.precedence != ''%>
+			     <br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			   <b>Precedence: </b><%= meta.precedence %>
+			<% end %>
+			<% if meta.language_type != nil and meta.language_type != ''%>
+			     <br>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			   <b>Language: </b><%= meta.language_type.title %>
+			<% end %>
 		<span id="<%= meta_location %>" > </span>
 		<div id="<%= meta.id%>_meta_sources_div"> 
 		  <%=   render :partial => 'sources/index', :locals => {:meta => meta, :head_id => head_id} %>	
