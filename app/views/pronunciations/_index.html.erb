@@ -60,6 +60,19 @@ $(document).ready(function() {
 		<% end %>
 		<%# end %>
 		
+		<% if e.pronunciation_category_id != nil and e.pronunciation_category_id != ''%>
+		    <!-- <br>	
+		   &nbsp;&nbsp;&nbsp;&nbsp;<b>Pronunciation type: </b><%#= e.pronunciation_category_id %>-->
+		<% end %>
+		<% if e.major_dialect_family_type != nil and e.major_dialect_family_type != ''%>
+		     <br>	
+		   &nbsp;&nbsp;&nbsp;&nbsp;<b>Tibetan Dialect: </b><%= e.major_dialect_family_type.title %>
+		<% end %>
+		<% if e.analytical_note != nil and e.analytical_note != '' %>
+		      <br>
+			  &nbsp;&nbsp;&nbsp;&nbsp;<b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span>
+		 <% end %>
+		
 		<!--<%# if e.meta != nil%>
 			<%# tm = Time.now %>
 			<dd><%#= render :partial => 'definitions/meta', :locals => {:meta_location => tm.to_f, :meta => e.meta , :head_id => head_id} %></dd>

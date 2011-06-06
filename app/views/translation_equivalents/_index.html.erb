@@ -44,6 +44,10 @@ $(document).ready(function() {
 				<% if e.language == 'Tibetan' %>
 				</span>
 				<% end %>
+			
+		<% if e.analytical_note != nil and e.analytical_note != '' %>
+			<dd><b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span></dd>
+		<% end %>	
 				
 		<dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>

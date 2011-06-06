@@ -53,6 +53,21 @@ $(document).ready(function() {
 				<dd><b>Derivation Type: </b><%= e.derivation_type.title %></dd>
 		<% end %>
 		
+		<% if e.major_dialect_family_type != nil%>
+				<dd><b>Tibetan Dialect: </b><%= e.major_dialect_family_type.title %></dd>
+		<% end %>
+		<% if e.literary_genre_type != nil%>
+				<dd><b>Literary genre: </b><%= e.literary_genre_type.title %></dd>
+		<% end %>
+		<% if e.literary_period_type != nil%>
+				<dd><b>Literary period: </b><%= e.literary_period_type.title %></dd>
+		<% end %>
+		<% if e.literary_form_type != nil%>
+				<dd><b>Literary form: </b><%= e.literary_form_type.title %></dd>
+		<% end %>
+		<% if e.analytical_note != nil and e.analytical_note != '' %>
+			  <dd><b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span></dd>
+		 <% end %>
 		
 		<!--<%# if e.meta != nil%>
 		<dd>
