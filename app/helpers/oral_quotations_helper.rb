@@ -1097,7 +1097,7 @@ module OralQuotationsHelper
       @oral_quotation.source_speaker = 'Click to modify'
     end
     resultstr << in_place_editor_field( :oral_quotation, :source_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speaker]'}) +"<br>"
-    resultstr << "<b>Source speaker Tibetan dialect: </b>"
+    resultstr << "<b>Source Speaker Tibetan Dialect: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[source_speaker_dialect] id=oral_quotation[source_speaker_dialect"+@oral_quotation.id.to_s+"] value=\""+@oral_quotation.source_speaker_dialect.to_s+"\" >"
     #if @oral_quotation.source_speaker_dialect_type == nil
     #  title = 'Click to modify'
@@ -1178,7 +1178,7 @@ module OralQuotationsHelper
     end
     resultstr << in_place_editor_field( :oral_quotation, :source_speech_date_western, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_date_western]'}) +"<br>"
     resultstr << "<b>Source location of speech: </b>"
-    resultstr << @oral_quotation.source_location_of_speech if @oral_quotation.source_location_of_speech != nil
+    #resultstr << @oral_quotation.source_location_of_speech if @oral_quotation.source_location_of_speech != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=oral_quotation[source_location_of_speech] id=oral_quotation[source_location_of_speech] value=\""+@oral_quotation.source_location_of_speech.to_s+"\" >"
     if @oral_quotation.source_location_of_speech == nil or @oral_quotation.source_location_of_speech == ''

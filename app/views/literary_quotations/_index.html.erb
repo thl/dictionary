@@ -12,10 +12,13 @@ $(document).ready(function() {
 	<b>Literary quotation:</b>
 			<!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 <%#= link_to_function image_tag('pencil.png',:border => 0), "edit_popup('literary_quotations','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
-		<%= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+	<%= link_to_remote image_tag('user.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s}, :html => {:class => 'ui_dialog', :title=>'Contributors'} %>
+		<%#= link_to image_tag('user.png',:border => 0), url_for( :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>670) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 		<%#= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 <%#= link_to_remote image_tag('pencil.png',:border=>0, :title => 'Edit'), :update => d.id.to_s+'_literary_quotation', :loading => 'dialect_id='+e.id.to_s, :url => {:controller => 'literary_quotations', :action => 'public_edit', :id => e.id, :params => {'definition_id' => head_id}} %>
-<%= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'literary_quotations', :action => 'edit_dynamic_literary_quotation', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) , :class=>:thickbox, :title=>'Literary Quotation Edit' %>	
+
+<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'literary_quotations', :action => 'edit_dynamic_literary_quotation', :id => e.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_dialog'}, :title=>'Literary Quotations Edit' %>
+<%#= link_to image_tag('pencil.png',:border => 0), url_for(:controller => 'literary_quotations', :action => 'edit_dynamic_literary_quotation', :id => e.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) , :class=>:thickbox, :title=>'Literary Quotation Edit' %>	
 		<span class=menuvalue onclick=show_menu(literary_quotation_menu,getCoord(arguments[0]));>
 		<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'literary_quotation_id='+e.id.to_s, :title => 'Edit Relationships' %> 
 		</span>
@@ -88,6 +91,72 @@ $(document).ready(function() {
 				</dd>
 		<% end %>
 		
+		<% if e.source_id != nil and e.source_id != '' %>
+			  <dd><b>Source ID: </b><%= e.source_id %></dd>
+		<% end %>
+		<% if e.spelling != nil and e.spelling != '' %>
+			  <dd><b>Spelling: </b><%= e.spelling %></dd>
+		<% end %>
+		<% if e.script_type != nil%>
+			<dd><b>Script: </b><%= e.script_type.title %></dd>
+		<% end %>
+		<% if e.literary_genre != nil and e.literary_genre != '' %>
+			  <dd><b>Literary genre: </b><%= e.literary_genre %></dd>
+		<% end %>
+		<% if e.literary_period != nil and e.literary_period != '' %>
+			  <dd><b>Literary period: </b><%= e.literary_period %></dd>
+		<% end %>
+		<% if e.literary_form_type != nil%>
+			<dd><b>Literary form: </b><%= e.literary_form_type.title %></dd>
+		<% end %>
+		<% if e.western_date != nil and e.western_date != '' %>
+			  <dd><b>Western date of composition: </b><%= e.western_date %></dd>
+		<% end %>
+		<% if e.western_date_note != nil and e.western_date_note != '' %>
+			  <dd><b>Western date note: </b><%= e.western_date_note %></dd>
+		<% end %>
+		<% if e.tibetan_date != nil and e.tibetan_date != '' %>
+			  <dd><b>Tibetan date of composition: </b><%= e.tibetan_date %></dd>
+		<% end %>
+		<% if e.tibetan_date_note != nil and e.tibetan_date_note != '' %>
+			  <dd><b>Tibetan date note: </b><%= e.tibetan_date_note %></dd>
+		<% end %>
+		<% if e.edition != nil and e.edition != '' %>
+			  <dd><b>Edition: </b><%= e.edition %></dd>
+		<% end %>
+		<% if e.publisher != nil and e.publisher != '' %>
+			  <dd><b>Publisher: </b><%= e.publisher %></dd>
+		<% end %>
+		<% if e.place_of_publication != nil and e.place_of_publication != '' %>
+			  <dd><b>Place of publication: </b><%= e.place_of_publication %></dd>
+		<% end %>
+		<% if e.published_date != nil and e.published_date != '' %>
+			  <dd><b>Date of publication: </b><%= e.published_date %></dd>
+		<% end %>
+		<% if e.isbn != nil and e.isbn != '' %>
+			  <dd><b>ISBN: </b><%= e.isbn %></dd>
+		<% end %>
+		<% if e.volume_number != nil and e.volume_number != '' %>
+			  <dd><b>Volume number: </b><%= e.volume_number %></dd>
+		<% end %>
+		<% if e.passage_pound != nil and e.passage_pound != '' %>
+			  <dd><b>Passage number: </b><%= e.passage_pound %></dd>
+		<% end %>
+		<% if e.passage_number != nil and e.passage_number != '' %>
+			  <dd><b>Page number: </b><%= e.passage_number %></dd>
+		<% end %>
+		<% if e.page_side != nil and e.page_side != '' %>
+			  <dd><b>Page side: </b><%= e.page_side %></dd>
+		<% end %>
+		<% if e.line_number != nil and e.line_number != '' %>
+			  <dd><b>Line number: </b><%= e.line_number %></dd>
+		<% end %>
+		<% if e.url != nil and e.url != '' %>
+			  <dd><b>Passage Url: </b><%= e.url %></dd>
+		<% end %>
+		<% if e.analytical_note != nil and e.analytical_note != '' %>
+			  <dd><b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span></dd>
+		 <% end %>
 		
 		<!--<%# if e.meta != nil%>
 			<dd><%# t = Time.now %>
