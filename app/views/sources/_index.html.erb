@@ -19,43 +19,43 @@
 			%>		
 			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_source' , :update => 'definition_space', :complete => 're_initialize();',  :id => s.id,  :head_id => head_id, :source => s.id),  :title=>'Remove Source', :confirm => "Are you sure you want to remove this Source?" %>						
 			<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<b>Source ID: </b><%= s.source_id_value %><br>
+	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+			&nbsp;&nbsp;&nbsp;&nbsp;<b>Source ID: </b><%= s.source_id_value %><br>
 			<% if s.source_type != nil and s.source_type != '' %>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			     <b>Source type: </b><%= s.source_type %><br>
+	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+			     &nbsp;&nbsp;&nbsp;&nbsp;<b>Source type: </b><%= s.source_type %><br>
 			<% end %>
 			<% if s.page_number != nil and s.page_number != '' %>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			     <b>Start Page number: </b><%= s.page_number %><br>
+	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+			     &nbsp;&nbsp;&nbsp;&nbsp;<b>Start Page number: </b><%= s.page_number %><br>
 			<% end %>
 			<% if s.start_page_side != nil and s.start_page_side != '' %>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			     <b>Start Page side: </b><%= s.start_page_side %><br>
+	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+			     &nbsp;&nbsp;&nbsp;&nbsp;<b>Start Page side: </b><%= s.start_page_side %><br>
 			<% end %>
 			<% if s.start_line_number != nil and s.start_line_number != '' %>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			     <b>Start Line number: </b><%= s.start_line_number %><br>
+	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+			     &nbsp;&nbsp;&nbsp;&nbsp;<b>Start Line number: </b><%= s.start_line_number %><br>
 			<% end %>
 			<% if s.end_page_number != nil and s.end_page_number != '' %>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			     <b>End Page number: </b><%= s.end_page_number %><br>
+	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+			     &nbsp;&nbsp;&nbsp;&nbsp;<b>End Page number: </b><%= s.end_page_number %><br>
 			<% end %>
 			<% if s.end_page_side != nil and s.end_page_side != '' %>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			     <b>End Page side: </b><%= s.end_page_side %><br>
+	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+			     &nbsp;&nbsp;&nbsp;&nbsp;<b>End Page side: </b><%= s.end_page_side %><br>
 			<% end %>
 			<% if s.end_line_number != nil and s.end_line_number != '' %>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			     <b>End Line number: </b><%= s.end_line_number %><br>
+	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+			     &nbsp;&nbsp;&nbsp;&nbsp;<b>End Line number: </b><%= s.end_line_number %><br>
 			<% end %>
 			<% if s.spelling != nil and s.spelling != '' %>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			     <b>Spelling: </b><%= s.spelling %><br>
+	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+			     &nbsp;&nbsp;&nbsp;&nbsp;<b>Spelling: </b><%= s.spelling %><br>
 			<% end %>
 			<% if s.source_note != nil and s.source_note != '' %>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			     <b>Source note: </b><span class='tinyfied_show'><%= s.source_note %></span>
+	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+			     &nbsp;&nbsp;&nbsp;&nbsp;<b>Source note: </b><span class='tinyfied_show'><%= s.source_note %></span>
 			<% end %>
 		</dd>
 	<% end %>

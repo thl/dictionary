@@ -26,6 +26,10 @@ $(document).ready(function() {
 		<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Oral Quotation'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_oral_quotation', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :oral_quotation => e.id }}, :confirm => "Are you sure you want to remove this Oral Quotation?") %>			
 		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_oral_quotation' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :oral_quotation => e.id),  :title=>'Remove Oral Quotation', :confirm => "Are you sure you want to remove this Oral Quotation?" %>		
 		
+		<% if e.source != nil and e.source != '' %>
+			  <dd><b>Source ID: </b><%= e.source %></dd>
+		 <% end %>
+		
 		<%#= e.displayInfo.s %>
 		<span class='tinyfied_show'>
 			<div id="<%= "#{e.id}_transcript_in_tibetandiv" %>">
@@ -39,6 +43,13 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		
+		
+		<% if e.source_type != nil and e.source_type != '' %>
+			  <dd><b>Source type: </b><%= e.source_type %></dd>
+		 <% end %>
+		<% if e.source_speaker != nil and e.source_speaker != '' %>
+			  <dd><b>Source speaker: </b><%= e.source_speaker %></dd>
+		 <% end %>
 		
 		<!-- <dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>

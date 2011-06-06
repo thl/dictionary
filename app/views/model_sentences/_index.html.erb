@@ -45,6 +45,12 @@ $(document).ready(function() {
 				<% end %>			
 		<dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>
+		<% if e.language_type != nil%>
+			<dd><b>Language: </b><%= e.language_type.title %></dd>
+		<% end %>
+		<% if e.major_dialect_family_type != nil%>
+			<dd><b>Tibetan Dialect: </b><%= e.major_dialect_family_type.title %></dd>
+		<% end %>	
 		<% if e.sentence_type != nil and e.sentence_type != ''%>
 				<dd><b>Type: </b><%= e.sentence_type %></dd>
 		<% end %>
@@ -65,6 +71,18 @@ $(document).ready(function() {
 				</dd>
 		<% end %>
 		
+		<% if e.literary_genre_type != nil%>
+			<dd><b>Literary genre: </b><%= e.literary_genre_type.title %></dd>
+		<% end %>
+		<% if e.literary_period_type != nil%>
+			<dd><b>Literary period: </b><%= e.literary_period_type.title %></dd>
+		<% end %>
+		<% if e.literary_form_type != nil%>
+			<dd><b>Literary form: </b><%= e.literary_form_type.title %></dd>
+		<% end %>
+		<% if e.analytical_note != nil and e.analytical_note != '' %>
+			  <dd><b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span></dd>
+		 <% end %>
 		<!--<%# if e.meta != nil%>
 		<dd>
 		<%# t = Time.now %>
