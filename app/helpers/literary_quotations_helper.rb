@@ -1154,7 +1154,7 @@ module LiteraryQuotationsHelper
     if @literary_quotation.western_date == nil or @literary_quotation.western_date == ''
       @literary_quotation.western_date = 'Click to modify'
     end
-    resultstr << in_place_form_editor_field( :literary_quotation, :western_date, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[western_date]'}) +"<br>"
+    resultstr << in_place_editor_field( :literary_quotation, :western_date, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[western_date]'}) +"<br>"
   
     resultstr << "<b>Western date note: </b>"
     resultstr << @literary_quotation.western_date_note if @literary_quotation.western_date_note != nil
@@ -1271,7 +1271,7 @@ module LiteraryQuotationsHelper
     # resultstr << in_place_form_editor_field( :literary_quotation, :page_image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[page_image_link]'}) +"<br>"
 
     resultstr << "<b>Analytical note: </b>"
-    resultstr << "<input type=hidden name=literary_quotation[analytical_note] id=literary_quotation[analytical_note] value=\""+@literary_quotation.analytical_note.to_s+"\" >"
+    #resultstr << "<input type=hidden name=literary_quotation[analytical_note] id=literary_quotation[analytical_note] value=\""+@literary_quotation.analytical_note.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@literary_quotation.id}_anotediv" + "'>"
     edit_path = literary_quotation_analytical_note_edit_url(:id => @literary_quotation.id)
