@@ -172,6 +172,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "definitions"
   map.edit_main_definition 'definitions/index_edit', :controller => 'definitions', :action => 'index_edit'
   map.new_main_definition 'definitions/new', :controller => 'definitions', :action => 'new'
+  map.browse_definitions 'browse_definitions', :controller => 'definitions', :action => 'browse'
   
   map.connect 'internal_definitions/:action/:id', :controller => 'definitions'
   

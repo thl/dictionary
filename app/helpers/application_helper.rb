@@ -216,7 +216,8 @@ module ApplicationHelper
     end
     
     def stylesheet_files
-      super + ['jquery.autocomplete', 'jquery.checktree','thickbox', 'modalbox', 'menu', 'http://www.thlib.org/global/css/thdl_style.css', 'http://www.thlib.org//reference/dictionaries/tibetan-dictionary/css/tibetan-dictionary.css', 'thdl_public']
+      #super + ['jquery.autocomplete', 'jquery.checktree','thickbox', 'modalbox', 'menu', 'http://www.thlib.org/global/css/thdl_style.css', 'http://www.thlib.org//reference/dictionaries/tibetan-dictionary/css/tibetan-dictionary.css', 'thdl_public']
+      super + ['jquery.autocomplete', 'jquery.checktree','thickbox', 'modalbox', 'menu', 'http://www.thlib.org/global/css/thdl_style.css', 'thdl_public', 'jquery-ui-tabs']
     end
 
     def javascript_files
@@ -226,7 +227,7 @@ module ApplicationHelper
         if @current_section == :showview
           super + ['thickbox-compressed']
         else
-          ['jquery','jquery-ui'] + super +  ['jquery.inplace.pack','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl']
+          ['jquery','jquery-ui'] + super +  ['jquery.inplace.pack','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl', 'jquery-ui-tabs']
           #super +  ['jquery.inplace.pack','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl']
         end
       end
@@ -302,6 +303,43 @@ module ApplicationHelper
     
     def login_status
       ''
+    end
+ 
+    def custom_secondary_tabs_list
+      # The :index values are necessary for this hash's elements to be sorted properly
+      {
+        :custom_home => {:index => 1, :title => "Home", :url => "#{app_host_url}/reference/dictionaries/tibetan-dictionary/" },
+        :search => {:index => 2, :title => "Search", :url => root_path },
+        :browse => {:index => 3, :title => "Browse", :url => browse_definitions_path },
+        :translate => {:index => 4, :title => "Translate", :url => "#{app_host_url}/reference/dictionaries/tibetan-dictionary/translate.php"},
+        :hierarchies => {:index => 5, :title => "Hierarchies", :url => "#iframe=#{tmb_url}"},
+        :projects => {:index => 6, :title => "Projects", :url => "#iframe=#{tmb_url}/categories/236/children"},
+        :bibliography => {:index => 7, :title => "Bibliography", :url => "#{app_host_url}/reference/dictionaries/tibetan-dictionary/dictionary-biblio.php#spt=SPT--BrowseResources.php?ParentId=1476"},
+        #:test => {:index => 6, :title => "Test", :url => "#iframe=http://places.thlib.org/features/16871"}
+        #:help => {:index => 6, :title => "Help", :url => "#{app_host_url}/reference/dictionaries/tibetan-dictionary/about/wiki/thdl%20tibetan%20historical%20dictionary%20help.html"},
+      }
+    end
+
+    def custom_secondary_tabs(current_tab_id=:browse)
+      @tab_options ||= {}
+      @tab_options[:urls] ||= {}
+      #@tab_options[:counts] ||= {}
+      #@tab_options[:counts] = tab_counts_for_all_media if @tab_options[:counts].blank?
+
+      tabs = custom_secondary_tabs_list
+
+      current_tab_id = :search unless (tabs.keys << :home).include? current_tab_id
+
+      @tab_options[:urls].each do |tab_id, url|
+        tabs[tab_id][:url] = url unless tabs[tab_id].nil? || url.nil?
+      end
+
+
+      tabs = tabs.sort{|a,b| a[1][:index] <=> b[1][:index]}.collect{|tab_id, tab| 
+        [tab_id, tab[:title], tab[:url]]
+      }
+
+      tabs
     end
     
     def tinymce_show_action(edit_action)

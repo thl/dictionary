@@ -1,0 +1,104 @@
+#universal_navigation > .ui-tabs-panel {
+	width:100%;
+	padding:10px 0 0;
+	border-top:0;
+}
+ul.secondary-tabs > .ui-tabs-panel {
+	border-top:0px;
+}
+#universal_navigation > ul.primary-tabs {
+	margin-left:20px;
+}
+#universal_navigation > ul.primary-tabs a {
+    background-position: 100% -150px;
+    border-bottom-width:0pt;
+    border-bottom-width:0pt;
+    text-transform: uppercase;
+    letter-spacing:0.12em;
+    color: #fff;
+    font-weight:normal;
+    margin-right:2px;
+}
+#universal_navigation > ul.primary-tabs a span {
+	background-position: 0 -50px;
+    text-transform: uppercase;
+    color: #fff;
+    padding-bottom:0px;
+    padding-top:7px;
+    font-weight:normal;
+    margin-bottom:-3px;
+}
+
+#universal_navigation > ul.primary-tabs .ui-tabs-unselected {
+	overflow: hidden;
+}
+
+#universal_navigation > ul.primary-tabs .ui-tabs-selected a {
+    background-position: 100% -100px;
+    color: #444;
+    cursor: text;
+}
+#universal_navigation > ul.primary-tabs .ui-tabs-selected span {
+    background-position: 0 0;
+    color: #444;
+    font-weight:bold;
+    margin-top:-2px;
+}
+#universal_navigation > ul.primary-tabs {
+	list-style-type: none;
+}
+
+/* Secondary tabs */
+
+ul.secondary-tabs {
+	padding: 0;
+	background-color: #e7e7d8;
+	border-top: 1px solid #97A5B0;
+}
+
+ul.secondary-tabs a,
+ul.secondary-tabs a span {
+	background-image:none;
+	background-color:#e7e7d8;
+	min-height:14px;
+	margin:0;
+	padding-top:3px;
+	padding-bottom:1px;
+	color:#444;
+	border:0;
+}
+
+ul.secondary-tabs {
+	list-style-type: none;
+	padding-left:35px;
+}
+
+ul.secondary-tabs li {
+	margin:5px 0 0px;
+	border-right:1px solid #999;
+}
+
+ul.secondary-tabs li:first-child {
+	border-left:1px solid #999;
+}
+
+ul.secondary-tabs .ui-tabs-selected {
+	border-top:1px solid #999;
+}
+
+ul.secondary-tabs .ui-tabs-selected span {
+	color:#444;
+	background-color:#fff;
+	text-decoration:none;
+}
+
+ul.secondary-tabs .ui-tabs-selected a {
+	cursor: text;
+	color:#444;
+	background-color:#fff;
+}
+
+ul.secondary-tabs .ui-tabs-unselected a:hover {
+	color:#333 !important;
+	text-decoration:underline;
+}

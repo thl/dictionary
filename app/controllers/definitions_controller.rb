@@ -310,6 +310,7 @@ class DefinitionsController < ApplicationController
   end
 
   def browse
+    @current_tab_id = :browse
     @current_section = :showview
     @alphabet = ComplexScripts::TibetanLetter.all
     expire_page(:controller => :browse, :action => :index)
@@ -836,6 +837,7 @@ class DefinitionsController < ApplicationController
   def index
     # list
     # render :action => 'list'
+    @current_tab_id = :search  #:home
     @current_section = :home
     @users = User.find :all, :conditions => 'full_name is not null'
     @page_class = 'search'
