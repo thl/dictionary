@@ -31,3 +31,6 @@
 [submodule "vendor/plugins/places_integration"]
 	path = vendor/plugins/places_integration
 	url = git://github.com/thl/places_integration.git
+[submodule "vendor/plugins/mms_integration"]
+	path = vendor/plugins/mms_integration
+	url = git://github.com/thl/mms_integration.git
