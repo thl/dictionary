@@ -28,12 +28,3 @@
 [submodule "vendor/plugins/passiverecord"]
 	path = vendor/plugins/passiverecord
 	url = git://github.com/ambethia/passiverecord.git
-[submodule "vendor/plugins/universal_navigation"]
-	path = vendor/plugins/universal_navigation
-	url = git://github.com/thl/universal_navigation.git
-[submodule "vendor/plugins/places_integration"]
-	path = vendor/plugins/places_integration
-	url = git://github.com/thl/places_integration.git
-[submodule "vendor/plugins/mms_integration"]
-	path = vendor/plugins/mms_integration
-	url = git://github.com/thl/mms_integration.git
