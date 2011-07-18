@@ -175,6 +175,8 @@ ActionController::Routing::Routes.draw do |map|
   map.browse_definitions 'browse_definitions', :controller => 'definitions', :action => 'browse'
   
   map.connect 'internal_definitions/:action/:id', :controller => 'definitions'
+ 
+  map.public_term_definition 'internal_definitions/public_term/:id', :controller => 'definitions', :action => 'public_term'
   
   map.connect '', :controller => "definitions"
   # See how all your routes lay out with "rake routes"

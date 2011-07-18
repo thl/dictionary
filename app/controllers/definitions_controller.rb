@@ -897,6 +897,7 @@ def browse_old
 end  
   
 def find_head_terms
+  @current_tab_id = :search
   @current_section = :showview
   if session[:user] != nil
     @logged_in = true
@@ -1204,6 +1205,7 @@ end
   end
 
   def public_edit
+    @current_tab_id = :term
     @grammatical_function_type = Category.find(286)
     @page_class = "edit"
     @tibetan_space = Unicode::U0F0B
@@ -1690,6 +1692,7 @@ end
   end
   
   def public_term
+    @current_tab_id = :term
     if params['mode'] == 'search'
       @page_class = 'search'
     elsif params['mode'] == 'edit'

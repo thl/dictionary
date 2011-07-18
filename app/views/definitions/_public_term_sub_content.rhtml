@@ -271,7 +271,7 @@
 	    			related_terms << [t.displayToInfoPublic, term, def_id, t.update_history, meta_id]
 	    		end
 			}
-	    from = @definition.definition_definition_form_froms.find(:all,:conditions => "relationship_to ilike '%tense' or relationship_to ilike 'impera%'" )
+	    from = @definition.definition_definition_form_froms.find(:all,:conditions => "relationship_to ilike '%tense' or relationship_to ilike 'impera%' or relationship_to ilike 'future form%'" )
 	    from.map {|t| 
 			if t.definition_to != nil and t.definition_from != nil
 					term = t.definition_to.term
