@@ -239,9 +239,9 @@ module ApplicationHelper
       if hostname =~ /sds[3-578].itc.virginia.edu/
         tmb = 'http://tmb.thlib.org'
       elsif hostname == 'sds6.itc.virginia.edu'
-        tmb = 'http://tmb.staging.thlib.org'
+        tmb = 'http://staging.tmb.thlib.org'
       elsif hostname == 'dev.thlib.org'
-        tmb = 'http://tmb.dev.thlib.org'
+        tmb = 'http://dev.tmb.thlib.org'
       else
         tmb = 'http://tmb.thlib.org'
       end
