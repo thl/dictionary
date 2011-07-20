@@ -316,14 +316,14 @@ module ApplicationHelper
     def custom_secondary_tabs_list
       # The :index values are necessary for this hash's elements to be sorted properly
       {
-        :custom_home => {:index => 1, :title => "Home", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/" },
+        :custom_home => {:index => 1, :title => "Home", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
         :search => {:index => 2, :title => "Search", :url => root_path },
         :term => {:index => 3, :title => "Term", :url => current_term_path },
         :browse => {:index => 4, :title => "Browse", :url => browse_definitions_path },
-        :translate => {:index => 5, :title => "Translate", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/translate.php"},
+        :translate => {:index => 5, :title => "Translate", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/translate.php&div_id=universal_navigation_content"},
         :hierarchies => {:index => 6, :title => "Hierarchies", :url => "#iframe=#{tmb_url}&div_id=universal_navigation_content"},
         :projects => {:index => 7, :title => "Projects", :url => "#iframe=#{tmb_url}/categories/236/children"},
-        :bibliography => {:index => 7, :title => "Bibliography", :url => "#{app_host_url}/reference/dictionaries/tibetan-dictionary/dictionary-biblio.php#spt=SPT--BrowseResources.php?ParentId=1476"},
+        :bibliography => {:index => 7, :title => "Bibliography", :url => "#{app_host_url}/reference/dictionaries/tibetan-dictionary/dictionary-biblio.php#spt=SPT--BrowseResources.php?ParentId=1476&div_id=universal_navigation_content"},
         #:test => {:index => 6, :title => "Test", :url => "#iframe=http://places.thlib.org/features/16871"}
         #:help => {:index => 6, :title => "Help", :url => "#{app_host_url}/reference/dictionaries/tibetan-dictionary/about/wiki/thdl%20tibetan%20historical%20dictionary%20help.html"},
       }
