@@ -316,8 +316,8 @@ module ApplicationHelper
     def custom_secondary_tabs_list
       # The :index values are necessary for this hash's elements to be sorted properly
       {
-        #:custom_home => {:index => 1, :title => "Home", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
-        :custom_home => {:index => 1, :title => "Home", :url => custom_home_path + "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
+        :custom_home => {:index => 1, :title => "Home", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
+        #:custom_home => {:index => 1, :title => "Home", :url => custom_home_path + "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
         :search => {:index => 2, :title => "Search", :url => root_path },
         :term => {:index => 3, :title => "Term", :url => current_term_path },
         :browse => {:index => 4, :title => "Browse", :url => browse_definitions_path },
