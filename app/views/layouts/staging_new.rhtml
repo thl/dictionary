@@ -37,11 +37,30 @@ function clear_contents(node)
 <%= header(:class => 'single-col reference') %>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#opener').click(function(event){
+		$('#uitab_Home').click(function(event){
   			alert('Click on Opener!');
-  			event.preventDefault(); // Prevent link from following its href
-			$('li.ui-tabs-unselected').find('#uitab_Home').css('background-color', 'red');
-			//return false;
+  			//event.preventDefault(); // Prevent link from following its href
+			//$('li.ui-tabs-unselected').find('#uitab_Home').css('background-color', 'red');
+			$('li.ui-state-active').removeClass('ui-state-active');
+			$('li.ui-tabs-selected').removeClass('ui-tabs-selected').addClass('ui-tabs-unselected');
+	$('#uitab_Home').parent('.ui-tabs-unselected').removeClass('ui-tabs-unselected').addClass('ui-tabs-selected');	
+		});
+		$('#uitab_Translate').click(function(event){
+  			$('li.ui-state-active').removeClass('ui-state-active');
+			$('li.ui-tabs-selected').removeClass('ui-tabs-selected').addClass('ui-tabs-unselected');
+	$('#uitab_Translate').parent('.ui-tabs-unselected').removeClass('ui-tabs-unselected').addClass('ui-tabs-selected');		
+		});
+		$('#uitab_Hierarchies').click(function(event){
+  			$('li.ui-state-active').removeClass('ui-state-active');
+			$('li.ui-tabs-selected').removeClass('ui-tabs-selected').addClass('ui-tabs-unselected');	  $('#uitab_Hierarchies').parent('.ui-tabs-unselected').removeClass('ui-tabs-unselected').addClass('ui-tabs-selected');			
+		});
+		$('#uitab_Bibliography').click(function(event){
+  			$('li.ui-state-active').removeClass('ui-state-active');
+			$('li.ui-tabs-selected').removeClass('ui-tabs-selected').addClass('ui-tabs-unselected');			$('#uitab_Bibliography').parent('.ui-tabs-unselected').removeClass('ui-tabs-unselected').addClass('ui-tabs-selected');
+		});
+		$('#uitab_Projects').click(function(event){
+  			$('li.ui-state-active').removeClass('ui-state-active');
+			$('li.ui-tabs-selected').removeClass('ui-tabs-selected').addClass('ui-tabs-unselected');			$('#uitab_Projects').parent('.ui-tabs-unselected').removeClass('ui-tabs-unselected').addClass('ui-tabs-selected');
 		});
 	});
 </script>
