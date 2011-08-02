@@ -3940,6 +3940,7 @@ end
 
   def test_dialog
     #render :layout => false
+    @current_tab_id = :search 
     @definition = Definition.find(51)
     #render :layout => 'staging_popup'
     render :layout => 'staging_new'

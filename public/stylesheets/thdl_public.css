@@ -58,7 +58,8 @@ padding-left:2%;
 width:96%;
 }
 
-.dictionary_content {
+/*.dictionary_content {*/  /* this is main content div now since inside universal navigation */
+#universal_navigation_content {
 	font-family: "Arial Unicode MS", "Gentium", "Lucida Grande", "Microsoft Sans Serif", "Tahoma", sans-serif, "XenoType","Tibetan Machine Uni"!important;
 	font-size:10pt;
 	line-height: 12pt; 
@@ -182,6 +183,23 @@ a.definitions_show:hover {color:#222222;}
 
 #popup_dialog {font-size: 10pt; line-height:12pt;}
 #popup_dialog b{font-size: 10pt; font-weight:bold; line-height:12pt;}
+
+/* fixes for universal navigation tabs on edit mode */
+.ui-tabs .primary-tabs li a {padding: 0px 10px 0px 0px !important;float: none !important;}
+#universal_navigation > ul.primary-tabs .ui-state-active{border:0px;}
+.ui-tabs{padding: 0px !important; zoom: 0 !important;}
+/*.ui-tabs .ui-tabs-nav{padding: 0px 0px 0px 4px !important;}*/
+.ui-tabs .primary-tabs{padding: 0px 0px 0px 4px !important;}
+/*.ui-tabs .ui-tabs-nav li{margin: 0px 0px 0px 1px !important;}*/
+.ui-tabs .primary-tabs li{margin: 0px 0px 0px 1px !important;}
+
+/* fixes for secondary nav items */
+ul.secondary-tabs{padding: 0px 0px 0px 35px !important;}
+ul.secondary-tabs li{margin: 5px 0px 0px !important;}
+ul.secondary-tabs a{color: #444 !important;padding: 3px 10px 1px 0px !important;}
+ul.secondary-tabs a span{color: #444 !important;padding: 3px 0px 1px 10px !important;}
+#universal_navigation > ul.secondary-tabs .ui-tabs-selected {padding-bottom: 0px; background:none; border-left: 0px !important; border-botton: 0px !important} 
+
 
 
 .public_show {margin-left:40px;}
