@@ -41,8 +41,8 @@ function clear_contents(node)
   			//alert('Click on Opener!');
   			//event.preventDefault(); // Prevent link from following its href
 			//$('li.ui-tabs-unselected').find('#uitab_Home').css('background-color', 'red');
-			$('li.ui-state-active').removeClass('ui-state-active');
-			$('li.ui-tabs-selected').removeClass('ui-tabs-selected').addClass('ui-tabs-unselected');
+			$('li.ui-state-active', 'ul.secondary-tabs').removeClass('ui-state-active');
+			$('li.ui-tabs-selected','ul.secondary-tabs').removeClass('ui-tabs-selected').addClass('ui-tabs-unselected');
 	$('#uitab_Home').parent('.ui-tabs-unselected').removeClass('ui-tabs-unselected').addClass('ui-tabs-selected');	
 		});
 		$('#uitab_Translate').click(function(event){
