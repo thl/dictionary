@@ -37,3 +37,6 @@
 [submodule "vendor/plugins/universal_navigation"]
 	path = vendor/plugins/universal_navigation
 	url = git://github.com/thl/universal_navigation.git
+[submodule "vendor/plugins/dictionary_integration"]
+	path = vendor/plugins/dictionary_integration
+	url = git://github.com/thl/dictionary_integration.git
