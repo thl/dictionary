@@ -1,4 +1,5 @@
 <%#= render :partial => 'shared/header' %>
+<%= header(:class => 'single-col reference') %>
 <script>
 function hide_content(class_name) {
 	var cols = document.getElementsByClassName(class_name);
@@ -34,9 +35,14 @@ function clear_contents(node)
 		<%#= @content_for_layout %>
 	</div>
 </div>-->
-<%= header(:class => 'single-col reference') %>
+<%#= header(:class => 'single-col reference') %>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$("#fxSideMenu").hide();
+		$("#sideMenuLink").addClass("offmenu");
+		//$("#sideMenuLink").css({"background-position" : "0% 0%", "width" : "235px"});
+		//$("#sideMenuLink").css("background-position", "0% 0%");
+		
 		$('#uitab_Home').click(function(event){
   			//alert('Click on Opener!');
   			//event.preventDefault(); // Prevent link from following its href

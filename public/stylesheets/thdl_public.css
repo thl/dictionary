@@ -1,6 +1,6 @@
 div#login {
 	position:absolute;
-	left:400px;
+	left:600px;
 }
 .def_header {
 	font-size: 9px;
@@ -58,7 +58,7 @@ padding-left:2%;
 width:96%;
 }
 
-/*.dictionary_content {*/  /* this is main content div now since inside universal navigation */
+/*.dictionary_content {*/  /* this is main content div now since inside universal navigation */	
 #universal_navigation_content {
 	font-family: "Arial Unicode MS", "Gentium", "Lucida Grande", "Microsoft Sans Serif", "Tahoma", sans-serif, "XenoType","Tibetan Machine Uni"!important;
 	font-size:10pt;
