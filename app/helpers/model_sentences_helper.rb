@@ -723,7 +723,24 @@ module ModelSentencesHelper
      #resultstr << "</span><br>"
      #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[language_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[language_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[language_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[language_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
      @data = Category.find(184)
-     resultstr << category_selector(@data, :model_sentence, :language_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     #resultstr << category_selector(@data, :model_sentence, :language_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     if @model_sentence.language_type == nil
+       title = ''
+     else
+       title = @model_sentence.language_type.title
+     end
+     resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+   	 resultstr <<
+   				category_fields({
+   					:subject => {:display => title, :label => ''}, 
+   					:root => @data,
+   					:varname => :model_sentence,
+   					:selectable => false,
+   					:fieldname => :language_type,
+   					:include_js => true
+   				})
+   	 resultstr << "<tr><td></td></tr>"
+   	 resultstr << "</table>"
      resultstr << "<br>"
      
      resultstr << "<b>Tibetan Dialect: </b>"
@@ -739,7 +756,24 @@ module ModelSentencesHelper
      #resultstr << "</span><br>"
      #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[major_dialect_family_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[major_dialect_family_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[major_dialect_family_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[major_dialect_family_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
      @data = Category.find(638)
-     resultstr << category_selector(@data, :model_sentence, :major_dialect_family_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     #resultstr << category_selector(@data, :model_sentence, :major_dialect_family_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     if @model_sentence.major_dialect_family_type == nil
+       title = ''
+     else
+       title = @model_sentence.major_dialect_family_type.title
+     end
+     resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+   	 resultstr <<
+   				category_fields({
+   					:subject => {:display => title, :label => ''}, 
+   					:root => @data,
+   					:varname => :model_sentence,
+   					:selectable => false,
+   					:fieldname => :major_dialect_family_type,
+   					:include_js => true
+   				})
+   	 resultstr << "<tr><td></td></tr>"
+   	 resultstr << "</table>"
      resultstr << "<br>"
 
      resultstr << "<b>Sentence type: </b>"
@@ -780,7 +814,24 @@ module ModelSentencesHelper
      #resultstr << "</span><br>"
      #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[literary_genre_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[literary_genre_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[literary_genre_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[literary_genre_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
      @data = Category.find(119)
-     resultstr << category_selector(@data, :model_sentence, :literary_genre_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     #resultstr << category_selector(@data, :model_sentence, :literary_genre_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     if @model_sentence.literary_genre_type == nil
+       title = ''
+     else
+       title = @model_sentence.literary_genre_type.title
+     end
+     resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+   	 resultstr <<
+   				category_fields({
+   					:subject => {:display => title, :label => ''}, 
+   					:root => @data,
+   					:varname => :model_sentence,
+   					:selectable => false,
+   					:fieldname => :literary_genre_type,
+   					:include_js => true
+   				})
+   	 resultstr << "<tr><td></td></tr>"
+   	 resultstr << "</table>"
      resultstr << "<br>"
      
      resultstr << "<b>Literary period: </b>"
@@ -796,7 +847,24 @@ module ModelSentencesHelper
      #resultstr << "</span><br>"
      #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[literary_period_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[literary_period_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[literary_period_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[literary_period_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
      @data = Category.find(187)
-     resultstr << category_selector(@data, :model_sentence, :literary_period_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     #resultstr << category_selector(@data, :model_sentence, :literary_period_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     if @model_sentence.literary_period_type == nil
+       title = ''
+     else
+       title = @model_sentence.literary_period_type.title
+     end
+     resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+   	 resultstr <<
+   				category_fields({
+   					:subject => {:display => title, :label => ''}, 
+   					:root => @data,
+   					:varname => :model_sentence,
+   					:selectable => false,
+   					:fieldname => :literary_period_type,
+   					:include_js => true
+   				})
+   	 resultstr << "<tr><td></td></tr>"
+   	 resultstr << "</table>"
      resultstr << "<br>"
      
      resultstr << "<b>Literary form: </b>"
@@ -811,7 +879,24 @@ module ModelSentencesHelper
      #resultstr << "</span><br>"
      #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
      @data = Category.find(186)
-     resultstr << category_selector(@data, :model_sentence, :literary_form_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     #resultstr << category_selector(@data, :model_sentence, :literary_form_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     if @model_sentence.literary_form_type == nil
+       title = ''
+     else
+       title = @model_sentence.literary_form_type.title
+     end
+     resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+   	 resultstr <<
+   				category_fields({
+   					:subject => {:display => title, :label => ''}, 
+   					:root => @data,
+   					:varname => :model_sentence,
+   					:selectable => false,
+   					:fieldname => :literary_form_type,
+   					:include_js => true
+   				})
+   	 resultstr << "<tr><td></td></tr>"
+   	 resultstr << "</table>"
      resultstr << "<br>"
 
      resultstr << "<b>Analytical note: </b>"

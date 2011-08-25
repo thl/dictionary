@@ -749,6 +749,56 @@ class ModelSentencesController < ApplicationController
 
   def update_dynamic_model_sentence
       @model_sentence = ModelSentence.find(params[:id])
+      if params[:model_sentence][:language_type_id].blank?
+         params[:model_sentence].delete :language_type_id
+      else
+         mca_cats = params[:model_sentence][:language_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:model_sentence][:language_type_id] = c
+           end
+         end
+      end
+      if params[:model_sentence][:major_dialect_family_type_id].blank?
+         params[:model_sentence].delete :major_dialect_family_type_id
+      else
+         mca_cats = params[:model_sentence][:major_dialect_family_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:model_sentence][:major_dialect_family_type_id] = c
+           end
+         end
+      end
+      if params[:model_sentence][:literary_genre_type_id].blank?
+         params[:model_sentence].delete :literary_genre_type_id
+      else
+         mca_cats = params[:model_sentence][:literary_genre_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:model_sentence][:literary_genre_type_id] = c
+           end
+         end
+      end
+      if params[:model_sentence][:literary_period_type_id].blank?
+         params[:model_sentence].delete :literary_period_type_id
+      else
+         mca_cats = params[:model_sentence][:literary_period_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:model_sentence][:literary_period_type_id] = c
+           end
+         end
+      end
+      if params[:model_sentence][:literary_form_type_id].blank?
+         params[:model_sentence].delete :literary_form_type_id
+      else
+         mca_cats = params[:model_sentence][:literary_form_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:model_sentence][:literary_form_type_id] = c
+           end
+         end
+      end
       if @model_sentence.created_by == nil or @model_sentence.created_by == ""
         @model_sentence.created_by = session[:user].login
         @model_sentence.created_at = Time.now

@@ -74,3 +74,5 @@ ul.tree li .half_checked {
 }
 
 ul.tree li { line-height: 1.6em }
+
+.mobj td { padding: 5px; font-family: verdana, arial, sans-serif; color:#404040; font-size:9pt;}

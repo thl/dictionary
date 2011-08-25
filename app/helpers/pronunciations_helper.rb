@@ -861,7 +861,24 @@ module PronunciationsHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('pronunciation[major_dialect_family_type"+@pronunciation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('pronunciation[major_dialect_family_type"+@pronunciation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('pronunciation[major_dialect_family_type"+@pronunciation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('pronunciation[major_dialect_family_type"+@pronunciation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     @data = Category.find(638)
-    resultstr << category_selector(@data, :pronunciation, :major_dialect_family_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    #resultstr << category_selector(@data, :pronunciation, :major_dialect_family_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    if @pronunciation.major_dialect_family_type == nil
+      title = ''
+    else
+      title = @pronunciation.major_dialect_family_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :pronunciation,
+  					:selectable => false,
+  					:fieldname => :major_dialect_family_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
     
     

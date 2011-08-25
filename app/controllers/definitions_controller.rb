@@ -2737,6 +2737,16 @@ end
        @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
      else
      	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end
+     if params[:definition][:thematic_classification_type_id].blank?
+       params[:definition].delete :thematic_classification_type_id
+     else
+       mca_cats = params[:definition][:thematic_classification_type_id].split(',') 
+       mca_cats.each do |c|
+         unless c.blank?
+           params[:definition][:thematic_classification_type_id] = c
+         end
+       end
      end   
      respond_to do |format|
        if @definition.update_attributes(params[:definition])
@@ -2777,7 +2787,17 @@ end
        @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
      else
      	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
-     end   
+     end
+     if params[:definition][:grammatical_function_type_id].blank?
+        params[:definition].delete :grammatical_function_type_id
+     else
+        mca_cats = params[:definition][:grammatical_function_type_id].split(',') 
+        mca_cats.each do |c|
+          unless c.blank?
+            params[:definition][:grammatical_function_type_id] = c
+          end
+        end
+     end    
      respond_to do |format|
        if @definition.update_attributes(params[:definition])
          format.html do
@@ -2814,7 +2834,17 @@ end
        @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
      else
      	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
-     end   
+     end
+      if params[:definition][:register_type_id].blank?
+         params[:definition].delete :register_type_id
+      else
+         mca_cats = params[:definition][:register_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:definition][:register_type_id] = c
+           end
+         end
+      end   
      respond_to do |format|
        if @definition.update_attributes(params[:definition])
          format.html do
@@ -2851,6 +2881,16 @@ end
        @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
      else
      	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end
+     if params[:definition][:language_context_type_id].blank?
+        params[:definition].delete :language_context_type_id
+     else
+        mca_cats = params[:definition][:language_context_type_id].split(',') 
+        mca_cats.each do |c|
+          unless c.blank?
+            params[:definition][:language_context_type_id] = c
+          end
+        end
      end   
      respond_to do |format|
        if @definition.update_attributes(params[:definition])
@@ -2888,6 +2928,16 @@ end
        @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
      else
      	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end
+     if params[:definition][:literary_genre_type_id].blank?
+        params[:definition].delete :literary_genre_type_id
+     else
+        mca_cats = params[:definition][:literary_genre_type_id].split(',') 
+        mca_cats.each do |c|
+          unless c.blank?
+            params[:definition][:literary_genre_type_id] = c
+          end
+        end
      end   
      respond_to do |format|
        if @definition.update_attributes(params[:definition])
@@ -2925,6 +2975,16 @@ end
        @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
      else
      	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end
+     if params[:definition][:literary_period_type_id].blank?
+       params[:definition].delete :literary_period_type_id
+     else
+       mca_cats = params[:definition][:literary_period_type_id].split(',') 
+       mca_cats.each do |c|
+         unless c.blank?
+           params[:definition][:literary_period_type_id] = c
+         end
+       end
      end   
      respond_to do |format|
        if @definition.update_attributes(params[:definition])
@@ -2962,6 +3022,16 @@ end
        @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
      else
      	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end
+     if params[:definition][:literary_form_type_id].blank?
+        params[:definition].delete :literary_form_type_id
+     else
+       mca_cats = params[:definition][:literary_form_type_id].split(',') 
+       mca_cats.each do |c|
+         unless c.blank?
+           params[:definition][:literary_form_type_id] = c
+         end
+       end
      end   
      respond_to do |format|
        if @definition.update_attributes(params[:definition])
@@ -2981,8 +3051,7 @@ end
   end
   
   def literary_form_edit
-    @definition = Definition.find(params[:id])  
-    debugger 
+    @definition = Definition.find(params[:id])   
     render :partial => "category_selector_edit", :locals => {:function_name => 'literary_form_type', :title => (@definition.literary_form_type != nil ? @definition.literary_form_type.title : 'Select A Value'), :id => @definition.id, :data_id => 186, :update_id => "literary_form_type#{@definition.id}" }
   end    
     

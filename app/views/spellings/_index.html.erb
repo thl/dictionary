@@ -37,7 +37,7 @@ $(document).ready(function() {
 			<dd><b>Basis: </b>[<%= e.basis_of_spelling.s %>]</dd>
 	<% end %>
 	<% if e.basis_of_spelling_type != nil%>
-			<dd><b>Basis: </b><%= e.basis_of_spelling_type.title %></dd>
+			<dd><b>Basis of spelling: </b><%= e.basis_of_spelling_type.title %></dd>
 	<% end %>
 	<% if e.spelling_type != nil and e.spelling_type != ''%>
 			<dd><b>Type: </b><%= e.spelling_type.s %></dd>
@@ -45,7 +45,7 @@ $(document).ready(function() {
 	
 	
 	<% if e.spelling_category != nil and e.spelling_category != ''%>
-			<dd><b>Basis of spelling: </b><%= e.spelling_category.title %></dd>
+			<dd><b>Spelling type: </b><%= e.spelling_category.title %></dd>
 	<% end %>
 	<% if e.major_dialect_family_type != nil and e.major_dialect_family_type != ''%>
 			<dd><b>Tibetan Dialect: </b><%= e.major_dialect_family_type.title %></dd>

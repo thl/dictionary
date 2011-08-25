@@ -758,7 +758,24 @@ module EtymologiesHelper
     ## end
     ## resultstr << in_place_select_editor_field( :etymology, :etymology_type, {}, {:select_options => @etymology_type, :fieldname => 'etymology[etymology_type]'})+"<br>"
     @data = Category.find(182)
-    resultstr << category_selector(@data, :etymology, :etymology_category, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    #resultstr << category_selector(@data, :etymology, :etymology_category, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    if @etymology.etymology_category == nil
+      title = ''
+    else
+      title = @etymology.etymology_category.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :etymology,
+  					:selectable => false,
+  					:fieldname => :etymology_category,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
 
 
@@ -780,7 +797,24 @@ module EtymologiesHelper
     ## resultstr << in_place_select_editor_field( :etymology, :loan_language, {}, {:select_options => @loan_language, :fieldname => 'etymology[loan_language]'})+"<br>"
     ## resultstr << in_place_form_editor_field( :etymology, :loan_language, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[loan_language]'}) +"<br>"
     @data = Category.find(184)
-    resultstr << category_selector(@data, :etymology, :loan_language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :etymology, :loan_language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @etymology.loan_language_type == nil
+      title = ''
+    else
+      title = @etymology.loan_language_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :etymology,
+  					:selectable => false,
+  					:fieldname => :loan_language_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
 
     resultstr << "<b>Derivation type: </b>"
@@ -800,7 +834,24 @@ module EtymologiesHelper
     ## end
     ## resultstr << in_place_select_editor_field( :etymology, :derivation, {}, {:select_options => @derivation, :fieldname => 'etymology[derivation]'})+"<br>"
     @data = Category.find(180)
-    resultstr << category_selector(@data, :etymology, :derivation_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :etymology, :derivation_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @etymology.derivation_type == nil
+      title = ''
+    else
+      title = @etymology.derivation_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :etymology,
+  					:selectable => false,
+  					:fieldname => :derivation_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
 
     resultstr << "<b>Tibetan Dialect: </b>"
@@ -827,7 +878,24 @@ module EtymologiesHelper
     ## end
     ## resultstr << in_place_form_editor_field( :etymology, :specific_dialect, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[specific_dialect]'}) +"<br>"
     @data = Category.find(638)
-    resultstr << category_selector(@data, :etymology, :major_dialect_family_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :etymology, :major_dialect_family_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @etymology.major_dialect_family_type == nil
+      title = ''
+    else
+      title = @etymology.major_dialect_family_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :etymology,
+  					:selectable => false,
+  					:fieldname => :major_dialect_family_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
     
     resultstr << "<b>Literary genre: </b>"
@@ -848,7 +916,24 @@ module EtymologiesHelper
     ## resultstr <<  "<span id=etymology[literary_genre"+@etymology.id.to_s+"]_value class=menuvalue onclick=dialect_id="+@etymology.id.to_s+";show_menu(etymology_literary_genre_menu,getCoord(arguments[0]));>"+@etymology.literary_genre+"</span><br>"
     ## resultstr << in_place_select_editor_field( :etymology, :literary_genre, {}, {:select_options => @literary_genre, :fieldname => 'etymology[literary_genre]'})+"<br>"
     @data = Category.find(119)
-    resultstr << category_selector(@data, :etymology, :literary_genre_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :etymology, :literary_genre_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @etymology.literary_genre_type == nil
+      title = ''
+    else
+      title = @etymology.literary_genre_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :etymology,
+  					:selectable => false,
+  					:fieldname => :literary_genre_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
     
     resultstr << "<b>Literary period: </b>"
@@ -868,7 +953,24 @@ module EtymologiesHelper
     ## end
     ## resultstr << in_place_select_editor_field( :etymology, :literary_period, {}, {:select_options => @literary_period, :fieldname => 'etymology[literary_period]'})+"<br>"
     @data = Category.find(187)
-    resultstr << category_selector(@data, :etymology, :literary_period_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :etymology, :literary_period_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @etymology.literary_period_type == nil
+      title = ''
+    else
+      title = @etymology.literary_period_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :etymology,
+  					:selectable => false,
+  					:fieldname => :literary_period_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
 
     resultstr << "<b>Literary form: </b>"
@@ -888,7 +990,24 @@ module EtymologiesHelper
     ## end
     ## resultstr << in_place_select_editor_field( :etymology, :literary_form, {}, {:select_options => @literary_form, :fieldname => 'etymology[literary_form]'})+"<br>"
     @data = Category.find(186)
-    resultstr << category_selector(@data, :etymology, :literary_form_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :etymology, :literary_form_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @etymology.literary_form_type == nil
+      title = ''
+    else
+      title = @etymology.literary_form_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :etymology,
+  					:selectable => false,
+  					:fieldname => :literary_form_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
 
     resultstr << "<b>Analytical note: </b>"

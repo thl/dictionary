@@ -517,6 +517,16 @@ class TranslationEquivalentsController < ApplicationController
  
   def update_dynamic_translation_equivalent
       @translation_equivalent = TranslationEquivalent.find(params[:id])
+      if params[:translation_equivalent][:language_type_id].blank?
+         params[:translation_equivalent].delete :language_type_id
+      else
+         mca_cats = params[:translation_equivalent][:language_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:translation_equivalent][:language_type_id] = c
+           end
+         end
+      end
       if @translation_equivalent.created_by == nil or @translation_equivalent.created_by == ""
         @translation_equivalent.created_by = session[:user].login
         @translation_equivalent.created_at = Time.now

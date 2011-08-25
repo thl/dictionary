@@ -400,7 +400,24 @@ module SpellingsHelper
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('spelling[basis_of_spelling_type"+@spelling.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('spelling[basis_of_spelling_type"+@spelling.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('spelling[basis_of_spelling_type"+@spelling.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('spelling[basis_of_spelling_type"+@spelling.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     # resultstr << in_place_form_editor_field( :spelling, :basis_of_spelling, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[basis_of_spelling]'}) +"<br>"
     @data = Category.find(191)
-    resultstr << category_selector(@data, :spelling, :basis_of_spelling_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :spelling, :basis_of_spelling_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @spelling.basis_of_spelling_type == nil
+      title = ''
+    else
+      title = @spelling.basis_of_spelling_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :spelling,
+  					:selectable => false,
+  					:fieldname => :basis_of_spelling_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
     
     resultstr << "<b>Spelling type: </b>"
@@ -416,7 +433,24 @@ module SpellingsHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('spelling[spelling_category"+@spelling.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('spelling[spelling_category"+@spelling.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('spelling[spelling_category"+@spelling.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('spelling[spelling_category"+@spelling.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     @data = Category.find(4091)
-    resultstr << category_selector(@data, :spelling, :spelling_category, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :spelling, :spelling_category, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @spelling.spelling_category == nil
+      title = ''
+    else
+      title = @spelling.spelling_category.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :spelling,
+  					:selectable => false,
+  					:fieldname => :spelling_category,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
     
     resultstr << "<b>Tibetan Dialect: </b>"
@@ -432,7 +466,24 @@ module SpellingsHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('spelling[major_dialect_family_type"+@spelling.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('spelling[major_dialect_family_type"+@spelling.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('spelling[major_dialect_family_type"+@spelling.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('spelling[major_dialect_family_type"+@spelling.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     @data = Category.find(638)
-    resultstr << category_selector(@data, :spelling, :major_dialect_family_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :spelling, :major_dialect_family_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @spelling.major_dialect_family_type == nil
+      title = ''
+    else
+      title = @spelling.major_dialect_family_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :spelling,
+  					:selectable => false,
+  					:fieldname => :major_dialect_family_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
 
     resultstr << "<b>Literary genre: </b>"
@@ -448,7 +499,24 @@ module SpellingsHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('spelling[literary_genre_type"+@spelling.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('spelling[literary_genre_type"+@spelling.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('spelling[literary_genre_type"+@spelling.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('spelling[literary_genre_type"+@spelling.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     @data = Category.find(119)
-    resultstr << category_selector(@data, :spelling, :literary_genre_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :spelling, :literary_genre_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @spelling.literary_genre_type == nil
+      title = ''
+    else
+      title = @spelling.literary_genre_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :spelling,
+  					:selectable => false,
+  					:fieldname => :literary_genre_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
 
     resultstr << "<b>Literary period: </b>"
@@ -464,7 +532,24 @@ module SpellingsHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('spelling[literary_period_type"+@spelling.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('spelling[literary_period_type"+@spelling.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('spelling[literary_period_type"+@spelling.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('spelling[literary_period_type"+@spelling.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     @data = Category.find(187)
-    resultstr << category_selector(@data, :spelling, :literary_period_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :spelling, :literary_period_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @spelling.literary_period_type == nil
+      title = ''
+    else
+      title = @spelling.literary_period_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :spelling,
+  					:selectable => false,
+  					:fieldname => :literary_period_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
 
     resultstr << "<b>Literary form: </b>"
@@ -480,7 +565,24 @@ module SpellingsHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('spelling[literary_form_type"+@spelling.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('spelling[literary_form_type"+@spelling.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('spelling[literary_form_type"+@spelling.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('spelling[literary_form_type"+@spelling.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     @data = Category.find(186)
-    resultstr << category_selector(@data, :spelling, :literary_form_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :spelling, :literary_form_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @spelling.literary_form_type == nil
+      title = ''
+    else
+      title = @spelling.literary_form_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :spelling,
+  					:selectable => false,
+  					:fieldname => :literary_form_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
        
     resultstr << "<b>Analytical note: </b>"

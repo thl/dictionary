@@ -798,6 +798,16 @@ class TranslationsController < ApplicationController
   
   def update_dynamic_translation
       @translation = Translation.find(params[:id])
+      if params[:translation][:language_type_id].blank?
+        params[:translation].delete :language_type_id
+      else
+        mca_cats = params[:translation][:language_type_id].split(',') 
+        mca_cats.each do |c|
+          unless c.blank?
+            params[:translation][:language_type_id] = c
+          end
+        end
+      end
       if @translation.created_by == nil or @translation.created_by == ""
         @translation.created_by = session[:user].login
         @translation.created_at = Time.now

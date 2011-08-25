@@ -23,12 +23,15 @@ $(document).ready(function() {
 		</span>
 		<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Translation Equivalent'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_translation_equivalent', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :translation_equivalent => e.id }}, :confirm => "Are you sure you want to remove this Translation Equivalent?") %>			
 		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_translation_equivalent' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :translation_equivalent => e.id),  :title=>'Remove Translation Equivalent', :confirm => "Are you sure you want to remove this Translation Equivalent?" %>		
-		<% if e.language != nil and e.language != '' %>
-			<i><%= e.language %></i>&nbsp;
+		<%# if e.language != nil and e.language != '' %>
+		<% if e.language_type != nil and e.language_type != '' %>
+			<i><%#= e.language %> <%= e.language_type.title %></i>&nbsp;
 		<% end %>
-				<% if e.language == 'Tibetan' %>
+			<% if !e.language_type.blank? %>
+				<% if e.language_type.title == 'Tibetan' %> <%# if e.language == 'Tibetan' %>
 				<span class="tib1">
 				<% end %>
+			<% end %>
 				<span class="tinyfied_show">
 					<%#= e.translation_equivalent.s if e.translation_equivalent != nil %>
 					<div id="<%= "#{e.id}_transdiv" %>">
@@ -41,10 +44,11 @@ $(document).ready(function() {
 					  <%= link_to_remote(t_transequivalent, :url => edit_path, :update => "#{e.id}_transdiv", :method => :get ) %>
 				    </div>
 				</span>
-				<% if e.language == 'Tibetan' %>
+			<% if !e.language_type.blank? %>
+				<% if e.language_type.title == 'Tibetan' %> <%# if e.language == 'Tibetan' %>	
 				</span>
 				<% end %>
-			
+			<% end %>
 		<% if e.analytical_note != nil and e.analytical_note != '' %>
 			<dd><b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span></dd>
 		<% end %>	

@@ -25,9 +25,12 @@ $(document).ready(function() {
 		</span>
 		<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Model Sentence'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_model_sentence', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :model_sentence => e.id }}, :confirm => "Are you sure you want to remove this Model Sentence?") %>			
 		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_model_sentence' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :model_sentence => e.id),  :title=>'Remove Model Sentence', :confirm => "Are you sure you want to remove this Model Sentence?" %>		
-				<% if e.language == 'Tibetan' %>
+			<% if e.language_type != nil%>
+				<%# if e.language == 'Tibetan' %>
+				<% if e.language_type.title== 'Tibetan' %>
 				<span class="tib1">
 				<% end %>
+			<% end %>
 				<span class='tinyfied_show'>
 					<%#= e.model_sentence.s if e.model_sentence != nil %>
 					<div id="<%= "#{e.id}_model_sentencediv" %>">
@@ -40,9 +43,12 @@ $(document).ready(function() {
 					  <%= link_to_remote(t_model_sentence, :url => edit_path, :update => "#{e.id}_model_sentencediv", :method => :get ) %>
 				    </div>
 				</span>
-				<% if e.language == 'Tibetan' %>
+			<% if e.language_type != nil%>
+				<%# if e.language == 'Tibetan' %>
+				<% if e.language_type.title== 'Tibetan' %>
 				</span>
-				<% end %>			
+				<% end %>
+			<% end %>			
 		<dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>
 		<% if e.language_type != nil%>

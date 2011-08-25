@@ -1234,6 +1234,26 @@ class MetasController < ApplicationController
   
   def update_dynamic_meta 
       @meta = Meta.find(params[:id])
+      if params[:meta][:project_type_id].blank?
+         params[:meta].delete :project_type_id
+      else
+         mca_cats = params[:meta][:project_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:meta][:project_type_id] = c
+           end
+         end
+      end
+      if params[:meta][:language_type_id].blank?
+         params[:meta].delete :language_type_id
+      else
+         mca_cats = params[:meta][:language_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:meta][:language_type_id] = c
+           end
+         end
+      end
       if @meta.created_by == nil or @meta.created_by == ""
              @meta.created_by = session[:user].login
              @meta.created_at = Time.now

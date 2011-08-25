@@ -264,7 +264,24 @@ module MetasHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('meta[project_type"+@meta.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('meta[project_type"+@meta.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('meta[project_type"+@meta.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('meta[project_type"+@meta.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     @data = Category.find(236)
-    resultstr << category_selector(@data, :meta, :project_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :meta, :project_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @meta.project_type == nil
+      title = ''
+    else
+      title = @meta.project_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :meta,
+  					:selectable => false,
+  					:fieldname => :project_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>" 
  
     # resultstr << "<b>Source ID: </b>"
@@ -366,8 +383,25 @@ module MetasHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('meta[language_type"+@meta.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('meta[language_type"+@meta.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('meta[language_type"+@meta.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('meta[language_type"+@meta.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     @data = Category.find(184)
-    resultstr << category_selector(@data, :meta, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    resultstr << "<br>"
+    #resultstr << category_selector(@data, :meta, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @meta.language_type == nil
+      title = ''
+    else
+      title = @meta.language_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :meta,
+  					:selectable => false,
+  					:fieldname => :language_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
+  	resultstr << "<br>"
 
   end
 

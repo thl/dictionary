@@ -1110,7 +1110,24 @@ module LiteraryQuotationsHelper
     #resultstr << "<script type=\"text/javascript\" language=\"javascript\">Event.observe('literary_quotation[script_type"+@literary_quotation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('literary_quotation[script_type"+@literary_quotation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('literary_quotation[script_type"+@literary_quotation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('literary_quotation[script_type"+@literary_quotation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     ## resultstr << in_place_form_editor_field( :literary_quotation, :script, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[script]'}) +"<br>"
     @data = Category.find(192)
-    resultstr << category_selector(@data, :literary_quotation, :script_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :literary_quotation, :script_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @literary_quotation.script_type == nil
+      title = ''
+    else
+      title = @literary_quotation.script_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :literary_quotation,
+  					:selectable => false,
+  					:fieldname => :script_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"    
     resultstr << "<br>"
     
     
@@ -1144,7 +1161,25 @@ module LiteraryQuotationsHelper
     #resultstr << "</span><br>"
     #resultstr << "<script type=\"text/javascript\" language=\"javascript\">Event.observe('literary_quotation[literary_form_type"+@literary_quotation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('literary_quotation[literary_form_type"+@literary_quotation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('literary_quotation[literary_form_type"+@literary_quotation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('literary_quotation[literary_form_type"+@literary_quotation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     @data = Category.find(186)
-    resultstr << category_selector(@data, :literary_quotation, :literary_form_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :literary_quotation, :literary_form_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @literary_quotation.literary_form_type == nil
+      title = ''
+    else
+      title = @literary_quotation.literary_form_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :literary_quotation,
+  					:selectable => false,
+  					:fieldname => :literary_form_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"    
+    
     resultstr << "<br>"
     
     resultstr << "<b>Western date of composition: </b>"

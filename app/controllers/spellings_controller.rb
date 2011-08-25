@@ -700,6 +700,66 @@ class SpellingsController < ApplicationController
   
   def update_dynamic_spelling
       @spelling = Spelling.find(params[:id])
+      if params[:spelling][:basis_of_spelling_type_id].blank?
+         params[:spelling].delete :basis_of_spelling_type_id
+      else
+         mca_cats = params[:spelling][:basis_of_spelling_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:spelling][:basis_of_spelling_type_id] = c
+           end
+         end
+      end
+      if params[:spelling][:spelling_category_id].blank?
+         params[:spelling].delete :spelling_category_id
+      else
+         mca_cats = params[:spelling][:spelling_category_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:spelling][:spelling_category_id] = c
+           end
+         end
+      end
+      if params[:spelling][:major_dialect_family_type_id].blank?
+         params[:spelling].delete :major_dialect_family_type_id
+      else
+         mca_cats = params[:spelling][:major_dialect_family_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:spelling][:major_dialect_family_type_id] = c
+           end
+         end
+      end
+      if params[:spelling][:literary_genre_type_id].blank?
+         params[:spelling].delete :literary_genre_type_id
+      else
+         mca_cats = params[:spelling][:literary_genre_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:spelling][:literary_genre_type_id] = c
+           end
+         end
+      end
+      if params[:spelling][:literary_period_type_id].blank?
+         params[:spelling].delete :literary_period_type_id
+      else
+         mca_cats = params[:spelling][:literary_period_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:spelling][:literary_period_type_id] = c
+           end
+         end
+      end
+      if params[:spelling][:literary_form_type_id].blank?
+         params[:spelling].delete :literary_form_type_id
+      else
+         mca_cats = params[:spelling][:literary_form_type_id].split(',') 
+         mca_cats.each do |c|
+           unless c.blank?
+             params[:spelling][:literary_form_type_id] = c
+           end
+         end
+      end
       @definition = @spelling.definition
       if @spelling.created_by == nil or @spelling.created_by == ""
         @spelling.created_by = session[:user].login

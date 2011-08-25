@@ -1110,7 +1110,24 @@ module OralQuotationsHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('oral_quotation[source_speaker_dialect_type"+@oral_quotation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('oral_quotation[source_speaker_dialect_type"+@oral_quotation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('oral_quotation[source_speaker_dialect_type"+@oral_quotation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('oral_quotation[source_speaker_dialect_type"+@oral_quotation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     @data = Category.find(638)
-    resultstr << category_selector(@data, :oral_quotation, :source_speaker_dialect_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :oral_quotation, :source_speaker_dialect_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @oral_quotation.source_speaker_dialect_type == nil
+      title = ''
+    else
+      title = @oral_quotation.source_speaker_dialect_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :oral_quotation,
+  					:selectable => false,
+  					:fieldname => :source_speaker_dialect_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"    
     resultstr << "<br>"
     
     resultstr << "<b>Transcript in Tibetan: </b>"

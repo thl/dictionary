@@ -42,7 +42,7 @@ jQuery.fn.draggablePopup = function(options){
 	this.boxCreated = false;
 	this.init = function(){
 		// Remove any existing popups
-		jQuery('.draggable-popup').remove();
+		jQuery('.draggable-popup').hide();
 		// Create the popup box
 		this.createBox();
 		if(this.options.url){
@@ -197,7 +197,3 @@ function ActivateDraggablePopups(parent_selector){
 		});
 	});
 }
-
-/*jQuery(document).ready(function(){
-	ActivateDraggablePopups();
-});*/

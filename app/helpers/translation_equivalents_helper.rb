@@ -488,18 +488,35 @@ module TranslationEquivalentsHelper
     resultstr << "</span>"
 
     resultstr << "<b>Language: </b>"
-    if @translation_equivalent.language_type == nil
-      title = 'Click to modify'
-    else
-      title = @translation_equivalent.language_type.title
-    end
+    #if @translation_equivalent.language_type == nil
+    #  title = 'Click to modify'
+    #else
+    #  title = @translation_equivalent.language_type.title
+    #end
     #resultstr << "<span id=\"translation_equivalent[language_type#{@translation_equivalent.id}]_selector\">"
     #resultstr << '['+@translation_equivalent.language+']' if @translation_equivalent.language != nil
     #resultstr << link_to_remote( title,{:update => "translation_equivalent[language_type#{@translation_equivalent.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'translation_equivalents', :action => 'display_category_selector', :id => @translation_equivalent.id, :params => {'data_id' => 184, 'model_name' => 'translation_equivalent', 'function_name' => "language_type", :update_id => "translation_equivalent[language_type#{@translation_equivalent.id}]_selector"}}}, :class => 'selector_link' )
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     @data = Category.find(184)
-    resultstr << category_selector(@data, :translation_equivalent, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << category_selector(@data, :translation_equivalent, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    if @translation_equivalent.language_type == nil
+      title = ''
+    else
+      title = @translation_equivalent.language_type.title
+    end
+    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	resultstr <<
+  				category_fields({
+  					:subject => {:display => title, :label => ''}, 
+  					:root => @data,
+  					:varname => :translation_equivalent,
+  					:selectable => false,
+  					:fieldname => :language_type,
+  					:include_js => true
+  				})
+  	resultstr << "<tr><td></td></tr>"
+  	resultstr << "</table>"
     resultstr << "<br>"
     
     resultstr << "<b>Analytical note: </b>"

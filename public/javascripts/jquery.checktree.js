@@ -32,6 +32,30 @@ jQuery.fn.checkTree = function(settings) {
         // Debug (currently does nothing)
         debug: false
     }, settings);
+
+	var toggleList = function( element ) {
+		var $this = jQuery(element),
+			$parent = $this.parent();
+
+        if ($this.hasClass("collapsed")) {
+            $this
+                .addClass("expanded")
+                .removeClass("collapsed")
+            ;
+            if (settings.onExpand) settings.onExpand($parent);
+        } else {
+            $this
+                .addClass("collapsed")
+                .removeClass("expanded")
+            ;
+            if (settings.onCollapse) settings.onCollapse($parent);
+        }
+		if($this.closest('#feature_types_accordion').length != 0){
+			$this.siblings("ul").toggle(400);
+		}else{
+			$this.siblings("ul").toggle();							
+		}
+	};
     
     var $tree = this;
     
@@ -42,9 +66,10 @@ jQuery.fn.checkTree = function(settings) {
             .change(function() {
                 // Fired when the children of this checkbox have changed.
                 // Children can change the state of a parent based on what they do as a group.
-                var $all = jQuery(this).siblings("ul").find(":checkbox");
-                var $checked = $all.filter(":checked");
-                var $this_checkbox = jQuery(this).siblings(".checkbox");
+                var $this = jQuery(this),
+					$all = $this.siblings("ul").find(":checkbox"),
+					$checked = $all.filter(":checked"),
+                	$this_checkbox = $this.siblings(".checkbox");
                 
                 // All children are checked
                 if ($all.length == $checked.length) {
@@ -63,7 +88,7 @@ jQuery.fn.checkTree = function(settings) {
                 
                 // All children are unchecked
                 else if($checked.length == 0) {
-                    jQuery(this)
+                    $this
                         //.attr("checked", "")
                         .siblings(".checkbox")
                             .removeClass("checked")
@@ -74,10 +99,10 @@ jQuery.fn.checkTree = function(settings) {
                 // Some children are checked, makes the parent in a half checked state.
                 else { 
                     // Fire parent's onHalfCheck callback only if it's going to change
-                    if (settings.onHalfCheck && !jQuery(this).siblings(".checkbox").hasClass("half_checked"))
-                        settings.onHalfCheck(jQuery(this).parent());
+                    if (settings.onHalfCheck && !$this.siblings(".checkbox").hasClass("half_checked"))
+                        settings.onHalfCheck($this.parent());
                     
-                    jQuery(this)
+                    $this
                         //.attr("checked", "")
                         .siblings(".checkbox")
                             .removeClass("checked")
@@ -89,15 +114,16 @@ jQuery.fn.checkTree = function(settings) {
         .end()
         
         .each(function() {
-            
+            var $this = jQuery(this);
+
             // Go through and hide only ul's (subtrees) that do not have a sibling div.expanded:
             // We do this to not collapse *all* the subtrees (if one is open and checkTree is called again)
-            jQuery(this).find("ul").each(function() {
+            $this.find("ul").each(function() {
                 if (!jQuery(this).siblings(".expanded").length) jQuery(this).hide();
             });
             
             // Copy the label
-            var $label = jQuery(this).children("label").clone();
+            var $label = $this.children("label").clone();
             // Create or the image for the checkbox next to the label
             var $checkbox = jQuery("<div class=\"checkbox\"></div>");
             // Create or the image for the checkbox next to the label
@@ -106,69 +132,47 @@ jQuery.fn.checkTree = function(settings) {
             var $arrow = jQuery("<div class=\"arrow\"></div>");
             
             // If the li has children:
-            if (jQuery(this).is(":has(ul)")) {
+            if ($this.is(":has(ul)")) {
                 // If the subtree is not visible, make the arrow collapsed. Otherwise expanded.
-                if (jQuery(this).children("ul").is(":hidden")) $arrow.addClass("collapsed");
+                if ($this.children("ul").is(":hidden")) $arrow.addClass("collapsed");
                 else $arrow.addClass("expanded");
                 
                 // When you click the image, toggle the child list
                 $arrow.click(function() {
-                    
-                    // Swap the classes: expanded <-> collapsed and fire the onExpand/onCollapse events
-                    if (jQuery(this).hasClass("collapsed")) {
-                        jQuery(this)
-                            .addClass("expanded")
-                            .removeClass("collapsed")
-                        ;
-                        if (settings.onExpand) settings.onExpand(jQuery(this).parent());
-                    	if(jQuery(this).parent('li').parent('#feature_types_accordion').length != 0){
-							jQuery(this).siblings("ul").toggle(400);
-						}else{
-							jQuery(this).siblings("ul").toggle();							
-						}
-                    }
-                    else {
-                        jQuery(this)
-                            .addClass("collapsed")
-                            .removeClass("expanded")
-                        ;
-                        if (settings.onCollapse) settings.onCollapse(jQuery(this).parent());
-                    	if(jQuery(this).parent('li').parent('#feature_types_accordion').length != 0){
-							jQuery(this).siblings("ul").toggle(400);
-						}else{
-							jQuery(this).siblings("ul").toggle();							
-						}
-                    }
+					toggleList(this);
                 });
             }
             
             // When you click the checkbox, it should do the checking/unchecking
             $checkbox.click(function() {
+				var $this = jQuery(this),
+					$siblings = $this.siblings('ul');
+
                 // Toggle the checked class)
-                jQuery(this)
+                $this
                     .toggleClass("checked")
                     // if it's half checked, its now either checked or unchecked
                     .removeClass("half_checked")
                 ;
                 
                 // Check/uncheck children depending on our status.
-                if (jQuery(this).hasClass("checked")) {
+                if ($this.hasClass("checked")) {
                     // Fire the check callback for this parent
                     //if (settings.onCheck) settings.onCheck(jQuery(this).parent());
                     
                     // Go to the sibling list, and find all unchecked checkbox images
-                    jQuery(this).siblings("ul").find(".checkbox").not(".checked")
+                    $siblings.find(".checkbox").not(".checked")
                         // Set as fully checked:
                         .removeClass("half_checked")
                         .addClass("checked")
                     ;
-                    jQuery(this).siblings("ul").find(".single_checkbox").not(".checked")
+                    $siblings.find(".single_checkbox").not(".checked")
                         // Set as fully checked:
                         .addClass("checked")
                         
                         // For each one, fire the onCheck callback
                         .each(function() {
-                            if (settings.onCheck) settings.onCheck(jQuery(this).parent());
+                            if (settings.onCheck) settings.onCheck($this.parent());
                         })
                         
                         // For each one, check the checkbox (actual input element)
@@ -185,18 +189,18 @@ jQuery.fn.checkTree = function(settings) {
                     //if (settings.onUnCheck) settings.onUnCheck(jQuery(this).parent());
                     
                     // Go to the sibling list and find all checked checkbox images
-                    jQuery(this).siblings("ul").find(".checkbox").filter(".checked")
+                    $siblings.find(".checkbox").filter(".checked")
                         // Set as fully unchecked
                         .removeClass("half_checked")
                         .removeClass("checked")
                     ;
-                    jQuery(this).siblings("ul").find(".single_checkbox").filter(".checked")
+                    $siblings.find(".single_checkbox").filter(".checked")
                         // Set as unchecked:
                         .removeClass("checked")
                         
                         // For each one fire the onUnCheck callback
                         .each(function() {
-                            if (settings.onUnCheck) settings.onUnCheck(jQuery(this).parent());
+                            if (settings.onUnCheck) settings.onUnCheck($this.parent());
                         })
                         
                         // For each one, uncheck the checkbox (the actual input element)
@@ -208,33 +212,32 @@ jQuery.fn.checkTree = function(settings) {
                 }
                 
                 // Tell our parent checkbox that we've changed (they might need to change their state)
-                jQuery(this).parents("ul").siblings(":checkbox").change();
+                $this.parents("ul").siblings(":checkbox").change();
             });
             
             // When you click the single_checkbox, it should 1) fire callback, and 2) send a message up tree
             $single_checkbox.click(function() {
-                // Toggle the checked class)
-                jQuery(this)
-                    .toggleClass("checked")
-                ;
+                var $this = jQuery(this);
+				// Toggle the checked class)
+                $this.toggleClass("checked");
                 
                 // Check/uncheck children depending on our status.
-                if (jQuery(this).hasClass("checked")) {
+                if ($this.hasClass("checked")) {
                 
 					// If this is a single selection tree, remove all other checked single_checkboxes
 					// (regular checkboxes are hidden and won't be used at all)
-					if(jQuery(this).parents(".single_selection_tree").length > 0){
-						jQuery(this).parents(".single_selection_tree").find(".single_checkbox").filter(".checked")
+					if($this.parents(".single_selection_tree").length > 0){
+						$this.parents(".single_selection_tree").find(".single_checkbox").filter(".checked")
 							.removeClass("checked")
 							.siblings(":checkbox").attr("checked", "");
-						jQuery(this).addClass("checked");
+						$this.addClass("checked");
 					}
 					
                     // Fire the check callback for this parent
-                    if (settings.onCheck) settings.onCheck(jQuery(this).parent());
+                    if (settings.onCheck) settings.onCheck($this.parent());
                     
                     // The :checkbox is tied to this single_checkbox, so check it
-					jQuery(this).siblings(":checkbox")
+					$this.siblings(":checkbox")
 						.attr("checked", "checked")
 					;
                 }
@@ -242,48 +245,46 @@ jQuery.fn.checkTree = function(settings) {
                 // If Unchecked:
                 else {
                     // Fire the uncheck callback for this parent
-                    if (settings.onUnCheck) settings.onUnCheck(jQuery(this).parent());
+                    if (settings.onUnCheck) settings.onUnCheck($this.parent());
                     
                     // The :checkbox is tied to this single_checkbox, so uncheck it
-					jQuery(this).siblings(":checkbox")
+					$this.siblings(":checkbox")
 						.attr("checked", "")
 					;
                 }
                 
                 // Tell our parent checkbox that we've changed (they might need to change their state)
-                jQuery(this).parents("ul").siblings(":checkbox").change();
+                $this.parents("ul").siblings(":checkbox").change();
             });
             
             // Add the appropriate classes to the new checkbox image based on the old one:
-            if (jQuery(this).children(".checkbox").hasClass("checked"))
+            if ($this.children(".checkbox").hasClass("checked"))
                 $checkbox.addClass("checked");
-            else if (jQuery(this).children(":checkbox").attr("checked")) {
+            else if ($this.children(":checkbox").attr("checked")) {
                 $checkbox.addClass("checked");
-                jQuery(this).parents("ul").siblings(":checkbox").change()
+                $this.parents("ul").siblings(":checkbox").change()
             }
-            else if (jQuery(this).children(".checkbox").hasClass("half_checked"))
+            else if ($this.children(".checkbox").hasClass("half_checked"))
                 $checkbox.addClass("half_checked");
             
             // Remove any existing arrows or checkboxes or labels
-            jQuery(this).children(".arrow").remove();
-            jQuery(this).children(".checkbox").remove();
-            jQuery(this).children("label").remove();
+            $this.children(".arrow").remove();
+            $this.children(".checkbox").remove();
+            $this.children("label").remove();
             
             // Prepend the new arrow, label, and checkbox images to the front of the LI
-            jQuery(this)
+            $this
                 .prepend($label)
                 .prepend($single_checkbox)
-                .prepend($checkbox)
+                //.prepend($checkbox)
             ;
             
-            if (jQuery(this).children("ul").length == 0) {
+            if ($this.children("ul").length == 0) {
 				$checkbox.css('display', 'none');
 				var $checkbox_placeholder = jQuery("<div class=\"checkbox_placeholder\"></div>");
-				jQuery(this).prepend($checkbox_placeholder)
+				$this.prepend($checkbox_placeholder)
             }
-            else jQuery(this)
-                .prepend($arrow)
-            ;
+            else $this.prepend($arrow);
         })
         
         .find("label")
@@ -303,12 +304,14 @@ jQuery.fn.checkTree = function(settings) {
             // Add a hover class to the labels when hovering
             .hover(
                 function() { 
-                    jQuery(this).addClass("hover");
-                    if (settings.onLabelHoverOver) settings.onLabelHoverOver(jQuery(this).parent());
+                    var $this = jQuery(this);
+					$this.addClass("hover");
+                    if (settings.onLabelHoverOver) settings.onLabelHoverOver($this.parent());
                 },
                 function() {
-                    jQuery(this).removeClass("hover");
-                    if (settings.onLabelHoverOut) settings.onLabelHoverOut(jQuery(this).parent());
+					var $this = jQuery(this);
+                    $this.removeClass("hover");
+                    if (settings.onLabelHoverOut) settings.onLabelHoverOut($this.parent());
                 }
             )
         .end()
