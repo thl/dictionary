@@ -2,6 +2,9 @@ class Pronunciation < ActiveRecord::Base
   has_one :meta, :foreign_key => 'pronunciation_id'
   belongs_to :definition, :foreign_key => "def_id"
 
+  #for all kmaps associations 
+  has_many :category_pronunciation_associations, :dependent => :destroy
+
   belongs_to :pronunciation_category, :class_name => 'Category'
   belongs_to :literary_genre_type, :class_name => 'Category'
   belongs_to :literary_period_type, :class_name => 'Category'

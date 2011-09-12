@@ -2041,12 +2041,20 @@ module DefinitionsHelper
     #end
     #resultstr << "<span id=\"internal_definition[language_type#{@definition.id}]_selector\">"
     #resultstr << '['+@definition.language+']' if @definition.language != nil
-    @data = Category.find(184)
-    resultstr << category_selector(@data, :definition, :language_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
-    resultstr << "<br>"
-    #resultstr << "</span><br>"
-    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[language_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[language_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[language_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[language_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    #before update
+    #@data = Category.find(184)
+    #resultstr << category_selector(@data, :definition, :language_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    #resultstr << "<br>"
+    ##resultstr << "</span><br>"
+    ##resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[language_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[language_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[language_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[language_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     
+    #<!-- Language div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 184), :update => "#{@definition.id}_definition_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@definition.id}_definition_language_type_div" + "'>" 
+		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 184})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
     
     resultstr << "<b>Tibetan Dialect: </b>"
     #resultstr << "<input type=hidden name=definition[major_dialect_family] id=definition[major_dialect_family"+@definition.id.to_s+"] value=\""+@definition.major_dialect_family.to_s+"\" >"
@@ -2058,11 +2066,12 @@ module DefinitionsHelper
     #resultstr << "<span id=\"internal_definition[major_dialect_family_type#{@definition.id}]_selector\">"
     #resultstr << '['+@definition.major_dialect_family+']' if @definition.major_dialect_family != nil
     ##resultstr << link_to_remote( title,{:update => "internal_definition[major_dialect_family_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 638, 'model_name' => 'definition', 'function_name' => "major_dialect_family_type", :update_id => "internal_definition[major_dialect_family_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
-    @data = Category.find(638)
-    resultstr << category_selector(@data, :definition, :major_dialect_family_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    resultstr << "<br>"
-    #resultstr << "</span><br>"
-    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[major_dialect_family_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[major_dialect_family_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[major_dialect_family_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[major_dialect_family_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+#    #before update
+    #@data = Category.find(638)
+    #resultstr << category_selector(@data, :definition, :major_dialect_family_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << "<br>"
+    ##resultstr << "</span><br>"
+    ##resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[major_dialect_family_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[major_dialect_family_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[major_dialect_family_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[major_dialect_family_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     
     
     resultstr << "<b>Grammatical function: </b>" 
@@ -2074,11 +2083,12 @@ module DefinitionsHelper
     #resultstr << "<span id=internal_definition[grammatical_function_type#{@definition.id}]_selector>"
     #resultstr << '['+@definition.grammatical_function+']' if @definition.grammatical_function != nil
     #resultstr << link_to_remote( (@definition.grammatical_function_type != nil ? @definition.grammatical_function_type.title : 'Select A Value'),{:update => "internal_definition[grammatical_function_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 286, 'model_name' => 'definition', 'function_name' => "grammatical_function_type", :update_id => "internal_definition[grammatical_function_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
-    @data = Category.find(286)
-    resultstr << category_selector(@data, :definition, :grammatical_function_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    resultstr << "<br>"
-    #resultstr <<"</span>"
-    #resultstr << "</span><br>"
+#   #before update 
+    #@data = Category.find(286)
+    #resultstr << category_selector(@data, :definition, :grammatical_function_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << "<br>"
+    ##resultstr <<"</span>"
+    ##resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[grammatical_function_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[grammatical_function_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[grammatical_function_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[grammatical_function_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
   
   
@@ -2106,11 +2116,12 @@ module DefinitionsHelper
     resultstr << "<span id=\"internal_definition[register_type#{@definition.id}]_selector\">"
     resultstr << '['+@definition.register+']' if @definition.register != nil
     #resultstr << link_to_remote( title,{:update => "internal_definition[register_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 190, 'model_name' => 'definition', 'function_name' => "register_type", :update_id => "internal_definition[register_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
-    @data = Category.find(190)
-    resultstr << category_selector(@data, :definition, :register_type, true, :hasTree => 'true', :singleSelectionTree => 'true')    
-    resultstr << "</span><br>"
-    resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[register_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[register_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[register_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[register_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    # resultstr << in_place_select_editor_field( :definition, :register, {}, {:select_options => @register, :fieldname => 'internal_definition[register]'})+"<br>"
+#    #before update
+    #@data = Category.find(190)
+    #resultstr << category_selector(@data, :definition, :register_type, true, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[register_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[register_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[register_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[register_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+    ## resultstr << in_place_select_editor_field( :definition, :register, {}, {:select_options => @register, :fieldname => 'internal_definition[register]'})+"<br>"
 
 
     resultstr << "<b>Language context: </b>"
@@ -2123,10 +2134,11 @@ module DefinitionsHelper
     resultstr << "<span id=\"internal_definition[language_context_type#{@definition.id}]_selector\">"
     resultstr << '['+@definition.language_context+']' if @definition.language_context != nil
     #resultstr << link_to_remote( title,{:update => "internal_definition[language_context_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 185, 'model_name' => 'definition', 'function_name' => "language_context_type", :update_id => "internal_definition[language_context_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
-    @data = Category.find(185)
-    resultstr << category_selector(@data, :definition, :language_context_type, true, :hasTree => 'true', :singleSelectionTree => 'true')        
-    resultstr << "</span><br>"
-    resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[language_context_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[language_context_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[language_context_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[language_context_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+#    #before update
+    #@data = Category.find(185)
+    #resultstr << category_selector(@data, :definition, :language_context_type, true, :hasTree => 'true', :singleSelectionTree => 'true')        
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[language_context_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[language_context_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[language_context_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[language_context_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     # resultstr << in_place_select_editor_field( :definition, :language_context, {}, {:select_options => @language_context, :fieldname => 'internal_definition[language_context]'})+"<br>"
 
     resultstr << "<b>Literary genre: </b>"
@@ -2139,11 +2151,12 @@ module DefinitionsHelper
     resultstr << "<span id=\"internal_definition[literary_genre_type#{@definition.id}]_selector\">"
     resultstr << '['+@definition.literary_genre+']' if @definition.literary_genre != nil
     #resultstr << link_to_remote( title,{:update => "internal_definition[literary_genre_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 119, 'model_name' => 'definition', 'function_name' => "literary_genre_type", :update_id => "internal_definition[literary_genre_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
-    @data = Category.find(119)
-    resultstr << category_selector(@data, :definition, :literary_genre_type, true, :hasTree => 'true', :singleSelectionTree => 'true')            
-    resultstr << "</span><br>"
-    # resultstr <<  "<span id=internal_definition[literary_genre"+@definition.id.to_s+"]_value class=menuvalue onclick=dialect_id="+@definition.id.to_s+";show_menu(genre_menu,getCoord(arguments[0]));>"+@definition.literary_genre+"</span><br>"
-    resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+#   #before update
+    #@data = Category.find(119)
+    #resultstr << category_selector(@data, :definition, :literary_genre_type, true, :hasTree => 'true', :singleSelectionTree => 'true')            
+    #resultstr << "</span><br>"
+    ## resultstr <<  "<span id=internal_definition[literary_genre"+@definition.id.to_s+"]_value class=menuvalue onclick=dialect_id="+@definition.id.to_s+";show_menu(genre_menu,getCoord(arguments[0]));>"+@definition.literary_genre+"</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     
     
     resultstr << "<b>Literary period: </b>"
@@ -2156,10 +2169,11 @@ module DefinitionsHelper
     resultstr << "<span id=\"internal_definition[literary_period_type#{@definition.id}]_selector\">"
     resultstr << '['+@definition.literary_period+']' if @definition.literary_period != nil
     #resultstr << link_to_remote( title,{:update => "internal_definition[literary_period_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 187, 'model_name' => 'definition', 'function_name' => "literary_period_type", :update_id => "internal_definition[literary_period_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
-    @data = Category.find(187)
-    resultstr << category_selector(@data, :definition, :literary_period_type, true, :hasTree => 'true', :singleSelectionTree => 'true')            
-    resultstr << "</span><br>"
-    resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+#   #before update
+    #@data = Category.find(187)
+    #resultstr << category_selector(@data, :definition, :literary_period_type, true, :hasTree => 'true', :singleSelectionTree => 'true')            
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
 
 
     resultstr << "<b>Thematic classification: </b>"
@@ -2172,10 +2186,11 @@ module DefinitionsHelper
     resultstr << "<span id=\"internal_definition[thematic_classification_type#{@definition.id}]_selector\">"
     resultstr << '['+@definition.thematic_classification+']' if @definition.thematic_classification != nil
     #resultstr << link_to_remote( title,{:update => "internal_definition[thematic_classification_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 272, 'model_name' => 'definition', 'function_name' => "thematic_classification_type", :update_id => "internal_definition[thematic_classification_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
-    @data = Category.find(272)
-    resultstr << category_selector(@data, :definition, :thematic_classification_type, true, :hasTree => 'true', :singleSelectionTree => 'true')            
-    resultstr << "</span><br>"
-    resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+#    #before update
+    #@data = Category.find(272)
+    #resultstr << category_selector(@data, :definition, :thematic_classification_type, true, :hasTree => 'true', :singleSelectionTree => 'true')            
+    #resultstr << "</span><br>"
+    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     
     resultstr << "<b>Numerology: </b>"
     resultstr << "<input type=hidden name=internal_definition[numerology] id=internal_definition[numerology] value=\""+@definition.numerology.to_s+"\" >"

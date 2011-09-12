@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100924060552) do
+ActiveRecord::Schema.define(:version => 20110912110234) do
 
   create_table "bdrb_job_queues", :force => true do |t|
     t.binary   "args"
@@ -29,6 +29,54 @@ ActiveRecord::Schema.define(:version => 20100924060552) do
     t.string   "runner_info"
     t.string   "worker_key"
     t.datetime "scheduled_at"
+  end
+
+  create_table "category_etymology_associations", :force => true do |t|
+    t.integer  "etymology_id"
+    t.integer  "category_branch_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "category_pronunciation_associations", :force => true do |t|
+    t.integer  "pronunciation_id"
+    t.integer  "category_branch_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "category_spelling_associations", :force => true do |t|
+    t.integer  "spelling_id"
+    t.integer  "category_branch_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "category_translation_associations", :force => true do |t|
+    t.integer  "translation_id"
+    t.integer  "category_branch_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "category_translation_equivalent_associations", :force => true do |t|
+    t.integer  "translation_equivalent_id"
+    t.integer  "category_branch_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "definition_category_associations", :force => true do |t|
+    t.integer  "definition_id"
+    t.integer  "category_branch_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "definition_definition_forms", :force => true do |t|

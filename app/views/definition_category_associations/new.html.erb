@@ -1,0 +1,62 @@
+
+<% 
+@data = Category.find(data_id)
+@definition = Definition.find(id)
+@model_name = 'definition'
+@function_name = function_name
+@id = id
+@update_id = update_id
+%>
+
+<% if @function_name == 'thematic_classification_type' %>
+  <% form_for :definition_category_association, :url => { :action => "update_thematic_classification" } do |f| %>
+    <%= f.hidden_field :id %>
+    <%# title = @definition.thematic_classification_type.blank? ? '' : @definition.thematic_classification_type.title %>
+    <table class='mobj' border='0' cellspacing='0'>
+		<%=
+			category_fields({
+				:subject => {:display => '', :label => ''}, 
+				:root =>  @data, 
+				:varname => @model_name,
+				:hastree => 'true',
+				:selectable => false,
+				:fieldname => :definition_category_associations, #@function_name,
+				:include_js => true
+			})
+		%> 
+	<tr><td></td></tr>
+	</table>
+    <br/>
+    <%= submit_to_remote 'update_button','update', :url => { :action => "update_thematic_classification" }, :update => "thematic_classification_type#{id}" %>
+    <%= link_to_remote 'cancel', {:url => thematic_classification_show_path(params['id']), :method => 'get', :update => "thematic_classification_type#{id}" } %>
+  <% end %>
+<%end %>
+
+
+<!--<h1>New Something</h1>-->
+<%#  form_for(@definition_category_association) do |f| %>
+<%#  form_for(:definition_category_association) do |f| %>
+<%#=   category_form_table :locals => { :f => f, :selectable => true}, :form_partial => 'form', :footer => 'Create' %>
+<%#  end %>
+
+<%# form_for(@definition_category_association) do |f| %>
+  <%#= f.error_messages %>
+
+  <p>
+    <%#= f.label :definition_id %><br />
+    <%#= f.text_field :definition_id %>
+  </p>
+  <p>
+    <%#= f.label :category_branch_id %><br />
+    <%#= f.text_field :category_branch_id %>
+  </p>
+  <p>
+    <%#= f.label :category_id %><br />
+    <%#= f.text_field :category_id %>
+  </p>
+  <p>
+    <%#= f.submit 'Create' %>
+  </p>
+<%# end %>
+
+<%#= link_to 'Back', definition_category_associations_path %>

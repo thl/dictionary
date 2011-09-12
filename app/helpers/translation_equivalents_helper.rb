@@ -498,26 +498,36 @@ module TranslationEquivalentsHelper
     #resultstr << link_to_remote( title,{:update => "translation_equivalent[language_type#{@translation_equivalent.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'translation_equivalents', :action => 'display_category_selector', :id => @translation_equivalent.id, :params => {'data_id' => 184, 'model_name' => 'translation_equivalent', 'function_name' => "language_type", :update_id => "translation_equivalent[language_type#{@translation_equivalent.id}]_selector"}}}, :class => 'selector_link' )
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('translation_equivalent[language_type"+@translation_equivalent.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    @data = Category.find(184)
-    #resultstr << category_selector(@data, :translation_equivalent, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @translation_equivalent.language_type == nil
-      title = ''
-    else
-      title = @translation_equivalent.language_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :translation_equivalent,
-  					:selectable => false,
-  					:fieldname => :language_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before latest one
+    #@data = Category.find(184)
+    ##resultstr << category_selector(@data, :translation_equivalent, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @translation_equivalent.language_type == nil
+    #  title = ''
+    #else
+    #  title = @translation_equivalent.language_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :translation_equivalent,
+  	#				:selectable => false,
+  	#				:fieldname => :language_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
+    #<!-- Language div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_translation_equivalent_association_url(@translation_equivalent.id, 184), :update => "#{@translation_equivalent.id}_translation_equivalent_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'translations', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@translation_equivalent.id}_translation_equivalent_language_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_translation_equivalent_associations/index', :locals => {:data_id => 184})		
+		assoc = @translation_equivalent.category_translation_equivalent_associations.find(:all, :conditions => {:category_branch_id => 184})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+    
     
     resultstr << "<b>Analytical note: </b>"
     #resultstr << "<input type=hidden name=translation_equivalent[analytical_note] id=translation_equivalent[analytical_note] value=\""+@translation_equivalent.analytical_note.to_s+"\" >"

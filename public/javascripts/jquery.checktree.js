@@ -177,7 +177,7 @@ jQuery.fn.checkTree = function(settings) {
                         
                         // For each one, check the checkbox (actual input element)
                         .siblings(":checkbox")
-                            .attr("checked", "checked")
+                            .attr("checked", true)
                     ;
                     
                     //jQuery(this).siblings(".single_checkbox").addClass("checked");
@@ -205,7 +205,7 @@ jQuery.fn.checkTree = function(settings) {
                         
                         // For each one, uncheck the checkbox (the actual input element)
                         .siblings(":checkbox")
-                            .attr("checked", "")
+                            .attr("checked", false)
                     ;
                     
                     //jQuery(this).siblings(".single_checkbox").removeClass("checked");
@@ -229,7 +229,7 @@ jQuery.fn.checkTree = function(settings) {
 					if($this.parents(".single_selection_tree").length > 0){
 						$this.parents(".single_selection_tree").find(".single_checkbox").filter(".checked")
 							.removeClass("checked")
-							.siblings(":checkbox").attr("checked", "");
+							.siblings(":checkbox").attr("checked", false);
 						$this.addClass("checked");
 					}
 					
@@ -238,7 +238,7 @@ jQuery.fn.checkTree = function(settings) {
                     
                     // The :checkbox is tied to this single_checkbox, so check it
 					$this.siblings(":checkbox")
-						.attr("checked", "checked")
+						.attr("checked", true)
 					;
                 }
                 
@@ -249,7 +249,7 @@ jQuery.fn.checkTree = function(settings) {
                     
                     // The :checkbox is tied to this single_checkbox, so uncheck it
 					$this.siblings(":checkbox")
-						.attr("checked", "")
+						.attr("checked", false)
 					;
                 }
                 

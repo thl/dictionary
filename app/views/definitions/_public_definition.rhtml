@@ -79,116 +79,72 @@
 			<%=   render :partial => 'translations/generic_index', :locals => {:o => d,:d => d, :parent_id => parent_id, :head_id => head_id} %>			
 		</div>
 		
+		<!-- thematic classification div -->
+		<b>Thematic classification:</b>
+		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 272), :update => "#{@definition.id}_definition_thematic_classification_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_thematic_classification' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Thematic Classification', :confirm => "Are you sure you want to remove this Thematic Classification?" %>
+		<div id="<%= d.id%>_definition_thematic_classification_div"> 
+			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 272} %>			
+		</div>
+			
+		<!--	
 		<%# if (d.thematic_classification != nil and d.thematic_classification != "") or (d.thematic_classification_type != nil) %>
 			<b>Thematic classification:</b>  
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Thematic Classification'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_thematic_classification', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Thematic Classification?") %>			
-			<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => thematic_classification_edit_url(:id => @definition.id), :update => "thematic_classification_type#{@definition.id}", :method => :get, :html => {:class => 'definitions_show'} ) }" %>
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_thematic_classification' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Thematic Classification', :confirm => "Are you sure you want to remove this Thematic Classification?" %>
-			<% if d.language == 'Tibetan' %>
+			<%#old#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Thematic Classification'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_thematic_classification', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Thematic Classification?") %>			
+			<%#=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => thematic_classification_edit_url(:id => @definition.id), :update => "thematic_classification_type#{@definition.id}", :method => :get, :html => {:class => 'definitions_show'} ) }" %>
+			<%#= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_thematic_classification' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Thematic Classification', :confirm => "Are you sure you want to remove this Thematic Classification?" %>
+			<%# if d.language == 'Tibetan' %>
 				<span class="tib1">
-			<% end %>
-    		<span id=definition[thematic_classification<%= @definition.id %>]_value class=menuvalue onclick1=definition_id=<%= d.id %>;show_menu(theme,getCoord(arguments[0]));>
-		    <%= image_tag('comment.png',:border => 0, :title => 'Edit') %> 
+			<%# end %>
+    		<span id=definition[thematic_classification<%#= @definition.id %>]_value class=menuvalue onclick1=definition_id=<%= d.id %>;show_menu(theme,getCoord(arguments[0]));>
+		    <%#= image_tag('comment.png',:border => 0, :title => 'Edit') %> 
 		    <div id="thematic_classification_type<%= d.id %>">
 		    <span id="definition[thematic_classification_type<%= d.id %>]_selector" >
-			    <%#= '['+d.thematic_classification.s+']' if d.thematic_classification != nil %>
-			    <%#= render(:partial => 'display_category_selector_link', :locals => {:function_name => 'thematic_classification_type', :title => (d.thematic_classification_type != nil ? d.thematic_classification_type.title : 'Select A Value'), :id => d.id, :data_id => 272, :update_id => "definition[thematic_classification_type#{d.id}]_selector"})%>
-				<%#= render(:partial => 'display_category_selector_show', :locals => {:function_name => 'thematic_classification_type', :title => (d.thematic_classification_type != nil ? d.thematic_classification_type.title : 'Select A Value'), :id => d.id, :data_id => 272, :update_id => "definition[thematic_classification_type#{d.id}]_selector"})%>
-				<% if (d.thematic_classification != nil and d.thematic_classification != "") or (d.thematic_classification_type != nil) %>
-				  <%= render(:partial => 'category_selector_show', :locals => {:function_name => 'thematic_classification_type', :title => (d.thematic_classification_type != nil ? d.thematic_classification_type.title : 'Select A Value'), :id => d.id, :data_id => 272, :update_id => "definition[thematic_classification_type#{d.id}]_selector"})%>
-				<% end %>
+			    
+				
+				<%# if (d.thematic_classification != nil and d.thematic_classification != "") or (d.thematic_classification_type != nil) %>
+				  <%#= render(:partial => 'category_selector_show', :locals => {:function_name => 'thematic_classification_type', :title => (d.thematic_classification_type != nil ? d.thematic_classification_type.title : 'Select A Value'), :id => d.id, :data_id => 272, :update_id => "definition[thematic_classification_type#{d.id}]_selector"})%>
+				<%# end %>
+				
 		    </span>
 			</div>
 			<%#= image_tag 'comment'%>
 			<%#= @definition.thematic_classification.s if @definition.thematic_classification != nil %>
 	
 			</span>
-			<% if d.language == 'Tibetan' %>
+			<%# if d.language == 'Tibetan' %>
 				</span>
-			<% end %>
+			<%# end %>
 			<br>
      		<script type="text/javascript" language="javascript">Event.observe('definition[thematic_classification<%=d.id%>]_value', 'mouseover', function(e){ e=document.getElementById('definition[thematic_classification<%=d.id%>]_value');e.style.backgroundColor='#FFFF99'; });Event.observe('definition[thematic_classification<%=d.id%>]_value', 'mouseout', function(e){ new Effect.Highlight('definition[thematic_classification<%=d.id%>]_value',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>
 		<%# end %>
+	-->
+
+	<!-- Function div -->
+	<b>Function:</b>
+	<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 286), :update => "#{@definition.id}_definition_grammatical_function_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+	<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_grammatical_function' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Grammatical Function', :confirm => "Are you sure you want to remove this Grammatical Function?" %>
+	<div id="<%= d.id%>_definition_grammatical_function_div"> 
+		<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 286} %>			
+	</div>
 
 
-
-		<%# if (d.grammatical_function != nil and d.grammatical_function != "") or (d.grammatical_function_type_id != nil) %>
-		<b>Function:</b>  
-		    <input type=hidden name=definition[grammatical_function<%= d.id %>] id=definition[grammatical_function<%= d.id %>] value="<%= d.grammatical_function %>" >
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Grammatical Function'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_grammatical_function', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Grammatical Function?") %>			
-			<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => grammatical_function_edit_url(:id => @definition.id), :update => "grammatical_function_type#{@definition.id}", :method => :get, :html => {:class => 'definitions_show'} ) }" %>
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_grammatical_function' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Grammatical Function', :confirm => "Are you sure you want to remove this Grammatical Function?" %>
-
-			<% if d.language == 'Tibetan' %>
-			  <span class="tib1">
-			<% end %>
-    		
-			<span id=definition[grammatical_function<%= d.id %>]_value class=menuvalue onclick1='definition_id=<%= d.id %>;dialect_id=<%= d.id %>;show_menu(grammar_menu,getCoord(arguments[0]));'>
-			<%#= link_to image_tag('comment.png',:border => 0), '#', :title => 'Edit function' %>
-			<%= image_tag('comment.png',:border => 0, :title => 'Edit') %> 
-			
-			  <div id="grammatical_function_type<%= d.id %>">
-			    <span id="definition[grammatical_function_type<%= d.id %>]_selector" >
-			      <%#= '[<i>'+d.grammatical_function.s+'</i>]' if d.grammatical_function != nil %>
-			      <%#= render(:partial => 'display_category_selector_link', :locals => {:function_name => 'grammatical_function_type', :title => (d.grammatical_function_type != nil ? d.grammatical_function_type.title : 'Select A Value'), :id => d.id, :data_id => 286, :update_id => "definition[grammatical_function_type#{d.id}]_selector"})%>
-			      <% if (d.grammatical_function != nil and d.grammatical_function != "") or (d.grammatical_function_type_id != nil) %>
-				    <%= render(:partial => 'category_selector_show', :locals => {:function_name => 'grammatical_function_type', :title => (d.grammatical_function_type != nil ? d.grammatical_function_type.title : 'Select A Value'), :id => d.id, :data_id => 286, :update_id => "grammatical_function_type#{d.id}"})%>
-				  <% end %>
-				</span>
-			  </div>
-			</span>
-			<% if d.language == 'Tibetan' %>
-				</span>
-			<% end %>
-			<br>
-    		<script type="text/javascript" language="javascript">Event.observe('definition[grammatical_function<%= d.id %>]_value', 'mouseover', function(e){ e=document.getElementById('definition[grammatical_function<%= d.id %>]_value');e.style.backgroundColor='#FFFF99'; });Event.observe('definition[grammatical_function<%= d.id %>]_value', 'mouseout', function(e){ new Effect.Highlight('definition[grammatical_function<%= d.id %>]_value',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>
-		<%# end %>
-
-		<%# if d.register_type_id != nil %>
-		<b>Register: </b>
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Register'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_register', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Register?") %>			
-			<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => register_edit_url(:id => @definition.id), :update => "register_type#{@definition.id}", :method => :get, :html => {:class => 'definitions_show'} ) }" %>
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_register' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Register', :confirm => "Are you sure you want to remove this Register?" %>
-			<%#= link_to image_tag('comment.png',:border => 0,:id => 'register'+d.id.to_s), '#', :title => 'Edit register' %>
-		    <span id=definition[register<%= d.id %>]_value class=menuvalue onclick1='definition_id=<%= d.id %>;dialect_id=<%= d.id %>;show_menu(grammar_menu,getCoord(arguments[0]));'>
-			  <%#= link_to image_tag('comment.png',:border => 0), '#', :title => 'Edit function' %>
-			  <%= image_tag('comment.png',:border => 0, :title => 'Edit') %> 
-			  <div id="register_type<%= d.id %>"> 
-			    <span id="definition[register_type<%= d.id %>]_selector" >
-				  <%#= '[<i>'+d.register.s+'</i>]' if d.register != nil %>
-				  <%#= render(:partial => 'display_category_selector_link', :locals => {:function_name => 'register_type', :title => (d.register_type != nil ? d.register_type.title : 'Select A Value'), :id => d.id, :data_id => 190, :update_id => "definition[register_type#{d.id}]_selector"})%>
-			      <% if d.register_type_id != nil %>  
-			        <%= render(:partial => 'category_selector_show', :locals => {:function_name => 'register_type', :title => (d.register_type != nil ? d.register_type.title : 'Select A Value'), :id => d.id, :data_id => 190, :update_id => "register_type#{d.id}"})%>
-			      <% end %>
-			    </span>
-			  </div>
-			</span>
-	    	<script type="text/javascript" language="javascript">Event.observe('definition[register<%= d.id %>]_value', 'mouseover', function(e){ e=document.getElementById('definition[register<%= d.id %>]_value');e.style.backgroundColor='#FFFF99'; });Event.observe('definition[register<%= d.id %>]_value', 'mouseout', function(e){ new Effect.Highlight('definition[register<%= d.id %>]_value',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>
-    		<%#= in_place_select_editor_field( :definition, :register, {}, {:select_options => @register, :fieldname => 'definition[register]', :external_control => 'register'+d.id.to_s}) %> <br>
-		<%# end %>
+		<!-- Register div -->
+		<b>Register:</b>
+		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 190), :update => "#{@definition.id}_definition_register_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_register' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Register', :confirm => "Are you sure you want to remove this Register?" %>
+		<div id="<%= d.id%>_definition_register_div"> 
+			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 190} %>			
+		</div>
 		
-		<%# if d.language_context_type_id != nil %>
-		<b>Language context: </b>
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Language Context'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_language_context', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Language Content?") %>			
-			<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => language_context_edit_url(:id => @definition.id), :update => "language_context_type#{@definition.id}", :method => :get, :html => {:class => 'definitions_show'} ) }" %>
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language_context' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language Context', :confirm => "Are you sure you want to remove this Language Content?" %>
-		    <span id=definition[language_context<%= d.id %>]_value class=menuvalue onclick1='definition_id=<%= d.id %>;dialect_id=<%= d.id %>;show_menu(grammar_menu,getCoord(arguments[0]));'>
-			<%#= link_to image_tag('comment.png',:border => 0), '#', :title => 'Edit function' %>
-			<%= image_tag('comment.png',:border => 0, :title => 'Edit') %> 
-			<div id="language_context_type<%= d.id %>">
-			<span id="definition[language_context_type<%= d.id %>]_selector" >
-				<%#= '[<i>'+d.language_context.s+'</i>]' if d.language_context != nil %>
-				<% if d.language_context_type_id != nil %>  
-			        <%= render(:partial => 'category_selector_show', :locals => {:function_name => 'language_context_type', :title => (d.language_context_type != nil ? d.language_context_type.title : 'Select A Value'), :id => d.id, :data_id => 185, :update_id => "language_context_type#{d.id}"})%>
-			    <% end %>
-				<%#= render(:partial => 'display_category_selector_link', :locals => {:function_name => 'language_context_type', :title => (d.language_context_type != nil ? d.language_context_type.title : 'Select A Value'), :id => d.id, :data_id => 185, :update_id => "definition[language_context_type#{d.id}]_selector"})%>
-			</span>
-			</div>
-			</span>
-	    	<script type="text/javascript" language="javascript">Event.observe('definition[language_context<%= d.id %>]_value', 'mouseover', function(e){ e=document.getElementById('definition[language_context<%= d.id %>]_value');e.style.backgroundColor='#FFFF99'; });Event.observe('definition[language_context<%= d.id %>]_value', 'mouseout', function(e){ new Effect.Highlight('definition[language_context<%= d.id %>]_value',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>
-			<%#= link_to image_tag('comment.png',:border => 0,:id => 'language_context'+d.id.to_s), '#', :title => 'Edit language context' %>
-    		<%#= in_place_select_editor_field( :definition, :language_context, {}, {:select_options => @language_context, :fieldname => 'definition[language_context]', :external_control => 'language_context'+d.id.to_s}) %><br>
-		<%# end %>
+		<!-- Language Context div -->
+		<b>Language context:</b>
+		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 185), :update => "#{@definition.id}_definition_language_context_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language_context' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language Context', :confirm => "Are you sure you want to remove this Language Context?" %>
+		<div id="<%= d.id%>_definition_language_context_div"> 
+			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 185} %>			
+		</div>
+		
 		
 		<% if d.numerology != nil and d.numerology != "" %>
 		<b>Numerology: </b>
@@ -198,79 +154,34 @@
    			<%= in_place_editor_field( :definition, :numerology, {}, {:cols => 50, :rows => 1, :fieldname => 'definition[numerology]', :external_control => 'numerology'+d.id.to_s}) %> <br>
 		<% end %>
 
-		<%# if d.literary_genre_type_id != nil %>
-    	<b>Literary genre: </b>
-    	<input type=hidden name=definition[literary_genre<%= d.id %>] id=definition[literary_genre<%= d.id %>] value="<%= d.literary_genre %>" >
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Literary Genre'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_literary_genre', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Literary Genre?") %>			
-			<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => literary_genre_edit_url(:id => @definition.id), :update => "literary_genre_type#{@definition.id}", :method => :get, :html => {:class => 'definitions_show'} ) }" %>
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_genre' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Literary Genre', :confirm => "Are you sure you want to remove this Literary Genre?" %>
-		    <span id=definition[literary_genre<%= d.id %>]_value class=menuvalue onclick1='definition_id=<%= d.id %>;dialect_id=<%= d.id %>;show_menu(grammar_menu,getCoord(arguments[0]));'>
-			<%#= link_to image_tag('comment.png',:border => 0), '#', :title => 'Edit function' %>
-			<%= image_tag('comment.png',:border => 0, :title => 'Edit') %> 
-			<div id="literary_genre_type<%= d.id %>">
-			  <span id="definition[literary_genre_type<%= d.id %>]_selector" >
-				<%#= '[<i>'+d.literary_genre.s+'</i>]' if d.literary_genre != nil %>
-				<% if d.literary_genre_type_id != nil %>
-				  <%#= render(:partial => 'display_category_selector_link', :locals => {:function_name => 'literary_genre_type', :title => (d.literary_genre_type != nil ? d.literary_genre_type.title : 'Select A Value'), :id => d.id, :data_id => 119, :update_id => "definition[literary_genre_type#{d.id}]_selector"})%>
-			      <%= render(:partial => 'category_selector_show', :locals => {:function_name => 'literary_genre_type', :title => (d.literary_genre_type != nil ? d.literary_genre_type.title : 'Select A Value'), :id => d.id, :data_id => 119, :update_id => "literary_genre_type#{d.id}"})%>
-			    <% end %>
-			  </span>
-			</div>
-			</span>
-			<%#= link_to image_tag('comment.png',:border => 0,:id => 'literary_genre'+d.id.to_s), '#', :title => 'Edit literary genre' %>
-			<script type="text/javascript" language="javascript">Event.observe('definition[literary_genre<%=d.id%>]_value', 'mouseover', function(e){ e=document.getElementById('definition[literary_genre<%=d.id%>]_value');e.style.backgroundColor='#FFFF99'; });Event.observe('definition[literary_genre<%=d.id%>]_value', 'mouseout', function(e){ new Effect.Highlight('definition[literary_genre<%=d.id%>]_value',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>
-    		<%#= in_place_select_editor_field( :definition, :literary_genre, {}, {:select_options => @literary_genre, :fieldname => 'definition[literary_genre]', :external_control => 'literary_genre'+d.id.to_s}) %><br>
-    	<%# end %>
-
-		<%# if d.literary_period_type_id != nil %>
-		<b>Literary period: </b>
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Literary Period'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_literary_period', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Literary Period?") %>			
-			<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => literary_period_edit_url(:id => @definition.id), :update => "literary_period_type#{@definition.id}", :method => :get, :html => {:class => 'definitions_show'} ) }" %>
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_period' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Literary Period', :confirm => "Are you sure you want to remove this Literary Period?" %>
-		    <span id=definition[literary_period<%= d.id %>]_value class=menuvalue onclick1='definition_id=<%= d.id %>;dialect_id=<%= d.id %>;show_menu(grammar_menu,getCoord(arguments[0]));'>
-			<%#= link_to image_tag('comment.png',:border => 0), '#', :title => 'Edit function' %>
-			<%= image_tag('comment.png',:border => 0, :title => 'Edit') %> 
-			<div id="literary_period_type<%= d.id %>">
-			  <span id="definition[literary_period_type<%= d.id %>]_selector" >
-				<%#= '[<i>'+d.literary_period.s+'</i>]' if d.literary_period != nil %>
-				<% if d.literary_period_type_id != nil %>
-					<%#= render(:partial => 'display_category_selector_link', :locals => {:function_name => 'literary_period_type', :title => (d.literary_period_type != nil ? d.literary_period_type.title : 'Select A Value'), :id => d.id, :data_id => 187, :update_id => "definition[literary_period_type#{d.id}]_selector"})%>
-				    <%= render(:partial => 'category_selector_show', :locals => {:function_name => 'literary_period_type', :title => (d.literary_period_type != nil ? d.literary_period_type.title : 'Select A Value'), :id => d.id, :data_id => 187, :update_id => "literary_period_type#{d.id}"})%>
-				<% end%>
-			  </span>
-			</div>
-			</span>
-	    	<script type="text/javascript" language="javascript">Event.observe('definition[literary_period<%= d.id %>]_value', 'mouseover', function(e){ e=document.getElementById('definition[literary_period<%= d.id %>]_value');e.style.backgroundColor='#FFFF99'; });Event.observe('definition[literary_period<%= d.id %>]_value', 'mouseout', function(e){ new Effect.Highlight('definition[literary_period<%= d.id %>]_value',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>
-			<%#= link_to image_tag('comment.png',:border => 0,:id => 'literary_period'+d.id.to_s), '#', :title => 'Edit literary period' %>
-    		<%#= in_place_select_editor_field( :definition, :literary_period, {}, {:select_options => @literary_period, :fieldname => 'definition[literary_period]', :external_control => 'literary_period'+d.id.to_s}) %><br>
-		<%# end %>
 
 
-		<% if d.literary_form_type_id != nil %>
-    	<b>Literary form: </b>
-			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Literary Form'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_literary_form', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to remove this Literary Form?") %>			
-			<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => literary_form_edit_url(:id => @definition.id), :update => "literary_form_type#{@definition.id}", :method => :get, :html => {:class => 'definitions_show'} ) }" %>
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_form' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Literary Form', :confirm => "Are you sure you want to remove this Literary Form?" %>
-		    <span id=definition[literary_form<%= d.id %>]_value class=menuvalue onclick1='definition_id=<%= d.id %>;dialect_id=<%= d.id %>;show_menu(grammar_menu,getCoord(arguments[0]));'>
-			<%#= link_to image_tag('comment.png',:border => 0), '#', :title => 'Edit function' %>
-			<%= image_tag('comment.png',:border => 0, :title => 'Edit') %>
-			<div id="literary_form_type<%= d.id %>"> 
-			  <span id="definition[literary_form_type<%= d.id %>]_selector" >
-				<%#= '[<i>'+d.literary_form.s+'</i>]' if d.literary_form != nil %>
-				<% if d.literary_form_type_id != nil %>
-					<%#= render(:partial => 'display_category_selector_link', :locals => {:function_name => 'literary_form_type', :title => (d.literary_form_type != nil ? d.literary_form_type.title : 'Select A Value'), :id => d.id, :data_id => 186, :update_id => "definition[literary_form_type#{d.id}]_selector"})%>
-					<%= render(:partial => 'category_selector_show', :locals => {:function_name => 'literary_form_type', :title => (d.literary_form_type != nil ? d.literary_form_type.title : 'Select A Value'), :id => d.id, :data_id => 186, :update_id => "literary_form_type#{d.id}"})%>
-				<% end %>
-			  </span>
-			</div>
-			</span>
-			<%#= link_to image_tag('comment.png',:border => 0,:id => 'literary_form'+d.id.to_s), '#', :title => 'Edit literary form' %>
-    		<%#= in_place_select_editor_field( :definition, :literary_form, {}, {:select_options => @literary_form, :fieldname => 'definition[literary_form]', :external_control => 'literary_form'+d.id.to_s}) %><br>
-			<script type="text/javascript" language="javascript">Event.observe('definition[literary_form<%= d.id %>]_value', 'mouseover', function(e){ e=document.getElementById('definition[literary_form<%= d.id %>]_value');e.style.backgroundColor='#FFFF99'; });Event.observe('definition[literary_form<%= d.id %>]_value', 'mouseout', function(e){ new Effect.Highlight('definition[literary_form<%= d.id %>]_value',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>
-		<% end %>
-		
-		
-		
+		<!-- Literary genre div -->
+		<b>Literary genre:</b>
+		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 119), :update => "#{@definition.id}_definition_literary_genre_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_genre' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Literary genre', :confirm => "Are you sure you want to remove this Literary genre?" %>
+		<div id="<%= d.id%>_definition_literary_genre_div"> 
+			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 119} %>			
+		</div>
+
+
+		<!-- Literary period div -->
+		<b>Literary period:</b>
+		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 187), :update => "#{@definition.id}_definition_literary_period_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_period' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Literary period', :confirm => "Are you sure you want to remove this Literary period?" %>
+		<div id="<%= d.id%>_definition_literary_period_div"> 
+			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 187} %>			
+		</div>
+
+		<!-- Literary form div -->
+		<b>Literary form:</b>
+		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 186), :update => "#{@definition.id}_definition_literary_form_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_form' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Literary form', :confirm => "Are you sure you want to remove this Literary form?" %>
+		<div id="<%= d.id%>_definition_literary_form_div"> 
+			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 186} %>			
+		</div>
+
+	
 		<div id="<%= d.id%>_pronunciations_div"> 
 		  <%=   render :partial => 'pronunciations/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
 		</div> 

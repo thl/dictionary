@@ -1,0 +1,24 @@
+<h1>Editing category_translation_association</h1>
+
+<% form_for(@category_translation_association) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :translation_id %><br />
+    <%= f.text_field :translation_id %>
+  </p>
+  <p>
+    <%= f.label :category_branch_id %><br />
+    <%= f.text_field :category_branch_id %>
+  </p>
+  <p>
+    <%= f.label :category_id %><br />
+    <%= f.text_field :category_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @category_translation_association %> |
+<%= link_to 'Back', category_translation_associations_path %>

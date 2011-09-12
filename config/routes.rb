@@ -1,4 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
+  #map.resources :category_etymology_associations
+  #map.resources :category_spelling_associations
+  #map.resources :category_translation_equivalent_associations
+  #map.resources :category_pronunciation_associations
+  #map.resources :category_translation_associations
+  #map.resources :definition_category_associations
+
   map.resources(:categories, :member => {:expand => :get, :contract => :get}) { |category| category.resources(:children, :controller => 'categories', :member => {:expand => :get, :contract => :get}) }
   #map.definition_edit 'definition_edit', :controller => 'definitions', :action => 'definition_edit'
   #map.resources :definitions, :member => {:definition_edit => :get}
@@ -181,6 +188,22 @@ ActionController::Routing::Routes.draw do |map|
   
   map.connect '', :controller => "definitions"
   # See how all your routes lay out with "rake routes"
+
+  # handling category_definition_associations
+  #map.resources :definitions do |definition|
+  #  definition.resources :associations, :controller => 'definition_category_associations'
+  #end
+  
+  map.resources :category_definition_associations, :controller => 'definition_category_associations', :path_prefix => 'definitions/:definition_id/branches/:branch_id'
+  map.resources :category_translation_associations, :controller => 'category_translation_associations', :path_prefix => 'translations/:translation_id/branches/:branch_id'
+  map.resources :category_pronunciation_associations, :controller => 'category_pronunciation_associations', :path_prefix => 'pronunciations/:pronunciation_id/branches/:branch_id'
+  map.resources :category_translation_equivalent_associations, :controller => 'category_translation_equivalent_associations', :path_prefix => 'translation_equivalents/:translation_equivalent_id/branches/:branch_id'
+  map.resources :category_spelling_associations, :controller => 'category_spelling_associations', :path_prefix => 'spellings/:spelling_id/branches/:branch_id'
+  map.resources :category_etymology_associations, :controller => 'category_etymology_associations', :path_prefix => 'etymologies/:etymology_id/branches/:branch_id'
+
+
+ 
+
 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'

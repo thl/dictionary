@@ -1,0 +1,24 @@
+<h1>Listing category_pronunciation_associations</h1>
+
+<table>
+  <tr>
+    <th>Pronunciation</th>
+    <th>Category branch</th>
+    <th>Category</th>
+  </tr>
+
+<% @category_pronunciation_associations.each do |category_pronunciation_association| %>
+  <tr>
+    <td><%=h category_pronunciation_association.pronunciation_id %></td>
+    <td><%=h category_pronunciation_association.category_branch_id %></td>
+    <td><%=h category_pronunciation_association.category_id %></td>
+    <td><%= link_to 'Show', category_pronunciation_association %></td>
+    <td><%= link_to 'Edit', edit_category_pronunciation_association_path(category_pronunciation_association) %></td>
+    <td><%= link_to 'Destroy', category_pronunciation_association, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New category_pronunciation_association', new_category_pronunciation_association_path %>

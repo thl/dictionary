@@ -757,27 +757,36 @@ module EtymologiesHelper
     ##   @etymology.etymology_type = 'Click to modify'
     ## end
     ## resultstr << in_place_select_editor_field( :etymology, :etymology_type, {}, {:select_options => @etymology_type, :fieldname => 'etymology[etymology_type]'})+"<br>"
-    @data = Category.find(182)
-    #resultstr << category_selector(@data, :etymology, :etymology_category, true, :hasTree => 'true', :singleSelectionTree => 'true')
-    if @etymology.etymology_category == nil
-      title = ''
-    else
-      title = @etymology.etymology_category.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :etymology,
-  					:selectable => false,
-  					:fieldname => :etymology_category,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(182)
+    ##resultstr << category_selector(@data, :etymology, :etymology_category, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    #if @etymology.etymology_category == nil
+    #  title = ''
+    #else
+    #  title = @etymology.etymology_category.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :etymology,
+  	#				:selectable => false,
+  	#				:fieldname => :etymology_category,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
 
+    #<!-- Etymology type div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 182), :update => "#{@etymology.id}_etymology_etymology_category_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@etymology.id}_etymology_etymology_category_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 182})		
+		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 182})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
 
     resultstr << "<b>Loan language: </b>"
     #resultstr << "<input type=hidden name=etymology[loan_language] id=etymology[loan_language] value=\""+@etymology.loan_language.to_s+"\" >"
@@ -796,26 +805,37 @@ module EtymologiesHelper
     ## end
     ## resultstr << in_place_select_editor_field( :etymology, :loan_language, {}, {:select_options => @loan_language, :fieldname => 'etymology[loan_language]'})+"<br>"
     ## resultstr << in_place_form_editor_field( :etymology, :loan_language, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[loan_language]'}) +"<br>"
-    @data = Category.find(184)
-    #resultstr << category_selector(@data, :etymology, :loan_language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @etymology.loan_language_type == nil
-      title = ''
-    else
-      title = @etymology.loan_language_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :etymology,
-  					:selectable => false,
-  					:fieldname => :loan_language_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(184)
+    ##resultstr << category_selector(@data, :etymology, :loan_language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @etymology.loan_language_type == nil
+    #  title = ''
+    #else
+    #  title = @etymology.loan_language_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :etymology,
+  	#				:selectable => false,
+  	#				:fieldname => :loan_language_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
+    
+    #<!-- Loan language div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 184), :update => "#{@etymology.id}_etymology_loan_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@etymology.id}_etymology_loan_language_type_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 184})		
+		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 184})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+
 
     resultstr << "<b>Derivation type: </b>"
     #resultstr << "<input type=hidden name=etymology[derivation] id=etymology[derivation] value=\""+@etymology.derivation.to_s+"\" >"
@@ -833,26 +853,37 @@ module EtymologiesHelper
     ##   @etymology.derivation = 'Click to modify'
     ## end
     ## resultstr << in_place_select_editor_field( :etymology, :derivation, {}, {:select_options => @derivation, :fieldname => 'etymology[derivation]'})+"<br>"
-    @data = Category.find(180)
-    #resultstr << category_selector(@data, :etymology, :derivation_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @etymology.derivation_type == nil
-      title = ''
-    else
-      title = @etymology.derivation_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :etymology,
-  					:selectable => false,
-  					:fieldname => :derivation_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(180)
+    ##resultstr << category_selector(@data, :etymology, :derivation_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @etymology.derivation_type == nil
+    #  title = ''
+    #else
+    #  title = @etymology.derivation_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :etymology,
+  	#				:selectable => false,
+  	#				:fieldname => :derivation_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
+
+    #<!-- Derivation Type div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 180), :update => "#{@etymology.id}_etymology_derivation_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@etymology.id}_etymology_derivation_type_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 180})		
+		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 180})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+		
 
     resultstr << "<b>Tibetan Dialect: </b>"
     #resultstr << "<input type=hidden name=etymology[major_dialect_family] id=etymology[major_dialect_family"+@etymology.id.to_s+"] value=\""+@etymology.major_dialect_family.to_s+"\" >"
@@ -877,26 +908,37 @@ module EtymologiesHelper
     ##   @etymology.specific_dialect = 'Click to modify'
     ## end
     ## resultstr << in_place_form_editor_field( :etymology, :specific_dialect, {}, {:cols => 50, :rows => 1, :fieldname => 'etymology[specific_dialect]'}) +"<br>"
-    @data = Category.find(638)
-    #resultstr << category_selector(@data, :etymology, :major_dialect_family_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @etymology.major_dialect_family_type == nil
-      title = ''
-    else
-      title = @etymology.major_dialect_family_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :etymology,
-  					:selectable => false,
-  					:fieldname => :major_dialect_family_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(638)
+    ##resultstr << category_selector(@data, :etymology, :major_dialect_family_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @etymology.major_dialect_family_type == nil
+    #  title = ''
+    #else
+    #  title = @etymology.major_dialect_family_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :etymology,
+  	#				:selectable => false,
+  	#				:fieldname => :major_dialect_family_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
+    
+    #<!-- Tibetan Dialect div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 638), :update => "#{@etymology.id}_etymology_major_dialect_family_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@etymology.id}_etymology_major_dialect_family_type_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 638})		
+		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 638})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+		
     
     resultstr << "<b>Literary genre: </b>"
     #resultstr << "<input type=hidden name=etymology[literary_genre] id=etymology[literary_genre"+@etymology.id.to_s+"] value=\""+@etymology.literary_genre.to_s+"\" >"
@@ -915,26 +957,37 @@ module EtymologiesHelper
     ## end
     ## resultstr <<  "<span id=etymology[literary_genre"+@etymology.id.to_s+"]_value class=menuvalue onclick=dialect_id="+@etymology.id.to_s+";show_menu(etymology_literary_genre_menu,getCoord(arguments[0]));>"+@etymology.literary_genre+"</span><br>"
     ## resultstr << in_place_select_editor_field( :etymology, :literary_genre, {}, {:select_options => @literary_genre, :fieldname => 'etymology[literary_genre]'})+"<br>"
-    @data = Category.find(119)
-    #resultstr << category_selector(@data, :etymology, :literary_genre_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @etymology.literary_genre_type == nil
-      title = ''
-    else
-      title = @etymology.literary_genre_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :etymology,
-  					:selectable => false,
-  					:fieldname => :literary_genre_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(119)
+    ##resultstr << category_selector(@data, :etymology, :literary_genre_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @etymology.literary_genre_type == nil
+    #  title = ''
+    #else
+    #  title = @etymology.literary_genre_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :etymology,
+  	#				:selectable => false,
+  	#				:fieldname => :literary_genre_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
+    
+    #<!-- Literary genre div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 119), :update => "#{@etymology.id}_etymology_literary_genre_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@etymology.id}_etymology_literary_genre_type_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 119})		
+		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 119})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+		
     
     resultstr << "<b>Literary period: </b>"
     #resultstr << "<input type=hidden name=etymology[literary_period] id=etymology[literary_period] value=\""+@etymology.literary_period.to_s+"\" >"
@@ -952,26 +1005,37 @@ module EtymologiesHelper
     ##   @etymology.literary_period = 'Click to modify'
     ## end
     ## resultstr << in_place_select_editor_field( :etymology, :literary_period, {}, {:select_options => @literary_period, :fieldname => 'etymology[literary_period]'})+"<br>"
-    @data = Category.find(187)
-    #resultstr << category_selector(@data, :etymology, :literary_period_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @etymology.literary_period_type == nil
-      title = ''
-    else
-      title = @etymology.literary_period_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :etymology,
-  					:selectable => false,
-  					:fieldname => :literary_period_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(187)
+    ##resultstr << category_selector(@data, :etymology, :literary_period_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @etymology.literary_period_type == nil
+    #  title = ''
+    #else
+    #  title = @etymology.literary_period_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :etymology,
+  	#				:selectable => false,
+  	#				:fieldname => :literary_period_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
+
+    #<!-- Literary period div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 187), :update => "#{@etymology.id}_etymology_literary_period_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@etymology.id}_etymology_literary_period_type_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 187})		
+		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 187})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+		
 
     resultstr << "<b>Literary form: </b>"
     #resultstr << "<input type=hidden name=etymology[literary_form] id=etymology[literary_form] value=\""+@etymology.literary_form.to_s+"\" >"
@@ -989,26 +1053,37 @@ module EtymologiesHelper
     ##   @etymology.literary_form = 'Click to modify'
     ## end
     ## resultstr << in_place_select_editor_field( :etymology, :literary_form, {}, {:select_options => @literary_form, :fieldname => 'etymology[literary_form]'})+"<br>"
-    @data = Category.find(186)
-    #resultstr << category_selector(@data, :etymology, :literary_form_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @etymology.literary_form_type == nil
-      title = ''
-    else
-      title = @etymology.literary_form_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :etymology,
-  					:selectable => false,
-  					:fieldname => :literary_form_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(186)
+    ##resultstr << category_selector(@data, :etymology, :literary_form_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @etymology.literary_form_type == nil
+    #  title = ''
+    #else
+    #  title = @etymology.literary_form_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :etymology,
+  	#				:selectable => false,
+  	#				:fieldname => :literary_form_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
+
+    #<!-- Literary form div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 186), :update => "#{@etymology.id}_etymology_literary_form_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@etymology.id}_etymology_literary_form_type_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 186})		
+		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 186})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+		
 
     resultstr << "<b>Analytical note: </b>"
     #resultstr << "<input type=hidden name=etymology[analytical_note] id=etymology[analytical_note] value=\""+@etymology.analytical_note.to_s+"\" >"

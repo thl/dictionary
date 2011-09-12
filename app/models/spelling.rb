@@ -2,6 +2,7 @@ class Spelling < ActiveRecord::Base
   has_one :meta, :foreign_key => 'spelling_id'
   belongs_to :definition, :foreign_key => "definition_id"
 
+  has_many :category_spelling_associations, :dependent => :destroy
   belongs_to :spelling_category, :class_name => 'Category'
   belongs_to :basis_of_spelling_type, :class_name => 'Category'
   belongs_to :literary_genre_type, :class_name => 'Category'

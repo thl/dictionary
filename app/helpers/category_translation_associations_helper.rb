@@ -1,0 +1,2 @@
+module CategoryTranslationAssociationsHelper
+end

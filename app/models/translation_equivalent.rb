@@ -2,6 +2,7 @@ class TranslationEquivalent < ActiveRecord::Base
   has_one :meta, :foreign_key => 'translation_equivalent_id'
   belongs_to :definition, :foreign_key => "def_id"
 
+  has_many :category_translation_equivalent_associations, :dependent => :destroy
   belongs_to :language_type, :class_name => 'Category'
 
   def displayInfo

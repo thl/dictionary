@@ -21,6 +21,7 @@ class Definition < ActiveRecord::Base
   # has_many :model_sentences, :foreign_key => 'def_id'
   has_one :meta, :foreign_key => 'definition_id'
 
+  has_many :definition_category_associations, :dependent => :destroy
   belongs_to :grammatical_function_type, :class_name => 'Category'
   belongs_to :language_type, :class_name => 'Category'
   belongs_to :register_type, :class_name => 'Category'

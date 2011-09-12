@@ -1,0 +1,23 @@
+<h1>New category_translation_equivalent_association</h1>
+
+<% form_for(@category_translation_equivalent_association) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :translation_equivalent_id %><br />
+    <%= f.text_field :translation_equivalent_id %>
+  </p>
+  <p>
+    <%= f.label :category_branch_id %><br />
+    <%= f.text_field :category_branch_id %>
+  </p>
+  <p>
+    <%= f.label :category_id %><br />
+    <%= f.text_field :category_id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', category_translation_equivalent_associations_path %>

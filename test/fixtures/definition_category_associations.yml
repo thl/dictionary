@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  definition_id: 1
+  category_branch_id: 1
+  category_id: 1
+
+two:
+  definition_id: 1
+  category_branch_id: 1
+  category_id: 1

@@ -3,6 +3,9 @@ class Etymology < ActiveRecord::Base
   has_many :translations, :foreign_key => 'etymology_id'
   belongs_to :definition, :foreign_key => 'definition_id'
 
+  #for all kmaps associations 
+  has_many :category_etymology_associations, :dependent => :destroy
+
   belongs_to :etymology_category, :class_name => 'Category'
   belongs_to :derivation_type, :class_name => 'Category'
   belongs_to :loan_language_type, :class_name => 'Category'

@@ -1,0 +1,24 @@
+<h1>Listing category_spelling_associations</h1>
+
+<table>
+  <tr>
+    <th>Spelling</th>
+    <th>Category branch</th>
+    <th>Category</th>
+  </tr>
+
+<% @category_spelling_associations.each do |category_spelling_association| %>
+  <tr>
+    <td><%=h category_spelling_association.spelling_id %></td>
+    <td><%=h category_spelling_association.category_branch_id %></td>
+    <td><%=h category_spelling_association.category_id %></td>
+    <td><%= link_to 'Show', category_spelling_association %></td>
+    <td><%= link_to 'Edit', edit_category_spelling_association_path(category_spelling_association) %></td>
+    <td><%= link_to 'Destroy', category_spelling_association, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New category_spelling_association', new_category_spelling_association_path %>

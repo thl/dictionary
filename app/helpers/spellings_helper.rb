@@ -399,26 +399,37 @@ module SpellingsHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('spelling[basis_of_spelling_type"+@spelling.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('spelling[basis_of_spelling_type"+@spelling.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('spelling[basis_of_spelling_type"+@spelling.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('spelling[basis_of_spelling_type"+@spelling.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     # resultstr << in_place_form_editor_field( :spelling, :basis_of_spelling, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[basis_of_spelling]'}) +"<br>"
-    @data = Category.find(191)
-    #resultstr << category_selector(@data, :spelling, :basis_of_spelling_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @spelling.basis_of_spelling_type == nil
-      title = ''
-    else
-      title = @spelling.basis_of_spelling_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :spelling,
-  					:selectable => false,
-  					:fieldname => :basis_of_spelling_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(191)
+    ##resultstr << category_selector(@data, :spelling, :basis_of_spelling_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @spelling.basis_of_spelling_type == nil
+    #  title = ''
+    #else
+    #  title = @spelling.basis_of_spelling_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :spelling,
+  	#				:selectable => false,
+  	#				:fieldname => :basis_of_spelling_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
+    
+    #<!-- Basis of spelling div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_spelling_association_url(@spelling.id, 191), :update => "#{@spelling.id}_spelling_basis_of_spelling_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'spellings', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@spelling.id}_spelling_basis_of_spelling_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 191})		
+		assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 191})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+    
     
     resultstr << "<b>Spelling type: </b>"
     #resultstr << "<input type=hidden name=spelling[spelling_type] id=spelling[spelling_type] value=\""+@spelling.spelling_type.to_s+"\" >"
@@ -432,28 +443,39 @@ module SpellingsHelper
     #resultstr << link_to_remote( title,{:update => "spelling[spelling_category#{@spelling.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'spellings',:action => 'display_category_selector', :id => @spelling.id, :params => {'data_id' => 4091, 'model_name' => 'spelling', 'function_name' => "spelling_category", :update_id => "spelling[spelling_category#{@spelling.id}]_selector"}}}, :class => 'selector_link' )
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('spelling[spelling_category"+@spelling.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('spelling[spelling_category"+@spelling.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('spelling[spelling_category"+@spelling.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('spelling[spelling_category"+@spelling.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    @data = Category.find(4091)
-    #resultstr << category_selector(@data, :spelling, :spelling_category, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @spelling.spelling_category == nil
-      title = ''
-    else
-      title = @spelling.spelling_category.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :spelling,
-  					:selectable => false,
-  					:fieldname => :spelling_category,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(4091)
+    ##resultstr << category_selector(@data, :spelling, :spelling_category, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @spelling.spelling_category == nil
+    #  title = ''
+    #else
+    #  title = @spelling.spelling_category.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :spelling,
+  	#				:selectable => false,
+  	#				:fieldname => :spelling_category,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
     
-    resultstr << "<b>Tibetan Dialect: </b>"
+    #<!-- Basis of spelling div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_spelling_association_url(@spelling.id, 4091), :update => "#{@spelling.id}_spelling_spelling_category_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'spellings', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@spelling.id}_spelling_spelling_category_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 4091})		
+		assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 4091})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+		
+    
+    resultstr << "<b>Dialect type: </b>"
     #resultstr << "<input type=hidden name=spelling[major_dialect_family] id=spelling[major_dialect_family"+@spelling.id.to_s+"] value=\""+@spelling.major_dialect_family.to_s+"\" >"
     #if @spelling.major_dialect_family_type == nil
     #  title = 'Click to modify'
@@ -465,26 +487,37 @@ module SpellingsHelper
     #resultstr << link_to_remote( title,{:update => "spelling[major_dialect_family_type#{@spelling.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'spellings', :action => 'display_category_selector', :id => @spelling.id, :params => {'data_id' => 638, 'model_name' => 'spelling', 'function_name' => "major_dialect_family_type", :update_id => "spelling[major_dialect_family_type#{@spelling.id}]_selector"}}}, :class => 'selector_link' )
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('spelling[major_dialect_family_type"+@spelling.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('spelling[major_dialect_family_type"+@spelling.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('spelling[major_dialect_family_type"+@spelling.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('spelling[major_dialect_family_type"+@spelling.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    @data = Category.find(638)
-    #resultstr << category_selector(@data, :spelling, :major_dialect_family_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @spelling.major_dialect_family_type == nil
-      title = ''
-    else
-      title = @spelling.major_dialect_family_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :spelling,
-  					:selectable => false,
-  					:fieldname => :major_dialect_family_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(638)
+    ##resultstr << category_selector(@data, :spelling, :major_dialect_family_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @spelling.major_dialect_family_type == nil
+    #  title = ''
+    #else
+    #  title = @spelling.major_dialect_family_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :spelling,
+  	#				:selectable => false,
+  	#				:fieldname => :major_dialect_family_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
+    
+    #<!-- Dialect type div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_spelling_association_url(@spelling.id, 638), :update => "#{@spelling.id}_spelling_major_dialect_family_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'spellings', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@spelling.id}_spelling_major_dialect_family_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 638})		
+		assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 638})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+
 
     resultstr << "<b>Literary genre: </b>"
     #resultstr << "<input type=hidden name=spelling[literary_genre] id=spelling[literary_genre"+@spelling.id.to_s+"] value=\""+@spelling.literary_genre.to_s+"\" >"
@@ -498,26 +531,37 @@ module SpellingsHelper
     #resultstr << link_to_remote( title,{:update => "spelling[literary_genre_type#{@spelling.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'spellings',:action => 'display_category_selector', :id => @spelling.id, :params => {'data_id' => 119, 'model_name' => 'spelling', 'function_name' => "literary_genre_type", :update_id => "spelling[literary_genre_type#{@spelling.id}]_selector"}}}, :class => 'selector_link' )
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('spelling[literary_genre_type"+@spelling.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('spelling[literary_genre_type"+@spelling.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('spelling[literary_genre_type"+@spelling.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('spelling[literary_genre_type"+@spelling.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    @data = Category.find(119)
-    #resultstr << category_selector(@data, :spelling, :literary_genre_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @spelling.literary_genre_type == nil
-      title = ''
-    else
-      title = @spelling.literary_genre_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :spelling,
-  					:selectable => false,
-  					:fieldname => :literary_genre_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(119)
+    ##resultstr << category_selector(@data, :spelling, :literary_genre_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @spelling.literary_genre_type == nil
+    #  title = ''
+    #else
+    #  title = @spelling.literary_genre_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :spelling,
+  	#				:selectable => false,
+  	#				:fieldname => :literary_genre_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
+
+    #<!-- Literary genre div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_spelling_association_url(@spelling.id, 119), :update => "#{@spelling.id}_spelling_literary_genre_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'spellings', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@spelling.id}_spelling_literary_genre_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 119})		
+		assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 119})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+
 
     resultstr << "<b>Literary period: </b>"
     #resultstr << "<input type=hidden name=spelling[literary_period] id=spelling[literary_period] value=\""+@spelling.literary_period.to_s+"\" >"
@@ -531,27 +575,38 @@ module SpellingsHelper
     #resultstr << link_to_remote( title,{:update => "spelling[literary_period_type#{@spelling.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'spellings',:action => 'display_category_selector', :id => @spelling.id, :params => {'data_id' => 187, 'model_name' => 'spelling', 'function_name' => "literary_period_type", :update_id => "spelling[literary_period_type#{@spelling.id}]_selector"}}}, :class => 'selector_link' )
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('spelling[literary_period_type"+@spelling.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('spelling[literary_period_type"+@spelling.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('spelling[literary_period_type"+@spelling.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('spelling[literary_period_type"+@spelling.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    @data = Category.find(187)
-    #resultstr << category_selector(@data, :spelling, :literary_period_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @spelling.literary_period_type == nil
-      title = ''
-    else
-      title = @spelling.literary_period_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :spelling,
-  					:selectable => false,
-  					:fieldname => :literary_period_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(187)
+    ##resultstr << category_selector(@data, :spelling, :literary_period_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @spelling.literary_period_type == nil
+    #  title = ''
+    #else
+    #  title = @spelling.literary_period_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :spelling,
+  	#				:selectable => false,
+  	#				:fieldname => :literary_period_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
 
+    #<!-- Literary period div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_spelling_association_url(@spelling.id, 187), :update => "#{@spelling.id}_spelling_literary_period_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'spellings', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@spelling.id}_spelling_literary_period_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 187})		
+		assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 187})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+		
+		
     resultstr << "<b>Literary form: </b>"
     #resultstr << "<input type=hidden name=spelling[literary_form] id=spelling[literary_form] value=\""+@spelling.literary_form.to_s+"\" >"
     #if @spelling.literary_form_type == nil
@@ -564,26 +619,36 @@ module SpellingsHelper
     #resultstr << link_to_remote( title,{:update => "spelling[literary_form_type#{@spelling.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'spellings',:action => 'display_category_selector', :id => @spelling.id, :params => {'data_id' => 186, 'model_name' => 'spelling', 'function_name' => "literary_form_type", :update_id => "spelling[literary_form_type#{@spelling.id}]_selector"}}}, :class => 'selector_link' )
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('spelling[literary_form_type"+@spelling.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('spelling[literary_form_type"+@spelling.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('spelling[literary_form_type"+@spelling.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('spelling[literary_form_type"+@spelling.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    @data = Category.find(186)
-    #resultstr << category_selector(@data, :spelling, :literary_form_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @spelling.literary_form_type == nil
-      title = ''
-    else
-      title = @spelling.literary_form_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :spelling,
-  					:selectable => false,
-  					:fieldname => :literary_form_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(186)
+    ##resultstr << category_selector(@data, :spelling, :literary_form_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @spelling.literary_form_type == nil
+    #  title = ''
+    #else
+    #  title = @spelling.literary_form_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :spelling,
+  	#				:selectable => false,
+  	#				:fieldname => :literary_form_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
+     
+    #<!-- Literary form div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_spelling_association_url(@spelling.id, 186), :update => "#{@spelling.id}_spelling_literary_form_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'spellings', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@spelling.id}_spelling_literary_form_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 186})		
+		assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 186})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>" 
        
     resultstr << "<b>Analytical note: </b>"
     #resultstr << "<input type=hidden name=spelling[analytical_note] id=spelling[analytical_note] value=\""+@spelling.analytical_note.to_s+"\" >"

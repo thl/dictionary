@@ -6,6 +6,7 @@ class Translation < ActiveRecord::Base
   belongs_to :oral_quotation, :foreign_key => 'oral_quotation_id'
   belongs_to :model_sentence, :foreign_key => 'model_sentence_id'
 
+  has_many :category_translation_associations, :dependent => :destroy
   belongs_to :language_type, :class_name => 'Category'
 
   def displayInfo

@@ -860,27 +860,35 @@ module PronunciationsHelper
     #resultstr << link_to_remote( title,{:update => "pronunciation[major_dialect_family_type#{@pronunciation.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'pronunciations', :action => 'display_category_selector', :id => @pronunciation.id, :params => {'data_id' => 638, 'model_name' => 'pronunciation', 'function_name' => "major_dialect_family_type", :update_id => "pronunciation[major_dialect_family_type#{@pronunciation.id}]_selector"}}}, :class => 'selector_link' )
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('pronunciation[major_dialect_family_type"+@pronunciation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('pronunciation[major_dialect_family_type"+@pronunciation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('pronunciation[major_dialect_family_type"+@pronunciation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('pronunciation[major_dialect_family_type"+@pronunciation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    @data = Category.find(638)
-    #resultstr << category_selector(@data, :pronunciation, :major_dialect_family_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
-    if @pronunciation.major_dialect_family_type == nil
-      title = ''
-    else
-      title = @pronunciation.major_dialect_family_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :pronunciation,
-  					:selectable => false,
-  					:fieldname => :major_dialect_family_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>"
+    #@data = Category.find(638)
+    ##resultstr << category_selector(@data, :pronunciation, :major_dialect_family_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    #if @pronunciation.major_dialect_family_type == nil
+    #  title = ''
+    #else
+    #  title = @pronunciation.major_dialect_family_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :pronunciation,
+  	#				:selectable => false,
+  	#				:fieldname => :major_dialect_family_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
     
+ 		#<!-- Tibetan Dialect div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_pronunciation_association_url(@pronunciation.id, 638), :update => "#{@pronunciation.id}_pronunciation_major_dialect_family_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'pronunciations', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@pronunciation.id}_pronunciation_major_dialect_family_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_pronunciation_associations/index', :locals => {:data_id => 638})		
+		assoc = @pronunciation.category_pronunciation_associations.find(:all, :conditions => {:category_branch_id => 638})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
     
     # resultstr << in_place_form_editor_field( :pronunciation, :major_dialect_family, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[major_dialect_family]'}) +"<br>"
     # resultstr << "<b>Specific dialect: </b>"

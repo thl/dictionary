@@ -164,27 +164,36 @@ module TranslationsHelper
     #resultstr << link_to_remote( title,{:update => "translation[language_type#{@translation.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'translations', :action => 'display_category_selector', :id => @translation.id, :params => {'data_id' => 184, 'model_name' => 'translation', 'function_name' => "language_type", :update_id => "translation[language_type#{@translation.id}]_selector"}}}, :class => 'selector_link' )
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('translation[language_type"+@translation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('translation[language_type"+@translation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('translation[language_type"+@translation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('translation[language_type"+@translation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    @data = Category.find(184)
-    #resultstr << category_selector(@data, :translation, :language_type, false, :hasTree => 'false', :singleSelectionTree => 'true')    
-    if @translation.language_type == nil
-      title = ''
-    else
-      title = @translation.language_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data, 
-  					:varname => :translation,
-  					:selectable => false,
-  					:fieldname => :language_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-		
-    resultstr << "<br>"
+    #@data = Category.find(184)
+    ##resultstr << category_selector(@data, :translation, :language_type, false, :hasTree => 'false', :singleSelectionTree => 'true')    
+    #if @translation.language_type == nil
+    #  title = ''
+    #else
+    #  title = @translation.language_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data, 
+  	#				:varname => :translation,
+  	#				:selectable => false,
+  	#				:fieldname => :language_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>"
+ 
+ 		#<!-- Language div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_translation_association_url(@translation.id, 184), :update => "#{@translation.id}_translation_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'translations', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@translation.id}_translation_language_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_translation_associations/index', :locals => {:data_id => 184})		
+		assoc = @translation.category_translation_associations.find(:all, :conditions => {:category_branch_id => 184})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+ 
         
     resultstr << "<b>Analytical note: </b>"
     #resultstr << "<input type=hidden name=translation[analytical_note] id=translation[analytical_note] value=\""+@translation.analytical_note.to_s+"\" >"
