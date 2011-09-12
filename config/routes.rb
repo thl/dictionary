@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  #map.resources :category_model_sentence_associations
   #map.resources :category_etymology_associations
   #map.resources :category_spelling_associations
   #map.resources :category_translation_equivalent_associations
@@ -200,6 +201,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :category_translation_equivalent_associations, :controller => 'category_translation_equivalent_associations', :path_prefix => 'translation_equivalents/:translation_equivalent_id/branches/:branch_id'
   map.resources :category_spelling_associations, :controller => 'category_spelling_associations', :path_prefix => 'spellings/:spelling_id/branches/:branch_id'
   map.resources :category_etymology_associations, :controller => 'category_etymology_associations', :path_prefix => 'etymologies/:etymology_id/branches/:branch_id'
+  map.resources :category_model_sentence_associations, :controller => 'category_model_sentence_associations', :path_prefix => 'model_sentences/:model_sentence_id/branches/:branch_id'
 
 
  

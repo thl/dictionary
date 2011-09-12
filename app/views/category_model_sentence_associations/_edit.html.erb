@@ -1,0 +1,45 @@
+
+<%
+    data = Category.find(data_id)
+    model_name = 'model_sentence'
+
+	case data_id
+	  when 184
+        target_update_div = "#{@model_sentence.id}_model_sentence_language_type_div"
+      when 638
+        target_update_div = "#{@model_sentence.id}_model_sentence_major_dialect_family_type_div" 
+      when 119
+        target_update_div = "#{@model_sentence.id}_model_sentence_literary_genre_type_div"
+      when 187
+        target_update_div = "#{@model_sentence.id}_model_sentence_literary_period_type_div"
+      when 186
+        target_update_div = "#{@model_sentence.id}_model_sentence_literary_form_type_div"
+
+	#  when 191
+	#	target_update_div = "#{@model_sentence.id}_model_sentence_basis_of_model_sentence_div"	
+    #  when 4091
+    #    target_update_div = "#{@model_sentence.id}_model_sentence_model_sentence_category_div" 
+
+	end
+%>
+
+  <% form_for :model_sentence, :url => category_model_sentence_associations_path(@model_sentence, @branch) do |f| %>
+    <table class='mobj' border='0' cellspacing='0'>
+		<%=
+			category_fields :subject => {:display => '', :label => ''},
+							:root =>  data, 
+							:var_name => model_name, 
+							:field_name => [:category_model_sentence_associations, :category],
+							:conditions => {:category_branch_id => @branch.id}, 
+							:include_js => true, 
+							:include_styles => false, 
+							:selectable => false, 
+							:single_selection => false
+		%> 
+	<tr><td></td></tr>
+	</table>
+    <br/>
+    <%= submit_to_remote 'update_button','update', :url => category_model_sentence_associations_path(@model_sentence, @branch), :update => "#{target_update_div}" %>
+    <%= link_to_remote 'cancel', {:url => category_model_sentence_associations_path(@model_sentence, @branch), :function_name => @function_name, :method => 'get', :update => "#{target_update_div}" } %>
+  <% end %>
+

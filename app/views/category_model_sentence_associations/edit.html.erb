@@ -1,0 +1,24 @@
+<h1>Editing category_model_sentence_association</h1>
+
+<% form_for(@category_model_sentence_association) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :model_sentence_id %><br />
+    <%= f.text_field :model_sentence_id %>
+  </p>
+  <p>
+    <%= f.label :category_branch_id %><br />
+    <%= f.text_field :category_branch_id %>
+  </p>
+  <p>
+    <%= f.label :category_id %><br />
+    <%= f.text_field :category_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @category_model_sentence_association %> |
+<%= link_to 'Back', category_model_sentence_associations_path %>

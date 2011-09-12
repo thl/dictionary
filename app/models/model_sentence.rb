@@ -4,6 +4,7 @@ class ModelSentence < ActiveRecord::Base
   # belongs_to :definition, :foreign_key => "def_id"
   has_many :translations, :foreign_key => "model_sentence_id"
 
+  has_many :category_model_sentence_associations, :dependent => :destroy
   belongs_to :language_type, :class_name => 'Category'
   belongs_to :literary_genre_type, :class_name => 'Category'
   belongs_to :literary_period_type, :class_name => 'Category'

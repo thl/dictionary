@@ -722,27 +722,37 @@ module ModelSentencesHelper
      #resultstr << link_to_remote( title,{:update => "model_sentence[language_type#{@model_sentence.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'model_sentences', :action => 'display_category_selector', :id => @model_sentence.id, :params => {'data_id' => 184, 'model_name' => 'model_sentence', 'function_name' => "language_type", :update_id => "model_sentence[language_type#{@model_sentence.id}]_selector"}}}, :class => 'selector_link' )
      #resultstr << "</span><br>"
      #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[language_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[language_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[language_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[language_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-     @data = Category.find(184)
-     #resultstr << category_selector(@data, :model_sentence, :language_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
-     if @model_sentence.language_type == nil
-       title = ''
-     else
-       title = @model_sentence.language_type.title
-     end
-     resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-   	 resultstr <<
-   				category_fields({
-   					:subject => {:display => title, :label => ''}, 
-   					:root => @data,
-   					:varname => :model_sentence,
-   					:selectable => false,
-   					:fieldname => :language_type,
-   					:include_js => true
-   				})
-   	 resultstr << "<tr><td></td></tr>"
-   	 resultstr << "</table>"
-     resultstr << "<br>"
-     
+     #before update
+     #@data = Category.find(184)
+     ##resultstr << category_selector(@data, :model_sentence, :language_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     #if @model_sentence.language_type == nil
+     # title = ''
+     #else
+     #   title = @model_sentence.language_type.title
+     #end
+     #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+   	 #resultstr <<
+   	 #		category_fields({
+     #			:subject => {:display => title, :label => ''}, 
+   	 #			:root => @data,
+   	#				:varname => :model_sentence,
+   	#				:selectable => false,
+   	#				:fieldname => :language_type,
+   	#				:include_js => true
+   	#			})
+   	 #resultstr << "<tr><td></td></tr>"
+   	 #resultstr << "</table>"
+     #resultstr << "<br>"
+      
+      #<!-- Language div -->
+  		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_model_sentence_association_url(@model_sentence.id, 184), :update => "#{@model_sentence.id}_model_sentence_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+  		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'model_sentences', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+   		resultstr << "<div id='" + "#{@model_sentence.id}_model_sentence_language_type_div" + "'>" 
+  		#resultstr << render_to_string(:partial => 'category_model_sentence_associations/index', :locals => {:data_id => 184})		
+  		assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 184})
+      resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+  		resultstr << "</div>"
+ 		
      resultstr << "<b>Tibetan Dialect: </b>"
      #resultstr << "<input type=hidden name=model_sentence[major_dialect_family] id=model_sentence[major_dialect_family"+@model_sentence.id.to_s+"] value=\""+@model_sentence.major_dialect_family.to_s+"\" >"
      #if @model_sentence.major_dialect_family_type == nil
@@ -755,26 +765,35 @@ module ModelSentencesHelper
      #resultstr << link_to_remote( title,{:update => "model_sentence[major_dialect_family_type#{@model_sentence.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'model_sentences', :action => 'display_category_selector', :id => @model_sentence.id, :params => {'data_id' => 638, 'model_name' => 'model_sentence', 'function_name' => "major_dialect_family_type", :update_id => "model_sentence[major_dialect_family_type#{@model_sentence.id}]_selector"}}}, :class => 'selector_link' )
      #resultstr << "</span><br>"
      #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[major_dialect_family_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[major_dialect_family_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[major_dialect_family_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[major_dialect_family_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-     @data = Category.find(638)
-     #resultstr << category_selector(@data, :model_sentence, :major_dialect_family_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
-     if @model_sentence.major_dialect_family_type == nil
-       title = ''
-     else
-       title = @model_sentence.major_dialect_family_type.title
-     end
-     resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-   	 resultstr <<
-   				category_fields({
-   					:subject => {:display => title, :label => ''}, 
-   					:root => @data,
-   					:varname => :model_sentence,
-   					:selectable => false,
-   					:fieldname => :major_dialect_family_type,
-   					:include_js => true
-   				})
-   	 resultstr << "<tr><td></td></tr>"
-   	 resultstr << "</table>"
-     resultstr << "<br>"
+    #before update
+    # @data = Category.find(638)
+    # #resultstr << category_selector(@data, :model_sentence, :major_dialect_family_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+    # if @model_sentence.major_dialect_family_type == nil
+    #   title = ''
+    # else
+    #   title = @model_sentence.major_dialect_family_type.title
+    # end
+    # resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+   	# resultstr <<
+   	#			category_fields({
+   	#				:subject => {:display => title, :label => ''}, 
+   	#				:root => @data,
+   	#				:varname => :model_sentence,
+   	#				:selectable => false,
+   	#				:fieldname => :major_dialect_family_type,
+   	#				:include_js => true
+   	#			})
+   	# resultstr << "<tr><td></td></tr>"
+   	# resultstr << "</table>"
+    # resultstr << "<br>"
+     #<!-- Tibetan Dialect div -->
+ 		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_model_sentence_association_url(@model_sentence.id, 638), :update => "#{@model_sentence.id}_model_sentence_major_dialect_family_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+ 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'model_sentences', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+  		resultstr << "<div id='" + "#{@model_sentence.id}_model_sentence_major_dialect_family_type_div" + "'>" 
+ 		#resultstr << render_to_string(:partial => 'category_model_sentence_associations/index', :locals => {:data_id => 638})		
+ 		assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 638})
+     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+ 		resultstr << "</div>"
 
      resultstr << "<b>Sentence type: </b>"
      #resultstr << "<input type=hidden name=model_sentence[sentence_type] id=model_sentence[sentence_type] value=\""+@model_sentence.sentence_type.to_s+"\" >"
@@ -813,26 +832,36 @@ module ModelSentencesHelper
      #resultstr << link_to_remote( title,{:update => "model_sentence[literary_genre_type#{@model_sentence.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'model_sentences', :action => 'display_category_selector', :id => @model_sentence.id, :params => {'data_id' => 119, 'model_name' => 'model_sentence', 'function_name' => "literary_genre_type", :update_id => "model_sentence[literary_genre_type#{@model_sentence.id}]_selector"}}}, :class => 'selector_link' )
      #resultstr << "</span><br>"
      #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[literary_genre_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[literary_genre_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[literary_genre_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[literary_genre_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-     @data = Category.find(119)
-     #resultstr << category_selector(@data, :model_sentence, :literary_genre_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
-     if @model_sentence.literary_genre_type == nil
-       title = ''
-     else
-       title = @model_sentence.literary_genre_type.title
-     end
-     resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-   	 resultstr <<
-   				category_fields({
-   					:subject => {:display => title, :label => ''}, 
-   					:root => @data,
-   					:varname => :model_sentence,
-   					:selectable => false,
-   					:fieldname => :literary_genre_type,
-   					:include_js => true
-   				})
-   	 resultstr << "<tr><td></td></tr>"
-   	 resultstr << "</table>"
-     resultstr << "<br>"
+     #before update
+     #@data = Category.find(119)
+     ##resultstr << category_selector(@data, :model_sentence, :literary_genre_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     #if @model_sentence.literary_genre_type == nil
+      # title = ''
+     #else
+    #   title = @model_sentence.literary_genre_type.title
+     #end
+     #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+   	 #resultstr <<
+   		#		category_fields({
+   		#			:subject => {:display => title, :label => ''}, 
+   		#			:root => @data,
+   		#			:varname => :model_sentence,
+   		#			:selectable => false,
+   		#			:fieldname => :literary_genre_type,
+   		#			:include_js => true
+   		#		})
+   	 #resultstr << "<tr><td></td></tr>"
+   	 #resultstr << "</table>"
+     #resultstr << "<br>"
+      #<!-- Literary Genre div -->
+  		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_model_sentence_association_url(@model_sentence.id, 119), :update => "#{@model_sentence.id}_model_sentence_literary_genre_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+  		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'model_sentences', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+   		resultstr << "<div id='" + "#{@model_sentence.id}_model_sentence_literary_genre_type_div" + "'>" 
+  		#resultstr << render_to_string(:partial => 'category_model_sentence_associations/index', :locals => {:data_id => 119})		
+  		assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 119})
+      resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+  		resultstr << "</div>"
+     
      
      resultstr << "<b>Literary period: </b>"
      #resultstr << "<input type=hidden name=model_sentence[literary_period] id=model_sentence[literary_period] value=\""+@model_sentence.literary_period.to_s+"\" >"
@@ -846,26 +875,36 @@ module ModelSentencesHelper
      #resultstr << link_to_remote( title,{:update => "model_sentence[literary_period_type#{@model_sentence.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'model_sentences', :action => 'display_category_selector', :id => @model_sentence.id, :params => {'data_id' => 187, 'model_name' => 'model_sentence', 'function_name' => "literary_period_type", :update_id => "model_sentence[literary_period_type#{@model_sentence.id}]_selector"}}}, :class => 'selector_link' )
      #resultstr << "</span><br>"
      #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[literary_period_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[literary_period_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[literary_period_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[literary_period_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-     @data = Category.find(187)
-     #resultstr << category_selector(@data, :model_sentence, :literary_period_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
-     if @model_sentence.literary_period_type == nil
-       title = ''
-     else
-       title = @model_sentence.literary_period_type.title
-     end
-     resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-   	 resultstr <<
-   				category_fields({
-   					:subject => {:display => title, :label => ''}, 
-   					:root => @data,
-   					:varname => :model_sentence,
-   					:selectable => false,
-   					:fieldname => :literary_period_type,
-   					:include_js => true
-   				})
-   	 resultstr << "<tr><td></td></tr>"
-   	 resultstr << "</table>"
-     resultstr << "<br>"
+     #before update
+     #@data = Category.find(187)
+     ##resultstr << category_selector(@data, :model_sentence, :literary_period_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     #if @model_sentence.literary_period_type == nil
+    #   title = ''
+    # else
+    #   title = @model_sentence.literary_period_type.title
+    # end
+    # resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+   	# resultstr <<
+   	#			category_fields({
+   	#				:subject => {:display => title, :label => ''}, 
+   	#				:root => @data,
+   	#				:varname => :model_sentence,
+   	#				:selectable => false,
+   	#				:fieldname => :literary_period_type,
+   	#				:include_js => true
+   	#			})
+   	 #resultstr << "<tr><td></td></tr>"
+   	 #resultstr << "</table>"
+     #resultstr << "<br>"
+     #<!-- Literary Period div -->
+ 		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_model_sentence_association_url(@model_sentence.id, 187), :update => "#{@model_sentence.id}_model_sentence_literary_period_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+ 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'model_sentences', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+  		resultstr << "<div id='" + "#{@model_sentence.id}_model_sentence_literary_period_type_div" + "'>" 
+ 		#resultstr << render_to_string(:partial => 'category_model_sentence_associations/index', :locals => {:data_id => 187})		
+ 		assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 187})
+     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+ 		resultstr << "</div>"
+     
      
      resultstr << "<b>Literary form: </b>"
      #if @model_sentence.literary_form_type == nil
@@ -878,26 +917,35 @@ module ModelSentencesHelper
      #resultstr << link_to_remote( title,{:update => "model_sentence[literary_form_type#{@model_sentence.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'model_sentences', :action => 'display_category_selector', :id => @model_sentence.id, :params => {'data_id' => 186, 'model_name' => 'model_sentence', 'function_name' => "literary_form_type", :update_id => "model_sentence[literary_form_type#{@model_sentence.id}]_selector"}}}, :class => 'selector_link' )
      #resultstr << "</span><br>"
      #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('model_sentence[literary_form_type"+@model_sentence.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-     @data = Category.find(186)
-     #resultstr << category_selector(@data, :model_sentence, :literary_form_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
-     if @model_sentence.literary_form_type == nil
-       title = ''
-     else
-       title = @model_sentence.literary_form_type.title
-     end
-     resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-   	 resultstr <<
-   				category_fields({
-   					:subject => {:display => title, :label => ''}, 
-   					:root => @data,
-   					:varname => :model_sentence,
-   					:selectable => false,
-   					:fieldname => :literary_form_type,
-   					:include_js => true
-   				})
-   	 resultstr << "<tr><td></td></tr>"
-   	 resultstr << "</table>"
-     resultstr << "<br>"
+     #before update
+     #@data = Category.find(186)
+     ##resultstr << category_selector(@data, :model_sentence, :literary_form_type, true, :hasTree => 'true', :singleSelectionTree => 'true')
+     #if @model_sentence.literary_form_type == nil
+    #   title = ''
+    # else
+    #   title = @model_sentence.literary_form_type.title
+    # end
+    # resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+   	# resultstr <<
+   	#			category_fields({
+   	#				:subject => {:display => title, :label => ''}, 
+   	#				:root => @data,
+   	#				:varname => :model_sentence,
+   	#				:selectable => false,
+   	#				:fieldname => :literary_form_type,
+   	#				:include_js => true
+   	#			})
+   	 #resultstr << "<tr><td></td></tr>"
+   	 #resultstr << "</table>"
+     #resultstr << "<br>"
+      #<!-- Literary Form div -->
+  		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_model_sentence_association_url(@model_sentence.id, 186), :update => "#{@model_sentence.id}_model_sentence_literary_form_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+  		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'model_sentences', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+   		resultstr << "<div id='" + "#{@model_sentence.id}_model_sentence_literary_form_type_div" + "'>" 
+  		#resultstr << render_to_string(:partial => 'category_model_sentence_associations/index', :locals => {:data_id => 186})		
+  		assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 186})
+      resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+  		resultstr << "</div>"
 
      resultstr << "<b>Analytical note: </b>"
      #resultstr << "<input type=hidden name=model_sentence[analytical_note] id=model_sentence[analytical_note] value=\""+@model_sentence.analytical_note.to_s+"\" >"
