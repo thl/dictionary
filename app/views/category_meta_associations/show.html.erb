@@ -1,0 +1,18 @@
+<p>
+  <b>Meta:</b>
+  <%=h @category_meta_association.meta_id %>
+</p>
+
+<p>
+  <b>Category branch:</b>
+  <%=h @category_meta_association.category_branch_id %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%=h @category_meta_association.category_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_category_meta_association_path(@category_meta_association) %> |
+<%= link_to 'Back', category_meta_associations_path %>

@@ -1,0 +1,24 @@
+<h1>Listing category_literary_quotation_associations</h1>
+
+<table>
+  <tr>
+    <th>Literary quotation</th>
+    <th>Category branch</th>
+    <th>Category</th>
+  </tr>
+
+<% @category_literary_quotation_associations.each do |category_literary_quotation_association| %>
+  <tr>
+    <td><%=h category_literary_quotation_association.literary_quotation_id %></td>
+    <td><%=h category_literary_quotation_association.category_branch_id %></td>
+    <td><%=h category_literary_quotation_association.category_id %></td>
+    <td><%= link_to 'Show', category_literary_quotation_association %></td>
+    <td><%= link_to 'Edit', edit_category_literary_quotation_association_path(category_literary_quotation_association) %></td>
+    <td><%= link_to 'Destroy', category_literary_quotation_association, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New category_literary_quotation_association', new_category_literary_quotation_association_path %>

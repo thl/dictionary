@@ -13,6 +13,7 @@ class Meta < ActiveRecord::Base
   belongs_to :definition_definition_form, :foreign_key => 'definition_definition_form_id'
   has_and_belongs_to_many :sources, :join_table => 'meta_source', :foreign_key => 'meta_id', :association_foreign_key => 'source_id'
 
+  has_many :category_meta_associations, :dependent => :destroy
   belongs_to :project_type, :class_name => 'Category'
   belongs_to :language_type, :class_name => 'Category'
 

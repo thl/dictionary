@@ -1,0 +1,31 @@
+
+<%
+    data = Category.find(data_id)
+    model_name = 'oral_quotation'
+
+	case data_id
+	  when 638
+		target_update_div = "#{@oral_quotation.id}_oral_quotation_source_speaker_dialect_type_div"	
+	end
+%>
+
+  <% form_for :oral_quotation, :url => category_oral_quotation_associations_path(@oral_quotation, @branch) do |f| %>
+    <table class='mobj' border='0' cellspacing='0'>
+		<%=
+			category_fields :subject => {:display => '', :label => ''},
+							:root =>  data, 
+							:var_name => model_name, 
+							:field_name => [:category_oral_quotation_associations, :category],
+							:conditions => {:category_branch_id => @branch.id}, 
+							:include_js => true, 
+							:include_styles => false, 
+							:selectable => false, 
+							:single_selection => false
+		%> 
+	<tr><td></td></tr>
+	</table>
+    <br/>
+    <%= submit_to_remote 'update_button','update', :url => category_oral_quotation_associations_path(@oral_quotation, @branch), :update => "#{target_update_div}" %>
+    <%= link_to_remote 'cancel', {:url => category_oral_quotation_associations_path(@oral_quotation, @branch), :function_name => @function_name, :method => 'get', :update => "#{target_update_div}" } %>
+  <% end %>
+

@@ -1,0 +1,24 @@
+<h1>Listing category_meta_associations</h1>
+
+<table>
+  <tr>
+    <th>Meta</th>
+    <th>Category branch</th>
+    <th>Category</th>
+  </tr>
+
+<% @category_meta_associations.each do |category_meta_association| %>
+  <tr>
+    <td><%=h category_meta_association.meta_id %></td>
+    <td><%=h category_meta_association.category_branch_id %></td>
+    <td><%=h category_meta_association.category_id %></td>
+    <td><%= link_to 'Show', category_meta_association %></td>
+    <td><%= link_to 'Edit', edit_category_meta_association_path(category_meta_association) %></td>
+    <td><%= link_to 'Destroy', category_meta_association, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New category_meta_association', new_category_meta_association_path %>

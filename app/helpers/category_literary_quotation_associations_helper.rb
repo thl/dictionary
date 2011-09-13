@@ -1,0 +1,2 @@
+module CategoryLiteraryQuotationAssociationsHelper
+end

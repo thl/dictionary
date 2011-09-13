@@ -1109,26 +1109,36 @@ module OralQuotationsHelper
     #resultstr << link_to_remote( title,{:update => "oral_quotation[source_speaker_dialect_type#{@oral_quotation.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'oral_quotations', :action => 'display_category_selector', :id => @oral_quotation.id, :params => {'data_id' => 638, 'model_name' => 'oral_quotation', 'function_name' => "source_speaker_dialect_type", :update_id => "oral_quotation[source_speaker_dialect_type#{@oral_quotation.id}]_selector"}}}, :class => 'selector_link' )
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('oral_quotation[source_speaker_dialect_type"+@oral_quotation.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('oral_quotation[source_speaker_dialect_type"+@oral_quotation.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('oral_quotation[source_speaker_dialect_type"+@oral_quotation.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('oral_quotation[source_speaker_dialect_type"+@oral_quotation.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    @data = Category.find(638)
-    #resultstr << category_selector(@data, :oral_quotation, :source_speaker_dialect_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @oral_quotation.source_speaker_dialect_type == nil
-      title = ''
-    else
-      title = @oral_quotation.source_speaker_dialect_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :oral_quotation,
-  					:selectable => false,
-  					:fieldname => :source_speaker_dialect_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"    
-    resultstr << "<br>"
+    #before update
+    #@data = Category.find(638)
+    ##resultstr << category_selector(@data, :oral_quotation, :source_speaker_dialect_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @oral_quotation.source_speaker_dialect_type == nil
+    #  title = ''
+    #else
+    #  title = @oral_quotation.source_speaker_dialect_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :oral_quotation,
+  	#				:selectable => false,
+  	#				:fieldname => :source_speaker_dialect_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"    
+    #resultstr << "<br>"
+    #<!-- Source Speaker Tibetan Dialect div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_oral_quotation_association_url(@oral_quotation.id, 638), :update => "#{@oral_quotation.id}_oral_quotation_source_speaker_dialect_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'oral_quotations', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@oral_quotation.id}_oral_quotation_source_speaker_dialect_type_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_oral_quotation_associations/index', :locals => {:data_id => 638})		
+		assoc = @oral_quotation.category_oral_quotation_associations.find(:all, :conditions => {:category_branch_id => 638})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
+    
     
     resultstr << "<b>Transcript in Tibetan: </b>"
     # resultstr << @oral_quotation.transcript_in_tibetan if @oral_quotation.transcript_in_tibetan != nil

@@ -1,0 +1,2 @@
+module CategoryOralQuotationAssociationsHelper
+end

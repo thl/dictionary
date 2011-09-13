@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110912131630) do
+ActiveRecord::Schema.define(:version => 20110913175604) do
 
   create_table "bdrb_job_queues", :force => true do |t|
     t.binary   "args"
@@ -39,8 +39,32 @@ ActiveRecord::Schema.define(:version => 20110912131630) do
     t.datetime "updated_at"
   end
 
+  create_table "category_literary_quotation_associations", :force => true do |t|
+    t.integer  "literary_quotation_id"
+    t.integer  "category_branch_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "category_meta_associations", :force => true do |t|
+    t.integer  "meta_id"
+    t.integer  "category_branch_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "category_model_sentence_associations", :force => true do |t|
     t.integer  "model_sentence_id"
+    t.integer  "category_branch_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "category_oral_quotation_associations", :force => true do |t|
+    t.integer  "oral_quotation_id"
     t.integer  "category_branch_id"
     t.integer  "category_id"
     t.datetime "created_at"

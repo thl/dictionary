@@ -1,0 +1,10 @@
+
+<% assoc = @meta.category_meta_associations.find(:all, :conditions => {:category_branch_id => data_id}) %>
+
+<table>
+  <tr>
+    <td><%= assoc.collect{|a| a.category.title}.join(', ') %></td>
+  </tr>
+</table>
+
+<br />

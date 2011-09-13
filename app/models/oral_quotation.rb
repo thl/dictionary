@@ -4,6 +4,7 @@ class OralQuotation < ActiveRecord::Base
   # belongs_to :definition, :foreign_key => "def_id"
   has_many :translations, :foreign_key => "oral_quotation_id"
 
+  has_many :category_oral_quotation_associations, :dependent => :destroy
   belongs_to :source_speaker_dialect_type, :class_name => 'Category'
 
   def displayInfo

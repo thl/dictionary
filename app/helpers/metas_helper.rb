@@ -263,26 +263,35 @@ module MetasHelper
     #resultstr << link_to_remote( title,{:update => "meta[project_type#{@meta.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'metas', :action => 'display_category_selector', :id => @meta.id, :params => {'data_id' => 236, 'model_name' => 'meta', 'function_name' => "project_type", :update_id => "meta[project_type#{@meta.id}]_selector"}}}, :class => 'selector_link' )
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('meta[project_type"+@meta.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('meta[project_type"+@meta.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('meta[project_type"+@meta.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('meta[project_type"+@meta.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    @data = Category.find(236)
-    #resultstr << category_selector(@data, :meta, :project_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @meta.project_type == nil
-      title = ''
-    else
-      title = @meta.project_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :meta,
-  					:selectable => false,
-  					:fieldname => :project_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-    resultstr << "<br>" 
+    #before update
+    #@data = Category.find(236)
+    ##resultstr << category_selector(@data, :meta, :project_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @meta.project_type == nil
+    #  title = ''
+    #else
+    #  title = @meta.project_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :meta,
+  	#				:selectable => false,
+  	#				:fieldname => :project_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+    #resultstr << "<br>" 
+    #<!-- Project Type div -->
+ 		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_meta_association_url(@meta.id, 236), :update => "#{@meta.id}_meta_project_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'metas', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@meta.id}_meta_project_type_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_meta_associations/index', :locals => {:data_id => 236})		
+		assoc = @meta.category_meta_associations.find(:all, :conditions => {:category_branch_id => 236})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
  
     # resultstr << "<b>Source ID: </b>"
     # resultstr << "<input type=hidden name=meta[source] id=meta[source] value=\""+@meta.source.to_s+"\" >"
@@ -382,27 +391,35 @@ module MetasHelper
     #resultstr << link_to_remote( title,{:update => "meta[language_type#{@meta.id}]_selector", :complete => "re_initialize();",:url => {:controller => 'metas',:action => 'display_category_selector', :id => @meta.id, :params => {'data_id' => 184, 'model_name' => 'meta', 'function_name' => "language_type", :update_id => "meta[language_type#{@meta.id}]_selector"}}}, :class => 'selector_link' )
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('meta[language_type"+@meta.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('meta[language_type"+@meta.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('meta[language_type"+@meta.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('meta[language_type"+@meta.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    @data = Category.find(184)
-    #resultstr << category_selector(@data, :meta, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
-    if @meta.language_type == nil
-      title = ''
-    else
-      title = @meta.language_type.title
-    end
-    resultstr << " <table class='mobj' border='0' cellspacing='0'>"
-  	resultstr <<
-  				category_fields({
-  					:subject => {:display => title, :label => ''}, 
-  					:root => @data,
-  					:varname => :meta,
-  					:selectable => false,
-  					:fieldname => :language_type,
-  					:include_js => true
-  				})
-  	resultstr << "<tr><td></td></tr>"
-  	resultstr << "</table>"
-  	resultstr << "<br>"
-
+    #before update
+    #@data = Category.find(184)
+    ##resultstr << category_selector(@data, :meta, :language_type, false, :hasTree => 'true', :singleSelectionTree => 'true')    
+    #if @meta.language_type == nil
+    #  title = ''
+    #else
+    #  title = @meta.language_type.title
+    #end
+    #resultstr << " <table class='mobj' border='0' cellspacing='0'>"
+  	#resultstr <<
+  	#			category_fields({
+  	#				:subject => {:display => title, :label => ''}, 
+  	#				:root => @data,
+  	#				:varname => :meta,
+  	#				:selectable => false,
+  	#				:fieldname => :language_type,
+  	#				:include_js => true
+  	#			})
+  	#resultstr << "<tr><td></td></tr>"
+  	#resultstr << "</table>"
+  	#resultstr << "<br>"
+    #<!-- Language div -->
+ 		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_meta_association_url(@meta.id, 184), :update => "#{@meta.id}_meta_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'metas', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@meta.id}_meta_language_type_div" + "'>" 
+		#resultstr << render_to_string(:partial => 'category_meta_associations/index', :locals => {:data_id => 184})		
+		assoc = @meta.category_meta_associations.find(:all, :conditions => {:category_branch_id => 184})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "</div>"
   end
 
   def show_edit_meta
