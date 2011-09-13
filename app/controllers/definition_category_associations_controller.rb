@@ -36,9 +36,12 @@ class DefinitionCategoryAssociationsController < ApplicationController
         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_literary_period_div" }
       when 186
         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_literary_period_div" }
+      #only on edit dynamic window
       when 184
         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_language_type_div" }
-
+      when 638
+        render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_major_dialect_family_type_div" }
+        
     end
   end
 
