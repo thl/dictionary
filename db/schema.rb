@@ -437,13 +437,14 @@ ActiveRecord::Schema.define(:version => 20110913175604) do
     t.integer "script_type_id"
   end
 
-  create_table "loan_languages", :force => true do |t|
-    t.string "language",       :limit => 80
-    t.string "created_by",     :limit => 80
-    t.string "created_at",     :limit => 80
-    t.string "updated_by",     :limit => 80
-    t.string "updated_at",     :limit => 80
-    t.text   "update_history"
+  create_table "loan_languages", :id => false, :force => true do |t|
+    t.integer "id",                           :null => false
+    t.string  "language",       :limit => 80
+    t.string  "created_by",     :limit => 80
+    t.string  "created_at",     :limit => 80
+    t.string  "updated_by",     :limit => 80
+    t.string  "updated_at",     :limit => 80
+    t.text    "update_history"
   end
 
   create_table "major_dialects", :force => true do |t|
@@ -547,7 +548,8 @@ ActiveRecord::Schema.define(:version => 20110913175604) do
     t.integer "language_type_id"
   end
 
-  create_table "old_definitions", :force => true do |t|
+  create_table "old_definitions", :id => false, :force => true do |t|
+    t.integer "id",                                                  :null => false
     t.string  "term",                 :limit => 256
     t.text    "definition"
     t.string  "dictionary",           :limit => 256
@@ -563,7 +565,7 @@ ActiveRecord::Schema.define(:version => 20110913175604) do
     t.integer "thdl_id"
   end
 
-  add_index "old_definitions", ["dictionary", "term"], :name => "old_dictionary_index"
+  add_index "old_definitions", ["term", "dictionary"], :name => "old_dictionary_index"
   add_index "old_definitions", ["term"], :name => "od_idx"
 
   create_table "oral_quotations", :force => true do |t|
