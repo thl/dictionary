@@ -3,7 +3,10 @@
 <% 	 for e in o.translations %>
 <%#     if e.translation != nil and e.translation != ''%>
        <dd>
-	     <b>Translation<% if e.language != nil and e.language != '' %> (<%= e.language %>)<% end %>:</b>
+	     <!--<b>Translation<%# if e.language != nil and e.language != '' %> (<%#= e.language %>)<%# end %>:</b> -->
+			<% assoc = e.category_translation_associations.find(:all, :conditions => {:category_branch_id => 184}) %>
+			<b>Translation<% if !assoc.blank? %> (<%= assoc.collect{|a| a.category.title}.join(', ') %>)<% end %>:</b>
+			
 <%=      link_to_remote image_tag('user.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s}, :html => {:class => 'ui_dialog', :title=>'Contributors'} %>	
 <%=      link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'translations', :action => 'edit_dynamic_translation', :id => e.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_dialog', :title=>'Translation Edit'} %>	
 				
@@ -46,10 +49,10 @@
 		   </span>
 		 <% end %>
 	
-	     <% if e.language_type != nil and e.language_type != ''%>
+	     <!--<%# if e.language_type != nil and e.language_type != ''%>
 			  <br>	
-			  &nbsp;&nbsp;&nbsp;&nbsp;<b>Language: </b><%= e.language_type.title %>
-		 <% end %>
+			  &nbsp;&nbsp;&nbsp;&nbsp;<b>Language: </b><%#= e.language_type.title %>
+		 <%# end %> -->
 		 <% if e.analytical_note != nil and e.analytical_note != '' %>
 		      <br>
 			  &nbsp;&nbsp;&nbsp;&nbsp;<b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span>

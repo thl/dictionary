@@ -829,9 +829,9 @@ module PronunciationsHelper
     if @pronunciation.phonetic_transliteration == nil or @pronunciation.phonetic_transliteration == ''
       @pronunciation.phonetic_transliteration = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :pronunciation, :phonetic_transliteration, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[phonetic_transliteration]'}) +"<br>"
+    resultstr << in_place_editor_field( :pronunciation, :phonetic_transliteration, {}, {:cols => 80, :rows => 10, :fieldname => 'pronunciation[phonetic_transliteration]'}) 
     
-    resultstr << "<b>Pronunciation type: </b>"
+    resultstr << "<br><b>Pronunciation type: </b>"
     #resultstr << "<input type=hidden name=pronunciation[pronunciation_type] id=pronunciation[pronunciation_type] value=\""+@pronunciation.pronunciation_type.to_s+"\" >"
     #if @pronunciation.pronunciation_category == nil
     #  title = 'Click to modify'

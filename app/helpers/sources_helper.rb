@@ -171,58 +171,66 @@ module SourcesHelper
     if @source.source_id_value == nil or @source.source_id_value == ''
       @source.source_id_value = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :source, :source_id_value, {}, {:cols => 50, :rows => 1, :fieldname => 'source[source_id_value]'}) +"<br>"
+    resultstr << in_place_editor_field( :source, :source_id_value, {}, {:cols => 50, :rows => 1, :fieldname => 'source[source_id_value]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Source type: </b>"
     #resultstr << "<input type=hidden name=source[source_type] id=source[source_type] value=\""+@source.source_type.to_s+"\" >"
     if @source.source_type == nil or @source.source_type == ''
       @source.source_type = 'Click to modify'
     end
     #resultstr << in_place_select_editor_field( :source, :source_type, {}, {:select_options => @source_type, :fieldname => 'source[source_type]'})+"<br>"resultstr << select(:source, :source_type, @source_type) + "<br>"
-    resultstr << select(:source, :source_type, @source_type) + "<br>"
-    
+    resultstr << select(:source, :source_type, @source_type) 
+    resultstr << "<br>"
 
     resultstr << "<b>Start Page number: </b>"
     #resultstr << "<input type=hidden name=source[page_number] id=source[page_number] value=\""+@source.page_number.to_s+"\" >"
     if @source.page_number == nil or @source.page_number == ''
       @source.page_number = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :source, :page_number, {}, {:cols => 50, :rows => 1, :fieldname => 'source[page_number]'}) +"<br>"
+    resultstr << in_place_editor_field( :source, :page_number, {}, {:cols => 50, :rows => 1, :fieldname => 'source[page_number]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Start Page side: </b>"
     #resultstr << "<input type=hidden name=source[start_page_side] id=source[start_page_side] value=\""+@source.start_page_side.to_s+"\" >"
     if @source.start_page_side == nil or @source.start_page_side == ''
       @source.start_page_side = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :source, :start_page_side, {}, {:cols => 50, :rows => 1, :fieldname => 'source[start_page_side]'}) +"<br>"
+    resultstr << in_place_editor_field( :source, :start_page_side, {}, {:cols => 50, :rows => 1, :fieldname => 'source[start_page_side]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Start Line number: </b>"
     #resultstr << "<input type=hidden name=source[start_line_number] id=source[start_line_number] value=\""+@source.start_line_number.to_s+"\" >"
     if @source.start_line_number == nil or @source.start_line_number == ''
       @source.start_line_number = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :source, :start_line_number, {}, {:cols => 50, :rows => 1, :fieldname => 'source[start_line_number]'}) +"<br>"
+    resultstr << in_place_editor_field( :source, :start_line_number, {}, {:cols => 50, :rows => 1, :fieldname => 'source[start_line_number]'}) 
+    resultstr << "<br>"
     resultstr << "<b>End Page number: </b>"
     #resultstr << "<input type=hidden name=source[end_page_number] id=source[end_page_number] value=\""+@source.end_page_number.to_s+"\" >"
     if @source.end_page_number == nil or @source.end_page_number == ''
       @source.end_page_number = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :source, :end_page_number, {}, {:cols => 50, :rows => 1, :fieldname => 'source[end_page_number]'}) +"<br>"
+    resultstr << in_place_editor_field( :source, :end_page_number, {}, {:cols => 50, :rows => 1, :fieldname => 'source[end_page_number]'})
+    resultstr << "<br>"
     resultstr << "<b>End Page side: </b>"
     #resultstr << "<input type=hidden name=source[end_page_side] id=source[end_page_side] value=\""+@source.end_page_side.to_s+"\" >"
     if @source.end_page_side == nil or @source.end_page_side == ''
       @source.end_page_side = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :source, :end_page_side, {}, {:cols => 50, :rows => 1, :fieldname => 'source[end_page_side]'}) +"<br>"
+    resultstr << in_place_editor_field( :source, :end_page_side, {}, {:cols => 50, :rows => 1, :fieldname => 'source[end_page_side]'}) 
+    resultstr << "<br>"
     resultstr << "<b>End Line number: </b>"
     #resultstr << "<input type=hidden name=source[end_line_number] id=source[end_line_number] value=\""+@source.end_line_number.to_s+"\" >"
     if @source.end_line_number == nil or @source.end_line_number == ''
       @source.end_line_number = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :source, :end_line_number, {}, {:cols => 50, :rows => 1, :fieldname => 'source[end_line_number]'}) +"<br>"
+    resultstr << in_place_editor_field( :source, :end_line_number, {}, {:cols => 50, :rows => 1, :fieldname => 'source[end_line_number]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Spelling: </b>"
     #resultstr << "<input type=hidden name=source[spelling] id=source[spelling] value=\""+@source.spelling.to_s+"\" >"
     if @source.spelling == nil or @source.spelling == ''
       @source.spelling = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :source, :spelling, {}, {:cols => 50, :rows => 1, :fieldname => 'source[spelling]'}) +"<br>"
+    resultstr << in_place_editor_field( :source, :spelling, {}, {:cols => 50, :rows => 1, :fieldname => 'source[spelling]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Source note: </b>"
     #resultstr << "<input type=hidden name=source[source_note] id=source[source_note] value=\""+@source.source_note.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"

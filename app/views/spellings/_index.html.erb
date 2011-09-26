@@ -33,32 +33,58 @@ $(document).ready(function() {
 
 	<dl style="margin-top:0em;margin-bottom:0em;">
 		<dd style="display:none"></dd>
-	<% if e.basis_of_spelling != nil and e.basis_of_spelling != ''%>
-			<dd><b>Basis: </b>[<%= e.basis_of_spelling.s %>]</dd>
-	<% end %>
-	<% if e.basis_of_spelling_type != nil%>
-			<dd><b>Basis of spelling: </b><%= e.basis_of_spelling_type.title %></dd>
-	<% end %>
-	<% if e.spelling_type != nil and e.spelling_type != ''%>
-			<dd><b>Type: </b><%= e.spelling_type.s %></dd>
-	<% end %>
+		<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 191}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Basis: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
+		<% end %>
+	<!--<%# if e.basis_of_spelling != nil and e.basis_of_spelling != ''%>
+			<dd><b>Basis: </b>[<%#= e.basis_of_spelling.s %>]</dd>
+	<%# end %>
+	<%# if e.basis_of_spelling_type != nil%>
+			<dd><b>Basis of spelling: </b><%#= e.basis_of_spelling_type.title %></dd>
+	<%# end %>-->
 	
+		<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 4091}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Type: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
+		<% end %>
+	<!--<%# if e.spelling_type != nil and e.spelling_type != ''%>
+			<dd><b>Type: </b><%#= e.spelling_type.s %></dd>
+	<%# end %>
+	<%# if e.spelling_category != nil and e.spelling_category != ''%>
+			<dd><b>Spelling type: </b><%#= e.spelling_category.title %></dd>
+	<%# end %>-->
 	
-	<% if e.spelling_category != nil and e.spelling_category != ''%>
-			<dd><b>Spelling type: </b><%= e.spelling_category.title %></dd>
-	<% end %>
-	<% if e.major_dialect_family_type != nil and e.major_dialect_family_type != ''%>
-			<dd><b>Tibetan Dialect: </b><%= e.major_dialect_family_type.title %></dd>
-	<% end %>
-	<% if e.literary_genre_type != nil and e.literary_genre_type != ''%>
-			<dd><b>Literary genre: </b><%= e.literary_genre_type.title %></dd>
-	<% end %>
-	<% if e.literary_period_type != nil and e.literary_period_type != ''%>
-			<dd><b>Literary period: </b><%= e.literary_period_type.title %></dd>
-	<% end %>
-	<% if e.literary_form_type != nil and e.literary_form_type != ''%>
-			<dd><b>Literary form: </b><%= e.literary_form_type.title %></dd>
-	<% end %>
+		<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Tibetan Dialect: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
+		<% end %>
+	<!--<%# if e.major_dialect_family_type != nil and e.major_dialect_family_type != ''%>
+			<dd><b>Tibetan Dialect: </b><%#= e.major_dialect_family_type.title %></dd>
+	<%# end %>-->
+		<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Literary form: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
+		<% end %>
+	<!--<%# if e.literary_genre_type != nil and e.literary_genre_type != ''%>
+			<dd><b>Literary genre: </b><%#= e.literary_genre_type.title %></dd>
+	<%# end %>-->
+	
+		<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 187}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Literary form: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
+		<% end %>
+	<!--<%# if e.literary_period_type != nil and e.literary_period_type != ''%>
+			<dd><b>Literary period: </b><%#= e.literary_period_type.title %></dd>
+	<%# end %>-->
+	
+		<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 186}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Literary form: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
+		<% end %>
+	<!--<%# if e.literary_form_type != nil and e.literary_form_type != ''%>
+			<dd><b>Literary form: </b><%#= e.literary_form_type.title %></dd>
+	<%# end %>-->
 	<% if e.analytical_note != nil and e.analytical_note != '' %>
 		  <dd><b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span></dd>
 	 <% end %>

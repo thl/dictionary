@@ -113,7 +113,7 @@ module SortHelper
 
     params = {:params => {:sort_key => column, :sort_order => order, :query => flash["query"], :collection => flash["collection"], :object => flash["object"], :paged => 'yes',
 									:institution => flash["institution"]}}
-    link_to(caption, params) + (icon ? nbsp(2) + image_tag(icon) : '')
+    link_to(caption, params) + (icon ? nbsp(2) + image_tag(icon) : '').html_safe
   end
 
   # Returns a table header <th> tag with a sort link for the named column

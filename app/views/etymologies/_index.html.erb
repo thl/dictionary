@@ -26,12 +26,16 @@ $(document).ready(function() {
 		<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Etymology'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_etymology', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :etymology => e.id }}, :confirm => "Are you sure you want to remove this Etymology?") %>			
 		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_etymology' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id,  :parent_id => parent_id, :head_id => head_id,:etymology => e.id),  :title=>'Remove Etymology', :confirm => "Are you sure you want to remove this Etymology?" %>	
 		
-			<% if e.etymology_type != nil and e.etymology_type != '' %>
-				<i>[<%= e.etymology_type.s %>]</i>&nbsp;
-			<% end %>
-			<% if e.etymology_category != nil %>
-				<i><%= e.etymology_category.title %></i>&nbsp;
-			<% end %>
+		<% assoc = e.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 182}) %>
+		<% if !assoc.blank? %>
+		  <i>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</i>&nbsp;
+		<% end %>
+			<!-- <%# if e.etymology_type != nil and e.etymology_type != '' %>
+				<i>[<%#= e.etymology_type.s %>]</i>&nbsp;
+			<%# end %>
+			<%# if e.etymology_category != nil %>
+				<i><%#= e.etymology_category.title %></i>&nbsp;
+			<%# end %> -->
 		<span class="etymologies_show">	
 		  <%#= e.etymology.s if e.etymology != nil %>
 		  <div id="<%= "#{e.id}_etydiv" %>">
@@ -40,31 +44,58 @@ $(document).ready(function() {
 		</span>
 		<dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>
-		<% if e.loan_language != nil and e.loan_language != ''%>
-				<dd><b>Loan language: </b>[<%= e.loan_language %>]</dd>
-		<% end %>
-		<% if e.loan_language_type != nil and e.loan_language_type != ''%>
-				<dd><b>Loan language Type: </b><%= e.loan_language_type.title %></dd>
-		<% end %>
-		<% if e.derivation != nil and e.derivation != ''%>
-				<dd><b>Derivation: </b>[<%= e.derivation.s %>]</dd>
-		<% end %>
-		<% if e.derivation_type != nil%>
-				<dd><b>Derivation Type: </b><%= e.derivation_type.title %></dd>
-		<% end %>
+			<% assoc = e.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 184}) %>
+			<% if !assoc.blank? %>
+				<dd><b>Loan language: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
+			<% end %>
+		<!--<%# if e.loan_language != nil and e.loan_language != ''%>
+				<dd><b>Loan language: </b>[<%#= e.loan_language %>]</dd>
+		<%# end %>
+		<%# if e.loan_language_type != nil and e.loan_language_type != ''%>
+				<dd><b>Loan language Type: </b><%#= e.loan_language_type.title %></dd>
+		<%# end %>-->
+			<% assoc = e.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 180}) %>
+			<% if !assoc.blank? %>
+				<dd><b>Derivation: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
+			<% end %>
+		<!--<%# if e.derivation != nil and e.derivation != ''%>
+				<dd><b>Derivation: </b>[<%#= e.derivation.s %>]</dd>
+		<%# end %>
+		<%# if e.derivation_type != nil%>
+				<dd><b>Derivation Type: </b><%#= e.derivation_type.title %></dd>
+		<%# end %>-->
 		
-		<% if e.major_dialect_family_type != nil%>
-				<dd><b>Tibetan Dialect: </b><%= e.major_dialect_family_type.title %></dd>
+		<% assoc = e.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Tibetan Dialect: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
 		<% end %>
-		<% if e.literary_genre_type != nil%>
-				<dd><b>Literary genre: </b><%= e.literary_genre_type.title %></dd>
+		<!--<%# if e.major_dialect_family_type != nil%>
+				<dd><b>Tibetan Dialect: </b><%#= e.major_dialect_family_type.title %></dd>
+		<%# end %>-->
+		
+		<% assoc = e.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Literary genre: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
 		<% end %>
-		<% if e.literary_period_type != nil%>
-				<dd><b>Literary period: </b><%= e.literary_period_type.title %></dd>
+		<!--<%# if e.literary_genre_type != nil%>
+				<dd><b>Literary genre: </b><%#= e.literary_genre_type.title %></dd>
+		<%# end %>-->
+		<% assoc = e.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 187}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Literary period: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
 		<% end %>
-		<% if e.literary_form_type != nil%>
+		<!--<%# if e.literary_period_type != nil%>
+				<dd><b>Literary period: </b><%#= e.literary_period_type.title %></dd>
+		<%# end %>-->
+		
+		<% assoc = e.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 186}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Literary form: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
+		<% end %>
+		<!--<% if e.literary_form_type != nil%>
 				<dd><b>Literary form: </b><%= e.literary_form_type.title %></dd>
-		<% end %>
+		<% end %>-->
+		
 		<% if e.analytical_note != nil and e.analytical_note != '' %>
 			  <dd><b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span></dd>
 		 <% end %>

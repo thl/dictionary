@@ -2003,9 +2003,9 @@ module DefinitionsHelper
     if @definition.term == nil or @definition.term == ''
       @definition.term = 'Click to modify new term'
     end
-    resultstr << in_place_editor_field( :definition, :term, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[term]'}) +"<br>"
- 
-    resultstr << "<b>Level: </b>"
+    resultstr << in_place_editor_field( :definition, :term, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[term]'}) 
+
+    resultstr << "<br><b>Level: </b>"
     resultstr << "<input type=hidden name=internal_definition[level] id=internal_definition[level] value=\""+@definition.level.to_s+"\" >"
     if @definition.level == nil or @definition.level == ''
       @definition.level = 'Click to modify'
@@ -2016,9 +2016,9 @@ module DefinitionsHelper
     #@level = ['one','two','three']
     #resultstr << in_place_editor_field( :definition, :level, {}, {:field_type => 'select', :select_options => @level, :fieldname => 'internal_definition[level]'}) + "<br>"
     #resultstr << in_place_editor_field( :definition, :level, {}, {:field_type => 'select', :select_options => @level})
-    resultstr << select(:definition, :level, @level) + "<br>"
+    resultstr << select(:definition, :level, @level) 
     
-    resultstr << "<b>Definition: </b>"
+    resultstr << "<br><b>Definition: </b>"
     #resultstr << "<input type=hidden name=internal_definition[definition] id=internal_definition[definition] value=\""+@definition.definition.to_s+"\" >"
     resultstr << "<span class='definitions_thickbox_show'>"
     resultstr << "<div id='" + "#{@definition.id}_defpopupdiv" + "'>"
@@ -2245,16 +2245,16 @@ module DefinitionsHelper
     if @definition.numerology == nil or @definition.numerology == ''
       @definition.numerology = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :numerology, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[numerology]'}) +"<br>"
-    resultstr << "<b>Encyclopedia entry: </b>"
+    resultstr << in_place_editor_field( :definition, :numerology, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[numerology]'}) 
+    resultstr << "<br><b>Encyclopedia entry: </b>"
     resultstr << "<input type=hidden name=internal_definition[encyclopedia_entry] id=internal_definition[encyclopedia_entry] value=\""+@definition.encyclopedia_entry.to_s+"\" >"
     if @definition.encyclopedia_entry == nil or @definition.encyclopedia_entry == ''
       @definition.encyclopedia_entry = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :encyclopedia_entry, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[encyclopedia_entry]'}) +"<br>"
+    resultstr << in_place_editor_field( :definition, :encyclopedia_entry, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[encyclopedia_entry]'})
 
 
-    resultstr << "<b>Analytical note: </b>"
+    resultstr << "<br><b>Analytical note: </b>"
     resultstr << "<input type=hidden name=internal_definition[analytical_note] id=internal_definition[analytical_note] value=\""+@definition.analytical_note.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@definition.id}_anotediv" + "'>"
@@ -2289,26 +2289,26 @@ module DefinitionsHelper
     if @definition.image == nil or @definition.image == ''
       @definition.image = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :image, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[image]'}) +"<br>"
-    resultstr << "<b>Image caption: </b>"
+    resultstr << in_place_editor_field( :definition, :image, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[image]'})
+    resultstr << "<br><b>Image caption: </b>"
     resultstr << "<input type=hidden name=internal_definition[image_caption] id=internal_definition[image_caption] value=\""+@definition.image_caption.to_s+"\" >"
     if @definition.image_caption == nil or @definition.image_caption == ''
       @definition.image_caption = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :image_caption, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[image_caption]'}) +"<br>"
-    resultstr << "<b>Image photographer: </b>"
+    resultstr << in_place_editor_field( :definition, :image_caption, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[image_caption]'}) 
+    resultstr << "<br><b>Image photographer: </b>"
     resultstr << "<input type=hidden name=internal_definition[image_photographer] id=internal_definition[image_photographer] value=\""+@definition.image_photographer.to_s+"\" >"
     if @definition.image_photographer == nil or @definition.image_photographer == ''
       @definition.image_photographer = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :image_photographer, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[image_photographer]'}) +"<br>"
-    resultstr << "<b>Image link: </b>"
+    resultstr << in_place_editor_field( :definition, :image_photographer, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[image_photographer]'}) 
+    resultstr << "<br><b>Image link: </b>"
     resultstr << "<input type=hidden name=internal_definition[image_link] id=internal_definition[image_link] value=\""+@definition.image_link.to_s+"\" >"
     if @definition.image_link == nil or @definition.image_link == ''
       @definition.image_link = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[image_link]'}) +"<br>"
-    resultstr << "<b>Image description: </b>"
+    resultstr << in_place_editor_field( :definition, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[image_link]'}) 
+    resultstr << "<br><b>Image description: </b>"
     resultstr << "<input type=hidden name=internal_definition[image_description] id=internal_definition[image_description] value=\""+@definition.image_description.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@definition.id}_imagedescdiv" + "'>"
@@ -2326,38 +2326,38 @@ module DefinitionsHelper
     if @definition.audio == nil or @definition.audio == ''
       @definition.audio = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :audio, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio]'}) +"<br>"
-    resultstr << "<b>Audio id number: </b>"
+    resultstr << in_place_editor_field( :definition, :audio, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio]'}) 
+    resultstr << "<br><b>Audio id number: </b>"
     resultstr << "<input type=hidden name=internal_definition[audio_id_number] id=internal_definition[audio_id_number] value=\""+@definition.audio_id_number.to_s+"\" >"
     if @definition.audio_id_number == nil or @definition.audio_id_number == ''
       @definition.audio_id_number = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :audio_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio_id_number]'}) +"<br>"
-    resultstr << "<b>Audio speaker: </b>"
+    resultstr << in_place_editor_field( :definition, :audio_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio_id_number]'}) 
+    resultstr << "<br><b>Audio speaker: </b>"
     resultstr << "<input type=hidden name=internal_definition[audio_speaker] id=internal_definition[audio_speaker] value=\""+@definition.audio_speaker.to_s+"\" >"
     if @definition.audio_speaker == nil or @definition.audio_speaker == ''
       @definition.audio_speaker = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :audio_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio_speaker]'}) +"<br>"
-    resultstr << "<b>Audio date: </b>"
+    resultstr << in_place_editor_field( :definition, :audio_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio_speaker]'}) 
+    resultstr << "<br><b>Audio date: </b>"
     resultstr << "<input type=hidden name=internal_definition[audio_date] id=internal_definition[audio_date] value=\""+@definition.audio_date.to_s+"\" >"
     if @definition.audio_date == nil or @definition.audio_date == ''
       @definition.audio_date = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :audio_date, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio_date]'}) +"<br>"
-    resultstr << "<b>Audio place of recording: </b>"
+    resultstr << in_place_editor_field( :definition, :audio_date, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio_date]'}) 
+    resultstr << "<br><b>Audio place of recording: </b>"
     resultstr << "<input type=hidden name=internal_definition[audio_place_of_recording] id=internal_definition[audio_place_of_recording] value=\""+@definition.audio_place_of_recording.to_s+"\" >"
     if @definition.audio_place_of_recording == nil or @definition.audio_place_of_recording == ''
       @definition.audio_place_of_recording = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :audio_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio_place_of_recording]'}) +"<br>"
-    resultstr << "<b>Audio link: </b>"
+    resultstr << in_place_editor_field( :definition, :audio_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[audio_place_of_recording]'}) 
+    resultstr << "<br><b>Audio link: </b>"
     resultstr << "<input type=hidden name=internal_definition[audio_link] id=internal_definition[audio_link] value=\""+@definition.audio_link.to_s+"\" >"
     if @definition.audio_link == nil or @definition.audio_link == ''
       @definition.audio_link = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[audio_link]'}) +"<br>"
-    resultstr << "<b>Audio description: </b>"
+    resultstr << in_place_editor_field( :definition, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[audio_link]'}) 
+    resultstr << "<br><b>Audio description: </b>"
     resultstr << "<input type=hidden name=internal_definition[audio_description] id=internal_definition[audio_description] value=\""+@definition.audio_description.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@definition.id}_audiodescdiv" + "'>"
@@ -2375,39 +2375,39 @@ module DefinitionsHelper
     if @definition.video == nil or @definition.video == ''
       @definition.video = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :video, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video]'}) +"<br>"
-    resultstr << "<b>Video id number: </b>"
+    resultstr << in_place_editor_field( :definition, :video, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video]'})
+    resultstr << "<br><b>Video id number: </b>"
     resultstr << "<input type=hidden name=internal_definition[video_id_number] id=internal_definition[video_id_number] value=\""+@definition.video_id_number.to_s+"\" >"
     if @definition.video_id_number == nil or @definition.video_id_number == ''
       @definition.video_id_number = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :video_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video_id_number]'}) +"<br>"
-    resultstr << "<b>Video speaker: </b>"
+    resultstr << in_place_editor_field( :definition, :video_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video_id_number]'}) 
+    resultstr << "<br><b>Video speaker: </b>"
     resultstr << "<input type=hidden name=internal_definition[video_speaker] id=internal_definition[video_speaker] value=\""+@definition.video_speaker.to_s+"\" >"
     if @definition.video_speaker == nil or @definition.video_speaker == ''
       @definition.video_speaker = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :video_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video_speaker]'}) +"<br>"
-    resultstr << "<b>Video date: </b>"
+    resultstr << in_place_editor_field( :definition, :video_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video_speaker]'}) 
+    resultstr << "<br><b>Video date: </b>"
     resultstr << "<input type=hidden name=internal_definition[video_date] id=internal_definition[video_date] value=\""+@definition.video_date.to_s+"\" >"
     if @definition.video_date == nil or @definition.video_date == ''
       @definition.video_date = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :video_date, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video_date]'}) +"<br>"
-    resultstr << "<b>Video place of recording: </b>"
+    resultstr << in_place_editor_field( :definition, :video_date, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video_date]'}) 
+    resultstr << "<br><b>Video place of recording: </b>"
     resultstr << "<input type=hidden name=internal_definition[video_place_of_recording] id=internal_definition[video_place_of_recording] value=\""+@definition.video_place_of_recording.to_s+"\" >"
     if @definition.video_place_of_recording == nil or @definition.video_place_of_recording == ''
       @definition.video_place_of_recording = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :video_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video_place_of_recording]'}) +"<br>"
-    resultstr << "<b>Video link: </b>"
+    resultstr << in_place_editor_field( :definition, :video_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[video_place_of_recording]'}) 
+    resultstr << "<br><b>Video link: </b>"
     resultstr << "<input type=hidden name=internal_definition[video_link] id=internal_definition[video_link] value=\""+@definition.video_link.to_s+"\" >"
     if @definition.video_link == nil or @definition.video_link == ''
       @definition.video_link = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[video_link]'}) +"<br>"
+    resultstr << in_place_editor_field( :definition, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'internal_definition[video_link]'}) 
     
-    resultstr << "<b>Video description: </b>"
+    resultstr << "<br><b>Video description: </b>"
     resultstr << "<input type=hidden name=internal_definition[video_description] id=internal_definition[video_description] value=\""+@definition.audio_description.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@definition.id}_videodescdiv" + "'>"

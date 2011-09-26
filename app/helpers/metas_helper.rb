@@ -313,16 +313,16 @@ module MetasHelper
     if @meta.title == nil or @meta.title == ''
       @meta.title = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :meta, :title, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[title]'}) +"<br>"
+    resultstr << in_place_editor_field( :meta, :title, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[title]'}) 
     
     # 
-    resultstr << "<b>Author: </b>"
+    resultstr << "<br><b>Author: </b>"
     # resultstr << @meta.author unless @meta.author == nil
     # resultstr << "<br>"
     if @meta.author == nil or @meta.author == ''
       @meta.author = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :meta, :author, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[author]'}) +"<br>"
+    resultstr << in_place_editor_field( :meta, :author, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[author]'}) 
      
     # # resultstr << "<b>Page number: </b>"
     # # resultstr << "<input type=hidden name=meta[page_number] id=meta[page_number] value=\""+@meta.page_number.to_s+"\" >"
@@ -333,32 +333,32 @@ module MetasHelper
     # # resultstr << @meta.page_number unless @meta.page_number == nil
     # # resultstr << "<br>"
     # 
-    resultstr << "<b>Date of publication: </b>"
+    resultstr << "<br><b>Date of publication: </b>"
     # resultstr << @meta.date_of_publication unless @meta.date_of_publication == nil
     # resultstr << "<br>"
     if @meta.date_of_publication == nil or @meta.date_of_publication == ''
       @meta.date_of_publication = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :meta, :date_of_publication, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[date_of_publication]'}) +"<br>"
+    resultstr << in_place_editor_field( :meta, :date_of_publication, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[date_of_publication]'}) 
      
-    resultstr << "<b>Publisher: </b>"
+    resultstr << "<br><b>Publisher: </b>"
     # resultstr << @meta.publisher unless @meta.publisher == nil
     # resultstr << "<br>"
     if @meta.publisher == nil or @meta.publisher == ''
       @meta.publisher = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :meta, :publisher, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[publisher]'}) +"<br>"
+    resultstr << in_place_editor_field( :meta, :publisher, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[publisher]'}) 
     
     
-    resultstr << "<b>Place of publication: </b>"
+    resultstr << "<br><b>Place of publication: </b>"
     # resultstr << @meta.place_of_publicatio unless @meta.place_of_publication == nil
     # resultstr << "<br>"
     if @meta.place_of_publication == nil or @meta.place_of_publication == ''
       @meta.place_of_publication = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :meta, :place_of_publication, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[place_of_publication]'}) +"<br>"
+    resultstr << in_place_editor_field( :meta, :place_of_publication, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[place_of_publication]'}) 
 
-    resultstr << "<b>Metadata note: </b>"
+    resultstr << "<br><b>Metadata note: </b>"
     #resultstr << "<input type=hidden name=meta[metadata_note] id=meta[metadata_note] value=\""+@meta.metadata_note.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@meta.id}_anotediv" + "'>"
@@ -378,9 +378,9 @@ module MetasHelper
     if @meta.precedence == nil or @meta.precedence == ''
       @meta.precedence = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :meta, :precedence, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[precedence]'}) +"<br>"
+    resultstr << in_place_editor_field( :meta, :precedence, {}, {:cols => 50, :rows => 1, :fieldname => 'meta[precedence]'}) 
     
-    resultstr << "<b>Language: </b>"
+    resultstr << "<br><b>Language: </b>"
     #if @meta.language_type == nil or @meta.language_type == ''
     #  title = 'Click to modify'
     #else

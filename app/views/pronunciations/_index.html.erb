@@ -52,10 +52,13 @@ $(document).ready(function() {
 		<%# end %>
 		<dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>
-		<% if (e.major_dialect_family != nil and e.major_dialect_family != '') or (e.major_dialect_family_type != nil) %>
-			 <dd><b>Dialect: </b>
-				<span class="tib1"><%= '['+e.major_dialect_family.s+']' if e.major_dialect_family != nil and e.major_dialect_family != '' %></span>
-				<%= e.major_dialect_family_type.title if e.major_dialect_family_type != nil %>
+			<% assoc = e.category_pronunciation_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+		<%# if (e.major_dialect_family != nil and e.major_dialect_family != '') or (e.major_dialect_family_type != nil) %>
+		<% if !assoc.blank? %>
+			 <dd><b>Tibetan Dialect: </b>
+			<%= assoc.collect{|a| a.category.title}.join(', ') %>	
+			<!--	<span class="tib1"><%#= '['+e.major_dialect_family.s+']' if e.major_dialect_family != nil and e.major_dialect_family != '' %></span>
+				<%= e.major_dialect_family_type.title if e.major_dialect_family_type != nil %>-->
 				</dd>
 		<% end %>
 		<%# end %>
@@ -64,10 +67,10 @@ $(document).ready(function() {
 		    <!-- <br>	
 		   &nbsp;&nbsp;&nbsp;&nbsp;<b>Pronunciation type: </b><%#= e.pronunciation_category_id %>-->
 		<% end %>
-		<% if e.major_dialect_family_type != nil and e.major_dialect_family_type != ''%>
+		<!--<%# if e.major_dialect_family_type != nil and e.major_dialect_family_type != ''%>
 		     <br>	
-		   &nbsp;&nbsp;&nbsp;&nbsp;<b>Tibetan Dialect: </b><%= e.major_dialect_family_type.title %>
-		<% end %>
+		   &nbsp;&nbsp;&nbsp;&nbsp;<b>Tibetan Dialect: </b><%#= e.major_dialect_family_type.title %>
+		<%# end %>-->
 		<% if e.analytical_note != nil and e.analytical_note != '' %>
 		      <br>
 			  &nbsp;&nbsp;&nbsp;&nbsp;<b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span>
