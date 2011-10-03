@@ -181,18 +181,37 @@ module TranslationsHelper
   	#				:fieldname => :language_type,
   	#				:include_js => true
   	#			})
+      		#	category_fields( :subject => {:display => '', :label => ''},
+      #							:root =>  @data, 
+      #							:var_name => :translation, 
+      #							:field_name => :language_type,
+      #							:conditions => {:category_branch_id => 184}, 
+      #							:include_js => true, 
+      #							:include_styles => false, 
+      #							:selectable => false, 
+      #							:single_selection => true)
+
   	#resultstr << "<tr><td></td></tr>"
   	#resultstr << "</table>"
     #resultstr << "<br>"
+
+   
+ 		#<!-- Language div single association -->
+ 		edit_path = translation_language_edit_url(:id => @translation.id)
+    resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => edit_path, :update => "#{@translation.id}_translation_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
+   	resultstr << "<div id='" + "#{@translation.id}_translation_language_div" + "'>" 
+  	assoc = @translation.language_type.title  if !@translation.language_type.blank? 
+    resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+  	resultstr << "</div><br />"
  
- 		#<!-- Language div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_translation_association_url(@translation.id, 184), :update => "#{@translation.id}_translation_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
-		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'translations', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@translation.id}_translation_language_div" + "'>" 
-		#resultstr << render_to_string(:partial => 'category_translation_associations/index', :locals => {:data_id => 184})		
-		assoc = @translation.category_translation_associations.find(:all, :conditions => {:category_branch_id => 184})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
-		resultstr << "</div>"
+ 		#<!-- Language div multiple associations -->
+#		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_translation_association_url(@translation.id, 184), :update => "#{@translation.id}_translation_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
+#		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'translations', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+# 		resultstr << "<div id='" + "#{@translation.id}_translation_language_div" + "'>" 
+#		#resultstr << render_to_string(:partial => 'category_translation_associations/index', :locals => {:data_id => 184})		
+#		assoc = @translation.category_translation_associations.find(:all, :conditions => {:category_branch_id => 184})
+#    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+#		resultstr << "</div>"
  
         
     resultstr << "<b>Analytical note: </b>"

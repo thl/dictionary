@@ -137,6 +137,9 @@
 			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 190} %>			
 		</div>
 		
+		
+
+	
 		<!-- Language Context div -->
 		<b>Language context:</b>
 		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 185), :update => "#{@definition.id}_definition_language_context_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 

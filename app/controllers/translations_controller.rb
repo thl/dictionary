@@ -980,4 +980,42 @@ class TranslationsController < ApplicationController
       render :partial => "shared/tinymce_field_edit", :locals => {:t => @translation, :divsuffix => "_anotediv"}
   end
   
+  def language_update
+      @translation = Translation.find(params[:translation][:id])
+      if @translation.created_by == nil or @translation.created_by == ""
+             @translation.created_by = session[:user].login
+             @translation.created_at = Time.now
+      end
+      if session[:user] != nil
+             @translation.updated_by = session[:user].login
+      end
+      @translation.updated_at = Time.now
+      if @translation.update_history == nil
+        @translation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @translation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @translation.update_attributes(params[:translation])
+          format.html do
+            render :partial => "shared/category_selector_show", :locals => {:object => @translation, :field_name => :language_type, :divsuffix => "_translation_language_div"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @translation
+        end
+      end
+  end
+  
+  def language_show
+      @translation = Translation.find(params[:id])
+      render :partial => "shared/category_selector_show", :locals => {:object => @translation, :field_name => :language_type, :divsuffix => "_translation_language_div"}
+  end
+  
+  def language_edit
+      @translation = Translation.find(params[:id])
+      render :partial => "shared/category_selector_edit", :locals => {:object => @translation, :model_name => :translation, :field_name => :language_type, :data_id => 184, :divsuffix => "_translation_language_div"}
+  end
 end

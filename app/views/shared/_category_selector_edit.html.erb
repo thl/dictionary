@@ -1,0 +1,49 @@
+<%
+    data = Category.find(data_id)
+    #model_name = model_name
+	#field_name 
+	
+	case data_id
+	  when 184
+		#target_update_div = "#{@translation.id}_translation_language_div"	
+	end
+	target_update_div = "#{object.id}#{divsuffix}"
+	case model_name
+	  when :translation
+		target_update_path = translation_language_update_path(object)
+		target_show_path = translation_language_show_path(object)
+	  when :etymology
+		target_update_path = etymology_loan_language_update_path(object)
+		target_show_path = etymology_loan_language_show_path(object)	
+	  when :meta
+		target_update_path = meta_language_update_path(object)
+		target_show_path = meta_language_show_path(object)	
+	  when :definition
+		target_update_path = definition_language_update_path(object)
+		target_show_path = definition_language_show_path(object)
+	end
+	
+	
+%>
+
+  <% form_for model_name, :url => target_update_path do |f| %>
+    <%= f.hidden_field :id %>
+	<table class='mobj' border='0' cellspacing='0'>
+		<%=
+			category_fields :subject => {:display => '', :label => ''},
+							:root =>  data, 
+							:var_name => model_name, 
+							:field_name => field_name,
+							#:conditions => {:category_branch_id => data_id}, 
+							:include_js => true, 
+							:include_styles => false, 
+							:selectable => false, 
+							:single_selection => true
+		%> 
+	<tr><td></td></tr>
+	</table>
+
+    <%= submit_to_remote 'update_button','update', :url => target_update_path, :update => "#{target_update_div}" %>
+    <%= link_to_remote 'cancel', {:url => target_show_path, :method => 'get', :update => "#{target_update_div}" } %>
+    <br/>  
+<% end %>

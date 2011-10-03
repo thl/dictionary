@@ -412,14 +412,22 @@ module MetasHelper
   	#resultstr << "<tr><td></td></tr>"
   	#resultstr << "</table>"
   	#resultstr << "<br>"
-    #<!-- Language div -->
- 		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_meta_association_url(@meta.id, 184), :update => "#{@meta.id}_meta_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
-		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'metas', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@meta.id}_meta_language_type_div" + "'>" 
-		#resultstr << render_to_string(:partial => 'category_meta_associations/index', :locals => {:data_id => 184})		
-		assoc = @meta.category_meta_associations.find(:all, :conditions => {:category_branch_id => 184})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
-		resultstr << "</div>"
+  	
+  	#<!-- Language div single association -->
+ 		edit_path = meta_language_edit_url(:id => @meta.id)
+    resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => edit_path, :update => "#{@meta.id}_meta_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+   	resultstr << "<div id='" + "#{@meta.id}_meta_language_type_div" + "'>" 
+  	assoc = @meta.language_type.title  if !@meta.language_type.blank? 
+    resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+  	resultstr << "</div><br />"
+    ##<!-- Language div -->
+ 		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_meta_association_url(@meta.id, 184), :update => "#{@meta.id}_meta_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		##resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'metas', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		#resultstr << "<div id='" + "#{@meta.id}_meta_language_type_div" + "'>" 
+		##resultstr << render_to_string(:partial => 'category_meta_associations/index', :locals => {:data_id => 184})		
+		#assoc = @meta.category_meta_associations.find(:all, :conditions => {:category_branch_id => 184})
+    #resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		#resultstr << "</div>"
   end
 
   def show_edit_meta

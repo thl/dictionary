@@ -1170,4 +1170,43 @@ class EtymologiesController < ApplicationController
     render :partial => "video_description_edit", :locals => {:e => @etymology}
   end
   
+  def loan_language_update
+      @etymology = Etymology.find(params[:etymology][:id])
+      if @etymology.created_by == nil or @etymology.created_by == ""
+        @etymology.created_by = session[:user].login
+        @etymology.created_at = Time.now
+      end
+      if session[:user] != nil
+        @etymology.updated_by = session[:user].login
+      end
+      @etymology.updated_at = Time.now
+      if @etymology.update_history == nil
+        @etymology.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+        @etymology.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end    
+      respond_to do |format|
+        if @etymology.update_attributes(params[:etymology])
+          format.html do
+            render :partial => "shared/category_selector_show", :locals => {:object => @etymology, :field_name => :loan_language_type, :divsuffix => "_etymology_loan_language_type_div"}
+          end
+        else
+          #redirect_to :action => 'index_edit'
+          #redirect_to :action => 'public_edit', :id => @definition
+        end
+      end
+    end
+
+    def loan_language_show
+      @etymology = Etymology.find(params[:id])
+      render :partial => "shared/category_selector_show", :locals => {:object => @etymology, :field_name => :loan_language_type, :divsuffix => "_etymology_loan_language_type_div"}
+    end
+
+    def loan_language_edit
+      @etymology = Etymology.find(params[:id])
+      render :partial => "shared/category_selector_edit", :locals => {:object => @etymology, :model_name => :etymology, :field_name => :loan_language_type, :data_id => 184, :divsuffix => "_etymology_loan_language_type_div"}
+    end
+  
 end

@@ -26,7 +26,13 @@ ActionController::Routing::Routes.draw do |map|
   map.definition_show 'definitions/:id/definition_show', :controller => 'definitions', :action => 'definition_show'
   map.definition_popupedit 'definitions/:id/definition_popupedit', :controller => 'definitions', :action => 'definition_popupedit'
   map.definition_popupshow 'definitions/:id/definition_popupshow', :controller => 'definitions', :action => 'definition_popupshow'
-
+  map.language_context_edit 'definitions/:id/language_context_edit', :controller => 'definitions', :action => 'language_context_edit'
+  map.language_context_show 'definitions/:id/language_context_show', :controller => 'definitions', :action => 'language_context_show'
+  map.language_context_update 'definitions/:id/language_context_update', :controller => 'definitions', :action => 'language_context_update'
+  map.definition_language_edit 'definitions/:id/language_edit', :controller => 'definitions', :action => 'language_edit'
+  map.definition_language_show 'definitions/:id/language_show', :controller => 'definitions', :action => 'language_show'
+  map.definition_language_update 'definitions/:id/language_update', :controller => 'definitions', :action => 'language_update'
+ 
 
   map.edit_search_definition_definition_forms 'definition_definition_forms/:id/edit_search_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_search'
   map.definition_public_show_list 'definitions/:id/public_show_list', :controller => 'definitions', :action => 'public_show_list'
@@ -36,8 +42,6 @@ ActionController::Routing::Routes.draw do |map|
   map.grammatical_function_show 'definitions/:id/grammatical_function_show', :controller => 'definitions', :action => 'grammatical_function_show'
   map.register_edit 'definitions/:id/register_edit', :controller => 'definitions', :action => 'register_edit'
   map.register_show 'definitions/:id/register_show', :controller => 'definitions', :action => 'register_show'
-  map.language_context_edit 'definitions/:id/language_context_edit', :controller => 'definitions', :action => 'language_context_edit'
-  map.language_context_show 'definitions/:id/language_context_show', :controller => 'definitions', :action => 'language_context_show'
   map.literary_genre_edit 'definitions/:id/literary_genre_edit', :controller => 'definitions', :action => 'literary_genre_edit'
   map.literary_genre_show 'definitions/:id/literary_genre_show', :controller => 'definitions', :action => 'literary_genre_show'
   map.literary_period_edit 'definitions/:id/literary_period_edit', :controller => 'definitions', :action => 'literary_period_edit'
@@ -69,6 +73,10 @@ ActionController::Routing::Routes.draw do |map|
   map.etymology_audio_description_show 'etymologies/:id/audio_description_show', :controller => 'etymologies', :action => 'audio_description_show'
   map.etymology_video_description_edit 'etymologies/:id/video_description_edit', :controller => 'etymologies', :action => 'video_description_edit'
   map.etymology_video_description_show 'etymologies/:id/video_description_show', :controller => 'etymologies', :action => 'video_description_show'
+  map.etymology_loan_language_edit 'etymologies/:id/loan_language_edit', :controller => 'etymologies', :action => 'loan_language_edit'
+  map.etymology_loan_language_show 'etymologies/:id/loan_language_show', :controller => 'etymologies', :action => 'loan_language_show'
+  map.etymology_loan_language_update 'etymologies/:id/loan_language_update', :controller => 'etymologies', :action => 'loan_language_update'
+
 
   map.edit_dynamic_translation 'translations/:id/edit_dynamic_translation', :controller => 'translations', :action => 'edit_dynamic_translation'
   map.translation_translation_edit 'translations/:id/translation_edit', :controller => 'translations', :action => 'translation_edit'
@@ -77,6 +85,9 @@ ActionController::Routing::Routes.draw do |map|
   map.translation_translation_popupshow 'translations/:id/translation_popupshow', :controller => 'translations', :action => 'translation_popupshow'
   map.translation_analytical_note_edit 'translations/:id/analytical_note_edit', :controller => 'translations', :action => 'analytical_note_edit'
   map.translation_analytical_note_show 'translations/:id/analytical_note_show', :controller => 'translations', :action => 'analytical_note_show'
+  map.translation_language_edit 'translations/:id/language_edit', :controller => 'translations', :action => 'language_edit'
+  map.translation_language_show 'translations/:id/language_show', :controller => 'translations', :action => 'language_show'
+  map.translation_language_update'translations/:id/language_update', :controller => 'translations', :action => 'language_update'
 
 
   map.edit_dynamic_spelling 'spellings/:id/edit_dynamic_spelling', :controller => 'spellings', :action => 'edit_dynamic_spelling'
@@ -123,6 +134,10 @@ ActionController::Routing::Routes.draw do |map|
   map.meta_metadata_edit_dynamic_meta 'metas/:id/edit_dynamic_meta', :controller => 'metas', :action => 'edit_dynamic_meta'
   map.meta_metadata_title_edit 'metas/:id/title_edit', :controller => 'metas', :action => 'title_edit'
   map.meta_metadata_author_edit 'metas/:id/author_edit', :controller => 'metas', :action => 'author_edit'
+  map.meta_language_edit 'metas/:id/language_edit', :controller => 'metas', :action => 'language_edit'
+  map.meta_language_show 'metas/:id/language_show', :controller => 'metas', :action => 'language_show'
+  map.meta_language_update'metas/:id/language_update', :controller => 'metas', :action => 'language_update'
+  
   map.source_source_note_edit 'sources/:id/source_note_edit', :controller => 'sources', :action => 'source_note_edit'
   map.source_source_edit_dynamic_source 'sources/:id/edit_dynamic_sources', :controller => 'sources', :action => 'edit_dynamic_source'
   

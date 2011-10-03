@@ -1074,7 +1074,8 @@ module OralQuotationsHelper
     if @oral_quotation.source == nil or @oral_quotation.source == ''
       @oral_quotation.source = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :source, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :source, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Source title: </b>"
     #resultstr << @oral_quotation.source_title if @oral_quotation.source_title != nil
     #resultstr << "<br>"
@@ -1082,7 +1083,8 @@ module OralQuotationsHelper
     if @oral_quotation.source_title == nil or @oral_quotation.source_title == ''
       @oral_quotation.source_title = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :source_title, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_title]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :source_title, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_title]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Source type: </b>"
     #resultstr << @oral_quotation.source_type if @oral_quotation.source_type != nil
     #resultstr << "<br>"
@@ -1090,13 +1092,15 @@ module OralQuotationsHelper
     if @oral_quotation.source_type == nil or @oral_quotation.source_type == ''
       @oral_quotation.source_type = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :source_type, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_type]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :source_type, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_type]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Source speaker: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[source_speaker] id=oral_quotation[source_speaker] value=\""+@oral_quotation.source_speaker.to_s+"\" >"
     if @oral_quotation.source_speaker == nil or @oral_quotation.source_speaker == ''
       @oral_quotation.source_speaker = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :source_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speaker]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :source_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speaker]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Source Speaker Tibetan Dialect: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[source_speaker_dialect] id=oral_quotation[source_speaker_dialect"+@oral_quotation.id.to_s+"] value=\""+@oral_quotation.source_speaker_dialect.to_s+"\" >"
     #if @oral_quotation.source_speaker_dialect_type == nil
@@ -1147,7 +1151,8 @@ module OralQuotationsHelper
     if @oral_quotation.transcript_in_tibetan == nil or @oral_quotation.transcript_in_tibetan == ''
       @oral_quotation.transcript_in_tibetan = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :transcript_in_tibetan, {}, {:cols => 80, :rows => 10, :fieldname => 'oral_quotation[transcript_in_tibetan]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :transcript_in_tibetan, {}, {:cols => 80, :rows => 10, :fieldname => 'oral_quotation[transcript_in_tibetan]'}) 
+    resultstr << "<br>"
     # resultstr << "<b>Translation of transcript: </b>"
     # # resultstr << @oral_quotation.translation_of_transcript if @oral_quotation.translation_of_transcript != nil
     # resultstr << "<br>"
@@ -1163,7 +1168,8 @@ module OralQuotationsHelper
     if @oral_quotation.source_speech_type == nil or @oral_quotation.source_speech_type == ''
       @oral_quotation.source_speech_type = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :source_speech_type, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_type]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :source_speech_type, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_type]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Source speech context: </b>"
     #resultstr << @oral_quotation.source_speech_context if @oral_quotation.source_speech_context != nil
     #resultstr << "<br>"
@@ -1171,7 +1177,8 @@ module OralQuotationsHelper
     if @oral_quotation.source_speech_context == nil or @oral_quotation.source_speech_context == ''
       @oral_quotation.source_speech_context = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :source_speech_context, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_context]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :source_speech_context, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_context]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Source location within title: </b>"
     # resultstr << @oral_quotation.source_location_within_title if @oral_quotation.source_location_within_title != nil
     # resultstr << "<br>"
@@ -1179,7 +1186,8 @@ module OralQuotationsHelper
     if @oral_quotation.source_location_within_title == nil or @oral_quotation.source_location_within_title == ''
       @oral_quotation.source_location_within_title = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :source_location_within_title, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_location_within_title]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :source_location_within_title, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_location_within_title]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Source speech date: </b>"
     resultstr << @oral_quotation.source_speech_date if @oral_quotation.source_speech_date != nil
     #resultstr << "<br>"
@@ -1187,7 +1195,8 @@ module OralQuotationsHelper
     if @oral_quotation.source_speech_date == nil or @oral_quotation.source_speech_date == ''
       @oral_quotation.source_speech_date = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :source_speech_date, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_date]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :source_speech_date, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_date]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Source speech date Tibetan: </b>"
     resultstr << @oral_quotation.source_speech_date_tibetan if @oral_quotation.source_speech_date_tibetan != nil
     #resultstr << "<br>"
@@ -1195,7 +1204,8 @@ module OralQuotationsHelper
     if @oral_quotation.source_speech_date_tibetan == nil or @oral_quotation.source_speech_date_tibetan == ''
       @oral_quotation.source_speech_date_tibetan = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :source_speech_date_tibetan, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_date_tibetan]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :source_speech_date_tibetan, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_date_tibetan]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Source speech date Western: </b>"
     resultstr << @oral_quotation.source_speech_date_western if @oral_quotation.source_speech_date_western != nil
     #resultstr << "<br>"
@@ -1203,7 +1213,8 @@ module OralQuotationsHelper
     if @oral_quotation.source_speech_date_western == nil or @oral_quotation.source_speech_date_western == ''
       @oral_quotation.source_speech_date_western = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :source_speech_date_western, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_date_western]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :source_speech_date_western, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_date_western]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Source location of speech: </b>"
     #resultstr << @oral_quotation.source_location_of_speech if @oral_quotation.source_location_of_speech != nil
     #resultstr << "<br>"
@@ -1211,7 +1222,8 @@ module OralQuotationsHelper
     if @oral_quotation.source_location_of_speech == nil or @oral_quotation.source_location_of_speech == ''
       @oral_quotation.source_location_of_speech = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :source_location_of_speech, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_location_of_speech]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :source_location_of_speech, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_location_of_speech]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Analytical note: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[analytical_note] id=oral_quotation[analytical_note] value=\""+@oral_quotation.analytical_note.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
@@ -1239,25 +1251,29 @@ module OralQuotationsHelper
     if @oral_quotation.image == nil or @oral_quotation.image == ''
       @oral_quotation.image = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :image, {}, {:cols => 80, :rows => 10, :fieldname => 'oral_quotation[image]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :image, {}, {:cols => 80, :rows => 10, :fieldname => 'oral_quotation[image]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Image caption: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[image_caption] id=oral_quotation[image_caption] value=\""+@oral_quotation.image_caption.to_s+"\" >"
     if @oral_quotation.image_caption == nil or @oral_quotation.image_caption == ''
       @oral_quotation.image_caption = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :image_caption, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[image_caption]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :image_caption, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[image_caption]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Image photographer: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[image_photographer] id=oral_quotation[image_photographer] value=\""+@oral_quotation.image_photographer.to_s+"\" >"
     if @oral_quotation.image_photographer == nil or @oral_quotation.image_photographer == ''
       @oral_quotation.image_photographer = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :image_photographer, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[image_photographer]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :image_photographer, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[image_photographer]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Image link: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[image_link] id=oral_quotation[image_link] value=\""+@oral_quotation.image_link.to_s+"\" >"
     if @oral_quotation.image_link == nil or @oral_quotation.image_link == ''
       @oral_quotation.image_link = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'oral_quotation[image_link]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'oral_quotation[image_link]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Image description: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[image_description] id=oral_quotation[image_description] value=\""+@oral_quotation.image_description.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
@@ -1277,37 +1293,43 @@ module OralQuotationsHelper
     if @oral_quotation.audio == nil or @oral_quotation.audio == ''
       @oral_quotation.audio = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :audio, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[audio]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :audio, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[audio]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Audio id number: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[audio_id_number] id=oral_quotation[audio_id_number] value=\""+@oral_quotation.audio_id_number.to_s+"\" >"
     if @oral_quotation.audio_id_number == nil or @oral_quotation.audio_id_number == ''
       @oral_quotation.audio_id_number = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :audio_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[audio_id_number]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :audio_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[audio_id_number]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Audio speaker: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[audio_speaker] id=oral_quotation[audio_speaker] value=\""+@oral_quotation.audio_speaker.to_s+"\" >"
     if @oral_quotation.audio_speaker == nil or @oral_quotation.audio_speaker == ''
       @oral_quotation.audio_speaker = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :audio_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[audio_speaker]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :audio_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[audio_speaker]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Audio date: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[audio_date] id=oral_quotation[audio_date] value=\""+@oral_quotation.audio_date.to_s+"\" >"
     if @oral_quotation.audio_date == nil or @oral_quotation.audio_date == ''
       @oral_quotation.audio_date = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :audio_date, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[audio_date]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :audio_date, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[audio_date]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Audio place of recording: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[audio_place_of_recording] id=oral_quotation[audio_place_of_recording] value=\""+@oral_quotation.audio_place_of_recording.to_s+"\" >"
     if @oral_quotation.audio_place_of_recording == nil or @oral_quotation.audio_place_of_recording == ''
       @oral_quotation.audio_place_of_recording = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :audio_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[audio_place_of_recording]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :audio_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[audio_place_of_recording]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Audio link: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[audio_link] id=oral_quotation[audio_link] value=\""+@oral_quotation.audio_link.to_s+"\" >"
     if @oral_quotation.audio_link == nil or @oral_quotation.audio_link == ''
       @oral_quotation.audio_link = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'oral_quotation[audio_link]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'oral_quotation[audio_link]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Audio description: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[audio_description] id=oral_quotation[audio_description] value=\""+@oral_quotation.audio_description.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
@@ -1327,37 +1349,43 @@ module OralQuotationsHelper
     if @oral_quotation.video == nil or @oral_quotation.video == ''
       @oral_quotation.video = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :video, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[video]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :video, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[video]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Video id number: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[video_id_number] id=oral_quotation[video_id_number] value=\""+@oral_quotation.video_id_number.to_s+"\" >"
     if @oral_quotation.video_id_number == nil or @oral_quotation.video_id_number == ''
       @oral_quotation.video_id_number = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :video_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[video_id_number]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :video_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[video_id_number]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Video speaker: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[video_speaker] id=oral_quotation[video_speaker] value=\""+@oral_quotation.video_speaker.to_s+"\" >"
     if @oral_quotation.video_speaker == nil or @oral_quotation.video_speaker == ''
       @oral_quotation.video_speaker = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :video_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[video_speaker]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :video_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[video_speaker]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Video date: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[video_date] id=oral_quotation[video_date] value=\""+@oral_quotation.video_date.to_s+"\" >"
     if @oral_quotation.video_date == nil or @oral_quotation.video_date == ''
       @oral_quotation.video_date = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :video_date, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[video_date]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :video_date, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[video_date]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Video place of recording: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[video_place_of_recording] id=oral_quotation[video_place_of_recording] value=\""+@oral_quotation.video_place_of_recording.to_s+"\" >"
     if @oral_quotation.video_place_of_recording == nil or @oral_quotation.video_place_of_recording == ''
       @oral_quotation.video_place_of_recording = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :video_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[video_place_of_recording]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :video_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[video_place_of_recording]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Video link: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[video_link] id=oral_quotation[video_link] value=\""+@oral_quotation.video_link.to_s+"\" >"
     if @oral_quotation.video_link == nil or @oral_quotation.video_link == ''
       @oral_quotation.video_link = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :oral_quotation, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'oral_quotation[video_link]'}) +"<br>"
+    resultstr << in_place_editor_field( :oral_quotation, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'oral_quotation[video_link]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Video description: </b>"
     #resultstr << "<input type=hidden name=oral_quotation[video_description] id=oral_quotation[video_description] value=\""+@oral_quotation.audio_description.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"

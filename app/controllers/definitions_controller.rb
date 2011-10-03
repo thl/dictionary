@@ -2870,6 +2870,43 @@ end
     render :partial => "category_selector_edit", :locals => {:function_name => 'register_type', :title => (@definition.register_type != nil ? @definition.register_type.title : 'Select A Value'), :id => @definition.id, :data_id => 190, :update_id => "register_type#{@definition.id}" }
   end  
 
+  def language_update
+     @definition = Definition.find(params[:definition][:id])
+     if @definition.created_by == nil or @definition.created_by == ""
+       @definition.created_by = session[:user].login
+       @definition.created_at = Time.now
+     end
+     if session[:user] != nil
+       @definition.updated_by = session[:user].login
+     end
+     @definition.updated_at = Time.now
+     if @definition.update_history == nil
+       @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]"
+     else
+     	@definition.update_history += session[:user].login + " ["+Time.now.to_s+"]"
+     end 
+     respond_to do |format|
+       if @definition.update_attributes(params[:definition])
+         format.html do
+           render :partial => "shared/category_selector_show", :locals => {:object => @definition, :field_name => :language_type, :divsuffix => "_definition_language_div"}
+         end
+       else
+         #redirect_to :action => 'index_edit'
+         #redirect_to :action => 'public_edit', :id => @definition
+       end
+     end
+   end
+  
+  def language_show
+    @definition = Definition.find(params[:id])
+    render :partial => "shared/category_selector_show", :locals => {:object => @definition, :field_name => :language_type, :divsuffix => "_definition_language_div"}
+  end
+  
+  def language_edit
+    @definition = Definition.find(params[:id])   
+    render :partial => "shared/category_selector_edit", :locals => {:object => @definition, :model_name => :definition, :field_name => :language_type, :data_id => 184, :divsuffix => "_definition_language_div"}
+  end
+  
   def update_language_context
      @definition = Definition.find(params[:definition][:id])
      if @definition.created_by == nil or @definition.created_by == ""

@@ -1495,4 +1495,44 @@ class MetasController < ApplicationController
       @meta = Meta.find(params[:id])
       render :partial => "shared/tinymce_field_edit", :locals => {:t => @meta, :divsuffix => "_anotediv"}
   end  
+  
+  def language_update
+      @meta = Meta.find(params[:meta][:id])
+      if @meta.created_by == nil or @meta.created_by == ""
+             @meta.created_by = session[:user].login
+             @meta.created_at = Time.now
+      end
+      if session[:user] != nil
+             @meta.updated_by = session[:user].login
+      end
+      @meta.updated_at = Time.now
+      if @meta.update_history == nil
+        @meta.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @meta.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @meta.update_attributes(params[:meta])
+          format.html do
+            render :partial => "shared/category_selector_show", :locals => {:object => @meta, :field_name => :language_type, :divsuffix => "_meta_language_type_div"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @meta
+        end
+      end
+  end
+  
+  def language_show
+      @meta = Meta.find(params[:id])
+      render :partial => "shared/category_selector_show", :locals => {:object => @meta, :field_name => :language_type, :divsuffix => "_meta_language_type_div"}
+  end
+  
+  def language_edit
+      @meta = Meta.find(params[:id])
+      render :partial => "shared/category_selector_edit", :locals => {:object => @meta, :model_name => :meta, :field_name => :language_type, :data_id => 184, :divsuffix => "_meta_language_type_div"}
+  end
+    
 end

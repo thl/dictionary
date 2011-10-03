@@ -385,7 +385,8 @@ module SpellingsHelper
     if @spelling.spelling == nil or @spelling.spelling == ''
       @spelling.spelling = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :spelling, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[spelling]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :spelling, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[spelling]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Basis of spelling: </b>"
     #resultstr << "<input type=hidden name=spelling[basis_of_spelling] id=spelling[basis_of_spelling] value=\""+@spelling.basis_of_spelling.to_s+"\" >"
     #if @spelling.basis_of_spelling_type == nil
@@ -677,25 +678,29 @@ module SpellingsHelper
     if @spelling.image == nil or @spelling.image == ''
       @spelling.image = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :image, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[image]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :image, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[image]'})
+    resultstr << "<br>"
     resultstr << "<b>Image caption: </b>"
     #resultstr << "<input type=hidden name=spelling[image_caption] id=spelling[image_caption] value=\""+@spelling.image_caption.to_s+"\" >"
     if @spelling.image_caption == nil or @spelling.image_caption == ''
       @spelling.image_caption = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :image_caption, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[image_caption]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :image_caption, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[image_caption]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Image photographer: </b>"
     #resultstr << "<input type=hidden name=spelling[image_photographer] id=spelling[image_photographer] value=\""+@spelling.image_photographer.to_s+"\" >"
     if @spelling.image_photographer == nil or @spelling.image_photographer == ''
       @spelling.image_photographer = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :image_photographer, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[image_photographer]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :image_photographer, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[image_photographer]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Image link: </b>"
     #resultstr << "<input type=hidden name=spelling[image_link] id=spelling[image_link] value=\""+@spelling.image_link.to_s+"\" >"
     if @spelling.image_link == nil or @spelling.image_link == ''
       @spelling.image_link = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[image_link]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :image_link, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[image_link]'}) 
+    resultstr << "<br>"
  
     resultstr << "<b>Image description: </b>"
     #resultstr << "<input type=hidden name=spelling[image_description] id=spelling[image_description] value=\""+@spelling.image_description.to_s+"\" >"
@@ -716,37 +721,43 @@ module SpellingsHelper
     if @spelling.audio == nil or @spelling.audio == ''
       @spelling.audio = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :audio, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[audio]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :audio, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[audio]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Audio id number: </b>"
     #resultstr << "<input type=hidden name=spelling[audio_id_number] id=spelling[audio_id_number] value=\""+@spelling.audio_id_number.to_s+"\" >"
     if @spelling.audio_id_number == nil or @spelling.audio_id_number == ''
       @spelling.audio_id_number = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :audio_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[audio_id_number]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :audio_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[audio_id_number]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Audio speaker: </b>"
     #resultstr << "<input type=hidden name=spelling[audio_speaker] id=spelling[audio_speaker] value=\""+@spelling.audio_speaker.to_s+"\" >"
     if @spelling.audio_speaker == nil or @spelling.audio_speaker == ''
       @spelling.audio_speaker = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :audio_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[audio_speaker]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :audio_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[audio_speaker]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Audio date: </b>"
     #resultstr << "<input type=hidden name=spelling[audio_date] id=spelling[audio_date] value=\""+@spelling.audio_date.to_s+"\" >"
     if @spelling.audio_date == nil or @spelling.audio_date == ''
       @spelling.audio_date = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :audio_date, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[audio_date]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :audio_date, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[audio_date]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Audio place of recording: </b>"
     #resultstr << "<input type=hidden name=spelling[audio_place_of_recording] id=spelling[audio_place_of_recording] value=\""+@spelling.audio_place_of_recording.to_s+"\" >"
     if @spelling.audio_place_of_recording == nil or @spelling.audio_place_of_recording == ''
       @spelling.audio_place_of_recording = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :audio_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[audio_place_of_recording]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :audio_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[audio_place_of_recording]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Audio link: </b>"
     #resultstr << "<input type=hidden name=spelling[audio_link] id=spelling[audio_link] value=\""+@spelling.audio_link.to_s+"\" >"
     if @spelling.audio_link == nil or @spelling.audio_link == ''
       @spelling.audio_link = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[audio_link]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :audio_link, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[audio_link]'}) 
+    resultstr << "<br>"
 
     resultstr << "<b>Audio description: </b>"
     #resultstr << "<input type=hidden name=spelling[audio_description] id=spelling[audio_description] value=\""+@spelling.audio_description.to_s+"\" >"
@@ -767,37 +778,43 @@ module SpellingsHelper
     if @spelling.video == nil or @spelling.video == ''
       @spelling.video = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :video, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[video]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :video, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[video]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Video id number: </b>"
     #resultstr << "<input type=hidden name=spelling[video_id_number] id=spelling[video_id_number] value=\""+@spelling.video_id_number.to_s+"\" >"
     if @spelling.video_id_number == nil or @spelling.video_id_number == ''
       @spelling.video_id_number = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :video_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[video_id_number]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :video_id_number, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[video_id_number]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Video speaker: </b>"
     #resultstr << "<input type=hidden name=spelling[video_speaker] id=spelling[video_speaker] value=\""+@spelling.video_speaker.to_s+"\" >"
     if @spelling.video_speaker == nil or @spelling.video_speaker == ''
       @spelling.video_speaker = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :video_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[video_speaker]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :video_speaker, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[video_speaker]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Video date: </b>"
     #resultstr << "<input type=hidden name=spelling[video_date] id=spelling[video_date] value=\""+@spelling.video_date.to_s+"\" >"
     if @spelling.video_date == nil or @spelling.video_date == ''
       @spelling.video_date = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :video_date, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[video_date]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :video_date, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[video_date]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Video place of recording: </b>"
     #resultstr << "<input type=hidden name=spelling[video_place_of_recording] id=spelling[video_place_of_recording] value=\""+@spelling.video_place_of_recording.to_s+"\" >"
     if @spelling.video_place_of_recording == nil or @spelling.video_place_of_recording == ''
       @spelling.video_place_of_recording = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :video_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[video_place_of_recording]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :video_place_of_recording, {}, {:cols => 50, :rows => 1, :fieldname => 'spelling[video_place_of_recording]'}) 
+    resultstr << "<br>"
     resultstr << "<b>Video link: </b>"
     #resultstr << "<input type=hidden name=spelling[video_link] id=spelling[video_link] value=\""+@spelling.video_link.to_s+"\" >"
     if @spelling.video_link == nil or @spelling.video_link == ''
       @spelling.video_link = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :spelling, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[video_link]'}) +"<br>"
+    resultstr << in_place_editor_field( :spelling, :video_link, {}, {:cols => 80, :rows => 10, :fieldname => 'spelling[video_link]'}) 
+    resultstr << "<br>"
  
     resultstr << "<b>Video description: </b>"
     #resultstr << "<input type=hidden name=spelling[video_description] id=spelling[video_description] value=\""+@spelling.video_description.to_s+"\" >"

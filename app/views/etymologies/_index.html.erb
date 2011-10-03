@@ -44,10 +44,13 @@ $(document).ready(function() {
 		</span>
 		<dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>
-			<% assoc = e.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 184}) %>
-			<% if !assoc.blank? %>
-				<dd><b>Loan language: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
-			<% end %>
+			<%# assoc = e.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 184}) %>
+			<%# if !assoc.blank? %>
+			<!--	<dd><b>Loan language: </b>[<%#= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>-->
+			<%# end %>
+			
+			<dd><b>Loan language Type: </b><%= e.loan_language_type.title if !e.loan_language_type.blank?  %></dd>
+			
 		<!--<%# if e.loan_language != nil and e.loan_language != ''%>
 				<dd><b>Loan language: </b>[<%#= e.loan_language %>]</dd>
 		<%# end %>

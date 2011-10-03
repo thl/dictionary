@@ -2048,13 +2048,20 @@ module DefinitionsHelper
     ##resultstr << "</span><br>"
     ##resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[language_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[language_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[language_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[language_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     
-    #<!-- Language div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 184), :update => "#{@definition.id}_definition_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
-		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@definition.id}_definition_language_type_div" + "'>" 
-		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 184})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
-		resultstr << "</div>"
+    #<!-- Language div single association -->
+  	edit_path = definition_language_edit_url(:id => @definition.id)
+    resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => edit_path, :update => "#{@definition.id}_definition_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
+    resultstr << "<div id='" + "#{@definition.id}_definition_language_div" + "'>" 
+   	assoc = @definition.language_type.title  if !@definition.language_type.blank? 
+    resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+   	resultstr << "</div><br />"
+    ##<!-- Language div -->
+		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 184), :update => "#{@definition.id}_definition_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		##resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		#resultstr << "<div id='" + "#{@definition.id}_definition_language_type_div" + "'>" 
+		#assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 184})
+    #resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		#resultstr << "</div>"
     
     resultstr << "<b>Tibetan Dialect: </b>"
     #resultstr << "<input type=hidden name=definition[major_dialect_family] id=definition[major_dialect_family"+@definition.id.to_s+"] value=\""+@definition.major_dialect_family.to_s+"\" >"
