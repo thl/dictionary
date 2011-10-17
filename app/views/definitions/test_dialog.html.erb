@@ -40,12 +40,33 @@ var pageTracker = _gat._getTracker("UA-9863993-1");
 pageTracker._trackPageview();
 } catch(err) {}</script>
 
-
+<% data = Category.find(272)
+model_name = 'definition'
+%>
 <h1>Editing Spelling</h1>
 	<%= error_messages_for 'spelling' %>
 	
   		<%= in_place_editor_field(:definition, :term)%>
 
+	  <%#= f.hidden_field :id %>
+			<%#= f.hidden_field :branch_id, :value => data_id %>
+		    <table class='mobj' border='0' cellspacing='0'>
+				<%=
+					category_fields :subject => {:display => '', :label => ''},
+									:root =>  data, 
+									:var_name => model_name, 
+									:field_name => [:definition_category_associations, :category],
+									:conditions => {:category_branch_id => 272}, 
+									:include_js => true, 
+									:include_styles => true, 
+									:selectable => true, 
+									:single_selection => false
+				%> 
+			<tr><td></td></tr>
+			</table>
+		    <br/>
+	
+		
  <%= link_to "test2", "#iframe=http://tmb.thlib.org/categories/236/children" %>
 <a href="#iframe=http://places.thlib.org/features/16871"> Dangra Khyung Dzong (dang ra khyung rdzong) </a>
 </body>

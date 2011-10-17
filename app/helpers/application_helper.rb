@@ -229,7 +229,7 @@ module ApplicationHelper
         else
           # aug_23 ['jquery','jquery-ui'] + super +  ['jquery.inplace.pack','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl', 'jquery-ui-tabs']
           ##super +  ['jquery.inplace.pack','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed', 'modalbox','menu', 'menu_items', 'menu_tpl']
-          ['jquery', 'jquery-ui'] + super +  ['jquery.inplace.pack','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed','menu', 'menu_items', 'menu_tpl']
+          ['jquery', 'jquery-ui'] + super +  ['jquery.inplace','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed','menu', 'menu_items', 'menu_tpl']
         end
       end
       #['jquery','jquery-ui'] + super
