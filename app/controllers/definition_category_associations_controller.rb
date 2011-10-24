@@ -25,7 +25,7 @@ class DefinitionCategoryAssociationsController < ApplicationController
       when 272
         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_thematic_classification_div" }
       when 286 
-        render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_popupdefinition_grammatical_function_div" }
+        render :partial => "edit_inplace", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_grammatical_function_div" }
       when 190
         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_register_div" }
       when 185
@@ -44,6 +44,29 @@ class DefinitionCategoryAssociationsController < ApplicationController
     end
   end
 
+  def new_inline
+     case @branch.id
+       when 272
+         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_thematic_classification_div" }
+       when 286 
+         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_popupdefinition_grammatical_function_div" }
+       when 190
+         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_register_div" }
+       when 185
+         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_language_context_div" }
+       when 119
+         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_literary_genre_div" }
+       when 187
+         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_literary_period_div" }
+       when 186
+         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_literary_period_div" }
+       #only on edit dynamic window
+       when 184
+         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_language_type_div" }
+       when 638
+         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_major_dialect_family_type_div" } 
+     end
+   end
   # GET /definition_category_associations/1/edit
   def edit
     @definition_category_association = DefinitionCategoryAssociation.find(params[:id])

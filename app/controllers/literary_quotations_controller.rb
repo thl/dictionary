@@ -772,26 +772,26 @@ class LiteraryQuotationsController < ApplicationController
  
   def update_dynamic_literary_quotation
       @literary_quotation = LiteraryQuotation.find(params[:id])
-      if params[:literary_quotation][:script_type_id].blank?
-         params[:literary_quotation].delete :script_type_id
-      else
-         mca_cats = params[:literary_quotation][:script_type_id].split(',') 
-         mca_cats.each do |c|
-           unless c.blank?
-             params[:literary_quotation][:script_type_id] = c
-           end
-         end
-      end
-      if params[:literary_quotation][:literary_form_type_id].blank?
-         params[:literary_quotation].delete :literary_form_type_id
-      else
-         mca_cats = params[:literary_quotation][:literary_form_type_id].split(',') 
-         mca_cats.each do |c|
-           unless c.blank?
-             params[:literary_quotation][:literary_form_type_id] = c
-           end
-         end
-      end
+      #if params[:literary_quotation][:script_type_id].blank?
+      #   params[:literary_quotation].delete :script_type_id
+      #else
+      #   mca_cats = params[:literary_quotation][:script_type_id].split(',') 
+      #   mca_cats.each do |c|
+      #     unless c.blank?
+      #       params[:literary_quotation][:script_type_id] = c
+      #     end
+      #   end
+      #end
+      #if params[:literary_quotation][:literary_form_type_id].blank?
+      #   params[:literary_quotation].delete :literary_form_type_id
+      #else
+      #   mca_cats = params[:literary_quotation][:literary_form_type_id].split(',') 
+      #   mca_cats.each do |c|
+      #     unless c.blank?
+      #       params[:literary_quotation][:literary_form_type_id] = c
+      #     end
+      #   end
+      #end
       
       if @literary_quotation.created_by == nil or @literary_quotation.created_by == ""
         @literary_quotation.created_by = session[:user].login

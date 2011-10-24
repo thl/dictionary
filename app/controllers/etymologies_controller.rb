@@ -822,76 +822,76 @@ class EtymologiesController < ApplicationController
   def update_dynamic_etymology
     
       @etymology = Etymology.find(params[:id])
-      if params[:etymology][:etymology_category_id].blank?
-         params[:etymology].delete :etymology_category_id
-      else
-         mca_cats = params[:etymology][:etymology_category_id].split(',') 
-         mca_cats.each do |c|
-           unless c.blank?
-             params[:etymology][:etymology_category_id] = c
-           end
-         end
-      end
-      if params[:etymology][:loan_language_type_id].blank?
-         params[:etymology].delete :loan_language_type_id
-      else
-         mca_cats = params[:etymology][:loan_language_type_id].split(',') 
-         mca_cats.each do |c|
-           unless c.blank?
-             params[:etymology][:loan_language_type_id] = c
-           end
-         end
-      end
-      if params[:etymology][:derivation_type_id].blank?
-         params[:etymology].delete :derivation_type_id
-      else
-         mca_cats = params[:etymology][:derivation_type_id].split(',') 
-         mca_cats.each do |c|
-           unless c.blank?
-             params[:etymology][:derivation_type_id] = c
-           end
-         end
-      end
-      if params[:etymology][:major_dialect_family_type_id].blank?
-         params[:etymology].delete :major_dialect_family_type_id
-      else
-         mca_cats = params[:etymology][:major_dialect_family_type_id].split(',') 
-         mca_cats.each do |c|
-           unless c.blank?
-             params[:etymology][:major_dialect_family_type_id] = c
-           end
-         end
-      end
-      if params[:etymology][:literary_genre_type_id].blank?
-         params[:etymology].delete :literary_genre_type_id
-      else
-         mca_cats = params[:etymology][:literary_genre_type_id].split(',') 
-         mca_cats.each do |c|
-           unless c.blank?
-             params[:etymology][:literary_genre_type_id] = c
-           end
-         end
-      end
-      if params[:etymology][:literary_period_type_id].blank?
-         params[:etymology].delete :literary_period_type_id
-      else
-         mca_cats = params[:etymology][:literary_period_type_id].split(',') 
-         mca_cats.each do |c|
-           unless c.blank?
-             params[:etymology][:literary_period_type_id] = c
-           end
-         end
-      end
-      if params[:etymology][:literary_form_type_id].blank?
-         params[:etymology].delete :literary_form_type_id
-      else
-         mca_cats = params[:etymology][:literary_form_type_id].split(',') 
-         mca_cats.each do |c|
-           unless c.blank?
-             params[:etymology][:literary_form_type_id] = c
-           end
-         end
-      end
+      #if params[:etymology][:etymology_category_id].blank?
+      #   params[:etymology].delete :etymology_category_id
+      #else
+      #   mca_cats = params[:etymology][:etymology_category_id].split(',') 
+      #   mca_cats.each do |c|
+      #     unless c.blank?
+      #       params[:etymology][:etymology_category_id] = c
+      #     end
+      #   end
+      #end
+      #if params[:etymology][:loan_language_type_id].blank?
+      #   params[:etymology].delete :loan_language_type_id
+      #else
+      #   mca_cats = params[:etymology][:loan_language_type_id].split(',') 
+      #   mca_cats.each do |c|
+      #     unless c.blank?
+      #       params[:etymology][:loan_language_type_id] = c
+      #     end
+      #   end
+      #end
+      #if params[:etymology][:derivation_type_id].blank?
+      #   params[:etymology].delete :derivation_type_id
+      #else
+      #   mca_cats = params[:etymology][:derivation_type_id].split(',') 
+      #   mca_cats.each do |c|
+      #     unless c.blank?
+      #       params[:etymology][:derivation_type_id] = c
+      #     end
+      #   end
+      #end
+      #if params[:etymology][:major_dialect_family_type_id].blank?
+      #   params[:etymology].delete :major_dialect_family_type_id
+      #else
+      #   mca_cats = params[:etymology][:major_dialect_family_type_id].split(',') 
+      #   mca_cats.each do |c|
+      #     unless c.blank?
+      #       params[:etymology][:major_dialect_family_type_id] = c
+      #     end
+      #   end
+      #end
+      #if params[:etymology][:literary_genre_type_id].blank?
+      #   params[:etymology].delete :literary_genre_type_id
+      #else
+      #   mca_cats = params[:etymology][:literary_genre_type_id].split(',') 
+      #   mca_cats.each do |c|
+      #     unless c.blank?
+      #       params[:etymology][:literary_genre_type_id] = c
+      #     end
+      #   end
+      #end
+      #if params[:etymology][:literary_period_type_id].blank?
+      #   params[:etymology].delete :literary_period_type_id
+      #else
+      #   mca_cats = params[:etymology][:literary_period_type_id].split(',') 
+      #   mca_cats.each do |c|
+      #     unless c.blank?
+      #       params[:etymology][:literary_period_type_id] = c
+      #     end
+      #   end
+      #end
+      #if params[:etymology][:literary_form_type_id].blank?
+      #   params[:etymology].delete :literary_form_type_id
+      #else
+      #   mca_cats = params[:etymology][:literary_form_type_id].split(',') 
+      #   mca_cats.each do |c|
+      #     unless c.blank?
+      #       params[:etymology][:literary_form_type_id] = c
+      #     end
+      #   end
+      #end
       if @etymology.created_by == nil or @etymology.created_by == ""
         @etymology.created_by = session[:user].login
         @etymology.created_at = Time.now

@@ -685,16 +685,16 @@ class PronunciationsController < ApplicationController
   
   def update_dynamic_pronunciation
       @pronunciation = Pronunciation.find(params[:id])
-      if params[:pronunciation][:major_dialect_family_type_id].blank?
-         params[:pronunciation].delete :major_dialect_family_type_id
-      else
-         mca_cats = params[:pronunciation][:major_dialect_family_type_id].split(',') 
-         mca_cats.each do |c|
-           unless c.blank?
-             params[:pronunciation][:major_dialect_family_type_id] = c
-           end
-         end
-      end
+      #if params[:pronunciation][:major_dialect_family_type_id].blank?
+      #   params[:pronunciation].delete :major_dialect_family_type_id
+      #else
+      #   mca_cats = params[:pronunciation][:major_dialect_family_type_id].split(',') 
+      #   mca_cats.each do |c|
+      #     unless c.blank?
+      #       params[:pronunciation][:major_dialect_family_type_id] = c
+      #     end
+      #   end
+      #end
       if @pronunciation.created_by == nil or @pronunciation.created_by == ""
         @pronunciation.created_by = session[:user].login
         @pronunciation.created_at = Time.now

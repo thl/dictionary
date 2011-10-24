@@ -619,16 +619,16 @@ class OralQuotationsController < ApplicationController
   
   def update_dynamic_oral_quotation
       @oral_quotation = OralQuotation.find(params[:id])
-      if params[:oral_quotation][:source_speaker_dialect_type_id].blank?
-         params[:oral_quotation].delete :source_speaker_dialect_type_id
-      else
-         mca_cats = params[:oral_quotation][:source_speaker_dialect_type_id].split(',') 
-         mca_cats.each do |c|
-           unless c.blank?
-             params[:oral_quotation][:source_speaker_dialect_type_id] = c
-           end
-         end
-      end
+      #if params[:oral_quotation][:source_speaker_dialect_type_id].blank?
+      #   params[:oral_quotation].delete :source_speaker_dialect_type_id
+      #else
+      #   mca_cats = params[:oral_quotation][:source_speaker_dialect_type_id].split(',') 
+      #   mca_cats.each do |c|
+      #     unless c.blank?
+      #       params[:oral_quotation][:source_speaker_dialect_type_id] = c
+      #     end
+      #   end
+      #end
       if @oral_quotation.created_by == nil or @oral_quotation.created_by == ""
         @oral_quotation.created_by = session[:user].login
         @oral_quotation.created_at = Time.now
