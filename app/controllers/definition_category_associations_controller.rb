@@ -25,7 +25,7 @@ class DefinitionCategoryAssociationsController < ApplicationController
       when 272
         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_thematic_classification_div" }
       when 286 
-        render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_grammatical_function_div" }
+        render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_popupdefinition_grammatical_function_div" }
       when 190
         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_register_div" }
       when 185
@@ -40,8 +40,7 @@ class DefinitionCategoryAssociationsController < ApplicationController
       when 184
         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_language_type_div" }
       when 638
-        render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_major_dialect_family_type_div" }
-        
+        render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@definition.id}_definition_major_dialect_family_type_div" } 
     end
   end
 

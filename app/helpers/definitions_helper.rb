@@ -2104,9 +2104,9 @@ module DefinitionsHelper
     ##resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[grammatical_function_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[grammatical_function_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[grammatical_function_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[grammatical_function_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     #<!-- Grammatical function div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 286), :update => "#{@definition.id}_definition_grammatical_function_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 286), :update => "#{@definition.id}_popupdefinition_grammatical_function_div", :method => :get, :html => {:class => 'definitions_show'} )  
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@definition.id}_definition_grammatical_function_div" + "'>" 
+ 		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_grammatical_function_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 286})
     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
@@ -2143,9 +2143,9 @@ module DefinitionsHelper
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[register_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[register_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[register_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[register_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     ## resultstr << in_place_select_editor_field( :definition, :register, {}, {:select_options => @register, :fieldname => 'internal_definition[register]'})+"<br>"
     #<!-- Register div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 190), :update => "#{@definition.id}_definition_register_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 190), :update => "#{@definition.id}_popupdefinition_register_div", :method => :get, :html => {:class => 'definitions_show'} )  
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@definition.id}_definition_register_div" + "'>" 
+ 		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_register_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 190})
     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
@@ -2167,9 +2167,9 @@ module DefinitionsHelper
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[language_context_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[language_context_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[language_context_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[language_context_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     # resultstr << in_place_select_editor_field( :definition, :language_context, {}, {:select_options => @language_context, :fieldname => 'internal_definition[language_context]'})+"<br>"
     #<!-- Language context div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 185), :update => "#{@definition.id}_definition_language_context_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 185), :update => "#{@definition.id}_popupdefinition_language_context_div", :method => :get, :html => {:class => 'definitions_show'} )  
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@definition.id}_definition_language_context_div" + "'>" 
+ 		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_language_context_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 185})
     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
@@ -2192,9 +2192,9 @@ module DefinitionsHelper
     ## resultstr <<  "<span id=internal_definition[literary_genre"+@definition.id.to_s+"]_value class=menuvalue onclick=dialect_id="+@definition.id.to_s+";show_menu(genre_menu,getCoord(arguments[0]));>"+@definition.literary_genre+"</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     #<!-- Literary genre div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 119), :update => "#{@definition.id}_definition_literary_genre_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 119), :update => "#{@definition.id}_popupdefinition_literary_genre_div", :method => :get, :html => {:class => 'definitions_show'} )  
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@definition.id}_definition_literary_genre_div" + "'>" 
+ 		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_literary_genre_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 119})
     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
@@ -2215,9 +2215,9 @@ module DefinitionsHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[literary_period_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     #<!-- Literary period div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 187), :update => "#{@definition.id}_definition_literary_period_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 187), :update => "#{@definition.id}_popupdefinition_literary_period_div", :method => :get, :html => {:class => 'definitions_show'} )  
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@definition.id}_definition_literary_period_div" + "'>" 
+ 		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_literary_period_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 187})
     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
@@ -2239,9 +2239,9 @@ module DefinitionsHelper
     #resultstr << "</span><br>"
     #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     #<!-- Thematic classification div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 272), :update => "#{@definition.id}_definition_thematic_classification_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 272), :update => "#{@definition.id}_popupdefinition_thematic_classification_div", :method => :get, :html => {:class => 'definitions_show'} )  
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@definition.id}_definition_thematic_classification_div" + "'>" 
+ 		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_thematic_classification_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 272})
     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"    
