@@ -17,7 +17,7 @@
 	<% if @definitions.size == 0 %>
 	Sorry, there are no matches for <span class="tib1"><%= @term_value %></span> in the Dictionary.
 	<% else %>
-  <%= render :partial => "partial/find_paginator", @collection => @definition_pages %><br>
+  <%= render :partial => "partial/find_paginator", :locals => {:find_paginator => @definition_pages} %><br>
     <table width=\"100%\" cellspacing=0 border=0 cellpadding=1 bgcolor=#eeeeee>
     <tr bgcolor=#FFFFFF>
 		<th/>
