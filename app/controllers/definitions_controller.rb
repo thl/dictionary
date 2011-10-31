@@ -1061,7 +1061,16 @@ def find_head_terms
    puts query
 
    if query == [""] and (params['sub_definitions'] == nil or params['sub_definitions'] == "") and (params['full_synonyms'] == nil or params['full_synonyms'] == "") and (params['oral_quotations'] == nil or params['oral_quotations'] == "") and (params['etymologies'] == nil or params['etymologies'] == "") and (params['literary_quotations'] == nil or params['literary_quotations'] == "") and (params['model_sentences'] == nil or params['model_sentences'] == "") and (params['related_definitions'] == nil or params['related_definitions'] == "") and (params['meta'] == nil or params['meta'] == "") and (params['translations'] == nil or params['translations'] == "") and (params['super_definitions'] == nil or params['super_definitions'] == "") and (params['definition_definition_form_froms'] == nil or params['definition_definition_form_froms'] == "") and (params['definition_definition_form_tos'] == nil or params['definition_definition_form_tos'] == "") and (params['spellings'] == nil or params['spellings'] == "") and (params['full_synonyms_froms'] == nil or params['full_synonyms_froms'] == "") and (params['pronunciations'] == nil or params['pronunciations'] == "") and (params['translation_equivalents'] == nil or params['translation_equivalents'] == "")
-      @definition_pages, @definitions = paginate :definitions, :conditions => "level = 'head term'", :per_page => items_per_page, :order_by => sort_clause
+      #debugger
+      if params['items_per_page'] != nil
+         items_per_page = params['items_per_page'].to_i
+      else
+         items_per_page = 50
+      end
+      sort_clause = "sort_order asc"
+      @definition_pages = Paginator.new self, Definition.count(:conditions => "level = 'head term'"), items_per_page, params['page']
+      @definitions = Definition.find :all, :order => sort_clause, :conditions => "level = 'head term'", :limit => @definition_pages.items_per_page, :offset => @definition_pages.current.offset
+      #@definition_pages, @definitions = paginate :definitions, :conditions => "level = 'head term'", :per_page => items_per_page, :order_by => sort_clause
       if @definition_pages.item_count != 0
          @pages = (@definition_pages.item_count.to_f / items_per_page.to_f).ceil
          @current_page = (@definition_pages.current.first_item.to_f / @definition_pages.item_count.to_f * @pages).ceil
