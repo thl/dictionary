@@ -81,7 +81,7 @@
 		
 		<!-- thematic classification div -->
 		<b>Thematic classification:</b>
-		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 272), :update => "#{@definition.id}_definition_thematic_classification_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_inplace_category_definition_association_url(@definition.id, 272), :update => "#{@definition.id}_definition_thematic_classification_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
 		<%#= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_thematic_classification' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Thematic Classification', :confirm => "Are you sure you want to remove this Thematic Classification?" %>
 		<div id="<%= d.id%>_definition_thematic_classification_div"> 
 			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 272} %>			
@@ -122,7 +122,7 @@
 
 	<!-- Function div -->
 	<b>Function:</b>
-	<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 286), :update => "#{@definition.id}_definition_grammatical_function_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+	<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_inplace_category_definition_association_url(@definition.id, 286), :update => "#{@definition.id}_definition_grammatical_function_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
 	<%#= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_grammatical_function' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Grammatical Function', :confirm => "Are you sure you want to remove this Grammatical Function?" %>
 	<div id="<%= d.id%>_definition_grammatical_function_div"> 
 		<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 286} %>			
@@ -131,7 +131,7 @@
 
 		<!-- Register div -->
 		<b>Register:</b>
-		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 190), :update => "#{@definition.id}_definition_register_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_inplace_category_definition_association_url(@definition.id, 190), :update => "#{@definition.id}_definition_register_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
 		<%#= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_register' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Register', :confirm => "Are you sure you want to remove this Register?" %>
 		<div id="<%= d.id%>_definition_register_div"> 
 			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 190} %>			
@@ -142,7 +142,7 @@
 	
 		<!-- Language Context div -->
 		<b>Language context:</b>
-		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 185), :update => "#{@definition.id}_definition_language_context_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_inplace_category_definition_association_url(@definition.id, 185), :update => "#{@definition.id}_definition_language_context_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
 		<%#= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language_context' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language Context', :confirm => "Are you sure you want to remove this Language Context?" %>
 		<div id="<%= d.id%>_definition_language_context_div"> 
 			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 185} %>			
@@ -161,7 +161,7 @@
 
 		<!-- Literary genre div -->
 		<b>Literary genre:</b>
-		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 119), :update => "#{@definition.id}_definition_literary_genre_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_inplace_category_definition_association_url(@definition.id, 119), :update => "#{@definition.id}_definition_literary_genre_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
 		<%#= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_genre' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Literary genre', :confirm => "Are you sure you want to remove this Literary genre?" %>
 		<div id="<%= d.id%>_definition_literary_genre_div"> 
 			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 119} %>			
@@ -170,7 +170,7 @@
 
 		<!-- Literary period div -->
 		<b>Literary period:</b>
-		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 187), :update => "#{@definition.id}_definition_literary_period_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_inplace_category_definition_association_url(@definition.id, 187), :update => "#{@definition.id}_definition_literary_period_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
 		<%#= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_period' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Literary period', :confirm => "Are you sure you want to remove this Literary period?" %>
 		<div id="<%= d.id%>_definition_literary_period_div"> 
 			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 187} %>			
@@ -178,7 +178,7 @@
 
 		<!-- Literary form div -->
 		<b>Literary form:</b>
-		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 186), :update => "#{@definition.id}_definition_literary_form_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_inplace_category_definition_association_url(@definition.id, 186), :update => "#{@definition.id}_definition_literary_form_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
 		<%#= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_form' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Literary form', :confirm => "Are you sure you want to remove this Literary form?" %>
 		<div id="<%= d.id%>_definition_literary_form_div"> 
 			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 186} %>			

@@ -32,7 +32,7 @@ ActionController::Routing::Routes.draw do |map|
   map.definition_language_edit 'definitions/:id/language_edit', :controller => 'definitions', :action => 'language_edit'
   map.definition_language_show 'definitions/:id/language_show', :controller => 'definitions', :action => 'language_show'
   map.definition_language_update 'definitions/:id/language_update', :controller => 'definitions', :action => 'language_update'
- 
+
 
   map.edit_search_definition_definition_forms 'definition_definition_forms/:id/edit_search_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_search'
   map.definition_public_show_list 'definitions/:id/public_show_list', :controller => 'definitions', :action => 'public_show_list'
@@ -212,6 +212,8 @@ ActionController::Routing::Routes.draw do |map|
   #map.resources :definitions do |definition|
   #  definition.resources :associations, :controller => 'definition_category_associations'
   #end
+
+  map.new_inplace_category_definition_association 'definitions/:definition_id/new_inplace/branches/:branch_id', :controller => 'definition_category_associations', :action => 'new_inline'
   
   map.resources :category_definition_associations, :controller => 'definition_category_associations', :path_prefix => 'definitions/:definition_id/branches/:branch_id'
   map.resources :category_translation_associations, :controller => 'category_translation_associations', :path_prefix => 'translations/:translation_id/branches/:branch_id'
