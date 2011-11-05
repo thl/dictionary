@@ -50,10 +50,14 @@ class CategoryModelSentenceAssociationsController < ApplicationController
   # POST /category_model_sentence_associations.xml
   def create
     errors = []
-     model_sentence_params = params[:model_sentence]
-     associations_param = model_sentence_params.delete(:category_model_sentence_associations)
-     new_category_ids = associations_param[:category_ids].collect(&:to_i)
-     assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => @branch.id})
+    if !params[:model_sentence].blank?
+      model_sentence_params = params[:model_sentence]
+      associations_param = model_sentence_params.delete(:category_model_sentence_associations)
+      new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    else
+      new_category_ids = []
+    end
+    assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => @branch.id})
      saved_category_ids  = assoc.collect(&:category_id)
       CategoryModelSentenceAssociation.destroy_all(:category_id  => saved_category_ids - new_category_ids)
       begin

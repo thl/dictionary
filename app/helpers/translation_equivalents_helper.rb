@@ -525,7 +525,7 @@ module TranslationEquivalentsHelper
  		resultstr << "<div id='" + "#{@translation_equivalent.id}_translation_equivalent_language_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_translation_equivalent_associations/index', :locals => {:data_id => 184})		
 		assoc = @translation_equivalent.category_translation_equivalent_associations.find(:all, :conditions => {:category_branch_id => 184})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
     
     

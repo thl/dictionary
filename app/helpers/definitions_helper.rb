@@ -2053,7 +2053,12 @@ module DefinitionsHelper
     resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => edit_path, :update => "#{@definition.id}_definition_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
     resultstr << "<div id='" + "#{@definition.id}_definition_language_div" + "'>" 
    	assoc = @definition.language_type.title  if !@definition.language_type.blank? 
-    resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+    #resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+    resultstr << "<table><tr><td>"
+    if !@definition.language_type.blank? 
+      resultstr << link_to (@definition.language_type.title, @definition.language_type.get_url_with_parent)
+    end
+    resultstr << "</td></tr></table>"
    	resultstr << "</div><br />"
     ##<!-- Language div -->
 		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 184), :update => "#{@definition.id}_definition_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
@@ -2084,7 +2089,7 @@ module DefinitionsHelper
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
  		resultstr << "<div id='" + "#{@definition.id}_definition_major_dialect_family_type_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 638})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
     
     resultstr << "<b>Grammatical function: </b>" 
@@ -2108,8 +2113,9 @@ module DefinitionsHelper
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
  		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_grammatical_function_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 286})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
-		resultstr << "</div>"
+    #resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+		resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
+    resultstr << "</div>"
 		  
   
     resultstr << "<div id=tense"+@definition.id.to_s
@@ -2147,7 +2153,7 @@ module DefinitionsHelper
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
  		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_register_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 190})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
 		resultstr << "</div>"
 
     resultstr << "<b>Language context: </b>"
@@ -2171,7 +2177,7 @@ module DefinitionsHelper
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
  		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_language_context_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 185})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
 		resultstr << "</div>"
 		
 		
@@ -2196,7 +2202,7 @@ module DefinitionsHelper
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
  		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_literary_genre_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 119})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
 		resultstr << "</div>"
     
     resultstr << "<b>Literary period: </b>"
@@ -2219,11 +2225,11 @@ module DefinitionsHelper
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
  		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_literary_period_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 187})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
 		resultstr << "</div>"
 		
 
-    resultstr << "<b>Thematic classification: </b>"
+    resultstr << "<b>Characteristics: </b>"
     resultstr << "<input type=hidden name=internal_definition[thematic_classification] id=internal_definition[thematic_classification] value=\""+@definition.thematic_classification.to_s+"\" >"
     if @definition.thematic_classification_type == nil
       title = 'Click to modify'
@@ -2243,11 +2249,11 @@ module DefinitionsHelper
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
  		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_thematic_classification_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 272})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
 		resultstr << "</div>"    
     
     
-    resultstr << "<b>Numerology: </b>"
+    resultstr << "<b>Enumeration: </b>"
     resultstr << "<input type=hidden name=internal_definition[numerology] id=internal_definition[numerology] value=\""+@definition.numerology.to_s+"\" >"
     if @definition.numerology == nil or @definition.numerology == ''
       @definition.numerology = 'Click to modify'

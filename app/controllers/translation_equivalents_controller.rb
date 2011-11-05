@@ -551,7 +551,6 @@ class TranslationEquivalentsController < ApplicationController
   
   
   def render_translation_equivalents
-    debugger
     @translation_equivalent = TranslationEquivalent.find(params[:id])
     @temp_definition = Definition.find(@translation_equivalent.def_id) 
  	  render :update do |page|

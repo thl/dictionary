@@ -887,7 +887,7 @@ module PronunciationsHelper
  		resultstr << "<div id='" + "#{@pronunciation.id}_pronunciation_major_dialect_family_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_pronunciation_associations/index', :locals => {:data_id => 638})		
 		assoc = @pronunciation.category_pronunciation_associations.find(:all, :conditions => {:category_branch_id => 638})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
     
     # resultstr << in_place_form_editor_field( :pronunciation, :major_dialect_family, {}, {:cols => 50, :rows => 1, :fieldname => 'pronunciation[major_dialect_family]'}) +"<br>"

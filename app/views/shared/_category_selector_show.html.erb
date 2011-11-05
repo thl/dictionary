@@ -1,10 +1,11 @@
 
 <%  case field_name
   		when :language_type %>
-<%=   		object.language_type.title  if !object.language_type.blank? %>
+<%#=   		object.language_type.title  if !object.language_type.blank? %>
+<%=  link_to (object.language_type.title, object.language_type.get_url_with_parent) if !object.language_type.blank? %>
 <% 		when :loan_language_type %>
-<%=   		object.loan_language_type.title  if !object.loan_language_type.blank? %>
+<%=  link_to (object.loan_language_type.title, object.loan_language_type.get_url_with_parent)  if !object.loan_language_type.blank? %>
 <% 		when :language_context_type %>
-<%=   		object.language_context_type.title  if !object.language_context_type.blank? %>
+<%=  link_to (object.language_context_type.title, object.language_context_type.get_url_with_parent) if !object.language_context_type.blank? %>
 	
 <%  end %>

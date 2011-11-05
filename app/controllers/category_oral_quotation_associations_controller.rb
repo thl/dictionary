@@ -36,9 +36,13 @@ class CategoryOralQuotationAssociationsController < ApplicationController
   # POST /category_oral_quotation_associations.xml
   def create
     errors = []
-    oral_quotation_params = params[:oral_quotation]
-    associations_param = oral_quotation_params.delete(:category_oral_quotation_associations)
-    new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    if !params[:oral_quotation].blank?
+      oral_quotation_params = params[:oral_quotation]
+      associations_param = oral_quotation_params.delete(:category_oral_quotation_associations)
+      new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    else
+      new_category_ids = []
+    end
     assoc = @oral_quotation.category_oral_quotation_associations.find(:all, :conditions => {:category_branch_id => @branch.id})
     saved_category_ids  = assoc.collect(&:category_id)
      CategoryOralQuotationAssociation.destroy_all(:category_id  => saved_category_ids - new_category_ids)

@@ -201,7 +201,13 @@ module TranslationsHelper
     resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => edit_path, :update => "#{@translation.id}_translation_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
    	resultstr << "<div id='" + "#{@translation.id}_translation_language_div" + "'>" 
   	assoc = @translation.language_type.title  if !@translation.language_type.blank? 
-    resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+    #resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+    resultstr << "<table><tr><td>"
+    if !@translation.language_type.blank? 
+      resultstr << link_to (@translation.language_type.title, @translation.language_type.get_url_with_parent)
+    end
+    resultstr << "</td></tr></table>"
+   	resultstr << "</div><br />"
   	resultstr << "</div><br />"
  
  		#<!-- Language div multiple associations -->

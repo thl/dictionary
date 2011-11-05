@@ -1140,7 +1140,7 @@ module OralQuotationsHelper
  		resultstr << "<div id='" + "#{@oral_quotation.id}_oral_quotation_source_speaker_dialect_type_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_oral_quotation_associations/index', :locals => {:data_id => 638})		
 		assoc = @oral_quotation.category_oral_quotation_associations.find(:all, :conditions => {:category_branch_id => 638})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
     
     
@@ -1189,7 +1189,7 @@ module OralQuotationsHelper
     resultstr << in_place_editor_field( :oral_quotation, :source_location_within_title, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_location_within_title]'}) 
     resultstr << "<br>"
     resultstr << "<b>Source speech date: </b>"
-    resultstr << @oral_quotation.source_speech_date if @oral_quotation.source_speech_date != nil
+    #resultstr << @oral_quotation.source_speech_date if @oral_quotation.source_speech_date != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=oral_quotation[source_speech_date] id=oral_quotation[source_speech_date] value=\""+@oral_quotation.source_speech_date.to_s+"\" >"
     if @oral_quotation.source_speech_date == nil or @oral_quotation.source_speech_date == ''
@@ -1198,7 +1198,7 @@ module OralQuotationsHelper
     resultstr << in_place_editor_field( :oral_quotation, :source_speech_date, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_date]'}) 
     resultstr << "<br>"
     resultstr << "<b>Source speech date Tibetan: </b>"
-    resultstr << @oral_quotation.source_speech_date_tibetan if @oral_quotation.source_speech_date_tibetan != nil
+    #resultstr << @oral_quotation.source_speech_date_tibetan if @oral_quotation.source_speech_date_tibetan != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=oral_quotation[source_speech_date_tibetan] id=oral_quotation[source_speech_date_tibetan] value=\""+@oral_quotation.source_speech_date_tibetan.to_s+"\" >"
     if @oral_quotation.source_speech_date_tibetan == nil or @oral_quotation.source_speech_date_tibetan == ''
@@ -1206,8 +1206,8 @@ module OralQuotationsHelper
     end
     resultstr << in_place_editor_field( :oral_quotation, :source_speech_date_tibetan, {}, {:cols => 50, :rows => 1, :fieldname => 'oral_quotation[source_speech_date_tibetan]'}) 
     resultstr << "<br>"
-    resultstr << "<b>Source speech date Western: </b>"
-    resultstr << @oral_quotation.source_speech_date_western if @oral_quotation.source_speech_date_western != nil
+    resultstr << "<b>Source speech International date: </b>"
+    #resultstr << @oral_quotation.source_speech_date_western if @oral_quotation.source_speech_date_western != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=oral_quotation[source_speech_date_western] id=oral_quotation[source_speech_date_western] value=\""+@oral_quotation.source_speech_date_western.to_s+"\" >"
     if @oral_quotation.source_speech_date_western == nil or @oral_quotation.source_speech_date_western == ''

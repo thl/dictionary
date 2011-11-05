@@ -290,7 +290,7 @@ module MetasHelper
  		resultstr << "<div id='" + "#{@meta.id}_meta_project_type_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_meta_associations/index', :locals => {:data_id => 236})		
 		assoc = @meta.category_meta_associations.find(:all, :conditions => {:category_branch_id => 236})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
 		resultstr << "</div>"
  
     # resultstr << "<b>Source ID: </b>"
@@ -418,7 +418,13 @@ module MetasHelper
     resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => edit_path, :update => "#{@meta.id}_meta_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
    	resultstr << "<div id='" + "#{@meta.id}_meta_language_type_div" + "'>" 
   	assoc = @meta.language_type.title  if !@meta.language_type.blank? 
-    resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+    #resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+    resultstr << "<table><tr><td>"
+    if !@meta.language_type.blank? 
+      resultstr << link_to (@meta.language_type.title, @meta.language_type.get_url_with_parent)
+    end
+    resultstr << "</td></tr></table>"
+   	resultstr << "</div><br />"
   	resultstr << "</div><br />"
     ##<!-- Language div -->
  		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_meta_association_url(@meta.id, 184), :update => "#{@meta.id}_meta_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  

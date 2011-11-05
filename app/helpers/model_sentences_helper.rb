@@ -750,7 +750,7 @@ module ModelSentencesHelper
    		resultstr << "<div id='" + "#{@model_sentence.id}_model_sentence_language_type_div" + "'>" 
   		#resultstr << render_to_string(:partial => 'category_model_sentence_associations/index', :locals => {:data_id => 184})		
   		assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 184})
-      resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+      resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
   		resultstr << "</div>"
  		
      resultstr << "<b>Tibetan Dialect: </b>"
@@ -792,7 +792,7 @@ module ModelSentencesHelper
   		resultstr << "<div id='" + "#{@model_sentence.id}_model_sentence_major_dialect_family_type_div" + "'>" 
  		#resultstr << render_to_string(:partial => 'category_model_sentence_associations/index', :locals => {:data_id => 638})		
  		assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 638})
-     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
  		resultstr << "</div>"
 
      resultstr << "<b>Sentence type: </b>"
@@ -800,19 +800,22 @@ module ModelSentencesHelper
      if @model_sentence.sentence_type == nil or @model_sentence.sentence_type == ''
        @model_sentence.sentence_type = 'Click to modify'
      end
-     resultstr << in_place_editor_field( :model_sentence, :sentence_type, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[sentence_type]'}) +"<br>"
+     resultstr << in_place_editor_field( :model_sentence, :sentence_type, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[sentence_type]'}) 
+     resultstr << "<br>"
      resultstr << "<b>Source: </b>"
      #resultstr << "<input type=hidden name=model_sentence[source] id=model_sentence[source] value=\""+@model_sentence.source.to_s+"\" >"
      if @model_sentence.source == nil or @model_sentence.source == ''
        @model_sentence.source = 'Click to modify'
      end
-     resultstr << in_place_editor_field( :model_sentence, :source, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[source]'}) +"<br>"
+     resultstr << in_place_editor_field( :model_sentence, :source, {}, {:cols => 80, :rows => 10, :fieldname => 'model_sentence[source]'}) 
+     resultstr << "<br>"
      resultstr << "<b>Spelling: </b>"
      #resultstr << "<input type=hidden name=model_sentence[spelling] id=model_sentence[spelling] value=\""+@model_sentence.spelling.to_s+"\" >"
      if @model_sentence.spelling == nil or @model_sentence.spelling == ''
        @model_sentence.spelling = 'Click to modify'
      end
-     resultstr << in_place_editor_field( :model_sentence, :spelling, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[spelling]'}) +"<br>"
+     resultstr << in_place_editor_field( :model_sentence, :spelling, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[spelling]'}) 
+     resultstr << "<br>"
      ## resultstr << in_place_form_editor_field( :model_sentence, :major_dialect_family, {}, {:cols => 50, :rows => 1, :fieldname => 'model_sentence[major_dialect_family]'}) +"<br>"
      ## resultstr << "<b>Specific dialect: </b>"
      ## resultstr << "<input type=hidden name=model_sentence[specific_dialect] id=model_sentence[specific_dialect] value=\""+@model_sentence.specific_dialect.to_s+"\" >"
@@ -859,7 +862,7 @@ module ModelSentencesHelper
    		resultstr << "<div id='" + "#{@model_sentence.id}_model_sentence_literary_genre_type_div" + "'>" 
   		#resultstr << render_to_string(:partial => 'category_model_sentence_associations/index', :locals => {:data_id => 119})		
   		assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 119})
-      resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+      resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
   		resultstr << "</div>"
      
      
@@ -902,7 +905,7 @@ module ModelSentencesHelper
   		resultstr << "<div id='" + "#{@model_sentence.id}_model_sentence_literary_period_type_div" + "'>" 
  		#resultstr << render_to_string(:partial => 'category_model_sentence_associations/index', :locals => {:data_id => 187})		
  		assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 187})
-     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
  		resultstr << "</div>"
      
      
@@ -944,7 +947,7 @@ module ModelSentencesHelper
    		resultstr << "<div id='" + "#{@model_sentence.id}_model_sentence_literary_form_type_div" + "'>" 
   		#resultstr << render_to_string(:partial => 'category_model_sentence_associations/index', :locals => {:data_id => 186})		
   		assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 186})
-      resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+      resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
   		resultstr << "</div>"
 
      resultstr << "<b>Analytical note: </b>"

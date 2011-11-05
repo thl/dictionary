@@ -49,9 +49,13 @@ class CategoryEtymologyAssociationsController < ApplicationController
   # POST /category_etymology_associations.xml
   def create
     errors = []
-    etymology_params = params[:etymology]
-    associations_param = etymology_params.delete(:category_etymology_associations)
-    new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    if !params[:etymology].blank?
+      etymology_params = params[:etymology]
+      associations_param = etymology_params.delete(:category_etymology_associations)
+      new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    else
+      new_category_ids = []
+    end
     assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => @branch.id})
     saved_category_ids  = assoc.collect(&:category_id)
      CategoryEtymologyAssociation.destroy_all(:category_id  => saved_category_ids - new_category_ids)

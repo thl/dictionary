@@ -532,7 +532,7 @@ function clear_contents(node)
 	<% @definition.wylie = 'Click to Modify' if @definition.wylie == nil or @definition.wylie == '' %>
 	<%= in_place_editor_field(:definition, :wylie,{}, {:external_control => "wylie_#{@definition.id}"})%>
 	<br>
-	<b>THL Phoentic Transcription: </b><%#= link_to image_tag('comment.png',:border => 0,:id => "phonetic_#{@definition.id}"), '#', :title => 'Edit phonetic' %>
+	<b>THL Phonetic Transcription: </b><%#= link_to image_tag('comment.png',:border => 0,:id => "phonetic_#{@definition.id}"), '#', :title => 'Edit phonetic' %>
 	<% @definition.phonetic = 'Click to Modify' if @definition.phonetic == nil or @definition.phonetic == '' %>
 	<%= in_place_editor_field(:definition, :phonetic,{}, {:external_control => "phonetic_#{@definition.id}"})%>
 		<br><br>

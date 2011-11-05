@@ -36,12 +36,16 @@ class CategoryPronunciationAssociationsController < ApplicationController
   # POST /category_pronunciation_associations.xml
   def create
     errors = []
-     pronunciation_params = params[:pronunciation]
-     #association_params = params[:pronunciation]
-     associations_param = pronunciation_params.delete(:category_pronunciation_associations)
-     #category_ids = association_params.delete(:category_pronunciation_associations_id).split(',').collect(&:strip).reject(&:blank?).collect(&:to_i)
-     #new_category_ids = category_ids
-     new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    if !params[:pronunciation].blank?
+       pronunciation_params = params[:pronunciation]
+       #association_params = params[:pronunciation]
+       associations_param = pronunciation_params.delete(:category_pronunciation_associations)
+       #category_ids = association_params.delete(:category_pronunciation_associations_id).split(',').collect(&:strip).reject(&:blank?).collect(&:to_i)
+       #new_category_ids = category_ids
+       new_category_ids = associations_param[:category_ids].collect(&:to_i)
+     else
+       new_category_ids = []
+     end
      assoc = @pronunciation.category_pronunciation_associations.find(:all, :conditions => {:category_branch_id => @branch.id})
      ##saved_category_ids = @pronunciation.category_pronunciation_associations.find(:all, :conditions => {:category_branch_id => @branch.id}).collect(&:category_id)
      saved_category_ids  = assoc.collect(&:category_id)

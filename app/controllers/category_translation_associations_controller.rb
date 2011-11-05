@@ -36,9 +36,13 @@ class CategoryTranslationAssociationsController < ApplicationController
   # POST /category_translation_associations.xml
   def create
     errors = []
-    translation_params = params[:translation]
-    associations_param = translation_params.delete(:category_translation_associations)
-    new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    if !params[:translation].blank?
+      translation_params = params[:translation]
+      associations_param = translation_params.delete(:category_translation_associations)
+      new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    else
+      new_category_ids = []
+    end
     assoc = @translation.category_translation_associations.find(:all, :conditions => {:category_branch_id => @branch.id})
     saved_category_ids  = assoc.collect(&:category_id)
      CategoryTranslationAssociation.destroy_all(:category_id  => saved_category_ids - new_category_ids)

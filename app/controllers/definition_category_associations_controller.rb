@@ -78,9 +78,13 @@ class DefinitionCategoryAssociationsController < ApplicationController
   # POST /definition_category_associations.xml
   def create
     errors = []
-    definition_params = params[:definition]
-    associations_param = definition_params.delete(:definition_category_associations)
-    new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    if !params[:definition].blank?
+      definition_params = params[:definition]
+      associations_param = definition_params.delete(:definition_category_associations)
+      new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    else
+      new_category_ids = []
+    end
     assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => @branch.id})
     saved_category_ids  = assoc.collect(&:category_id)
     DefinitionCategoryAssociation.destroy_all(:category_id  => saved_category_ids - new_category_ids)

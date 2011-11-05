@@ -1140,11 +1140,11 @@ module LiteraryQuotationsHelper
  		resultstr << "<div id='" + "#{@literary_quotation.id}_literary_quotation_script_type_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_literary_quotation_associations/index', :locals => {:data_id => 192})		
 		assoc = @literary_quotation.category_literary_quotation_associations.find(:all, :conditions => {:category_branch_id => 192})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
     
     resultstr << "<b>Literary genre: </b>"
-    resultstr << @literary_quotation.literary_genre unless @literary_quotation.literary_genre == nil
+    #resultstr << @literary_quotation.literary_genre unless @literary_quotation.literary_genre == nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[literary_genre] id=literary_quotation[literary_genre] value=\""+@literary_quotation.literary_genre.to_s+"\" >"
     if @literary_quotation.literary_genre == nil or @literary_quotation.literary_genre == ''
@@ -1154,7 +1154,7 @@ module LiteraryQuotationsHelper
     resultstr << in_place_editor_field( :literary_quotation, :literary_genre, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[literary_genre]'}) 
     resultstr << "<br>"
     resultstr << "<b>Literary period: </b>"
-    resultstr << @literary_quotation.literary_period unless @literary_quotation.literary_period == nil
+    #resultstr << @literary_quotation.literary_period unless @literary_quotation.literary_period == nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[literary_period] id=literary_quotation[literary_period] value=\""+@literary_quotation.literary_period.to_s+"\" >"
     if @literary_quotation.literary_period == nil or @literary_quotation.literary_period == ''
@@ -1201,12 +1201,12 @@ module LiteraryQuotationsHelper
  		resultstr << "<div id='" + "#{@literary_quotation.id}_literary_quotation_literary_form_type_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_literary_quotation_associations/index', :locals => {:data_id => 186})		
 		assoc = @literary_quotation.category_literary_quotation_associations.find(:all, :conditions => {:category_branch_id => 186})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
     
     
-    resultstr << "<b>Western date of composition: </b>"
-    resultstr << @literary_quotation.western_date if @literary_quotation.western_date != nil
+    resultstr << "<b>International date of composition: </b>"
+    #resultstr << @literary_quotation.western_date if @literary_quotation.western_date != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[western_date] id=literary_quotation[western_date] value=\""+@literary_quotation.western_date.to_s+"\" >"
     if @literary_quotation.western_date == nil or @literary_quotation.western_date == ''
@@ -1215,8 +1215,8 @@ module LiteraryQuotationsHelper
     resultstr << in_place_editor_field( :literary_quotation, :western_date, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[western_date]'}) 
     resultstr << "<br>"
   
-    resultstr << "<b>Western date note: </b>"
-    resultstr << @literary_quotation.western_date_note if @literary_quotation.western_date_note != nil
+    resultstr << "<b>International date note: </b>"
+    #resultstr << @literary_quotation.western_date_note if @literary_quotation.western_date_note != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[western_date_note] id=literary_quotation[western_date_note] value=\""+@literary_quotation.western_date_note.to_s+"\" >"
     if @literary_quotation.western_date_note == nil or @literary_quotation.western_date_note == ''
@@ -1225,8 +1225,8 @@ module LiteraryQuotationsHelper
     resultstr << in_place_editor_field( :literary_quotation, :western_date_note, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[western_date_note]'}) 
     resultstr << "<br>"
     resultstr << "<b>Tibetan date of composition: </b>"
-    resultstr << @literary_quotation.tibetan_date if @literary_quotation.tibetan_date != nil
-    resultstr << "<br>"
+    #resultstr << @literary_quotation.tibetan_date if @literary_quotation.tibetan_date != nil
+    #resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[tibetan_date] id=literary_quotation[tibetan_date] value=\""+@literary_quotation.tibetan_date.to_s+"\" >"
     if @literary_quotation.tibetan_date == nil or @literary_quotation.tibetan_date == ''
       @literary_quotation.tibetan_date = 'Click to modify'
@@ -1234,7 +1234,7 @@ module LiteraryQuotationsHelper
     resultstr << in_place_editor_field( :literary_quotation, :tibetan_date, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[tibetan_date]'}) 
     resultstr << "<br>"
     resultstr << "<b>Tibetan date note: </b>"
-    resultstr << @literary_quotation.tibetan_date_note if @literary_quotation.tibetan_date_note != nil
+    #resultstr << @literary_quotation.tibetan_date_note if @literary_quotation.tibetan_date_note != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[tibetan_date_note] id=literary_quotation[tibetan_date_note] value=\""+@literary_quotation.tibetan_date_note.to_s+"\" >"
     if @literary_quotation.tibetan_date_note == nil or @literary_quotation.tibetan_date_note == ''
@@ -1243,7 +1243,7 @@ module LiteraryQuotationsHelper
     resultstr << in_place_editor_field( :literary_quotation, :tibetan_date_note, {}, {:cols => 80, :rows => 10, :fieldname => 'literary_quotation[tibetan_date_note]'}) 
     resultstr << "<br>"
     resultstr << "<b>Edition: </b>"
-    resultstr << @literary_quotation.edition if @literary_quotation.edition != nil
+    #resultstr << @literary_quotation.edition if @literary_quotation.edition != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[edition] id=literary_quotation[edition] value=\""+@literary_quotation.edition.to_s+"\" >"
     if @literary_quotation.edition == nil or @literary_quotation.edition == ''
@@ -1252,7 +1252,7 @@ module LiteraryQuotationsHelper
     resultstr << in_place_editor_field( :literary_quotation, :edition, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[edition]'}) 
     resultstr << "<br>"
     resultstr << "<b>Publisher: </b>"
-    resultstr << @literary_quotation.publisher if @literary_quotation.publisher != nil
+    #resultstr << @literary_quotation.publisher if @literary_quotation.publisher != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[publisher] id=literary_quotation[publisher] value=\""+@literary_quotation.publisher.to_s+"\" >"
     if @literary_quotation.publisher == nil or @literary_quotation.publisher == ''
@@ -1261,7 +1261,7 @@ module LiteraryQuotationsHelper
     resultstr << in_place_editor_field( :literary_quotation, :publisher, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[publisher]'}) 
     resultstr << "<br>"
     resultstr << "<b>Place of publication: </b>"
-    resultstr << @literary_quotation.place_of_publication if @literary_quotation.place_of_publication != nil
+    #resultstr << @literary_quotation.place_of_publication if @literary_quotation.place_of_publication != nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[place_of_publication] id=literary_quotation[place_of_publication] value=\""+@literary_quotation.place_of_publication.to_s+"\" >"
     if @literary_quotation.place_of_publication == nil or @literary_quotation.place_of_publication == ''
@@ -1279,12 +1279,12 @@ module LiteraryQuotationsHelper
     resultstr << in_place_editor_field( :literary_quotation, :published_date, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[published_date]'}) 
     resultstr << "<br>"
     resultstr << "<b>ISBN: </b>"
-    resultstr << @literary_quotation.isbn if @literary_quotation.isbn != nil
+    #resultstr << @literary_quotation.isbn if @literary_quotation.isbn != nil
     # resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[isbn] id=literary_quotation[isbn] value=\""+@literary_quotation.isbn.to_s+"\" >"
-    if @literary_quotation.isbn != nil and @literary_quotation.isbn != ''
-      resultstr << @literary_quotation.isbn
-    end
+    #if @literary_quotation.isbn != nil and @literary_quotation.isbn != ''
+    #  resultstr << @literary_quotation.isbn
+    #end
     #resultstr << "<br>"
     resultstr << in_place_editor_field( :literary_quotation, :isbn, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[isbn]'}) 
     resultstr << "<br>"

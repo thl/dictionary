@@ -46,9 +46,13 @@ class CategorySpellingAssociationsController < ApplicationController
   # POST /category_spelling_associations.xml
   def create
     errors = []
-    spelling_params = params[:spelling]
-    associations_param = spelling_params.delete(:category_spelling_associations)
-    new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    if !params[:spelling].blank?
+      spelling_params = params[:spelling]
+      associations_param = spelling_params.delete(:category_spelling_associations)
+      new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    else
+      new_category_ids = []
+    end
     assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => @branch.id})
     saved_category_ids  = assoc.collect(&:category_id)
      CategorySpellingAssociation.destroy_all(:category_id  => saved_category_ids - new_category_ids)

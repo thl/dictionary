@@ -85,9 +85,11 @@ $(document).ready(function() {
 	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
 			   <%#= meta.language_type.title %>
 			<%# end %>
-			<%= meta.language_type.title if !meta.language_type.blank? %>
+			
+			<%#= meta.language_type.title if !meta.language_type.blank? %>
 			<%# assoc = meta.category_meta_associations.find(:all, :conditions => {:category_branch_id => 184}) %>
 			<%#= assoc.collect{|a| a.category.title}.join(', ') %>
+			<%= link_to meta.language_type.title, meta.language_type.get_url_with_parent if !meta.language_type.blank? %>
 			
 		<span id="<%= meta_location %>" > </span>
 		<div id="<%= meta.id%>_meta_sources_div"> 

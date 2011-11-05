@@ -38,9 +38,13 @@ class CategoryMetaAssociationsController < ApplicationController
   # POST /category_meta_associations.xml
   def create
     errors = []
-    meta_params = params[:meta]
-    associations_param = meta_params.delete(:category_meta_associations)
-    new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    if !params[:meta].blank?
+      meta_params = params[:meta]
+      associations_param = meta_params.delete(:category_meta_associations)
+      new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    else
+      new_category_ids = []
+    end
     assoc = @meta.category_meta_associations.find(:all, :conditions => {:category_branch_id => @branch.id})
     saved_category_ids  = assoc.collect(&:category_id)
      CategoryMetaAssociation.destroy_all(:category_id  => saved_category_ids - new_category_ids)

@@ -38,9 +38,13 @@ class CategoryLiteraryQuotationAssociationsController < ApplicationController
   # POST /category_literary_quotation_associations.xml
   def create
     errors = []
-    literary_quotation_params = params[:literary_quotation]
-    associations_param = literary_quotation_params.delete(:category_literary_quotation_associations)
-    new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    if !params[:literary_quotation].blank?
+      literary_quotation_params = params[:literary_quotation]
+      associations_param = literary_quotation_params.delete(:category_literary_quotation_associations)
+      new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    else
+      new_category_ids = []
+    end
     assoc = @literary_quotation.category_literary_quotation_associations.find(:all, :conditions => {:category_branch_id => @branch.id})
     saved_category_ids  = assoc.collect(&:category_id)
      CategoryLiteraryQuotationAssociation.destroy_all(:category_id  => saved_category_ids - new_category_ids)

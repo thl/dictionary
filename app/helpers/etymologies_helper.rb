@@ -785,7 +785,7 @@ module EtymologiesHelper
  		resultstr << "<div id='" + "#{@etymology.id}_etymology_etymology_category_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 182})		
 		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 182})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
 
     resultstr << "<b>Loan language: </b>"
@@ -832,7 +832,13 @@ module EtymologiesHelper
     resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => edit_path, :update => "#{@etymology.id}_etymology_loan_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
    	resultstr << "<div id='" + "#{@etymology.id}_etymology_loan_language_type_div" + "'>"  
   	assoc = @etymology.loan_language_type.title  if !@etymology.loan_language_type.blank? 
-    resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+    #resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+    resultstr << "<table><tr><td>"
+    if !@etymology.loan_language_type.blank? 
+      resultstr << link_to (@etymology.loan_language_type.title, @etymology.loan_language_type.get_url_with_parent)
+    end
+    resultstr << "</td></tr></table>"
+   	resultstr << "</div><br />"
   	resultstr << "</div><br />"
   	
     #<!-- Loan language div -->
@@ -889,7 +895,7 @@ module EtymologiesHelper
  		resultstr << "<div id='" + "#{@etymology.id}_etymology_derivation_type_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 180})		
 		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 180})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
 		
 
@@ -944,7 +950,7 @@ module EtymologiesHelper
  		resultstr << "<div id='" + "#{@etymology.id}_etymology_major_dialect_family_type_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 638})		
 		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 638})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
 		
     
@@ -993,7 +999,7 @@ module EtymologiesHelper
  		resultstr << "<div id='" + "#{@etymology.id}_etymology_literary_genre_type_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 119})		
 		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 119})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
 		
     
@@ -1041,7 +1047,7 @@ module EtymologiesHelper
  		resultstr << "<div id='" + "#{@etymology.id}_etymology_literary_period_type_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 187})		
 		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 187})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
 		
 
@@ -1089,7 +1095,7 @@ module EtymologiesHelper
  		resultstr << "<div id='" + "#{@etymology.id}_etymology_literary_form_type_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 186})		
 		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 186})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
 		
 
