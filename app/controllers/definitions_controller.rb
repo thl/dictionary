@@ -1830,7 +1830,11 @@ end
     @yogacara_definitions = OldDefinition.find(:all, :conditions => "dictionary = 'Yogācāra Glossary' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
     @tshig_definitions = OldDefinition.find(:all, :conditions => "dictionary = 'bod rgya tshig mdzod chen mo' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
     if params['list_view'] == "true"
-      render :layout => false #render :layout => 'staging_popup_show' #render :layout => false   #without the layout no jquery calls available
+      if !params['width'].blank? #in a thickbox, so a temporary solution or hack
+        render :layout => 'staging_popup_show'
+      else #not in a thickbox
+        render :layout => false #render :layout => 'staging_popup_show' #render :layout => false   #without the layout no jquery calls available
+      end    
     else
       @current_section = :showview
       render :layout => 'staging_new'

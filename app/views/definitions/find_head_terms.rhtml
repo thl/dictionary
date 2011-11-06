@@ -52,8 +52,8 @@
 			<%# else %>
      		
 			<%##= link_to(definition.term.to_s.s, :controller => 'definitions', :action => 'public_term', :params => {'mode' => 'search'},:id => definition.id) unless definition.term == nil %>
-			<%#= link_to definition.term.to_s.s, url_for(:controller => 'definitions', :action => 'public_term', :id => definition.id, :mode=>'search', :list_view=>'true', :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Term' unless definition.term == nil%>
-			<%= link_to definition.term.to_s.s, url_for(:controller => 'definitions', :action => 'public_term', :id => definition.id, :mode=>'search')  unless definition.term == nil%>
+			<%= link_to definition.term.to_s.s, url_for(:controller => 'definitions', :action => 'public_term', :id => definition.id, :mode=>'search', :list_view=>'true', :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Term' unless definition.term == nil%>
+			<%#= link_to definition.term.to_s.s, url_for(:controller => 'definitions', :action => 'public_term', :id => definition.id, :mode=>'search')  unless definition.term == nil%>
 			
 			<%# end %>
 			</span>
