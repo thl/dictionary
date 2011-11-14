@@ -780,14 +780,19 @@ module EtymologiesHelper
     #resultstr << "<br>"
 
     #<!-- Etymology type div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 182), :update => "#{@etymology.id}_etymology_etymology_category_div", :method => :get, :html => {:class => 'definitions_show'} )  
-		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@etymology.id}_etymology_etymology_category_div" + "'>" 
-		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 182})		
-		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 182})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
-		resultstr << "</div>"
-
+		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 182), :update => "#{@etymology.id}_etymology_etymology_category_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		##resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		#resultstr << "<div id='" + "#{@etymology.id}_etymology_etymology_category_div" + "'>" 
+		##resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 182})		
+		#assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 182})
+    #resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+		#resultstr << "</div>"
+		#removing Etymology type div  and using drop down
+		@data = Category.find(182)
+    @etymology_category = @data.children.collect {|l| [ h(l.title), l.id ] }
+    resultstr << select(:etymology, :etymology_category_id, @etymology_category, { :include_blank => true })
+    resultstr << "<br>"
+    
     resultstr << "<b>Loan language: </b>"
     #resultstr << "<input type=hidden name=etymology[loan_language] id=etymology[loan_language] value=\""+@etymology.loan_language.to_s+"\" >"
     #if @etymology.loan_language_type == nil
@@ -828,19 +833,24 @@ module EtymologiesHelper
     #resultstr << "<br>"
     
     #<!-- Loan Language div single association -->
- 		edit_path = etymology_loan_language_edit_url(:id => @etymology.id)
-    resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => edit_path, :update => "#{@etymology.id}_etymology_loan_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
-   	resultstr << "<div id='" + "#{@etymology.id}_etymology_loan_language_type_div" + "'>"  
-  	assoc = @etymology.loan_language_type.title  if !@etymology.loan_language_type.blank? 
-    #resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
-    resultstr << "<table><tr><td>"
-    if !@etymology.loan_language_type.blank? 
-      resultstr << link_to (@etymology.loan_language_type.title, @etymology.loan_language_type.get_url_with_parent)
-    end
-    resultstr << "</td></tr></table>"
-   	resultstr << "</div><br />"
-  	resultstr << "</div><br />"
-  	
+ 		#edit_path = etymology_loan_language_edit_url(:id => @etymology.id)
+    #resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => edit_path, :update => "#{@etymology.id}_etymology_loan_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+   	#resultstr << "<div id='" + "#{@etymology.id}_etymology_loan_language_type_div" + "'>"  
+  	#assoc = @etymology.loan_language_type.title  if !@etymology.loan_language_type.blank? 
+    ##resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+    #resultstr << "<table><tr><td>"
+    #if !@etymology.loan_language_type.blank? 
+    #  resultstr << link_to (@etymology.loan_language_type.title, @etymology.loan_language_type.get_url_with_parent)
+    #end
+    #resultstr << "</td></tr></table>"
+   	#resultstr << "</div><br />"
+  	#resultstr << "</div><br />"
+  	#removing Loan Language div  and using drop down
+		@data = Category.find(184)
+    @loan_language_type = @data.children.collect {|l| [ h(l.title), l.id ] }
+    resultstr << select(:etymology, :loan_language_type_id, @loan_language_type, { :include_blank => true })
+    resultstr << "<br>"
+    
     #<!-- Loan language div -->
 		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 184), :update => "#{@etymology.id}_etymology_loan_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
 		##resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
@@ -890,14 +900,18 @@ module EtymologiesHelper
     #resultstr << "<br>"
 
     #<!-- Derivation Type div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 180), :update => "#{@etymology.id}_etymology_derivation_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
-		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@etymology.id}_etymology_derivation_type_div" + "'>" 
-		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 180})		
-		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 180})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
-		resultstr << "</div>"
-		
+		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 180), :update => "#{@etymology.id}_etymology_derivation_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		##resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		#resultstr << "<div id='" + "#{@etymology.id}_etymology_derivation_type_div" + "'>" 
+		##resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 180})		
+		#assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 180})
+    #resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+		#resultstr << "</div>"
+		#removing Derivation Type div  and using drop down
+		@data = Category.find(180)
+    @derivation_type = @data.children.collect {|l| [ h(l.title), l.id ] }
+    resultstr << select(:etymology, :derivation_type_id, @derivation_type, { :include_blank => true })
+    resultstr << "<br>"
 
     resultstr << "<b>Tibetan Dialect: </b>"
     #resultstr << "<input type=hidden name=etymology[major_dialect_family] id=etymology[major_dialect_family"+@etymology.id.to_s+"] value=\""+@etymology.major_dialect_family.to_s+"\" >"
@@ -1042,14 +1056,18 @@ module EtymologiesHelper
     #resultstr << "<br>"
 
     #<!-- Literary period div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 187), :update => "#{@etymology.id}_etymology_literary_period_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
-		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@etymology.id}_etymology_literary_period_type_div" + "'>" 
-		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 187})		
-		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 187})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
-		resultstr << "</div>"
-		
+		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 187), :update => "#{@etymology.id}_etymology_literary_period_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		##resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		#resultstr << "<div id='" + "#{@etymology.id}_etymology_literary_period_type_div" + "'>" 
+		##resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 187})		
+		#assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 187})
+    #resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+		#resultstr << "</div>"
+		#removing Literary Period div  and using drop down
+		@data = Category.find(187)
+    @literary_period_type = @data.children.collect {|l| [ h(l.title), l.id ] }
+    resultstr << select(:etymology, :literary_period_type_id, @literary_period_type, { :include_blank => true })
+    resultstr << "<br>"
 
     resultstr << "<b>Literary form: </b>"
     #resultstr << "<input type=hidden name=etymology[literary_form] id=etymology[literary_form] value=\""+@etymology.literary_form.to_s+"\" >"
@@ -1090,14 +1108,18 @@ module EtymologiesHelper
     #resultstr << "<br>"
 
     #<!-- Literary form div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 186), :update => "#{@etymology.id}_etymology_literary_form_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
-		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@etymology.id}_etymology_literary_form_type_div" + "'>" 
-		#resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 186})		
-		assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 186})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
-		resultstr << "</div>"
-		
+		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_etymology_association_url(@etymology.id, 186), :update => "#{@etymology.id}_etymology_literary_form_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		##resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'etymologies', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		#resultstr << "<div id='" + "#{@etymology.id}_etymology_literary_form_type_div" + "'>" 
+		##resultstr << render_to_string(:partial => 'category_etymology_associations/index', :locals => {:data_id => 186})		
+		#assoc = @etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 186})
+    #resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+		#resultstr << "</div>"
+		#removing Literary Form div  and using drop down
+		@data = Category.find(186)
+    @literary_form_type = @data.children.collect {|l| [ h(l.title), l.id ] }
+    resultstr << select(:etymology, :literary_form_type_id, @literary_form_type, { :include_blank => true })
+    resultstr << "<br>"
 
     resultstr << "<b>Analytical note: </b>"
     #resultstr << "<input type=hidden name=etymology[analytical_note] id=etymology[analytical_note] value=\""+@etymology.analytical_note.to_s+"\" >"

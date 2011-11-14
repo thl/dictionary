@@ -28,7 +28,7 @@ class Definition < ActiveRecord::Base
   belongs_to :language_context_type, :class_name => 'Category'
   belongs_to :literary_genre_type, :class_name => 'Category'
   belongs_to :literary_period_type, :class_name => 'Category'
-  belongs_to :literary_form_type_id, :class_name => 'Category'
+  belongs_to :literary_form_type, :class_name => 'Category' #it was defined like 'literary_form_type_id'
   belongs_to :major_dialect_family_type, :class_name => 'Category'
   belongs_to :thematic_classification_type, :class_name => 'Category'
   
