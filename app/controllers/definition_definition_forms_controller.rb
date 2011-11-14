@@ -451,12 +451,29 @@ class DefinitionDefinitionFormsController < ApplicationController
       # #this is a temp fix, will implement a full search for options as on main page
       # query = ["wylie ilike ? and level = ?", "%"+params['internal_definition']['term']+"%", "head term"]
        
+       #new paginator code
+       items_per_page = 50
        
        if query == [""]
+         #old code #@definition_tos = Definition.find :all
          @definition_tos = Definition.find :all
        else
+         # old code #@definition_tos = Definition.find :all, :conditions => query
          @definition_tos = Definition.find :all, :conditions => query
+         #@definition_pages = Paginator.new self, Definition.count(:conditions => query), items_per_page, params['page']
+         #@definition_tos = Definition.find :all, :order => sort_clause, :conditions => "level = 'head term'", :limit => @definition_pages.items_per_page, :offset => @definition_pages.current.offset
+         #@definition_tos = Definition.find :all, :conditions => query
+         
+         #if @definition_pages.item_count != 0
+        #    @pages = (@definition_pages.item_count.to_f / items_per_page.to_f).ceil
+        #    @current_page = (@definition_pages.current.first_item.to_f / @definition_pages.item_count.to_f * @pages).ceil
+        # else
+        #    @pages = 0
+        #    @current_page = 0
+        # end
        end
+       
+       
      end
     render :layout => false
   end
