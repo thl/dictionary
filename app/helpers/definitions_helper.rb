@@ -2048,18 +2048,6 @@ module DefinitionsHelper
     ##resultstr << "</span><br>"
     ##resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[language_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[language_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[language_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[language_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
     
-    #<!-- Language div single association -->
-  	edit_path = definition_language_edit_url(:id => @definition.id)
-    resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => edit_path, :update => "#{@definition.id}_definition_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
-    resultstr << "<div id='" + "#{@definition.id}_definition_language_div" + "'>" 
-   	assoc = @definition.language_type.title  if !@definition.language_type.blank? 
-    #resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
-    resultstr << "<table><tr><td>"
-    if !@definition.language_type.blank? 
-      resultstr << link_to (@definition.language_type.title, @definition.language_type.get_url_with_parent)
-    end
-    resultstr << "</td></tr></table>"
-   	resultstr << "</div><br />"
     ##<!-- Language div -->
 		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 184), :update => "#{@definition.id}_definition_language_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
 		##resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
@@ -2067,6 +2055,26 @@ module DefinitionsHelper
 		#assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 184})
     #resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
 		#resultstr << "</div>"
+		
+    #<!-- Language div single association -->
+  	#edit_path = definition_language_edit_url(:id => @definition.id)
+    #resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => edit_path, :update => "#{@definition.id}_definition_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
+    #resultstr << "<div id='" + "#{@definition.id}_definition_language_div" + "'>" 
+   	#assoc = @definition.language_type.title  if !@definition.language_type.blank? 
+    ##resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+    #resultstr << "<table><tr><td>"
+    #if !@definition.language_type.blank? 
+    #  resultstr << link_to (@definition.language_type.title, @definition.language_type.get_url_with_parent)
+    #end
+    #resultstr << "</td></tr></table>"
+   	#resultstr << "</div><br />"
+
+    
+    #removing the Language div and transforming into a selector, not using the pluging but using the current single association
+    @data = Category.find(184)
+    @language_type = @data.children.collect {|l| [ h(l.title), l.id ] }
+    resultstr << select(:definition, :language_type_id, @language_type, { :include_blank => true })
+    resultstr << "<br>"
     
     resultstr << "<b>Tibetan Dialect: </b>"
     #resultstr << "<input type=hidden name=definition[major_dialect_family] id=definition[major_dialect_family"+@definition.id.to_s+"] value=\""+@definition.major_dialect_family.to_s+"\" >"
@@ -2201,7 +2209,7 @@ module DefinitionsHelper
       title = @definition.literary_genre_type.title
     end
     resultstr << "<span id=\"internal_definition[literary_genre_type#{@definition.id}]_selector\">"
-    resultstr << '['+@definition.literary_genre+']' if @definition.literary_genre != nil
+    #resultstr << '['+@definition.literary_genre+']' if @definition.literary_genre != nil
     #resultstr << link_to_remote( title,{:update => "internal_definition[literary_genre_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 119, 'model_name' => 'definition', 'function_name' => "literary_genre_type", :update_id => "internal_definition[literary_genre_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
 #   #before update
     #@data = Category.find(119)

@@ -13,25 +13,26 @@
 					<b>TRANSLATION:</b>
 				</td>
 				<td>
-		<% count = 0;
-		   size = d.translations.size;
+			<% count = 0;
+		    size = d.translations.size;
 			for e in d.translations %>
 				<% if e.language == 'Tibetan' %>
 					<span class="tib1">
-					<% end %>
-					<span class='tinyfied_public_show'>
-			<%= e.translation.span if e.translation != nil %>
+				<% end %>
+				<span class='tinyfied_public_show'>
+					<%= e.translation.span if e.translation != nil %>
+				</span>
+				<% if e.language == 'Tibetan' %>
 					</span>
-					<% if e.language == 'Tibetan' %>
-					</span>
-					<% end %>
+				<% end %>
 					<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
 					<%##= link_to_remote(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), :update => 'edit_box', :loading => "Element.show('edit_box');",:url => {:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s }}) %>			
 					<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 					<%= render :partial => 'translation', :locals => {:translation => e, :head_id => head_id} %>
+			<% end %>
 			</td>
 			</tr>
-		<% end %>
+		
 		<% end %>
 
 		<% if d.major_dialect_family_type != nil %>

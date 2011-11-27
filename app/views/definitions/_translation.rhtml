@@ -1,7 +1,7 @@
 <% if translation.language_type != '' and translation.language_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>LANGUAGE:</strong> </span><%= translation.language_type.title%>
+			<span class="inner_def_header"><strong>LANGUAGE:</strong> </span><%=  link_to translation.language_type.title, translation.language_type.get_url_with_parent %>
 		</dd>
 	</dl>
 <% end %>

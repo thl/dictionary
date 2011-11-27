@@ -599,15 +599,21 @@ module SpellingsHelper
     #resultstr << "<br>"
 
     #<!-- Literary period div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_spelling_association_url(@spelling.id, 187), :update => "#{@spelling.id}_spelling_literary_period_div", :method => :get, :html => {:class => 'definitions_show'} )  
-		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'spellings', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@spelling.id}_spelling_literary_period_div" + "'>" 
-		#resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 187})		
-		assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 187})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
-		resultstr << "</div>"
+		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_spelling_association_url(@spelling.id, 187), :update => "#{@spelling.id}_spelling_literary_period_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		##resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'spellings', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		#resultstr << "<div id='" + "#{@spelling.id}_spelling_literary_period_div" + "'>" 
+		##resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 187})		
+		#assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 187})
+    #resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+		#resultstr << "</div>"
 		
-		
+		#removing literary period div and using drop down
+		@data = Category.find(187)
+    @literary_period_type = @data.children.collect {|l| [ h(l.title), l.id ] }
+    resultstr << select(:spelling, :literary_period_type_id, @literary_period_type, { :include_blank => true })
+    resultstr << "<br>"
+    
+    
     resultstr << "<b>Literary form: </b>"
     #resultstr << "<input type=hidden name=spelling[literary_form] id=spelling[literary_form] value=\""+@spelling.literary_form.to_s+"\" >"
     #if @spelling.literary_form_type == nil
@@ -642,14 +648,20 @@ module SpellingsHelper
   	#resultstr << "</table>"
     #resultstr << "<br>"
      
-    #<!-- Literary form div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_spelling_association_url(@spelling.id, 186), :update => "#{@spelling.id}_spelling_literary_form_div", :method => :get, :html => {:class => 'definitions_show'} )  
-		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'spellings', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@spelling.id}_spelling_literary_form_div" + "'>" 
-		#resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 186})		
-		assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 186})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
-		resultstr << "</div>" 
+    ##<!-- Literary form div -->
+		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_spelling_association_url(@spelling.id, 186), :update => "#{@spelling.id}_spelling_literary_form_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		##resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'spellings', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		#resultstr << "<div id='" + "#{@spelling.id}_spelling_literary_form_div" + "'>" 
+		##resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 186})		
+		#assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 186})
+    #resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+		#resultstr << "</div>" 
+    
+    #removing literary form div and using drop down   
+    @data = Category.find(186)
+    @literary_form_type = @data.children.collect {|l| [ h(l.title), l.id ] }
+    resultstr << select(:spelling, :literary_form_type_id, @literary_form_type, { :include_blank => true })
+    resultstr << "<br>"   
        
     resultstr << "<b>Analytical note: </b>"
     #resultstr << "<input type=hidden name=spelling[analytical_note] id=spelling[analytical_note] value=\""+@spelling.analytical_note.to_s+"\" >"

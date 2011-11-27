@@ -19,30 +19,35 @@
 		<%# color = 'background-color:#eeeeee' %>
 	<%# end %>
 			<% str = '' %>
-		<% if (d.grammatical_function != nil and d.grammatical_function != "") or d.grammatical_function_type != nil %>
+			
+		<%# if (d.grammatical_function != nil and d.grammatical_function != "") or d.grammatical_function_type != nil %>
 		<!-- <b>Function:</b>   -->
 			<td style="<%= color %>" class="def_header"  align="right">
 				<strong>FUNCTION:</strong>
-				</td>
-				<td style="<%= color %>">
-				<% if d.language == 'Tibetan' %>
-				<% str += '<span class="tib1">' %>
-				<% end %>
+			</td>
+			<td style="<%= color %>">
+				<% assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 286}) %>
+				<%= "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" %>
+				<!--	
+				<%# if d.language == 'Tibetan' %>
+				<%# str += '<span class="tib1">' %>
+				<%# end %>
 				<span class='tinyfied_public_show'>
-				<% str += '<b>'+d.grammatical_function.span+'</b>' if d.grammatical_function != nil %>
-				<% str += '<b>'+d.grammatical_function_type.title+'</b>' if d.grammatical_function_type != nil %>
+				<%# str += '<b>'+d.grammatical_function.span+'</b>' if d.grammatical_function != nil %>
+				<%# str += '<b>'+d.grammatical_function_type.title+'</b>' if d.grammatical_function_type != nil %>
 				</span>
-				<% if d.language == 'Tibetan' %>
-				<% str += '</span>' %>
-				<% end %>
-				<%= str %>
-				<% if d.definition != nil%>
+				<%# if d.language == 'Tibetan' %>
+				<%# str += '</span>' %>
+				<%# end %>
+				<%#= str %>
+				<%# if d.definition != nil%>
 					<br>
-				<% end %>
-				</td>
-				</tr>
-				<tr>
-		<% end %>
+				<%# end %>-->
+			</td>
+		<%# end %>
+</tr>
+<!-- i think this was an extra tag				<tr> -->
+
 
 <% str = render :partial => 'public_term_sub_content', :locals => {:d => d, :time => time, :head_id => head_id, :level => level }%>
 <% str.strip! %>

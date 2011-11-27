@@ -196,19 +196,25 @@ module TranslationsHelper
     #resultstr << "<br>"
 
    
- 		#<!-- Language div single association -->
- 		edit_path = translation_language_edit_url(:id => @translation.id)
-    resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => edit_path, :update => "#{@translation.id}_translation_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
-   	resultstr << "<div id='" + "#{@translation.id}_translation_language_div" + "'>" 
-  	assoc = @translation.language_type.title  if !@translation.language_type.blank? 
-    #resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
-    resultstr << "<table><tr><td>"
-    if !@translation.language_type.blank? 
-      resultstr << link_to (@translation.language_type.title, @translation.language_type.get_url_with_parent)
-    end
-    resultstr << "</td></tr></table>"
-   	resultstr << "</div><br />"
-  	resultstr << "</div><br />"
+ 		##<!-- Language div single association -->
+ 		#edit_path = translation_language_edit_url(:id => @translation.id)
+    #resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => edit_path, :update => "#{@translation.id}_translation_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
+   	#esultstr << "<div id='" + "#{@translation.id}_translation_language_div" + "'>" 
+  	#assoc = @translation.language_type.title  if !@translation.language_type.blank? 
+    ##resultstr << "<table><tr><td>" + "#{assoc}" + "</td></tr></table>"
+    #resultstr << "<table><tr><td>"
+    #if !@translation.language_type.blank? 
+    #  resultstr << link_to (@translation.language_type.title, @translation.language_type.get_url_with_parent)
+    #end
+    #resultstr << "</td></tr></table>"
+   	#resultstr << "</div><br />"
+  	#resultstr << "</div><br />"
+  	
+  	#removing the Language div and transforming into a selector, not using the category_associations table
+    @data = Category.find(184)
+    @language_type = @data.children.collect {|l| [ h(l.title), l.id ] }
+    resultstr << select(:translation, :language_type_id, @language_type, { :include_blank => true })
+    resultstr << "<br>"
  
  		#<!-- Language div multiple associations -->
 #		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_translation_association_url(@translation.id, 184), :update => "#{@translation.id}_translation_language_div", :method => :get, :html => {:class => 'definitions_show'} )  

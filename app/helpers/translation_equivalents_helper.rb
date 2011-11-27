@@ -520,14 +520,18 @@ module TranslationEquivalentsHelper
   	#resultstr << "</table>"
     #resultstr << "<br>"
     #<!-- Language div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_translation_equivalent_association_url(@translation_equivalent.id, 184), :update => "#{@translation_equivalent.id}_translation_equivalent_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
-		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'translations', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@translation_equivalent.id}_translation_equivalent_language_div" + "'>" 
-		#resultstr << render_to_string(:partial => 'category_translation_equivalent_associations/index', :locals => {:data_id => 184})		
-		assoc = @translation_equivalent.category_translation_equivalent_associations.find(:all, :conditions => {:category_branch_id => 184})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
-		resultstr << "</div>"
-    
+		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_translation_equivalent_association_url(@translation_equivalent.id, 184), :update => "#{@translation_equivalent.id}_translation_equivalent_language_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		##resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'translations', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		#resultstr << "<div id='" + "#{@translation_equivalent.id}_translation_equivalent_language_div" + "'>" 
+		##resultstr << render_to_string(:partial => 'category_translation_equivalent_associations/index', :locals => {:data_id => 184})		
+		#assoc = @translation_equivalent.category_translation_equivalent_associations.find(:all, :conditions => {:category_branch_id => 184})
+    #resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+		#resultstr << "</div>"
+    #removing the Language div and transforming into a selector, not using the category_associations table
+    @data = Category.find(184)
+    @language_type = @data.children.collect {|l| [ h(l.title), l.id ] }
+    resultstr << select(:translation_equivalent, :language_type_id, @language_type, { :include_blank => true })
+    resultstr << "<br>"
     
     resultstr << "<b>Analytical note: </b>"
     #resultstr << "<input type=hidden name=translation_equivalent[analytical_note] id=translation_equivalent[analytical_note] value=\""+@translation_equivalent.analytical_note.to_s+"\" >"

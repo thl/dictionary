@@ -1147,20 +1147,32 @@ module LiteraryQuotationsHelper
     #resultstr << @literary_quotation.literary_genre unless @literary_quotation.literary_genre == nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[literary_genre] id=literary_quotation[literary_genre] value=\""+@literary_quotation.literary_genre.to_s+"\" >"
-    if @literary_quotation.literary_genre == nil or @literary_quotation.literary_genre == ''
-      @literary_quotation.literary_genre = 'Click to modify'
-    end
-    # resultstr << in_place_select_editor_field( :literary_quotation, :literary_genre, {}, {:select_options => @literary_genre, :fieldname => 'literary_quotation[literary_genre]'})+"<br>"
-    resultstr << in_place_editor_field( :literary_quotation, :literary_genre, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[literary_genre]'}) 
-    resultstr << "<br>"
+    #if @literary_quotation.literary_genre == nil or @literary_quotation.literary_genre == ''
+    #  @literary_quotation.literary_genre = 'Click to modify'
+    #end
+    ## resultstr << in_place_select_editor_field( :literary_quotation, :literary_genre, {}, {:select_options => @literary_genre, :fieldname => 'literary_quotation[literary_genre]'})+"<br>"
+    #resultstr << in_place_editor_field( :literary_quotation, :literary_genre, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[literary_genre]'}) 
+    #resultstr << "<br>"
+    #<!-- Literary genre div -->
+		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_literary_quotation_association_url(@literary_quotation.id, 119), :update => "#{@literary_quotation.id}_popupliterary_quotation_literary_genre_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		resultstr << "<div id='" + "#{@literary_quotation.id}_popupliterary_quotation_literary_genre_type_div" + "'>" 
+		assoc = @literary_quotation.category_literary_quotation_associations.find(:all, :conditions => {:category_branch_id => 119})
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
+		resultstr << "</div>"
+    
     resultstr << "<b>Literary period: </b>"
     #resultstr << @literary_quotation.literary_period unless @literary_quotation.literary_period == nil
     #resultstr << "<br>"
     # resultstr << "<input type=hidden name=literary_quotation[literary_period] id=literary_quotation[literary_period] value=\""+@literary_quotation.literary_period.to_s+"\" >"
-    if @literary_quotation.literary_period == nil or @literary_quotation.literary_period == ''
-      @literary_quotation.literary_period = 'Click to modify'
-    end
-    resultstr << in_place_editor_field( :literary_quotation, :literary_period, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[literary_period]'}) 
+    #if @literary_quotation.literary_period == nil or @literary_quotation.literary_period == ''
+    #  @literary_quotation.literary_period = 'Click to modify'
+    #end
+    #resultstr << in_place_editor_field( :literary_quotation, :literary_period, {}, {:cols => 50, :rows => 1, :fieldname => 'literary_quotation[literary_period]'}) 
+    #resultstr << "<br>"
+    @data = Category.find(187)
+    @literary_period_type = @data.children.collect {|l| [ h(l.title), l.id ] }
+    resultstr << select(:literary_quotation, :literary_period_type_id, @literary_period_type, { :include_blank => true })
     resultstr << "<br>"
     resultstr << "<b>Literary form: </b>"
     #resultstr << "<input type=hidden name=literary_quotation[literary_form] id=literary_quotation[literary_form] value=\""+@literary_quotation.literary_form.to_s+"\" >"
@@ -1196,14 +1208,18 @@ module LiteraryQuotationsHelper
   	#resultstr << "</table>"    
     #resultstr << "<br>"
     #<!-- Literary form div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_literary_quotation_association_url(@literary_quotation.id, 186), :update => "#{@literary_quotation.id}_literary_quotation_literary_form_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
-		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'literary_quotations', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@literary_quotation.id}_literary_quotation_literary_form_type_div" + "'>" 
-		#resultstr << render_to_string(:partial => 'category_literary_quotation_associations/index', :locals => {:data_id => 186})		
-		assoc = @literary_quotation.category_literary_quotation_associations.find(:all, :conditions => {:category_branch_id => 186})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
-		resultstr << "</div>"
-    
+		#resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_literary_quotation_association_url(@literary_quotation.id, 186), :update => "#{@literary_quotation.id}_literary_quotation_literary_form_type_div", :method => :get, :html => {:class => 'definitions_show'} )  
+		##resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'literary_quotations', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+ 		#resultstr << "<div id='" + "#{@literary_quotation.id}_literary_quotation_literary_form_type_div" + "'>" 
+		##resultstr << render_to_string(:partial => 'category_literary_quotation_associations/index', :locals => {:data_id => 186})		
+		#assoc = @literary_quotation.category_literary_quotation_associations.find(:all, :conditions => {:category_branch_id => 186})
+    #resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+		#resultstr << "</div>"
+    #removing the Literary form div and transforming into a selector, not using the category_associations table
+    @data = Category.find(186)
+    @literary_form_type = @data.children.collect {|l| [ h(l.title), l.id ] }
+    resultstr << select(:literary_quotation, :literary_form_type_id, @literary_form_type, { :include_blank => true })
+    resultstr << "<br>"
     
     resultstr << "<b>International date of composition: </b>"
     #resultstr << @literary_quotation.western_date if @literary_quotation.western_date != nil

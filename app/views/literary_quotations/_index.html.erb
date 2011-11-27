@@ -97,14 +97,17 @@ $(document).ready(function() {
 		<% if e.spelling != nil and e.spelling != '' %>
 			  <dd><b>Spelling: </b><%= e.spelling %></dd>
 		<% end %>
-		<% if e.script_type != nil%>
-			<dd><b>Script: </b><%= e.script_type.title %></dd>
-		<% end %>
-		<% if e.literary_genre != nil and e.literary_genre != '' %>
-			  <dd><b>Literary genre: </b><%= e.literary_genre %></dd>
-		<% end %>
-		<% if e.literary_period != nil and e.literary_period != '' %>
-			  <dd><b>Literary period: </b><%= e.literary_period %></dd>
+		<%# if e.script_type != nil%>
+		<!--	<dd><b>Script: </b><%#= e.script_type.title %></dd>-->
+		<%# end %>
+		<%# if e.literary_genre != nil and e.literary_genre != '' %>
+		<!--	  <dd><b>Literary genre: </b><%#= e.literary_genre %></dd>-->
+		<%# end %>
+		<%# if e.literary_period != nil and e.literary_period != '' %>
+			  <!--<dd><b>Literary period: </b><%#= e.literary_period %></dd>-->
+		<%# end %>
+		<% if e.literary_period_type != nil%>
+			<dd><b>Literary period: </b><%= e.literary_period_type.title %></dd>
 		<% end %>
 		<% if e.literary_form_type != nil%>
 			<dd><b>Literary form: </b><%= e.literary_form_type.title %></dd>

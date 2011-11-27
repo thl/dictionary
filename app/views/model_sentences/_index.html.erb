@@ -54,9 +54,12 @@ $(document).ready(function() {
 		<% if e.language_type != nil%>
 			<dd><b>Language: </b><%= e.language_type.title %></dd>
 		<% end %>
-		<% if e.major_dialect_family_type != nil%>
-			<dd><b>Tibetan Dialect: </b><%= e.major_dialect_family_type.title %></dd>
-		<% end %>	
+		<%# if e.major_dialect_family_type != nil%>
+		<!--	<dd><b>Tibetan Dialect: </b><%#= e.major_dialect_family_type.title %></dd>-->
+		<%# end %>
+		<div id="<%= e.id%>_model_sentence_major_dialect_family_type_public_edit_div"> 
+			<%#=   render :partial => 'category_model_sentence_associations/index', :locals => {:data_id => 638} %>			
+		</div>	
 		<% if e.sentence_type != nil and e.sentence_type != ''%>
 				<dd><b>Type: </b><%= e.sentence_type %></dd>
 		<% end %>
@@ -77,9 +80,12 @@ $(document).ready(function() {
 				</dd>
 		<% end %>
 		
-		<% if e.literary_genre_type != nil%>
-			<dd><b>Literary genre: </b><%= e.literary_genre_type.title %></dd>
-		<% end %>
+		<%# if e.literary_genre_type != nil%>
+			<!--<dd><b>Literary genre: </b><%#= e.literary_genre_type.title %></dd>-->
+		<%# end %>
+		<div id="<%= e.id%>_model_sentence_literary_genre_type_public_edit_div"> 
+			<%#=   render :partial => 'category_model_sentence_associations/index', :locals => {:data_id => 119} %>			
+		</div>
 		<% if e.literary_period_type != nil%>
 			<dd><b>Literary period: </b><%= e.literary_period_type.title %></dd>
 		<% end %>

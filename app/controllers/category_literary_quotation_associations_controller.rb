@@ -26,6 +26,9 @@ class CategoryLiteraryQuotationAssociationsController < ApplicationController
          render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@literary_quotation.id}_literary_quotation_script_type_div" }
        when 186
          render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@literary_quotation.id}_literary_quotation_literary_form_type_div" } 
+       when 119
+         render :partial => "edit", :locals => {:data_id => @branch.id, :update_id => "#{@literary_quotation.id}_popupliterary_quotation_literary_genre_type_div" } 
+      
      end
   end
 
