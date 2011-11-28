@@ -52,8 +52,12 @@ $(document).ready(function() {
 		<% if e.source_speaker != nil and e.source_speaker != '' %>
 			  <dd><b>Source speaker: </b><%= e.source_speaker %></dd>
 		<% end %>
-		<% if e.source_speaker_dialect_type != nil%>
-			<dd><b>Source Speaker Tibetan dialect: </b><%= e.source_speaker_dialect_type.title %></dd>
+		<!--<%# if e.source_speaker_dialect_type != nil%>
+			<dd><b>Source Speaker Tibetan dialect: </b><%#= e.source_speaker_dialect_type.title %></dd>
+		<%# end %>-->
+		<% assoc = e.category_oral_quotation_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Source Speaker Tibetan dialect: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>]</dd>
 		<% end %>
 		<% if e.transcript_in_tibetan != nil and e.transcript_in_tibetan != ''%>
 			<dd><b>Transcript in Tibetan: </b><%= e.transcript_in_tibetan %></dd>

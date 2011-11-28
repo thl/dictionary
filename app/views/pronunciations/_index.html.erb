@@ -11,8 +11,9 @@ $(document).ready(function() {
 		<%# if e != nil %>			
 		<b>Pronunciation <% if (e.pronunciation_type != nil and e.pronunciation_type != '') or (e.pronunciation_category != nil) %>
 				(
-					<%= '['+e.pronunciation_type.s+']' if (e.pronunciation_type != nil and e.pronunciation_type != '') %>
-					<%= e.pronunciation_category.title if (e.pronunciation_category != nil) %>
+					<%#= '['+e.pronunciation_type.s+']' if (e.pronunciation_type != nil and e.pronunciation_type != '') %>
+					<%= link_to e.pronunciation_category.title, e.pronunciation_category.get_url_with_parent if !e.pronunciation_category.blank? %>
+					<%#= e.pronunciation_category.title if (e.pronunciation_category != nil) %>
 				)
 				<% end %>
 			:</b>
@@ -56,7 +57,7 @@ $(document).ready(function() {
 		<%# if (e.major_dialect_family != nil and e.major_dialect_family != '') or (e.major_dialect_family_type != nil) %>
 		<% if !assoc.blank? %>
 			 <dd><b>Tibetan Dialect: </b>
-			<%= assoc.collect{|a| a.category.title}.join(', ') %>	
+			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>	
 			<!--	<span class="tib1"><%#= '['+e.major_dialect_family.s+']' if e.major_dialect_family != nil and e.major_dialect_family != '' %></span>
 				<%= e.major_dialect_family_type.title if e.major_dialect_family_type != nil %>-->
 				</dd>

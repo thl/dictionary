@@ -51,15 +51,16 @@ $(document).ready(function() {
 			<% end %>			
 		<dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>
-		<% if e.language_type != nil%>
-			<dd><b>Language: </b><%= e.language_type.title %></dd>
+		<% if !e.language_type.blank? %>
+			<dd><b>Language: </b><%= link_to e.language_type.title, e.language_type.get_url_with_parent if !e.language_type.blank? %></dd>
 		<% end %>
 		<%# if e.major_dialect_family_type != nil%>
 		<!--	<dd><b>Tibetan Dialect: </b><%#= e.major_dialect_family_type.title %></dd>-->
 		<%# end %>
-		<div id="<%= e.id%>_model_sentence_major_dialect_family_type_public_edit_div"> 
-			<%#=   render :partial => 'category_model_sentence_associations/index', :locals => {:data_id => 638} %>			
-		</div>	
+		<% assoc = e.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Tibetan Dialect: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>]</dd>
+		<% end %>
 		<% if e.sentence_type != nil and e.sentence_type != ''%>
 				<dd><b>Type: </b><%= e.sentence_type %></dd>
 		<% end %>
@@ -83,14 +84,16 @@ $(document).ready(function() {
 		<%# if e.literary_genre_type != nil%>
 			<!--<dd><b>Literary genre: </b><%#= e.literary_genre_type.title %></dd>-->
 		<%# end %>
-		<div id="<%= e.id%>_model_sentence_literary_genre_type_public_edit_div"> 
-			<%#=   render :partial => 'category_model_sentence_associations/index', :locals => {:data_id => 119} %>			
-		</div>
-		<% if e.literary_period_type != nil%>
-			<dd><b>Literary period: </b><%= e.literary_period_type.title %></dd>
+		<% assoc = e.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Literary Genre: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>]</dd>
 		<% end %>
-		<% if e.literary_form_type != nil%>
-			<dd><b>Literary form: </b><%= e.literary_form_type.title %></dd>
+
+		<% if !e.literary_period_type.blank? %>
+				<dd><b>Literary period: </b><%= link_to e.literary_period_type.title, e.literary_period_type.get_url_with_parent if !e.literary_period_type.blank? %></dd>
+		<% end %>
+		<% if !e.literary_form_type.blank? %>
+				<dd><b>Literary form: </b><%= link_to e.literary_form_type.title, e.literary_form_type.get_url_with_parent if !e.literary_form_type.blank?  %></dd>
 		<% end %>
 		<% if e.analytical_note != nil and e.analytical_note != '' %>
 			  <dd><b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span></dd>

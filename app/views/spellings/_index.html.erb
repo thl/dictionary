@@ -35,7 +35,7 @@ $(document).ready(function() {
 		<dd style="display:none"></dd>
 		<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 191}) %>
 		<% if !assoc.blank? %>
-			<dd><b>Basis: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
+			<dd><b>Basis: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>]</dd>
 		<% end %>
 	<!--<%# if e.basis_of_spelling != nil and e.basis_of_spelling != ''%>
 			<dd><b>Basis: </b>[<%#= e.basis_of_spelling.s %>]</dd>
@@ -46,7 +46,7 @@ $(document).ready(function() {
 	
 		<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 4091}) %>
 		<% if !assoc.blank? %>
-			<dd><b>Type: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
+			<dd><b>Type: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>]</dd>
 		<% end %>
 	<!--<%# if e.spelling_type != nil and e.spelling_type != ''%>
 			<dd><b>Type: </b><%#= e.spelling_type.s %></dd>
@@ -57,14 +57,14 @@ $(document).ready(function() {
 	
 		<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
 		<% if !assoc.blank? %>
-			<dd><b>Tibetan Dialect: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
+			<dd><b>Tibetan Dialect: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>]</dd>
 		<% end %>
 	<!--<%# if e.major_dialect_family_type != nil and e.major_dialect_family_type != ''%>
 			<dd><b>Tibetan Dialect: </b><%#= e.major_dialect_family_type.title %></dd>
 	<%# end %>-->
 		<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
 		<% if !assoc.blank? %>
-			<dd><b>Literary form: </b>[<%= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
+			<dd><b>Literary Genre: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>]</dd>
 		<% end %>
 	<!--<%# if e.literary_genre_type != nil and e.literary_genre_type != ''%>
 			<dd><b>Literary genre: </b><%#= e.literary_genre_type.title %></dd>
@@ -74,16 +74,16 @@ $(document).ready(function() {
 		<%# if !assoc.blank? %>
 		<!--	<dd><b>Literary form: </b>[<%#= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>-->
 		<%# end %>
-	<% if e.literary_period_type != nil and e.literary_period_type != ''%>
-			<dd><b>Literary period: </b><%= e.literary_period_type.title %></dd>
+	<% if !e.literary_period_type.blank? %>
+			<dd><b>Literary period: </b><%= link_to e.literary_period_type.title, e.literary_period_type.get_url_with_parent if !e.literary_period_type.blank? %></dd>
 	<% end %>
 	
 		<%# assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 186}) %>
 		<%# if !assoc.blank? %>
 		<!--	<dd><b>Literary form: </b>[<%#= assoc.collect{|a| a.category.title}.join(', ') %>]</dd> -->
 		<%# end %>
-	<% if e.literary_form_type != nil and e.literary_form_type != ''%>
-			<dd><b>Literary form: </b><%= e.literary_form_type.title %></dd>
+	<% if !e.literary_form_type.blank? %>
+			<dd><b>Literary form: </b><%= link_to e.literary_form_type.title, e.literary_form_type.get_url_with_parent if !e.literary_form_type.blank?  %></dd>
 	<% end %>
 	
 	<% if e.analytical_note != nil and e.analytical_note != '' %>

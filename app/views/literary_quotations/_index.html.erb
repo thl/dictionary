@@ -106,11 +106,19 @@ $(document).ready(function() {
 		<%# if e.literary_period != nil and e.literary_period != '' %>
 			  <!--<dd><b>Literary period: </b><%#= e.literary_period %></dd>-->
 		<%# end %>
-		<% if e.literary_period_type != nil%>
-			<dd><b>Literary period: </b><%= e.literary_period_type.title %></dd>
+		<% assoc = e.category_literary_quotation_associations.find(:all, :conditions => {:category_branch_id => 192}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Script: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>]</dd>
 		<% end %>
-		<% if e.literary_form_type != nil%>
-			<dd><b>Literary form: </b><%= e.literary_form_type.title %></dd>
+		<% assoc = e.category_literary_quotation_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Literary Genre: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>]</dd>
+		<% end %>
+		<% if !e.literary_period_type.blank? %>
+				<dd><b>Literary period: </b><%= link_to e.literary_period_type.title, e.literary_period_type.get_url_with_parent if !e.literary_period_type.blank? %></dd>
+		<% end %>
+		<% if !e.literary_form_type.blank? %>
+				<dd><b>Literary form: </b><%= link_to e.literary_form_type.title, e.literary_form_type.get_url_with_parent if !e.literary_form_type.blank?  %></dd>
 		<% end %>
 		<% if e.western_date != nil and e.western_date != '' %>
 			  <dd><b>Western date of composition: </b><%= e.western_date %></dd>

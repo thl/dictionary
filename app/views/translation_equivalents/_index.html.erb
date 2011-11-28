@@ -24,8 +24,8 @@ $(document).ready(function() {
 		<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Remove Translation Equivalent'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_translation_equivalent', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id, :translation_equivalent => e.id }}, :confirm => "Are you sure you want to remove this Translation Equivalent?") %>			
 		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_translation_equivalent' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :translation_equivalent => e.id),  :title=>'Remove Translation Equivalent', :confirm => "Are you sure you want to remove this Translation Equivalent?" %>		
 		<%# if e.language != nil and e.language != '' %>
-		<% if e.language_type != nil and e.language_type != '' %>
-			<i><%#= e.language %> <%= e.language_type.title %></i>&nbsp;
+		<% if !e.language_type.blank? %>
+			<i> <%= link_to e.language_type.title, e.language_type.get_url_with_parent if !e.language_type.blank? %></i>&nbsp;
 		<% end %>
 			<% if !e.language_type.blank? %>
 				<% if e.language_type.title == 'Tibetan' %> <%# if e.language == 'Tibetan' %>
