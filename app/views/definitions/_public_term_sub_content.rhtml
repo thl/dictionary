@@ -35,18 +35,22 @@
 		
 		<% end %>
 
-		<% if d.major_dialect_family_type != nil %>
+		<%# if d.major_dialect_family_type != nil %>
+		<% assoc = d.definition_category_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+		<% if !assoc.blank? %>
 			<tr class="display_<%= time %>" style="<%= @style %>">
 				<td valign="top" class="def_header" align="right">
-		<b>TIBETAN DIALECT:</b>
+					<b>TIBETAN DIALECT:</b>
 				</td>
 				<td>
 					<span class='tinyfied_public_show'>
-					<%= d.major_dialect_family_type.title %>
+					<%#= d.major_dialect_family_type.title %>
+					<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>
 					</span>
 				</td>
 			</tr>
 		<% end %>
+
 
 		<% if d.translation_equivalents.size > 0%>
 			<tr class="display_<%= time %>" style="<%= @style %>">
@@ -75,7 +79,7 @@
 						</span>
 						<span id="minus_item_te_<%= e.id %>" style="display:none" >
 						  <%#= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "Element.hide('minus_item_te_#{e.id}');Element.hide('te_#{e.id}');Element.show('plus_item_te_#{e.id}')")%>
-						  <%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "$('#minus_item_te_#{e.id}').hide();$('#e_#{e.id}').hide();$('#plus_item_te_#{e.id}').show();")%>
+						  <%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "$('#minus_item_te_#{e.id}').hide();$('#te_#{e.id}').hide();$('#plus_item_te_#{e.id}').show();")%>
 						</span>
 						
 						<div id="te_<%=e.id%>" style="display:none">

@@ -1,7 +1,11 @@
-<% if pronunciation.major_dialect_family_type != '' and pronunciation.major_dialect_family_type != nil %>
+<% assoc = pronunciation.category_pronunciation_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+<% if !assoc.blank? %>
+<%# if pronunciation.major_dialect_family_type != '' and pronunciation.major_dialect_family_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>TIBETAN DIALECT:</strong> </span><%= pronunciation.major_dialect_family_type.title%>
+			<span class="inner_def_header"><strong>TIBETAN DIALECT:</strong> </span>
+				<%#= pronunciation.major_dialect_family_type.title%>
+				<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>
 		</dd>
 	</dl>
 <% end %>

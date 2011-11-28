@@ -69,7 +69,7 @@
 			<% end %>
 			<% if meta.language_type != nil %>
 				<dd class="inner_dd">
-					<span class="inner_def_header"><strong>LANGUAGE:</strong></span> <%= meta.language_type.title %>
+					<span class="inner_def_header"><strong>LANGUAGE:</strong></span><%= link_to meta.language_type.title, meta.language_type.get_url_with_parent if !meta.language_type.blank? %>
 				</dd>
 			<% end %>
 			<% if meta.metadata_note != nil and meta.metadata_note != ''%>
@@ -78,11 +78,18 @@
 					<span class='tinyfied_public_show'><%= meta.metadata_note %></span>
 				</dd>
 			<% end %>
-			<% if (meta.project != nil and meta.project != '') or meta.project_type != nil%>
+			<!--<%# if (meta.project != nil and meta.project != '') or meta.project_type != nil%>
 				<dd class="inner_dd">
-					<span class="inner_def_header"><strong>PROJECT:</strong></span> <%= meta.project %><%= meta.project_type.title if meta.project_type != nil %>
+					<span class="inner_def_header"><strong>PROJECT:</strong></span> <%#= meta.project %><%#= meta.project_type.title if meta.project_type != nil %>
+				</dd>
+			<%# end %>-->
+			<% assoc = meta.category_meta_associations.find(:all, :conditions => {:category_branch_id => 236}) %>
+			<% if !assoc.blank? %>
+				<dd class="inner_dd">
+					<span class="inner_def_header"><strong>PROJECT:</strong></span> <%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>
 				</dd>
 			<% end %>
+			
 		<span id="<%= meta_location %>" > </span>
 		</dl>
 </span>
