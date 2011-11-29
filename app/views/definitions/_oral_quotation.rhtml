@@ -2,7 +2,10 @@
 <% if t.translation != nil and t.translation != ''%>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>TRANSLATION:</strong> </span><%= t.translation %> <%= "(#{t.language_type.title})" if t.language_type != nil %>
+			<span class="inner_def_header"><strong>TRANSLATION<%= "(#{link_to t.language_type.title, t.language_type.get_url_with_parent})" if !t.language_type.blank? %>:</strong> </span>
+			<span class='tinyfied_public_show'>
+			<%= t.translation %> <%#= "(#{t.language_type.title})" if t.language_type != nil %>
+			</span>
 		</dd>
 	</dl>
 	<% end %>
@@ -18,10 +21,13 @@
 	<% end %>
 	
 <% end %>
-<% if oral_quotation.source_speaker_dialect_type != '' and oral_quotation.source_speaker_dialect_type != nil %>
+<% assoc = oral_quotation.category_oral_quotation_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+<% if !assoc.blank? %>
+<%# if oral_quotation.source_speaker_dialect_type != '' and oral_quotation.source_speaker_dialect_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>SOURCE SPEAKER TIBETAN DIALECT:</strong> </span><%= oral_quotation.source_speaker_dialect_type.title%>
+			<span class="inner_def_header"><strong>SOURCE SPEAKER TIBETAN DIALECT:</strong> </span><%#= oral_quotation.source_speaker_dialect_type.title%>
+			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>
 		</dd>
 	</dl>
 <% end %>

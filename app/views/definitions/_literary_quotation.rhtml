@@ -2,9 +2,9 @@
 <% if t.translation != nil and t.translation != ''%>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>TRANSLATION:</strong> </span>
+			<span class="inner_def_header"><strong>TRANSLATION<%= "(#{link_to t.language_type.title, t.language_type.get_url_with_parent})" if !t.language_type.blank? %>:</strong> </span>
 			<span class='tinyfied_public_show'>
-			<%= t.translation %> <%= "(#{t.language_type.title})" if t.language_type != nil %>
+			<%= t.translation %> <%#= "(#{t.language_type.title})" if t.language_type != nil %>
 			</span>
 		</dd>
 	</dl>
@@ -66,24 +66,31 @@
 		</dd>
 	</dl>
 <% end %>
-<% if literary_quotation.literary_genre_type != '' and literary_quotation.literary_genre_type != nil %>
+<% assoc = literary_quotation.category_literary_quotation_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
+<% if !assoc.blank? %>
+<%# if literary_quotation.literary_genre_type != '' and literary_quotation.literary_genre_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>LITERARY GENRE TYPE:</strong> </span><%= literary_quotation.literary_genre_type.title%>
+			<span class="inner_def_header"><strong>LITERARY GENRE TYPE:</strong> </span><%#= literary_quotation.literary_genre_type.title%>
+			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>
 		</dd>
 	</dl>
 <% end %>
-<% if literary_quotation.literary_period_type != '' and literary_quotation.literary_period_type != nil %>
+<% if !literary_quotation.literary_period_type.blank? %>
+<%# if literary_quotation.literary_period_type != '' and literary_quotation.literary_period_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>LITERARY PERIOD TYPE:</strong> </span><%= literary_quotation.literary_period_type.title%>
+			<span class="inner_def_header"><strong>LITERARY PERIOD TYPE:</strong> </span><%#= literary_quotation.literary_period_type.title%>
+			<%= link_to literary_quotation.literary_period_type.title, literary_quotation.literary_period_type.get_url_with_parent if !literary_quotation.literary_period_type.blank? %>
 		</dd>
 	</dl>
 <% end %>
-<% if literary_quotation.literary_form_type != '' and literary_quotation.literary_form_type != nil %>
+<% if !literary_quotation.literary_form_type.blank? %>
+<%# if literary_quotation.literary_form_type != '' and literary_quotation.literary_form_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>LITERARY FORM TYPE:</strong> </span><%= literary_quotation.literary_form_type.title%>
+			<span class="inner_def_header"><strong>LITERARY FORM TYPE:</strong> </span><%#= literary_quotation.literary_form_type.title%>
+			<%= link_to literary_quotation.literary_form_type.title, literary_quotation.literary_form_type.get_url_with_parent if !literary_quotation.literary_form_type.blank?  %>
 		</dd>
 	</dl>
 <% end %>

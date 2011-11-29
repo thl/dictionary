@@ -2,7 +2,10 @@
 <% if t.translation != nil and t.translation != ''%>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>TRANSLATION:</strong> </span><%= t.translation %> <%#= "(#{t.language_type.title})" if t.language_type != nil %>
+			<span class="inner_def_header"><strong>TRANSLATION<%= "(#{link_to t.language_type.title, t.language_type.get_url_with_parent})" if !t.language_type.blank? %>:</strong> </span>
+			<span class='tinyfied_public_show'>
+				<%= t.translation %> 
+			</span>
 		</dd>
 	</dl>
 	<% end %>
@@ -18,17 +21,20 @@
 	<% end %>
 	
 <% end %>
-<% if model_sentence.language_type != '' and model_sentence.language_type != nil %>
+<% if !model_sentence.language_type.blank? %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>LANGUAGE:</strong> </span><%= model_sentence.language_type.title%>
+			<span class="inner_def_header"><strong>LANGUAGE:</strong> </span><%#= model_sentence.language_type.title%><%= link_to model_sentence.language_type.title, model_sentence.language_type.get_url_with_parent if !model_sentence.language_type.blank? %>
 		</dd>
 	</dl>
 <% end %>
-<% if model_sentence.major_dialect_family_type != '' and model_sentence.major_dialect_family_type != nil %>
+<% assoc = model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+<% if !assoc.blank? %>
+<%# if model_sentence.major_dialect_family_type != '' and model_sentence.major_dialect_family_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>TIBETAN DIALECT:</strong> </span><%= model_sentence.major_dialect_family_type.title%>
+			<span class="inner_def_header"><strong>TIBETAN DIALECT:</strong> </span><%#= model_sentence.major_dialect_family_type.title%>
+			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>
 		</dd>
 	</dl>
 <% end %>
@@ -53,24 +59,31 @@
 		</dd>
 	</dl>
 <% end %>
-<% if model_sentence.literary_genre_type != '' and model_sentence.literary_genre_type != nil %>
+<% assoc = model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
+<% if !assoc.blank? %>
+<%# if model_sentence.literary_genre_type != '' and model_sentence.literary_genre_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>LITERARY GENRE TYPE:</strong> </span><%= model_sentence.literary_genre_type.title%>
+			<span class="inner_def_header"><strong>LITERARY GENRE TYPE:</strong> </span><%#= model_sentence.literary_genre_type.title%>
+			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>
 		</dd>
 	</dl>
 <% end %>
-<% if model_sentence.literary_period_type != '' and model_sentence.literary_period_type != nil %>
+<% if !model_sentence.literary_period_type.blank? %>
+<%# if model_sentence.literary_period_type != '' and model_sentence.literary_period_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>LITERARY PERIOD TYPE:</strong> </span><%= model_sentence.literary_period_type.title%>
+			<span class="inner_def_header"><strong>LITERARY PERIOD TYPE:</strong> </span><%#= model_sentence.literary_period_type.title%>
+			<%= link_to model_sentence.literary_period_type.title, model_sentence.literary_period_type.get_url_with_parent if !model_sentence.literary_period_type.blank? %>
 		</dd>
 	</dl>
 <% end %>
-<% if model_sentence.literary_form_type != '' and model_sentence.literary_form_type != nil %>
+<% if !model_sentence.literary_form_type.blank? %>
+<%# if model_sentence.literary_form_type != '' and model_sentence.literary_form_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>LITERARY FORM TYPE:</strong> </span><%= model_sentence.literary_form_type.title%>
+			<span class="inner_def_header"><strong>LITERARY FORM TYPE:</strong> </span><%#= model_sentence.literary_form_type.title%>
+			<%= link_to model_sentence.literary_form_type.title, model_sentence.literary_form_type.get_url_with_parent if !model_sentence.literary_form_type.blank?  %>
 		</dd>
 	</dl>
 <% end %>

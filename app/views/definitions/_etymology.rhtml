@@ -1,21 +1,24 @@
-<% if etymology.loan_language_type != '' and etymology.loan_language_type != nil %>
+<% if !etymology.loan_language_type.blank? %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>LOAN LANGUAGE:</strong> </span><%= etymology.loan_language_type.title%>
+			<span class="inner_def_header"><strong>LOAN LANGUAGE:</strong> </span><%= link_to etymology.loan_language_type.title, etymology.loan_language_type.get_url_with_parent if !etymology.loan_language_type.blank? %>
 		</dd>
 	</dl>
 <% end %>
-<% if etymology.derivation_type != '' and etymology.derivation_type != nil %>
+<% if !etymology.derivation_type.blank? %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>DERIVATION TYPE:</strong> </span><%= etymology.derivation_type.title%>
+			<span class="inner_def_header"><strong>DERIVATION TYPE:</strong> </span><%= link_to etymology.derivation_type.title, etymology.derivation_type.get_url_with_parent if !etymology.derivation_type.blank? %>
 		</dd>
 	</dl>
 <% end %>
-<% if etymology.major_dialect_family_type != '' and etymology.major_dialect_family_type != nil %>
+<% assoc = etymology.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+<% if !assoc.blank? %>
+<%# if etymology.major_dialect_family_type != '' and etymology.major_dialect_family_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>TIBETAN DIALECT:</strong> </span><%= etymology.major_dialect_family_type.title%>
+			<span class="inner_def_header"><strong>TIBETAN DIALECT:</strong> </span><%#= etymology.major_dialect_family_type.title%>
+			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>
 		</dd>
 	</dl>
 <% end %>

@@ -228,19 +228,21 @@
 				</td>
 			</tr>
 		<% end %>
-
-
-		<% if d.thematic_classification != nil and d.thematic_classification != "" %>
+		
+		<% assoc = d.definition_category_associations.find(:all, :conditions => {:category_branch_id => 272}) %>
+		<% if !assoc.blank? %>
+		<%# if d.thematic_classification != nil and d.thematic_classification != "" %>
 			<tr class="display_<%= time %>" style="<%= @style %>">
 				<td valign="top" class="def_header" align="right">
-					<b>CLASSIFICATION:</b>
+					<b>CHARACTERISTICS:</b>
 				</td>
 				<td>
 
 				<% if d.language == 'Tibetan' %>
 				<span class="tib1">
 				<% end %>
-	<%= @definition.thematic_classification if @definition.thematic_classification != nil %>
+					<%#= @definition.thematic_classification if @definition.thematic_classification != nil %>
+					<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>
 				<% if d.language == 'Tibetan' %>
 				</span>
 				<% end %>
@@ -248,17 +250,17 @@
 			</tr>
 		<% end %>
 
-			<% if d.thematic_classification_type != nil %>
+		<!--	<%# if d.thematic_classification_type != nil %>
 				<tr class="display_<%= time %>" style="<%= @style %>">
 					<td valign="top" class="def_header" align="right">
 						<b>CLASSIFICATION:</b>
 					</td>
 					<td>
 
-		<%= @definition.thematic_classification_type.title %>
+		<%#= @definition.thematic_classification_type.title %>
 					</td>
 				</tr>
-			<% end %>
+			<%# end %>-->
 
 		<%
 			    related_terms = []
@@ -519,16 +521,34 @@
 
 
 
-		<% if str != ''%>
+	<!--	<%# if str != ''%>
 			<tr class="display_<%= time %>" style="<%= @style %>">
 				<td valign="top" class="def_header" align="right">
 					<b>USAGE CONTEXTS:</b>
 				</td>
 				<td>
-			<%= str %>
+			<%#= str %>
 				</td>
 			</tr>
-		<% end %>
+		<%# end %>-->
+		
+		<tr class="display_<%= time %>" style="<%= @style %>">
+			<td valign="top" class="def_header" align="right">
+				<b>USAGE CONTEXTS:</b>
+			</td>
+			<td>
+				<%#= str %>
+				<%= link_to d.language_context_type.title + ' (language context)', d.language_context_type.get_url_with_parent if !d.language_context_type.blank? %><br>
+				<%= link_to d.literary_period_type.title + ' (literary period)', d.literary_period_type.get_url_with_parent if !d.literary_period_type.blank? %><br>
+				<%= link_to d.literary_form_type.title + ' (literary form)', d.literary_form_type.get_url_with_parent if !d.literary_form_type.blank? %><br>
+				<%= link_to d.register_type.title + ' (register)', d.register_type.get_url_with_parent if !d.register_type.blank? %><br>
+				<% assoc = d.definition_category_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
+				<% if !assoc.blank? %>
+					<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>
+				<% end %>
+			</td>
+		</tr>
+		
 
 		<% if d.model_sentences.size > 0%>
 			<tr class="display_<%= time %>" style="<%= @style %>">
@@ -658,16 +678,16 @@
 		
 
 
-		<% if d.literary_form != nil and d.literary_form != "" %>
-			<tr class="display_<%= time %>" style="<%= @style %>">
+		<!--<%# if d.literary_form != nil and d.literary_form != "" %>
+			<tr class="display_<%#= time %>" style="<%#= @style %>">
 				<td>
 				</td>
-				<td>
+				<td>-->
     <!-- <b>Literary form: </b> -->
-				<%= d.literary_form%>
+	<!--			<%#= d.literary_form%>
 				</td>
 			</tr>
-		<% end %>
+		<%# end %>-->
 
 
 		
