@@ -62,12 +62,16 @@
      	<%= definition.wylie.to_s unless definition.wylie == nil %>
 		</td>
      	<td valign=top>
-     	<%= definition.grammatical_function.to_s unless definition.grammatical_function == nil %>
-		<%= definition.grammatical_function_type.title unless definition.grammatical_function_type == nil %>
+			<% assoc = definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 286}) %>
+			<%= "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" %>
+     		<%#= definition.grammatical_function.to_s unless definition.grammatical_function == nil %>
+			<%#= definition.grammatical_function_type.title unless definition.grammatical_function_type == nil %>
 			</td>
      	<td valign=top>
 			<span class="tib1">
-     	<%= definition.definition.to_s unless definition.definition == nil %>
+				<span class='tinyfied_public_show'>
+     				<%= definition.definition.to_s unless definition.definition == nil %>
+				</span>
 			</span>
 			</td>
 			<% if @logged_in %>

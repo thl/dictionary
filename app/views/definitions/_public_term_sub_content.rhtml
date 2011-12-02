@@ -145,8 +145,9 @@
 			   size = d.spellings.size;
 				for e in d.spellings %>
 					<%= '<br> ' if count > 0 %>
-					
-				<%= e.spelling if e.spelling != nil %>
+					<span class='tinyfied_public_show'>	
+						<%= e.spelling if e.spelling != nil %>
+					</span>
 				<%= " (#{e.spelling_category.title})" if e.spelling_category != nil %>
 				
 				<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
