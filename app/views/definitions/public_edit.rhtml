@@ -320,6 +320,7 @@ function clear_contents(node)
 		$.ajax({
 		    url: root_dir+'/'+controller+'/edit_new/'+id+'?level=0&relatedtype='+relatedtype+'&definition_id='+head_definition,
 			success: function(data) {
+				//alert(data);
 				$("#popup_dialog").html("<p></p>")
 			    $("#popup_dialog").html(data);
 				$("#popup_dialog").dialog( "destroy" );
@@ -355,13 +356,15 @@ function clear_contents(node)
 		$.ajax({
 		    url: root_dir+'/'+controller+'/public_add/'+id+'?parent_id='+parent_id+'&head_id='+head_id+'&height=350&internal=edit_box&modal=true&public=yes',
 			success: function(data) {
+				//alert('public_add was performed.');
+				//alert(data);
 				$("#popup_dialog").html("<p></p>")
 			    $("#popup_dialog").html(data);
 				$("#popup_dialog").dialog( "destroy" );
 			    $("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false });
 			    $("#popup_dialog").dialog('open');
 			  } ,
-		    timeout: 3000 
+		    timeout: 13000 
 		  });
 	};
 	

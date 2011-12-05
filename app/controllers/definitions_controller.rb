@@ -879,10 +879,18 @@ class DefinitionsController < ApplicationController
     dd.def1_id = params[:id]
     dd.def2_id = definition.id
     dd.save
-puts 'id------------------'
-puts params['parent_id']
-    #redirect_to :action => 'edit_dynamic', :id => definition.id, :params => {'internal' => 'edit_box','public'=>'yes','definition_id'=> params['parent_id']} #head_id']}
-    redirect_to :action => 'edit_dynamic_definition', :id => definition.id, :params => {'internal' => 'edit_box','public'=>'yes','definition_id'=> params['parent_id']} #head_id']}
+#    puts 'id------------------'
+#    puts params['parent_id']
+#    #redirect_to :action => 'edit_dynamic', :id => definition.id, :params => {'internal' => 'edit_box','public'=>'yes','definition_id'=> params['parent_id']} #head_id']}
+#    #debugger
+#    #redirect_to :action => 'edit_dynamic_definition', :id => definition.id, :params => {'internal' => 'edit_box','public'=>'yes','definition_id'=> params['parent_id']} #head_id']}
+#    redirect_to edit_dynamic_definition_url(definition.id)
+    
+    #redirect_to edit_dynamic_definition_url(51)
+    #redirect_to :action => 'edit_dynamic_definition', :id => 51, :params => {'internal' => 'edit_box','public'=>'yes','definition_id'=> 51} 
+    redirect_to :action => 'edit_dynamic_definition', :id => definition.id, :params => {'internal' => 'edit_box','public'=>'yes','definition_id'=> params['parent_id']} 
+    
+
   end
   
 def browse_old

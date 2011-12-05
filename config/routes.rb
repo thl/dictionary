@@ -159,6 +159,7 @@ ActionController::Routing::Routes.draw do |map|
   map.oral_quotation_audio_description_edit 'oral_quotations/:id/audio_description_edit', :controller => 'oral_quotations', :action => 'audio_description_edit'
   map.oral_quotation_video_description_edit 'oral_quotations/:id/video_description_edit', :controller => 'oral_quotations', :action => 'video_description_edit'
  
+  map.edit_dynamic_definition 'definitions/:id/edit_dynamic_definition', :controller => 'definitions', :action => 'edit_dynamic_definition'
   #map.edit_dynamic_definition_definition_forms 'definition_definition_forms/:id/edit_dynamic_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'edit_dynamic'
   map.edit_dynamic_definition_definition_forms 'definition_definition_forms/:id/edit_dynamic_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'modal_edit_dynamic'
   map.new_search_definition_definition_forms 'definition_definition_forms/:id/new_search_definition_definition_forms', :controller => 'definition_definition_forms', :action => 'new_search'
