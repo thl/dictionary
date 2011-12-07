@@ -108,7 +108,7 @@
 				 <br>
 				<% end %>
 				<span class='tinyfied_public_show_inline'>
-				<%= e.phonetic_transliteration %> <% if e.pronunciation_category != nil %>(<%= e.pronunciation_category.title%>)<% end %>
+				<%= e.phonetic_transliteration %> <%= link_to e.pronunciation_category.title, e.pronunciation_category.get_url_with_parent if !e.pronunciation_category.blank? %>
 				</span>
 				<% count += 1 %>
 			<% end %>
@@ -148,7 +148,11 @@
 					<span class='tinyfied_public_show'>	
 						<%= e.spelling if e.spelling != nil %>
 					</span>
-				<%= " (#{e.spelling_category.title})" if e.spelling_category != nil %>
+				<%#= " (#{e.spelling_category.title})" if e.spelling_category != nil %>
+				<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 4091}) %>
+				<% if !assoc.blank? %>
+					(<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>)
+				<% end %>
 				
 				<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 				<%#= link_to_function(image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'),"Modalbox.show('#{url_for(:action => 'display_public_history', :params => {:history_id => e.id, :history_class => e.class.to_s, :modal => 'true' })}', {title: 'Contributors:'})")%>
@@ -189,7 +193,8 @@
 				<br>
 			<% end %>
 			<span class='tinyfied_public_show_inline'>
-			<%= "#{e.etymology_category.title} - " if e.etymology_category != nil %>
+			<%#= "#{e.etymology_category.title} - " if e.etymology_category != nil %>
+			<%= link_to e.etymology_category.title, e.etymology_category.get_url_with_parent if !e.etymology_category.blank? %>
 			<%= e.etymology if e.etymology != nil %>
 			</span>
 			<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
