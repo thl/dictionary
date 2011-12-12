@@ -323,8 +323,8 @@ module ApplicationHelper
         #:custom_home => {:index => 1, :title => "Home", :url => custom_home_path + "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
         #:custom_home => {:index => 1, :title => "Home", :url => root_path + "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
         
-        :search => {:index => 2, :title => "Search", :url => root_path },
-        #:search => {:index => 2, :title => "Search", :url => search_main_definition_path },
+        #:search => {:index => 2, :title => "Search", :url => root_path },
+        :search => {:index => 2, :title => "Search", :url => search_main_definition_path },
         #:term => {:index => 3, :title => "Term", :url => current_term_path },
         :browse => {:index => 4, :title => "Browse", :url => browse_definitions_path },
         :translate => {:index => 5, :title => "Translate", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/translate.php&div_id=universal_navigation_content"},
@@ -339,8 +339,8 @@ module ApplicationHelper
         #:custom_home => {:index => 1, :title => "Home", :url => custom_home_path + "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
         #:custom_home => {:index => 1, :title => "Home", :url => root_path + "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
         
-        :search => {:index => 2, :title => "Search", :url => root_path },
-        #:search => {:index => 2, :title => "Search", :url => search_main_definition_path },
+        #:search => {:index => 2, :title => "Search", :url => root_path },
+        :search => {:index => 2, :title => "Search", :url => search_main_definition_path },
         :term => {:index => 3, :title => "Term", :url => current_term_path },
         :browse => {:index => 4, :title => "Browse", :url => browse_definitions_path },
         :translate => {:index => 5, :title => "Translate", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/translate.php&div_id=universal_navigation_content"},
