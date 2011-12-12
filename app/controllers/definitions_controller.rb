@@ -317,22 +317,6 @@ class DefinitionsController < ApplicationController
     
     render :layout => 'staging_new'
   end
-
-  def custom_home
-    @current_tab_id = :custom_home
-    hostname = Socket.gethostname.downcase
-    if hostname =~ /sds[3-578].itc.virginia.edu/
-      app_host = 'http://thlib.org'
-    elsif hostname == 'sds6.itc.virginia.edu'
-      app_host = 'http://staging.thlib.org'
-    elsif hostname == 'dev.thlib.org'
-      app_host = 'http://dev.thlib.org'
-    else
-      app_host = 'http://thlib.org'
-    end
-    #redirect_to "#iframe=#{app_host}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content"
-    render :layout => 'staging_new'
-  end
   
   def alphabet_list
     # debugger
@@ -848,6 +832,22 @@ class DefinitionsController < ApplicationController
     end
     @definition.save
     render :text => params['value']
+  end
+  
+  def custom_home
+    @current_tab_id = :custom_home
+    #hostname = Socket.gethostname.downcase
+    #if hostname =~ /sds[3-578].itc.virginia.edu/
+    #  app_host = 'http://thlib.org'
+    #elsif hostname == 'sds6.itc.virginia.edu'
+    #  app_host = 'http://staging.thlib.org'
+    #elsif hostname == 'dev.thlib.org'
+    #  app_host = 'http://dev.thlib.org'
+    #else
+    #  app_host = 'http://thlib.org'
+    #end
+    ##redirect_to "#iframe=#{app_host}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content"
+    render :layout => 'staging_new'
   end
   
   def index
@@ -1726,6 +1726,7 @@ end
   
   def public_term
     @current_tab_id = :term
+    $CURRENT_TERM = params[:id]
     if params['mode'] == 'search'
       @page_class = 'search'
     elsif params['mode'] == 'edit'

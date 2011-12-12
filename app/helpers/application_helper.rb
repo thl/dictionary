@@ -307,19 +307,40 @@ module ApplicationHelper
     end
  
     def current_term_path
-      if @definition.nil?
+      if $CURRENT_TERM.nil?
         term_path = root_path
       else
-        term_path = public_term_definition_path(@definition)
+        term_path = public_term_definition_path($CURRENT_TERM)
       end
       return term_path
     end
+    
     def custom_secondary_tabs_list
       # The :index values are necessary for this hash's elements to be sorted properly
-      {
-        :custom_home => {:index => 1, :title => "Home", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
-        #:custom_home => {:index => 1, :title => "Home", :url => custom_home_path + "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
+      if $CURRENT_TERM.nil?
+        {
+        #:custom_home => {:index => 1, :title => "Home", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
+        :custom_home => {:index => 1, :title => "Home", :url => custom_home_path + "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
+        #:custom_home => {:index => 1, :title => "Home", :url => root_path + "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
+        
         :search => {:index => 2, :title => "Search", :url => root_path },
+        #:search => {:index => 2, :title => "Search", :url => search_main_definition_path },
+        #:term => {:index => 3, :title => "Term", :url => current_term_path },
+        :browse => {:index => 4, :title => "Browse", :url => browse_definitions_path },
+        :translate => {:index => 5, :title => "Translate", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/translate.php&div_id=universal_navigation_content"},
+        :hierarchies => {:index => 6, :title => "Hierarchies", :url => "#{tmb_url}"},
+        :projects => {:index => 7, :title => "Projects", :url => "#{tmb_url}/categories/236/children"},
+        #:bibliography => {:index => 7, :title => "Bibliography", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/dictionary-biblio.php#spt=SPT--BrowseResources.php?ParentId=1476&div_id=universal_navigation_content"},
+        :bibliography => {:index => 7, :title => "Bibliography", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/dictionary-biblio.php&div_id=universal_navigation_content"},
+        }
+      else
+        {
+        #:custom_home => {:index => 1, :title => "Home", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
+        :custom_home => {:index => 1, :title => "Home", :url => custom_home_path + "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
+        #:custom_home => {:index => 1, :title => "Home", :url => root_path + "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content" },
+        
+        :search => {:index => 2, :title => "Search", :url => root_path },
+        #:search => {:index => 2, :title => "Search", :url => search_main_definition_path },
         :term => {:index => 3, :title => "Term", :url => current_term_path },
         :browse => {:index => 4, :title => "Browse", :url => browse_definitions_path },
         :translate => {:index => 5, :title => "Translate", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/translate.php&div_id=universal_navigation_content"},
@@ -327,8 +348,8 @@ module ApplicationHelper
         :projects => {:index => 7, :title => "Projects", :url => "#{tmb_url}/categories/236/children"},
         #:bibliography => {:index => 7, :title => "Bibliography", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/dictionary-biblio.php#spt=SPT--BrowseResources.php?ParentId=1476&div_id=universal_navigation_content"},
         :bibliography => {:index => 7, :title => "Bibliography", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/dictionary-biblio.php&div_id=universal_navigation_content"},
-
-      }
+        }       
+      end      
     end
 
     def custom_secondary_tabs(current_tab_id=:term)
