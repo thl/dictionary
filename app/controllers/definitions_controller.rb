@@ -834,7 +834,7 @@ class DefinitionsController < ApplicationController
     render :text => params['value']
   end
   
-  def home
+  def custom_home
     @current_tab_id = :custom_home
     #hostname = Socket.gethostname.downcase
     #if hostname =~ /sds[3-578].itc.virginia.edu/
