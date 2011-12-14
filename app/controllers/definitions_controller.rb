@@ -842,22 +842,26 @@ class DefinitionsController < ApplicationController
     hostname = Socket.gethostname.downcase
     if hostname =~ /sds[3-578].itc.virginia.edu/
       app_host = 'http://thlib.org'
+      dict_url = 'http://dictionary.thlib.org'
     elsif hostname == 'sds6.itc.virginia.edu'
       app_host = 'http://staging.thlib.org'
+      dict_url = 'http://staging.dictionary.thlib.org'
     elsif hostname == 'dev.thlib.org'
       app_host = 'http://dev.thlib.org'
+      dict_url = 'http://dev.dictionary.thlib.org'
     #elsif hostname.ends_with? 'local'
     #  app_host = 'http://localhost:3000'
     else
       app_host = 'http://thlib.org'
+      dict_url = 'http://dictionary.thlib.org'
     end
     
     ##redirect_to "#iframe=#{app_host}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content"
     iframe_url =  "#iframe=#{app_host}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content"
-    home_url = "#{app_host}/definitions/custom_home/" + iframe_url
+    home_url = "#{dict_url}/definitions/custom_home/" + iframe_url
     
     #redirect_to "http://dictionary.thlib.org/#iframe=http://www.thlib.org/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content"
-    debugger
+    
     redirect_to home_url
     
     #render :layout => 'staging_new'
@@ -865,9 +869,9 @@ class DefinitionsController < ApplicationController
   
   def custom_home
     @current_tab_id = :custom_home
-    #@current_section = :home
-    #@users = User.find :all, :conditions => 'full_name is not null'
-    #@page_class = 'search'
+    @current_section = :home
+    @users = User.find :all, :conditions => 'full_name is not null'
+    @page_class = 'search'
     render :layout => 'staging_new'
   end
   
