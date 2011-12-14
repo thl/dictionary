@@ -202,7 +202,7 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_main_definition 'definitions/index_edit', :controller => 'definitions', :action => 'index_edit'
   map.new_main_definition 'definitions/new', :controller => 'definitions', :action => 'new'
   map.browse_definitions 'browse_definitions', :controller => 'definitions', :action => 'browse'
-  #map.custom_home 'custom_home', :controller => 'definitions', :action => 'custom_home'
+  map.home 'home', :controller => 'definitions', :action => 'custom_home'
   
   map.connect 'internal_definitions/:action/:id', :controller => 'definitions'
  
