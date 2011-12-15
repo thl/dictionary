@@ -856,12 +856,8 @@ class DefinitionsController < ApplicationController
       dict_url = 'http://dictionary.thlib.org'
     end
     
-    ##redirect_to "#iframe=#{app_host}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content"
     iframe_url =  "#iframe=#{app_host}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content"
-    #home_url = "#{dict_url}/definitions/custom_home/" + iframe_url
-    
-    #redirect_to "http://dictionary.thlib.org/#iframe=http://www.thlib.org/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content"
-    
+
     redirect_to home_url + iframe_url
     
     #render :layout => 'staging_new'
