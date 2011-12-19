@@ -836,9 +836,9 @@ class DefinitionsController < ApplicationController
   
   def home
     @current_tab_id = :custom_home
-    #@current_section = :home
-    #@users = User.find :all, :conditions => 'full_name is not null'
-    #@page_class = 'search'
+    @current_section = :home
+    @users = User.find :all, :conditions => 'full_name is not null'
+    @page_class = 'home'
     hostname = Socket.gethostname.downcase
     if hostname =~ /sds[3-578].itc.virginia.edu/
       app_host = 'http://thlib.org'
