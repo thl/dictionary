@@ -746,5 +746,17 @@ module ApplicationHelper
       end
     end
     
-
+    def thl_catalog_host_url
+      hostname = Socket.gethostname.downcase
+      if hostname =~ /sds[3-578].itc.virginia.edu/
+        dict_url = 'http://dictionary.thlib.org'
+      elsif hostname == 'sds6.itc.virginia.edu'
+        dict_url = 'http://staging.dictionary.thlib.org'
+      elsif hostname == 'dev.thlib.org'
+        dict_url = 'http://dev.dictionary.thlib.org'
+      else
+        dict_url = 'http://dictionary.thlib.org'
+      end
+      return dict_url
+    end
   end
