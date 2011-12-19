@@ -749,14 +749,14 @@ module ApplicationHelper
     def thl_catalog_host_url
       hostname = Socket.gethostname.downcase
       if hostname =~ /sds[3-578].itc.virginia.edu/
-        dict_url = 'http://dictionary.thlib.org'
+        app_host = 'http://thlib.org'
       elsif hostname == 'sds6.itc.virginia.edu'
-        dict_url = 'http://staging.dictionary.thlib.org'
+        app_host = 'http://staging.thlib.org'
       elsif hostname == 'dev.thlib.org'
-        dict_url = 'http://dev.dictionary.thlib.org'
+        app_host = 'http://dev.thlib.org'
       else
-        dict_url = 'http://dictionary.thlib.org'
+        app_host = 'http://thlib.org'
       end
-      return dict_url
+      return app_host
     end
   end
