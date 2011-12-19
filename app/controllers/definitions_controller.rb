@@ -839,25 +839,23 @@ class DefinitionsController < ApplicationController
     @current_section = :home
     @users = User.find :all, :conditions => 'full_name is not null'
     @page_class = 'home'
-    hostname = Socket.gethostname.downcase
-    if hostname =~ /sds[3-578].itc.virginia.edu/
-      app_host = 'http://thlib.org'
-      dict_url = 'http://dictionary.thlib.org'
-    elsif hostname == 'sds6.itc.virginia.edu'
-      app_host = 'http://staging.thlib.org'
-      dict_url = 'http://staging.dictionary.thlib.org'
-    elsif hostname == 'dev.thlib.org'
-      app_host = 'http://dev.thlib.org'
-      dict_url = 'http://dev.dictionary.thlib.org'
-    #elsif hostname.ends_with? 'local'
-    #  app_host = 'http://localhost:3000'
-    else
-      app_host = 'http://thlib.org'
-      dict_url = 'http://dictionary.thlib.org'
-    end
-    
-    iframe_url =  "#iframe=#{app_host}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content"
-
+    #hostname = Socket.gethostname.downcase
+    #if hostname =~ /sds[3-578].itc.virginia.edu/
+    #  app_host = 'http://thlib.org'
+    #  dict_url = 'http://dictionary.thlib.org'
+    #elsif hostname == 'sds6.itc.virginia.edu'
+    #  app_host = 'http://staging.thlib.org'
+    #  dict_url = 'http://staging.dictionary.thlib.org'
+    #elsif hostname == 'dev.thlib.org'
+    #  app_host = 'http://dev.thlib.org'
+    #  dict_url = 'http://dev.dictionary.thlib.org'
+    ##elsif hostname.ends_with? 'local'
+    ##  app_host = 'http://localhost:3000'
+    #else
+    #  app_host = 'http://thlib.org'
+    #  dict_url = 'http://dictionary.thlib.org'
+    #end
+    #iframe_url =  "#iframe=#{app_host}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content"
     #redirect_to home_url + iframe_url
     
     render :layout => 'staging_new'

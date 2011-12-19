@@ -1,14 +1,11 @@
 <script type="text/javascript">
 var pref = (location.host).split('.').shift();
-//alert(pref);
 if(location.pathname == "/" && !location.hash) {
 	if(pref == "dev") { location.hash = "iframe=http://dev.thlib.org/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content";}
 	else{
 		if(pref == "staging") { location.hash = "iframe=http://staging.thlib.org/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content";}
-		else {location.hash = "iframe=http://thlib.org/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content";}
+		else {location.hash = "iframe=http://www.thlib.org/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content";}
 	}
-	
-
 }
 </script>
 
