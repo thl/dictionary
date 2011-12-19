@@ -858,9 +858,9 @@ class DefinitionsController < ApplicationController
     
     iframe_url =  "#iframe=#{app_host}/reference/dictionaries/tibetan-dictionary/&div_id=universal_navigation_content"
 
-    redirect_to home_url + iframe_url
+    #redirect_to home_url + iframe_url
     
-    #render :layout => 'staging_new'
+    render :layout => 'staging_new'
   end
   
   def custom_home
