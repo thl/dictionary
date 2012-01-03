@@ -27,7 +27,7 @@
 		<%# end %>
 	<%#= link_to_function image_tag('sub',:border => 0), "add_def_popup('definitions','"+d.id.to_s+"','"+parent_id.to_s+"','"+head_id.to_s+"')", :title => "Add Subdefinition"%>
 			<%#= link_to_remote(image_tag('cross.png',:border=>0, :title => 'Clear Definition'), :update => 'definition_space', :complete => 're_initialize();', :url => {:action => 'public_remove_definition', :id => d.id, :params => {:parent_id => parent_id, :head_id => head_id }}, :confirm => "Are you sure you want to clear this definition?") %>
-			<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_definition' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Clear Definition', :confirm => "Are you sure you want to clear this definition?" %>	
+			<%# commented on January 03 2012 = link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_definition' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Clear Definition', :confirm => "Are you sure you want to clear this definition?" %>	
 			<% def_edit_path = definition_edit_url(:id => d.id) %>					
 			<%#= link_to_remote(image_tag('comment.png',:border => 0), :url => def_edit_path, :update => "#{d.id}_defdiv", :title => 'Edit definition', :method => :get, :html => {:class => 'definitions_show'}) %>
 	    	<input type=hidden name=definition[thematic_classification<%=d.id%>] id=definition[thematic_classification<%=d.id%>] value="<%=d.thematic_classification %>" >
