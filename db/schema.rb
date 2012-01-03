@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111003144028) do
+ActiveRecord::Schema.define(:version => 20110913175604) do
 
   create_table "bdrb_job_queues", :force => true do |t|
     t.binary   "args"
