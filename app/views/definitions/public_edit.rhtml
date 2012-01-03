@@ -560,58 +560,17 @@ function clear_contents(node)
 
 		<!-- <span id=definition[grammatical_function]_value class=menuvalue onclick=show_menu(menu1,getCoord(arguments[0]));><%= image_tag 'edit_up.gif', :alt => 'Edit' %> </span> -->
 <br>
+
+
+
 <% if @definition.super_definitions.size > 0 %>
 	<hr>
+	<div id="sub_definitions_div"> 
+  	<%=   render :partial => 'definitions/sub_definitions_index' %>	
+	</div>
 <% end %>
-<div><ul>
-<% number = 1
-	letters = ['a','b','c','d','e','f','g']
-	for sd in @definition.super_definitions 
-%>
-	<% if sd.sub_definition != nil %>
 
-		<li><% if @non_head_id == sd.sub_definition.id.to_s %><%= image_tag('arrow_right.png') %><% end %>
-			<b><%= number %>: </b>
-		<%= render(:partial => 'public_definition', :locals => {:d => sd.sub_definition, :parent_id => sd.sub_definition.id, :head_id => @head_id, :level => 'sub'} )%>
-		<!-- <span id=definition[grammatical_function]_value class=menuvalue onclick=show_menu(menu<%= sd.sub_definition.id %>,getCoord(arguments[0]));><%= image_tag 'edit_up.gif', :alt => 'Edit' %> </span> -->
 
-			<ul>
-		<% if sd.sub_definition != nil %>
-			<% subdef = 0 
-				for ssd in sd.sub_definition.super_definitions
-			%>
-				<% if ssd.sub_definition != nil %>
-				<li><% if @non_head_id == ssd.sub_definition.id.to_s %><%= image_tag('arrow_right.png') %><% end %>
-					<b><%= letters[subdef] %><% subdef = subdef + 1 %>: </b>
-					<%= render(:partial => 'public_definition', :locals => {:d => ssd.sub_definition, :parent_id => sd.sub_definition.id, :head_id => @head_id, :level => 'sub'} )%>
-					<!-- <span id=definition[grammatical_function]_value class=menuvalue onclick=show_menu(menu<%= sd.sub_definition.id %>,getCoord(arguments[0]));><%= image_tag 'edit_up.gif', :alt => 'Edit' %> </span> -->
-				<ul>
-				<% if ssd != nil %>
-					<% if ssd.sub_definition != nil %>
-						<% subsubdef = 1
-						for sssd in ssd.sub_definition.super_definitions
-					%>
-					<li><% if @non_head_id == sssd.sub_definition.id.to_s %><%= image_tag('arrow_right.png') %><% end %>
-						<b>(<%= subsubdef %><% subsubdef = subsubdef + 1 %>): </b>
-					<%= render(:partial => 'public_definition', :locals => {:d => sssd.sub_definition, :parent_id => ssd.sub_definition.id, :head_id => @head_id, :level => 'sub'} )%>
-					<!-- <span id=definition[grammatical_function]_value class=menuvalue onclick=show_menu(menu<%= sd.sub_definition.id %>,getCoord(arguments[0]));><%= image_tag 'edit_up.gif', :alt => 'Edit' %> </span> -->
-				<% end %>
-			<% end %>
-		<% end %>
-			</ul>
-			<% end %>
-				<% end %>
-
-			<% subdef += 1 %>
-		<% end %>
-		</ul>
-		
-		<br/>
-	<% number += 1 %>
-	<% end %>
-<% end %>
-</ul>
-</div>
 
 </div>
 <% if @dan_martin_definitions.size > 0 or @jeffrey_hopkins_definitions.size > 0 or @yogacara_definitions.size > 0 or @rangjung_yeshe_definitions.size > 0 or @richard_baron_definitions.size > 0 or @jim_valby_definitions.size > 0 or @ives_waldo_definitions.size > 0 %>

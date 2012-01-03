@@ -22,7 +22,7 @@ $(document).ready(function() {
 </script>
 
 
-
+<%#debugger%>
 <%= tag "div", {:id => @divname } %>
 <h1>Editing Definition</h1>
 <%= error_messages_for 'definition' %>
@@ -38,7 +38,9 @@ $(document).ready(function() {
 <input type="hidden" name="id" value="<%= params["id"] %>"/>
 <input type="hidden" name="internal" value="<%= params['internal'] %>">
 <input type="hidden" name="pk" value="<%= params['pk'] %>">
-
+<% if Definition.find(params[:id]).level == "not head" %>
+<input type="hidden" name="parent_definition_id" value="<%= params['definition_id'] %>">
+<% end %>
 
 <%#= submit_to_remote 'update_button','update', :url => { :action => "update_dynamic_definition" } %>
 <br>

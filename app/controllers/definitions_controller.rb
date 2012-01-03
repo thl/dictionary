@@ -2719,6 +2719,7 @@ end
   end
         
   def update_dynamic_definition
+    
     @definition = Definition.find(params[:id])
     if @definition.created_by == nil or @definition.created_by == ""
       @definition.created_by = session[:user].login
@@ -2735,27 +2736,53 @@ end
     end   
     #respond_to do |format|
       if @definition.update_attributes(params[:definition])
-        #format.html do
-        #  render :partial => 'definition_show', :locals => {:d => @definition}
-        #end
+        ##format.html do
+        ##  render :partial => 'definition_show', :locals => {:d => @definition}
+        ##end
         
-        #render :nothing => true
-        render :update do |page|
-            #yield(page) if block_given?  
-            page.replace_html "#{@definition.id}_defdiv", :partial => 'definitions/definition_show', :locals => {:d => @definition}
+        ##render :nothing => true
+        #render :update do |page|
+        #    #yield(page) if block_given?  
+        #    page.replace_html "#{@definition.id}_defdiv", :partial => 'definitions/definition_show', :locals => {:d => @definition}
+        #end
+        if params[:definition][:level] == "head term"
+          render :update do |page|
+              page.replace_html "#{@definition.id}_defdiv", :partial => 'definitions/definition_show', :locals => {:d => @definition}
+          end
+        else
+          #debugger
+          if params[:parent_definition_id].blank?
+            render :update do |page|
+                page.replace_html "#{@definition.id}_defdiv", :partial => 'definitions/definition_show', :locals => {:d => @definition}
+            end
+          else
+            render_subdefinitions(params[:parent_definition_id])
+          end
         end
         
-        
-        #flash[:notice] = 'Definition was successfully updated.'
-        #redirect_to :action => 'index_edit'
-        #redirect_to :action => 'public_edit', :id => @definition
+        ##flash[:notice] = 'Definition was successfully updated.'
+        ##redirect_to :action => 'index_edit'
+        ##redirect_to :action => 'public_edit', :id => @definition
       else
-        #redirect_to :action => 'index_edit'
-        #redirect_to :action => 'public_edit', :id => @definition
+        ##redirect_to :action => 'index_edit'
+        ##redirect_to :action => 'public_edit', :id => @definition
       end
     #end
   end
-        
+  
+  def render_subdefinitions(parent_definition_id)
+    
+    @sub_definition = Definition.find(params[:id])
+    @definition = Definition.find(parent_definition_id)
+    #@definition = Definition.find(@sub_definition.def1_id)
+    ##@temp_definition = Definition.find(@spelling.definition_id) 
+ 	  render :update do |page|
+      #page.replace_html "#{@spelling.definition_id}_spellings_div", :partial => 'spellings/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition.id, :head_id => @temp_definition.id}
+      page.replace_html "sub_definitions_div", :partial => 'definitions/sub_definitions_index', :locals => {:d => @definition, :parent_id => @definition.id, :head_id => @definition.id}
+    
+    end
+    
+  end      
         
   def tinymce_text_area
     @definition = Definition.find(params[:id])
@@ -3157,6 +3184,7 @@ end
   end
 
   def public_remove_definition
+    #debugger
     d = Definition.find(params[:id])
     d.definition = nil
         d.updated_by = session[:user].login
