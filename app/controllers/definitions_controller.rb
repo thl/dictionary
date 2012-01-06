@@ -1257,6 +1257,7 @@ end
   end
 
   def public_edit
+    #debugger
     @current_tab_id = :term
     @grammatical_function_type = Category.find(286)
     @page_class = "edit"
@@ -2745,6 +2746,7 @@ end
         #    #yield(page) if block_given?  
         #    page.replace_html "#{@definition.id}_defdiv", :partial => 'definitions/definition_show', :locals => {:d => @definition}
         #end
+        #debugger
         if params[:definition][:level] == "head term"
           render :update do |page|
               page.replace_html "#{@definition.id}_defdiv", :partial => 'definitions/definition_show', :locals => {:d => @definition}
@@ -2771,9 +2773,10 @@ end
   end
   
   def render_subdefinitions(parent_definition_id)
-    
+    #debugger
     @sub_definition = Definition.find(params[:id])
     @definition = Definition.find(parent_definition_id)
+    @head_id = @definition.id
     #@definition = Definition.find(@sub_definition.def1_id)
     ##@temp_definition = Definition.find(@spelling.definition_id) 
  	  render :update do |page|
@@ -3168,6 +3171,7 @@ end
   end    
     
   def public_destroy
+    #debugger
     dd = DefinitionDefinition.find(:first, :conditions => 'def2_id = '+params[:id]+' and def1_id = '+params['parent_id'])
     dd.destroy unless dd == nil
     d = Definition.find(params[:id])
