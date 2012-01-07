@@ -18,7 +18,7 @@
 			
 			<%# before ui %>
 			<%#= link_to image_tag('pencil.png',:border => 0), url_for( :action => 'edit_dynamic_definition', :id => d.id, :internal=>'edit_box', :public=>'yes', :height=>500,:width=>670, :modal=>true) , :class=>:thickbox, :title=>'Definition Edit' %>		
-			<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'definitions', :action => 'edit_dynamic_definition', :id => d.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_dialog', :title=>'Definition Edit'} %>
+			<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'definitions', :action => 'edit_dynamic_definition', :id => d.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_definition_dialog', :title=>'Definition Edit'} %>
 			
 			<%#= link_to_function image_tag('pencil.png',:border => 0), 'definition_id='+d.id.to_s+';parent_id='+head_id.to_s+";dialect_id="+d.id.to_s+";edit_popup('definitions','"+d.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
 			<span class=menuvalue onclick='definition_id=<%= d.id.to_s %>;parent_id=<%= head_id.to_s %>;show_menu(definition_menu,getCoord(arguments[0]));'>
