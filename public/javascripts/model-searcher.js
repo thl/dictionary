@@ -219,7 +219,7 @@ function ModelSearcher(){
 		/* if ( root_topics && root_topics.value != 'All' ) {
 			jQuery('#browse_link_' + that.varname).unbind('click').show().click(function() { that.activatePopup() });
 		}*/
-		jQuery('#browse_link_' + that.varname).unbind('click').click(function() { that.activatePopup() });
+		jQuery('#browse_link_' + that.varname).unbind('click').click(function(e) { that.activatePopup(); e.preventDefault(); });
 	};
 	
 	this.activatePopup = function() {
