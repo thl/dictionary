@@ -14,7 +14,8 @@
 		<%=
 			category_fields :subject => {:display => '', :label => ''},
 							:field_human_name => '',
-							:root =>  data, 
+							:root =>  data,
+							:show_dropdown => false, 
 							:var_name => model_name, 
 							:field_name => [:category_pronunciation_associations, :category],
 							:conditions => {:category_branch_id => @branch.id}, 
