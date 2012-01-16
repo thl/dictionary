@@ -217,6 +217,9 @@ ActionController::Routing::Routes.draw do |map|
   #end
 
   map.new_inplace_category_definition_association 'definitions/:definition_id/new_inplace/branches/:branch_id', :controller => 'definition_category_associations', :action => 'new_inline'
+  map.new_generic_inplace_category_definition_association 'definitions/:definition_id/new_inplace/', :controller => 'definition_category_associations', :action => 'new_generic_inline'
+  map.create_generic_inplace_category_definition_association 'definitions/:definition_id/create_generic/', :controller => 'definition_category_associations', :action => 'create_generic'
+
   
   map.resources :category_definition_associations, :controller => 'definition_category_associations', :path_prefix => 'definitions/:definition_id/branches/:branch_id'
   map.resources :category_translation_associations, :controller => 'category_translation_associations', :path_prefix => 'translations/:translation_id/branches/:branch_id'

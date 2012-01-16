@@ -81,10 +81,13 @@
 		
 		<!-- thematic classification div -->
 		<b>Subjects:</b>
-		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_inplace_category_definition_association_url(@definition.id, 272), :update => "#{@definition.id}_definition_thematic_classification_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%#=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_inplace_category_definition_association_url(@definition.id, 272), :update => "#{@definition.id}_definition_thematic_classification_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+		<%=  "#{link_to_remote(image_tag('pencil.png',:border => 0), :url => new_generic_inplace_category_definition_association_url(@definition.id), :update => "#{@definition.id}_definition_thematic_classification_div", :method => :get, :html => {:class => 'definitions_show'} ) }" %> 
+
 		<%#= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_thematic_classification' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Thematic Classification', :confirm => "Are you sure you want to remove this Thematic Classification?" %>
 		<div id="<%= d.id%>_definition_thematic_classification_div"> 
-			<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 272} %>			
+			<%#=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 272} %>
+			<%=   render :partial => 'definition_category_associations/generic_index' %>			
 		</div>
 			
 		<!--	

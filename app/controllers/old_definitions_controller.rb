@@ -115,7 +115,9 @@ class OldDefinitionsController < ApplicationController
     end
     @old_definition = OldDefinition.find(params[:id])
     #render_without_layout if params['internal'] != nil
-    render :layout => 'staging_popup'  if params['internal'] != nil
+    
+    #render :layout => 'staging_popup'  if params['internal'] != nil
+    render :layout => false  #due to ui
   end
 
   def update_dynamic_old_definition

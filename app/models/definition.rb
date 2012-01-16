@@ -22,6 +22,9 @@ class Definition < ActiveRecord::Base
   has_one :meta, :foreign_key => 'definition_id'
 
   has_many :definition_category_associations, :dependent => :destroy
+  has_many :not_fixed_associations, :dependent => :destroy, :class_name => 'DefinitionCategoryAssociation', :conditions => ["category_branch_id NOT IN (#{Array.new(DefinitionCategoryAssociation::FIXED.size, '?').join(',')})"] + DefinitionCategoryAssociation::FIXED.keys
+  
+  
   belongs_to :grammatical_function_type, :class_name => 'Category'
   belongs_to :language_type, :class_name => 'Category'
   belongs_to :register_type, :class_name => 'Category'

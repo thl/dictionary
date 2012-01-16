@@ -68,6 +68,10 @@ class DefinitionCategoryAssociationsController < ApplicationController
      end
    end
    
+   def new_generic_inline
+     render :partial => "edit_generic_inline", :locals => { :update_id => "#{@definition.id}_definition_thematic_classification_div" }
+     
+   end
    
   # GET /definition_category_associations/1/edit
   def edit
@@ -77,6 +81,7 @@ class DefinitionCategoryAssociationsController < ApplicationController
   # POST /definition_category_associations
   # POST /definition_category_associations.xml
   def create
+    debugger
     errors = []
     if !params[:definition].blank?
       definition_params = params[:definition]
@@ -110,6 +115,51 @@ class DefinitionCategoryAssociationsController < ApplicationController
     end
 
   end
+
+  def create_generic
+    
+    errors = []
+    if !params[:definition].blank?
+      definition_params = params[:definition]
+      associations_param = definition_params.delete(:not_fixed_associations) #definition_params.delete(:definition_category_associations)
+      new_category_ids = associations_param[:category_ids].collect(&:to_i)
+    else
+      new_category_ids = []
+    end
+    #assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => @branch.id})
+    associations = @definition.send(:not_fixed_associations)
+    saved_category_ids  = associations.collect(&:category_id)
+    #DefinitionCategoryAssociation.destroy_all(:category_id  => saved_category_ids - new_category_ids)
+    #root_id = !associations_param.nil? && !associations_param[:root_id].blank? ? associations_param[:root_id] : nil
+    root_id = nil
+    #associations.destroy_all(:category_id  => saved_category_ids - new_category_ids)
+    (saved_category_ids - new_category_ids).each{|c_id| associations.all(:conditions => {:category_id => c_id}).each(&:destroy)}
+    begin
+      #(new_category_ids - saved_category_ids).each{|c_id| @definition.definition_category_associations.create(:category_id => c_id, :category_branch_id => @branch.id)}
+      (new_category_ids - saved_category_ids).each{|c_id| associations.create(:category_id => c_id, :category_branch_id => root_id.blank? ? Category.find(c_id).root.id : root_id)}
+
+    rescue ActiveRecord::StatementInvalid
+      ## ignore duplicate issues. how to add ignore parameter to sql query here without changing to sql completely?
+    else
+     ##errors.push( @media_category_association.errors )
+    end
+    
+    
+    respond_to do |format|
+      unless errors.length > 0
+        format.html do
+          #render :partial => 'index', :locals => { :data_id => @branch.id}
+          render :partial => 'generic_index'
+        end
+      else
+        flash[:notice] = errors.join(', ')
+        format.html { render :action => "new" }
+        #format.xml  { render :xml => @media_category_association.errors, :status => :unprocessable_entity }
+      end
+    end
+
+  end
+
 
   # PUT /definition_category_associations/1
   # PUT /definition_category_associations/1.xml

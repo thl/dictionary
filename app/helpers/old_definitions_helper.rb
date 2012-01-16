@@ -142,7 +142,7 @@ module OldDefinitionsHelper
     resultstr << "<br>"+ in_place_editor_field( :old_definition, :dictionary, {}, {:cols => 50, :rows => 3,  :fieldname => 'old_definition[library]'}) +"<br>"
 
     resultstr << "<b>Url: </b>"
-    resultstr << "<input type=hidden name=old_definition[url] id=old_definition[url] value=\""+@old_definition.url.to_s+"\" >"
+    #resultstr << "<input type=hidden name=old_definition[url] id=old_definition[url] value=\""+@old_definition.url.to_s+"\" >"
     if @old_definition.url == nil or @old_definition.url == ''
       @old_definition.url = 'Click to modify'
     end
@@ -158,7 +158,7 @@ module OldDefinitionsHelper
     #resultstr << "<br>"+ in_place_editor_field( :old_definition, :notes, {}, {:cols => 50, :rows => 1,  :fieldname => 'old_definition[notes]'}) +"<br>"
   
     resultstr << "<b>Notes: </b>"
-    resultstr << "<input type=hidden name=old_definition[notes] id=old_definition[notes] value=\""+@old_definition.notes.to_s+"\" >"
+    #resultstr << "<input type=hidden name=old_definition[notes] id=old_definition[notes] value=\""+@old_definition.notes.to_s+"\" >"
     resultstr << "<span class='tinyfied_show'>"
     resultstr << "<div id='" + "#{@old_definition.id}_anotediv" + "'>"
     edit_path = old_definition_notes_edit_url(:id => @old_definition.id)
