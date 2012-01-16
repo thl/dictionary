@@ -81,7 +81,7 @@ class DefinitionCategoryAssociationsController < ApplicationController
   # POST /definition_category_associations
   # POST /definition_category_associations.xml
   def create
-    debugger
+    
     errors = []
     if !params[:definition].blank?
       definition_params = params[:definition]
