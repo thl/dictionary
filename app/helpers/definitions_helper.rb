@@ -2125,6 +2125,53 @@ module DefinitionsHelper
 		resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
     resultstr << "</div>"
 		  
+       resultstr << "<b>Characteristics: </b>"
+        resultstr << "<input type=hidden name=internal_definition[thematic_classification] id=internal_definition[thematic_classification] value=\""+@definition.thematic_classification.to_s+"\" >"
+        if @definition.thematic_classification_type == nil
+          title = 'Click to modify'
+        else
+          title = @definition.thematic_classification_type.title
+        end
+        resultstr << "<span id=\"internal_definition[thematic_classification_type#{@definition.id}]_selector\">"
+        resultstr << '['+@definition.thematic_classification+']' if @definition.thematic_classification != nil
+        #resultstr << link_to_remote( title,{:update => "internal_definition[thematic_classification_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 272, 'model_name' => 'definition', 'function_name' => "thematic_classification_type", :update_id => "internal_definition[thematic_classification_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
+    #    #before update
+        #@data = Category.find(272)
+        #resultstr << category_selector(@data, :definition, :thematic_classification_type, true, :hasTree => 'true', :singleSelectionTree => 'true')            
+        #resultstr << "</span><br>"
+        #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+        #<!-- Thematic classification div -->
+    		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 272), :update => "#{@definition.id}_popupdefinition_thematic_classification_div", :method => :get, :html => {:class => 'definitions_show'} )  
+    		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+     		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_thematic_classification_div" + "'>" 
+    		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 272})
+        resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
+    		resultstr << "</div>"    
+
+            resultstr << "<b>Literary genre: </b>"
+            resultstr << "<input type=hidden name=internal_definition[literary_genre] id=internal_definition[literary_genre"+@definition.id.to_s+"] value=\""+@definition.literary_genre.to_s+"\" >"
+            if @definition.literary_genre_type == nil or @definition.literary_genre_type == ''
+              title = 'Click to modify'
+            else
+              title = @definition.literary_genre_type.title
+            end
+            resultstr << "<span id=\"internal_definition[literary_genre_type#{@definition.id}]_selector\">"
+            #resultstr << '['+@definition.literary_genre+']' if @definition.literary_genre != nil
+            #resultstr << link_to_remote( title,{:update => "internal_definition[literary_genre_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 119, 'model_name' => 'definition', 'function_name' => "literary_genre_type", :update_id => "internal_definition[literary_genre_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
+        #   #before update
+            #@data = Category.find(119)
+            #resultstr << category_selector(@data, :definition, :literary_genre_type, true, :hasTree => 'true', :singleSelectionTree => 'true')            
+            #resultstr << "</span><br>"
+            ## resultstr <<  "<span id=internal_definition[literary_genre"+@definition.id.to_s+"]_value class=menuvalue onclick=dialect_id="+@definition.id.to_s+";show_menu(genre_menu,getCoord(arguments[0]));>"+@definition.literary_genre+"</span><br>"
+            #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
+            #<!-- Literary genre div -->
+        		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 119), :update => "#{@definition.id}_popupdefinition_literary_genre_div", :method => :get, :html => {:class => 'definitions_show'} )  
+        		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
+         		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_literary_genre_div" + "'>" 
+        		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 119})
+            resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
+        		resultstr << "</div>"
+  
   
     resultstr << "<div id=tense"+@definition.id.to_s
     resultstr << " style=\"display:none;\""  unless @definition.grammatical_function == 'Verb'
@@ -2138,6 +2185,7 @@ module DefinitionsHelper
     resultstr << "</div>"
 
     # resultstr << observe_field('internal_definition[grammatical_function"+@definition.id.to_s+"]', :frequency => 0.1, :update => "tense"+@definition.id.to_s, :url => {  :action => 'tense' ,:id => params[:id]}, :with=>'value', :loaded => "new Effect.Highlight('strata_types');") 
+
 
 
     resultstr << "<b>Register: </b>"
@@ -2201,30 +2249,7 @@ module DefinitionsHelper
     resultstr << select(:definition, :language_context_type_id, @language_context_type, { :include_blank => true })
     resultstr << "<br>"
 		
-    resultstr << "<b>Literary genre: </b>"
-    resultstr << "<input type=hidden name=internal_definition[literary_genre] id=internal_definition[literary_genre"+@definition.id.to_s+"] value=\""+@definition.literary_genre.to_s+"\" >"
-    if @definition.literary_genre_type == nil or @definition.literary_genre_type == ''
-      title = 'Click to modify'
-    else
-      title = @definition.literary_genre_type.title
-    end
-    resultstr << "<span id=\"internal_definition[literary_genre_type#{@definition.id}]_selector\">"
-    #resultstr << '['+@definition.literary_genre+']' if @definition.literary_genre != nil
-    #resultstr << link_to_remote( title,{:update => "internal_definition[literary_genre_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 119, 'model_name' => 'definition', 'function_name' => "literary_genre_type", :update_id => "internal_definition[literary_genre_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
-#   #before update
-    #@data = Category.find(119)
-    #resultstr << category_selector(@data, :definition, :literary_genre_type, true, :hasTree => 'true', :singleSelectionTree => 'true')            
-    #resultstr << "</span><br>"
-    ## resultstr <<  "<span id=internal_definition[literary_genre"+@definition.id.to_s+"]_value class=menuvalue onclick=dialect_id="+@definition.id.to_s+";show_menu(genre_menu,getCoord(arguments[0]));>"+@definition.literary_genre+"</span><br>"
-    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[literary_genre_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    #<!-- Literary genre div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 119), :update => "#{@definition.id}_popupdefinition_literary_genre_div", :method => :get, :html => {:class => 'definitions_show'} )  
-		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_literary_genre_div" + "'>" 
-		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 119})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
-		resultstr << "</div>"
-    
+
     resultstr << "<b>Literary period: </b>"
     resultstr << "<input type=hidden name=internal_definition[literary_period] id=internal_definition[literary_period] value=\""+@definition.literary_period.to_s+"\" >"
     if @definition.literary_period_type == nil
@@ -2261,28 +2286,6 @@ module DefinitionsHelper
     resultstr << select(:definition, :literary_form_type_id, @literary_form_type, { :include_blank => true })
     resultstr << "<br>"
 
-    resultstr << "<b>Characteristics: </b>"
-    resultstr << "<input type=hidden name=internal_definition[thematic_classification] id=internal_definition[thematic_classification] value=\""+@definition.thematic_classification.to_s+"\" >"
-    if @definition.thematic_classification_type == nil
-      title = 'Click to modify'
-    else
-      title = @definition.thematic_classification_type.title
-    end
-    resultstr << "<span id=\"internal_definition[thematic_classification_type#{@definition.id}]_selector\">"
-    resultstr << '['+@definition.thematic_classification+']' if @definition.thematic_classification != nil
-    #resultstr << link_to_remote( title,{:update => "internal_definition[thematic_classification_type#{@definition.id}]_selector", :complete => "re_initialize();",:url => {:action => 'display_category_selector', :id => @definition.id, :params => {'data_id' => 272, 'model_name' => 'definition', 'function_name' => "thematic_classification_type", :update_id => "internal_definition[thematic_classification_type#{@definition.id}]_selector"}}}, :class => 'selector_link' )
-#    #before update
-    #@data = Category.find(272)
-    #resultstr << category_selector(@data, :definition, :thematic_classification_type, true, :hasTree => 'true', :singleSelectionTree => 'true')            
-    #resultstr << "</span><br>"
-    #resultstr << "  <script type=\"text/javascript\" language=\"javascript\">Event.observe('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector', 'mouseover', function(e){ e=document.getElementById('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector');e.style.backgroundColor='#FFFF99'; });Event.observe('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector', 'mouseout', function(e){ new Effect.Highlight('internal_definition[thematic_classification_type"+@definition.id.to_s+"]_selector',{ startcolor: '#FFFF99', endcolor: '#FFFFFF', restorecolor: '#FFFFFF'})});</script>"
-    #<!-- Thematic classification div -->
-		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => new_category_definition_association_url(@definition.id, 272), :update => "#{@definition.id}_popupdefinition_thematic_classification_div", :method => :get, :html => {:class => 'definitions_show'} )  
-		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
- 		resultstr << "<div id='" + "#{@definition.id}_popupdefinition_thematic_classification_div" + "'>" 
-		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 272})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
-		resultstr << "</div>"    
     
     
     resultstr << "<b>Enumeration: </b>"
