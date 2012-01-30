@@ -290,7 +290,7 @@ module MetasHelper
  		resultstr << "<div id='" + "#{@meta.id}_meta_project_type_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_meta_associations/index', :locals => {:data_id => 236})		
 		assoc = @meta.category_meta_associations.find(:all, :conditions => {:category_branch_id => 236})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => '_blank' }.join(', ')}"  + "</td></tr></table><br />"
 		resultstr << "</div>"
  
     # resultstr << "<b>Source ID: </b>"

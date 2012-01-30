@@ -59,7 +59,7 @@ $(document).ready(function() {
 		<%# if (e.major_dialect_family != nil and e.major_dialect_family != '') or (e.major_dialect_family_type != nil) %>
 		<% if !assoc.blank? %>
 			 <dd><b>Tibetan Dialect: </b>
-			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>	
+			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ') %>	
 			<!--	<span class="tib1"><%#= '['+e.major_dialect_family.s+']' if e.major_dialect_family != nil and e.major_dialect_family != '' %></span>
 				<%= e.major_dialect_family_type.title if e.major_dialect_family_type != nil %>-->
 				</dd>

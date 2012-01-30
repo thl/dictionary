@@ -2098,7 +2098,7 @@ module DefinitionsHelper
 		#resultstr << link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_language' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id),  :title=>'Remove Language', :confirm => "Are you sure you want to remove this Language?" 
  		resultstr << "<div id='" + "#{@definition.id}_definition_major_dialect_family_type_div" + "'>" 
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 638})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => '_blank' }.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
     resultstr << "</div>"
     resultstr << "<br>"

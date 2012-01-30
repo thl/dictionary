@@ -25,7 +25,7 @@ $(document).ready(function() {
 				<%##= meta.project %><%#= meta.project_type.title if meta.project_type != nil %>
 			<%# end %>
 			<% assoc = meta.category_meta_associations.find(:all, :conditions => {:category_branch_id => 236}) %>
-			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>
+			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ') %>
 			
 			
 			<% if meta.title != nil and meta.title != ''%>

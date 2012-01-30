@@ -34,7 +34,7 @@ $(document).ready(function() {
 				<i>[<%#= e.etymology_type.s %>]</i>&nbsp;
 			<%# end %> -->
 		<% if !e.etymology_category.blank? %>
-				<i><%= link_to e.etymology_category.title, e.etymology_category.get_url_with_parent if !e.etymology_category.blank? %>	</i>&nbsp;
+				<i><%= link_to e.etymology_category.title, e.etymology_category.get_url_with_parent, :target => "_blank" if !e.etymology_category.blank? %>	</i>&nbsp;
 		<% end %>
 	
 		<span class="tib1">
@@ -52,7 +52,7 @@ $(document).ready(function() {
 			<!--	<dd><b>Loan language: </b>[<%#= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>-->
 			<%# end %>
 			<% if !e.loan_language_type.blank? %>
-			<dd><b>Loan language Type: </b><%= link_to e.loan_language_type.title, e.loan_language_type.get_url_with_parent if !e.loan_language_type.blank?  %></dd>
+			<dd><b>Loan language Type: </b><%= link_to e.loan_language_type.title, e.loan_language_type.get_url_with_parent, :target => "_blank" if !e.loan_language_type.blank?  %></dd>
 			<% end %>
 		<!--<%# if e.loan_language != nil and e.loan_language != ''%>
 				<dd><b>Loan language: </b>[<%#= e.loan_language %>]</dd>
@@ -69,13 +69,13 @@ $(document).ready(function() {
 				<dd><b>Derivation: </b>[<%#= e.derivation.s %>]</dd>
 		<%# end %>-->
 		<% if !e.derivation_type.blank? %>
-				<dd><b>Derivation Type: </b><%= link_to e.derivation_type.title, e.derivation_type.get_url_with_parent if !e.derivation_type.blank? %></dd>
+				<dd><b>Derivation Type: </b><%= link_to e.derivation_type.title, e.derivation_type.get_url_with_parent, :target => "_blank" if !e.derivation_type.blank? %></dd>
 		<% end %>
 		
 		
 		<% assoc = e.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
 		<% if !assoc.blank? %>
-			<dd><b>Tibetan Dialect: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>]</dd>
+			<dd><b>Tibetan Dialect: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ') %>]</dd>
 		<% end %>
 		<!--<%# if e.major_dialect_family_type != nil%>
 				<dd><b>Tibetan Dialect: </b><%#= e.major_dialect_family_type.title %></dd>
@@ -83,7 +83,7 @@ $(document).ready(function() {
 		
 		<% assoc = e.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
 		<% if !assoc.blank? %>
-			<dd><b>Literary genre: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>]</dd>
+			<dd><b>Literary genre: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ') %>]</dd>
 		<% end %>
 		<!--<%# if e.literary_genre_type != nil%>
 				<dd><b>Literary genre: </b><%#= e.literary_genre_type.title %></dd>
@@ -94,7 +94,7 @@ $(document).ready(function() {
 			<dd><b>Literary period: </b>[<%#= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
 		<%# end %>-->
 		<% if !e.literary_period_type.blank? %>
-				<dd><b>Literary period: </b><%= link_to e.literary_period_type.title, e.literary_period_type.get_url_with_parent if !e.literary_period_type.blank? %></dd>
+				<dd><b>Literary period: </b><%= link_to e.literary_period_type.title, e.literary_period_type.get_url_with_parent, :target => "_blank" if !e.literary_period_type.blank? %></dd>
 		<% end %>
 		
 		<!--<%# assoc = e.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 186}) %>
@@ -102,7 +102,7 @@ $(document).ready(function() {
 			<dd><b>Literary form: </b>[<%#= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>
 		<%# end %>-->
 		<% if !e.literary_form_type.blank? %>
-				<dd><b>Literary form: </b><%= link_to e.literary_form_type.title, e.literary_form_type.get_url_with_parent if !e.literary_form_type.blank? %></dd>
+				<dd><b>Literary form: </b><%= link_to e.literary_form_type.title, e.literary_form_type.get_url_with_parent, :target => "_blank" if !e.literary_form_type.blank? %></dd>
 		<% end %>
 		
 		<% if e.analytical_note != nil and e.analytical_note != '' %>
