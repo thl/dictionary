@@ -2,6 +2,6 @@
 <% if e.etymology == nil or e.etymology == '' 
   t_etymology = 'Click to modify etymology'
 else
-  t_etymology = e.etymology
+  t_etymology = e.etymology.s
 end %>
 <%=  "#{link_to_remote("#{t_etymology}", :url => edit_path, :update => "#{e.id}_etydiv", :method => :get, :html => {:class => 'etymologies_show'} ) }" %>

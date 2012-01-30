@@ -2,6 +2,6 @@
 <% if d.definition == nil or d.definition == '' 
   t_definition = 'Click to modify definition'
 else
-  t_definition = d.definition
+  t_definition = d.definition.s
 end %>
 <%=  "#{link_to_remote("#{t_definition}", :url => edit_path, :update => "#{d.id}_defdiv", :method => :get, :html => {:class => 'definitions_show'} ) }" %>

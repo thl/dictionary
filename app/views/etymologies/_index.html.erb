@@ -37,12 +37,13 @@ $(document).ready(function() {
 				<i><%= link_to e.etymology_category.title, e.etymology_category.get_url_with_parent if !e.etymology_category.blank? %>	</i>&nbsp;
 		<% end %>
 	
-		
+		<span class="tib1">
 		<span class="etymologies_show">	
 		  <%#= e.etymology.s if e.etymology != nil %>
 		  <div id="<%= "#{e.id}_etydiv" %>">
 		    <%= render :partial => 'etymologies/etymology_show', :locals => {:e => e} %>
 	      </div>
+		</span>
 		</span>
 		<dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>
@@ -105,7 +106,7 @@ $(document).ready(function() {
 		<% end %>
 		
 		<% if e.analytical_note != nil and e.analytical_note != '' %>
-			  <dd><b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span></dd>
+			  <dd><b>Analytical note: </b><span class="tib1"><span class='tinyfied_show'><%= e.analytical_note.s %></span></span></dd>
 		 <% end %>
 		
 		<!--<%# if e.meta != nil%>

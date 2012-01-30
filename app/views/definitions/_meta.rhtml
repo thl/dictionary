@@ -32,16 +32,18 @@ $(document).ready(function() {
 					<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
 				<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Title: </b>
 				<%#= meta.title %>
+				<span class="tib1">
 				<span class='tinyfied_show'>
 					<div id="<%= "#{meta.id}_metatitlediv" %>">
 					  <%  edit_path = meta_metadata_title_edit_url(:id => meta.id) %>
 					  <% if meta.title == nil or meta.title == ''
 			               t_metatitle = 'Click to modify'
 			             else
-			               t_metatitle = meta.title      
+			               t_metatitle = meta.title.s      
 			             end %>
 					  <%= link_to_remote(t_metatitle, :url => edit_path, :update => "#{meta.id}_metatitlediv", :method => :get ) %>
 				    </div>
+				</span>
 				</span>
 			<% end %>
 			<% if meta.author != nil and meta.author != ''%>
@@ -74,7 +76,7 @@ $(document).ready(function() {
 			<% end %>
 			<% if meta.metadata_note != nil and meta.metadata_note != ''%>
 			     <br>	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-			   &nbsp;&nbsp;&nbsp;&nbsp;<b>Metadata note: </b><span class='tinyfied_show'><%= meta.author %></span>
+			   &nbsp;&nbsp;&nbsp;&nbsp;<b>Metadata note: </b><span class="tib1"><span class='tinyfied_show'><%= meta.metadata_note.s %></span></span>
 			<% end %>
 			<% if meta.precedence != nil and meta.precedence != ''%>
 			     <br>	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->

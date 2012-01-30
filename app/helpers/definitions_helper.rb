@@ -2076,6 +2076,7 @@ module DefinitionsHelper
     resultstr << select(:definition, :language_type_id, @language_type, { :include_blank => true })
     resultstr << "<br>"
     
+    resultstr << "<div id='square_tibetan_dialect' style='border-style:solid;border-width:1px;padding:5px 5px;'>"
     resultstr << "<b>Tibetan Dialect: </b>"
     #resultstr << "<input type=hidden name=definition[major_dialect_family] id=definition[major_dialect_family"+@definition.id.to_s+"] value=\""+@definition.major_dialect_family.to_s+"\" >"
     #if @definition.major_dialect_family_type == nil or @definition.major_dialect_family_type == ''
@@ -2099,7 +2100,10 @@ module DefinitionsHelper
 		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 638})
     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
+    resultstr << "</div>"
+    resultstr << "<br>"
     
+    resultstr << "<div id='square_grammatical_fuction' style='border-style:solid;border-width:1px;padding:5px 5px;'>"
     resultstr << "<b>Grammatical function: </b>" 
     #resultstr << "<input type=hidden name=internal_definition[grammatical_function] id=internal_definition[grammatical_function"+@definition.id.to_s+"] value=\""+@definition.grammatical_function.to_s+"\" >"
     # if @definition.grammatical_function == nil or @definition.grammatical_function == ''
@@ -2124,7 +2128,10 @@ module DefinitionsHelper
     #resultstr << "<table><tr><td>" + "#{assoc.collect{|a| a.category.title}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
     resultstr << "</div>"
-		  
+		resultstr << "</div>"
+		resultstr << "<br>"
+		
+		resultstr << "<div id='square_characteristics' style='border-style:solid;border-width:1px;padding:5px 5px;'>"
        resultstr << "<b>Characteristics: </b>"
         resultstr << "<input type=hidden name=internal_definition[thematic_classification] id=internal_definition[thematic_classification] value=\""+@definition.thematic_classification.to_s+"\" >"
         if @definition.thematic_classification_type == nil
@@ -2147,7 +2154,10 @@ module DefinitionsHelper
     		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 272})
         resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
     		resultstr << "</div>"    
-
+    resultstr << "</div>"
+    resultstr << "<br>"
+    
+    resultstr << "<div id='square_literary_genre' style='border-style:solid;border-width:1px;padding:5px 5px;'>"
             resultstr << "<b>Literary genre: </b>"
             resultstr << "<input type=hidden name=internal_definition[literary_genre] id=internal_definition[literary_genre"+@definition.id.to_s+"] value=\""+@definition.literary_genre.to_s+"\" >"
             if @definition.literary_genre_type == nil or @definition.literary_genre_type == ''
@@ -2171,7 +2181,8 @@ module DefinitionsHelper
         		assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 119})
             resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}"  + "</td></tr></table><br />"
         		resultstr << "</div>"
-  
+  resultstr << "</div>"
+  resultstr << "<br>"
   
     resultstr << "<div id=tense"+@definition.id.to_s
     resultstr << " style=\"display:none;\""  unless @definition.grammatical_function == 'Verb'
@@ -2293,7 +2304,7 @@ module DefinitionsHelper
     if @definition.numerology == nil or @definition.numerology == ''
       @definition.numerology = 'Click to modify'
     end
-    resultstr << in_place_editor_field( :definition, :numerology, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[numerology]'}) 
+    resultstr << in_place_editor_field( :definition, :numerology, {}, {:cols => 50, :rows => 10, :fieldname => 'internal_definition[numerology]'}) 
     resultstr << "<br><b>Encyclopedia entry: </b>"
     resultstr << "<input type=hidden name=internal_definition[encyclopedia_entry] id=internal_definition[encyclopedia_entry] value=\""+@definition.encyclopedia_entry.to_s+"\" >"
     if @definition.encyclopedia_entry == nil or @definition.encyclopedia_entry == ''

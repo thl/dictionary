@@ -31,6 +31,7 @@ $(document).ready(function() {
 				<span class="tib1">
 				<% end %>
 			<% end %>
+			<span class="tib1">
 				<span class='tinyfied_show'>
 					<%#= e.model_sentence.s if e.model_sentence != nil %>
 					<div id="<%= "#{e.id}_model_sentencediv" %>">
@@ -38,10 +39,11 @@ $(document).ready(function() {
 					  <% if e.model_sentence == nil or e.model_sentence == ''
 			               t_model_sentence = 'Click to modify'
 			             else
-			               t_model_sentence = e.model_sentence      
+			               t_model_sentence = e.model_sentence.s      
 			             end %>
 					  <%= link_to_remote(t_model_sentence, :url => edit_path, :update => "#{e.id}_model_sentencediv", :method => :get ) %>
 				    </div>
+				</span>
 				</span>
 			<% if e.language_type != nil%>
 				<%# if e.language == 'Tibetan' %>
@@ -96,7 +98,7 @@ $(document).ready(function() {
 				<dd><b>Literary form: </b><%= link_to e.literary_form_type.title, e.literary_form_type.get_url_with_parent if !e.literary_form_type.blank?  %></dd>
 		<% end %>
 		<% if e.analytical_note != nil and e.analytical_note != '' %>
-			  <dd><b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span></dd>
+			  <dd><b>Analytical note: </b><span class='tinyfied_show'><span class="tib1"><%= e.analytical_note.s %></span></span></dd>
 		 <% end %>
 		<!--<%# if e.meta != nil%>
 		<dd>

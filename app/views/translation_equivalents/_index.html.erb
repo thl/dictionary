@@ -32,6 +32,7 @@ $(document).ready(function() {
 				<span class="tib1">
 				<% end %>
 			<% end %>
+				<span class="tib1">
 				<span class="tinyfied_show">
 					<%#= e.translation_equivalent.s if e.translation_equivalent != nil %>
 					<div id="<%= "#{e.id}_transdiv" %>">
@@ -39,10 +40,11 @@ $(document).ready(function() {
 					  <% if e.translation_equivalent == nil or e.translation_equivalent == ''
 			               t_transequivalent = 'Click to modify'
 			             else
-			               t_transequivalent = e.translation_equivalent      
+			               t_transequivalent = e.translation_equivalent.s      
 			             end %>
 					  <%= link_to_remote(t_transequivalent, :url => edit_path, :update => "#{e.id}_transdiv", :method => :get ) %>
 				    </div>
+				</span>
 				</span>
 			<% if !e.language_type.blank? %>
 				<% if e.language_type.title == 'Tibetan' %> <%# if e.language == 'Tibetan' %>	
@@ -50,7 +52,7 @@ $(document).ready(function() {
 				<% end %>
 			<% end %>
 		<% if e.analytical_note != nil and e.analytical_note != '' %>
-			<dd><b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span></dd>
+			<dd><b>Analytical note: </b><span class="tib1"><span class='tinyfied_show'><%= e.analytical_note.s %></span></span></dd>
 		<% end %>	
 				
 		<dl style="margin-top:0em;margin-bottom:0em;">

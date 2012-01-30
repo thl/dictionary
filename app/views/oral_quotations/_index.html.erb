@@ -33,16 +33,18 @@ $(document).ready(function() {
 		 <% end %>
 		
 		<%#= e.displayInfo.s %>
+		<span class="tib1">
 		<span class='tinyfied_show'>
 			<div id="<%= "#{e.id}_transcript_in_tibetandiv" %>">
 			  <%  edit_path = oral_quotation_transcript_in_tibetan_edit_url(:id => e.id) %>
 			  <% if e.transcript_in_tibetan == nil or e.transcript_in_tibetan == ''
 	               t_transcript_in_tibetan = 'Click to modify'
 	             else
-	               t_transcript_in_tibetan = e.transcript_in_tibetan      
+	               t_transcript_in_tibetan = e.transcript_in_tibetan.s      
 	             end %>
 			  <%= link_to_remote(t_transcript_in_tibetan, :url => edit_path, :update => "#{e.id}_transcript_in_tibetandiv", :method => :get ) %>
 		    </div>
+		</span>
 		</span>
 		
 		
@@ -85,7 +87,7 @@ $(document).ready(function() {
 			  <dd><b>Source location of speech: </b><%= e.source_location_of_speech %></dd>
 		 <% end %>
 		<% if e.analytical_note != nil and e.analytical_note != '' %>
-			  <dd><b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span></dd>
+			  <dd><b>Analytical note: </b><span class="tib1"><span class='tinyfied_show'><%= e.analytical_note.s %></span></span></dd>
 		 <% end %>
 		
 		<!-- <dl style="margin-top:0em;margin-bottom:0em;">

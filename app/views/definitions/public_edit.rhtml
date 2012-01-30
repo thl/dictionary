@@ -556,6 +556,7 @@ function clear_contents(node)
 	<span class="tib1">
 	<b><font size="+2"><%= @definition.term.to_s.s %>  <%#= in_place_editor_field(:definition, :term)%></font></b>
 	</span> 
+	<%#= in_place_editor_field :definition, :term %>
 	<br>
 	<b>THL Wylie Transliteration: </b><%#= link_to image_tag('comment.png',:border => 0,:id => "wylie_#{@definition.id}"), '#', :title => 'Edit wylie' %>
 	<% @definition.wylie = 'Click to Modify' if @definition.wylie == nil or @definition.wylie == '' %>

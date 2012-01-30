@@ -5,6 +5,6 @@
 <% if t[field] == nil or t[field] == ''
   t_content = 'Click to modify'
 else
-  t_content = t[field]  
+  t_content = t[field].s  
 end %>
 <%=  "#{link_to_remote("#{t_content}", :url => edit_url, :update => "#{t.id}#{divsuffix}", :method => :get ) }" %>

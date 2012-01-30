@@ -31,18 +31,18 @@
 			<% def_edit_path = definition_edit_url(:id => d.id) %>					
 			<%#= link_to_remote(image_tag('comment.png',:border => 0), :url => def_edit_path, :update => "#{d.id}_defdiv", :title => 'Edit definition', :method => :get, :html => {:class => 'definitions_show'}) %>
 	    	<input type=hidden name=definition[thematic_classification<%=d.id%>] id=definition[thematic_classification<%=d.id%>] value="<%=d.thematic_classification %>" >
-				<% if d.language == 'Tibetan' %>
+				<%# if d.language == 'Tibetan' %>
 				<span class="tib1">
-				<% end %>
+				<%# end %>
 	<%#= in_place_editor_field( :definition, :definition, {},{:cols=> 50, :rows=> 7, :external_control => d.id}) %>
 				  <span class="definitions_show">
 					<div id="<%= "#{d.id}_defdiv" %>">
 					  <%= render :partial => 'definition_show', :locals => {:d => @definition} %>
 				    </div>
 				   </span>
-				<% if d.language == 'Tibetan' %>
+				<%# if d.language == 'Tibetan' %>
 				</span>
-				<% end %>
+				<%# end %>
 	
 	<!--  <br> -->
 	
