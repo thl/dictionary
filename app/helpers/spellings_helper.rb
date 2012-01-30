@@ -428,7 +428,7 @@ module SpellingsHelper
  		resultstr << "<div id='" + "#{@spelling.id}_spelling_basis_of_spelling_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 191})		
 		assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 191})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => '_blank'}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
     
     
@@ -472,7 +472,7 @@ module SpellingsHelper
  		resultstr << "<div id='" + "#{@spelling.id}_spelling_spelling_category_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 4091})		
 		assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 4091})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => '_blank'}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
 		
     
@@ -516,7 +516,7 @@ module SpellingsHelper
  		resultstr << "<div id='" + "#{@spelling.id}_spelling_major_dialect_family_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 638})		
 		assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 638})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => '_blank'}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
 
 
@@ -560,7 +560,7 @@ module SpellingsHelper
  		resultstr << "<div id='" + "#{@spelling.id}_spelling_literary_genre_div" + "'>" 
 		#resultstr << render_to_string(:partial => 'category_spelling_associations/index', :locals => {:data_id => 119})		
 		assoc = @spelling.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 119})
-    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+    resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => '_blank'}.join(', ')}" + "</td></tr></table><br />"
 		resultstr << "</div>"
 
 
