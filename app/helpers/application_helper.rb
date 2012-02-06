@@ -746,6 +746,72 @@ module ApplicationHelper
       end
     end
     
+    
+    def text_show_action(edit_action)
+      case edit_action
+      when "term_edit"
+        "term_show"
+      when "wylie_edit"
+        "wylie_show"
+      when "phonetic_edit"
+        "phonetic_show"
+      end
+    end
+
+    def text_update_action(edit_action)
+      case edit_action
+      when "term_edit"
+        "update_term"
+      when "wylie_edit"
+        "update_wylie"
+      when "phonetic_edit"
+        "update_phonetic"
+      end
+    end
+
+    def text_edit_url(controller, update_action, id)
+      case update_action
+      when "update_term", "term_show"
+        case controller
+          when "definitions"
+            definition_term_edit_url(:id => id)
+        end
+      when "update_wylie", "wylie_show"
+        case controller
+          when "definitions"
+            definition_wylie_edit_url(:id => id)
+        end
+      when "update_phonetic", "phonetic_show"
+        case controller
+          when "definitions"
+            definition_phonetic_edit_url(:id => id)
+        end
+      end
+    end
+    
+    def dynamic_text_field(edit_action)
+      case edit_action
+      when "term_edit"
+        "term"
+      when "wylie_edit"
+        "wylie"
+      when "phonetic_edit"
+        "phonetic"
+      end
+   end 
+    
+   def text_field_show(update_action)
+     case update_action
+     when "update_term", "term_show"
+       "term"
+     when "update_wylie", "wylie_show"
+       "wylie"
+     when "update_phonetic", "phonetic_show"
+       "phonetic"
+    end
+  end
+    
+    
     def thl_catalog_host_url
       hostname = Socket.gethostname.downcase
       if hostname =~ /sds[3-578].itc.virginia.edu/

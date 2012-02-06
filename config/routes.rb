@@ -22,6 +22,14 @@ ActionController::Routing::Routes.draw do |map|
   map.render_spellings 'spellings/:id/render_spellings', :controller => 'spellings', :action => 'render_spellings'
   map.render_translations 'translations/:id/render_translations', :controller => 'translations', :action => 'render_translations'
 
+  map.definition_term_edit 'definitions/:id/term_edit', :controller => 'definitions', :action => 'term_edit'
+  map.definition_term_show 'definitions/:id/term_show', :controller => 'definitions', :action => 'term_show'
+  map.definition_wylie_edit 'definitions/:id/wylie_edit', :controller => 'definitions', :action => 'wylie_edit'
+  map.definition_wylie_show 'definitions/:id/wylie_show', :controller => 'definitions', :action => 'wylie_show'
+  map.definition_phonetic_edit 'definitions/:id/phonetic_edit', :controller => 'definitions', :action => 'phonetic_edit'
+  map.definition_phonetic_show 'definitions/:id/phonetic_show', :controller => 'definitions', :action => 'phonetic_show'
+
+
   map.definition_edit 'definitions/:id/definition_edit', :controller => 'definitions', :action => 'definition_edit'
   map.definition_show 'definitions/:id/definition_show', :controller => 'definitions', :action => 'definition_show'
   map.definition_popupedit 'definitions/:id/definition_popupedit', :controller => 'definitions', :action => 'definition_popupedit'

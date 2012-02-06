@@ -325,8 +325,37 @@ class DefinitionDefinitionFormsController < ApplicationController
   end
 
   def edit_search_action
-    @definition_definition_form = DefinitionDefinitionForm.find(params['definition_definition_form']['id'])
+    debugger
+    #@definition_definition_form = DefinitionDefinitionForm.find(params['definition_definition_form']['id'])
+    if params['definition_definition_form'].blank?
+      @definition_definition_form = DefinitionDefinitionForm.find(params['id'])
+    else
+      @definition_definition_form = DefinitionDefinitionForm.find(params['definition_definition_form']['id'])
+    end
     #@definition_definition_form = DefinitionDefinitionForm.find(params['id'])
+    
+    if params['mode'] != nil 
+        @page_class = params['mode']
+    else
+        @page_class = 'edit'
+    end
+    if params['items_per_page'] != nil
+        items_per_page = params['items_per_page'].to_i
+    else
+        items_per_page = 50
+    end
+    if params['query']
+       @query = buildquery(params["query"])
+       query = buildquery(params["query"])
+       flash["query"] = params["query"]
+       # breakpoint
+       # if session['query'] != nil and params['paged'] != nil
+       #   query = session['query']
+       if session['search_type'] != nil
+         session['search_type'] = 'term'
+       end
+    end 
+    
     query = ""
      @definition_froms = nil
      if params["relatedtype"] == "definition_from"
@@ -453,24 +482,25 @@ class DefinitionDefinitionFormsController < ApplicationController
        
        #new paginator code
        items_per_page = 50
+       sort_clause = "sort_order asc"
        
+       debugger
        if query == [""]
          #old code #@definition_tos = Definition.find :all
          @definition_tos = Definition.find :all
        else
          # old code #@definition_tos = Definition.find :all, :conditions => query
          @definition_tos = Definition.find :all, :conditions => query
-         #@definition_pages = Paginator.new self, Definition.count(:conditions => query), items_per_page, params['page']
-         #@definition_tos = Definition.find :all, :order => sort_clause, :conditions => "level = 'head term'", :limit => @definition_pages.items_per_page, :offset => @definition_pages.current.offset
-         #@definition_tos = Definition.find :all, :conditions => query
+         @definition_pages = Paginator.new self, Definition.count(:conditions => query), items_per_page, params['page']
+         @definition_tos = Definition.find :all, :order => sort_clause, :conditions => query, :limit => @definition_pages.items_per_page, :offset => @definition_pages.current.offset
          
-         #if @definition_pages.item_count != 0
-        #    @pages = (@definition_pages.item_count.to_f / items_per_page.to_f).ceil
-        #    @current_page = (@definition_pages.current.first_item.to_f / @definition_pages.item_count.to_f * @pages).ceil
-        # else
-        #    @pages = 0
-        #    @current_page = 0
-        # end
+         if @definition_pages.item_count != 0
+            @pages = (@definition_pages.item_count.to_f / items_per_page.to_f).ceil
+            @current_page = (@definition_pages.current.first_item.to_f / @definition_pages.item_count.to_f * @pages).ceil
+         else
+            @pages = 0
+            @current_page = 0
+         end
        end
        
        

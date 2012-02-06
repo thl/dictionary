@@ -797,7 +797,7 @@ module ModelSentencesHelper
   		resultstr << "<div id='" + "#{@model_sentence.id}_model_sentence_major_dialect_family_type_div" + "'>" 
  		#resultstr << render_to_string(:partial => 'category_model_sentence_associations/index', :locals => {:data_id => 638})		
  		assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 638})
-     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+     resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => '_blank'}.join(', ')}" + "</td></tr></table><br />"
  		resultstr << "</div>"
 
      resultstr << "<b>Sentence type: </b>"
@@ -867,7 +867,7 @@ module ModelSentencesHelper
    		resultstr << "<div id='" + "#{@model_sentence.id}_model_sentence_literary_genre_type_div" + "'>" 
   		#resultstr << render_to_string(:partial => 'category_model_sentence_associations/index', :locals => {:data_id => 119})		
   		assoc = @model_sentence.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 119})
-      resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}" + "</td></tr></table><br />"
+      resultstr << "<table><tr><td>" + "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => '_blank'}.join(', ')}" + "</td></tr></table><br />"
   		resultstr << "</div>"
      
      

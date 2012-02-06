@@ -28,7 +28,8 @@ $(document).ready(function() {
 <div id="definition_definition_form_definition_tos">
 <%# form_remote_tag(:update => "definition_definition_form_definition_tos", :url => {:controller => "definition_definition_forms", :action => 'edit_add_to_list_action', :id => params['id']}, :html => {:name => "listrelated"}) do %>
 <% remote_form_for :definition_definition_form, :url => { :action => "edit_add_to_list_action", :id => params['id'] } do |f| %>
-
+  <%= render :partial => "partial/related_term_find_paginator", :locals => {:find_paginator => @definition_pages} %><br>
+ 
   <% if @definition_tos.size > 0 %>
   <!-- <h6>Check Definition to Add:</h6> -->
 	<% @relationship = DefinitionDefinitionForm.find(params['id']).relationship_to %>

@@ -940,6 +940,7 @@ def browse_old
 end  
   
 def find_head_terms
+  debugger
   @current_tab_id = :search
   @current_section = :showview
   if session[:user] != nil
@@ -1127,7 +1128,7 @@ def find_head_terms
          items_per_page = 50
       end
       @q = query
-      # debugger
+       debugger
       @definition_pages = Paginator.new self, Definition.count(:conditions => query), items_per_page, params['page']
       @definitions = Definition.find :all, :order => sort_clause, :conditions => query, :limit => @definition_pages.items_per_page, :offset => @definition_pages.current.offset
       if @definition_pages.item_count != 0
@@ -2569,6 +2570,124 @@ end
   def definition_popupedit
     @definition = Definition.find(params[:id])
     render :partial => "definition_popupedit", :locals => {:d => @definition}
+  end
+  
+  
+  def update_term
+      @definition = Definition.find(params[:definition][:id])
+      if @definition.created_by == nil or @definition.created_by == ""
+             @definition.created_by = session[:user].login
+             @definition.created_at = Time.now
+      end
+      if session[:user] != nil
+             @definition.updated_by = session[:user].login
+      end
+      @definition.updated_at = Time.now
+      if @definition.update_history == nil
+        @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @definition.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @definition.update_attributes(params[:definition])
+          format.html do
+            render :partial => 'shared/text_field_show', :locals => {:t => @definition, :divsuffix => "_termdiv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @pronunciation
+        end
+      end
+  end
+
+  def term_show
+      @definition = Definition.find(params[:id])
+      render :partial => "shared/text_field_show", :locals => {:t => @definition, :divsuffix => "_termdiv"}
+  end
+
+  def term_edit
+      @definition = Definition.find(params[:id])
+      render :partial => "shared/text_field_edit", :locals => {:t => @definition, :divsuffix => "_termdiv"}
+  end
+
+  def update_wylie
+      @definition = Definition.find(params[:definition][:id])
+      if @definition.created_by == nil or @definition.created_by == ""
+             @definition.created_by = session[:user].login
+             @definition.created_at = Time.now
+      end
+      if session[:user] != nil
+             @definition.updated_by = session[:user].login
+      end
+      @definition.updated_at = Time.now
+      if @definition.update_history == nil
+        @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @definition.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @definition.update_attributes(params[:definition])
+          format.html do
+            render :partial => 'shared/text_field_show', :locals => {:t => @definition, :divsuffix => "_wyliediv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @pronunciation
+        end
+      end
+  end
+
+  def wylie_show
+      @definition = Definition.find(params[:id])
+      render :partial => "shared/text_field_show", :locals => {:t => @definition, :divsuffix => "_wyliediv"}
+  end
+
+  def wylie_edit
+      @definition = Definition.find(params[:id])
+      render :partial => "shared/text_field_edit", :locals => {:t => @definition, :divsuffix => "_wyliediv"}
+  end
+  
+  def update_phonetic
+      @definition = Definition.find(params[:definition][:id])
+      if @definition.created_by == nil or @definition.created_by == ""
+             @definition.created_by = session[:user].login
+             @definition.created_at = Time.now
+      end
+      if session[:user] != nil
+             @definition.updated_by = session[:user].login
+      end
+      @definition.updated_at = Time.now
+      if @definition.update_history == nil
+        @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @definition.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @definition.update_attributes(params[:definition])
+          format.html do
+            render :partial => 'shared/text_field_show', :locals => {:t => @definition, :divsuffix => "_phoneticdiv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @pronunciation
+        end
+      end
+  end
+
+  def phonetic_show
+      @definition = Definition.find(params[:id])
+      render :partial => "shared/text_field_show", :locals => {:t => @definition, :divsuffix => "_phoneticdiv"}
+  end
+
+  def phonetic_edit
+      @definition = Definition.find(params[:id])
+      render :partial => "shared/text_field_edit", :locals => {:t => @definition, :divsuffix => "_phoneticdiv"}
   end
   
   def update_analytical_note

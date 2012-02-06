@@ -557,14 +557,62 @@ function clear_contents(node)
 	<b><font size="+2"><%= @definition.term.to_s.s %>  <%#= in_place_editor_field(:definition, :term)%></font></b>
 	</span> 
 	<%#= in_place_editor_field :definition, :term %>
+	<%#= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'definitions', :action => 'edit_dynamic_definition', :id => d.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_definition_dialog', :title=>'Definition Edit'} %>
+	
+	<!--<span class="tib1">
+		<span class='tinyfied_show'>
+			<div id="<%#= "#{@definition.id}_termdiv" %>">
+			  <%#  edit_path = definition_term_edit_url(:id => @definition.id) %>
+			  <%# if @definition.term == nil or @definition.term == ''
+	               t_term = 'Click to modify'
+	             else
+	               t_term = @definition.term.to_s.s     
+	             end %>
+			  <%#= link_to_remote(t_term, :url => edit_path, :update => "#{@definition.id}_termdiv", :method => :get ) %>
+		    </div>
+		</span>
+	</span>-->
+	
+	
 	<br>
-	<b>THL Wylie Transliteration: </b><%#= link_to image_tag('comment.png',:border => 0,:id => "wylie_#{@definition.id}"), '#', :title => 'Edit wylie' %>
-	<% @definition.wylie = 'Click to Modify' if @definition.wylie == nil or @definition.wylie == '' %>
-	<%= in_place_editor_field(:definition, :wylie,{}, {:external_control => "wylie_#{@definition.id}"})%>
+	<b>THL Wylie Transliteration: </b>
+	<%= link_to_remote image_tag('pencil.png',:border => 0), :update => "#{@definition.id}_wyliediv", :method => :get, :url => definition_wylie_edit_url(:id => @definition.id) %>
+	<%##= link_to image_tag('comment.png',:border => 0,:id => "wylie_#{@definition.id}"), '#', :title => 'Edit wylie' %>
+	<%# @definition.wylie = 'Click to Modify' if @definition.wylie == nil or @definition.wylie == '' %>
+	<%#= in_place_editor_field(:definition, :wylie,{}, {:external_control => "wylie_#{@definition.id}"})%>
+	
+
+		<span class='tinyfied_show'>
+			<div id="<%= "#{@definition.id}_wyliediv" %>">
+			  <%  edit_path = definition_wylie_edit_url(:id => @definition.id) %>
+			  <% if @definition.wylie == nil or @definition.wylie == ''
+	               t_wylie = 'Click to modify'
+	             else
+	               t_wylie = @definition.wylie    
+	             end %>
+			  <%= link_to_remote(t_wylie, :url => edit_path, :update => "#{@definition.id}_wyliediv", :method => :get ) %>
+		    </div>
+		</span>
+
+	
 	<br>
-	<b>THL Phonetic Transcription: </b><%#= link_to image_tag('comment.png',:border => 0,:id => "phonetic_#{@definition.id}"), '#', :title => 'Edit phonetic' %>
-	<% @definition.phonetic = 'Click to Modify' if @definition.phonetic == nil or @definition.phonetic == '' %>
-	<%= in_place_editor_field(:definition, :phonetic,{}, {:external_control => "phonetic_#{@definition.id}"})%>
+	<b>THL Phonetic Transcription: </b>
+	<%= link_to_remote image_tag('pencil.png',:border => 0), :update => "#{@definition.id}_phoneticdiv", :method => :get, :url => definition_phonetic_edit_url(:id => @definition.id) %>	
+	<%##= link_to image_tag('comment.png',:border => 0,:id => "phonetic_#{@definition.id}"), '#', :title => 'Edit phonetic' %>
+	<%# @definition.phonetic = 'Click to Modify' if @definition.phonetic == nil or @definition.phonetic == '' %>
+	<%#= in_place_editor_field(:definition, :phonetic,{}, {:external_control => "phonetic_#{@definition.id}"})%>
+	<span class='tinyfied_show'>
+		<div id="<%= "#{@definition.id}_phoneticdiv" %>">
+		  <%  edit_path = definition_phonetic_edit_url(:id => @definition.id) %>
+		  <% if @definition.phonetic == nil or @definition.phonetic == ''
+               t_phonetic = 'Click to modify'
+             else
+               t_phonetic = @definition.phonetic    
+             end %>
+		  <%= link_to_remote(t_phonetic, :url => edit_path, :update => "#{@definition.id}_phoneticdiv", :method => :get ) %>
+	    </div>
+	</span>
+	
 		<br><br>
 	<div id="<%= @definition.id %>div">
 		<%= render(:partial => 'public_definition', :locals => {:d => @definition, :parent_id => @head_id, :head_id => @head_id, :level => 'head'})%>

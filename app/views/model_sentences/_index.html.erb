@@ -54,14 +54,14 @@ $(document).ready(function() {
 		<dl style="margin-top:0em;margin-bottom:0em;">
 			<dd style="display:none"></dd>
 		<% if !e.language_type.blank? %>
-			<dd><b>Language: </b><%= link_to e.language_type.title, e.language_type.get_url_with_parent if !e.language_type.blank? %></dd>
+			<dd><b>Language: </b><%= link_to e.language_type.title, e.language_type.get_url_with_parent, :target => "_blank", :target => "_blank" if !e.language_type.blank? %></dd>
 		<% end %>
 		<%# if e.major_dialect_family_type != nil%>
 		<!--	<dd><b>Tibetan Dialect: </b><%#= e.major_dialect_family_type.title %></dd>-->
 		<%# end %>
 		<% assoc = e.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
 		<% if !assoc.blank? %>
-			<dd><b>Tibetan Dialect: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>]</dd>
+			<dd><b>Tibetan Dialect: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ') %>]</dd>
 		<% end %>
 		<% if e.sentence_type != nil and e.sentence_type != ''%>
 				<dd><b>Type: </b><%= e.sentence_type %></dd>
@@ -88,14 +88,14 @@ $(document).ready(function() {
 		<%# end %>
 		<% assoc = e.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
 		<% if !assoc.blank? %>
-			<dd><b>Literary Genre: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>]</dd>
+			<dd><b>Literary Genre: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ') %>]</dd>
 		<% end %>
 
 		<% if !e.literary_period_type.blank? %>
-				<dd><b>Literary period: </b><%= link_to e.literary_period_type.title, e.literary_period_type.get_url_with_parent if !e.literary_period_type.blank? %></dd>
+				<dd><b>Literary period: </b><%= link_to e.literary_period_type.title, e.literary_period_type.get_url_with_parent, :target => "_blank" if !e.literary_period_type.blank? %></dd>
 		<% end %>
 		<% if !e.literary_form_type.blank? %>
-				<dd><b>Literary form: </b><%= link_to e.literary_form_type.title, e.literary_form_type.get_url_with_parent if !e.literary_form_type.blank?  %></dd>
+				<dd><b>Literary form: </b><%= link_to e.literary_form_type.title, e.literary_form_type.get_url_with_parent, :target => "_blank" if !e.literary_form_type.blank?  %></dd>
 		<% end %>
 		<% if e.analytical_note != nil and e.analytical_note != '' %>
 			  <dd><b>Analytical note: </b><span class='tinyfied_show'><span class="tib1"><%= e.analytical_note.s %></span></span></dd>
