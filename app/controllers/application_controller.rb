@@ -170,7 +170,7 @@ class ApplicationController < ActionController::Base
 
 	def jump_to_related_page
      debugger
-		  newparams = {"page" => params["page"], 'items_per_page' => params['items_per_page'],"query"=>params["query"], "mode" => params['mode']}
+		  newparams = {"id" => params["id"], "page" => params["page"], 'items_per_page' => params['items_per_page'],"query"=>params["query"], "mode" => params['mode']}
 		  flash.each {|k,v|
 		    newparams[k.to_s]=v.to_s
 		  }
