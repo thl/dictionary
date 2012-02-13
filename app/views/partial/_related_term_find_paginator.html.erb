@@ -50,6 +50,7 @@ Page <input type=text name="page" size=3 value=<%= @current_page %>> of <%= @pag
 		<% end %>
 	</td>
 	<td>
+		
 		<% form_remote_tag(:action => "jump_to_related_page", :update =>'definition_definition_form_definition_tos') do %>
 			<input type=hidden name="id" value="<%= params["id"] %>">
 			<input type=hidden name="relatedtype" value="definition_to">
