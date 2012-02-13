@@ -325,7 +325,7 @@ class DefinitionDefinitionFormsController < ApplicationController
   end
 
   def edit_search_action
-    #debugger
+    debugger
     #@definition_definition_form = DefinitionDefinitionForm.find(params['definition_definition_form']['id'])
     if params['definition_definition_form'].blank?
       @definition_definition_form = DefinitionDefinitionForm.find(params['id'])
@@ -345,7 +345,8 @@ class DefinitionDefinitionFormsController < ApplicationController
         items_per_page = 50
     end
     if params['query']
-       @query = buildquery(params["query"])
+       #@query = buildquery(params["query"])
+       @query = params['query']
        query = buildquery(params["query"])
        flash["query"] = params["query"]
        # breakpoint
@@ -482,6 +483,7 @@ class DefinitionDefinitionFormsController < ApplicationController
       end # if params['internal_definition']['term'] != nil
       query = [query]+@array
       
+       @query = vals
        
       # previous code
       # @array = []
@@ -524,8 +526,9 @@ class DefinitionDefinitionFormsController < ApplicationController
        
      end
     end #end if query=="" 
-     #debugger
-     @query = query
+     debugger
+     
+     #@query = query
     render :layout => false
   end
 
