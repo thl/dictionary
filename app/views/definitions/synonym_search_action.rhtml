@@ -15,12 +15,14 @@ $(document).ready(function() {
 <%# form_remote_tag(:update => "definition_space", :url => {:controller => "definitions", :action => "add_synonym", :id => params['id'],:internal => 'definitions'}, :html => {:name => "listrelated"}) do %>
 <% remote_form_for :full_synonym, :url => { :action => "add_synonym", :id => params['id'],:internal => 'definitions' } do |f| %>
 
+<%= render :partial => "partial/related_term_find_paginator", :locals => {:find_paginator => @definition_pages, :query => @query} %><br>
+
   <% @wylie_term = Definition.find(params[:definition_id]).wylie %>
   <%# @relationship =  @relationship.split(" ").each{|word| word.capitalize!}.join(" ") %>
   <% @wylie_term =  @wylie_term.split(" ").each{|word| word.capitalize!}.join(" ") %>
   <h4>Select Full Synonym of <%= @wylie_term %>:</h4>
   <!--<h3>Check Synonym:</h3> -->
-  <p><%= build_form_radiolist_group(@terms) %></p>
+  <%= build_form_radiolist_group(@terms) %>
   <input type="hidden" name="definition_id" value="<%= params['definition_id'] %>" />
 
   <%#= image_submit_tag("accept.png", :size => "16x16", :border => 0,  :alt => "select", :id => 'update_button') %>

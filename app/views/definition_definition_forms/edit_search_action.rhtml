@@ -4,7 +4,7 @@ $(document).ready(function() {
 		
 });
 </script>
-
+<%# debugger %>
 <% if params['relatedtype'] == "definition_from" %>
 <div id="definition_definition_form_definition_froms">
 <% form_remote_tag(:update => "definition_definition_form_definition_froms", :url => {:controller => "definition_definition_forms", :action => 'edit_add_to_list_action', :id => params['id'], :internal => 'definitions'}, :html => {:name => "listrelated"}) do %>
@@ -27,8 +27,10 @@ $(document).ready(function() {
 <div id="definition_find_term">
 <div id="definition_definition_form_definition_tos">
 <%# form_remote_tag(:update => "definition_definition_form_definition_tos", :url => {:controller => "definition_definition_forms", :action => 'edit_add_to_list_action', :id => params['id']}, :html => {:name => "listrelated"}) do %>
+
+<%# debugger %>
 <% remote_form_for :definition_definition_form, :url => { :action => "edit_add_to_list_action", :id => params['id'] } do |f| %>
-  <%= render :partial => "partial/related_term_find_paginator", :locals => {:find_paginator => @definition_pages} %><br>
+  <%= render :partial => "partial/related_term_find_paginator", :locals => {:find_paginator => @definition_pages, :query => @query} %><br>
  
   <% if @definition_tos.size > 0 %>
   <!-- <h6>Check Definition to Add:</h6> -->
@@ -39,7 +41,7 @@ $(document).ready(function() {
 	<h4>Select <%= @relationship %> of <%= @wylie_term %>:</h4>
 
    <% if @definition_definition_form.definition_to != nil %>
-     <p><%= build_form_radiolist_group(@definition_tos,@definition_definition_form.definition_to.displayInfo) %></p>
+     <%= build_form_radiolist_group(@definition_tos,@definition_definition_form.definition_to.displayInfo) %>
    <% else %>
      <p><%= build_form_radiolist_group(@definition_tos) %></p>
    <% end %>

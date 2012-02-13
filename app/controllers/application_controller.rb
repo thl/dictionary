@@ -149,7 +149,7 @@ class ApplicationController < ActionController::Base
 	
 	def jump_to_page
 	  #breakpoint
-    # debugger
+     debugger
 		if ((params["query"] == nil) ) and flash['relatedsearch'] != 'yes'
 		  #flash = flash
 			redirect_to :action => "list", :params => {"page" => params["page"], 'items_per_page' => params['items_per_page'], 'query' => ''}
@@ -167,6 +167,16 @@ class ApplicationController < ActionController::Base
 			redirect_to :action =>  "find_head_terms", :params => newparams
 		end
 	end
+
+	def jump_to_related_page
+     debugger
+		  newparams = {"page" => params["page"], 'items_per_page' => params['items_per_page'],"query"=>params["query"], "mode" => params['mode']}
+		  flash.each {|k,v|
+		    newparams[k.to_s]=v.to_s
+		  }
+			redirect_to :action =>  "edit_search_action", :params => newparams
+	end
+
 
 	def find_jump_to_page
 	    if params['query'] == 'browse'
