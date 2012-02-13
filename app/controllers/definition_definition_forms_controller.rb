@@ -325,7 +325,7 @@ class DefinitionDefinitionFormsController < ApplicationController
   end
 
   def edit_search_action
-    debugger
+    #debugger
     #@definition_definition_form = DefinitionDefinitionForm.find(params['definition_definition_form']['id'])
     if params['definition_definition_form'].blank?
       @definition_definition_form = DefinitionDefinitionForm.find(params['id'])
@@ -526,7 +526,7 @@ class DefinitionDefinitionFormsController < ApplicationController
        
      end
     end #end if query=="" 
-     debugger
+     #debugger
      
      #@query = query
     render :layout => false
