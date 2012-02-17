@@ -58,6 +58,7 @@ Page <input type=text name="page" size=3 value=<%= @current_page %>> of <%= @pag
 			<input type=hidden name="mode" value="<%= @page_class %>">
 			<input type=hidden name="paged" value="yes">
 			<input type=hidden name="query" value="<%= @query %>">
+			<input type=hidden name="current_first_item" value=<%= find_paginator.current.first_item  %>>
 			&nbsp&nbsp&nbsp&nbsp
 			Display <input type=text name="items_per_page" size=3 value=<%= params["items_per_page"] %>> items
 			<%= submit_tag('Go')%>

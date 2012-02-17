@@ -356,8 +356,14 @@ class DefinitionDefinitionFormsController < ApplicationController
          session['search_type'] = 'term'
        end
        
+       if params['current_first_item'] != nil
+          first_item = params['current_first_item'].to_f
+          calculated_page = (first_item / items_per_page.to_f).ceil
+          params['page'] = calculated_page
+       else
+         #use current params['page'] parameter if any
+       end
        
-       #items_per_page = 50
        sort_clause = "sort_order asc"
         
        #@definition_tos = Definition.find :all, :conditions => query
