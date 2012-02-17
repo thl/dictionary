@@ -23,6 +23,7 @@ $(document).ready(function() {
 
 </div>
 <% end %>
+
 <% if params['relatedtype'] == "definition_to" %>
 <div id="definition_find_term">
 <div id="definition_definition_form_definition_tos">
@@ -30,9 +31,12 @@ $(document).ready(function() {
 
 <%# debugger %>
 <% remote_form_for :definition_definition_form, :url => { :action => "edit_add_to_list_action", :id => params['id'] } do |f| %>
-  <%= render :partial => "partial/related_term_find_paginator", :locals => {:find_paginator => @definition_pages, :query => @query} %><br>
+  
  
   <% if @definition_tos.size > 0 %>
+
+	<%= render :partial => "partial/related_term_find_paginator", :locals => {:find_paginator => @definition_pages, :query => @query} %><br>
+	
   <!-- <h6>Check Definition to Add:</h6> -->
 	<% @relationship = DefinitionDefinitionForm.find(params['id']).relationship_to %>
 	<% @wylie_term = Definition.find(DefinitionDefinitionForm.find(params['id']).def1_id).wylie %>
@@ -45,15 +49,19 @@ $(document).ready(function() {
    <% else %>
      <p><%= build_form_radiolist_group(@definition_tos) %></p>
    <% end %>
-	<% else %>
+	
+	<%= submit_tag 'Select', :id => 'update_button' %>
+   	<%= link_to_remote "Cancel", :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+  <% else %>
 	<h3>No Results Found</h3>
-	<% end %>
+	<br>
+	<%= link_to_remote "Search Again", :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+  <% end %>
    <input type=hidden name=relatedtype value=definition_to />
    <input type="hidden" name="definition_definition_form[id]" value="<%= @definition_definition_form.id %>"/> 
 
    <%#= image_submit_tag("accept.png", :size => "16x16", :border => 0,  :alt => "select", :id => 'update_button') %>
-   <%= submit_tag 'Select', :id => 'update_button' %>
-   <%= link_to_remote "Cancel", :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+   
   <% end %>
 <!-- before moving inside remote form, this was used outside
 <input type="hidden" name="definition_definition_form[id]" value="<%= @definition_definition_form.id %>"/> 
