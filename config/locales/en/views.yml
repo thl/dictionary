@@ -2,5 +2,50 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 en:
     edit_multimedia_data: 'Edit Multimedia Data'
-    show_hide_multimedia: 'show/hide multimedia'
+    paginator:
+        display: 
+            go: 'Go'
+            ing: 'Displaying'
+            items: 'items'
+            next: 'Next'
+            of: 'of'
+            page: 'Page'
+            previous: 'Previous'
+            this: 'Display'
+    phonetic:
+        text: 'THL Phonetic Transcription'
+        this: 'Phonetic'
     root_letter: 'Root Letter (calculated automatically, override here)'
+    
+    search:
+        criteria:
+            contains: 'Contains'
+            exact: 'Exact match'
+            starts: 'Starts with'
+        results:
+            no: 
+                sorry: 'Sorry, there are no matches for '
+                dictionary: ' in the Dictionary.'
+            sort:
+                term: 'Term'
+                transliteration: 'Transliteration'
+                function: 'Function'
+                definition: 'Definition'
+            this: 'Search Results'
+        text: 'Enter the term you want to find'
+        this: 'Search'
+        
+    show_hide_multimedia: 'show/hide multimedia'
+    sort:
+        
+    term:
+        this: 'Term'   
+    tibetan:
+        text: 'Tibetan Unicode Script'
+        this: 'Tibetan'
+    wylie:
+        tex: 'THL Wylie Transliteration'
+        this: 'Wylie'
+    
+    
+    

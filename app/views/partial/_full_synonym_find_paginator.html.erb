@@ -1,0 +1,70 @@
+<div class="counter">
+<%# debugger %>
+	<% if find_paginator != nil %>
+	<% params['items_per_page'] = 50 if params['items_per_page'] == nil%>
+	<table><tr><td>
+	
+			<!-- <input type=hidden name="params" value="<%= params %>"> -->
+		<% form_tag(:action => "jump_to_related_page") do %>
+		<!--	
+			<input type=hidden name="paged" value="yes">
+
+			<input type=hidden name="login" value="<%= params["login"] %>">
+		<input type=hidden name="mode" value="<%= @page_class %>">
+		<input type=hidden name="query" value="<%= flash["query"] %>">
+		<input type=hidden name="items_per_page" value="<%= params["items_per_page"] %>">
+		Page <input type=text name="page" size=3 value=<%= @current_page %>> of <%#= @pages %>	
+		<%#= submit_tag('Go')%>-->
+	 	<% end %>
+	
+	<% form_remote_tag(:action => "jump_to_full_synonym_page", :update =>'definition_full_synonyms') do %>
+   Displaying <%= find_paginator.current.first_item %>
+   - <%= find_paginator.current.last_item %>
+   of <%= find_paginator.item_count %> &nbsp; &nbsp;
+ 
+   <%# link_to(h('< Previous'), find_paginator.current.previous.to_link) + " | " if find_paginator.current.previous %>
+
+<%= link_to_remote image_tag("left.gif" , :border => 0, :alt => "< Previous", :style=> 'display:inline'), :update => 'definition_full_synonyms',  :url => {:controller => 'definitions', :action => 'synonym_search_action',   :page => find_paginator.current.previous, :items_per_page => params['items_per_page'], :query => @query, :corporate_body => params["corporate_body"], :object => flash["object"], :institution => flash["institution"], :storage_unit => flash["storage_unit"], :project => flash["project"], :paged => 'yes', :mode => @page_class, :login => params['login'], :relatedtype => 'definition_to' } , :method => 'get'  if find_paginator.current.previous %>
+		<%#previous non ajax link= link_to(image_tag("left.gif" , :border => 0, :alt => "< Previous", :style=> 'display:inline'), {:page => find_paginator.current.previous, :params => { :items_per_page => params['items_per_page'], :query => flash["query"], :corporate_body => params["corporate_body"], :object => flash["object"], :institution => flash["institution"], :storage_unit => flash["storage_unit"], :project => flash["project"], :paged => 'yes', :mode => @page_class, :login => params['login']}})  if find_paginator.current.previous %>
+   <%# find_paginator.basic_html(self, 4) %>
+		<%#=pagination_links(find_paginator, {:window_size => 4, :params => { :query => flash["query"], :collection => flash["collection"], :object => flash["object"], :institution => flash["institution"], :storage_unit => flash["storage_unit"], :project => flash["project"]}}) %>
+   <%# " | " + link_to(h('Next >'), find_paginator.current.next.to_link) if find_paginator.current.next %>
+		
+
+
+
+
+<input type=hidden name="id" value="<%= params["id"] %>">
+<input type=hidden name="relatedtype" value="definition_to">
+<input type=hidden name="login" value="<%= params["login"] %>">
+<input type=hidden name="mode" value="<%= @page_class %>">
+<input type=hidden name="paged" value="yes">
+<input type=hidden name="query" value="<%= @query %>">
+<input type=hidden name="items_per_page" value="<%= params["items_per_page"] %>">
+&nbsp&nbsp&nbsp&nbsp
+Page <input type=text name="page" size=3 value=<%= @current_page %>> of <%= @pages %>
+<%= submit_tag('Go')%>
+
+
+		<%= link_to_remote  image_tag("right.gif", :border => 0, :alt => "Next >", :style=> 'display:inline'), :update => 'definition_full_synonyms',  :url => {:controller => 'definitions', :action => 'synonym_search_action',   :page => find_paginator.current.next, :items_per_page => params['items_per_page'], :query => @query, :corporate_body => params["corporate_body"], :object => flash["object"], :institution => flash["institution"], :storage_unit => flash["storage_unit"], :project => flash["project"], :paged => 'yes', :mode => @page_class, :login => params['login'], :relatedtype => 'definition_to' } , :method => 'get' if find_paginator.current.next %>
+		<% end %>
+	</td>
+	<td>
+		
+		<% form_remote_tag(:action => "jump_to_full_synonym_page", :update =>'definition_full_synonyms') do %>
+			<input type=hidden name="id" value="<%= params["id"] %>">
+			<input type=hidden name="relatedtype" value="definition_to">
+			<input type=hidden name="login" value="<%= params["login"] %>">
+			<input type=hidden name="mode" value="<%= @page_class %>">
+			<input type=hidden name="paged" value="yes">
+			<input type=hidden name="query" value="<%= @query %>">
+			<input type=hidden name="current_first_item" value=<%= find_paginator.current.first_item  %>>
+			&nbsp&nbsp&nbsp&nbsp
+			Display <input type=text name="items_per_page" size=3 value=<%= params["items_per_page"] %>> items
+			<%= submit_tag('Go')%>
+	 	<% end %>
+	</td>
+	</tr>
+	</table>
+	<% end %>
+ </div> 

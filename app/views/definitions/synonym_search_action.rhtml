@@ -8,6 +8,8 @@ $(document).ready(function() {
 	
 });
 </script>
+
+<% debugger %>
 <div id="definition_definition_form_definition_froms">
 <%# form_remote_tag(:update => "definition_space", :loading => "Element.hide('edit_box');clear_contents('edit_box');", :url => {:controller => "definitions", :action => 'add_synonym', :id => params['id'], :internal => 'definitions'}, :html => {:name => "listrelated"}) do %>
 
@@ -15,9 +17,11 @@ $(document).ready(function() {
 <%# form_remote_tag(:update => "definition_space", :url => {:controller => "definitions", :action => "add_synonym", :id => params['id'],:internal => 'definitions'}, :html => {:name => "listrelated"}) do %>
 <% remote_form_for :full_synonym, :url => { :action => "add_synonym", :id => params['id'],:internal => 'definitions' } do |f| %>
 
-<%= render :partial => "partial/related_term_find_paginator", :locals => {:find_paginator => @definition_pages, :query => @query} %><br>
+<% if @terms.size > 0 %>
 
-  <% @wylie_term = Definition.find(params[:definition_id]).wylie %>
+  <%= render :partial => "partial/full_synonym_find_paginator", :locals => {:find_paginator => @definition_pages, :query => @query} %><br>
+
+  <% @wylie_term = Definition.find(params['id']).wylie %>
   <%# @relationship =  @relationship.split(" ").each{|word| word.capitalize!}.join(" ") %>
   <% @wylie_term =  @wylie_term.split(" ").each{|word| word.capitalize!}.join(" ") %>
   <h4>Select Full Synonym of <%= @wylie_term %>:</h4>
@@ -30,6 +34,13 @@ $(document).ready(function() {
   <%#= link_to_remote image_tag("cross.png", :size => "16x16", :border => 0, :alt => "cancel"), :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %>  
   <%= link_to_remote "Cancel",  :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %>
   <%#= link_to_remote "Cancel", :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+  
+ <% else %>
+	<h3>No Results Found</h3>
+	<br>
+	<%= link_to_remote "Search Again", :update => 'definition_full_synonyms',  :url => {:controller => 'definitions', :action => 'cancel', :pk => params[:id], :internal => 'definitions', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+ <% end %>
+
   <br> 
 
 <% end %>

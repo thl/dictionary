@@ -4163,7 +4163,8 @@ end
         items_per_page = 50
     end
    if params['query']
-       @query = buildquery(params["query"])
+       #@query = buildquery(params["query"])
+       @query = params['query']
        query = buildquery(params["query"])
        flash["query"] = params["query"]
        # breakpoint
@@ -4173,7 +4174,14 @@ end
          session['search_type'] = 'term'
        end
        
-       items_per_page = 50
+       if params['current_first_item'] != nil
+           first_item = params['current_first_item'].to_f
+           calculated_page = (first_item / items_per_page.to_f).ceil
+           params['page'] = calculated_page
+        else
+          #use current params['page'] parameter if any
+        end
+        
         sort_clause = "sort_order asc"
 
         #@terms = Definition.find :all, :conditions => query
@@ -4267,6 +4275,8 @@ end
           
       end # if params['internal_definition']['term'] != nil
       query = [query]+@array  
+    
+      @query = vals
     
       items_per_page = 50
       sort_clause = "sort_order asc"
