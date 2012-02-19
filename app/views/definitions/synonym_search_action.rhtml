@@ -38,7 +38,8 @@ $(document).ready(function() {
  <% else %>
 	<h3>No Results Found</h3>
 	<br>
-	<%= link_to_remote "Search Again", :update => 'definition_full_synonyms',  :url => {:controller => 'definitions', :action => 'cancel', :pk => params[:id], :internal => 'definitions', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+	<%#= link_to_remote "Search Again", :update => 'definition_full_synonyms',  :url => {:controller => 'definitions', :action => 'cancel', :pk => params[:id], :internal => 'definitions', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+	<%= link_to_remote "Cancel",  :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %>
  <% end %>
 
   <br> 
