@@ -315,6 +315,7 @@ class DefinitionDefinitionFormsController < ApplicationController
   end
   
   def edit_search
+#debugger
     if params['level'] != nil
       params['level'] = params['level'].to_i + 1
     else

@@ -41,7 +41,7 @@ module HabtmHelper
   	  str << "&nbsp"			
     	str << %{<input type="radio" name="tags[]" id="tag_#{tag.id}" value="#{tag.id}" }
 			str <<  " checked='checked'" if (original == tag.displayInfo)
-    	str << %{/> #{tag.displayInfo} }
+    	str << %{ /><span style="font-size:120%;padding:3px;"> #{tag.displayInfo} </span>}
       str << "&nbsp;&nbsp;"
 	    #str << "&nbsp;&nbsp;<span id=\"show_"+tag.id.to_s+"\">"+link_to_remote(image_tag('right.gif', :border => 0), :update => ''+tag.id.to_s+'', :url => {:controller => 'definitions', :action => :public_show_list, :id => tag.id, :params => {'list_view' => 'true'}}, :complete => "$('#show_"+tag.id.to_s+"').hide();$('#hide_"+tag.id.to_s+"').show();$('#"+tag.id.to_s+"').show();")+"</span>"
   
@@ -53,7 +53,7 @@ module HabtmHelper
       ## str << link_to_remote(image_tag('down.gif', :border => 0), :update => ''+tag.id.to_s+'', :url => {:controller => 'definitions', :action => :public_show_list, :id => tag.id, :params => {'list_view' => 'true'}}, :complete => "Element.hide('hide_"+tag.id.to_s+"');Element.show('show_"+tag.id.to_s+"');new Effect.Fade('"+tag.id.to_s+"row')")
 
     	
-    	str << "<br />"
+    	str << "<br /><br />"
     	str << "<span id=\""+tag.id.to_s+"\"></span>"
 			#end
 		  end

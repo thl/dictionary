@@ -394,7 +394,16 @@ en:
             script:
                 script: 'Script'
             source:
+                end_line_number: 'End Line number'
+                end_page_number: 'End Page number'
+                end_page_side: 'End Page side'
+                page_number: 'Start Page number'
+                start_line_number: 'Start Line number'
+                start_page_side: 'Start Page side'
+                source_id_value: 'Source ID'
                 source_note: 'Source note'
+                source_type: 'Source type'
+                spelling: 'Spelling'
             source_type:
                 source_type: 'Source type'
             specific_dialect:
