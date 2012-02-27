@@ -24,7 +24,7 @@
 	<input type=hidden name="items_per_page" value="<%= params["items_per_page"] %>">
 	Page <input type=text name="page" size=3 value=<%= @current_page %>> of <%= @pages %>	
 	<%= submit_tag('Go')%>
-	<% debugger %>
+
    <%= link_to(image_tag("right.gif", :border => 0, :alt => "Next >", :style=> 'display:inline'), {:page => find_paginator.current.next, :params => { :items_per_page => params['items_per_page'], :query => flash["query"], :corporate_body => params["corporate_body"], :object => flash["object"], :institution => flash["institution"], :storage_unit => flash["storage_unit"], :project => flash["project"], :paged => 'yes', :mode => @page_class, :login => params['login']}}) if find_paginator.current.next %>
 <% end %>
 	</td>

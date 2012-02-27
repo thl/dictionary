@@ -940,7 +940,7 @@ def browse_old
 end  
   
 def find_head_terms
-  debugger
+  
   @current_tab_id = :search
   @current_section = :showview
   if session[:user] != nil
@@ -1128,7 +1128,7 @@ def find_head_terms
          items_per_page = 50
       end
       @q = query
-       debugger
+       
       @definition_pages = Paginator.new self, Definition.count(:conditions => query), items_per_page, params['page']
       @definitions = Definition.find :all, :order => sort_clause, :conditions => query, :limit => @definition_pages.items_per_page, :offset => @definition_pages.current.offset
       if @definition_pages.item_count != 0
@@ -1758,6 +1758,12 @@ end
     # breakpoint
     @tibetan_space = Unicode::U0F0B
     @tibetan_space_fix = Unicode::U0F0B + Unicode::U200B
+    
+    if session[:user] != nil
+      @logged_in = true
+    else
+      @logged_in = false
+    end
     
     puts '--------'
     puts 'head ?'+params[:id].to_s

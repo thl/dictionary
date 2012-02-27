@@ -62,9 +62,10 @@ function clear_contents(node)
 				<span class="tib1">
 				<b><span class="head_term"> <%= @definition.term.span %></span></b>&nbsp;&nbsp;&nbsp; <%#= "(#{@definition.wylie})" if @definition.wylie != nil %>
 				</span>
+				<% if @logged_in %>
 				<%= link_to( image_tag('pencil.png',:border => 0),  :controller => 'definitions', :action => 'public_edit', :id => @definition.id) %>
 				<span style="font-size: 10px;"> <%= link_to('EDIT', :controller => 'definitions', :action => 'public_edit', :id => @definition.id) %></span>
-				
+				<% end %>
 					<%#= link_to 'Search Tibetan text archive for this word', "#{thl_catalog_host_url}/encyclopedias/literary/canons/kt/catalog.php?q=#{@definition.term}"  %>
 					
 			</td>
