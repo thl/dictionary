@@ -4,6 +4,7 @@ $(document).ready(function() {
 	////$("#search_button").click(function () {	parent.eval('tb_remove()'); });
 	
 	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});	
+	$("#cancel_link").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});	
 	
 });
 </script>
@@ -60,7 +61,8 @@ $(document).ready(function() {
   <%#= link_to_remote image_tag("cancel_up.gif", :size => "87x19", :border => 0, :alt => "cancel"),  :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %>
 
 <%= link_to_remote image_tag("cross.png", :size => "16x16", :border => 0, :alt => "cancel"),   :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %>  
-<%= link_to_remote "cancel",  :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %>
+<%= link_to_remote "cancel",   :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_link"} %>  
+<%#= link_to_remote "cancel",  :url => { :action => 'public_edit', :id => params[:id]}, :method => 'get',  :html => {:name => "cancel_button", :id=> "cancel_button"} %>
 <br> 
 
 
