@@ -59,7 +59,7 @@ $(document).ready(function() {
 				</dd>
 		<% end %>
 		<% if e.passage_number != nil and e.passage_number != ''%>
-				<dd><b>Page number: </b><%= e.passage_number.s %></dd>
+				<dd><b>Passage number: </b><%= e.passage_number.s %></dd>
 		<% end %>
 		<% if e.passage != nil and e.passage	 != ''%>
 				<dd>
@@ -121,7 +121,7 @@ $(document).ready(function() {
 				<dd><b>Literary form: </b><%= link_to e.literary_form_type.title, e.literary_form_type.get_url_with_parent if !e.literary_form_type.blank?  %></dd>
 		<% end %>
 		<% if e.western_date != nil and e.western_date != '' %>
-			  <dd><b>Western date of composition: </b><%= e.western_date %></dd>
+			  <dd><b>International date of composition: </b><%= e.western_date %></dd>
 		<% end %>
 		<% if e.western_date_note != nil and e.western_date_note != '' %>
 			  <dd><b>Western date note: </b><%= e.western_date_note %></dd>

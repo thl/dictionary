@@ -38,7 +38,17 @@ $(document).ready(function() {
 	<%= render :partial => "partial/related_term_find_paginator", :locals => {:find_paginator => @definition_pages, :query => @query} %><br>
 	
   <!-- <h6>Check Definition to Add:</h6> -->
-	<% @relationship = DefinitionDefinitionForm.find(params['id']).relationship_to %>
+	<% 	if DefinitionDefinitionForm.find(params['id']).relationship_to == 'future form' then
+			@relationship = "future tense"
+	 	else
+			if DefinitionDefinitionForm.find(params['id']).relationship_to == 'imperative form' then
+ 				@relationship = "imperative tense"
+			else
+  			@relationship = DefinitionDefinitionForm.find(params['id']).relationship_to
+			end
+		end
+	%>
+	<%# @relationship = DefinitionDefinitionForm.find(params['id']).relationship_to %>
 	<% @wylie_term = Definition.find(DefinitionDefinitionForm.find(params['id']).def1_id).wylie %>
 	<% @relationship =  @relationship.split(" ").each{|word| word.capitalize!}.join(" ") %>
 	<% @wylie_term =  @wylie_term.split(" ").each{|word| word.capitalize!}.join(" ") %>

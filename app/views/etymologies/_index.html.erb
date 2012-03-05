@@ -52,7 +52,7 @@ $(document).ready(function() {
 			<!--	<dd><b>Loan language: </b>[<%#= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>-->
 			<%# end %>
 			<% if !e.loan_language_type.blank? %>
-			<dd><b>Loan language Type: </b><%= link_to e.loan_language_type.title, e.loan_language_type.get_url_with_parent, :target => "_blank" if !e.loan_language_type.blank?  %></dd>
+			<dd><b>Loan language: </b><%= link_to e.loan_language_type.title, e.loan_language_type.get_url_with_parent, :target => "_blank" if !e.loan_language_type.blank?  %></dd>
 			<% end %>
 		<!--<%# if e.loan_language != nil and e.loan_language != ''%>
 				<dd><b>Loan language: </b>[<%#= e.loan_language %>]</dd>

@@ -1,14 +1,26 @@
 <%# if params['relatedtype'] != "definition_definition_form_to" %>
     <%# below code for related terms %>
+	
+	<% 	if @definition_definition_form.relationship_to == 'future form' then
+  			@relationship = "future tense"
+	 	else
+  			if @definition_definition_form.relationship_to == 'imperative form' then
+   				@relationship = "imperative tense"
+  			else
+    			@relationship = @definition_definition_form.relationship_to 
+  			end
+		end
+	%>
+	
 	<h3><%= @definition_definition_form.definition_from.term %> 
-	<%= @definition_definition_form.relationship_to %>:</h3>
+	<%= @relationship %>:</h3>
     
     <div id="definition_definition_form_definition_tos" class="internal">
 	  <div id="definition_find_term">
 		  <div id="definition_definition_form_definition_tos">
 		  <% form_remote_tag(:update => "definition_definition_form_definition_tos", :url => {:controller => "definition_definition_forms", :action => "edit_search_action", :id => params['id'], :params => {:level => params['level'], :internal => params['internal'], :pk => params['pk']}}, :html => {:name => "searchrelated"}) do %>
 		    <!-- <h4>Find New Related Term:</h4> -->
-			<% @relationship = DefinitionDefinitionForm.find(params['id']).relationship_to %>
+			<%# @relationship = DefinitionDefinitionForm.find(params['id']).relationship_to %>
 			<% @wylie_term = Definition.find(DefinitionDefinitionForm.find(params['id']).def1_id).wylie %>
 			<% @relationship =  @relationship.split(" ").each{|word| word.capitalize!}.join(" ") %>
 			<% @wylie_term =  @wylie_term.split(" ").each{|word| word.capitalize!}.join(" ") %>

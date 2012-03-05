@@ -51,7 +51,16 @@ class DefinitionDefinitionForm < ActiveRecord::Base
 
   def displayFromInfoPublic
     str = ""
-    str += relationship_to unless relationship_to == nil
+    if relationship_to == 'future form' then
+      str += "future tense"
+    else
+      if relationship_to == 'imperative form' then
+       str += "imperative tense"
+      else
+        str += relationship_to unless relationship_to == nil
+      end
+    end
+    
     # str += "&nbsp;"
     # str += definition_to.displayInfoPublicBasic unless definition_to == nil
     return str

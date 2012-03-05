@@ -68,8 +68,18 @@ $(document).ready(function() {
 
   <% if params['relatedtype'] != "definition_definition_form_to" %>
     <%# below code for related terms %>
+	<% 	if @definition_definition_form.relationship_to == 'future form' then
+  			@relationship = "future tense"
+	 	else
+  			if @definition_definition_form.relationship_to == 'imperative form' then
+   				@relationship = "imperative tense"
+  			else
+    			@relationship = @definition_definition_form.relationship_to
+  			end
+		end
+	%>
 	<h3><%= @definition_definition_form.definition_from.term %> 
-	<%= @definition_definition_form.relationship_to %>:</h3>
+	<%#= @definition_definition_form.relationship_to %><%= @relationship %>:</h3>
     
     <div id="definition_definition_form_definition_tos" class="internal">
 	  <div id="definition_find_term">

@@ -190,7 +190,7 @@ module DefinitionsHelper
 		  ['conjugated form', null, null,
     	  ['past tense',\"javascript:add_new_relationship('definitions','definition_definition_form_from',definition_id,'past tense','present tense');\"],
     	  ['future tense',\"javascript:add_new_relationship('definitions','definition_definition_form_from',definition_id,'future form','present tense');\"],
-    	  ['imperative form',\"javascript:add_new_relationship('definitions','definition_definition_form_from',definition_id,'imperative form','present tense');\"]
+    	  ['imperative tense',\"javascript:add_new_relationship('definitions','definition_definition_form_from',definition_id,'imperative form','present tense');\"]
 	    ],
 		  ['division',\"javascript:add_new_relationship('definitions','definition_definition_form_from',definition_id,'division','division of');\"],
 		  ['division of',\"javascript:add_new_relationship('definitions','definition_definition_form_from',definition_id,'division of','division');\"],

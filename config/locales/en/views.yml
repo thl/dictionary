@@ -26,7 +26,6 @@ en:
     definition: 
         edit: 'Definition Edit'
         this: 'Definition'
-        
     derivation:
         type: 'DERIVATION TYPE'
     dictionaries:
@@ -45,8 +44,13 @@ en:
         side: 'END SIDE'
     enumeration: 'ENUMERATION'
     etymology:
+        edit: 'Etymology Edit'
         this: 'ETYMOLOGY'
     function: 'FUNCTION'
+    full_synonym:
+        this: 'Full Synonym'
+        select: 'Select Full Synonym of'
+        search_for_term: 'Search for term to specify as Full Synonym of '
     go:
         to: 'Go to {{what}}'
     language:
@@ -60,14 +64,41 @@ en:
         form_type: 'LITERARY FORM TYPE'
         period: 'literary period'
         period_type: 'LITERARY PERIOD TYPE'
-    literary_quotation: 'LITERARY QUOTATION'
+    literary_quotation: 
+        title: 'LITERARY QUOTATION'
+        script: 'Script'
     meta:
         remove: 'Remove Meta'
         edit: 'Meta Edit'
         this: 'Meta'
-    model_sentence: 'MODEL SENTENCE'
+    model_sentence: 
+        title: 'MODEL SENTENCE'
+        s: 'Model sentences'
+        this: 'Model Sentence'
+    multiple_associations: 'Multiple associations'
+    multimedia_data:
+        this: 'Multimedia Data'
     note: 'NOTE'
+    of: 'of'
     oral_quotation: 'ORAL QUOTATION'
+    other_dictionary:
+        dan_martin: 'Other Dictionary (Dan Martin Dictionary)'
+        ives_waldo: 'Other Dictionary (Ives Waldo)'
+        jeffrey_hopkins: 'Other Dictionary (Jeffrey Hopkins)'
+        jim_valby: 'Other Dictionary (Jim Valby)'
+        yogacara_glossary: 'Other Dictionary (Yogācāra Glossary)'
+        rangjung_yeshe: 'Other Dictionary (Rangjung Yeshe)'
+        richard_baron: 'Other Dictionary (Richard Baron)'
+        yogacara_glossary: 'Other Dictionary (Yogācāra Glossary)'
+    other_dictionaries:
+        dan_martin: 'Dan Martin Dictionary'
+        ives_waldo: 'Ives Waldo Dictionary'
+        jeffrey_hopkins: 'Jeffrey Hopkins Dictionary'
+        jim_valby : 'Jim Valby Dictionary'
+        rangjung_yeshe : 'Rangjung Yeshe Dictionary'
+        richard_baron: 'Richard Baron Dictionary'
+        this: 'Other Dictionaries'
+        yogacara_glossary: 'Yogācāra Glossary'
     page:
         number: 'PAGE NUMBER'
         side: 'PAGE SIDE'
@@ -89,6 +120,9 @@ en:
     project:
         this: 'PROJECT'
     register: 'register'
+    related_term:
+        for_different_term: 'for a different term to relate this word to'
+        search_for_term: 'Search for term to specify as'
     relationship:
         edit: 'Edit Relationships'
         s: 'RELATIONSHIPS'
@@ -105,7 +139,9 @@ en:
             contains: 'Contains'
             exact: 'Exact match'
             starts: 'Starts with'
+        again: 'Search Again'
         results:
+            not_found: 'No Results Found'
             no: 
                 sorry: 'Sorry, there are no matches for '
                 dictionary: ' in the Dictionary.'
@@ -117,7 +153,7 @@ en:
             this: 'Search Results'
         text: 'Enter the term you want to find'
         this: 'Search'
-        
+    select: 'Select'   
     show_hide_multimedia: 'show/hide multimedia'
     sort:
         this: 'Sort'
@@ -142,9 +178,9 @@ en:
         side: 'START SIDE'
         line:
             number: 'START LINE NUMBER'
-            
     subject:
         s: 'SUBJECTS'
+        generic_multiple_associations: 'Subject Generic Multiple associations'
     term:
         translation: 'TERM TRANSLATION'
         this: 'Term'   
@@ -154,6 +190,7 @@ en:
         this: 'Tibetan'
     thl:
         dictonary: 'THL DICTIONARY'
+        tibetan_unicode_script: 'Tibetan Unicode Script'
         transliteration: 'THL TRANSLITERATION'
         transcription: 'THL TRANSCRIPTION'
         wylie_translation: 'THL Wylie Transliteration'
