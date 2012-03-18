@@ -2618,6 +2618,47 @@ end
       render :partial => "shared/text_field_edit", :locals => {:t => @definition, :divsuffix => "_termdiv"}
   end
 
+  def update_popupterm
+      @definition = Definition.find(params[:definition][:id])
+      if @definition.created_by == nil or @definition.created_by == ""
+             @definition.created_by = session[:user].login
+             @definition.created_at = Time.now
+      end
+      if session[:user] != nil
+             @definition.updated_by = session[:user].login
+      end
+      @definition.updated_at = Time.now
+      if @definition.update_history == nil
+        @definition.update_history = session[:user].login + " ["+Time.now.to_s+"]
+       "
+      else
+        @definition.update_history += session[:user].login + " ["+Time.now.to_s+"]
+       "
+      end
+      respond_to do |format|
+        if @definition.update_attributes(params[:definition])
+          format.html do
+            render :partial => 'shared/text_field_show', :locals => {:t => @definition, :divsuffix => "_popuptermdiv"}
+          end
+        else
+           #redirect_to :action => 'index_edit'
+           #redirect_to :action => 'public_edit', :id => @pronunciation
+        end
+      end
+  end
+
+  def term_popupshow
+      @definition = Definition.find(params[:id])
+      render :partial => "shared/text_field_show", :locals => {:t => @definition, :divsuffix => "_popuptermdiv"}
+  end
+
+  def term_popupedit
+      @definition = Definition.find(params[:id])
+      render :partial => "shared/text_field_edit", :locals => {:t => @definition, :divsuffix => "_popuptermdiv"}
+  end
+
+
+
   def update_wylie
       @definition = Definition.find(params[:definition][:id])
       if @definition.created_by == nil or @definition.created_by == ""

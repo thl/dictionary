@@ -24,6 +24,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.definition_term_edit 'definitions/:id/term_edit', :controller => 'definitions', :action => 'term_edit'
   map.definition_term_show 'definitions/:id/term_show', :controller => 'definitions', :action => 'term_show'
+  map.definition_term_popupedit 'definitions/:id/term_popupedit', :controller => 'definitions', :action => 'term_popupedit'
+  map.definition_term_popupshow 'definitions/:id/term_popupshow', :controller => 'definitions', :action => 'term_popupshow'
   map.definition_wylie_edit 'definitions/:id/wylie_edit', :controller => 'definitions', :action => 'wylie_edit'
   map.definition_wylie_show 'definitions/:id/wylie_show', :controller => 'definitions', :action => 'wylie_show'
   map.definition_phonetic_edit 'definitions/:id/phonetic_edit', :controller => 'definitions', :action => 'phonetic_edit'

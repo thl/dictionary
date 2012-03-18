@@ -553,25 +553,28 @@ function clear_contents(node)
 		<%##= link_to_remote(image_tag('cross',:border=>0, :title => 'Delete definition'), :update => 'complete_definition', :url => {:action => 'public_destroy', :id => d.id, :params => {:parent_id => @head_id, :head_id => @head_id}}, :confirm => "Are you sure you want to delete this entry?") %>
 		<%#= link_to(image_tag('cross.png',:border=>0, :title => 'Delete entire entry'),{:action => 'public_destroy', :id => @definition.id, :params => {:parent_id => @head_id, :head_id => @head_id}}, :confirm => "Are you sure you want to delete this entire entry?") %>
 		<%= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_destroy' , :update => 'definition_space', :complete => 're_initialize();',  :id => @definition.id, :parent_id => @head_id, :head_id => @head_id),  :title=>'Delete entire entry', :confirm => "Are you sure you want to delete this entire entry?" %>	
+	<!--
 	<span class="tib1">
-	<b><font size="+2"><%= @definition.term.to_s.s %>  <%#= in_place_editor_field(:definition, :term)%></font></b>
+	<b><font size="+2"><%#= @definition.term.to_s.s %>  <%#= in_place_editor_field(:definition, :term)%></font></b>
 	</span> 
 	<%#= in_place_editor_field :definition, :term %>
 	<%#= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'definitions', :action => 'edit_dynamic_definition', :id => d.id, :internal=>'edit_box', :public=>'yes'}, :html => {:class => 'ui_definition_dialog', :title=>'Definition Edit'} %>
-	
-	<!--<span class="tib1">
+	-->
+	<span class="tib1">
 		<span class='tinyfied_show'>
-			<div id="<%#= "#{@definition.id}_termdiv" %>">
-			  <%#  edit_path = definition_term_edit_url(:id => @definition.id) %>
-			  <%# if @definition.term == nil or @definition.term == ''
+			<div id="<%= "#{@definition.id}_termdiv" %>">
+				<b><font size="+2">
+			  <%  edit_path = definition_term_edit_url(:id => @definition.id) %>
+			  <% if @definition.term == nil or @definition.term == ''
 	               t_term = 'Click to modify'
 	             else
 	               t_term = @definition.term.to_s.s     
 	             end %>
-			  <%#= link_to_remote(t_term, :url => edit_path, :update => "#{@definition.id}_termdiv", :method => :get ) %>
-		    </div>
+			  <%= link_to_remote(t_term, :url => edit_path, :update => "#{@definition.id}_termdiv", :method => :get ) %>
+		    </font></b>
+			</div>
 		</span>
-	</span>-->
+	</span>
 	
 	
 	<br>

@@ -2006,14 +2006,14 @@ module DefinitionsHelper
     #resultstr << in_place_editor_field( :definition, :term, {}, {:cols => 50, :rows => 1, :fieldname => 'internal_definition[term]'}) 
 		resultstr << link_to_remote(image_tag('pencil.png',:border => 0), :url => definition_term_edit_url(:id => @definition.id), :update => "#{@definition.id}_termdiv", :method => :get )  
     resultstr << "<span class='tinyfied_show'>"
-    resultstr << "<div id='" + "#{@definition.id}_termdiv" + "'>"
-    edit_path = definition_term_edit_url(:id => @definition.id)
+    resultstr << "<div id='" + "#{@definition.id}_popuptermdiv" + "'>"
+    edit_path = definition_term_popupedit_url(:id => @definition.id)
     if @definition.term == nil or @definition.term == ''
       t_term = 'Click to modify'
     else
       t_term = @definition.term.to_s.s 
     end  
-    resultstr << link_to_remote(t_term, :url => edit_path, :update => "#{@definition.id}_termdiv", :method => :get ) 
+    resultstr << link_to_remote(t_term, :url => edit_path, :update => "#{@definition.id}_popuptermdiv", :method => :get ) 
     resultstr << "</div>"
     resultstr << "</span>"
 

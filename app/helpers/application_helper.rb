@@ -751,6 +751,8 @@ module ApplicationHelper
       case edit_action
       when "term_edit"
         "term_show"
+      when "term_popupedit"
+        "term_popupshow"
       when "wylie_edit"
         "wylie_show"
       when "phonetic_edit"
@@ -762,6 +764,8 @@ module ApplicationHelper
       case edit_action
       when "term_edit"
         "update_term"
+      when "term_popupedit"
+        "update_popupterm"
       when "wylie_edit"
         "update_wylie"
       when "phonetic_edit"
@@ -775,6 +779,11 @@ module ApplicationHelper
         case controller
           when "definitions"
             definition_term_edit_url(:id => id)
+        end
+      when "update_popupterm", "term_popupshow"
+        case controller
+          when "definitions"
+            definition_term_popupedit_url(:id => id)
         end
       when "update_wylie", "wylie_show"
         case controller
@@ -793,6 +802,8 @@ module ApplicationHelper
       case edit_action
       when "term_edit"
         "term"
+      when "term_popupedit"
+        "term"  
       when "wylie_edit"
         "wylie"
       when "phonetic_edit"
@@ -802,7 +813,7 @@ module ApplicationHelper
     
    def text_field_show(update_action)
      case update_action
-     when "update_term", "term_show"
+     when "update_term", "term_show", "update_popupterm", "term_popupshow"
        "term"
      when "update_wylie", "wylie_show"
        "wylie"
