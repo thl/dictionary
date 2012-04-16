@@ -5,7 +5,7 @@ en:
         definitions:
             text: 'Clicking a Tibetan letter above will give you a list of every 100th Tibetan term with that root letter. Clicking on one of the terms will then expand the full set of 100 terms beginning with that term. You can thus quickly browse to find the range where your term will be. Clicking on any of the resultant terms will then expand the corresponding dictionary entry within the browsing mode. If you prefer to see only the entry on the screen, click on the word "view" to the right of the term you want to view'
     click_modify: 
-        record: 'Click to modify {{what}}' 
+        record: 'Click to modify %{what}' 
         this: 'Click to modify'
     contributors:
         hide: 'HIDE CONTRIBUTORS'
@@ -21,7 +21,7 @@ en:
         entry:
             confirmation: 'Are you sure you want to delete this entry?'
             title: 'Delete entry'
-        successful: '{{what}} deleted succesfully.'
+        successful: '%{what} deleted succesfully.'
         this: 'Delete'
     definition: 
         edit: 'Definition Edit'
@@ -52,7 +52,7 @@ en:
         select: 'Select Full Synonym of'
         search_for_term: 'Search for term to specify as Full Synonym of '
     go:
-        to: 'Go to {{what}}'
+        to: 'Go to %{what}'
     language:
         context: 'language context' 
         loan: 'LOAN LANGUAGE'
@@ -128,9 +128,9 @@ en:
         s: 'RELATIONSHIPS'
         full_synonym: 'full synonym'
     remove:
-        confirmation: 'Are you sure you want to remove this {{what}}?'
-        record: 'Remove {{what}}'
-        successful: '{{what}} removed succesfully.'
+        confirmation: 'Are you sure you want to remove this %{what}?'
+        record: 'Remove %{what}'
+        successful: '%{what} removed succesfully.'
         this: 'Remove'    
     root_letter: 'Root Letter (calculated automatically, override here)'
     
