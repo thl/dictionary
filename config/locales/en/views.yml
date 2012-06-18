@@ -59,11 +59,9 @@ en:
         this: 'LANGUAGE'
     literary:
         genre: 'Literary genre'
-        genre_type: 'LITERARY GENRE TYPE'
         form: 'literary form'
         form_type: 'LITERARY FORM TYPE'
         period: 'literary period'
-        period_type: 'LITERARY PERIOD TYPE'
     literary_quotation: 
         title: 'LITERARY QUOTATION'
         script: 'Script'
@@ -75,7 +73,6 @@ en:
         title: 'MODEL SENTENCE'
         s: 'Model sentences'
         this: 'Model Sentence'
-    multiple_associations: 'Multiple associations'
     multimedia_data:
         this: 'Multimedia Data'
     note: 'NOTE'
@@ -197,8 +194,8 @@ en:
         phonetic_transcription: 'THL Phonetic Transcription'
         this: 'THL'
     translation:
-        note: 'TRANSLATION NOTE'
-        this: 'TRANSLATION'
+        note: 'Translation Note'
+        this: 'Translation'
     usage:
         context: 'USAGE CONTEXTS'
     wylie:
