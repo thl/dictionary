@@ -43,3 +43,6 @@
 [submodule "vendor/plugins/newrelic_rpm"]
 	path = vendor/plugins/newrelic_rpm
 	url = git://github.com/newrelic/rpm.git
+[submodule "vendor/plugins/dictionary_engine"]
+	path = vendor/plugins/dictionary_engine
+	url = git://github.com/thl/dictionary_engine.git
