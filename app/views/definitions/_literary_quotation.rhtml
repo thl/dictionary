@@ -2,7 +2,7 @@
 <% if t.translation != nil and t.translation != ''%>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>TRANSLATION<%= "(#{link_to t.language_type.title, t.language_type.get_url_with_parent})" if !t.language_type.blank? %>:</strong> </span>
+			<span class="inner_def_header"><strong>Translation<%= "(#{link_to t.language_type.title, t.language_type.get_url_with_parent})" if !t.language_type.blank? %>:</strong> </span>
 			<span class='tinyfied_public_show'>
 			<%= t.translation %> <%#= "(#{t.language_type.title})" if t.language_type != nil %>
 			</span>
@@ -12,7 +12,7 @@
 	<% if t.analytical_note != nil and t.analytical_note != ''%>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-		<span class="inner_def_header"><strong>TRANSLATION NOTE:</strong> </span>
+		<span class="inner_def_header"><strong>Translation Note:</strong> </span>
 			<span class='tinyfied_public_show'>
 				<%= t.analytical_note%>
 			</span>
@@ -55,14 +55,14 @@
 <% if literary_quotation.spelling != '' and literary_quotation.spelling != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>SPELLING:</strong> </span><%= literary_quotation.spelling%>
+			<span class="inner_def_header"><strong>Spelling:</strong> </span><%= literary_quotation.spelling%>
 		</dd>
 	</dl>
 <% end %>
 <% if literary_quotation.source != '' and literary_quotation.source != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>SOURCE:</strong> </span><%= literary_quotation.source%>
+			<span class="inner_def_header"><strong>Source:</strong> </span><%= literary_quotation.source%>
 		</dd>
 	</dl>
 <% end %>
@@ -71,7 +71,7 @@
 <%# if literary_quotation.literary_genre_type != '' and literary_quotation.literary_genre_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>LITERARY GENRE TYPE:</strong> </span><%#= literary_quotation.literary_genre_type.title%>
+			<span class="inner_def_header"><strong>Literary Genre:</strong> </span><%#= literary_quotation.literary_genre_type.title%>
 			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ') %>
 		</dd>
 	</dl>
@@ -80,7 +80,7 @@
 <%# if literary_quotation.literary_period_type != '' and literary_quotation.literary_period_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>LITERARY PERIOD TYPE:</strong> </span><%#= literary_quotation.literary_period_type.title%>
+			<span class="inner_def_header"><strong>Literary period:</strong> </span><%#= literary_quotation.literary_period_type.title%>
 			<%= link_to literary_quotation.literary_period_type.title, literary_quotation.literary_period_type.get_url_with_parent if !literary_quotation.literary_period_type.blank? %>
 		</dd>
 	</dl>
@@ -89,7 +89,7 @@
 <%# if literary_quotation.literary_form_type != '' and literary_quotation.literary_form_type != nil %>
 	<dl class="inner_dl">
 		<dd class="inner_dd">
-			<span class="inner_def_header"><strong>LITERARY FORM TYPE:</strong> </span><%#= literary_quotation.literary_form_type.title%>
+			<span class="inner_def_header"><strong>Literary form:</strong> </span><%#= literary_quotation.literary_form_type.title%>
 			<%= link_to literary_quotation.literary_form_type.title, literary_quotation.literary_form_type.get_url_with_parent if !literary_quotation.literary_form_type.blank?  %>
 		</dd>
 	</dl>
@@ -97,21 +97,21 @@
 <% if literary_quotation.passage_number != nil and literary_quotation.passage_number != ''%>
 <dl class="inner_dl">
 	<dd class="inner_dd">
-	<span class="inner_def_header"><strong>PAGE NUMBER:</strong> </span><%= literary_quotation.passage_number%>
+	<span class="inner_def_header"><strong>Page number:</strong> </span><%= literary_quotation.passage_number%>
 		</dd>
 	</dl>
 <% end %>
 <% if literary_quotation.page_side != nil and literary_quotation.page_side != ''%>
 <dl class="inner_dl">
 	<dd class="inner_dd">
-	<span class="inner_def_header"><strong>PAGE SIDE:</strong> </span><%= literary_quotation.page_side%>
+	<span class="inner_def_header"><strong>Page side:</strong> </span><%= literary_quotation.page_side%>
 		</dd>
 	</dl>
 <% end %>
 <% if literary_quotation.analytical_note != nil and literary_quotation.analytical_note != ''%>
 <dl class="inner_dl">
 	<dd class="inner_dd">
-	<span class="inner_def_header"><strong>NOTE:</strong> </span>
+	<span class="inner_def_header"><strong>Analytical note:</strong> </span>
 		<span class='tinyfied_public_show'>
 			<%= literary_quotation.analytical_note%>
 		</span>
