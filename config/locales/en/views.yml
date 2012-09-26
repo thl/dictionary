@@ -25,7 +25,6 @@ en:
         this: 'Delete'
     definition: 
         edit: 'Definition Edit'
-        this: 'Definition'
     derivation:
         type: 'DERIVATION TYPE'
     dictionaries:
@@ -39,45 +38,24 @@ en:
         iveswaldo: 'IVES WALDO DICTIONARY'
     edit_multimedia_data: 'Edit Multimedia Data'
     enciclopedia_entry: 'ENCYCLOPEDIA ENTRY'
-    end:
-        page: 'END PAGE'
-        side: 'END SIDE'
     enumeration: 'ENUMERATION'
     etymology:
         edit: 'Etymology Edit'
-        this: 'ETYMOLOGY'
     function: 'FUNCTION'
     full_synonym:
-        this: 'Full Synonym'
         select: 'Select Full Synonym of'
         search_for_term: 'Search for term to specify as Full Synonym of '
     go:
         to: 'Go to %{what}'
-    language:
-        context: 'language context' 
-        loan: 'LOAN LANGUAGE'
-        this: 'LANGUAGE'
     literary:
-        genre: 'Literary genre'
-        form: 'literary form'
         form_type: 'LITERARY FORM TYPE'
-        period: 'literary period'
-    literary_quotation: 
-        title: 'LITERARY QUOTATION'
-        script: 'Script'
     meta:
         remove: 'Remove Meta'
         edit: 'Meta Edit'
-        this: 'Meta'
-    model_sentence: 
-        title: 'MODEL SENTENCE'
-        s: 'Model sentences'
-        this: 'Model Sentence'
     multimedia_data:
         this: 'Multimedia Data'
     note: 'NOTE'
     of: 'of'
-    oral_quotation: 'ORAL QUOTATION'
     other_dictionary:
         dan_martin: 'Other Dictionary (Dan Martin Dictionary)'
         ives_waldo: 'Other Dictionary (Ives Waldo)'
@@ -112,25 +90,18 @@ en:
     phonetic:
         text: 'THL Phonetic Transcription'
         this: 'Phonetic'
-    pronunciation: 
-        this: 'PRONUNCIATION'
-    project:
-        this: 'PROJECT'
-    register: 'register'
     related_term:
         for_different_term: 'for a different term to relate this word to'
         search_for_term: 'Search for term to specify as'
     relationship:
         edit: 'Edit Relationships'
         s: 'RELATIONSHIPS'
-        full_synonym: 'full synonym'
     remove:
         confirmation: 'Are you sure you want to remove this %{what}?'
         record: 'Remove %{what}'
         successful: '%{what} removed succesfully.'
         this: 'Remove'    
     root_letter: 'Root Letter (calculated automatically, override here)'
-    
     search:
         criteria:
             contains: 'Contains'
@@ -155,26 +126,16 @@ en:
     sort:
         this: 'Sort'
     source:
-        all_caps: 'SOURCE'
         hide: 'HIDE SOURCES'
         location: 'SOURCE LOCATION'
         note: 'SOURCE NOTE'
         show: 'SHOW SOURCES'
-        s: 'Sources'
-        this: 'Source'
     source_speaker:
         tibetan_dialect: 'SOURCE SPEAKER TIBETAN DIALECT'
-    speach:
+    speech:
         date: 'SPEECH DATE'
     spelling:
         basis: 'BASIS OF SPELLING'
-        s: 'SPELLINGS'
-        this: 'SPELLING'
-    start:
-        page: 'START PAGE'
-        side: 'START SIDE'
-        line:
-            number: 'START LINE NUMBER'
     subject:
         s: 'SUBJECTS'
         generic_multiple_associations: 'Subject Generic Multiple associations'
@@ -195,12 +156,8 @@ en:
         this: 'THL'
     translation:
         note: 'Translation Note'
-        this: 'Translation'
     usage:
         context: 'USAGE CONTEXTS'
     wylie:
         tex: 'THL Wylie Transliteration'
         this: 'Wylie'
-    
-    
-    
