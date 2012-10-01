@@ -840,12 +840,12 @@ class DefinitionsController < ApplicationController
     @users = User.find :all, :conditions => 'full_name is not null'
     @page_class = 'home'
     #hostname = Socket.gethostname.downcase
-    #if hostname =~ /sds[3-578].itc.virginia.edu/
-    #  app_host = 'http://thlib.org'
-    #  dict_url = 'http://dictionary.thlib.org'
-    #elsif hostname == 'sds6.itc.virginia.edu'
+    #if hostname == 'sds6.itc.virginia.edu'
     #  app_host = 'http://staging.thlib.org'
     #  dict_url = 'http://staging.dictionary.thlib.org'
+    #elsif hostname =~ /sds.+\.itc\.virginia\.edu/
+    #  app_host = 'http://thlib.org'
+    #  dict_url = 'http://dictionary.thlib.org'
     #elsif hostname == 'dev.thlib.org'
     #  app_host = 'http://dev.thlib.org'
     #  dict_url = 'http://dev.dictionary.thlib.org'

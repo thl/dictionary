@@ -237,10 +237,10 @@ module ApplicationHelper
     
     def tmb_url
       hostname = Socket.gethostname.downcase
-      if hostname =~ /sds[3-578].itc.virginia.edu/
-        tmb = 'http://tmb.thlib.org'
-      elsif hostname == 'sds6.itc.virginia.edu'
+      if hostname == 'sds6.itc.virginia.edu'
         tmb = 'http://staging.tmb.thlib.org'
+      elsif hostname =~ /sds.+\.itc\.virginia\.edu/
+        tmb = 'http://tmb.thlib.org'
       elsif hostname == 'dev.thlib.org'
         tmb = 'http://dev.tmb.thlib.org'
       else
@@ -251,10 +251,10 @@ module ApplicationHelper
     
     def app_host_url
       hostname = Socket.gethostname.downcase
-      if hostname =~ /sds[3-578].itc.virginia.edu/
-        app_host = 'http://thlib.org'
-      elsif hostname == 'sds6.itc.virginia.edu'
+      if hostname == 'sds6.itc.virginia.edu'
         app_host = 'http://staging.thlib.org'
+      elsif hostname =~ /sds.+\.itc\.virginia\.edu/
+        app_host = 'http://thlib.org'
       elsif hostname == 'dev.thlib.org'
         app_host = 'http://dev.thlib.org'
       else
@@ -825,10 +825,10 @@ module ApplicationHelper
     
     def thl_catalog_host_url
       hostname = Socket.gethostname.downcase
-      if hostname =~ /sds[3-578].itc.virginia.edu/
-        app_host = 'http://thlib.org'
-      elsif hostname == 'sds6.itc.virginia.edu'
+      if hostname == 'sds6.itc.virginia.edu'
         app_host = 'http://staging.thlib.org'
+      elsif hostname =~ /sds.+\.itc\.virginia\.edu/
+        app_host = 'http://thlib.org'
       elsif hostname == 'dev.thlib.org'
         app_host = 'http://dev.thlib.org'
       else
