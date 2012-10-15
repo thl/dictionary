@@ -171,7 +171,7 @@ function clear_contents(node)
 <!-- </ul> -->
 <!-- <br> -->
 <!-- <hr> -->
-<% if @dan_martin_definitions.size > 0 or @jeffrey_hopkins_definitions.size > 0 or @yogacara_definitions.size > 0 or @rangjung_yeshe_definitions.size > 0 or @richard_baron_definitions.size > 0 or @jim_valby_definitions.size > 0 or @ives_waldo_definitions.size > 0 %>
+<% if @dan_martin_definitions.size > 0 or @jeffrey_hopkins_definitions.size > 0 or @yogacara_definitions.size > 0 or @rangjung_yeshe_definitions.size > 0 or @richard_baron_definitions.size > 0 or @jim_valby_definitions.size > 0 or @ives_waldo_definitions.size > 0 or @tshig_definitions > 0 %>
 <div style="background-color:#ffffff">
 	<table width="100%">
 	<tr><td colspan="2">
@@ -368,6 +368,27 @@ function clear_contents(node)
 				<!-- <dd>&nbsp;</dd> -->
 			<% end %>
 		<% end %>
+		
+		<% if @tshig_definitions.size > 0 %>
+			<% if found_previous == true %>
+			<br><br>
+			<% end %>
+			<% found_previous = true %>
+			<b>OTHER TIBETAN DICTIONARY </b><br><br>
+		<% end %>
+		<% size = @tshig_definitions.size %>
+		<% count = 0 %>
+		<% for d in @tshig_definitions %>
+			<span class="tib1">
+				<%#= d.term %>
+			<%= d.definition.span.gsub('<tt>','').gsub('</tt>','').gsub('<u>','<i>').gsub('</u>','</i>').gsub('<p>','').gsub('</p>','<br>').html_safe %>
+			</span>
+			<% count += 1 %>
+			<% if count != size %>
+			<br><br>
+			<% end %>
+		<% end %>
+		
 	<!-- </dl> -->
 	</td></tr>
 	</table>
