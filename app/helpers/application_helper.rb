@@ -832,7 +832,7 @@ module ApplicationHelper
       elsif hostname == 'dev.thlib.org'
         app_host = 'http://dev.thlib.org'
       else
-        app_host = 'http://thlib.org'
+        app_host = 'http://www.thlib.org'
       end
       return app_host
     end
