@@ -828,7 +828,7 @@ module ApplicationHelper
       if hostname == 'sds6.itc.virginia.edu'
         app_host = 'http://staging.thlib.org'
       elsif hostname =~ /sds.+\.itc\.virginia\.edu/
-        app_host = 'http://thlib.org'
+        app_host = 'http://www.thlib.org'
       elsif hostname == 'dev.thlib.org'
         app_host = 'http://dev.thlib.org'
       else
