@@ -6,4 +6,4 @@
  :build_static_pages_worker:
    :build_static_pages:
      # :trigger_args: 0 20 13 * * * *
-     :trigger_args: 0 06 15 * * * *
+     :trigger_args: 0 6 15 * * * *

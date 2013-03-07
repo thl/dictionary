@@ -217,7 +217,7 @@ module ApplicationHelper
     
     def stylesheet_files
       #super + ['jquery.autocomplete', 'jquery.checktree','thickbox', 'modalbox', 'menu', 'http://www.thlib.org/global/css/thdl_style.css', 'http://www.thlib.org//reference/dictionaries/tibetan-dictionary/css/tibetan-dictionary.css', 'thdl_public']
-      super + ['jquery.autocomplete', 'jquery.checktree','thickbox', 'modalbox', 'menu', 'http://www.thlib.org/global/css/thdl_style.css', 'thdl_public', 'jquery-ui-tabs', 'jquery-ui']
+      super + ['jquery.autocomplete', 'jquery.checktree','thickbox', 'modalbox', 'menu', 'http://www.thlib.org/global/css/thdl-style.css', 'thdl_public', 'jquery-ui-tabs', 'jquery-ui']
     end
 
     def javascript_files
