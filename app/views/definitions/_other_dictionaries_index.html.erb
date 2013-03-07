@@ -168,4 +168,29 @@ $(document).ready(function() {
 				</td>
 			</tr>
 		<% end %>
+
+
+		<% if @tshig_definitions.size > 0 %>
+		<tr><td>
+			<b><%= 'བོད་རྒྱ་ཚིག་མཛོད་ཆེན་མོ།'.span %></b>
+		</td></tr>
+		<% end %>
+		<% for d in @tshig_definitions %>
+			<tr>
+				<td></td>
+				<td>
+				<span class="tib1">
+				<%= d.term.s if d.term != nil %>
+				<%= d.definition.s.gsub('<u>','<i>').gsub('</u>','</i>').gsub('<p>','').gsub('</p>','<br>') %>
+				</span>
+			</td>
+				<td>
+					<%= link_to_remote image_tag('pencil.png',:border => 0), :update => 'popup_dialog', :method => :get, :url => {:controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :internal=>'edit_box', :public=>'yes', :head_id => @head_id}, :html => {:class => 'ui_definition_dialog', :title=>'Other Dictionary (བོད་རྒྱ་ཚིག་མཛོད་ཆེན་མོ།) Edit'} %>
+					<%#= link_to 'Edit', url_for(:controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :internal=>'edit_box', :public=>'yes', :head_id => @head_id,  :height=>500,:width=>670, :modal=>true) , :class=>:thickbox, :title=>'Other Dictionary (Ives Waldo) Edit' %>			
+					<%#= link_to 'Edit', :controller => 'old_definitions', :action => 'edit_dynamic', :id => d.id, :params => {'head_id' => @head_id} %> 
+					<%= link_to 'Delete', {:action => 'delete_old_definition', :id => params[:id], :params => {:other_id => d.id }}, :confirm => 'Are you sure want to delete this entry?'%>
+				</td>
+			</tr>
+		<% end %>
+
 	</table>

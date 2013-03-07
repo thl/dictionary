@@ -217,7 +217,7 @@ module ApplicationHelper
     
     def stylesheet_files
       #super + ['jquery.autocomplete', 'jquery.checktree','thickbox', 'modalbox', 'menu', 'http://www.thlib.org/global/css/thdl_style.css', 'http://www.thlib.org//reference/dictionaries/tibetan-dictionary/css/tibetan-dictionary.css', 'thdl_public']
-      super + ['jquery.autocomplete', 'jquery.checktree','thickbox', 'modalbox', 'menu', 'http://www.thlib.org/global/css/thdl_style.css', 'thdl_public', 'jquery-ui-tabs', 'jquery-ui']
+      super + ['jquery.autocomplete', 'jquery.checktree','thickbox', 'modalbox', 'menu', 'http://www.thlib.org/global/css/thdl-style.css', 'thdl_public', 'jquery-ui-tabs', 'jquery-ui']
     end
 
     def javascript_files
@@ -237,10 +237,10 @@ module ApplicationHelper
     
     def tmb_url
       hostname = Socket.gethostname.downcase
-      if hostname =~ /sds[3-578].itc.virginia.edu/
-        tmb = 'http://tmb.thlib.org'
-      elsif hostname == 'sds6.itc.virginia.edu'
+      if hostname == 'sds6.itc.virginia.edu'
         tmb = 'http://staging.tmb.thlib.org'
+      elsif hostname =~ /sds.+\.itc\.virginia\.edu/
+        tmb = 'http://tmb.thlib.org'
       elsif hostname == 'dev.thlib.org'
         tmb = 'http://dev.tmb.thlib.org'
       else
@@ -251,10 +251,10 @@ module ApplicationHelper
     
     def app_host_url
       hostname = Socket.gethostname.downcase
-      if hostname =~ /sds[3-578].itc.virginia.edu/
-        app_host = 'http://thlib.org'
-      elsif hostname == 'sds6.itc.virginia.edu'
+      if hostname == 'sds6.itc.virginia.edu'
         app_host = 'http://staging.thlib.org'
+      elsif hostname =~ /sds.+\.itc\.virginia\.edu/
+        app_host = 'http://thlib.org'
       elsif hostname == 'dev.thlib.org'
         app_host = 'http://dev.thlib.org'
       else
@@ -825,14 +825,14 @@ module ApplicationHelper
     
     def thl_catalog_host_url
       hostname = Socket.gethostname.downcase
-      if hostname =~ /sds[3-578].itc.virginia.edu/
-        app_host = 'http://thlib.org'
-      elsif hostname == 'sds6.itc.virginia.edu'
+      if hostname == 'sds6.itc.virginia.edu'
         app_host = 'http://staging.thlib.org'
+      elsif hostname =~ /sds.+\.itc\.virginia\.edu/
+        app_host = 'http://www.thlib.org'
       elsif hostname == 'dev.thlib.org'
         app_host = 'http://dev.thlib.org'
       else
-        app_host = 'http://thlib.org'
+        app_host = 'http://www.thlib.org'
       end
       return app_host
     end
