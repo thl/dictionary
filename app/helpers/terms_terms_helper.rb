@@ -1,2 +1,0 @@
-module TermsTermsHelper
-end

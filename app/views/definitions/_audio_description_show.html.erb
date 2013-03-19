@@ -1,7 +1,0 @@
-<% edit_path = audio_description_edit_url(:id => d.id) %>
-<% if d.audio_description == nil or d.audio_description == ''
-  t_audiodescription = 'Click to modify'
-else
-  t_audiodescription = d.audio_description  
-end %>
-<%=  "#{link_to_remote("#{t_audiodescription}", :url => edit_path, :update => "#{d.id}_audiodescdiv", :method => :get ) }" %>

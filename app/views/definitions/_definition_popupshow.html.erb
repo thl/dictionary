@@ -1,7 +1,0 @@
-<% edit_path = definition_popupedit_url(:id => d.id) %>
-<% if d.definition == nil or d.definition == '' 
-  t_definition = 'Click to modify definition'
-else
-  t_definition = d.definition
-end %>
-<%=  "#{link_to_remote("#{t_definition}", :url => edit_path, :update => "#{d.id}_defpopupdiv", :method => :get, :html => {:class => 'definitions_show'} ) }" %>

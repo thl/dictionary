@@ -1,5 +1,0 @@
-<% if params['relatedtype'] == "major_dialect" %>
-  <% if @specific_dialect.major_dialect != nil %>
-  <%= link_to_remote @specific_dialect.major_dialect.displayInfo, :update => "specific_dialect_major_dialects", :url=> {:controller=> "major_dialects", :action => "edit_dynamic", :id => @specific_dialect.major_dialect.id,:params => {:level => params['level'], :relatedtype =>'major_dialect',:internal => 'specific_dialects', 'pk' => params['pk'] != nil ? params['pk'] : params['id'] } } %><br>
-  <% end %>
-<% end %>

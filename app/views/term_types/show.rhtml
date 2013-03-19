@@ -1,8 +1,0 @@
-<% for column in TermType.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @term_type.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', :action => 'edit', :id => @term_type %> |
-<%= link_to 'Back', :action => 'list' %>

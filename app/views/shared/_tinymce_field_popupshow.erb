@@ -1,9 +1,0 @@
-<% edit_url = tinymce_popupedit_url(params[:controller] , params[:action], t.id)
-   field = tinymce_field_show(params[:action])
-%>
-<% if t[field] == nil or t[field] == ''
-  t_content = 'Click to modify'
-else
-  t_content = t[field]  
-end %>
-<%=  "#{link_to_remote("#{t_content}", :url => edit_url, :update => "#{t.id}#{divsuffix}", :method => :get ) }" %>

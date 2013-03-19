@@ -1,5 +1,14 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+
 .DS_Store
 *.tmproj
+*.txt
+*.csv
 config/database.yml
 config/environments/quandu_*.rb
 doc/plugins/*
+public/javascripts/tiny_mce/
+deprecated/

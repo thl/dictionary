@@ -1,7 +1,0 @@
-<% edit_path = video_description_edit_url(:id => d.id) %>
-<%  if d.video_description == nil or d.video_description == ''
-  t_videodescription = 'Click to modify'
-else
-  t_videodescription = d.video_description
-end %>
-<%=  "#{link_to_remote("#{t_videodescription}", :url => edit_path, :update => "#{d.id}_videodescdiv", :method => :get ) }" %>

@@ -7,15 +7,6 @@
 [submodule "vendor/plugins/kmaps_integration"]
 	path = vendor/plugins/kmaps_integration
 	url = git://github.com/thl/kmaps_integration.git
-[submodule "vendor/plugins/tiny_mce"]
-	path = vendor/plugins/tiny_mce
-	url = git://github.com/kete/tiny_mce.git
-[submodule "vendor/plugins/jrails_in_place_editing"]
-	path = vendor/plugins/jrails_in_place_editing
-	url = git://github.com/rakuto/jrails_in_place_editing.git
-[submodule "vendor/plugins/jrails"]
-	path = vendor/plugins/jrails
-	url = git://github.com/aaronchi/jrails.git
 [submodule "vendor/plugins/active_resource_extensions"]
 	path = vendor/plugins/active_resource_extensions
 	url = git://github.com/thl/active_resource_extensions.git
@@ -46,3 +37,9 @@
 [submodule "vendor/plugins/dictionary_engine"]
 	path = vendor/plugins/dictionary_engine
 	url = git://github.com/thl/dictionary_engine.git
+[submodule "vendor/plugins/rails_upgrade"]
+	path = vendor/plugins/rails_upgrade
+	url = git://github.com/amontano/rails_upgrade.git
+[submodule "vendor/plugins/authenticated_system"]
+	path = vendor/plugins/authenticated_system
+	url = git://github.com/thl/authenticated_system.git

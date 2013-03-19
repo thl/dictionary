@@ -1,7 +1,0 @@
-<% edit_path = analytical_note_edit_url(:id => d.id) %>
-<%  if d.analytical_note == nil or d.analytical_note == '' 
-  t_analytical = 'Click to modify'
-else
-  t_analytical = d.analytical_note
-end %>
-<%=  "#{link_to_remote("#{t_analytical}", :url => edit_path, :update => "#{d.id}_anotediv", :method => :get ) }" %>

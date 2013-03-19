@@ -45,7 +45,8 @@ function pause(numberMillis) {
 // --------------------------------------------------------------------------------
 // menu class
 function menu (a_items, a_tpl, action) {
-
+//alert(a_items);
+//alert(a_tpl);
 	this.call_action = action;
 
 	// browser check

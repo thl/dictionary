@@ -190,7 +190,7 @@ function show_old_menu(m,coords) {
 }
 
 function show_menu(d,coords) {
-	// alert(coords);
+	 //alert('showing menu');
 	//alert(d.a_children);
 	y=d.a_border[0].e_oelement.style.top.substring(0,d.a_border[0].e_oelement.style.top.indexOf('p'))*1
 	x=d.a_border[0].e_oelement.style.left.substring(0,d.a_border[0].e_oelement.style.left.indexOf('p'))*1
