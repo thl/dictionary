@@ -14,7 +14,7 @@ gem "chronic", "~> 0.8.0"
 gem 'backgroundrb-rails3', :require => 'backgroundrb'
 gem "ya2yaml", "~> 0.30"
 
-gem 'jquery-rails', '0.2.7'
+gem 'jquery-rails', '2.2.2'
 gem 'tiny_mce'
 gem "best_in_place", :git => 'https://github.com/eLafo/best_in_place', :branch => 'rails-3.0'
 gem 'in_place_editing'
