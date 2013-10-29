@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-
+gem 'rake', '10.0.4'
 gem 'rails', '3.0.12'
 gem 'pg'
 
@@ -8,7 +8,7 @@ gem 'pg'
 
 gem 'hpricot', '>= 0.8.6'
 
-gem "ar_fixtures", "~> 0.0.4"
+#commented on  October 16, 2013, trying to update rake #gem "ar_fixtures", "~> 0.0.4"
 gem "chronic", "~> 0.8.0"
 #gem "backgroundrb-rails3", "~> 1.1.6"
 gem 'backgroundrb-rails3', :require => 'backgroundrb'
